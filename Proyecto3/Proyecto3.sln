@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Projects\Proyecto3\Proyecto3.vcxproj", "{DF65EDEC-9B9D-47BB-8E7E-4F972DEC89DF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Projects\Main\Main.vcxproj", "{DF65EDEC-9B9D-47BB-8E7E-4F972DEC89DF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLogic", "Projects\GameLogic\GameLogic.vcxproj", "{28FC9FBF-C637-44FD-998D-F89588966155}"
 EndProject

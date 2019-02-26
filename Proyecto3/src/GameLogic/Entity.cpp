@@ -6,10 +6,10 @@ Entity::Entity() :active(true), inputComp_(), physicsComp_(), renderComp_()
 
 //-------------------ACTUALIZAR COMPONENTES----------------------
 
-void Entity::handleInput(float time/*, const SDL_Event& event*/) {
-	if (active) 
+void Entity::handleEvents(float time, const Event evt) {
+	if (active)
 	{
-		for (auto ic : inputComp_) 
+		for (auto ic : inputComp_)
 			ic->handleInput(this, time/*, event*/);
 	}
 }

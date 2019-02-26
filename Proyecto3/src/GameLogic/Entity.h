@@ -8,6 +8,12 @@
 
 using namespace std;
 
+//placeholders
+enum Event
+{
+	UNDEFINED, GAME_QUIT
+};
+
 class Entity     // clase que acepta componentes (contenedor vacio esperando funcionalidad)
 {
 private:
@@ -21,11 +27,12 @@ private:
 public:
 	Entity();
 
+	inline bool isActive() { return active; }
+	inline bool toggleActive() { active = !active; }
 	inline void setActive(bool active_) { active = active_; }
-	inline bool getActive() { return active; }
 
 	// actualizan los componentes
-	virtual void handleInput(float time);
+	virtual void handleEvents(float time, const Event evt);
 	virtual void update(float time);
 	virtual void render(float time);
 
