@@ -341,5 +341,6 @@ ASALocalRun/
 healthchecksdb
 /Proyecto3/Dependencies/ogre-1.11.5/Buildx86
 
+/Proyecto3/exes/
 *.exe
 *.dll
