@@ -185,12 +185,17 @@
     <ProjectReference Include="..\GameLogic\GameLogic.vcxproj">
       <Project>{28fc9fbf-c637-44fd-998d-f89588966155}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\StaticLib1\StaticLib1.vcxproj">
-      <Project>{cc5586ca-3d54-4a80-914a-221871d96035}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Main\Game.cpp" />
+    <ClCompile Include="..\..\src\Main\GameState.cpp" />
+    <ClCompile Include="..\..\src\Main\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Main\Game.h" />
+    <ClInclude Include="..\..\src\Main\GameState.h" />
+    <ClInclude Include="..\..\src\Main\GameStateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
