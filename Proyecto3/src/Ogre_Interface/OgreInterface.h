@@ -42,9 +42,9 @@ public:
 };
 
 /*
-TODO:
-	*Solucionar inicializar recursos
-	*Object Input (no encuentra los archivos -> no los tenemos)
+*TODO:
+	*Input
+	*Profiler
 	*ESTA CLASE TIENE QUE SER SINGLETON!!!!
 */
 

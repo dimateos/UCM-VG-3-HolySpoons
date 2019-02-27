@@ -37,6 +37,10 @@ void OgreInterface::setupResources()
 			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 		}
 	}
+	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+
+
+	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
 }
 
 bool OgreInterface::setConfiguration()
@@ -48,7 +52,7 @@ bool OgreInterface::setConfiguration()
 
 	mRoot->setRenderSystem(rs);
 	rs->setConfigOption("Full Screen", "No");
-	rs->setConfigOption("Video Mode", "1920 x 1080 @ 32-bit colour");
+	rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit colour");
 
 	return true;
 }
@@ -60,7 +64,10 @@ void OgreInterface::createWindow()
 
 void OgreInterface::initializeResources()
 {
+	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	//Ogre::ResourceGroupManager::getSingleton().prepareResourceGroup("General");
+
 }
 
 void OgreInterface::createSceneManager()
@@ -86,7 +93,7 @@ void OgreInterface::setupScene()
 	//Viewport
 	vp = mWindow->addViewport(mCamera);
 
-	vp->setBackgroundColour(ColourValue(1, 0, 0));
+	vp->setBackgroundColour(ColourValue(1, 1, 1));
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
 	//Lights
@@ -98,6 +105,31 @@ void OgreInterface::setupScene()
 	mLightNode->attachObject(mainLight);
 
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
+
+
+	StringVector vec;
+	vec = Ogre::ResourceGroupManager::getSingleton().getResourceGroups();
+	std::cout <<"Resource Group Size::" << vec.size() << std::endl;
+	Entity* ogreEntity = nullptr;
+	//try {
+	ogreEntity = mSceneMgr->createEntity("Sinbad.mesh");
+
+	//}
+	//catch (Ogre::Exception& e) {
+//#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+		//std::cout << e.what() << std::endl;
+		//std::cout << e.getFullDescription().c_str();
+//#else
+		//std::cerr << "An exception has occurred: " << e.getFullDescription().c_str() << std::endl;
+//#endif
+	//};
+
+	//if (ogreEntity != nullptr) {
+		SceneNode* ogreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+		ogreNode->attachObject(ogreEntity);
+		ogreNode->setScale(Vector3(35, 35, 35));
+	//}
+
 
 	mRoot->startRendering();
 }
