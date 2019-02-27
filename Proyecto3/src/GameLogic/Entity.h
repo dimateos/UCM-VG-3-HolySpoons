@@ -1,10 +1,9 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
-#include "InputComponent.h"
-#include "PhysicsComponent.h"
-#include "RenderComponent.h"
 #include <vector>
+
+class Component;
 
 using namespace std;
 
@@ -17,12 +16,8 @@ enum Event
 class Entity     // clase que acepta componentes (contenedor vacio esperando funcionalidad)
 {
 private:
-	bool active; // indica si la entidad esta activa o no
-
-	// componentes de tres tipos
-	vector<InputComponent*> inputComp_;
-	vector<PhysicsComponent*> physicsComp_;
-	vector<RenderComponent*> renderComp_;
+	bool active;                    // indica si la entidad esta activa o no
+	vector<Component*> Components_; // vector de componentes
 
 public:
 	Entity();
@@ -31,20 +26,14 @@ public:
 	inline bool toggleActive() { active = !active; }
 	inline void setActive(bool active_) { active = active_; }
 
-	// actualizan los componentes
 	virtual void handleEvents(float time, const Event evt);
 	virtual void update(float time);
-	virtual void render(float time);
 
-	// añaden componentes
-	virtual void addInputComponent(InputComponent* ic/*, const SDL_Event& event*/);
-	virtual void addPhysicsComponent(PhysicsComponent* pc);
-	virtual void addRenderComponent(RenderComponent* rc);
+	// añade un componente
+	virtual void addComponent(Component* component);
 
-	// quitan componentes
-	virtual void delInputComponent(InputComponent* ic);
-	virtual void delPhysicsComponent(PhysicsComponent* pc);
-	virtual void delRenderComponent(RenderComponent* rc);
+	// quita un componente
+	virtual void delComponent(Component* component);
 
 	virtual ~Entity();
 };

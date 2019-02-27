@@ -29,15 +29,6 @@
     <ClInclude Include="..\..\src\GameLogic\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\InputComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\RenderComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Emitter.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -45,6 +36,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Messages.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Component.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

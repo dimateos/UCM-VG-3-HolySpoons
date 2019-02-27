@@ -26,11 +26,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\Entity.h" />
-    <ClInclude Include="..\..\src\GameLogic\InputComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
-    <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\Component.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

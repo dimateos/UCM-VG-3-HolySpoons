@@ -1,83 +1,40 @@
 #include "Entity.h"
+#include "Component.h"
 
-Entity::Entity() :active(true), inputComp_(), physicsComp_(), renderComp_()
+Entity::Entity() :active(true), Components_()
 {
 }
-
-//-------------------ACTUALIZAR COMPONENTES----------------------
 
 void Entity::handleEvents(float time, const Event evt) {
 	if (active)
 	{
-		for (auto ic : inputComp_)
-			ic->handleInput(this, time/*, event*/);
+		for (auto comp : Components_)
+			comp->handleInput(this, time, evt);
 	}
 }
 
 void Entity::update(float time) {
 	if (active)
 	{
-		for (auto pc : physicsComp_)
-			pc->update(this, time);
+		for (auto comp : Components_)
+			comp->update(this, time);
 	}
 }
 
-void Entity::render(float time) {
-	if (active)
-	{
-		for (auto rc : renderComp_)
-			rc->render(this, time);
-	}
+void Entity::addComponent(Component* comp) {
+	Components_.push_back(comp);
 }
 
-//-----------------AÑADIR COMPONENTES----------------------
+void Entity::delComponent(Component* comp) {
+	std::vector<Component*>::iterator position = std::find(
+		Components_.begin(), Components_.end(), comp);
 
-void Entity::addInputComponent(InputComponent* ic) {
-	inputComp_.push_back(ic);
-}
-
-void Entity::addPhysicsComponent(PhysicsComponent* pc) {
-	physicsComp_.push_back(pc);
-}
-
-void Entity::addRenderComponent(RenderComponent* rc) {
-	renderComp_.push_back(rc);
-}
-
-//------------------BORRAR COMPONENTES----------------------
-
-void Entity::delInputComponent(InputComponent* ic) {
-	std::vector<InputComponent*>::iterator position = std::find(
-		inputComp_.begin(), inputComp_.end(), ic);
-
-	if (position != inputComp_.end())
-		inputComp_.erase(position);
-}
-
-void Entity::delPhysicsComponent(PhysicsComponent* pc) {
-	std::vector<PhysicsComponent*>::iterator position = std::find(
-		physicsComp_.begin(), physicsComp_.end(), pc);
-
-	if (position != physicsComp_.end())
-		physicsComp_.erase(position);
-}
-
-void Entity::delRenderComponent(RenderComponent* rc) {
-	std::vector<RenderComponent*>::iterator position = std::find(
-		renderComp_.begin(), renderComp_.end(), rc);
-
-	if (position != renderComp_.end())
-		renderComp_.erase(position);
+	if (position != Components_.end())
+		Components_.erase(position);
 }
 
 Entity::~Entity() {
-	for (auto ic : inputComp_) {
-		if (ic != nullptr) { delete ic; ic = nullptr; delInputComponent(ic); }
-	}
-	for (auto pc : physicsComp_) {
-		if (pc != nullptr) { delete pc; pc = nullptr; delPhysicsComponent(pc); }
-	}
-	for (auto rc : renderComp_) {
-		if (rc != nullptr) { delete rc; rc = nullptr; delRenderComponent(rc); }
+	for (auto comp : Components_) {
+		if (comp != nullptr) { delete comp; comp = nullptr; delComponent(comp); }
 	}
 }
