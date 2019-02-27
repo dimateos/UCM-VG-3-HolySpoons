@@ -37,16 +37,14 @@ void OgreInterface::setupResources()
 			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
 		}
 	}
-	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 
+	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 
 	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
 }
 
 bool OgreInterface::setConfiguration()
 {
-	/*if (!(mRoot->restoreConfig() || mRoot->showConfigDialog()))
-		return false;*/
 	RenderSystemList l = mRoot->getAvailableRenderers();
 	rs = mRoot->getRenderSystemByName("OpenGL Rendering Subsystem");
 
@@ -66,8 +64,6 @@ void OgreInterface::initializeResources()
 {
 	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-	//Ogre::ResourceGroupManager::getSingleton().prepareResourceGroup("General");
-
 }
 
 void OgreInterface::createSceneManager()
@@ -107,29 +103,11 @@ void OgreInterface::setupScene()
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
 
 
-	StringVector vec;
-	vec = Ogre::ResourceGroupManager::getSingleton().getResourceGroups();
-	std::cout <<"Resource Group Size::" << vec.size() << std::endl;
-	Entity* ogreEntity = nullptr;
-	//try {
-	ogreEntity = mSceneMgr->createEntity("Sinbad.mesh");
-
-	//}
-	//catch (Ogre::Exception& e) {
-//#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-		//std::cout << e.what() << std::endl;
-		//std::cout << e.getFullDescription().c_str();
-//#else
-		//std::cerr << "An exception has occurred: " << e.getFullDescription().c_str() << std::endl;
-//#endif
-	//};
-
-	//if (ogreEntity != nullptr) {
-		SceneNode* ogreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-		ogreNode->attachObject(ogreEntity);
-		ogreNode->setScale(Vector3(35, 35, 35));
-	//}
-
+	//finally something to render yas (Sinbad de prueba)
+	Entity* ogreEntity = mSceneMgr->createEntity("Sinbad.mesh");;
+	SceneNode* ogreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+	ogreNode->attachObject(ogreEntity);
+	ogreNode->setScale(Vector3(35, 35, 35));
 
 	mRoot->startRendering();
 }
