@@ -11,6 +11,7 @@
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
+#include <SDL.h>
 
 using namespace Ogre;
 
