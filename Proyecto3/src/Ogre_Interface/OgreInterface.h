@@ -1,6 +1,7 @@
 #pragma once
 #include <OgreFileSystemLayer.h>
 #include <OgreTextureManager.h>
+#include <OgreFrameListener.h>
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
 #include <OgreRenderSystem.h>
@@ -15,11 +16,12 @@
 
 using namespace Ogre;
 
-class OgreInterface
+class OgreInterface : public FrameListener
 {
 private:
 	Root* mRoot = nullptr;
 	RenderWindow* mWindow = nullptr;
+	SDL_Window* SDL_win = nullptr;
 	RenderSystem* rs = nullptr;
 	SceneManager* mSceneMgr = nullptr;
 	Camera* mCamera = nullptr;
@@ -40,12 +42,30 @@ public:
 	OgreInterface(): mRoot(0) {};
 	virtual ~OgreInterface() { delete mRoot; };
 	void initApp();
+	/*
+	 *process all window events since last call
+	 */
+	void pollEvents();
+
+	// callback interface copied from various listeners to be used by ApplicationContext
+	virtual bool frameStarted(const Ogre::FrameEvent& evt) { pollEvents(); return true; }
+	virtual bool frameEnded(const Ogre::FrameEvent& evt) { return true; }
+	/*
+	*HOLA BUENAS AMIGOS
+	*/
+	virtual void windowMoved(Ogre::RenderWindow* rw) {}
+	virtual void windowResized(Ogre::RenderWindow* rw) {}
+	virtual bool windowClosing(Ogre::RenderWindow* rw) { return true; }
+	virtual void windowClosed(Ogre::RenderWindow* rw) {}
+	virtual void windowFocusChange(Ogre::RenderWindow* rw) {}
+
 };
 
 /*
 *TODO:
-	*Input
 	*Profiler
 	*ESTA CLASE TIENE QUE SER SINGLETON!!!!
+	Ordenar / comentar
+ 
 */
 

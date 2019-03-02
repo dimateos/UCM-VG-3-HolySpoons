@@ -1,5 +1,7 @@
 #include "OgreInterface.h"
 #include <iostream>
+#include <SDL_video.h>
+#include <SDL_syswm.h>
 
 void OgreInterface::createRoot()
 {
@@ -57,7 +59,36 @@ bool OgreInterface::setConfiguration()
 
 void OgreInterface::createWindow()
 {
-	mWindow = mRoot->initialise(true, projectName);
+	uint32_t w, h;
+	Ogre::NameValuePairList miscParams;
+
+	Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
+
+	std::istringstream mode(ropts["Video Mode"].currentValue);
+	Ogre::String token;
+	mode >> w; // width
+	mode >> token; // 'x' as seperator between width and height
+	mode >> h; // height
+
+	miscParams["FSAA"] = ropts["FSAA"].currentValue;
+	miscParams["vsync"] = ropts["VSync"].currentValue;
+	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
+
+	if (!SDL_WasInit(SDL_INIT_VIDEO)) SDL_InitSubSystem(SDL_INIT_VIDEO);
+
+
+	Uint32 flags = SDL_WINDOW_RESIZABLE;
+
+	if (ropts["Full Screen"].currentValue == "Yes")  flags = SDL_WINDOW_FULLSCREEN;
+
+	SDL_win = SDL_CreateWindow(projectName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+	SDL_SysWMinfo wmInfo;
+	SDL_VERSION(&wmInfo.version);
+	SDL_GetWindowWMInfo(SDL_win, &wmInfo);
+
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+
+	mWindow = mRoot->createRenderWindow(projectName, w, h, false, &miscParams);
 }
 
 void OgreInterface::initializeResources()
@@ -109,7 +140,7 @@ void OgreInterface::setupScene()
 	ogreNode->attachObject(ogreEntity);
 	ogreNode->setScale(Vector3(35, 35, 35));
 
-	mRoot->startRendering();
+	mRoot->addFrameListener(this);
 }
 
 void OgreInterface::initApp()
@@ -117,8 +148,38 @@ void OgreInterface::initApp()
 	createRoot();
 	setupResources();
 	setConfiguration();
+	mRoot->initialise(false);
 	createWindow();
 	initializeResources();
 	createSceneManager();
 	setupScene();
+	mRoot->startRendering();
+}
+
+void OgreInterface::pollEvents()
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			mRoot->queueEndRendering();
+			break;
+		case SDL_WINDOWEVENT:
+			if (event.window.windowID == SDL_GetWindowID(SDL_win)) {
+				if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+				{
+					Ogre::RenderWindow* win = mWindow;
+					//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR 
+					win->windowMovedOrResized();
+					windowResized(win);
+				}
+			}
+			break;
+		default:
+			//_fireInputEvent(convert(event));
+			break;
+		}
+	}
 }
