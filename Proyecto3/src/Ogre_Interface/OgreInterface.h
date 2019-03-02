@@ -30,6 +30,7 @@ private:
 	Ogre::Light* mainLight = nullptr;
 	Viewport* vp = nullptr;
 	std::string projectName = "Holy Spoons";
+	void initApp();
 	void createRoot();
 	void setupResources();
 	bool setConfiguration();
@@ -37,11 +38,17 @@ private:
 	void initializeResources();
 	void createSceneManager();
 	void setupScene();
+	static OgreInterface* instance_;
+	OgreInterface() : mRoot(0) { initApp(); };
+	virtual ~OgreInterface() {};
 
 public:
-	OgreInterface(): mRoot(0) {};
-	virtual ~OgreInterface() { delete mRoot; };
-	void initApp();
+	/*
+	First time called --> creates and returns pointer to OgreInterface, initializes the app
+	2 or + times called --> returns pointer to OgreInterface 
+	*/
+	static OgreInterface* getSingleton();
+	void shutdown();
 	/*
 	 *process all window events since last call
 	 */
@@ -50,22 +57,17 @@ public:
 	// callback interface copied from various listeners to be used by ApplicationContext
 	virtual bool frameStarted(const Ogre::FrameEvent& evt) { pollEvents(); return true; }
 	virtual bool frameEnded(const Ogre::FrameEvent& evt) { return true; }
-	/*
-	*HOLA BUENAS AMIGOS
-	*/
 	virtual void windowMoved(Ogre::RenderWindow* rw) {}
 	virtual void windowResized(Ogre::RenderWindow* rw) {}
 	virtual bool windowClosing(Ogre::RenderWindow* rw) { return true; }
 	virtual void windowClosed(Ogre::RenderWindow* rw) {}
 	virtual void windowFocusChange(Ogre::RenderWindow* rw) {}
-
 };
 
 /*
 *TODO:
 	*Profiler
-	*ESTA CLASE TIENE QUE SER SINGLETON!!!!
 	Ordenar / comentar
- 
+	Interfaz de verdad --> otra clase con acceso al scene manager
 */
 

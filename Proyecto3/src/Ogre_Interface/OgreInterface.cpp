@@ -3,6 +3,8 @@
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
+OgreInterface* OgreInterface::instance_ = nullptr;
+
 void OgreInterface::createRoot()
 {
 	#if _DEBUG
@@ -141,6 +143,43 @@ void OgreInterface::setupScene()
 	ogreNode->setScale(Vector3(35, 35, 35));
 
 	mRoot->addFrameListener(this);
+}
+
+OgreInterface* OgreInterface::getSingleton()
+{
+	if (instance_ == nullptr) {
+		instance_ = new OgreInterface();
+	}
+
+	return instance_;
+}
+
+void OgreInterface::shutdown()
+{
+	//mShaderGenerator->removeSceneManager(mSM);
+	//mSM->removeRenderQueueListener(mOverlaySystem);
+	
+	mRoot->destroySceneManager(mSceneMgr);
+
+	if (mWindow != nullptr)
+	{
+		mRoot->destroyRenderTarget(mWindow);
+		mWindow = nullptr;
+	}
+
+	//overlay (?)
+
+	if (SDL_win != nullptr)
+	{
+		SDL_DestroyWindow(SDL_win);
+		SDL_QuitSubSystem(SDL_INIT_VIDEO);
+		SDL_win = nullptr;
+	}
+
+	delete mRoot;
+	mRoot = nullptr;
+
+	delete instance_;
 }
 
 void OgreInterface::initApp()
