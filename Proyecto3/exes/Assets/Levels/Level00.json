@@ -1,0 +1,23 @@
+{
+    "Entities":
+    [
+        {
+            "Name": "Caracol",
+            "RedifinedVals":
+            [
+                {
+                    "Render":
+                    {
+                        "Name": "Render",
+                        "X": 50
+                    }
+                }
+            ]
+        },
+
+        {
+            "Name": "Limon",
+            "RedifinedVals":[]
+        }
+    ]
+}
