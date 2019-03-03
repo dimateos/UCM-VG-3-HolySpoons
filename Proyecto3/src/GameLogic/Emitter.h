@@ -5,10 +5,10 @@
 #include <vector>
 #include "Messages.h"
 
-//heredar de Emitter para enviar mensajes
+// it allows to send messages
 class Emitter {
 private:
-	// lista de oyentes que pueden recibir mensajes de el
+	// listeners list that will receive the message
 	std::vector<Listener*> listeners_;
 
 public:

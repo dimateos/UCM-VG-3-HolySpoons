@@ -1,24 +1,19 @@
 #ifndef COMPONENT_H_
 #define COMPONENT_H_
 
-#include "Entity.h"
-using namespace Proyecto;
-class Component { // clase de la que heredaran todos los componentes
+#include "GameObject.h"
+
+class Component { // every type of component will inherit from this class
 public:
 	Component() {}
 	virtual ~Component() {}
 
 	// se llaman desde la entidad
-	virtual void update(Entity* ent, float time) = 0;
-	virtual void handleInput(Entity* ent, float time, const Event& evt) = 0;
+	virtual void update(GameObject* ent, float time) = 0;
+	virtual void handleInput(GameObject* ent, float time, const Event& evt) = 0;
 
-	/*// se llaman desde Ogre y Physx
-	virtual void render(Entity* ent, float time) = 0;
-	virtual void physics(Entity* ent, float time) = 0;
-	*/
-
-	virtual void setUp() = 0;   // introduce al componente en Ogre/physx
-	virtual void setDown() = 0; // quita al componente de Ogre/physx
+	virtual void setUp() = 0;   // set up in Ogre/physx
+	virtual void setDown() = 0; // set down from Ogre/physx
 };
 
 #endif /* COMPONENT_H_ */

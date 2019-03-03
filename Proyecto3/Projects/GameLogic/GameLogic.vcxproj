@@ -20,12 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\Entity.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
-    <ClInclude Include="..\..\src\GameLogic\Entity.h" />
+    <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
     <ClInclude Include="..\..\src\GameLogic\Component.h" />

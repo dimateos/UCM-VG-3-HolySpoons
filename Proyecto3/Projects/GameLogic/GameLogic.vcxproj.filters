@@ -21,7 +21,7 @@
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Entity.cpp">
+    <ClCompile Include="..\..\src\GameLogic\GameObject.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClInclude Include="..\..\src\GameLogic\Component.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Entity.h">
+    <ClInclude Include="..\..\src\GameLogic\GameObject.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

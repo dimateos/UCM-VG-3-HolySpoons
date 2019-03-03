@@ -21,7 +21,7 @@ GameState::~GameState() {}
 void GameState::handleEvents(float time, const Event evt) {
 	cout << endl << "\t\t state EVENTS" << endl;
 
-	for (Entity* e : entities_) {
+	for (GameObject* e : entities_) {
 		if (e->isActive())e->handleEvents(time, evt);
 	}
 }
@@ -30,7 +30,7 @@ void GameState::handleEvents(float time, const Event evt) {
 void GameState::update(float time) {
 	cout << endl << "\t\t state UPDATE" << endl;
 
-	for (Entity* e : entities_) {
+	for (GameObject* e : entities_) {
 		if (e->isActive())e->update(time);
 	}
 	//killDeadObjects();
