@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemInterface.h" />
     <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemManager.h" />
-    <ClInclude Include="RenderSystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemInterface.cpp" />
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemManager.cpp" />
-    <ClCompile Include="RenderSystemInterface.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

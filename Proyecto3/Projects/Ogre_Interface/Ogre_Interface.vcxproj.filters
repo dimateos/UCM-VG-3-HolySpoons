@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="RenderSystemInterface.h">
+    <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemInterface.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,7 +26,7 @@
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="RenderSystemInterface.cpp">
+    <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemInterface.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
