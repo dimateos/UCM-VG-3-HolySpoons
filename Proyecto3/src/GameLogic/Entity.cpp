@@ -1,6 +1,8 @@
 #include "Entity.h"
 #include "Component.h"
 
+using namespace Proyecto;
+
 Entity::Entity() :active(true), Components_()
 {
 }

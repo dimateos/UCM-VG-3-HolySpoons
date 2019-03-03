@@ -2,19 +2,18 @@
 
 #pragma once
 
-#include "Entity.h"
-
+#include <Entity.h>
 #include <iostream> //debugging for now
 #include <string>
 #include <list>
 
+using namespace Proyecto;
 class GameState
 {
 public:
 	GameState();
 	virtual ~GameState();
-
-	virtual void handleEvents(float time, const Event evt);
+	virtual void handleEvents(float time, const Proyecto::Event evt);
 	virtual void update(float time);
 
 	//void sendToGSM(Message* msg);
@@ -28,7 +27,7 @@ protected:
 
 	//void killDeadObjects();
 
-	list<Entity*> entities_;
+	std::list<Proyecto::Entity*> entities_;
 
 	string stateID_ = "undefinedID";
 };

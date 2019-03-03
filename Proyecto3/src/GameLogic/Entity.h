@@ -7,36 +7,38 @@ class Component;
 
 using namespace std;
 
-//placeholders
-enum Event
-{
-	UNDEFINED, GAME_QUIT
-};
+namespace Proyecto {
+	//placeholders
+	enum Event
+	{
+		UNDEFINED, GAME_QUIT
+	};
 
-class Entity     // clase que acepta componentes (contenedor vacio esperando funcionalidad)
-{
-private:
-	bool active;                    // indica si la entidad esta activa o no
-	vector<Component*> Components_; // vector de componentes
+	class Entity     // clase que acepta componentes (contenedor vacio esperando funcionalidad)
+	{
+	private:
+		bool active;                    // indica si la entidad esta activa o no
+		std::vector<Component*> Components_; // vector de componentes
 
-public:
-	Entity();
+	public:
+		Entity();
 
-	inline bool isActive() { return active; }
-	inline bool toggleActive() { active = !active; }
-	inline void setActive(bool active_) { active = active_; }
+		inline bool isActive() { return active; }
+		inline bool toggleActive() { active = !active; }
+		inline void setActive(bool active_) { active = active_; }
 
-	virtual void handleEvents(float time, const Event evt);
-	virtual void update(float time);
+		virtual void handleEvents(float time, const Event evt);
+		virtual void update(float time);
 
-	// añade un componente
-	virtual void addComponent(Component* component);
+		// añade un componente
+		virtual void addComponent(Component* component);
 
-	// quita un componente
-	virtual void delComponent(Component* component);
+		// quita un componente
+		virtual void delComponent(Component* component);
 
-	virtual ~Entity();
-};
+		virtual ~Entity();
+	};
+}
 
 #endif /* ENTITY_H_ */
 

@@ -2,7 +2,7 @@
 #define COMPONENT_H_
 
 #include "Entity.h"
-
+using namespace Proyecto;
 class Component { // clase de la que heredaran todos los componentes
 public:
 	Component() {}
