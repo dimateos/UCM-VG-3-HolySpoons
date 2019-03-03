@@ -47,6 +47,7 @@ void OgreInterface::setupResources()
 	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
 }
 
+//Window size, full screen... --> read it from json
 bool OgreInterface::setConfiguration()
 {
 	RenderSystemList l = mRoot->getAvailableRenderers();
@@ -59,6 +60,7 @@ bool OgreInterface::setConfiguration()
 	return true;
 }
 
+//SDL_Window stuff
 void OgreInterface::createWindow()
 {
 	uint32_t w, h;
@@ -95,7 +97,6 @@ void OgreInterface::createWindow()
 
 void OgreInterface::initializeResources()
 {
-	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
@@ -106,7 +107,7 @@ void OgreInterface::createSceneManager()
 
 void OgreInterface::setupScene()
 {
-	//Camara
+	//Camera
 	mCamera = mSceneMgr->createCamera("MainCam");
 
 	mCamera->setNearClipDistance(1);
@@ -182,6 +183,7 @@ void OgreInterface::shutdown()
 	delete instance_;
 }
 
+//initializes the app and starts rendering
 void OgreInterface::initApp()
 {
 	createRoot();
@@ -195,6 +197,7 @@ void OgreInterface::initApp()
 	mRoot->startRendering();
 }
 
+//mostly window events
 void OgreInterface::pollEvents()
 {
 	SDL_Event event;

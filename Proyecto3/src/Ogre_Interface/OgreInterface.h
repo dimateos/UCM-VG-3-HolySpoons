@@ -19,6 +19,9 @@ using namespace Ogre;
 class OgreInterface : public FrameListener
 {
 private:
+	static OgreInterface* instance_; //singleton pattern
+
+	//Window and scene management
 	Root* mRoot = nullptr;
 	RenderWindow* mWindow = nullptr;
 	SDL_Window* SDL_win = nullptr;
@@ -29,7 +32,9 @@ private:
 	SceneNode* mLightNode = nullptr;
 	Ogre::Light* mainLight = nullptr;
 	Viewport* vp = nullptr;
+
 	std::string projectName = "Holy Spoons";
+
 	void initApp();
 	void createRoot();
 	void setupResources();
@@ -38,36 +43,50 @@ private:
 	void initializeResources();
 	void createSceneManager();
 	void setupScene();
-	static OgreInterface* instance_;
-	OgreInterface() : mRoot(0) { initApp(); };
+
+	OgreInterface() : mRoot(0) { initApp(); }; //private constructor
 	virtual ~OgreInterface() {};
 
 public:
 	/*
-	First time called --> creates and returns pointer to OgreInterface, initializes the app
+	First time called --> creates and returns pointer to OgreInterface, initializes the app, starts rendering
 	2 or + times called --> returns pointer to OgreInterface 
 	*/
 	static OgreInterface* getSingleton();
+
+	/*
+	Shutdowns the entire app
+	*/
 	void shutdown();
+
 	/*
 	 *process all window events since last call
 	 */
 	void pollEvents();
 
-	// callback interface copied from various listeners to be used by ApplicationContext
-	virtual bool frameStarted(const Ogre::FrameEvent& evt) { pollEvents(); return true; }
-	virtual bool frameEnded(const Ogre::FrameEvent& evt) { return true; }
-	virtual void windowMoved(Ogre::RenderWindow* rw) {}
-	virtual void windowResized(Ogre::RenderWindow* rw) {}
-	virtual bool windowClosing(Ogre::RenderWindow* rw) { return true; }
-	virtual void windowClosed(Ogre::RenderWindow* rw) {}
-	virtual void windowFocusChange(Ogre::RenderWindow* rw) {}
+	/*
+	Called when the frame starts rendering
+	*/
+	virtual bool frameStarted(const Ogre::FrameEvent& evt) { pollEvents(); return true; };
+
+	/*
+	Called when the frame ends rendering
+	*/
+	virtual bool frameEnded(const Ogre::FrameEvent& evt) { return true; };
+
+	//Virtual methods, dont really need to be changed
+	virtual void windowMoved(Ogre::RenderWindow* rw) {};
+	virtual void windowResized(Ogre::RenderWindow* rw) {};
+	virtual bool windowClosing(Ogre::RenderWindow* rw) { return true; };
+	virtual void windowClosed(Ogre::RenderWindow* rw) {};
+	virtual void windowFocusChange(Ogre::RenderWindow* rw) {};
+
+	inline const SceneManager* getSceneManager() const { return mSceneMgr; };
 };
 
 /*
 *TODO:
 	*Profiler
-	Ordenar / comentar
 	Interfaz de verdad --> otra clase con acceso al scene manager
 */
 
