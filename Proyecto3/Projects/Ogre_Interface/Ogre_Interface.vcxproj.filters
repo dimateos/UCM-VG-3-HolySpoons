@@ -15,12 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Ogre_Interface\OgreInterface.h">
+    <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystemInterface.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Ogre_Interface\OgreInterface.cpp">
+    <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystemInterface.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

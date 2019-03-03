@@ -1,4 +1,6 @@
-#pragma once
+#ifndef RENDERSYSTEMMANAGER_H_
+#define RENDERSYSTEMMANAGER_H_
+
 #include <OgreFileSystemLayer.h>
 #include <OgreTextureManager.h>
 #include <OgreFrameListener.h>
@@ -15,11 +17,12 @@
 #include <SDL.h>
 
 using namespace Ogre;
+//RenderSystemManager
 
-class OgreInterface : public FrameListener
+class RenderSystemManager : public FrameListener
 {
 private:
-	static OgreInterface* instance_; //singleton pattern
+	static RenderSystemManager* instance_; //singleton pattern
 
 	//Window and scene management
 	Root* mRoot = nullptr;
@@ -44,15 +47,15 @@ private:
 	void createSceneManager();
 	void setupScene();
 
-	OgreInterface() : mRoot(0) { initApp(); }; //private constructor
-	virtual ~OgreInterface() {};
+	RenderSystemManager() : mRoot(0) { initApp(); }; //private constructor
+	virtual ~RenderSystemManager() {};
 
 public:
 	/*
-	First time called --> creates and returns pointer to OgreInterface, initializes the app, starts rendering
-	2 or + times called --> returns pointer to OgreInterface 
+	First time called --> creates and returns pointer to RenderSystemManager, initializes the app, starts rendering
+	2 or + times called --> returns pointer to RenderSystemManager 
 	*/
-	static OgreInterface* getSingleton();
+	static RenderSystemManager* getSingleton();
 
 	/*
 	Shutdowns the entire app
@@ -83,6 +86,8 @@ public:
 
 	inline const SceneManager* getSceneManager() const { return mSceneMgr; };
 };
+
+#endif
 
 /*
 *TODO:

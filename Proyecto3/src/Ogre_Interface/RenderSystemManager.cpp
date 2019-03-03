@@ -1,11 +1,11 @@
-#include "OgreInterface.h"
+#include "RenderSystemManager.h"
 #include <iostream>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
-OgreInterface* OgreInterface::instance_ = nullptr;
+RenderSystemManager* RenderSystemManager::instance_ = nullptr;
 
-void OgreInterface::createRoot()
+void RenderSystemManager::createRoot()
 {
 	#if _DEBUG
 		mRoot = new Ogre::Root("plugins_d.cfg");
@@ -14,7 +14,7 @@ void OgreInterface::createRoot()
 	#endif
 }
 
-void OgreInterface::setupResources()
+void RenderSystemManager::setupResources()
 {
 	Ogre::ConfigFile cf;
 	#if _DEBUG
@@ -48,7 +48,7 @@ void OgreInterface::setupResources()
 }
 
 //Window size, full screen... --> read it from json
-bool OgreInterface::setConfiguration()
+bool RenderSystemManager::setConfiguration()
 {
 	RenderSystemList l = mRoot->getAvailableRenderers();
 	rs = mRoot->getRenderSystemByName("OpenGL Rendering Subsystem");
@@ -61,7 +61,7 @@ bool OgreInterface::setConfiguration()
 }
 
 //SDL_Window stuff
-void OgreInterface::createWindow()
+void RenderSystemManager::createWindow()
 {
 	uint32_t w, h;
 	Ogre::NameValuePairList miscParams;
@@ -95,17 +95,17 @@ void OgreInterface::createWindow()
 	mWindow = mRoot->createRenderWindow(projectName, w, h, false, &miscParams);
 }
 
-void OgreInterface::initializeResources()
+void RenderSystemManager::initializeResources()
 {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreInterface::createSceneManager()
+void RenderSystemManager::createSceneManager()
 {
 	mSceneMgr = mRoot->createSceneManager();
 }
 
-void OgreInterface::setupScene()
+void RenderSystemManager::setupScene()
 {
 	//Camera
 	mCamera = mSceneMgr->createCamera("MainCam");
@@ -146,16 +146,16 @@ void OgreInterface::setupScene()
 	mRoot->addFrameListener(this);
 }
 
-OgreInterface* OgreInterface::getSingleton()
+RenderSystemManager* RenderSystemManager::getSingleton()
 {
 	if (instance_ == nullptr) {
-		instance_ = new OgreInterface();
+		instance_ = new RenderSystemManager();
 	}
 
 	return instance_;
 }
 
-void OgreInterface::shutdown()
+void RenderSystemManager::shutdown()
 {
 	//mShaderGenerator->removeSceneManager(mSM);
 	//mSM->removeRenderQueueListener(mOverlaySystem);
@@ -184,7 +184,7 @@ void OgreInterface::shutdown()
 }
 
 //initializes the app and starts rendering
-void OgreInterface::initApp()
+void RenderSystemManager::initApp()
 {
 	createRoot();
 	setupResources();
@@ -198,7 +198,7 @@ void OgreInterface::initApp()
 }
 
 //mostly window events
-void OgreInterface::pollEvents()
+void RenderSystemManager::pollEvents()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
