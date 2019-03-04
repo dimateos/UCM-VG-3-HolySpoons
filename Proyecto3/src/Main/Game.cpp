@@ -13,7 +13,7 @@ void Game::initGame() {
 	cout << endl << "initializing game..." << endl;
 
 	//Get the singleton instances
-	//physicsManager = PhysicsSystemManager::getSingleton();
+	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 
 	gsm_ = new GameStateMachine(); //!temporary direct creation
@@ -25,7 +25,7 @@ void Game::closeGame() {
 	cout << endl << "closing game..." << endl;
 
 	//Close singleton instances
-	//PhysicsSystemManager::shutdownSingleton();
+	PhysicsSystemManager::shutdownSingleton();
 	renderManager->shutdown(); //maybe static too?
 
 	delete gsm_;
@@ -39,25 +39,27 @@ void Game::run() {
 	exit_ = false;
 
 	while (!exit_) {
-		cout << endl << "start loop" << endl;
+		//cout << endl << "start loop" << endl;
 		float start_time = 0; //something
 
 		//STEP PHYSICS
-		cout << endl << "\t STEP PHYSICS" << endl;
+		//cout << endl << "\t STEP PHYSICS" << endl;
+		physicsManager->stepPhysics(50);
+
 		//retrieve active actors -> update ogre nodes transforms
 			//retrieve collisions (add to events queue?)
 
 		//EVENTS
-		cout << endl << "\t EVENTS" << endl;
+		//cout << endl << "\t EVENTS" << endl;
 		//handleCollisions(start_time); //if no events queue?
 		handleEvents(start_time); //atm sets exit
 
 		//LOGIC
-		cout << endl << "\t LOGIC" << endl;
+		//cout << endl << "\t LOGIC" << endl;
 		gsm_->update(start_time);
 
 		//RENDER OGRE
-		cout << endl << "\t RENDER OGRE" << endl;
+		//cout << endl << "\t RENDER OGRE" << endl;
 
 		//fixed time
 		//float end_time = get_Time() - start_time;

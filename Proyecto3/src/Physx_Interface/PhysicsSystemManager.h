@@ -16,6 +16,10 @@ public:
 
 	void stepPhysics(double t);
 
+	// temp proof of working
+	PxRigidStatic* rigidBodyS = nullptr;
+	PxRigidDynamic* rigidBodyD = nullptr;
+
 private:
 	// Foundation and Scene
 	PxDefaultAllocator gAllocator;
