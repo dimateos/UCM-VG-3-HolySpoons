@@ -111,12 +111,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3DEBUG_x64.lib;PhysX3CommonDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PhysX3ExtensionsDEBUG.lib;PhysX3CookingDEBUG_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,12 +130,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3DEBUG_x64.lib;PhysX3CommonDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PhysX3ExtensionsDEBUG.lib;PhysX3CookingDEBUG_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -149,6 +151,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +159,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;PhysX3Extensions.lib;PhysX3Cooking_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -171,6 +174,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,7 +182,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;PhysX3Extensions.lib;PhysX3Cooking_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
