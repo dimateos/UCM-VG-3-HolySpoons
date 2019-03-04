@@ -1,11 +1,11 @@
-#include "Entity.h"
+#include "GameObject.h"
 #include "Component.h"
 
-Entity::Entity() :active(true), Components_()
+GameObject::GameObject() :active(true), Components_()
 {
 }
 
-void Entity::handleEvents(float time, const Event evt) {
+void GameObject::handleEvents(float time, const Event evt) {
 	if (active)
 	{
 		for (auto comp : Components_)
@@ -13,7 +13,7 @@ void Entity::handleEvents(float time, const Event evt) {
 	}
 }
 
-void Entity::update(float time) {
+void GameObject::update(float time) {
 	if (active)
 	{
 		for (auto comp : Components_)
@@ -21,11 +21,11 @@ void Entity::update(float time) {
 	}
 }
 
-void Entity::addComponent(Component* comp) {
+void GameObject::addComponent(Component* comp) {
 	Components_.push_back(comp);
 }
 
-void Entity::delComponent(Component* comp) {
+void GameObject::delComponent(Component* comp) {
 	std::vector<Component*>::iterator position = std::find(
 		Components_.begin(), Components_.end(), comp);
 
@@ -33,7 +33,7 @@ void Entity::delComponent(Component* comp) {
 		Components_.erase(position);
 }
 
-Entity::~Entity() {
+GameObject::~GameObject() {
 	for (auto comp : Components_) {
 		if (comp != nullptr) { delete comp; comp = nullptr; delComponent(comp); }
 	}

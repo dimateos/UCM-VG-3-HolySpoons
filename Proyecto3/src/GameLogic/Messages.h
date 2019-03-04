@@ -3,7 +3,7 @@
 
 enum MessageId 
 {
-	// AQUI TIPOS DE MENSAJES QUE QUERAMOS QUE HAYA
+	// DIFFERENT MESSAGE IDs
 };
 
 struct Message {

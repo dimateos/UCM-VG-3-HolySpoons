@@ -3,7 +3,7 @@
 
 #include "Messages.h"
 
-// heredar de Listener para recibir mensajes
+// it allows to receive messages
 class Listener {
 public:
 	Listener();
