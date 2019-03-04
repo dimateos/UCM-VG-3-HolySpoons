@@ -25,7 +25,7 @@ void PhysicsSystemManager::shutdownSingleton() {
 // Initialize physics engine
 void PhysicsSystemManager::setupInstance() {
 	// Foundation
-	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gAllocator, gErrorCallback);
+	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gAllocator, errorCallback_);
 
 	// Visual debugger attached
 	//gPvd = PxCreatePvd(*gFoundation);
@@ -35,8 +35,8 @@ void PhysicsSystemManager::setupInstance() {
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, NULL); //gPvd instead of NULL
 
 	// Materials
-	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f); //not color -> friction etc
-	bouncyMaterial = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
+	material_ = gPhysics->createMaterial(0.5f, 0.5f, 0.6f); //not color -> friction etc
+	bouncyMaterial_ = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
 
 	// Scene config
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
@@ -44,9 +44,8 @@ void PhysicsSystemManager::setupInstance() {
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.gravity = { 0, -9.8, 0 };
 	// Collisions
-	sceneDesc.filterShader = contactReportFilterShader;
-	sceneDesc.simulationEventCallback = &gContactReportCallback;
-	//sceneDesc.filterShader = PxDefaultSimulationFilterShader;
+	sceneDesc.filterShader = PxDefaultSimulationFilterShader; //contactReportFilterShader
+	sceneDesc.simulationEventCallback = &eventReporter_;
 
 	gScene = gPhysics->createScene(sceneDesc);
 
@@ -81,11 +80,4 @@ void PhysicsSystemManager::shutdownInstance() {
 void PhysicsSystemManager::stepPhysics(double t) {
 	gScene->simulate(t);
 	gScene->fetchResults(true);
-}
-
-// Callback for collision reporting
-void PhysicsSystemManager::onCollision(physx::PxActor * actor1, physx::PxActor * actor2) {
-	//for now
-	PX_UNUSED(actor1);
-	PX_UNUSED(actor2);
 }

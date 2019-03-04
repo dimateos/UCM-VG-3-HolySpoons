@@ -13,7 +13,7 @@ void Game::initGame() {
 	cout << endl << "initializing game..." << endl;
 
 	//Get the singleton instances
-	physicsManager = PhysicsSystemManager::getSingleton();
+	//physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 
 	gsm_ = new GameStateMachine(); //!temporary direct creation
@@ -25,7 +25,7 @@ void Game::closeGame() {
 	cout << endl << "closing game..." << endl;
 
 	//Close singleton instances
-	PhysicsSystemManager::shutdownSingleton();
+	//PhysicsSystemManager::shutdownSingleton();
 	renderManager->shutdown(); //maybe static too?
 
 	delete gsm_;

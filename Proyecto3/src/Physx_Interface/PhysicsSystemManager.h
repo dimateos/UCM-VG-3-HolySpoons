@@ -3,8 +3,8 @@
 
 #include <ctype.h>
 #include <PxPhysicsAPI.h>
-#include "callbacks.hpp"
 
+#include "EventReporter.h"
 using namespace physx;
 
 class PhysicsSystemManager
@@ -17,8 +17,6 @@ public:
 	void stepPhysics(double t);
 
 private:
-	void onCollision(physx::PxActor* actor1, physx::PxActor* actor2);
-
 	// Foundation and Scene
 	PxDefaultAllocator gAllocator;
 	PxFoundation *gFoundation	= NULL;
@@ -28,12 +26,12 @@ private:
 	//PxPvd *gPvd				= NULL; //visual debugger
 
 	// Materials
-	PxMaterial *gMaterial		= NULL;
-	PxMaterial *bouncyMaterial	= NULL;
+	PxMaterial *material_		= NULL;
+	PxMaterial *bouncyMaterial_	= NULL;
 
-	// Collisions
-	ContactReportCallback gContactReportCallback;
-	PxDefaultErrorCallback gErrorCallback;
+	// Collisions and events
+	EventReporter eventReporter_;
+	PxDefaultErrorCallback errorCallback_; //unused
 
 	///////////////////////////////////////////////////////////////////////////
 

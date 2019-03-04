@@ -159,7 +159,7 @@ void RenderSystemManager::shutdown()
 {
 	//mShaderGenerator->removeSceneManager(mSM);
 	//mSM->removeRenderQueueListener(mOverlaySystem);
-	
+
 	mRoot->destroySceneManager(mSceneMgr);
 
 	if (mWindow != nullptr)
@@ -194,7 +194,9 @@ void RenderSystemManager::initApp()
 	initializeResources();
 	createSceneManager();
 	setupScene();
-	mRoot->startRendering();
+
+	//mRoot->startRendering(); // blocks the flow
+	mRoot->renderOneFrame(); // we'll have to use this
 }
 
 //mostly window events
@@ -213,7 +215,7 @@ void RenderSystemManager::pollEvents()
 				if (event.window.event == SDL_WINDOWEVENT_RESIZED)
 				{
 					Ogre::RenderWindow* win = mWindow;
-					//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR 
+					//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR
 					win->windowMovedOrResized();
 					windowResized(win);
 				}
