@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Windows.h" //temp counter method
 
 Game::Game() {
 	initGame();
@@ -34,17 +35,62 @@ void Game::closeGame() {
 
 ///////////////////////////////////////////////////////////////////
 
+void Game::start() {
+	cout << endl << "start game" << endl;
+	StartCounter();
+	run();
+}
+
+void Game::stop() {
+	cout << endl << "stop game" << endl;
+	exit_ = true;
+}
+
+void Game::StartCounter() {
+	LARGE_INTEGER li;
+	if (!QueryPerformanceFrequency(&li))
+		return;
+
+	PCFreq = double(li.QuadPart) /*/ 1000.0*/;
+
+	QueryPerformanceCounter(&li);
+	CounterStart = li.QuadPart;
+	CounterLast = CounterStart;
+}
+
+double Game::GetCounter() {
+	LARGE_INTEGER li;
+	QueryPerformanceCounter(&li);
+	double t = double(li.QuadPart - CounterLast) / PCFreq;
+	CounterLast = li.QuadPart;
+	return t;
+}
+
+///////////////////////////////////////////////////////////////////
+
 //main game loop, ends with exit_
 void Game::run() {
 	exit_ = false;
 
 	while (!exit_) {
 		//cout << endl << "start loop" << endl;
-		float start_time = 0; //something
+		double t = GetCounter();
 
+#ifdef FIXED_STEP
+		if (t < (1.0f / 30.0f)) {
+			fprintf(stderr, "Time: %f\n", stepTime);
+			stepTime += t;
+		}
+		else stepTime = 1.0f / 30.0f;
+
+		if (stepTime >= (1.0f / 30.0f)) {
+			t = stepTime;
+			stepTime = 0.0f;
+		}
+#endif
 		//STEP PHYSICS
 		//cout << endl << "\t STEP PHYSICS" << endl;
-		physicsManager->stepPhysics(50);
+		physicsManager->stepPhysics(t);
 
 		//retrieve active actors -> update ogre nodes transforms
 			//retrieve collisions (add to events queue?)
@@ -52,30 +98,17 @@ void Game::run() {
 		//EVENTS
 		//cout << endl << "\t EVENTS" << endl;
 		//handleCollisions(start_time); //if no events queue?
-		handleEvents(start_time); //atm sets exit
+		renderManager->pollEvents();
+		//handleEvents(t); //atm sets exit
 
 		//LOGIC
 		//cout << endl << "\t LOGIC" << endl;
-		gsm_->update(start_time);
+		gsm_->update(t);
 
 		//RENDER OGRE
 		//cout << endl << "\t RENDER OGRE" << endl;
-
-		//fixed time
-		//float end_time = get_Time() - start_time;
-		//if (end_time < _MS_BETWEEN_FRAMES_)
-		//	Delay(_MS_BETWEEN_FRAMES_ - end_time);
+		renderManager->renderFrame();
 	}
-}
-
-void Game::start() {
-	cout << endl << "start game" << endl;
-	run();
-}
-
-void Game::stop() {
-	cout << endl << "stop game" << endl;
-	exit_ = true;
 }
 
 //handle main events (Ex. quit) and call the gameStateMachine machine update

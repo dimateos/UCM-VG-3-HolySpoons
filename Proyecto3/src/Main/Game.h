@@ -23,6 +23,19 @@ private:
 	void handleEvents(float time);
 
 	///////////////////////////////////////////////////////////////////
+	// based on fixed step by physx example blueprints
+
+	double PCFreq = 0.0;
+	__int64 CounterStart = 0;
+	__int64 CounterLast = 0;
+
+	void StartCounter();
+	double GetCounter();
+
+	float stepTime = 0.0f;
+	//#define FIXED_STEP
+
+	///////////////////////////////////////////////////////////////////
 
 	bool exit_; //ends the game
 

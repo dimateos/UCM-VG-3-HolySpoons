@@ -53,9 +53,11 @@ private:
 public:
 	/*
 	First time called --> creates and returns pointer to RenderSystemManager, initializes the app, starts rendering
-	2 or + times called --> returns pointer to RenderSystemManager 
+	2 or + times called --> returns pointer to RenderSystemManager
 	*/
 	static RenderSystemManager* getSingleton();
+
+	inline void renderFrame() { mRoot->renderOneFrame(); };
 
 	/*
 	Shutdowns the entire app
@@ -70,7 +72,7 @@ public:
 	/*
 	Called when the frame starts rendering
 	*/
-	virtual bool frameStarted(const Ogre::FrameEvent& evt) { pollEvents(); return true; };
+	virtual bool frameStarted(const Ogre::FrameEvent& evt) { return true; };
 
 	/*
 	Called when the frame ends rendering
