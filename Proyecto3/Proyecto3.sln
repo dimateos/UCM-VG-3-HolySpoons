@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLogic", "Projects\GameL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Projects\Main\Main.vcxproj", "{DF65EDEC-9B9D-47BB-8E7E-4F972DEC89DF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physx", "Projects\Physx\Physx.vcxproj", "{15A0C92B-437C-4830-8A3F-66F535584D2C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physx_Interface", "Projects\Physx_Interface\Physx_Interface.vcxproj", "{15A0C92B-437C-4830-8A3F-66F535584D2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,5 +17,4 @@ class ContactReportCallback : public physx::PxSimulationEventCallback
 	void onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs);
 };
 
-
 #endif

@@ -19,11 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Physx\callbacks.cpp" />
-    <ClCompile Include="..\..\src\Physx\Physx.cpp" />
+    <ClCompile Include="..\..\src\Physx_Interface\callbacks.cpp" />
+    <ClCompile Include="..\..\src\Physx_Interface\PhysicsSystemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Physx\callbacks.hpp" />
+    <ClInclude Include="..\..\src\Physx_Interface\callbacks.hpp" />
+    <ClInclude Include="..\..\src\Physx_Interface\PhysicsSystemManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -79,31 +80,37 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\libs\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$Inter\$(ProjectName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <LibraryPath>$(SolutionDir)/Dependecies;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\libs\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$Inter\$(ProjectName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <LibraryPath>$(SolutionDir)/Dependecies;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\libs\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$Inter\$(ProjectName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <LibraryPath>$(SolutionDir)/Dependecies;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\libs\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$Inter\$(ProjectName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <LibraryPath>$(SolutionDir)/Dependecies;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,12 +121,20 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -130,12 +145,20 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -148,7 +171,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +179,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -168,7 +199,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -176,6 +207,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

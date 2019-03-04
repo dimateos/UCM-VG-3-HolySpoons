@@ -15,15 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Physx\callbacks.cpp">
+    <ClCompile Include="..\..\src\Physx_Interface\callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Physx\Physx.cpp">
+    <ClCompile Include="..\..\src\Physx_Interface\PhysicsSystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Physx\callbacks.hpp">
+    <ClInclude Include="..\..\src\Physx_Interface\callbacks.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physx_Interface\PhysicsSystemManager.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>

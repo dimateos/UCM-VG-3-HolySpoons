@@ -73,33 +73,33 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,13 +110,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX_3.4/Lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PxShared/lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PhysX_3.4/Common/lib/vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,13 +128,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX_3.4/Lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PxShared/lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PhysX_3.4/Common/lib/vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;SDL2.lib;SDL2main.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,14 +148,14 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX_3.4/Lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PxShared/lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PhysX_3.4/Common/lib/vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -170,14 +170,14 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)/Dependencies/PhysX-3.4/PhysX_3.4/Include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/foundation/include;$(SolutionDir)/Dependencies/PhysX-3.4/PxShared/src/fastxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\ogre-1.11.5\Build\include\SDL2;$(SolutionDir)\Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)\Dependencies\PhysX-3.4\PxShared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX_3.4/Lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PxShared/lib/vc14win64;$(SolutionDir)Dependencies\PhysX-3.4/PhysX_3.4/Common/lib/vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib\$(Configuration);$(SolutionDir)Dependencies\PhysX-3.4\PxShared\lib\vc14win64;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\lib\vc14win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OgreMain.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -193,6 +193,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Ogre_Interface\Ogre_Interface.vcxproj">
       <Project>{e79d8e14-ed48-48ed-b2a8-627d69807c75}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
+      <Project>{15A0C92B-437C-4830-8A3F-66F535584D2C}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

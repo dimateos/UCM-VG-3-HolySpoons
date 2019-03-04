@@ -13,6 +13,9 @@ void Game::initGame() {
 	cout << endl << "initializing game..." << endl;
 
 	//Get the singleton instances
+	physicsManager = PhysicsSystemManager::getSingleton();
+	renderManager = RenderSystemManager::getSingleton();
+
 	gsm_ = new GameStateMachine(); //!temporary direct creation
 	//soundManager_ = new SoundManager(this);
 }
@@ -21,7 +24,10 @@ void Game::initGame() {
 void Game::closeGame() {
 	cout << endl << "closing game..." << endl;
 
-	//Call close singleton
+	//Close singleton instances
+	PhysicsSystemManager::shutdownSingleton();
+	renderManager->shutdown(); //maybe static too?
+
 	delete gsm_;
 	//delete soundManager_;
 }

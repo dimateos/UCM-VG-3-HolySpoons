@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "RenderSystemManager.h"
+#include "PhysicsSystemManager.h"
 #include "GameStateMachine.h"
 //#include "SoundManager.h"
 
@@ -24,6 +26,8 @@ private:
 
 	bool exit_; //ends the game
 
+	PhysicsSystemManager* physicsManager;
+	RenderSystemManager* renderManager;
 	GameStateMachine* gsm_; //controls the states
 	//SoundManager* soundManager_; //controls the sound
 };
