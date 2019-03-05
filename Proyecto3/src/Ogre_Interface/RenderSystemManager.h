@@ -87,6 +87,8 @@ public:
 	virtual void windowFocusChange(Ogre::RenderWindow* rw) {};
 
 	inline const SceneManager* getSceneManager() const { return mSceneMgr; };
+
+	inline  Root* getRoot()  { return mRoot; };
 };
 
 #endif
