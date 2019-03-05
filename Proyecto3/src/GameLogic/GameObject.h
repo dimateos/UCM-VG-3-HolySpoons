@@ -2,16 +2,11 @@
 #define GAMEOBJECT_H_
 
 #include <vector>
+#include <SDL_events.h> //events
 
 class Component;
 
 using namespace std;
-
-//placeholders
-enum Event
-{
-	UNDEFINED, GAME_QUIT
-};
 
 class GameObject     // this class accepts components (empty container waiting for functionality)
 {
@@ -26,7 +21,7 @@ public:
 	inline bool toggleActive() { active = !active; }
 	inline void setActive(bool active_) { active = active_; }
 
-	virtual void handleEvents(float time, const Event evt);
+	virtual bool handleEvents(const SDL_Event evt);
 	virtual void update(float time);
 
 	// it adds a component

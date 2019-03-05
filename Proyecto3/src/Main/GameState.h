@@ -12,7 +12,7 @@ class GameState
 public:
 	GameState();
 	virtual ~GameState();
-	virtual void handleEvents(float time, Event evt);
+	virtual bool handleEvents(SDL_Event evt);
 	virtual void update(float time);
 
 	//void sendToGSM(Message* msg);
@@ -26,7 +26,7 @@ protected:
 
 	//void killDeadObjects();
 
-	std::list<GameObject*> entities_;
+	std::list<GameObject*> gameObjects_;
 
 	string stateID_ = "undefinedID";
 };

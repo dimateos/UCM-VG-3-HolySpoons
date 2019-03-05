@@ -60,14 +60,14 @@ public:
 	inline void renderFrame() { mRoot->renderOneFrame(); };
 
 	/*
+	*process all window events since last call
+	*/
+	bool handleEvents(const SDL_Event evt);
+
+	/*
 	Shutdowns the entire app
 	*/
 	void shutdown();
-
-	/*
-	 *process all window events since last call
-	 */
-	void pollEvents();
 
 	/*
 	Called when the frame starts rendering

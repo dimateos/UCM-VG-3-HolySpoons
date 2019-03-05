@@ -199,31 +199,26 @@ void RenderSystemManager::initApp()
 	mRoot->renderOneFrame(); // we'll have to use this
 }
 
-//mostly window events
-void RenderSystemManager::pollEvents()
-{
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			mRoot->queueEndRendering();
-			break;
+bool RenderSystemManager::handleEvents(const SDL_Event evt) {
+	bool handled = false;
+
+		switch (evt.type) {
 		case SDL_WINDOWEVENT:
-			if (event.window.windowID == SDL_GetWindowID(SDL_win)) {
-				if (event.window.event == SDL_WINDOWEVENT_RESIZED)
-				{
+			if (evt.window.windowID == SDL_GetWindowID(SDL_win)) {
+				if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
 					Ogre::RenderWindow* win = mWindow;
 					//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR
 					win->windowMovedOrResized();
 					windowResized(win);
+					handled = true;
 				}
 			}
 			break;
+
 		default:
 			//_fireInputEvent(convert(event));
 			break;
 		}
-	}
+
+		return handled;
 }

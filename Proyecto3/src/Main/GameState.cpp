@@ -18,19 +18,25 @@ GameState::~GameState() {}
 
 //sends the event too all the entities
 //no controlled propagation, cause it had limitations
-void GameState::handleEvents(float time, const Event evt) {
-	cout << endl << "\t\t state EVENTS" << endl;
+bool GameState::handleEvents(const SDL_Event evt) {
+	//cout << endl << "\t\t state EVENTS" << endl;
+	bool handled = false;
 
-	for (GameObject* e : entities_) {
-		if (e->isActive())e->handleEvents(time, evt);
+	auto it = gameObjects_.begin();
+	while (!handled && it != gameObjects_.end()) {
+		if (!(*it)->isActive()) continue;
+		handled = (*it)->handleEvents(evt);
+		it++;
 	}
+
+	return handled;
 }
 
 //iterates all the Entities and calls their updates
 void GameState::update(float time) {
 	cout << endl << "\t\t state UPDATE" << endl;
 
-	for (GameObject* e : entities_) {
+	for (GameObject* e : gameObjects_) {
 		if (e->isActive())e->update(time);
 	}
 	//killDeadObjects();

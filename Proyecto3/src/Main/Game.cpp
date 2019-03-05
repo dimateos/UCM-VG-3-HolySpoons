@@ -6,7 +6,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-	closeGame();
 }
 
 //creates the gameStateMachine, pushes the first state...
@@ -98,8 +97,7 @@ void Game::run() {
 		//EVENTS
 		//cout << endl << "\t EVENTS" << endl;
 		//handleCollisions(start_time); //if no events queue?
-		renderManager->pollEvents();
-		//handleEvents(t); //atm sets exit
+		handleEvents(); //atm sets exit
 
 		//LOGIC
 		//cout << endl << "\t LOGIC" << endl;
@@ -109,34 +107,32 @@ void Game::run() {
 		//cout << endl << "\t RENDER OGRE" << endl;
 		renderManager->renderFrame();
 	}
+
+	closeGame();
 }
 
 //handle main events (Ex. quit) and call the gameStateMachine machine update
-void Game::handleEvents(float time) {
-	Event evt = UNDEFINED; // pollEvents() some way
-	bool propagation = true; //stop global propagation
+void Game::handleEvents() {
+	bool handled = false; //stop global propagation
 
-	//window x botton - close game
-	if (evt == GAME_QUIT) {
-		propagation = false;
-		stop();
+	SDL_Event evt;
+	while (SDL_PollEvent(&evt)) {
+
+		//window x botton - close game
+		if (evt.type == SDL_QUIT) {
+			handled = true;
+			stop();
+		}
+		else if (evt.type == SDL_KEYDOWN) {
+			switch (evt.key.keysym.sym) {
+				case SDLK_ESCAPE:
+					handled = true;
+					stop();
+					break;
+			}
+		}
+
+		if (!handled) handled = renderManager->handleEvents(evt);
+		if (!handled) handled = gsm_->handleEvents(evt);
 	}
-
-	//else if (event.type == SDL_KEYDOWN) {
-	//	switch (event.key.keysym.sym) {
-	//		//case SDLK_ESCAPE:
-	//		//	propagation = false;
-	//		//	stop();
-	//		//	break;
-
-	//	case SDLK_m:
-	//		sendToSM(&Message(VOLUP));
-	//		break;
-	//	case SDLK_n:
-	//		sendToSM(&Message(VOLDOWN));
-	//		break;
-	//	}
-	//}
-
-	if (propagation) gsm_->handleEvents(time, evt);
 }

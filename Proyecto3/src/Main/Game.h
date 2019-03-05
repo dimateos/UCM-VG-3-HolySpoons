@@ -20,7 +20,7 @@ private:
 	void closeGame();
 
 	void run();
-	void handleEvents(float time);
+	void handleEvents();
 
 	///////////////////////////////////////////////////////////////////
 	// based on fixed step by physx example blueprints

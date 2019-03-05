@@ -14,7 +14,7 @@ public:
 	GameStateMachine();
 	~GameStateMachine();
 
-	void handleEvents(float time, const Event evt);
+	bool handleEvents(const SDL_Event evt);
 	void update(float time);
 
 	virtual void receive(Message* msg);

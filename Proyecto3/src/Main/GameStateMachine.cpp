@@ -48,10 +48,9 @@ void GameStateMachine::changeState(GameState *newState) {
 
 //quizas podrian recorrer directamente ellos las listas de entidades y nos ahorramos un step
 
-void GameStateMachine::handleEvents(float time, const Event evt) {
-	if (!states_.empty()) {
-		states_.top()->handleEvents(time, evt);
-	}
+bool GameStateMachine::handleEvents(const SDL_Event evt) {
+	if (states_.empty())  return false;
+	return states_.top()->handleEvents(evt);
 }
 
 void GameStateMachine::update(float time) {

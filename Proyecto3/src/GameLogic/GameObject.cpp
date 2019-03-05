@@ -1,24 +1,22 @@
 #include "GameObject.h"
 #include "Component.h"
 
-GameObject::GameObject() :active(true), Components_()
-{
-}
+GameObject::GameObject() :active(true), Components_() {}
 
-void GameObject::handleEvents(float time, const Event evt) {
-	if (active)
-	{
-		for (auto comp : Components_)
-			comp->handleInput(this, time, evt);
+bool GameObject::handleEvents(const SDL_Event evt) {
+	bool handled = false;
+	auto it = Components_.begin();
+	while (!handled && it != Components_.end()) {
+		handled = (*it)->handleEvents(this, evt);
+		it++;
 	}
+
+	return handled;
 }
 
 void GameObject::update(float time) {
-	if (active)
-	{
-		for (auto comp : Components_)
-			comp->update(this, time);
-	}
+	for (auto comp : Components_)
+		comp->update(this, time);
 }
 
 void GameObject::addComponent(Component* comp) {
