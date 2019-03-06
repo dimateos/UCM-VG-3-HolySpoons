@@ -25,7 +25,7 @@ void PhysicsSystemManager::shutdownSingleton() {
 // Initialize physics engine
 void PhysicsSystemManager::setupInstance() {
 	// Foundation
-	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gAllocator, errorCallback_);
+	gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, errorCallback_);
 
 	// Visual debugger attached
 	//gPvd = PxCreatePvd(*gFoundation);
