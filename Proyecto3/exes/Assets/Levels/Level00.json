@@ -1,38 +1,31 @@
 {
-    "GameObjects":
-    [
+    "GameObjects": [
         {
             "Name": "Caracol",
-            "Custom":
-            [
+            "Custom": [
                 {
-                    "Render":
-                    {
-                        "Name": "Render",
-                        "X": 50
-                    }
+                    "Name": "Render",
+                    "Parameters": [
+                        "2",
+                        "-"
+                    ]
                 }
             ],
-            "ComponentMessages":
-            [
+            "ComponentMessages": [
                 {
                     "Emitter": "Render",
                     "Listener": "Update"
                 }
             ]
         },
-
         {
-            "Name": "Limon",
-            "Custom":[]
+            "Name": "Limon"
         }
     ],
-
-    "GameObjectMessages":
-            [
-                {
-                    "Emitter": "Caracol",
-                    "Listener": "Limon"
-                }
-            ]
+    "GameObjectMessages": [
+        {
+            "Emitter": "Caracol",
+            "Listener": "Limon"
+        }
+    ]
 }
