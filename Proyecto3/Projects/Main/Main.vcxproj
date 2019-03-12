@@ -73,11 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-<<<<<<< HEAD
-    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
-=======
-    <IncludePath>$(SolutionDir)src\Utils;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
->>>>>>> master
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Utils\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
@@ -85,11 +81,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-<<<<<<< HEAD
-    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
-=======
-    <IncludePath>$(SolutionDir)src\Utils;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
->>>>>>> master
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Utils\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
@@ -97,22 +89,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-<<<<<<< HEAD
-    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
-=======
-    <IncludePath>$(SolutionDir)src\Utils;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
->>>>>>> master
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Utils\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx4.0\lib\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-<<<<<<< HEAD
-    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
-=======
-    <IncludePath>$(SolutionDir)src\Utils;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\PhysX-3.4\PhysX_3.4\include;$(SolutionDir)Dependencies\PhysX-3.4\PxShared\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
->>>>>>> master
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)src\GameLogic\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Utils\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)exes\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\lib;$(SolutionDir)Dependencies\ogre-1.11.5\Build\lib\$(Configuration);$(SolutionDir)Dependencies\physx4.0\lib\$(Configuration);$(LibraryPath)</LibraryPath>
@@ -219,9 +203,6 @@
     </ProjectReference>
     <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
       <Project>{15A0C92B-437C-4830-8A3F-66F535584D2C}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Utils\Utils.vcxproj">
-      <Project>{ab0fe5ae-c6f3-4ece-ac9f-1f6556e33454}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
