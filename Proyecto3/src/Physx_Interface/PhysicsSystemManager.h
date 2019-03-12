@@ -23,15 +23,15 @@ public:
 private:
 	// Foundation and Scene
 	PxDefaultAllocator gAllocator;
-	PxFoundation *gFoundation	= NULL;
-	PxPhysics *gPhysics			= NULL;
-	PxScene *gScene				= NULL;
+	PxFoundation *gFoundation = NULL;
+	PxPhysics *gPhysics = NULL;
+	PxScene *gScene = NULL;
 	PxDefaultCpuDispatcher *gDispatcher = NULL;
 	//PxPvd *gPvd				= NULL; //visual debugger
 
 	// Materials
-	PxMaterial *material_		= NULL;
-	PxMaterial *bouncyMaterial_	= NULL;
+	PxMaterial *material_ = NULL;
+	PxMaterial *bouncyMaterial_ = NULL;
 
 	// Collisions and events
 	EventReporter eventReporter_;

@@ -1,5 +1,4 @@
 //Nap_Time_Studios
-
 #pragma once
 
 #include "RenderSystemManager.h"

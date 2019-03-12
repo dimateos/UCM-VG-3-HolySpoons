@@ -50,7 +50,7 @@ void PhysicsSystemManager::setupInstance() {
 	gScene = gPhysics->createScene(sceneDesc);
 
 	// Add custom application code ?
-	PxTransform px (PxVec3 (0.0f));
+	PxTransform px(PxVec3(0.0f));
 	physx::PxShape* shape = gPhysics->createShape(PxSphereGeometry(3.0f), *material_);
 
 	rigidBodyD = gPhysics->createRigidDynamic(px);
@@ -95,5 +95,5 @@ void PhysicsSystemManager::stepPhysics(double t) {
 	std::cout
 		<< "static: " << rigidBodyS->getGlobalPose().p.y
 		<< " dynamic: " << rigidBodyD->getGlobalPose().p.y
-		<< std::endl<< std::endl;
+		<< std::endl << std::endl;
 }

@@ -1,7 +1,6 @@
 #include "EventReporter.h"
 
-void EventReporter::onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs)
-{
+void EventReporter::onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs) {
 	PX_UNUSED(pairs);
 	PX_UNUSED(nbPairs);
 	physx::PxActor* actor1 = pairHeader.actors[0];
