@@ -4,6 +4,8 @@
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
 #include <OgreSceneNode.h>
+#include "OgreViewport.h"
+#include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
 
@@ -12,9 +14,10 @@ class RenderSystemInterface
 {
 private:
 	SceneManager * mScnMgr = nullptr;
+	Camera* camera = nullptr;
 
 	static RenderSystemInterface* instance_; //singleton pattern
-	RenderSystemInterface(SceneManager * mScnMgr): mScnMgr(mScnMgr){};
+	RenderSystemInterface(SceneManager * mScnMgr) : mScnMgr(mScnMgr) { camera = getSceneManager()->getCamera("MainCam"); };
 	virtual ~RenderSystemInterface() {};
 
 public:
@@ -36,7 +39,7 @@ public:
 	 */
 	inline Entity* getEntityByName(String name) { return mScnMgr->getEntity(name);};
 	/*
-	 *Crea una entidad segun el nombre
+	 *Crea una entidad + nodo segun el nombre
 	 */
 	SceneNode* createOgreEntity(String name, String meshName);
 	/*
@@ -71,6 +74,14 @@ public:
 	 *Get node by nombre
 	 */
 	SceneNode* getNode(String name);
+	/*
+	 *Get camera (modify nearClipDistance, FarClip, AspectRatio...)
+	 */
+	inline Camera* getCamera() { return camera; };
+	/*
+	 *Get cameraNode (modify position, lookAt...)
+	 */
+	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
 	
 
 	void LOGGER();
