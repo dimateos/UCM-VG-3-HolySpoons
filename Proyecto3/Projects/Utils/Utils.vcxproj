@@ -83,25 +83,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
-    <IncludePath>$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
-    <IncludePath>$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -16,7 +16,7 @@ bool GameObject::handleEvents(const SDL_Event evt) {
 
 void GameObject::update(float time) {
 	for (auto comp : Components_)
-		comp->update(this, time);
+		if(comp != nullptr)comp->update(this, time);
 }
 
 void GameObject::addComponent(Component* comp) {
