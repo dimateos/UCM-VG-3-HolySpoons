@@ -55,11 +55,11 @@ public:
 	 */
 	void setAmbientLight(ColourValue color);
 	/*
-	 *Añade un hijo al nodo que le pases
+	 *Aï¿½ade un hijo al nodo que le pases
 	 */
 	SceneNode* addChild(SceneNode* father, String name,String meshName);
 	/*
-	 *Añade un hijo (ya creado) al nodo que le pases
+	 *Aï¿½ade un hijo (ya creado) al nodo que le pases
 	 */
 	void addChild(SceneNode* father, SceneNode* child);
 	/*

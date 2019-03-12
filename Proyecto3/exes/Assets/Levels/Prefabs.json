@@ -1,0 +1,27 @@
+{
+    "Caracol":[
+        {
+            "Name" : "Render",
+            "Parameters":
+            [
+                "50", "20"
+            ]
+        },
+        {
+            "Name" : "Update",
+            "Parameters":
+            [
+                "2"
+            ]
+        }
+    ],
+    "Limon":[
+        {
+            "Name" : "Render",
+            "Parameters":
+            [
+                "30", "10"
+            ]
+        }
+    ]
+}
