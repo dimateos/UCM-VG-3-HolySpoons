@@ -3,9 +3,10 @@
 
 #include <ctype.h>
 #include <PxPhysicsAPI.h>
-
-#include "EventReporter.h"
 using namespace physx;
+
+#define PVD 0
+#include "EventReporter.h"
 
 class PhysicsSystemManager
 {
@@ -15,6 +16,7 @@ public:
 	static void shutdownSingleton();
 
 	void stepPhysics(double t);
+	void updateNodes();
 
 	// temp proof of working
 	PxRigidStatic* rigidBodyS = nullptr;
@@ -25,9 +27,12 @@ private:
 	PxDefaultAllocator gAllocator;
 	PxFoundation *gFoundation = NULL;
 	PxPhysics *gPhysics = NULL;
-	PxScene *gScene = NULL;
 	PxDefaultCpuDispatcher *gDispatcher = NULL;
-	//PxPvd *gPvd				= NULL; //visual debugger
+	PxScene *gScene = NULL;
+
+#if PVD //visual debugger
+	PxPvd *gPvd				= NULL;
+#endif
 
 	// Materials
 	PxMaterial *material_ = NULL;
@@ -35,11 +40,12 @@ private:
 
 	// Collisions and events
 	EventReporter eventReporter_;
-	PxDefaultErrorCallback errorCallback_; //unused
+	PxDefaultErrorCallback errorCallback_; //unused atm
 
 	///////////////////////////////////////////////////////////////////////////
 
-	static PhysicsSystemManager* instance_; //singleton pattern
+	//singleton pattern
+	static PhysicsSystemManager* instance_;
 	void setupInstance();
 	void shutdownInstance();
 

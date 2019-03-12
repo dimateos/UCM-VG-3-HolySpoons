@@ -90,9 +90,8 @@ void Game::run() {
 		//STEP PHYSICS
 		//cout << endl << "\t STEP PHYSICS" << endl;
 		physicsManager->stepPhysics(t);
-
-		//retrieve active actors -> update ogre nodes transforms
-			//retrieve collisions (add to events queue?)
+		physicsManager->updateNodes();
+		//retrieve collisions (add to events queue? or messages?)
 
 		//EVENTS
 		//cout << endl << "\t EVENTS" << endl;

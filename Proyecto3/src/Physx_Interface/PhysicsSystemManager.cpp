@@ -27,10 +27,11 @@ void PhysicsSystemManager::setupInstance() {
 	// Foundation
 	gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, errorCallback_);
 
-	// Visual debugger attached
-	//gPvd = PxCreatePvd(*gFoundation);
-	//PxPvdTransport *transport = PxDefaultPvdSocketTransportCreate(PVD_HOST, 5425, 10);
-	//gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
+#if PVD // Visual debugger attached
+	gPvd = PxCreatePvd(*gFoundation);
+	PxPvdTransport *transport = PxDefaultPvdSocketTransportCreate(PVD_HOST, 5425, 10);
+	gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
+#endif
 
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, NULL); //gPvd instead of NULL
 
@@ -76,10 +77,11 @@ void PhysicsSystemManager::shutdownInstance() {
 	// Foundation etc
 	gPhysics->release();
 
-	// Visual debugger attached
-	//PxPvdTransport *transport = gPvd->getTransport();
-	//gPvd->release();
-	//transport->release();
+#if PVD // Visual debugger attached
+	PxPvdTransport *transport = gPvd->getTransport();
+	gPvd->release();
+	transport->release();
+#endif
 
 	gFoundation->release();
 }
@@ -90,10 +92,28 @@ void PhysicsSystemManager::shutdownInstance() {
 // t: time passed since last call in milliseconds
 void PhysicsSystemManager::stepPhysics(double t) {
 	gScene->simulate(t);
+}
+
+void PhysicsSystemManager::updateNodes() {
 	gScene->fetchResults(true);
 
+	// some temp debugging
 	std::cout
 		<< "static: " << rigidBodyS->getGlobalPose().p.y
 		<< " dynamic: " << rigidBodyD->getGlobalPose().p.y
 		<< std::endl << std::endl;
+
+	return; //temp
+
+	// retrieve array of actors that MOVED (so we just update the least possible nodes)
+	PxU32 nbActiveActors;
+	PxActor** activeActors = gScene->getActiveActors(nbActiveActors);
+
+	// update each render object with the new transform
+	for (PxU32 i = 0; i < nbActiveActors; ++i) {
+		//gotta put here the ogre node as renderObject and userData on the creation of the rigidBodies
+		//MyRenderObject* renderObject = static_cast<MyRenderObject*>(activeActors[i]->userData);
+		//renderObject->setTransform(activeActors[i]->getGlobalPose());
+	}
+
 }
