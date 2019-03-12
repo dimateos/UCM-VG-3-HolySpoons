@@ -9,7 +9,7 @@ void GameObject::handleEvents(float time, const Event evt) {
 	if (active)
 	{
 		for (auto comp : Components_)
-			comp->handleInput(this, time, evt);
+			if(comp != nullptr) comp->handleInput(this, time, evt);
 	}
 }
 
@@ -17,7 +17,7 @@ void GameObject::update(float time) {
 	if (active)
 	{
 		for (auto comp : Components_)
-			comp->update(this, time);
+			if (comp != nullptr) comp->update(this, time);
 	}
 }
 

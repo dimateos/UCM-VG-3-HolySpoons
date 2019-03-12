@@ -4,19 +4,34 @@
 #include <iostream>
 
 using json = nlohmann::json;
+JsonReader* JsonReader::instance_ = nullptr;
 
+JsonReader* JsonReader::getSingleton() {
+	if (instance_ == nullptr) {
+		instance_ = new JsonReader();
+	}
+
+	return instance_;
+}
+
+void JsonReader::shutdownSingleton() {
+	if (instance_ == nullptr) return;
+
+	delete instance_;
+	instance_ = nullptr;
+}
+
+// it returns a Scene_type with all the information read
+// from "level"
 Scene_Type* JsonReader::ReadLevel(string level) {
 	ifstream i(routeLevel + level + ".json");
+	Scene_Type* scene = new Scene_Type();
 
-	Scene_Type scene = Scene_Type();
-
-	if (i.is_open()) { // Para que no intente abrir archivos que no existen
-
+	if (i.is_open()) {
 		json j;
 		i >> j;
 
-		MessagesType goMessages;
-
+		// reading of the gameobjects
 		if (!j["GameObjects"].is_null()) {
 			for (int i = 0; i < j["GameObjects"].size(); i++) {
 				CompType components;
@@ -24,9 +39,10 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 
 				if (!j["GameObjects"][i]["Name"].is_null()) {
 					string prefabName = j["GameObjects"][i]["Name"];
-					ReadPrefab(prefabName, components);
+					ReadPrefab(prefabName, components); // reading of the prefab
 				}
 
+				// reading of the custom parameters
 				if (!j["GameObjects"][i]["Custom"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["Custom"].size(); x++) {
 						CompType::iterator it;
@@ -40,47 +56,38 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 								}
 							}
 						}
-						catch (exception ex){
+						catch (exception ex) {
 							printf(ex.what());
 						}
 					}
 				}
 
+				// reading of the components that will be listeners and emitters
 				if (!j["GameObjects"][i]["ComponentMessages"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["ComponentMessages"].size(); x++) {
-						componentMessages.push_back({ j["GameObjects"][i]["ComponentMessages"][x]["Emitter"], j["GameObjects"][i]["ComponentMessages"][x]["Listener"] });
+						componentMessages.push_back({ j["GameObjects"][i]["ComponentMessages"][x]["Emitter"], 
+							j["GameObjects"][i]["ComponentMessages"][x]["Listener"] });
 					}
 				}
-
-				/*cout << j["GameObjects"][i]["Name"] << endl;
-				for (int h = 0; h < components.size(); h++) {
-					cout << components[h].first << " ";
-					for (int z = 0; z < components[h].second.size(); z++) {
-						cout << components[h].second[z] << " ";
-					}
-					cout << endl;
-				}
-
-				for (int h = 0; h < componentMessages.size(); h++) {
-					cout << "Emitter: " << componentMessages[h].first << " Listener: " << componentMessages[h].second << endl;
-				}
-				cout << endl;*/
+				scene->first.push_back({ j["GameObjects"][i]["Name"], {components, componentMessages } });
 			}
 		}
+
+		// reading of the gameobjects that will be listeners and emitters
 		if (!j["GameObjectMessages"].is_null()) {
 			for (int i = 0; i < j["GameObjectMessages"].size(); i++) {
-				goMessages.push_back({ j["GameObjectMessages"][i]["Emitter"], j["GameObjectMessages"][i]["Listener"] });
-				//cout << "Emitter: " << goMessages[i].first << " Listener: " << goMessages[i].second << endl;
+				scene->second.push_back({ j["GameObjectMessages"][i]["Emitter"], j["GameObjectMessages"][i]["Listener"] });
 			}
 		}
 	}
-	return &scene;
+	return scene;
 }
 
+// it reads the default information of the received prefab
 void JsonReader::ReadPrefab(string name, CompType& comps) {
 	ifstream i(routePrefabs);
 
-	if (i.is_open()) { // Para que no intente abrir archivos que no existen
+	if (i.is_open()) {
 
 		json j;
 		i >> j;
