@@ -136,13 +136,6 @@ void RenderSystemManager::setupScene()
 
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
 
-
-	//finally something to render yas (Sinbad de prueba)
-	Entity* ogreEntity = mSceneMgr->createEntity("Sinbad.mesh");;
-	SceneNode* ogreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	ogreNode->attachObject(ogreEntity);
-	ogreNode->setScale(Vector3(35, 35, 35));
-
 	mRoot->addFrameListener(this);
 }
 

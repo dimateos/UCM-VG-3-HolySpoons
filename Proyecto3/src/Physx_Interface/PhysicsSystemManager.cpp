@@ -43,7 +43,7 @@ void PhysicsSystemManager::setupInstance() {
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
-	sceneDesc.gravity = { 0, -9.8, 0 };
+	sceneDesc.gravity = { 0.0f, -9.8f, 0.0f };
 	// Collisions
 	sceneDesc.filterShader = PxDefaultSimulationFilterShader; //contactReportFilterShader
 	sceneDesc.simulationEventCallback = &eventReporter_;
