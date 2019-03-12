@@ -57,12 +57,14 @@ void RenderSystemInterface::setAmbientLight(ColourValue color )
 SceneNode * RenderSystemInterface::addChild(SceneNode * father, String name, String meshName)
 {
 	SceneNode* child = createOgreEntity(name,meshName);
+	child->getParentSceneNode()->removeChild(child); //needed
 	father->addChild(child);
 	return child;
 }
 
 void RenderSystemInterface::addChild(SceneNode * father, SceneNode * child)
 {
+	child->getParentSceneNode()->removeChild(child); //needed
 	father->addChild(child);
 }
 
