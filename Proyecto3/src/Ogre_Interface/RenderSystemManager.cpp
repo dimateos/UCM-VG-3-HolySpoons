@@ -144,6 +144,8 @@ void RenderSystemManager::setupScene()
 	ogreNode->setScale(Vector3(35, 35, 35));
 
 	mRoot->addFrameListener(this);
+
+	
 }
 
 RenderSystemManager* RenderSystemManager::getSingleton()

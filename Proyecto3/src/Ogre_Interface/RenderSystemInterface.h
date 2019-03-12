@@ -21,7 +21,7 @@ public:
 	static RenderSystemInterface* createSingleton(SceneManager * mScnMgr);
 	static RenderSystemInterface* getSingleton();
 	void closeInterface();
-	//Resto de interfaz, añadir material, añadir como nodo, shaders (?), añadir como hijo, buscar nodo, camara, luces, viewport...
+	//Resto de interfaz shaders (?), animacion, camara, viewport...
 
 	/*
 	 *Devuelve el RootNode de la escena
@@ -38,13 +38,42 @@ public:
 	/*
 	 *Crea una entidad segun el nombre
 	 */
-	SceneNode* createOgreEntity(String name);
+	SceneNode* createOgreEntity(String name, String meshName);
+	/*
+	 *Crea un nodo vacio
+	 */
+	SceneNode* createEmpty(String name);
+	/*
+	 *Crea una luz del tipo elegido. La direccion se setea con el nodo (node->setDirection(Ogre::Vector3(x, y, z));)
+	 */
+	SceneNode* createLight(String name, Light::LightTypes type, ColourValue color);
+	/*
+	 *set de la luz ambiental
+	 */
+	void setAmbientLight(ColourValue color);
 	/*
 	 *Añade un hijo al nodo que le pases
 	 */
-	SceneNode* addChild(SceneNode* father, String name);
+	SceneNode* addChild(SceneNode* father, String name,String meshName);
+	/*
+	 *Añade un hijo (ya creado) al nodo que le pases
+	 */
+	void addChild(SceneNode* father, SceneNode* child);
+	/*
+	 *Set del material a una entidad
+	 */
+	void setMaterial(String entity, String material);
+	/*
+	 *Set del material con acceso a la entidad
+	 */
+	void setMaterial(Entity* entity, String material);
+	/*
+	 *Get node by nombre
+	 */
+	SceneNode* getNode(String name);
 	
-	
+
+	void LOGGER();
 };
 
 #endif /*RENDERSYSTEMINTERFACE_H_*/
