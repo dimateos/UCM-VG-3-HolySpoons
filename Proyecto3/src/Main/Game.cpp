@@ -1,11 +1,14 @@
 #include "Game.h"
 #include "Windows.h" //temp counter method
 
+#include "PhysicsComponent.h"
+
 Game::Game() {
 	initGame();
 }
 
 Game::~Game() {
+	//closed on loop end
 }
 
 //creates the gameStateMachine, pushes the first state...
@@ -16,7 +19,10 @@ void Game::initGame() {
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 
-	gsm_ = new GameStateMachine(); //!temporary direct creation
+	//!temporary direct creation
+	gsm_ = new GameStateMachine();
+	gsm_->pushState(new GameState({ new GameObject({ new PhysicsComponent() }) }));
+
 	//soundManager_ = new SoundManager(this);
 }
 

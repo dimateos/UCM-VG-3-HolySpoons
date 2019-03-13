@@ -22,13 +22,21 @@
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\GameLogic\Activable.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
     <ClInclude Include="..\..\src\GameLogic\Component.h" />
+    <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
+      <Project>{15a0c92b-437c-4830-8a3f-66f535584d2c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -86,25 +94,29 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <ExecutablePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <ExecutablePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <ExecutablePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <ExecutablePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,7 +127,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\physx4.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,7 +143,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\physx4.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,7 +161,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\physx4.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -169,7 +181,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2;$(SolutionDir)Dependencies\physx4.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

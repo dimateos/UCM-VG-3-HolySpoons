@@ -18,9 +18,8 @@ public:
 	void stepPhysics(double t);
 	void updateNodes();
 
-	// temp proof of working
-	PxRigidStatic* rigidBodyS = nullptr;
-	PxRigidDynamic* rigidBodyD = nullptr;
+	PxRigidDynamic* createDynamicBody(PxGeometry geo, PxTransform trans);
+	PxRigidStatic* createStaticBody(PxGeometry geo, PxTransform trans);
 
 private:
 	// Foundation and Scene

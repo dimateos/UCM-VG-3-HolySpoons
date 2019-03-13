@@ -1,5 +1,4 @@
 //Nap_Time_Studios
-
 #pragma once
 
 #include <GameObject.h>
@@ -11,9 +10,15 @@ class GameState
 {
 public:
 	GameState();
+	GameState(std::list<GameObject*>);
 	virtual ~GameState();
+
 	virtual bool handleEvents(SDL_Event evt);
 	virtual void update(float time);
+
+	inline void addGameObject(GameObject* o) {
+		gameObjects_.push_back(o);
+	}
 
 	//void sendToGSM(Message* msg);
 
@@ -21,8 +26,9 @@ public:
 	inline string getStateID() { stateID_; };
 
 protected:
-	virtual void initState() = 0;
-	virtual void closeState() = 0;
+	//maybe pure virtual and a few child classes
+	virtual void initState();
+	virtual void closeState();
 
 	//void killDeadObjects();
 

@@ -51,17 +51,6 @@ void PhysicsSystemManager::setupInstance() {
 	gScene = gPhysics->createScene(sceneDesc);
 
 	// Add custom application code ?
-	PxTransform px(PxVec3(0.0f));
-	physx::PxShape* shape = gPhysics->createShape(PxSphereGeometry(3.0f), *material_);
-
-	rigidBodyD = gPhysics->createRigidDynamic(px);
-	rigidBodyD->attachShape(*shape);
-	gScene->addActor(*rigidBodyD);
-
-	rigidBodyS = gPhysics->createRigidStatic(px);
-	rigidBodyS->attachShape(*shape);
-	gScene->addActor(*rigidBodyS);
-
 	//end of custom code
 }
 
@@ -69,6 +58,8 @@ void PhysicsSystemManager::setupInstance() {
 void PhysicsSystemManager::shutdownInstance() {
 	// Add custom application code ?
 	//end custom
+
+	// release all rigidBodies!
 
 	// Scene
 	gScene->release();
@@ -97,12 +88,6 @@ void PhysicsSystemManager::stepPhysics(double t) {
 void PhysicsSystemManager::updateNodes() {
 	gScene->fetchResults(true);
 
-	// some temp debugging
-	std::cout
-		<< "static: " << rigidBodyS->getGlobalPose().p.y
-		<< " dynamic: " << rigidBodyD->getGlobalPose().p.y
-		<< std::endl << std::endl;
-
 	return; //temp
 
 	// retrieve array of actors that MOVED (so we just update the least possible nodes)
@@ -116,4 +101,26 @@ void PhysicsSystemManager::updateNodes() {
 		//renderObject->setTransform(activeActors[i]->getGlobalPose());
 	}
 
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry geo, PxTransform trans) {
+	physx::PxShape* shape = gPhysics->createShape(geo, *material_);
+
+	auto body = gPhysics->createRigidDynamic(trans);
+	body->attachShape(*shape);
+	gScene->addActor(*body);
+
+	return body;
+}
+
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry geo, PxTransform trans) {
+	physx::PxShape* shape = gPhysics->createShape(geo, *material_);
+
+	auto body = gPhysics->createRigidStatic(trans);
+	body->attachShape(*shape);
+	gScene->addActor(*body);
+
+	return body;
 }

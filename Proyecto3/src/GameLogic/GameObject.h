@@ -1,7 +1,7 @@
 #ifndef GAMEOBJECT_H_
 #define GAMEOBJECT_H_
 
-#include <vector>
+#include <list>
 #include <SDL_events.h> //events
 
 #include "Activable.h"
@@ -13,10 +13,12 @@ using namespace std;
 class GameObject : public Activable
 {
 private:
-	std::vector<Component*> Components_; // component vector
+	std::list<Component*> components_; // component vector
 
 public:
 	GameObject();
+	GameObject(std::list<Component*>);
+	virtual ~GameObject();
 
 	virtual bool handleEvents(const SDL_Event evt);
 	virtual void update(float time);
@@ -26,8 +28,6 @@ public:
 
 	// it deletes a component
 	virtual void delComponent(Component* component);
-
-	virtual ~GameObject();
 };
 
 #endif /* GAMEOBJECT_H_ */

@@ -1,9 +1,25 @@
 #include "GameState.h"
 
-GameState::GameState() {}
+GameState::GameState() {
+	initState();
+}
+GameState::GameState(std::list<GameObject*> gObjects) : gameObjects_(gObjects) {
+	initState();
+}
 
-GameState::~GameState() {}
+GameState::~GameState() {
+	closeState();
+}
 
+void GameState::initState() {}
+
+void GameState::closeState() {
+	for (GameObject* o : gameObjects_) {
+		if (o != nullptr) delete o;
+	}
+
+	gameObjects_.clear();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -34,10 +50,10 @@ bool GameState::handleEvents(const SDL_Event evt) {
 
 //iterates all the Entities and calls their updates
 void GameState::update(float time) {
-	cout << endl << "\t\t state UPDATE" << endl;
+	//cout << endl << "\t\t state UPDATE" << endl;
 
-	for (GameObject* e : gameObjects_) {
-		if (e->isActive())e->update(time);
+	for (GameObject* o : gameObjects_) {
+		if (o->isActive())o->update(time);
 	}
 	//killDeadObjects();
 }

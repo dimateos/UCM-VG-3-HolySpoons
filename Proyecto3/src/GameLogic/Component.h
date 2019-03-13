@@ -7,13 +7,14 @@
 class Component : public Activable
 {
 public:
-	Component() { setUp(); }
-	virtual ~Component() { setDown(); }
+	Component() : Activable() {};
+	virtual ~Component() {};
 
 	// called from gameObjects themselves
 	virtual void update(GameObject* ent, float time) = 0;
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt) = 0;
 
+protected:
 	virtual void setUp() = 0;   // set up in Ogre/physx
 	virtual void setDown() = 0; // set down from Ogre/physx
 };

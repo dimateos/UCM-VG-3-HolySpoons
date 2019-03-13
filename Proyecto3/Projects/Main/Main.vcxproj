@@ -192,9 +192,6 @@
     <ClCompile Include="..\..\src\Main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bullet_Interface\Bullet_Interface.vcxproj">
-      <Project>{15a0c92b-437c-4830-8a3f-66f535584d2c}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\GameLogic\GameLogic.vcxproj">
       <Project>{28fc9fbf-c637-44fd-998d-f89588966155}</Project>
     </ProjectReference>

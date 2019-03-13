@@ -4,7 +4,7 @@
 class Activable
 {
 public:
-	inline Activable() : active(false) {};
+	inline Activable() : active(true) {};
 	inline Activable(bool act): active(act) {};
 	inline ~Activable() {};
 

@@ -21,10 +21,10 @@ public:
 
 	//GameState* currentState() { return states_.top(); } //unused
 
-private:
-	stack<GameState*> states_;
-
 	void pushState(GameState* pState);
 	void changeState(GameState* pState);
 	void popState();
+
+private:
+	stack<GameState*> states_;
 };
