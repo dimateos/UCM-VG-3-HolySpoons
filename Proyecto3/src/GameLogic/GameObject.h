@@ -4,22 +4,19 @@
 #include <vector>
 #include <SDL_events.h> //events
 
+#include "Activable.h"
 class Component;
 
 using namespace std;
 
-class GameObject     // this class accepts components (empty container waiting for functionality)
+// this class accepts components (empty container waiting for functionality)
+class GameObject : public Activable
 {
 private:
-	bool active;                         // it indicates if the entity is active or not
 	std::vector<Component*> Components_; // component vector
 
 public:
 	GameObject();
-
-	inline bool isActive() { return active; }
-	inline bool toggleActive() { active = !active; }
-	inline void setActive(bool active_) { active = active_; }
 
 	virtual bool handleEvents(const SDL_Event evt);
 	virtual void update(float time);

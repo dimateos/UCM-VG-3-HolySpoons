@@ -3,12 +3,14 @@
 
 #include "GameObject.h"
 
-class Component { // every type of component will inherit from this class
+// every type of component will inherit from this class
+class Component : public Activable
+{
 public:
-	Component() {}
-	virtual ~Component() {}
+	Component() { setUp(); }
+	virtual ~Component() { setDown(); }
 
-	// se llaman desde la entidad
+	// called from gameObjects themselves
 	virtual void update(GameObject* ent, float time) = 0;
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt) = 0;
 
