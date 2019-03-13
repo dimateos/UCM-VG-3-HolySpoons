@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include <fstream>
 #include <iostream>
+#include "LogSystem.h"
 
 using json = nlohmann::json;
 JsonReader* JsonReader::instance_ = nullptr;
@@ -45,10 +46,10 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 				// reading of the custom parameters
 				if (!j["GameObjects"][i]["Custom"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["Custom"].size(); x++) {
-						CompType::iterator it;
-						it = findComponent(components, j["GameObjects"][i]["Custom"][x]["Name"]);
+						CompType::iterator it; string customName = j["GameObjects"][i]["Custom"][x]["Name"];
+						it = findComponent(components, customName);
 
-						try {
+						if (it < components.end()) {
 							for (int k = 0; k < j["GameObjects"][i]["Custom"][x]["Parameters"].size(); k++) {
 								if (j["GameObjects"][i]["Custom"][x]["Parameters"][k] != "-") {
 									string parameter = j["GameObjects"][i]["Custom"][x]["Parameters"][k];
@@ -56,17 +57,16 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 								}
 							}
 						}
-						catch (exception ex) {
-							printf(ex.what());
-						}
 					}
 				}
 
 				// reading of the components that will be listeners and emitters
 				if (!j["GameObjects"][i]["ComponentMessages"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["ComponentMessages"].size(); x++) {
-						componentMessages.push_back({ j["GameObjects"][i]["ComponentMessages"][x]["Emitter"], 
-							j["GameObjects"][i]["ComponentMessages"][x]["Listener"] });
+						string emitter = j["GameObjects"][i]["ComponentMessages"][x]["Emitter"];
+						string listener = j["GameObjects"][i]["ComponentMessages"][x]["Listener"];
+						if (findComponent(components, emitter) < components.end() && findComponent(components, listener) < components.end())
+							componentMessages.push_back({ emitter, listener });
 					}
 				}
 				scene->first.push_back({ j["GameObjects"][i]["Name"], {components, componentMessages } });
@@ -80,6 +80,8 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 			}
 		}
 	}
+	i.close();
+
 	return scene;
 }
 
@@ -99,6 +101,7 @@ void JsonReader::ReadPrefab(string name, CompType& comps) {
 				}
 			}
 		}
+		else LogSystem::getSingleton()->Log("El prefab \"" + name + "\" no existe");
 	}
 }
 
@@ -108,6 +111,7 @@ CompType::iterator JsonReader::findComponent(CompType& components, string name)
 	while (it != components.end() && it->first != name ) {
 		it++;
 	}
+	if(it == components.end())LogSystem::getSingleton()->Log("El componente \"" + name + "\" no existe");
 
 	return it;
 }

@@ -204,6 +204,9 @@
     <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
       <Project>{15A0C92B-437C-4830-8A3F-66F535584D2C}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.vcxproj">
+      <Project>{ab0fe5ae-c6f3-4ece-ac9f-1f6556e33454}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\Game.h" />

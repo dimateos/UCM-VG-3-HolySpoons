@@ -73,6 +73,6 @@ public:
 		delete gameObjects[i];
 	}
 	delete scene;
-	factory->shutdownSingleton();
-	jsReader->shutdownSingleton();
+	ComponentFactory::shutdownSingleton();
+	JsonReader::shutdownSingleton();
 	*/
