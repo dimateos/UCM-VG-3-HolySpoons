@@ -22,10 +22,12 @@
     <ClInclude Include="..\..\src\Utils\ComponentFactory.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
+    <ClInclude Include="..\..\src\Utils\LogSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp" />
+    <ClCompile Include="..\..\src\Utils\LogSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
