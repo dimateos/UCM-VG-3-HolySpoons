@@ -8,6 +8,10 @@ using namespace physx;
 #define PVD 0
 #include "EventReporter.h"
 
+#define vX PxVec3(1.0f, 0.0f, 0.0f)
+#define vY PxVec3(0.0f, 1.0f, 0.0f)
+#define vZ PxVec3(1.0f, 0.0f, 1.0f)
+
 class PhysicsSystemManager
 {
 public:

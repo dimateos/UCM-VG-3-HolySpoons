@@ -13,7 +13,7 @@ public:
 	virtual ~PhysicsComponent() { setDown(); };
 
 	virtual void update(GameObject* ent, float time);
-	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt) { return false; };
+	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
 
 protected:
 	virtual void setUp();
