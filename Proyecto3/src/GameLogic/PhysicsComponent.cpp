@@ -58,7 +58,7 @@ void PhysicsComponent::setUp() {
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
-	renderInterface->createPlane("planoo", Vector3::UNIT_Z, 1000, 1000,Vector3::UNIT_Y);
+	renderInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000,Vector3::UNIT_Y);
 
 
 	//dynamic

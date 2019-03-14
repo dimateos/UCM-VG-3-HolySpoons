@@ -53,8 +53,16 @@ SceneNode * RenderSystemInterface::createLight(String name, Light::LightTypes ty
 
 std::pair<SceneNode*, Entity*> RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, Real h, Vector3 up)
 {
-	MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-		Plane(Normal, 0), w, h, 100, 80, true, 1, 1.0, 1.0, up); //Crea una mesh
+	try{
+		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+			Plane(Normal, 0), w, h, 100, 80, true, 1, 1.0, 1.0, up); //Crea una mesh
+	}
+	catch (Exception e) {
+		LogManager::getSingleton().getLog("Ogre.log")->logMessage("SO GILIPOLLAS LOS VECTORES SON IVALIDOS");
+		MeshManager::getSingleton().remove(name);
+		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+			Plane(Vector3::UNIT_Z, 0), w, h, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Y); //Crea una mesh
+	}
 	
 
 	std::pair<SceneNode*, Entity*> p;

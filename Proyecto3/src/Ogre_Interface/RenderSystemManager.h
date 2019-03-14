@@ -16,6 +16,8 @@
 #include <OgreRoot.h>
 #include <SDL.h>
 
+//#include <LogSystem.h>
+
 using namespace Ogre;
 //RenderSystemManager
 
