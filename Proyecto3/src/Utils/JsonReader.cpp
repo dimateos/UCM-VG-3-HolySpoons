@@ -81,6 +81,7 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 		}
 	}
 	i.close();
+	LogSystem::shutdownSingleton();
 
 	return scene;
 }
