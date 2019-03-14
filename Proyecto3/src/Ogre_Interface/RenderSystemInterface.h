@@ -1,8 +1,10 @@
 #ifndef RENDERSYSTEMINTERFACE_H_
 #define RENDERSYSTEMINTERFACE_H_
 
+#include <OgreResourceGroupManager.h>
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
+#include <OgreMeshManager.h>
 #include <OgreSceneNode.h>
 #include "OgreViewport.h"
 #include <OgreCamera.h>
@@ -41,7 +43,7 @@ public:
 	/*
 	 *Crea una entidad + nodo segun el nombre
 	 */
-	SceneNode* createOgreEntity(String name, String meshName = "");
+	std::pair<SceneNode*, Entity*> createOgreEntity(String name, String meshName = "");
 	/*
 	 *Crea un nodo vacio
 	 */
@@ -50,6 +52,11 @@ public:
 	 *Crea una luz del tipo elegido. La direccion se setea con el nodo (node->setDirection(Ogre::Vector3(x, y, z));)
 	 */
 	SceneNode* createLight(String name, Light::LightTypes type, ColourValue color);
+	/*
+	 *Crea un nodo vacio
+	 * UP NO PUEDE SER IGUAL A NORMAL
+	 */
+	std::pair<SceneNode*, Entity*> createPlane(String name, Vector3 Normal, Real w, Real h,Vector3 up);
 	/*
 	 *set de la luz ambiental
 	 */

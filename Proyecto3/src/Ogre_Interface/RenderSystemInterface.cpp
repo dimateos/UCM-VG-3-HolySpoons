@@ -23,14 +23,16 @@ void RenderSystemInterface::closeInterface()
 	delete instance_;
 }
 
-SceneNode* RenderSystemInterface::createOgreEntity(String name, String meshName)
+std::pair<SceneNode*, Entity*>  RenderSystemInterface::createOgreEntity(String name, String meshName)
 {
 	SceneNode* ogreNode = nullptr;
 	Entity* entity = meshName == "" ? mScnMgr->createEntity(name) : mScnMgr->createEntity(name,meshName);
 	ogreNode = mScnMgr->getRootSceneNode()->createChildSceneNode(name);
 	ogreNode->attachObject(entity);
-	return ogreNode;
+	std::pair<SceneNode*, Entity*> p (ogreNode, entity);
+	return p;
 }
+
 
 SceneNode * RenderSystemInterface::createEmpty(String name)
 {
@@ -49,6 +51,18 @@ SceneNode * RenderSystemInterface::createLight(String name, Light::LightTypes ty
 	return mLightNode;
 }
 
+std::pair<SceneNode*, Entity*> RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, Real h, Vector3 up)
+{
+	MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+		Plane(Normal, 0), w, h, 100, 80, true, 1, 1.0, 1.0, up); //Crea una mesh
+	
+
+	std::pair<SceneNode*, Entity*> p;
+	p = createOgreEntity(name, name); //Crea la entidad con la mesh
+
+	return p;
+}
+
 void RenderSystemInterface::setAmbientLight(ColourValue color )
 {
 	getSceneManager()->setAmbientLight(color);
@@ -56,7 +70,7 @@ void RenderSystemInterface::setAmbientLight(ColourValue color )
 
 SceneNode * RenderSystemInterface::addChild(SceneNode * father, String name, String meshName)
 {
-	SceneNode* child = createOgreEntity(name,meshName);
+	SceneNode* child = createOgreEntity(name,meshName).first;
 	child->getParentSceneNode()->removeChild(child); //needed
 	father->addChild(child);
 	return child;
