@@ -2,6 +2,7 @@
 #include "Windows.h" //temp counter method
 
 #include "PhysicsComponent.h"
+#include "RenderSystemInterface.h"
 
 Game::Game() {
 	initGame();
@@ -18,6 +19,7 @@ void Game::initGame() {
 	//Get the singleton instances
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
+	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
 	//!temporary direct creation
 	gsm_ = new GameStateMachine();

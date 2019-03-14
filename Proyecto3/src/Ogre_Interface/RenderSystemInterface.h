@@ -41,7 +41,7 @@ public:
 	/*
 	 *Crea una entidad + nodo segun el nombre
 	 */
-	SceneNode* createOgreEntity(String name, String meshName);
+	SceneNode* createOgreEntity(String name, String meshName = "");
 	/*
 	 *Crea un nodo vacio
 	 */
@@ -82,7 +82,7 @@ public:
 	 *Get cameraNode (modify position, lookAt...)
 	 */
 	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
-	
+
 
 	void LOGGER();
 };

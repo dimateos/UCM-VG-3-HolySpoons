@@ -123,7 +123,7 @@ void RenderSystemManager::setupScene()
 	//Viewport
 	vp = mWindow->addViewport(mCamera);
 
-	vp->setBackgroundColour(ColourValue(1, 1, 1));
+	vp->setBackgroundColour(ColourValue(0.5, 0.5, 0.5));
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
 	//Lights

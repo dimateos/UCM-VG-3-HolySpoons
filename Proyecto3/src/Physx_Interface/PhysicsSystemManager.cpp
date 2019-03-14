@@ -4,6 +4,9 @@
 //Set this to the IP address of the system running the PhysX Visual Debugger that you want to connect to.
 //#define PVD_HOST "127.0.0.1" for the visual debugger attached
 
+#define ogre_scale 100
+#include <OgreSceneNode.h>
+
 //Singleton patern setup
 PhysicsSystemManager* PhysicsSystemManager::instance_ = nullptr;
 PhysicsSystemManager* PhysicsSystemManager::getSingleton() {
@@ -49,6 +52,7 @@ void PhysicsSystemManager::setupInstance() {
 	sceneDesc.simulationEventCallback = &eventReporter_;
 
 	gScene = gPhysics->createScene(sceneDesc);
+	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
 
 	// Add custom application code ?
 	//end of custom code
@@ -88,37 +92,41 @@ void PhysicsSystemManager::stepPhysics(double t) {
 void PhysicsSystemManager::updateNodes() {
 	gScene->fetchResults(true);
 
-	return; //temp
-
 	// retrieve array of actors that MOVED (so we just update the least possible nodes)
 	PxU32 nbActiveActors;
 	PxActor** activeActors = gScene->getActiveActors(nbActiveActors);
 
 	// update each render object with the new transform
 	for (PxU32 i = 0; i < nbActiveActors; ++i) {
-		//gotta put here the ogre node as renderObject and userData on the creation of the rigidBodies
-		//MyRenderObject* renderObject = static_cast<MyRenderObject*>(activeActors[i]->userData);
-		//renderObject->setTransform(activeActors[i]->getGlobalPose());
-	}
+		Ogre::SceneNode *node = static_cast<Ogre::SceneNode *>(activeActors[i]->userData);
+		auto trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
 
+		std::cout << trans.p.x << " " << trans.p.y << " " << trans.p.z << " " << std::endl;
+
+		node->setPosition(Ogre::Vector3(trans.p.x*ogre_scale, trans.p.y*ogre_scale, trans.p.z*ogre_scale));
+		node->setOrientation(Ogre::Quaternion(trans.q.w, trans.q.x, trans.q.y, trans.q.z));
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry geo, PxTransform trans) {
-	physx::PxShape* shape = gPhysics->createShape(geo, *material_);
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans) {
+	physx::PxShape* shape = gPhysics->createShape(*geo, *material_);
 
-	auto body = gPhysics->createRigidDynamic(trans);
+	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans);
 	body->attachShape(*shape);
+	body->setLinearDamping(0.1f);
+	body->setLinearVelocity(PxVec3(0.0f));
+	PxRigidBodyExt::updateMassAndInertia(*body, 1.0f);
 	gScene->addActor(*body);
 
 	return body;
 }
 
-PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry geo, PxTransform trans) {
-	physx::PxShape* shape = gPhysics->createShape(geo, *material_);
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans) {
+	physx::PxShape* shape = gPhysics->createShape(*geo, *material_);
 
-	auto body = gPhysics->createRigidStatic(trans);
+	PxRigidStatic * body = gPhysics->createRigidStatic(trans);
 	body->attachShape(*shape);
 	gScene->addActor(*body);
 

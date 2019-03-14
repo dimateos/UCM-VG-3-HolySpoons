@@ -23,10 +23,10 @@ void RenderSystemInterface::closeInterface()
 	delete instance_;
 }
 
-SceneNode* RenderSystemInterface::createOgreEntity(String name,String meshName)
+SceneNode* RenderSystemInterface::createOgreEntity(String name, String meshName)
 {
 	SceneNode* ogreNode = nullptr;
-	Entity* entity = mScnMgr->createEntity(name,meshName);
+	Entity* entity = meshName == "" ? mScnMgr->createEntity(name) : mScnMgr->createEntity(name,meshName);
 	ogreNode = mScnMgr->getRootSceneNode()->createChildSceneNode(name);
 	ogreNode->attachObject(entity);
 	return ogreNode;

@@ -18,8 +18,8 @@ public:
 	void stepPhysics(double t);
 	void updateNodes();
 
-	PxRigidDynamic* createDynamicBody(PxGeometry geo, PxTransform trans);
-	PxRigidStatic* createStaticBody(PxGeometry geo, PxTransform trans);
+	PxRigidDynamic* createDynamicBody(PxGeometry *geo, PxTransform const &trans);
+	PxRigidStatic* createStaticBody(PxGeometry *geo, PxTransform const &trans);
 
 private:
 	// Foundation and Scene

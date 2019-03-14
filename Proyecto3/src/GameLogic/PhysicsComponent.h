@@ -2,6 +2,7 @@
 #pragma once
 
 #include "PhysicsSystemManager.h"
+#include <OgreSceneNode.h>
 
 #include "Component.h"
 //tmp proof of concept Render+Phyiscs
@@ -15,11 +16,11 @@ public:
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt) { return false; };
 
 protected:
-	// Create the physical body
 	virtual void setUp();
-	// Remove the physical body
 	virtual void setDown();
 
 	PxRigidStatic* rigidBodyS = nullptr;
 	PxRigidDynamic* rigidBodyD = nullptr;
+
+	Ogre::SceneNode *nodeS = nullptr, *nodeD = nullptr;
 };
