@@ -1,10 +1,8 @@
 #ifndef RENDERSYSTEMINTERFACE_H_
 #define RENDERSYSTEMINTERFACE_H_
 
-#include <OgreResourceGroupManager.h>
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
-#include <OgreMeshManager.h>
 #include <OgreSceneNode.h>
 #include "OgreViewport.h"
 #include <OgreCamera.h>
@@ -89,9 +87,6 @@ public:
 	 *Get cameraNode (modify position, lookAt...)
 	 */
 	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
-
-
-	void LOGGER();
 };
 
 #endif /*RENDERSYSTEMINTERFACE_H_*/

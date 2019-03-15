@@ -16,7 +16,7 @@ bool PhysicsComponent::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	if (evt.type == SDL_KEYDOWN) {
 		switch (evt.key.keysym.sym) {
 		case SDLK_r:
-			rigidBodyD->setGlobalPose(PxTransform (PxVec3(0.0f, 5.0f, 0.0f)));
+			rigidBodyD->setGlobalPose(PxTransform(PxVec3(0.0f, 5.0f, 0.0f)));
 			rigidBodyD->setLinearVelocity(PxVec3(0.0f));
 			break;
 
@@ -46,7 +46,7 @@ void PhysicsComponent::setUp() {
 
 	//static
 	nodeS = renderInterface->createOgreEntity("ground", "cube.mesh").first;
-	renderInterface->setMaterial("ground", "Examples/OgreLogo");
+	renderInterface->setMaterial("ground", "DebugMaterial2");
 	nodeS->setScale(10.0f, 1.0f, 10.0f);
 	nodeS->setPosition(0.0f, -1500.0f, 0.0f);
 	PxGeometry *geoS = new PxBoxGeometry(PxVec3(10.0f, 1.0f, 10.0f) / 2); //half extents
@@ -58,12 +58,18 @@ void PhysicsComponent::setUp() {
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
-	renderInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000,Vector3::UNIT_Y);
+	renderInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000, Vector3::UNIT_Y);
+	renderInterface->setMaterial("planoo", "DebugMaterial");
 
+	SceneNode* nin = renderInterface->createOgreEntity("Ninja", "ninja.mesh").first;
+	nin->setScale(10, 10, 10);
+	nin->setPosition(0, -1000, 1000);
+	nin->yaw(Ogre::Radian(3.14159));
+	renderInterface->setMaterial("Ninja", "NinjaMaterial");
 
 	//dynamic
 	nodeD = renderInterface->createOgreEntity("cube", "cube.mesh").first;
-	renderInterface->setMaterial("cube", "WoodPallet");
+	renderInterface->setMaterial("cube", "DebugMaterial2");
 	PxGeometry *geoD = new PxBoxGeometry(PxVec3(1.0f) / 2);
 	PxTransform transD(PxVec3(0.0f, 5.0f, 0.0f));
 	rigidBodyD = physicsManager->createDynamicBody(geoD, transD);

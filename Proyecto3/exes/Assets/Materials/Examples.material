@@ -1,0 +1,47 @@
+material DebugMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+			
+			texture_unit
+			{
+				texture 1d_debug.png
+			}
+		}
+	}
+}
+
+material DebugMaterial2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture randomTexture.jpg
+			}
+		}
+	}
+}
+
+material NinjaMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+
+			texture_unit
+			{
+				texture nskingr.jpg
+			}
+		}
+	}
+}

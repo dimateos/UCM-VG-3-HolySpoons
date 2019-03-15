@@ -1,6 +1,9 @@
+#include <OgreResourceGroupManager.h>
 #include "RenderSystemInterface.h"
-#include <OgreLog.h>
+#include <OgreMeshManager.h>
 #include <OgreLogManager.h>
+#include <LogSystem.h>
+#include <OgreLog.h>
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
@@ -58,7 +61,8 @@ std::pair<SceneNode*, Entity*> RenderSystemInterface::createPlane(String name, V
 			Plane(Normal, 0), w, h, 100, 80, true, 1, 1.0, 1.0, up); //Crea una mesh
 	}
 	catch (Exception e) {
-		LogManager::getSingleton().getLog("Ogre.log")->logMessage("SO GILIPOLLAS LOS VECTORES SON IVALIDOS");
+		LogSystem::getSingleton()->Log("VECTORES INVALIDOS EN EL PLANO   "+ (string)e.what());
+		//LogManager::getSingleton().getLog("Ogre.log")->logMessage("SO GILIPOLLAS LOS VECTORES SON IVALIDOS");
 		MeshManager::getSingleton().remove(name);
 		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 			Plane(Vector3::UNIT_Z, 0), w, h, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Y); //Crea una mesh
@@ -109,12 +113,7 @@ SceneNode * RenderSystemInterface::getNode(String name)
 	}
 	catch (const std::exception e)
 	{
-		LogManager::getSingleton().getLog("Ogre.log")->logMessage(e.what());
+		LogSystem::getSingleton()->Log("ERROR AL ACCEDER AL NODO " + name + "   " + (string)e.what());
 		return nullptr;
 	}
-}
-
-void RenderSystemInterface::LOGGER()
-{
-	LogManager::getSingleton().getLog("Ogre.log")->logMessage("PACO ESTAMOS LOGGEANDO");
 }
