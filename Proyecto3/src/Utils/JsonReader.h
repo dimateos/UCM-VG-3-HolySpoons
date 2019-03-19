@@ -10,20 +10,37 @@ using namespace std;
 
 // CompType = vector of pairs with the name of each component
 // and another vector with the paramaters of that component
-using CompType = std::vector<pair<string, std::vector<string>>>;
+struct CompStruct {
+	string compName;
+	std::vector<string> compParameters;
+};
+using CompType = std::vector<CompStruct>;
 
 // MessagesType = vector of pairs with the name of the Emitter
 // and the name of the Listener that will exchange messages
-using MessagesType = std::vector<pair<string, string>>;
+struct MessagesStruct {
+	string emitterName, listenerName;
+};
+using MessagesType = std::vector<MessagesStruct>;
 
 // GameObjectType = pair that cointains the name of the GameObject and
 // two vectors, one with the components of the GameObject and another one
 // with the components that will be Emitters and Listeners
-using GameObjectType = pair<string, pair<CompType, MessagesType>>;
+struct GOStruct {
+	string GOName;
+	std::vector<string> GOParameters;
+	CompType components;
+	MessagesType compMessages;
+};
+using GOType = GOStruct;
 
 // Scene_type = pair that cointains a vector with the GameObjects of the scene
 // and the GameObjects that will be Emitters and Listeners 
-using Scene_Type = pair<std::vector<GameObjectType>, MessagesType>;
+struct SceneStruct {
+	std::vector<GOType> gameObjects;
+	MessagesType GOMessages;
+};
+using Scene_Type = SceneStruct;
 
 //---------------------------------------------------------------------------------
 
@@ -37,11 +54,13 @@ private:
 	// every new level file must fit in "routeLevel"
 	string routeLevel = "..\\exes\\Assets\\Levels\\";
 	string routePrefabs = "..\\exes\\Assets\\Levels\\Prefabs.json";
+	Scene_Type scene;
 
 	// private methods
-	JsonReader() {}
-	~JsonReader() {}
-	void ReadPrefab(string name, CompType& comps);
+	JsonReader();
+	~JsonReader();
+	void ReadPrefab(string name, GOType& gameObject);
+	void ReadMap(string level);
 	CompType::iterator findComponent(CompType& components, string name);
 
 public:
@@ -61,18 +80,20 @@ public:
 	ComponentFactory* factory = ComponentFactory::getSingleton();
 
 	std::vector<GameObject*> gameObjects;
-	for (int i = 0; i < scene->first.size(); i++) {
-		gameObjects.push_back(new GameObject());
-		for (int j = 0; j < scene->first[i].second.first.size(); j++) {
-			gameObjects[i]->addComponent(factory->ParseComponent(scene->first[i].second.first[j].first, scene->first[i].second.first[j].second));
+	for (int i = 0; i < scene->gameObjects.size(); i++) {
+		gameObjects.push_back(new GameObject()); //IMPORTANTE: cuando cada entidad tenga parametros en la constructora se pondran aqui usando scene.gameObjects[i].GOParams
+		for (int j = 0; j < scene->gameObjects[i].components.size(); j++) {
+			gameObjects[i]->addComponent(factory->ParseComponent(scene->gameObjects[i].components[j].compName, scene->gameObjects[i].components[j].compParameters));
 		}
 	}
 
-	for (int i = 0; i < scene->first.size(); i++) {
+	for (int i = 0; i < scene->gameObjects.size(); i++) {
 		gameObjects[i]->update(0);
 		delete gameObjects[i];
 	}
-	delete scene;
+
+	scene = nullptr;
+
 	ComponentFactory::shutdownSingleton();
 	JsonReader::shutdownSingleton();
 	*/

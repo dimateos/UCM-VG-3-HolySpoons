@@ -2,6 +2,7 @@
     "GameObjects": [
         {
             "Name": "Caracol",
+            "GOParameters":["10", "-", "-"],
             "Custom": [
                 {
                     "Name": "Render",

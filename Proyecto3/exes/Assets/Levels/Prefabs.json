@@ -1,6 +1,10 @@
 {
     "Caracol":[
         {
+            "GOParameters":["0", "0", "0"]
+        },
+        
+        {
             "Name" : "Render",
             "Parameters":
             [
@@ -16,6 +20,35 @@
         }
     ],
     "Limon":[
+        {
+            "GOParameters":["0", "0", "0"]
+        },
+        
+        {
+            "Name" : "Render",
+            "Parameters":
+            [
+                "20", "20"
+            ]
+        }
+    ],
+
+    "Floor":[
+        {
+            "GOparameters":["0", "0", "0"]
+        },
+        {
+            "Name" : "Render",
+            "Parameters":
+            [
+                "10", "10"
+            ]
+        }
+    ],
+    "FallingFloor":[
+        {
+            "GOparameters":["0", "0", "0"]
+        },
         {
             "Name" : "Render",
             "Parameters":
