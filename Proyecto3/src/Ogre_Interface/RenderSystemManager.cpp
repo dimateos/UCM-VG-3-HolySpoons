@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+#include <OgreOverlaySystem.h>
 
 RenderSystemManager* RenderSystemManager::instance_ = nullptr;
 
@@ -97,6 +98,8 @@ void RenderSystemManager::createWindow()
 
 void RenderSystemManager::initializeResources()
 {
+	Ogre::OverlaySystem* o = new Ogre::OverlaySystem();
+	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 

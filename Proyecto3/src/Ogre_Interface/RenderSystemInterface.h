@@ -3,8 +3,8 @@
 
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
-#include <OgreSceneNode.h>
-#include "OgreViewport.h"
+#include <OgreSceneNode.h> 
+#include "OgreViewport.h" //A CPP
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
