@@ -30,6 +30,22 @@ material DebugMaterial2
 	}
 }
 
+material DebugMaterial3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture Dr_Bunsen_Head.jpg
+			}
+		}
+	}
+}
+
 material NinjaMaterial
 {
 	technique

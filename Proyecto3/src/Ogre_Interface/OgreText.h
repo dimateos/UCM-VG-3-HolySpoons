@@ -23,7 +23,7 @@ namespace Ogre {
 class OgreText
 {
 private:
-	Ogre::OverlayManager *olm;
+	Ogre::OverlayManager *overlayManager;
 	Ogre::OverlayContainer *panel;
 	Ogre::Overlay *overlay;
 	Ogre::TextAreaOverlayElement *textArea;
@@ -48,7 +48,9 @@ public:
 	/*
 	 *Set text color
 	 */
-	void setTextColor(float R, float G, float B, float I);
+	void setTextColour(float R, float G, float B, float I);
+	void setTextColourTop(float R, float G, float B, float I);
+	void setTextColourBot(float R, float G, float B, float I);
 };
 
 #endif

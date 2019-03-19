@@ -12,67 +12,58 @@ int OgreText::init = 0;
 
 OgreText::OgreText()
 {
-	//Ogre::OverlayManager *om = new Ogre::OverlayManager();
-	olm = OverlayManager::getSingletonPtr();
-	if (init == 0)
-	{
-		panel = static_cast<OverlayContainer*>(olm->createOverlayElement("Panel", "GUI"));
+	overlayManager = OverlayManager::getSingletonPtr();
+
+	if (init == 0) {
+		// Create a panel
+		OverlayContainer* panel = static_cast<OverlayContainer*>(
+			overlayManager->createOverlayElement("Panel", "PanelName"));
 		panel->setMetricsMode(Ogre::GMM_PIXELS);
 		panel->setPosition(10, 10);
-		panel->setDimensions(1.0f, 1.0f);
-		panel->setMaterialName("DebugMaterial");
-		overlay = olm->create("GUI_OVERLAY");
+		panel->setDimensions(100, 100);
+		//panel->setMaterialName("MaterialName"); // Optional background material
+		// Create an overlay, and add the panel
+		Overlay* overlay = overlayManager->create("OverlayName");
 		overlay->add2D(panel);
 	}
 	++(this->init);
+
 	szElement = "element_" + StringConverter::toString(init);
-	overlay = olm->getByName("GUI_OVERLAY");
-	panel = static_cast<OverlayContainer*>(olm->getOverlayElement("GUI"));
-	textArea = static_cast<TextAreaOverlayElement*>(olm->createOverlayElement("TextArea", szElement));
+	overlay = overlayManager->getByName("OverlayName");
+	panel = static_cast<OverlayContainer*>(overlayManager->getOverlayElement("PanelName"));
+	// Create a text area
+	textArea = static_cast<TextAreaOverlayElement*>(
+		overlayManager->createOverlayElement("TextArea", szElement));
+	textArea->setMetricsMode(Ogre::GMM_PIXELS);
+	textArea->setColourBottom(ColourValue(0.3, 0.5, 0.3));
+	textArea->setColourTop(ColourValue(0.5, 0.7, 0.5));
+	// Add the text area to the panel
 	panel->addChild(textArea);
+
+	// Show the overlay
 	overlay->show();
 }
 OgreText::~OgreText()
 {
 	szElement = "element_" + StringConverter::toString(init);
-	olm->destroyOverlayElement(szElement);
+	overlayManager->destroyOverlayElement(szElement);
 	--(this->init);
 	if (init == 0)
 	{
-		olm->destroyOverlayElement("GUI");
-		olm->destroy("GUI_OVERLAY");
+		overlayManager->destroyOverlayElement("PanelName");
+		overlayManager->destroy("OverlayName");
 	}
 }
-/*
- *SetText with charArray
- */
-/*void OgreText::setText(char *szString)
-{
-	textArea->setCaption(szString);
-	textArea->setDimensions(1.0f, 1.0f);
-	textArea->setMetricsMode(Ogre::GMM_RELATIVE);
-	//textArea->setFontName("Srisakdi-Bold.ttf");
-	textArea->setFontName("BlueHighway");
-	textArea->setCharHeight(0.03f);
-}*/
+
 /*
  *SetText with Ogre::String
  */
 void OgreText::setText(std::string szString) // now You can use Ogre::String as text
 {
 	textArea->setCaption(szString);
-	textArea->setDimensions(1.0f, 1.0f);
-	textArea->setMetricsMode(Ogre::GMM_RELATIVE);
-	
-	FontPtr mFont = FontManager::getSingleton().create("tutorialFont", "General");
-	mFont->setType(Ogre::FT_TRUETYPE);
-	mFont->setSource("Assets\Fonts\Tuto.ttf");
-	mFont->setTrueTypeSize(200);
-	mFont->setTrueTypeResolution(96);
-	mFont->addCodePointRange(Ogre::Font::CodePointRange(33, 255));
-
-	textArea->setFontName("tutorialFont");
-	textArea->setCharHeight(3.0f);
+	textArea->setCharHeight(30);
+	textArea->setFontName("MyFont");
+	textArea->setDimensions(100, 100);
 }
 /*
  *Set text position on overlay
@@ -81,11 +72,23 @@ void OgreText::setTextPosition(float x, float y)
 {
 	textArea->setPosition(x, y);
 }
+
 /*
  *Set text color
  */
-void OgreText::setTextColor(float R, float G, float B, float I)
+
+void OgreText::setTextColour(float R, float G, float B, float I)
 {
 	textArea->setColour(Ogre::ColourValue(R, G, B, I));
+}
+
+void OgreText::setTextColourTop(float R, float G, float B, float I)
+{
+	textArea->setColourTop(Ogre::ColourValue(R, G, B, I));
+}
+
+void OgreText::setTextColourBot(float R, float G, float B, float I)
+{
+	textArea->setColourBottom(Ogre::ColourValue(R, G, B, I));
 }
 

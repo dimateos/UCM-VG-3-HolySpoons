@@ -13,6 +13,8 @@ void RenderSystemManager::createRoot()
 	#else
 		mRoot = new Ogre::Root("plugins.cfg");
 	#endif
+
+	overlaySystem = new Ogre::OverlaySystem();
 }
 
 void RenderSystemManager::setupResources()
@@ -98,14 +100,13 @@ void RenderSystemManager::createWindow()
 
 void RenderSystemManager::initializeResources()
 {
-	Ogre::OverlaySystem* o = new Ogre::OverlaySystem();
-	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void RenderSystemManager::createSceneManager()
 {
 	mSceneMgr = mRoot->createSceneManager();
+	mSceneMgr->addRenderQueueListener(overlaySystem);
 }
 
 void RenderSystemManager::setupScene()
@@ -155,6 +156,7 @@ void RenderSystemManager::shutdown()
 {
 	//mShaderGenerator->removeSceneManager(mSM);
 	//mSM->removeRenderQueueListener(mOverlaySystem);
+	mSceneMgr->removeRenderQueueListener(overlaySystem);
 
 	mRoot->destroySceneManager(mSceneMgr);
 
@@ -164,14 +166,16 @@ void RenderSystemManager::shutdown()
 		mWindow = nullptr;
 	}
 
-	//overlay (?)
-
 	if (SDL_win != nullptr)
 	{
 		SDL_DestroyWindow(SDL_win);
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 		SDL_win = nullptr;
 	}
+
+
+	delete overlaySystem;
+	overlaySystem = nullptr;
 
 	delete mRoot;
 	mRoot = nullptr;
@@ -201,13 +205,12 @@ bool RenderSystemManager::handleEvents(const SDL_Event evt) {
 		switch (evt.type) {
 		case SDL_WINDOWEVENT:
 			if (evt.window.windowID == SDL_GetWindowID(SDL_win)) {
-				if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
+				//if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
 					Ogre::RenderWindow* win = mWindow;
-					//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR
 					win->windowMovedOrResized();
 					windowResized(win);
 					handled = true;
-				}
+				//}
 			}
 			break;
 
