@@ -205,12 +205,12 @@ bool RenderSystemManager::handleEvents(const SDL_Event evt) {
 		switch (evt.type) {
 		case SDL_WINDOWEVENT:
 			if (evt.window.windowID == SDL_GetWindowID(SDL_win)) {
-				//if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
+				if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
 					Ogre::RenderWindow* win = mWindow;
 					win->windowMovedOrResized();
 					windowResized(win);
 					handled = true;
-				//}
+				}
 			}
 			break;
 

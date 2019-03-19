@@ -29,6 +29,9 @@ private:
 	Ogre::TextAreaOverlayElement *textArea;
 	static int init;
 	std::string szElement;
+	String panelName ="PanelName";
+	String overlayName = "OverlayName";
+
 
 public:
 	OgreText();
@@ -49,7 +52,15 @@ public:
 	 *Set text color
 	 */
 	void setTextColour(float R, float G, float B, float I);
+
+	/*
+	 *Set Top-font color
+	 */
 	void setTextColourTop(float R, float G, float B, float I);
+
+	/*
+	 *Set Dropshadow color
+	 */
 	void setTextColourBot(float R, float G, float B, float I);
 };
 

@@ -195,9 +195,6 @@
     <ProjectReference Include="..\GameLogic\GameLogic.vcxproj">
       <Project>{28fc9fbf-c637-44fd-998d-f89588966155}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Ogre_Interface\Ogre_Interface.vcxproj">
-      <Project>{e79d8e14-ed48-48ed-b2a8-627d69807c75}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
       <Project>{15A0C92B-437C-4830-8A3F-66F535584D2C}</Project>
     </ProjectReference>
