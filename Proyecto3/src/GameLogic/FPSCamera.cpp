@@ -65,6 +65,11 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	return handled;
 }
 
+void FPSCamera::loadParameters(std::vector<string> parameters)
+{
+	// TO COMPLETE (depending on the needed parameters)
+}
+
 void FPSCamera::toggleZoom() {
 	camNode_->translate(-oZ * zoomed, Node::TS_LOCAL);
 	zoomed *= -1;

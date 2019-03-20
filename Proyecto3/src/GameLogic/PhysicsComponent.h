@@ -15,6 +15,8 @@ public:
 	virtual void update(GameObject* ent, float time);
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
 
+	virtual void loadParameters(std::vector<string>parameters);
+
 protected:
 	virtual void setUp();
 	virtual void setDown();

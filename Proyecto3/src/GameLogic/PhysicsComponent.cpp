@@ -37,6 +37,11 @@ bool PhysicsComponent::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	return handled;
 }
 
+void PhysicsComponent::loadParameters(std::vector<string> parameters)
+{
+	// TO COMPLETE (depending on the needed parameters)
+}
+
 void PhysicsComponent::setUp() {
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
 	RenderSystemInterface* rInterface = RenderSystemInterface::getSingleton();

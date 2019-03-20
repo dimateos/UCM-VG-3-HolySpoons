@@ -19,11 +19,12 @@ void ComponentFactory::shutdownSingleton() {
 }
 
 // it receives the name of the component and its parameters. When you add a new component to the factory,
-// you'll need to know how many parameters that component needs in the constructor. Here is an example:
-// the component render always needs two parameters, so you would write -> 
+// you'll need to create the component and add its parameters using the vector "params". Here is an example:
+// for the component "Render", so you would write -> 
 /*
 if (componentName == "Render") {
-		RenderComponent* rcomp = new RenderComponent(stoi(params[0]), stoi(params[1]));
+		RenderComponent* rcomp = new RenderComponent();
+		rcomp->loadParameters(params);
 		return rcomp;
 	}
 */
