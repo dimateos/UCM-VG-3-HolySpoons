@@ -3,11 +3,15 @@
 
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
-#include <OgreSceneNode.h> 
+#include <OgreSceneNode.h>
 #include "OgreViewport.h" //A CPP
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
+
+#define oX Vector3(1.0f, 0.0f, 0.0f)
+#define oY Vector3(0.0f, 1.0f, 0.0f)
+#define oZ Vector3(0.0f, 0.0f, 1.0f)
 
 using namespace Ogre;
 class RenderSystemInterface
@@ -87,6 +91,8 @@ public:
 	 *Get cameraNode (modify position, lookAt...)
 	 */
 	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
+
+	inline Viewport* getViewport() { return camera->getViewport(); };
 };
 
 #endif /*RENDERSYSTEMINTERFACE_H_*/

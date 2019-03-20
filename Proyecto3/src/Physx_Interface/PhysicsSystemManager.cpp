@@ -101,7 +101,7 @@ void PhysicsSystemManager::updateNodes() {
 		Ogre::SceneNode *node = static_cast<Ogre::SceneNode *>(activeActors[i]->userData);
 		auto trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
 
-		std::cout << trans.p.x << " " << trans.p.y << " " << trans.p.z << " " << std::endl;
+		//std::cout << trans.p.x << " " << trans.p.y << " " << trans.p.z << " " << std::endl;
 
 		node->setPosition(Ogre::Vector3(trans.p.x*ogre_scale, trans.p.y*ogre_scale, trans.p.z*ogre_scale));
 		node->setOrientation(Ogre::Quaternion(trans.q.w, trans.q.x, trans.q.y, trans.q.z));

@@ -63,7 +63,7 @@ void OgreText::setText(std::string szString) // now You can use Ogre::String as 
 	textArea->setCaption(szString);
 	textArea->setCharHeight(30);
 	textArea->setFontName("HackReg");
-	textArea->setDimensions(100, 100);
+	textArea->setDimensions(100,100);
 }
 /*
  *Set text position on overlay
@@ -71,6 +71,15 @@ void OgreText::setText(std::string szString) // now You can use Ogre::String as 
 void OgreText::setTextPosition(float x, float y)
 {
 	textArea->setPosition(x, y);
+}
+void OgreText::setTextCenteredPosition(float x, float y)
+{
+	//not workong
+	setTextPosition(x, y);
+	textArea->setAlignment(TextAreaOverlayElement::Center);
+	textArea->setHorizontalAlignment(Ogre::GuiHorizontalAlignment::GHA_CENTER);
+	textArea->setVerticalAlignment(Ogre::GuiVerticalAlignment::GVA_CENTER);
+	textArea->_update();
 }
 
 /*

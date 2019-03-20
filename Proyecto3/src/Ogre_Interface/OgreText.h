@@ -48,6 +48,7 @@ public:
 	 *Set text position on overlay
 	 */
 	void setTextPosition(float x, float y);
+	void setTextCenteredPosition(float x, float y);
 	/*
 	 *Set text color
 	 */

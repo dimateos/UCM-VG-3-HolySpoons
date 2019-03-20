@@ -121,7 +121,7 @@ void RenderSystemManager::setupScene()
 	mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("nCam");
 	mCamNode->attachObject(mCamera);
 
-	mCamNode->setPosition(0, 0, 1000);
+	mCamNode->setPosition(0, 0, 1);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	//Viewport
@@ -209,7 +209,7 @@ bool RenderSystemManager::handleEvents(const SDL_Event evt) {
 					Ogre::RenderWindow* win = mWindow;
 					win->windowMovedOrResized();
 					windowResized(win);
-					handled = true;
+					//handled = true; //tmp for crosshair repositioning
 				}
 			}
 			break;
