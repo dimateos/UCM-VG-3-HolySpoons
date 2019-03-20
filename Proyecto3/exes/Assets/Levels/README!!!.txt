@@ -6,7 +6,7 @@ del otro archivo. Por ejemplo: en Example00.json queremos que aparezcan un Carac
 estaran definidos los componentes que habra que añadir a una entidad para que sea un Caracol o un Limon.
 
 Si ademas queremos cambiar algun parametro que venga por defecto en algun componente en Prefabs.json, habra que añadirselo
-a Example00.json (hay que poner TODOS los parametros en orden en el que los reciba la constructora, y los que queremos que 
+a Example00.json (hay que poner TODOS los parametros en orden en el que los reciba la constructora, y los que queremos que
 se mantengan con sus valores por defecto los dejaremos con "-").
 
 Lo mismo ocurrira si queremos tener listeners y emitters entre los componentes de la entidad.
@@ -20,7 +20,7 @@ Example00.json:
     "GameObjects": [
         {
             "Name": "Caracol",               // entidad tipo Caracol (definida en Prefabs)
- 	    "GOParameters":["10", "-", "-"], // parametros de la constructora que se quieren cambiar
+ 	        "GOParameters":["10", "-", "-"], // parametros de la constructora que se quieren cambiar
             "Custom": [                      // parametros que se quieren cambiar de algun componente
                 {
                     "Name": "Render",        // parametros que queremos cambiar del componente "Render"
@@ -30,7 +30,7 @@ Example00.json:
                     ]
                 }
             ],
-            "ComponentMessages": [           // queremos que el componente "Render" le envie mensajes al componente "Update" 
+            "ComponentMessages": [           // queremos que el componente "Render" le envie mensajes al componente "Update"
                 {
                     "Emitter": "Render",
                     "Listener": "Update"
@@ -123,9 +123,3 @@ Example00.txt (ejemplo de como escribir un mapa)
 00#
 000
 #10
-            [
-                "30", "10"
-            ]
-        }
-    ]
-}

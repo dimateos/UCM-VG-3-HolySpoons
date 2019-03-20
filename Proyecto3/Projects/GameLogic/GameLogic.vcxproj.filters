@@ -1,66 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Physics">
       <UniqueIdentifier>{b2098506-ba48-42f1-8364-baaa5641860e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{70ed0186-9e11-4a78-9204-36b46d127933}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_Messages">
+      <UniqueIdentifier>{6470dfbd-d5d8-4fb9-9c43-cb9ba0398a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Base">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\GameLogic\Emitter.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Listener.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\GameObject.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\Listener.cpp">
+      <Filter>_Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\Emitter.cpp">
+      <Filter>_Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\GameObject.cpp">
+      <Filter>_Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\GameLogic\Emitter.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Listener.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Messages.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Component.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\GameObject.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Activable.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Messages.h">
+      <Filter>_Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Emitter.h">
+      <Filter>_Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Listener.h">
+      <Filter>_Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GameObject.h">
+      <Filter>_Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Component.h">
+      <Filter>_Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Activable.h">
+      <Filter>_Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

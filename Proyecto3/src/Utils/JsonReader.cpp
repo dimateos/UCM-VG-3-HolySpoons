@@ -32,10 +32,10 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 	ReadMap(level); // it reads the map/tiles ("level.txt"; it will be an amount of GameObjects)
 
 	// it will read de GameObjects of the level ("level.json")
-	ifstream i(routeLevel + level + ".json");
-	if (i.is_open()) {
+	ifstream file(routeLevel + level + ".json");
+	if (file.is_open()) {
 		json j;
-		i >> j;
+		file >> j;
 
 		// reading of the gameobjects
 		if (!j["GameObjects"].is_null()) {
@@ -60,8 +60,9 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 				// we read the custom parameters of each component
 				if (!j["GameObjects"][i]["Custom"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["Custom"].size(); x++) {
-						CompType::iterator it; string customName = j["GameObjects"][i]["Custom"][x]["Name"];
-						it = findComponent(go.components, customName);
+						// find / check if the prefab has that component
+						string customName = j["GameObjects"][i]["Custom"][x]["Name"];
+						CompType::iterator it = findComponent(go.components, customName);
 
 						if (it < go.components.end()) {
 							for (int k = 0; k < j["GameObjects"][i]["Custom"][x]["Parameters"].size(); k++) {
@@ -71,6 +72,10 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 								}
 							}
 						}
+						else {
+							LogSystem::getSingleton()->Log("La entidad " + string(j["GameObjects"][i]["Name"])
+								+ " no tiene el componente " + customName +" que se intenta modificar");
+						}
 					}
 				}
 
@@ -79,8 +84,15 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 					for (int x = 0; x < j["GameObjects"][i]["ComponentMessages"].size(); x++) {
 						string emitter = j["GameObjects"][i]["ComponentMessages"][x]["Emitter"];
 						string listener = j["GameObjects"][i]["ComponentMessages"][x]["Listener"];
-						if (findComponent(go.components, emitter) < go.components.end() && findComponent(go.components, listener) < go.components.end())
+
+						// find / check if the prefab has those components
+						if (findComponent(go.components, emitter) < go.components.end()
+							&& findComponent(go.components, listener) < go.components.end()) {
 							go.compMessages.push_back({ emitter, listener });
+						}
+						else {
+							LogSystem::getSingleton()->Log("El componente emmiter " + emitter + " o listener " + listener + " no existe");
+						}
 					}
 				}
 				scene.gameObjects.push_back(go); // we push the new gameobject
@@ -90,12 +102,13 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 		// reading of the gameobjects that will be listeners and emitters
 		if (!j["GameObjectMessages"].is_null()) {
 			for (int i = 0; i < j["GameObjectMessages"].size(); i++) {
+				// here no check if they exist?
 				scene.GOMessages.push_back({ j["GameObjectMessages"][i]["Emitter"], j["GameObjectMessages"][i]["Listener"] });
 			}
 		}
 	}
-	i.close();
-	LogSystem::shutdownSingleton();
+	file.close();
+	//LogSystem::shutdownSingleton(); //no¿
 
 	return &scene;
 }
@@ -169,11 +182,11 @@ void JsonReader::setTilePosition(int r, int c, int i, int j, GOType& go) {
 	x = -((c / 2.0f) * POSITION_FACTOR_C - (POSITION_FACTOR_C / 2.0f)) + j * POSITION_FACTOR_C;
 	y = 0;
 	z = (r / 2.0f) * POSITION_FACTOR_R - (POSITION_FACTOR_R / 2.0f) - i * POSITION_FACTOR_R;
-	try { 
+	try {
 		if (go.GOParameters.size() >= 3) {
 			go.GOParameters[0] = to_string(x); go.GOParameters[1] = to_string(y); go.GOParameters[2] = to_string(z);
 		}
-		else 
+		else
 			throw "Tienes que poner al menos tres parametros en GOParameters de cada prefab Tile (Prefabs.json) para su posicion";
 	}
 	catch (const char* e) {
@@ -188,7 +201,7 @@ CompType::iterator JsonReader::findComponent(CompType& components, string name)
 	while (it != components.end() && it->compName != name ) {
 		it++;
 	}
-	if(it == components.end())LogSystem::getSingleton()->Log("El componente \"" + name + "\" no existe");
+	if(it == components.end()) LogSystem::getSingleton()->Log("El componente \"" + name + "\" no existe");
 
 	return it;
 }
