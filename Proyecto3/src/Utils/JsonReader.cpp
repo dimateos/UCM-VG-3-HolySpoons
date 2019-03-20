@@ -26,10 +26,10 @@ JsonReader::JsonReader() { }
 JsonReader::~JsonReader() { }
 
 // it returns a Scene_type with all the information read
-// from "level.json" (GameObjects) and "level.txt" (map/ground)
+// from "level.json" (GameObjects) and "level.txt" (map/tiles)
 Scene_Type* JsonReader::ReadLevel(string level) {
 
-	ReadMap(level); // it reads the map/ground ("level.txt"; it will be an amount of GameObjects)
+	ReadMap(level); // it reads the map/tiles ("level.txt"; it will be an amount of GameObjects)
 
 	// it will read de GameObjects of the level ("level.json")
 	ifstream i(routeLevel + level + ".json");
@@ -101,7 +101,7 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 }
 
 // it reads the default information of the received prefab
-void JsonReader::ReadPrefab(string name, GOType& gameObject) {
+void JsonReader::ReadPrefab(string name, GOType& go) {
 	ifstream i(routePrefabs);
 
 	if (i.is_open()) {
@@ -110,52 +110,75 @@ void JsonReader::ReadPrefab(string name, GOType& gameObject) {
 		i >> j;
 
 		if (!j[name].is_null()) {
-			gameObject.GOName = name;
+			go.GOName = name;
 			int i = 0;
 			// we read the default constructor parameters (dont needed)
 			if (!j[name][0]["GOParameters"].is_null()) {
 				vector<string>goParams = j[name][0]["GOParameters"];
-				gameObject.GOParameters = goParams;
+				go.GOParameters = goParams;
 				i = 1;
 			}
 			// we read each component with its default parameters
 			for (i; i < j[name].size(); i++) {
 				if (!j[name][i]["Name"].is_null()) {
-					gameObject.components.push_back({ j[name][i]["Name"], j[name][i]["Parameters"] });
+					go.components.push_back({ j[name][i]["Name"], j[name][i]["Parameters"] });
 				}
 			}
-			gameObject.compMessages = MessagesType();
+			go.compMessages = MessagesType();
 		}
 		else LogSystem::getSingleton()->Log("El prefab \"" + name + "\" no existe");
 	}
 }
 
-// it adds to the scene the GameObjects that will form the ground
+// it adds to the scene the GameObjects (tiles) that will form the floor
 void JsonReader::ReadMap(string level) {
-	ifstream i(routeLevel + level + ".txt");
+	ifstream in(routeLevel + level + ".txt");
 
-	if (i.is_open()) {
+	if (in.is_open()) {
 		int r, c;
-		i >> r >> c;
-		for (int k = 0; k < r; k++) {
-			string floor; i >> floor;
+		in >> r >> c;
+		for (int i = 0; i < r; i++) {
+			string floor; in >> floor;
 			for (int j = 0; j < c; j++) {
 				GOType go;
 				// two types of gamobject: normal floor and falling floor
 				// each of them read from its prefab
 				if (floor[j]-48 == 0) {
-					ReadPrefab("Floor", go);
+					ReadPrefab("Tile", go);
+					setTilePosition(r, c, i, j, go);
 					scene.gameObjects.push_back(go);
 				}
 				else if (floor[j]-48 == 1) {
-					ReadPrefab("FallingFloor", go);
+					ReadPrefab("FallingTile", go);
+					setTilePosition(r, c, i, j, go);
 					scene.gameObjects.push_back(go);
 				}
 			}
 		}
 	}
 
-	i.close();
+	in.close();
+}
+
+// set the physical position of the tile parsing its logic position (i, j)
+void JsonReader::setTilePosition(int r, int c, int i, int j, GOType& go) {
+	const float POSITION_FACTOR_C = 1.1f;
+	const float POSITION_FACTOR_R = 1.1f;
+
+	float x, y, z;
+	x = -((c / 2.0f) * POSITION_FACTOR_C - (POSITION_FACTOR_C / 2.0f)) + j * POSITION_FACTOR_C;
+	y = 0;
+	z = (r / 2.0f) * POSITION_FACTOR_R - (POSITION_FACTOR_R / 2.0f) - i * POSITION_FACTOR_R;
+	try { 
+		if (go.GOParameters.size() >= 3) {
+			go.GOParameters[0] = to_string(x); go.GOParameters[1] = to_string(y); go.GOParameters[2] = to_string(z);
+		}
+		else 
+			throw "Tienes que poner al menos tres parametros en GOParameters de cada prefab Tile (Prefabs.json) para su posicion";
+	}
+	catch (const char* e) {
+		LogSystem::getSingleton()->Log(e);
+	}
 }
 
 // it returns the iterator of the component in the components list

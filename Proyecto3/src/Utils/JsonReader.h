@@ -63,8 +63,9 @@ private:
 	~JsonReader();
 
 	// auxiliar methods
-	void ReadPrefab(string name, GOType& gameObject);
+	void ReadPrefab(string name, GOType& go);
 	void ReadMap(string level);
+	void setTilePosition(int r, int c, int i, int j, GOType& go);
 	CompType::iterator findComponent(CompType& components, string name);
 
 public:

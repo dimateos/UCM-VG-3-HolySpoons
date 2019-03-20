@@ -33,9 +33,9 @@
         }
     ],
 
-    "Floor":[
+    "Tile":[
         {
-            "GOparameters":["0", "0", "0"]
+            "GOParameters":["0", "0", "0"]
         },
         {
             "Name" : "Render",
@@ -45,9 +45,9 @@
             ]
         }
     ],
-    "FallingFloor":[
+    "FallingTile":[
         {
-            "GOparameters":["0", "0", "0"]
+            "GOParameters":["0", "0", "0"]
         },
         {
             "Name" : "Render",

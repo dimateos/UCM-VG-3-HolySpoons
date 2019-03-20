@@ -92,9 +92,9 @@ Prefabs.json:
     // de una matriz de numeros de esas dimensiones en la que 0 significara baldosa normal, 1 baldosa
     // que se cae y # que no hay baldosa en esa posicion. El suelo aparecera con su centro en el (0, 0, 0)
     // y los tipos de suelo estaran definidos en Prefabs.json:
-    "Floor":[
+    "Tile":[
         {
-            "GOparameters":["0", "0", "0"]
+            "GOParameters":["0", "0", "0"]
         },
         {
             "Name" : "Render",
@@ -104,9 +104,9 @@ Prefabs.json:
             ]
         }
     ],
-    "FallingFloor":[
+    "FallingTile":[
         {
-            "GOparameters":["0", "0", "0"]
+            "GOParameters":["0", "0", "0"]
         },
         {
             "Name" : "Render",
