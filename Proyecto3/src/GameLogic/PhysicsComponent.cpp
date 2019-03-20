@@ -10,10 +10,12 @@ void PhysicsComponent::update(GameObject * ent, float time) {
 }
 
 bool PhysicsComponent::handleEvents(GameObject * ent, const SDL_Event & evt) {
-	bool handled = true;
+	bool handled = false;
 	const float f = 100;
 
 	if (evt.type == SDL_KEYDOWN) {
+		handled = true;
+
 		switch (evt.key.keysym.sym) {
 		case SDLK_r:
 			rigidBodyD->setGlobalPose(PxTransform(PxVec3(0.0f, 5.0f, 0.0f)));
@@ -63,7 +65,7 @@ void PhysicsComponent::setUp() {
 
 	SceneNode* nin = renderInterface->createOgreEntity("Ninja", "ninja.mesh").first;
 	nin->setScale(10, 10, 10);
-	nin->setPosition(0, -1000, 1000);
+	nin->setPosition(0, -1000, 0);
 	nin->yaw(Ogre::Radian(3.14159));
 	renderInterface->setMaterial("Ninja", "NinjaMaterial");
 

@@ -2,6 +2,7 @@
 #include "Windows.h" //temp counter method
 
 #include "PhysicsComponent.h"
+#include "FPSCamera.h"
 #include "RenderSystemInterface.h"
 
 Game::Game() {
@@ -23,7 +24,7 @@ void Game::initGame() {
 
 	//!temporary direct creation
 	gsm_ = new GameStateMachine();
-	gsm_->pushState(new GameState({ new GameObject({ new PhysicsComponent() }) }));
+	gsm_->pushState(new GameState({ new GameObject({ new PhysicsComponent(), new FPSCamera() }) }));
 
 	//soundManager_ = new SoundManager(this);
 }
@@ -120,10 +121,9 @@ void Game::run() {
 
 //handle main events (Ex. quit) and call the gameStateMachine machine update
 void Game::handleEvents() {
-	bool handled = false; //stop global propagation
-
 	SDL_Event evt;
 	while (SDL_PollEvent(&evt)) {
+		bool handled = false; //stop global propagation
 
 		//window x botton - close game
 		if (evt.type == SDL_QUIT) {

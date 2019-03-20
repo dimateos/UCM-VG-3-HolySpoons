@@ -16,6 +16,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{b2098506-ba48-42f1-8364-baaa5641860e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{70ed0186-9e11-4a78-9204-36b46d127933}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp">
@@ -29,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Activable.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\FPSCamera.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
