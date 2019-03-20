@@ -17,7 +17,9 @@
 #include <SDL.h>
 
 //#include <LogSystem.h>
-
+namespace Ogre {
+	class OverlaySystem;
+}
 using namespace Ogre;
 //RenderSystemManager
 
@@ -37,6 +39,7 @@ private:
 	SceneNode* mLightNode = nullptr;
 	Ogre::Light* mainLight = nullptr;
 	Viewport* vp = nullptr;
+	Ogre::OverlaySystem * overlaySystem = nullptr;
 
 	std::string projectName = "Holy Spoons";
 

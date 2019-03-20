@@ -1,0 +1,7 @@
+font MyFont
+{
+type truetype
+source Srisakdi-Bold.ttf
+size 16
+resolution 96
+}

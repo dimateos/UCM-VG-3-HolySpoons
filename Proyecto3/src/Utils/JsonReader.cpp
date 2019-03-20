@@ -22,11 +22,15 @@ void JsonReader::shutdownSingleton() {
 	instance_ = nullptr;
 }
 
+JsonReader::JsonReader() { }
+JsonReader::~JsonReader() { }
+
 // it returns a Scene_type with all the information read
 // from "level"
 Scene_Type* JsonReader::ReadLevel(string level) {
+	ReadMap(level);
+
 	ifstream i(routeLevel + level + ".json");
-	Scene_Type* scene = new Scene_Type();
 
 	if (i.is_open()) {
 		json j;
@@ -35,25 +39,34 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 		// reading of the gameobjects
 		if (!j["GameObjects"].is_null()) {
 			for (int i = 0; i < j["GameObjects"].size(); i++) {
-				CompType components;
-				MessagesType componentMessages;
+				GOStruct go;
+
 
 				if (!j["GameObjects"][i]["Name"].is_null()) {
 					string prefabName = j["GameObjects"][i]["Name"];
-					ReadPrefab(prefabName, components); // reading of the prefab
+					go.GOName = prefabName;
+					ReadPrefab(prefabName, go); // reading of the prefab
 				}
 
-				// reading of the custom parameters
+				// reading of the custom parameters of the go
+				if (!j["GameObjects"][i]["GOParameters"].is_null()) {
+					for (int x = 0; x < j["GameObjects"][i]["GOParameters"].size(); x++) {
+						string parameter = j["GameObjects"][i]["GOParameters"][x];
+						if (parameter != "-")go.GOParameters[x] = parameter;
+					}
+				}
+
+				// reading of the custom parameters of each component
 				if (!j["GameObjects"][i]["Custom"].is_null()) {
 					for (int x = 0; x < j["GameObjects"][i]["Custom"].size(); x++) {
 						CompType::iterator it; string customName = j["GameObjects"][i]["Custom"][x]["Name"];
-						it = findComponent(components, customName);
+						it = findComponent(go.components, customName);
 
-						if (it < components.end()) {
+						if (it < go.components.end()) {
 							for (int k = 0; k < j["GameObjects"][i]["Custom"][x]["Parameters"].size(); k++) {
 								if (j["GameObjects"][i]["Custom"][x]["Parameters"][k] != "-") {
 									string parameter = j["GameObjects"][i]["Custom"][x]["Parameters"][k];
-									it->second[k] = parameter;
+									it->compParameters[k] = parameter;
 								}
 							}
 						}
@@ -65,29 +78,29 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 					for (int x = 0; x < j["GameObjects"][i]["ComponentMessages"].size(); x++) {
 						string emitter = j["GameObjects"][i]["ComponentMessages"][x]["Emitter"];
 						string listener = j["GameObjects"][i]["ComponentMessages"][x]["Listener"];
-						if (findComponent(components, emitter) < components.end() && findComponent(components, listener) < components.end())
-							componentMessages.push_back({ emitter, listener });
+						if (findComponent(go.components, emitter) < go.components.end() && findComponent(go.components, listener) < go.components.end())
+							go.compMessages.push_back({ emitter, listener });
 					}
 				}
-				scene->first.push_back({ j["GameObjects"][i]["Name"], {components, componentMessages } });
+				scene.gameObjects.push_back(go);
 			}
 		}
 
 		// reading of the gameobjects that will be listeners and emitters
 		if (!j["GameObjectMessages"].is_null()) {
 			for (int i = 0; i < j["GameObjectMessages"].size(); i++) {
-				scene->second.push_back({ j["GameObjectMessages"][i]["Emitter"], j["GameObjectMessages"][i]["Listener"] });
+				scene.GOMessages.push_back({ j["GameObjectMessages"][i]["Emitter"], j["GameObjectMessages"][i]["Listener"] });
 			}
 		}
 	}
 	i.close();
 	LogSystem::shutdownSingleton();
 
-	return scene;
+	return &scene;
 }
 
 // it reads the default information of the received prefab
-void JsonReader::ReadPrefab(string name, CompType& comps) {
+void JsonReader::ReadPrefab(string name, GOType& gameObject) {
 	ifstream i(routePrefabs);
 
 	if (i.is_open()) {
@@ -96,20 +109,53 @@ void JsonReader::ReadPrefab(string name, CompType& comps) {
 		i >> j;
 
 		if (!j[name].is_null()) {
-			for (int i = 0; i < j[name].size(); i++) {
+			gameObject.GOName = name;
+			int i = 0;
+			if (!j[name][0]["GOParameters"].is_null()) {
+				vector<string>goParams = j[name][0]["GOParameters"];
+				gameObject.GOParameters = goParams;
+				i = 1;
+			}
+			for (i; i < j[name].size(); i++) {
 				if (!j[name][i]["Name"].is_null()) {
-					comps.push_back({ j[name][i]["Name"], j[name][i]["Parameters"] });
+					gameObject.components.push_back({ j[name][i]["Name"], j[name][i]["Parameters"] });
 				}
 			}
+			gameObject.compMessages = MessagesType();
 		}
 		else LogSystem::getSingleton()->Log("El prefab \"" + name + "\" no existe");
 	}
 }
 
+void JsonReader::ReadMap(string level) {
+	ifstream i(routeLevel + level + ".txt");
+
+	if (i.is_open()) {
+		int r, c;
+		i >> r >> c;
+		for (int k = 0; k < r; k++) {
+			string floor; i >> floor;
+			for (int j = 0; j < c; j++) {
+				GOType go;
+				if (floor[j]-48 == 0) {
+					ReadPrefab("Floor", go);
+					scene.gameObjects.push_back(go);
+				}
+				else if (floor[j]-48 == 1) {
+					ReadPrefab("FallingFloor", go);
+					scene.gameObjects.push_back(go);
+				}
+			}
+		}
+	}
+
+	i.close();
+}
+
 CompType::iterator JsonReader::findComponent(CompType& components, string name)
 {
 	CompType::iterator it = components.begin();
-	while (it != components.end() && it->first != name ) {
+	while (it != components.end() && it->compName != name ) {
 		it++;
 	}
 	if(it == components.end())LogSystem::getSingleton()->Log("El componente \"" + name + "\" no existe");

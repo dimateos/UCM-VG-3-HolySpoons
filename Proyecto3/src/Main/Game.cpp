@@ -121,6 +121,7 @@ void Game::run() {
 
 //handle main events (Ex. quit) and call the gameStateMachine machine update
 void Game::handleEvents() {
+
 	SDL_Event evt;
 	while (SDL_PollEvent(&evt)) {
 		bool handled = false; //stop global propagation

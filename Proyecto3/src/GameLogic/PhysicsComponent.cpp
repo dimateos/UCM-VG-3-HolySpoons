@@ -1,7 +1,8 @@
 #include "PhysicsComponent.h"
 #include <iostream> //temp debug
 
-#include "RenderSystemInterface.h"
+#include <RenderSystemInterface.h>
+#include <OgreText.h>
 
 void PhysicsComponent::update(GameObject * ent, float time) {
 	//auto boxS = nodeS->_getWorldAABB();
@@ -68,6 +69,22 @@ void PhysicsComponent::setUp() {
 	nin->setPosition(0, -1000, 0);
 	nin->yaw(Ogre::Radian(3.14159));
 	renderInterface->setMaterial("Ninja", "NinjaMaterial");
+
+	//text
+	OgreText* text = new OgreText();
+	text->setText("Hello World!");
+	text->setTextPosition(00,000);
+	text->setTextColour(1, 1, 1, 1);
+
+	OgreText* text2 = new OgreText();
+	text2->setText("TEXTO DONE WUEEE");
+	text2->setTextPosition(200, 200);
+	text2->setTextColour(.7, .1, 1, 1);
+
+	OgreText* text3 = new OgreText();
+	text3->setText("AAAAAAAAAAAAA");
+	text3->setTextPosition(500, 300);
+	text3->setTextColour(.1, .5, .8, 1);
 
 	//dynamic
 	nodeD = renderInterface->createOgreEntity("cube", "cube.mesh").first;
