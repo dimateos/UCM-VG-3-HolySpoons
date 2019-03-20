@@ -1,0 +1,31 @@
+font HackReg
+{
+type truetype
+source Hack-Regular.ttf
+size 16
+resolution 96
+}
+font HackBold
+{
+type truetype
+source Hack-Bold.ttf
+size 16
+resolution 96
+}
+
+font HackItalic
+{
+type truetype
+source Hack-Italic.ttf
+size 16
+resolution 96
+}
+
+font HackBoldItalic
+{
+type truetype
+source Hack-BoldItalic.ttf
+size 16
+resolution 96
+}
+

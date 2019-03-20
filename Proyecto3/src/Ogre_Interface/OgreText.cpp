@@ -62,7 +62,7 @@ void OgreText::setText(std::string szString) // now You can use Ogre::String as 
 {
 	textArea->setCaption(szString);
 	textArea->setCharHeight(30);
-	textArea->setFontName("MyFont");
+	textArea->setFontName("HackReg");
 	textArea->setDimensions(100, 100);
 }
 /*

@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<Font Name="HackReg" Filename="Hack-Regular.ttf" Type="FreeType" Size="16" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" AntiAlias="true" />
+<Font Name="HackBold" Filename="Hack-Bold.ttf" Type="FreeType" Size="16" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" AntiAlias="true" />
+<Font Name="HackItalic" Filename="Hack-Italic.ttf" Type="FreeType" Size="16" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" AntiAlias="true" />
+<Font Name="HackBoldItalic" Filename="Hack-BoldItalic.ttf" Type="FreeType" Size="16" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" AntiAlias="true" />
