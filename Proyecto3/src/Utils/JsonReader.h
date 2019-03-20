@@ -8,7 +8,7 @@ using namespace std;
 
 //-----------------------------READING JSON INFO-----------------------------------
 
-// CompType = vector of pairs with the name of each component
+// CompType = vector of the name of each component
 // and another vector with the paramaters of that component
 struct CompStruct {
 	string compName;
@@ -16,15 +16,16 @@ struct CompStruct {
 };
 using CompType = std::vector<CompStruct>;
 
-// MessagesType = vector of pairs with the name of the Emitter
+// MessagesType = vector with the name of the Emitter
 // and the name of the Listener that will exchange messages
 struct MessagesStruct {
 	string emitterName, listenerName;
 };
 using MessagesType = std::vector<MessagesStruct>;
 
-// GameObjectType = pair that cointains the name of the GameObject and
-// two vectors, one with the components of the GameObject and another one
+// GOType = cointains the name of the GameObject and
+// three vectors: one with its constructor parameters,
+// one with the components of the GameObject and another one
 // with the components that will be Emitters and Listeners
 struct GOStruct {
 	string GOName;
@@ -34,7 +35,7 @@ struct GOStruct {
 };
 using GOType = GOStruct;
 
-// Scene_type = pair that cointains a vector with the GameObjects of the scene
+// Scene_type = cointains a vector with the GameObjects of the scene
 // and the GameObjects that will be Emitters and Listeners 
 struct SceneStruct {
 	std::vector<GOType> gameObjects;
@@ -54,11 +55,14 @@ private:
 	// every new level file must fit in "routeLevel"
 	string routeLevel = "..\\exes\\Assets\\Levels\\";
 	string routePrefabs = "..\\exes\\Assets\\Levels\\Prefabs.json";
-	Scene_Type scene;
+
+	Scene_Type scene; // all the information of the scene (GameObjects, etc.)
 
 	// private methods
 	JsonReader();
 	~JsonReader();
+
+	// auxiliar methods
 	void ReadPrefab(string name, GOType& gameObject);
 	void ReadMap(string level);
 	CompType::iterator findComponent(CompType& components, string name);
@@ -66,7 +70,7 @@ private:
 public:
 	static JsonReader* getSingleton();   // you can obtain/shutdown the instance of the singleton 
 	static void shutdownSingleton();
-	Scene_Type* ReadLevel(string level); // reads the file called "level"
+	Scene_Type* ReadLevel(string level); // reads the file called "level" and return the scene information
 };
 
 #endif /* JSON_READER_H_ */
