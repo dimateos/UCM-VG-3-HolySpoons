@@ -1,7 +1,5 @@
 #include "FPSCamera.h"
 
-#include "RenderSystemInterface.h"
-
 void FPSCamera::setUp() {
 	//hide and capture mouse
 	SDL_ShowCursor(SDL_DISABLE);
@@ -13,9 +11,9 @@ void FPSCamera::setUp() {
 	camNode_->lookAt(Ogre::Vector3(0.0f, -500.0f, 0.0f), Ogre::Node::TS_WORLD);
 
 	//crosshair
-	x = new OgreText();
-	x->setText("- x -");
-	x->setTextColour(1, 1, 1, 1);
+	x = RenderSystemInterface::getSingleton()->createText("crosshair", "- x -");
+	RenderSystemInterface::getSingleton()->setTextSize(x, 30);
+	RenderSystemInterface::getSingleton()->setTextColour(x, 1, 1, 1, 1);
 	updateCrosshair();
 }
 
@@ -25,7 +23,7 @@ void FPSCamera::setDown() {
 
 void FPSCamera::updateCrosshair() {
 	Viewport* vp = RenderSystemInterface::getSingleton()->getViewport();
-	x->setTextPosition(vp->getActualWidth() / 2 - 50, vp->getActualHeight() / 2 - 25);
+	RenderSystemInterface::getSingleton()->setTextPosition(x, vp->getActualWidth() / 2 - 50, vp->getActualHeight() / 2 - 25);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

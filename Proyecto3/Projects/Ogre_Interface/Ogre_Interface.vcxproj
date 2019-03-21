@@ -19,12 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Ogre_Interface\OgreText.h" />
     <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemInterface.h" />
     <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Ogre_Interface\OgreText.cpp" />
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemInterface.cpp" />
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemManager.cpp" />
   </ItemGroup>

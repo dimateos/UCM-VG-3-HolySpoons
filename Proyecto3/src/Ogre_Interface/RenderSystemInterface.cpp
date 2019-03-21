@@ -4,6 +4,12 @@
 #include <OgreLogManager.h>
 #include <LogSystem.h>
 #include <OgreLog.h>
+#include <OgreTextAreaOverlayElement.h>
+#include "OgreStringConverter.h"
+#include <OgreOverlayManager.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlay.h>
+#include <OgreFontManager.h>
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
@@ -21,6 +27,34 @@ RenderSystemInterface * RenderSystemInterface::getSingleton()
 	return instance_;
 }
 
+RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(mScnMgr) 
+{ 
+	camera = getSceneManager()->getCamera("MainCam");
+	overlayManager = OverlayManager::getSingletonPtr();
+
+	// Create a panel
+	/*panel = static_cast<OverlayContainer*>(
+		overlayManager->createOverlayElement("Panel", panelName));
+	panel->setMetricsMode(Ogre::GMM_PIXELS);
+	panel->setPosition(10, 10);
+	panel->setDimensions(100, 100);
+	// Create an overlay, and add the panel
+	overlay = overlayManager->create(overlayName);
+	overlay->add2D(panel);*/
+
+	overlay = Ogre::OverlayManager::getSingleton().getByName("HUD");
+	panel = overlay->getChild("PanelContainer");
+	// Show the overlay
+	overlay->show();
+}
+
+RenderSystemInterface::~RenderSystemInterface()
+{
+	//overlayManager->destroyOverlayElement(szElement); SI NOS DEJAMOS BASURA, PROBABLEMENTE SEA POR AQUI
+	overlayManager->destroyOverlayElement(panelName);
+	overlayManager->destroy(overlayName);
+}
+
 void RenderSystemInterface::closeInterface()
 {
 	delete instance_;
@@ -35,7 +69,6 @@ std::pair<SceneNode*, Entity*>  RenderSystemInterface::createOgreEntity(String n
 	std::pair<SceneNode*, Entity*> p (ogreNode, entity);
 	return p;
 }
-
 
 SceneNode * RenderSystemInterface::createEmpty(String name)
 {
@@ -116,4 +149,60 @@ SceneNode * RenderSystemInterface::getNode(String name)
 		LogSystem::getSingleton()->Log("ERROR AL ACCEDER AL NODO " + name + "   " + (string)e.what());
 		return nullptr;
 	}
+}
+
+TextAreaOverlayElement * RenderSystemInterface::createText(String nodeName, String text, int x, int y, String fontName)
+{
+	TextAreaOverlayElement* textElement = static_cast<TextAreaOverlayElement*>(overlayManager->createOverlayElement("TextArea", nodeName));
+	textElement->setMetricsMode(Ogre::GMM_PIXELS); //Maybe RELATIVE ????
+
+	textElement->setCaption(text);
+	textElement->setDimensions(100, 100);
+	textElement->setFontName(fontName);
+
+	textElement->setPosition(x, y);
+
+	panel->addChild(textElement);
+
+	return textElement;
+}
+
+void RenderSystemInterface::setText(TextAreaOverlayElement * element, std::string szString)
+{
+	element->setCaption(szString);
+}
+
+void RenderSystemInterface::setTextPosition(TextAreaOverlayElement * element, float x, float y)
+{
+	element->setPosition(x, y);
+}
+
+void RenderSystemInterface::setTextSize(TextAreaOverlayElement * element, float size)
+{
+	element->setCharHeight(size);
+}
+
+void RenderSystemInterface::setTextCenteredPosition(TextAreaOverlayElement * element, float x, float y)
+{
+	//not workong
+	setTextPosition(element, x, y);
+	element->setAlignment(TextAreaOverlayElement::Center);
+	element->setHorizontalAlignment(Ogre::GuiHorizontalAlignment::GHA_CENTER);
+	element->setVerticalAlignment(Ogre::GuiVerticalAlignment::GVA_CENTER);
+	element->_update();
+}
+
+void RenderSystemInterface::setTextColour(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColour(Ogre::ColourValue(R, G, B, I));
+}
+
+void RenderSystemInterface::setTextColourTop(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColourTop(Ogre::ColourValue(R, G, B, I));
+}
+
+void RenderSystemInterface::setTextColourBot(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColourBottom(Ogre::ColourValue(R, G, B, I));
 }

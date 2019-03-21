@@ -13,16 +13,28 @@
 #define oY Vector3(0.0f, 1.0f, 0.0f)
 #define oZ Vector3(0.0f, 0.0f, 1.0f)
 
+namespace Ogre {
+	class OverlayManager;
+	class OverlayContainer;
+	class Overlay;
+	class TextAreaOverlayElement;
+}
+
 using namespace Ogre;
 class RenderSystemInterface
 {
 private:
+	Ogre::OverlayManager *overlayManager = nullptr;
+	Ogre::OverlayContainer *panel = nullptr;
+	Ogre::Overlay *overlay = nullptr;
 	SceneManager * mScnMgr = nullptr;
 	Camera* camera = nullptr;
+	String panelName = "PanelName";
+	String overlayName = "OverlayName";
 
 	static RenderSystemInterface* instance_; //singleton pattern
-	RenderSystemInterface(SceneManager * mScnMgr) : mScnMgr(mScnMgr) { camera = getSceneManager()->getCamera("MainCam"); };
-	virtual ~RenderSystemInterface() {};
+	RenderSystemInterface(SceneManager * mScnMgr);
+	virtual ~RenderSystemInterface();
 
 public:
 	static RenderSystemInterface* createSingleton(SceneManager * mScnMgr);
@@ -93,6 +105,45 @@ public:
 	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
 
 	inline Viewport* getViewport() { return camera->getViewport(); };
+
+	TextAreaOverlayElement* createText(String nodeName, String text, int x = 0, int y = 0, String fontName = "HackReg");
+	/*
+	*SetText with Ogre::String
+	*/
+	void setText(TextAreaOverlayElement* element, std::string szString); // now You can use Ogre::String as text
+	/*
+	 *Set text position on overlay
+	*/
+	void setTextPosition(TextAreaOverlayElement* element, float x, float y);
+	/*
+	 *Set size of the entire text
+	 */
+	void setTextSize(TextAreaOverlayElement* element, float size);
+	/*
+	 *Not working
+	 */
+	void setTextCenteredPosition(TextAreaOverlayElement* element, float x, float y);
+	/*
+	*Set text color, rgb values between and alpha value [0, 1]
+	*/
+	void setTextColour(TextAreaOverlayElement* element, float R, float G, float B, float I);
+
+	/*
+	*Set Top-font color, rgb values between and alpha value [0, 1]
+	*/
+	void setTextColourTop(TextAreaOverlayElement* element, float R, float G, float B, float I);
+
+	/*
+	 *Set Dropshadow color, rgb values and alpha value between [0, 1]
+	 */
+	void setTextColourBot(TextAreaOverlayElement* element, float R, float G, float B, float I);
+
+	/*
+	 *create overlayPanel, used for images
+	 */
+	Ogre::OverlayContainer * createOverlayContainer();
+
+
 };
 
 #endif /*RENDERSYSTEMINTERFACE_H_*/

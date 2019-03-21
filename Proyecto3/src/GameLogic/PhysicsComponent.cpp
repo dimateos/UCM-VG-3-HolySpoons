@@ -2,7 +2,6 @@
 #include <iostream> //temp debug
 
 #include <RenderSystemInterface.h>
-#include <OgreText.h>
 
 void PhysicsComponent::update(GameObject * ent, float time) {
 	//auto boxS = nodeS->_getWorldAABB();
@@ -50,7 +49,7 @@ void PhysicsComponent::setUp() {
 	//light->setPosition(-1.0f, 0.0f, 0.0f);
 
 	//text
-	OgreText* text = new OgreText();
+	/*OgreText* text = new OgreText();
 	text->setText("Hello World!");
 	text->setTextPosition(00, 00);
 	text->setTextColour(1, 1, 1, 1);
@@ -63,7 +62,13 @@ void PhysicsComponent::setUp() {
 	OgreText* text3 = new OgreText();
 	text3->setText("AAAAAAAAAAAAA");
 	text3->setTextPosition(500, 300);
-	text3->setTextColour(.1, .5, .8, 1);
+	text3->setTextColour(.1, .5, .8, 1);*/
+
+	//text
+	/*TextAreaOverlayElement* t = rInterface->createText("testText", "HELLO WORLD!!");
+	rInterface->setTextPosition(t, 200, 300);
+	rInterface->setTextColour(t, 1, 0, 0, 1);
+	rInterface->setTextSize(t, 80);*/
 
 	//graphical plane
 	rInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000, Vector3::UNIT_Y);
