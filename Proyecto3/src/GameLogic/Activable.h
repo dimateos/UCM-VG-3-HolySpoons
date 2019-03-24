@@ -1,6 +1,7 @@
 #ifndef ACTIVABLE_H_
 #define ACTIVABLE_H_
 
+// class to allow active/desactive objects
 class Activable
 {
 public:

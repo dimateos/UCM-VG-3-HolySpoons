@@ -16,10 +16,11 @@ struct nap_transform
 };
 
 #include "Activable.h"
+#include "Identifiable.h"
 class Component;
 
 // this class accepts components (empty container waiting for functionality)
-class GameObject : public Activable
+class GameObject : public Activable, public Identifiable
 {
 public:
 	GameObject();
@@ -34,8 +35,11 @@ public:
 	//components operations
 	void addComponent(Component* component);
 	void addComponent(std::list<Component*> comps);
+	void delComponent(std::string name);
 	void delComponent(Component* component);
 	void delComponent(std::list<Component*> comps);
+	Component* getComponent(std::string name);
+	std::list<Component*> getComponents();
 	void clearComponents();
 
 	//transform operations (set's activates the flags)

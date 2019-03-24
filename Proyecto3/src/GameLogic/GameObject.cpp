@@ -43,6 +43,14 @@ void GameObject::addComponent(std::list<Component*> comps) {
 	for (auto comp : comps) components_.push_back(comp);
 }
 
+void GameObject::delComponent(std::string name) {
+	for (auto it = components_.begin(); it != components_.end(); it++) {
+		if ((*it)->id().equal(name)) {
+			components_.erase(it);
+			break;
+		}
+	}
+}
 void GameObject::delComponent(Component* comp) {
 	auto it = std::find(components_.begin(), components_.end(), comp);
 	if (it != components_.end()) components_.erase(it);
@@ -54,6 +62,20 @@ void GameObject::delComponent(std::list<Component*> comps) {
 	}
 }
 
+Component* GameObject::getComponent(std::string name) {
+	Component* found = nullptr;
+
+	for (auto comp : components_) {
+		if (comp->id().equal(name)) {
+			found = comp;
+			break;
+		}
+	}
+	return found;
+}
+std::list<Component*> GameObject::getComponents() {
+	return components_;
+}
 void GameObject::clearComponents() {
 	components_.clear();
 }
