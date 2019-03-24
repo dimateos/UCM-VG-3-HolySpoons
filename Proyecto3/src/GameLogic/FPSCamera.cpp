@@ -13,22 +13,9 @@ void FPSCamera::setUp() {
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
 	camNode_->setPosition(500, 500, 4000);
 	camNode_->lookAt(Ogre::Vector3(0.0f, -500.0f, 0.0f), Ogre::Node::TS_WORLD);
-
-	//crosshair
-	x = RenderSystemInterface::getSingleton()->createText("crosshair", "- x -");
-	RenderSystemInterface::getSingleton()->setTextSize(x, 30);
-	RenderSystemInterface::getSingleton()->setTextColour(x, 1, 1, 1, 1);
-	updateCrosshair();
 }
 
 void FPSCamera::setDown() {
-	delete x;
-}
-
-void FPSCamera::updateCrosshair() 
-{
-	//Ogre::Viewport* vp = RenderSystemInterface::getSingleton()->getViewport();
-	//RenderSystemInterface::getSingleton()->setTextPosition(x, vp->getActualWidth() / 2 - 50, vp->getActualHeight() / 2 - 25);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,7 +33,6 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	switch (evt.type) {
 	case SDL_WINDOWEVENT:
 		if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
-			updateCrosshair();
 			handled = true;
 		}
 		break;

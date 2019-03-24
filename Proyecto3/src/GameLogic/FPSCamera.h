@@ -21,10 +21,6 @@ protected:
 	virtual void setUp();
 	virtual void setDown();
 
-	//center it
-	void updateCrosshair();
-	Ogre::TextAreaOverlayElement* x;
-
 	void toggleZoom();
 	float zoomed = 2500.0; //amount of zoom
 
