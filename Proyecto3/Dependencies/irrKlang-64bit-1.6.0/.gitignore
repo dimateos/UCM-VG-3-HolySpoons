@@ -1,0 +1,14 @@
+# Ignore CLion project directory and iml files
+.idea/
+*.iml
+
+# Ignore lib directory
+/lib/
+
+# Meta data of macOS's Finder.app
+.DS_Store
+
+/Samples/Media/RTShaderLib/cache/
+
+# Ignore vim files
+*.swp

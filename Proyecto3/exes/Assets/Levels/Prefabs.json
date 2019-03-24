@@ -5,11 +5,14 @@
         },
         
         {
-            "Name" : "Render",
-            "Parameters":
-            [
-                "50", "20"
-            ]
+          "Name" : "Render",
+          "Parameters": {
+            "POS": {
+              "X": 50,
+              "Y": 20,
+              "Z": 20
+            }
+          }
         },
         {
             "Name" : "Update",

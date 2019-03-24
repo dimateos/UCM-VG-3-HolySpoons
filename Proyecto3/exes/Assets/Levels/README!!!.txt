@@ -123,9 +123,3 @@ Example00.txt (ejemplo de como escribir un mapa)
 00#
 000
 #10
-            [
-                "30", "10"
-            ]
-        }
-    ]
-}

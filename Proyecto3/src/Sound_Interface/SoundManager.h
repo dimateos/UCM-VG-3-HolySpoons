@@ -1,11 +1,29 @@
 #ifndef SOUND_MANAGER_H_
 #define SOUND_MANAGER_H_
 
+#include <string>
+#include <conioIRR.h>
+#include <stdio.h>
+#include <irrKlang.h>
+
+using namespace std;
+using namespace irrklang;
+
 class SoundManager
 {
-public:
+private:
+	static SoundManager* instance_; //singleton pattern
+	const string soundsRoute = "..\\exes\\Assets\\Sound\\";
+
+	irrklang::ISoundEngine* engine;
+
 	SoundManager();
 	virtual ~SoundManager();
+public:
+	static SoundManager* getSingleton();   // you can obtain/shutdown the instance of the singleton 
+	static void shutdownSingleton();
+
+	irrklang::ISoundEngine* getEngine();
 };
 
 #endif /* SOUND_MANAGER_H_ */
