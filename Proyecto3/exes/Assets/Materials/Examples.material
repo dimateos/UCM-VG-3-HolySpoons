@@ -56,7 +56,7 @@ material CrosshairMaterial
 
 			texture_unit
 			{
-				texture eye-wide-open.png
+				texture CrossHairTest.png
 			}
 		}
 	}

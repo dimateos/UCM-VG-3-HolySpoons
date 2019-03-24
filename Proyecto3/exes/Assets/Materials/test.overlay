@@ -24,12 +24,10 @@ overlay HUD
 
         overlay_element Crosshair Panel
         {
-            vert_align center
-            horz_align center
             left 0.0
 		    top 0.0
-		    width 0.05
-		    height 0.05
+		    width 1.0
+		    height 1.0
             material CrosshairMaterial
         }
 	}
