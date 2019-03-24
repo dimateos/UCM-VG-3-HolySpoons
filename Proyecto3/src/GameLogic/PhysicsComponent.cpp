@@ -1,7 +1,8 @@
 #include "PhysicsComponent.h"
 #include <iostream> //temp debug
+#include <OgreSceneNode.h>
 
-#include <RenderSystemInterface.h>
+using namespace Ogre;
 
 void PhysicsComponent::update(GameObject * ent, float time) {
 	//auto boxS = nodeS->_getWorldAABB();
@@ -71,8 +72,8 @@ void PhysicsComponent::setUp() {
 	rInterface->setTextSize(t, 80);*/
 
 	//graphical plane
-	rInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000, Vector3::UNIT_Y);
-	rInterface->setMaterial("planoo", "DebugMaterial");
+	//rInterface->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000, Vector3::UNIT_Y);
+	//rInterface->setMaterial("planoo", "DebugMaterial");
 
 	//static
 	nodeS = rInterface->createOgreEntity("ground", "cube.mesh").first;

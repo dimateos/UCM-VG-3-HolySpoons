@@ -1,10 +1,9 @@
 //Nap_Time_Studios
 #pragma once
 
-#include <OgreSceneNode.h>
 #include "RenderSystemInterface.h"
 #include "Component.h"
-
+ 
 class FPSCamera : public Component
 {
 public:
@@ -24,7 +23,7 @@ protected:
 
 	//center it
 	void updateCrosshair();
-	TextAreaOverlayElement* x;
+	Ogre::TextAreaOverlayElement* x;
 
 	void toggleZoom();
 	float zoomed = 2500.0; //amount of zoom

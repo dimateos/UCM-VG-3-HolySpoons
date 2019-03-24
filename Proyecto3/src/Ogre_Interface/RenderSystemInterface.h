@@ -1,150 +1,154 @@
 #ifndef RENDERSYSTEMINTERFACE_H_
 #define RENDERSYSTEMINTERFACE_H_
 
-#include <OgreBuildSettings.h>
-#include <OgreSceneManager.h>
-#include <OgreSceneNode.h>
-#include "OgreViewport.h" //A CPP
-#include <OgreCamera.h>
-#include <OgreEntity.h>
-#include <OgreRoot.h>
-
-#define oX Vector3(1.0f, 0.0f, 0.0f)
-#define oY Vector3(0.0f, 1.0f, 0.0f)
-#define oZ Vector3(0.0f, 0.0f, 1.0f)
+#include <string>
 
 namespace Ogre {
 	class OverlayManager;
+	class Camera;
 	class OverlayContainer;
 	class Overlay;
 	class TextAreaOverlayElement;
-}
+	class SceneManager;
+	class Viewport;
+	class SceneNode;
+	class Entity;
+	class Light;
+	class ColourValue;
+};
 
-using namespace Ogre;
 class RenderSystemInterface
 {
 private:
 	Ogre::OverlayManager *overlayManager = nullptr;
 	Ogre::OverlayContainer *panel = nullptr;
 	Ogre::Overlay *overlay = nullptr;
-	SceneManager * mScnMgr = nullptr;
-	Camera* camera = nullptr;
-	String panelName = "PanelName";
-	String overlayName = "OverlayName";
+	Ogre::SceneManager * mScnMgr = nullptr;
+	Ogre::Camera* camera = nullptr;
+	std::string panelName = "PanelName";
+	std::string overlayName = "OverlayName";
 
 	static RenderSystemInterface* instance_; //singleton pattern
-	RenderSystemInterface(SceneManager * mScnMgr);
+	RenderSystemInterface(Ogre::SceneManager * mScnMgr);
 	virtual ~RenderSystemInterface();
 
 public:
-	static RenderSystemInterface* createSingleton(SceneManager * mScnMgr);
+	static RenderSystemInterface* createSingleton(Ogre::SceneManager * mScnMgr);
 	static RenderSystemInterface* getSingleton();
 	void closeInterface();
 	//Resto de interfaz shaders (?), animacion, camara, viewport...
+	/// Defines the type of light
+	enum LightTypes
+	{
+		/// Point light sources give off light equally in all directions, so require only position not direction
+		LT_POINT = 0,
+		/// Directional lights simulate parallel light beams from a distant source, hence have direction but no position
+		LT_DIRECTIONAL = 1,
+		/// Spotlights simulate a cone of light from a source so require position and direction, plus extra values for falloff
+		LT_SPOTLIGHT = 2
+	};
 
 	/*
 	 *Devuelve el RootNode de la escena
 	 */
-	inline SceneNode* getRootSceneNode() { return mScnMgr->getRootSceneNode(); };
+	inline Ogre::SceneNode* getRootSceneNode();
 	/*
 	 *Devuelve el Scene Manager
 	 */
-	inline SceneManager* getSceneManager() { return mScnMgr; };
+	inline Ogre::SceneManager* getSceneManager();
 	/*
 	 *Busca la entidad por nombre y la devuelve
 	 */
-	inline Entity* getEntityByName(String name) { return mScnMgr->getEntity(name);};
+	inline Ogre::Entity* getEntityByName(std::string name);
 	/*
 	 *Crea una entidad + nodo segun el nombre
 	 */
-	std::pair<SceneNode*, Entity*> createOgreEntity(String name, String meshName = "");
+	std::pair<Ogre::SceneNode*, Ogre::Entity*> createOgreEntity(std::string name, std::string meshName = "");
 	/*
 	 *Crea un nodo vacio
 	 */
-	SceneNode* createEmpty(String name);
+	Ogre::SceneNode* createEmpty(std::string name);
 	/*
 	 *Crea una luz del tipo elegido. La direccion se setea con el nodo (node->setDirection(Ogre::Vector3(x, y, z));)
 	 */
-	SceneNode* createLight(String name, Light::LightTypes type, ColourValue color);
+	Ogre::SceneNode* createLight(std::string name, LightTypes type, Ogre::ColourValue color);
 	/*
 	 *Crea un nodo vacio
 	 * UP NO PUEDE SER IGUAL A NORMAL
 	 */
-	std::pair<SceneNode*, Entity*> createPlane(String name, Vector3 Normal, Real w, Real h,Vector3 up);
+	//std::pair<Ogre::SceneNode*, Ogre::Entity*> createPlane(std::string name, Ogre::Vector3 Normal, Ogre::Real w, Ogre::Real h, Ogre::Vector3 up);
 	/*
 	 *set de la luz ambiental
 	 */
-	void setAmbientLight(ColourValue color);
+	void setAmbientLight(Ogre::ColourValue color);
 	/*
 	 *A�ade un hijo al nodo que le pases
 	 */
-	SceneNode* addChild(SceneNode* father, String name,String meshName);
+	Ogre::SceneNode* addChild(Ogre::SceneNode* father, std::string name, std::string meshName);
 	/*
 	 *A�ade un hijo (ya creado) al nodo que le pases
 	 */
-	void addChild(SceneNode* father, SceneNode* child);
+	void addChild(Ogre::SceneNode* father, Ogre::SceneNode* child);
 	/*
 	 *Set del material a una entidad
 	 */
-	void setMaterial(String entity, String material);
+	void setMaterial(std::string entity, std::string material);
 	/*
 	 *Set del material con acceso a la entidad
 	 */
-	void setMaterial(Entity* entity, String material);
+	void setMaterial(Ogre::Entity* entity, std::string material);
 	/*
 	 *Get node by nombre
 	 */
-	SceneNode* getNode(String name);
+	Ogre::SceneNode* getNode(std::string name);
 	/*
 	 *Get camera (modify nearClipDistance, FarClip, AspectRatio...)
 	 */
-	inline Camera* getCamera() { return camera; };
+	inline Ogre::Camera* getCamera();
 	/*
 	 *Get cameraNode (modify position, lookAt...)
 	 */
-	inline SceneNode* getCameraNode() { return camera->getParentSceneNode(); };
+	Ogre::SceneNode* getCameraNode();
 
-	inline Viewport* getViewport() { return camera->getViewport(); };
+	inline Ogre::Viewport* getViewport();
 
-	TextAreaOverlayElement* createText(String nodeName, String text, int x = 0, int y = 0, String fontName = "HackReg");
+	Ogre::TextAreaOverlayElement* createText(std::string nodeName, std::string text, int x = 0, int y = 0, std::string fontName = "HackReg");
 	/*
-	*SetText with Ogre::String
+	*SetText with std::string
 	*/
-	void setText(TextAreaOverlayElement* element, std::string szString); // now You can use Ogre::String as text
+	void setText(Ogre::TextAreaOverlayElement* element, std::string szString); // now You can use std::string as text
 	/*
 	 *Set text position on overlay
 	*/
-	void setTextPosition(TextAreaOverlayElement* element, float x, float y);
+	void setTextPosition(Ogre::TextAreaOverlayElement* element, float x, float y);
 	/*
 	 *Set size of the entire text
 	 */
-	void setTextSize(TextAreaOverlayElement* element, float size);
+	void setTextSize(Ogre::TextAreaOverlayElement* element, float size);
 	/*
 	 *Not working
 	 */
-	void setTextCenteredPosition(TextAreaOverlayElement* element, float x, float y);
+	void setTextCenteredPosition(Ogre::TextAreaOverlayElement* element, float x, float y);
 	/*
 	*Set text color, rgb values between and alpha value [0, 1]
 	*/
-	void setTextColour(TextAreaOverlayElement* element, float R, float G, float B, float I);
+	void setTextColour(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
 
 	/*
 	*Set Top-font color, rgb values between and alpha value [0, 1]
 	*/
-	void setTextColourTop(TextAreaOverlayElement* element, float R, float G, float B, float I);
+	void setTextColourTop(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
 
 	/*
 	 *Set Dropshadow color, rgb values and alpha value between [0, 1]
 	 */
-	void setTextColourBot(TextAreaOverlayElement* element, float R, float G, float B, float I);
+	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
 
 	/*
 	 *create overlayPanel, used for images
 	 */
 	Ogre::OverlayContainer * createOverlayContainer();
-
-
 };
 
-#endif /*RENDERSYSTEMINTERFACE_H_*/
+#endif //ENDERSYSTEMINTERFACE_H_
 

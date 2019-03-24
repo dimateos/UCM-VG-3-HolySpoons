@@ -2,9 +2,10 @@
 #pragma once
 
 #include "PhysicsSystemManager.h"
-#include <OgreSceneNode.h>
-
 #include "Component.h"
+
+#include <RenderSystemInterface.h>
+
 //tmp proof of concept Render+Phyiscs
 class PhysicsComponent : public Component
 {
