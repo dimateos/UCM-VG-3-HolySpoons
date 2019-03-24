@@ -9,18 +9,19 @@
 using namespace std;
 using namespace irrklang;
 
+// interface for irrklang
 class SoundManager
 {
 private:
 	static SoundManager* instance_; //singleton pattern
 	const string soundsRoute = "..\\exes\\Assets\\Sound\\";
 
-	irrklang::ISoundEngine* engine;
+	irrklang::ISoundEngine* engine; // it plays the sounds, etc
 
 	SoundManager();
 	virtual ~SoundManager();
 public:
-	static SoundManager* getSingleton();   // you can obtain/shutdown the instance of the singleton 
+	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton 
 	static void shutdownSingleton();
 
 	irrklang::ISoundEngine* getEngine();

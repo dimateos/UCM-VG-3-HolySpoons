@@ -32,6 +32,6 @@ SoundManager::SoundManager():engine(createIrrKlangDevice())
 
 SoundManager::~SoundManager()
 {
-	engine->drop();
+	engine->drop();  // close of the engine
 	engine = nullptr;
 }
