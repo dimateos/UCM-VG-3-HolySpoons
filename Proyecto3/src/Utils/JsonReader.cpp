@@ -1,12 +1,12 @@
 #include "JsonReader.h"
-#include "json.hpp"
-#include <fstream>
-#include <iostream>
 #include "LogSystem.h"
 
-using json = nlohmann::json;
-JsonReader* JsonReader::instance_ = nullptr;
+#include <fstream>
 
+#include "json.hpp"
+using nap_json = nlohmann::json;
+
+JsonReader* JsonReader::instance_ = nullptr;
 JsonReader* JsonReader::getSingleton() {
 	if (instance_ == nullptr) {
 		instance_ = new JsonReader();
@@ -34,7 +34,7 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 	// it will read de GameObjects of the level ("level.json")
 	ifstream file(routeLevel + level + ".json");
 	if (file.is_open()) {
-		json j;
+		nap_json j;
 		file >> j;
 
 		// reading of the gameobjects
@@ -73,8 +73,9 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 							}
 						}
 						else {
-							LogSystem::getSingleton()->Log("La entidad " + string(j["GameObjects"][i]["Name"])
-								+ " no tiene el componente " + customName +" que se intenta modificar");
+							string name = j["GameObjects"][i]["Name"];
+							LogSystem::Log("La entidad " + name + " no tiene el componente "
+								+ customName +" que se intenta modificar", LogSystem::JSON);
 						}
 					}
 				}
@@ -91,7 +92,7 @@ Scene_Type* JsonReader::ReadLevel(string level) {
 							go.compMessages.push_back({ emitter, listener });
 						}
 						else {
-							LogSystem::getSingleton()->Log("El componente emmiter " + emitter + " o listener " + listener + " no existe");
+							LogSystem::Log("El componente emmiter " + emitter + " o listener " + listener + " no existe", LogSystem::JSON);
 						}
 					}
 				}
@@ -119,7 +120,7 @@ void JsonReader::ReadPrefab(string name, GOType& go) {
 
 	if (i.is_open()) {
 
-		json j;
+		nap_json j;
 		i >> j;
 
 		if (!j[name].is_null()) {
@@ -139,7 +140,7 @@ void JsonReader::ReadPrefab(string name, GOType& go) {
 			}
 			go.compMessages = MessagesType();
 		}
-		else LogSystem::getSingleton()->Log("El prefab \"" + name + "\" no existe");
+		else LogSystem::Log("El prefab \"" + name + "\" no existe", LogSystem::JSON);
 	}
 }
 
@@ -186,11 +187,10 @@ void JsonReader::setTilePosition(int r, int c, int i, int j, GOType& go) {
 		if (go.GOParameters.size() >= 3) {
 			go.GOParameters[0] = to_string(x); go.GOParameters[1] = to_string(y); go.GOParameters[2] = to_string(z);
 		}
-		else
-			throw "Tienes que poner al menos tres parametros en GOParameters de cada prefab Tile (Prefabs.json) para su posicion";
+		else throw "Tienes que poner al menos tres parametros en GOParameters de cada prefab Tile (Prefabs.json) para su posicion";
 	}
 	catch (const char* e) {
-		LogSystem::getSingleton()->Log(e);
+		LogSystem::Log(e, LogSystem::JSON);
 	}
 }
 
@@ -201,7 +201,7 @@ CompType::iterator JsonReader::findComponent(CompType& components, string name)
 	while (it != components.end() && it->compName != name ) {
 		it++;
 	}
-	if(it == components.end()) LogSystem::getSingleton()->Log("El componente \"" + name + "\" no existe");
+	if(it == components.end()) LogSystem::Log("El componente \"" + name + "\" no existe", LogSystem::JSON);
 
 	return it;
 }

@@ -3,8 +3,6 @@
 
 #include <string>
 #include <vector>
-using json = nlohmann::json;
-
 using namespace std;
 
 //-----------------------------READING JSON INFO-----------------------------------
