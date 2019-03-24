@@ -1,11 +1,9 @@
 #include "PhysicsSystemManager.h"
-#include <iostream> //temp debugin
+
+#include "Transforms.h"
 
 //Set this to the IP address of the system running the PhysX Visual Debugger that you want to connect to.
 //#define PVD_HOST "127.0.0.1" for the visual debugger attached
-
-#define ogre_scale 100
-#include <OgreSceneNode.h>
 
 //Singleton patern setup
 PhysicsSystemManager* PhysicsSystemManager::instance_ = nullptr;
@@ -98,13 +96,13 @@ void PhysicsSystemManager::updateNodes() {
 
 	// update each render object with the new transform
 	for (PxU32 i = 0; i < nbActiveActors; ++i) {
-		Ogre::SceneNode *node = static_cast<Ogre::SceneNode *>(activeActors[i]->userData);
-		auto trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
-
+		auto px_trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
+		auto nap_trans = static_cast<nap_transform*>(activeActors[i]->userData);
 		//std::cout << trans.p.x << " " << trans.p.y << " " << trans.p.z << " " << std::endl;
 
-		node->setPosition(Ogre::Vector3(trans.p.x*ogre_scale, trans.p.y*ogre_scale, trans.p.z*ogre_scale));
-		node->setOrientation(Ogre::Quaternion(trans.q.w, trans.q.x, trans.q.y, trans.q.z));
+		nap_trans->p_ = nap_vector3(px_trans.p.x, px_trans.p.y, px_trans.p.z);
+		nap_trans->q_ = nap_quat(px_trans.q.w, px_trans.q.x, px_trans.q.y, px_trans.q.z);
+		nap_trans->updateState_ = pxUpdated;
 	}
 }
 

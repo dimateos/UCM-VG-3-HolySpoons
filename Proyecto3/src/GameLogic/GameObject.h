@@ -1,33 +1,30 @@
+//Nap_Time_Studios
 #ifndef GAMEOBJECT_H_
 #define GAMEOBJECT_H_
 
-#include <list>
-#include <SDL_events.h> //events
+#include <SDL_events.h>	//events
+#include "json.hpp"
+using nap_json = nlohmann::json;
+
+#include <list>	//components
 using namespace std;
 
-
-#include <OgreSceneNode.h> //tmp for vector3
-//struct for the gameObject transform
-enum updateState { upToDate, pxUpdated, userUpdated };
-struct nap_transform
-{
-	updateState updateState_ = userUpdated;
-	Ogre::Vector3 p_; Ogre::Quaternion q_;
-};
-
+#include "Transforms.h"
+#include "Emitter.h"
 #include "Activable.h"
 #include "Identifiable.h"
 class Component;
 
 // this class accepts components (empty container waiting for functionality)
-class GameObject : public Activable, public Identifiable
+class GameObject : public Emitter, public Activable, public Identifiable
 {
 public:
-	GameObject();
-	GameObject(std::list<Component*>);
+	GameObject(nap_json const & cfg);
+	GameObject(nap_json const & cfg, std::list<Component*>);
+	GameObject(nap_json const & cfg, std::list<Component*>, std::list<Listener*>);
 	virtual ~GameObject();
 
-	//MAIN methods
+	//MAIN methods (call components)
 	virtual bool handleEvents(const SDL_Event evt);
 	virtual void update(float time);
 	virtual void late_update(float time);
@@ -43,10 +40,11 @@ public:
 	void clearComponents();
 
 	//transform operations (set's activates the flags)
-	inline void setPosition(Ogre::Vector3 p) { trans.p_ = p; trans.updateState_ = userUpdated; }
-	inline Ogre::Vector3 getPosition() const { return trans.p_; }
-	inline void setOrientation(Ogre::Quaternion q) { trans.q_ = q; trans.updateState_ = userUpdated; }
-	inline Ogre::Quaternion getOrientation() const { return trans.q_; }
+	inline void setPosition(nap_vector3 p) { trans.p_ = p; trans.updateState_ = userUpdated; }
+	inline nap_vector3 getPosition() const { return trans.p_; }
+	inline void setOrientation(nap_quat q) { trans.q_ = q; trans.updateState_ = userUpdated; }
+	inline nap_quat getOrientation() const { return trans.q_; }
+	inline void setTransform(nap_vector3 p, nap_quat q) { trans.p_ = p; trans.q_ = q; trans.updateState_ = userUpdated; }
 	//updateState flag
 	inline void setUpdateState(updateState s) { trans.updateState_ = s; }
 	inline updateState getUpdateState() const { return trans.updateState_; }
@@ -54,6 +52,8 @@ public:
 	inline nap_transform* getTransPtr() { return &trans; }
 
 private:
+	virtual void setUp(nap_json const & cfg);
+
 	nap_transform trans;
 	std::list<Component*> components_; // component list
 };

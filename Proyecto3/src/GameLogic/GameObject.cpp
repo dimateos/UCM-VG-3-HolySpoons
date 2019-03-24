@@ -1,8 +1,19 @@
 #include "GameObject.h"
 #include "Component.h"
 
-GameObject::GameObject() : Activable(), components_() {}
-GameObject::GameObject(std::list<Component*> comps) : Activable(), components_(comps) {}
+GameObject::GameObject(nap_json const & cfg)
+	: Emitter(), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_() {
+	setUp(cfg);
+}
+GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
+	: Emitter(), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_(comps) {
+	setUp(cfg);
+}
+GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps, std::list<Listener*> lis)
+	: Emitter(lis), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_(comps) {
+	setUp(cfg);
+}
+
 
 GameObject::~GameObject() {
 	for (auto comp : components_) {
@@ -10,6 +21,15 @@ GameObject::~GameObject() {
 	}
 
 	components_.clear();
+}
+
+void GameObject::setUp(nap_json const & cfg) {
+	//set transform
+	if (cfg.find("pos") != cfg.end()) setPosition(nap_vector3(cfg["pos"]));
+	if (cfg.find("ori") != cfg.end()) setOrientation(nap_quat(cfg["ori"]));
+
+	//send user ptr to physics component
+	send(&Msg_PX_userPtr(getTransPtr()));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

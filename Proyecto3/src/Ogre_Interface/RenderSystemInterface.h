@@ -9,11 +9,8 @@
 #include <OgreEntity.h>
 #include <OgreRoot.h>
 
-#define oX Vector3(1.0f, 0.0f, 0.0f)
-#define oY Vector3(0.0f, 1.0f, 0.0f)
-#define oZ Vector3(0.0f, 0.0f, 1.0f)
 
-using OgrePair = std::pair<SceneNode*, Entity*>;
+using OgrePair = std::pair<Ogre::SceneNode*, Ogre::Entity*>;
 
 using namespace Ogre;
 class RenderSystemInterface

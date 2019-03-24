@@ -61,7 +61,7 @@ OgrePair RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, 
 			Plane(Normal, 0), w, h, 100, 80, true, 1, 1.0, 1.0, up); //Crea una mesh
 	}
 	catch (Exception e) {
-		LogSystem::getSingleton()->Log("VECTORES INVALIDOS EN EL PLANO   "+ (string)e.what());
+		LogSystem::Log("VECTORES INVALIDOS EN EL PLANO   "+ (string)e.what(), LogSystem::REND);
 		//LogManager::getSingleton().getLog("Ogre.log")->logMessage("SO GILIPOLLAS LOS VECTORES SON IVALIDOS");
 		MeshManager::getSingleton().remove(name);
 		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -111,7 +111,7 @@ SceneNode * RenderSystemInterface::getNode(String name)
 	}
 	catch (const std::exception e)
 	{
-		LogSystem::getSingleton()->Log("ERROR AL ACCEDER AL NODO " + name + "   " + (string)e.what());
+		LogSystem::Log("ERROR AL ACCEDER AL NODO " + name + "   " + (string)e.what(), LogSystem::REND);
 		return nullptr;
 	}
 }
