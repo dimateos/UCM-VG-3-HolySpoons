@@ -24,7 +24,11 @@ void Game::initGame() {
 
 	//!temporary direct creation
 	gsm_ = new GameStateMachine();
-	gsm_->pushState(new GameState({ new GameObject({ new PhysicsComponent(), new FPSCamera() }) }));
+	auto phyx = new PhysicsComponent();
+	auto go = new GameObject({ phyx, new FPSCamera() });
+	gsm_->pushState(new GameState({ go }));
+	phyx->setUserData(go->getTransPtr());
+
 
 	//soundManager_ = new SoundManager(this);
 }
@@ -81,12 +85,11 @@ void Game::run() {
 	exit_ = false;
 
 	while (!exit_) {
-		//cout << endl << "start loop" << endl;
 		double t = GetCounter();
 
 #ifdef FIXED_STEP
 		if (t < (1.0f / 30.0f)) {
-			fprintf(stderr, "Time: %f\n", stepTime);
+			//fprintf(stderr, "Time: %f\n", stepTime);
 			stepTime += t;
 		}
 		else stepTime = 1.0f / 30.0f;
@@ -97,22 +100,18 @@ void Game::run() {
 		}
 #endif
 		//STEP PHYSICS
-		//cout << endl << "\t STEP PHYSICS" << endl;
 		physicsManager->stepPhysics(t);
 		physicsManager->updateNodes();
 		//retrieve collisions (add to events queue? or messages?)
 
 		//EVENTS
-		//cout << endl << "\t EVENTS" << endl;
 		//handleCollisions(start_time); //if no events queue?
 		handleEvents(); //atm sets exit
 
 		//LOGIC
-		//cout << endl << "\t LOGIC" << endl;
-		gsm_->update(t);
+		gsm_->update(t); //and its sub-parts like lateUpdate
 
 		//RENDER OGRE
-		//cout << endl << "\t RENDER OGRE" << endl;
 		renderManager->renderFrame();
 	}
 

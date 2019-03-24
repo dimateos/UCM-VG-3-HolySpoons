@@ -12,6 +12,8 @@ GameObject::~GameObject() {
 	components_.clear();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
 bool GameObject::handleEvents(const SDL_Event evt) {
 	bool handled = false;
 	auto it = components_.begin();
@@ -27,12 +29,31 @@ void GameObject::update(float time) {
 	for (auto comp : components_)
 		if (comp != nullptr && comp->isActive())comp->update(this, time);
 }
+void GameObject::late_update(float time) {
+	for (auto comp : components_)
+		if (comp != nullptr && comp->isActive())comp->late_update(this, time);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 
 void GameObject::addComponent(Component* comp) {
 	components_.push_back(comp);
+}
+void GameObject::addComponent(std::list<Component*> comps) {
+	for (auto comp : comps) components_.push_back(comp);
 }
 
 void GameObject::delComponent(Component* comp) {
 	auto it = std::find(components_.begin(), components_.end(), comp);
 	if (it != components_.end()) components_.erase(it);
+}
+void GameObject::delComponent(std::list<Component*> comps) {
+	for (auto comp : comps) {
+		auto it = std::find(components_.begin(), components_.end(), comp);
+		if (it != components_.end()) components_.erase(it);
+	}
+}
+
+void GameObject::clearComponents() {
+	components_.clear();
 }

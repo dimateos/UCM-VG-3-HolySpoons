@@ -13,6 +13,8 @@
 #define oY Vector3(0.0f, 1.0f, 0.0f)
 #define oZ Vector3(0.0f, 0.0f, 1.0f)
 
+using OgrePair = std::pair<SceneNode*, Entity*>;
+
 using namespace Ogre;
 class RenderSystemInterface
 {
@@ -45,7 +47,7 @@ public:
 	/*
 	 *Crea una entidad + nodo segun el nombre
 	 */
-	std::pair<SceneNode*, Entity*> createOgreEntity(String name, String meshName = "");
+	OgrePair createOgreEntity(String name, String meshName = "");
 	/*
 	 *Crea un nodo vacio
 	 */
@@ -58,7 +60,7 @@ public:
 	 *Crea un nodo vacio
 	 * UP NO PUEDE SER IGUAL A NORMAL
 	 */
-	std::pair<SceneNode*, Entity*> createPlane(String name, Vector3 Normal, Real w, Real h,Vector3 up);
+	OgrePair createPlane(String name, Vector3 Normal, Real w, Real h,Vector3 up);
 	/*
 	 *set de la luz ambiental
 	 */

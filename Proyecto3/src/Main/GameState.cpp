@@ -55,6 +55,11 @@ void GameState::update(float time) {
 	for (GameObject* o : gameObjects_) {
 		if (o->isActive())o->update(time);
 	}
+
+	for (GameObject* o : gameObjects_) {
+		if (o->isActive())o->late_update(time);
+	}
+
 	//killDeadObjects();
 }
 

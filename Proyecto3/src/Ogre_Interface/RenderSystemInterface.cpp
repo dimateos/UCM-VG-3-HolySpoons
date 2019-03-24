@@ -26,7 +26,7 @@ void RenderSystemInterface::closeInterface()
 	delete instance_;
 }
 
-std::pair<SceneNode*, Entity*>  RenderSystemInterface::createOgreEntity(String name, String meshName)
+OgrePair RenderSystemInterface::createOgreEntity(String name, String meshName)
 {
 	SceneNode* ogreNode = nullptr;
 	Entity* entity = meshName == "" ? mScnMgr->createEntity(name) : mScnMgr->createEntity(name,meshName);
@@ -54,7 +54,7 @@ SceneNode * RenderSystemInterface::createLight(String name, Light::LightTypes ty
 	return mLightNode;
 }
 
-std::pair<SceneNode*, Entity*> RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, Real h, Vector3 up)
+OgrePair RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, Real h, Vector3 up)
 {
 	try{
 		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -67,11 +67,9 @@ std::pair<SceneNode*, Entity*> RenderSystemInterface::createPlane(String name, V
 		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 			Plane(Vector3::UNIT_Z, 0), w, h, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Y); //Crea una mesh
 	}
-	
 
-	std::pair<SceneNode*, Entity*> p;
-	p = createOgreEntity(name, name); //Crea la entidad con la mesh
 
+	OgrePair p = createOgreEntity(name, name); //Crea la entidad con la mesh
 	return p;
 }
 

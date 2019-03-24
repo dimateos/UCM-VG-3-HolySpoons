@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+using json = nlohmann::json;
 
 using namespace std;
 
@@ -36,7 +37,7 @@ struct GOStruct {
 using GOType = GOStruct;
 
 // Scene_type = cointains a vector with the GameObjects of the scene
-// and the GameObjects that will be Emitters and Listeners 
+// and the GameObjects that will be Emitters and Listeners
 struct SceneStruct {
 	std::vector<GOType> gameObjects;
 	MessagesType GOMessages;
@@ -69,7 +70,7 @@ private:
 	CompType::iterator findComponent(CompType& components, string name);
 
 public:
-	static JsonReader* getSingleton();   // you can obtain/shutdown the instance of the singleton 
+	static JsonReader* getSingleton();   // you can obtain/shutdown the instance of the singleton
 	static void shutdownSingleton();
 	Scene_Type* ReadLevel(string level); // reads the file called "level" and return the scene information
 };
