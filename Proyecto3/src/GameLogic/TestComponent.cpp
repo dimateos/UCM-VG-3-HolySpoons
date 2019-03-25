@@ -1,9 +1,9 @@
 #include "TestComponent.h"
+#include "LogSystem.h"
 
 #include <RenderSystemInterface.h>
-#include <OgreText.h>
-
-#include "LogSystem.h"
+#include <OgreSceneNode.h>
+#include <OgreNode.h>
 
 void TestComponent::setUp(nap_json const & cfg) {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
@@ -12,31 +12,31 @@ void TestComponent::setUp(nap_json const & cfg) {
 	//light->setPosition(-1.0f, 0.0f, 0.0f);
 
 	//text
-	OgreText* text = new OgreText();
-	text->setText("Hello World!");
-	text->setTextPosition(00, 00);
-	text->setTextColour(1, 1, 1, 1);
+	//OgreText* text = new OgreText();
+	//text->setText("Hello World!");
+	//text->setTextPosition(00, 00);
+	//text->setTextColour(1, 1, 1, 1);
 
-	OgreText* text2 = new OgreText();
-	text2->setText("TEXTO DONE WUEEE");
-	text2->setTextPosition(200, 200);
-	text2->setTextColour(.7, .1, 1, 1);
+	//OgreText* text2 = new OgreText();
+	//text2->setText("TEXTO DONE WUEEE");
+	//text2->setTextPosition(200, 200);
+	//text2->setTextColour(.7, .1, 1, 1);
 
-	OgreText* text3 = new OgreText();
-	text3->setText("AAAAAAAAAAAAA");
-	text3->setTextPosition(500, 300);
-	text3->setTextColour(.1, .5, .8, 1);
+	//OgreText* text3 = new OgreText();
+	//text3->setText("AAAAAAAAAAAAA");
+	//text3->setTextPosition(500, 300);
+	//text3->setTextColour(.1, .5, .8, 1);
 
 	//graphical plane
-	//rsi->createPlane("planoo", Vector3::UNIT_Y, 1000, 1000, Vector3::UNIT_Y);
-	//rsi->setMaterial("planoo", "DebugMaterial");
+	rsi->createPlane("planoo", Ogre::Vector3::UNIT_Y, 1000, 1000, Ogre::Vector3::UNIT_Y);
+	rsi->setMaterial("planoo", "DebugMaterial");
 
 	//ninja
-	//SceneNode* nin = rsi->createOgreEntity("Ninja", "ninja.mesh").first;
-	//nin->setScale(10, 10, 10);
-	//nin->setPosition(0, -1000, 0);
-	//nin->yaw(Ogre::Radian(3.14159));
-	//rsi->setMaterial("Ninja", "NinjaMaterial");
+	Ogre::SceneNode* nin = rsi->createOgreEntity("Ninja", "ninja.mesh").first;
+	nin->setScale(10, 10, 10);
+	nin->setPosition(0, -1000, 0);
+	nin->yaw(Ogre::Radian(3.14159));
+	rsi->setMaterial("Ninja", "NinjaMaterial");
 }
 
 void TestComponent::setDown() {}

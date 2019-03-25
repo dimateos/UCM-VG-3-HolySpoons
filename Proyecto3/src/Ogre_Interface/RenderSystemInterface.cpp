@@ -37,8 +37,8 @@ RenderSystemInterface * RenderSystemInterface::getSingleton()
 	return instance_;
 }
 
-RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(mScnMgr) 
-{ 
+RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(mScnMgr)
+{
 	camera = getSceneManager()->getCamera("MainCam");
 	overlayManager = OverlayManager::getSingletonPtr();
 
@@ -70,7 +70,7 @@ void RenderSystemInterface::closeInterface()
 	delete instance_;
 }
 
-OgrePair RenderSystemInterface::createOgreEntity(String name, String meshName)
+inline Ogre::SceneNode* RenderSystemInterface::getRootSceneNode()
 {
 	return mScnMgr->getRootSceneNode();
 }
@@ -85,13 +85,13 @@ inline Ogre::Entity * RenderSystemInterface::getEntityByName(std::string name)
 	return mScnMgr->getEntity(name);
 }
 
-std::pair<SceneNode*, Entity*>  RenderSystemInterface::createOgreEntity(std::string name, std::string meshName)
+OgrePair  RenderSystemInterface::createOgreEntity(std::string name, std::string meshName)
 {
 	SceneNode* ogreNode = nullptr;
 	Entity* entity = meshName == "" ? mScnMgr->createEntity(name) : mScnMgr->createEntity(name,meshName);
 	ogreNode = mScnMgr->getRootSceneNode()->createChildSceneNode(name);
 	ogreNode->attachObject(entity);
-	std::pair<SceneNode*, Entity*> p (ogreNode, entity);
+	OgrePair p (ogreNode, entity);
 	return p;
 }
 
@@ -126,10 +126,9 @@ OgrePair RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, 
 			Plane(Vector3::UNIT_Z, 0), w, h, 100, 80, true, 1, 1.0, 1.0, Vector3::UNIT_Y); //Crea una mesh
 	}
 
-
 	OgrePair p = createOgreEntity(name, name); //Crea la entidad con la mesh
 	return p;
-}*/
+}
 
 void RenderSystemInterface::setAmbientLight(ColourValue color )
 {

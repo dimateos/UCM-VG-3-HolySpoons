@@ -1,4 +1,6 @@
 #include "RenderComponent.h"
+#include <OgreSceneNode.h>
+#include <OgreEntity.h>
 
 void RenderComponent::setUp(nap_json const & cfg) {
 	//get the ogrePair with the node and the correct entity built
@@ -18,7 +20,7 @@ void RenderComponent::setDown() {}
 OgrePair RenderComponent::getOgrePair(nap_json shape) {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
 	OgrePair pair;
-
+	 
 	//switch the type to construct the correct shape
 	string type = shape["type"];
 	if (type == "BOX") {

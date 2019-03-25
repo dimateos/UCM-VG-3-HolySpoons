@@ -15,6 +15,11 @@ namespace Ogre {
 	class Entity;
 	class Light;
 	class ColourValue;
+
+	template <int dims, typename T> class Vector;
+	typedef float Real;
+	typedef Vector<3, Real> Vector3;
+	class Quaternion;
 };
 using OgrePair = std::pair<Ogre::SceneNode*, Ogre::Entity*>;
 
@@ -64,7 +69,7 @@ public:
 	/*
 	 *Crea una entidad + nodo segun el nombre
 	 */
-	OgrePair createOgreEntity(String name, String meshName = "");
+	OgrePair createOgreEntity(std::string name, std::string meshName = "");
 	/*
 	 *Crea un nodo vacio
 	 */
@@ -77,7 +82,7 @@ public:
 	 *Crea un nodo vacio
 	 * UP NO PUEDE SER IGUAL A NORMAL
 	 */
-	OgrePair createPlane(String name, Vector3 Normal, Real w, Real h,Vector3 up);
+	OgrePair createPlane(std::string name, Ogre::Vector3 Normal, Ogre::Real w, Ogre::Real h, Ogre::Vector3 up);
 	/*
 	 *set de la luz ambiental
 	 */

@@ -1,5 +1,5 @@
 #include "ComponentFactory.h"
-#include <Component.h>
+#include "Component.h"
 
 ComponentFactory* ComponentFactory::instance_ = nullptr;
 
@@ -20,7 +20,7 @@ void ComponentFactory::shutdownSingleton() {
 
 // it receives the name of the component and its parameters. When you add a new component to the factory,
 // you'll need to create the component and add its parameters using the vector "params". Here is an example:
-// for the component "Render", so you would write -> 
+// for the component "Render", so you would write ->
 /*
 if (componentName == "Render") {
 		RenderComponent* rcomp = new RenderComponent();

@@ -1,14 +1,14 @@
-#include <OgreSceneNode.h>
+#include "FPSCamera.h"
+#include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
-#include <OgreCamera.h>
-#include "FPSCamera.h"
+#include <OgreNode.h>
 
 void FPSCamera::setUp(nap_json const & cfg) {
 	//hide and capture mouse
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
-	
+
 	//cam
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
 	camNode_->setPosition(500, 500, 4000);
@@ -31,11 +31,11 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	bool handled = false;
 
 	switch (evt.type) {
-	case SDL_WINDOWEVENT:
-		if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
-			handled = true;
-		}
-		break;
+	//case SDL_WINDOWEVENT:
+	//	if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
+	//		handled = true;
+	//	}
+	//	break;
 
 	case SDL_MOUSEMOTION:
 		rotX_ = evt.motion.xrel;
@@ -60,6 +60,6 @@ void FPSCamera::loadParameters(std::vector<string> parameters)
 }
 
 void FPSCamera::toggleZoom() {
-	camNode_->translate(-vZ.ogre() * zoomed, Node::TS_LOCAL);
+	camNode_->translate(-vZ.ogre() * zoomed, Ogre::Node::TS_LOCAL);
 	zoomed *= -1;
 }
