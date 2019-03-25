@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Utils\ComponentFactory.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
+    <ClInclude Include="..\..\src\Utils\Transforms.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Utils\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp" />
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp" />
+    <ClCompile Include="..\..\src\Utils\Transforms.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -85,25 +85,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\physx4.0\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\physx4.0\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\physx4.0\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)\src\GameLogic\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\physx4.0\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

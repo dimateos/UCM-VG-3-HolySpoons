@@ -14,7 +14,6 @@ GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps, std::l
 	setUp(cfg);
 }
 
-
 GameObject::~GameObject() {
 	for (auto comp : components_) {
 		if (comp != nullptr)delete comp;

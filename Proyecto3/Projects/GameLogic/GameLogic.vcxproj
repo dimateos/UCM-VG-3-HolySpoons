@@ -19,21 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameLogic\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\GameLogic\Activable.h" />
+    <ClInclude Include="..\..\src\GameLogic\ComponentFactory.h" />
+    <ClInclude Include="..\..\src\GameLogic\Identifiable.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
+    <ClInclude Include="..\..\src\GameLogic\Activable.h" />
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
     <ClInclude Include="..\..\src\GameLogic\Component.h" />
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ogre_Interface\Ogre_Interface.vcxproj">
@@ -41,6 +48,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
       <Project>{15a0c92b-437c-4830-8a3f-66f535584d2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.vcxproj">
+      <Project>{ab0fe5ae-c6f3-4ece-ac9f-1f6556e33454}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -100,28 +110,28 @@
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
