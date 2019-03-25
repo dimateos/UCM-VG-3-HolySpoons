@@ -100,9 +100,11 @@ void PhysicsSystemManager::updateNodes() {
 		auto px_trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
 		auto nap_trans = static_cast<nap_transform*>(activeActors[i]->userData);
 
+		//update gameobject transform
 		nap_trans->p_ = nap_vector3(px_trans.p.x, px_trans.p.y, px_trans.p.z);
 		nap_trans->q_ = nap_quat(px_trans.q.w, px_trans.q.x, px_trans.q.y, px_trans.q.z);
-		nap_trans->updateState_ = pxUpdated;
+		//set flag: ogre is not upToDate
+		nap_trans->upToDate_rend = false;
 	}
 }
 

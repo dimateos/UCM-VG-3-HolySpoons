@@ -26,7 +26,6 @@ public:
 protected:
 	virtual void setUp(nap_json const & cfg);
 	virtual void setDown();
-	void update_phys_transform(nap_transform * t);
 
 	//Assist on setting up the shape
 	PxGeometry * getShape(nap_json shape);

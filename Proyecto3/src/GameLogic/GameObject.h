@@ -40,14 +40,17 @@ public:
 	void clearComponents();
 
 	//transform operations (set's activates the flags)
-	inline void setPosition(nap_vector3 p) { trans.p_ = p; trans.updateState_ = userUpdated; }
+	inline void setPosition(nap_vector3 p) { trans.p_ = p; setUpToDate(false); }
 	inline nap_vector3 getPosition() const { return trans.p_; }
-	inline void setOrientation(nap_quat q) { trans.q_ = q; trans.updateState_ = userUpdated; }
+	inline void setOrientation(nap_quat q) { trans.q_ = q; setUpToDate(false); }
 	inline nap_quat getOrientation() const { return trans.q_; }
-	inline void setTransform(nap_vector3 p, nap_quat q) { trans.p_ = p; trans.q_ = q; trans.updateState_ = userUpdated; }
-	//updateState flag
-	inline void setUpdateState(updateState s) { trans.updateState_ = s; }
-	inline updateState getUpdateState() const { return trans.updateState_; }
+	inline void setTransform(nap_vector3 p, nap_quat q) { trans.p_ = p; trans.q_ = q; setUpToDate(false); }
+	//UpToDate flags
+	inline void setUpToDate(bool b = true) { trans.upToDate_phys = b; trans.upToDate_rend = b; }
+	inline void setUpToDate_phys(bool b = true) { trans.upToDate_phys = b; }
+	inline bool getUpToDate_phys() const { return trans.upToDate_phys; }
+	inline void setUpToDate_rend(bool b = true) { trans.upToDate_rend = b; }
+	inline bool getUpToDate_rend() const { return trans.upToDate_rend; }
 	//to keep track of the transform (Physx, IA, etc)
 	inline nap_transform* getTransPtr() { return &trans; }
 

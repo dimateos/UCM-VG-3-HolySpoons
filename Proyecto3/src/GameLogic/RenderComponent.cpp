@@ -20,7 +20,7 @@ void RenderComponent::setDown() {}
 OgrePair RenderComponent::getOgrePair(nap_json shape) {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
 	OgrePair pair;
-	 
+
 	//switch the type to construct the correct shape
 	string type = shape["type"];
 	if (type == "BOX") {
@@ -36,9 +36,9 @@ bool RenderComponent::handleEvents(GameObject * o, const SDL_Event & evt) { retu
 void RenderComponent::update(GameObject * o, float time) {}
 
 void RenderComponent::late_update(GameObject * o, float time) {
-	if (o->getUpdateState() == upToDate) return;
+	if (o->getUpToDate_rend()) return;
 
 	node->setPosition(o->getPosition().ogre() * ogre_scale);
 	node->setOrientation(o->getOrientation().ogre());
-	o->setUpdateState(upToDate);
+	o->setUpToDate_rend();
 }

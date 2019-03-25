@@ -10,15 +10,15 @@
     <Filter Include="_Messages">
       <UniqueIdentifier>{6470dfbd-d5d8-4fb9-9c43-cb9ba0398a27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_Base">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{f3f0a111-f6ea-47fb-9895-b0d32fd84b43}</UniqueIdentifier>
     </Filter>
     <Filter Include="_Components">
       <UniqueIdentifier>{bffef9af-bf86-4c59-a517-c78979307891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_GameObject">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +35,7 @@
       <Filter>_Messages</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp">
-      <Filter>_Base</Filter>
+      <Filter>_GameObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp">
       <Filter>Render</Filter>
@@ -64,16 +64,16 @@
       <Filter>_Messages</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GameObject.h">
-      <Filter>_Base</Filter>
+      <Filter>_GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Identifiable.h">
-      <Filter>_Base</Filter>
+      <Filter>_GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Activable.h">
-      <Filter>_Base</Filter>
+      <Filter>_GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Component.h">
       <Filter>_Components</Filter>

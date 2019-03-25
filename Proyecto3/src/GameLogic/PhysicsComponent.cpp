@@ -40,7 +40,9 @@ void PhysicsComponent::receive(Message * msg) {
 	case PX_USERPTR:
 		auto trans = static_cast<Msg_PX_userPtr*> (msg)->trans_;
 		setUserData(trans);
-		update_phys_transform(trans);
+		//actualy update the transform and avoid phsx limits + set raw upToDate true
+		getActor()->setGlobalPose(PxTransform(trans->p_.px(), trans->q_.px()));
+		trans->upToDate_phys = true;
 		break;
 	}
 }
@@ -51,16 +53,13 @@ bool PhysicsComponent::handleEvents(GameObject * o, const SDL_Event & evt) { ret
 void PhysicsComponent::update(GameObject * o, float time) {}
 
 void PhysicsComponent::late_update(GameObject * o, float time) {
-	if (o->getUpdateState() != userUpdated) return;
-	update_phys_transform(o->getTransPtr());
+	if (o->getUpToDate_phys()) return;
+
+	getActor()->setGlobalPose(PxTransform(o->getPosition().px(), o->getOrientation().px()));
+	o->setUpToDate_phys();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-void PhysicsComponent::update_phys_transform(nap_transform* trans) {
-	getActor()->setGlobalPose(PxTransform(trans->p_.px(), trans->q_.px()));
-	trans->updateState_ = pxUpdated;
-}
 
 //const map<std::string, PxGeometryType::Enum> PhysicsComponent::geoTypes {
 //	{ "BOX", PxGeometryType::eBOX },

@@ -27,7 +27,10 @@ public:
 	inline nap_vector3(float f) : x_(f), y_(f), z_(f) {};
 	inline nap_vector3(float x, float y, float z) : x_(x), y_(y), z_(z) {};
 	inline nap_vector3(nap_vector3 const & v) : x_(v.x_), y_(v.y_), z_(v.z_) {};
+
 	inline nap_vector3(nlohmann::json const & v) : x_(v["x"]), y_(v["y"]), z_(v["z"]) {};
+	//inline nap_vector3(Ogre::Vector3 const & v); //requires .h
+	//inline nap_vector3(physx::PxVec3 const & v);
 
 	float x_, y_, z_;
 	Ogre::Vector3 ogre();
@@ -42,7 +45,10 @@ public:
 	inline nap_quat(float f) : w_(f), x_(f), y_(f), z_(f) {};
 	inline nap_quat(float w, float x, float y, float z) : w_(w), x_(x), y_(y), z_(z) {};
 	inline nap_quat(nap_quat const & q) : w_(q.w_), x_(q.x_), y_(q.y_), z_(q.z_) {};
+
 	inline nap_quat(nlohmann::json const & q) : w_(q["w"]), x_(q["x"]), y_(q["y"]), z_(q["z"]) {};
+	//inline nap_quat(Ogre::Quaternion const & v); //requires .h
+	//inline nap_quat(physx::PxQuat const & v);
 
 	float w_, x_, y_, z_;
 	Ogre::Quaternion ogre();
@@ -56,18 +62,17 @@ public:
 #define vO nap_vector3(0.0f, 0.0f, 0.0f)
 
 // base quats
-#define vO nap_vector3(1.0f, 0.0f, 0.0f, 0.0f)
+#define qO nap_quat(1.0f, 0.0f, 0.0f, 0.0f)
 
 //struct for the gameObject transform
-enum updateState { upToDate, pxUpdated, userUpdated };
 class nap_transform
 {
 public:
-	inline nap_transform() : updateState_(userUpdated), p_(), q_() {};
-	inline nap_transform(nap_vector3 p) : updateState_(userUpdated), p_(p), q_() {};
-	inline nap_transform(nap_vector3 p, nap_quat q) : updateState_(userUpdated), p_(p), q_(q) {};
+	inline nap_transform() : upToDate_phys(false), upToDate_rend(false), p_(), q_() {};
+	inline nap_transform(nap_vector3 p) : upToDate_phys(false), upToDate_rend(false), p_(p), q_() {};
+	inline nap_transform(nap_vector3 p, nap_quat q) : upToDate_phys(false), upToDate_rend(false), p_(p), q_(q) {};
 
-	updateState updateState_;
+	bool upToDate_phys, upToDate_rend;
 	nap_vector3 p_; nap_quat q_;
 };
 
