@@ -4,6 +4,22 @@
 #include <OgreLogManager.h>
 #include <LogSystem.h>
 #include <OgreLog.h>
+#include <OgreTextAreaOverlayElement.h>
+#include <OgreOverlayManager.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlay.h>
+#include <OgreFontManager.h>
+#include <OgreBuildSettings.h>
+#include <OgreSceneManager.h>
+#include <OgreSceneNode.h>
+#include "OgreViewport.h" //A CPP
+#include <OgreCamera.h>
+#include <OgreEntity.h>
+#include <OgreRoot.h>
+
+using namespace Ogre;
+
+
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
@@ -21,12 +37,55 @@ RenderSystemInterface * RenderSystemInterface::getSingleton()
 	return instance_;
 }
 
+RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(mScnMgr) 
+{ 
+	camera = getSceneManager()->getCamera("MainCam");
+	overlayManager = OverlayManager::getSingletonPtr();
+
+	// Create a panel
+	/*panel = static_cast<OverlayContainer*>(
+		overlayManager->createOverlayElement("Panel", panelName));
+	panel->setMetricsMode(Ogre::GMM_PIXELS);
+	panel->setPosition(10, 10);
+	panel->setDimensions(100, 100);
+	// Create an overlay, and add the panel
+	overlay = overlayManager->create(overlayName);
+	overlay->add2D(panel);*/
+
+	overlay = Ogre::OverlayManager::getSingleton().getByName("HUD");
+	panel = overlay->getChild("PanelContainer");
+	// Show the overlay
+	overlay->show();
+}
+
+RenderSystemInterface::~RenderSystemInterface()
+{
+	//overlayManager->destroyOverlayElement(szElement); SI NOS DEJAMOS BASURA, PROBABLEMENTE SEA POR AQUI
+	overlayManager->destroyOverlayElement(panelName);
+	overlayManager->destroy(overlayName);
+}
+
 void RenderSystemInterface::closeInterface()
 {
 	delete instance_;
 }
 
 OgrePair RenderSystemInterface::createOgreEntity(String name, String meshName)
+{
+	return mScnMgr->getRootSceneNode();
+}
+
+inline Ogre::SceneManager * RenderSystemInterface::getSceneManager()
+{
+	return mScnMgr;
+}
+
+inline Ogre::Entity * RenderSystemInterface::getEntityByName(std::string name)
+{
+	return mScnMgr->getEntity(name);
+}
+
+std::pair<SceneNode*, Entity*>  RenderSystemInterface::createOgreEntity(std::string name, std::string meshName)
 {
 	SceneNode* ogreNode = nullptr;
 	Entity* entity = meshName == "" ? mScnMgr->createEntity(name) : mScnMgr->createEntity(name,meshName);
@@ -36,16 +95,15 @@ OgrePair RenderSystemInterface::createOgreEntity(String name, String meshName)
 	return p;
 }
 
-
-SceneNode * RenderSystemInterface::createEmpty(String name)
+SceneNode * RenderSystemInterface::createEmpty(std::string name)
 {
 	return getRootSceneNode()->createChildSceneNode(name);
 }
 
-SceneNode * RenderSystemInterface::createLight(String name, Light::LightTypes type, ColourValue color)
+SceneNode * RenderSystemInterface::createLight(std::string name, LightTypes type, ColourValue color)
 {
 	Ogre::Light* l = getSceneManager()->createLight(name);
-	l->setType(type);
+	l->setType(Ogre::Light::LightTypes(type));
 	l->setDiffuseColour(color);
 
 	SceneNode* mLightNode = getRootSceneNode()->createChildSceneNode(name);
@@ -71,14 +129,14 @@ OgrePair RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, 
 
 	OgrePair p = createOgreEntity(name, name); //Crea la entidad con la mesh
 	return p;
-}
+}*/
 
 void RenderSystemInterface::setAmbientLight(ColourValue color )
 {
 	getSceneManager()->setAmbientLight(color);
 }
 
-SceneNode * RenderSystemInterface::addChild(SceneNode * father, String name, String meshName)
+SceneNode * RenderSystemInterface::addChild(SceneNode * father, std::string name, std::string meshName)
 {
 	SceneNode* child = createOgreEntity(name,meshName).first;
 	child->getParentSceneNode()->removeChild(child); //needed
@@ -92,17 +150,17 @@ void RenderSystemInterface::addChild(SceneNode * father, SceneNode * child)
 	father->addChild(child);
 }
 
-void RenderSystemInterface::setMaterial(String entity, String material)
+void RenderSystemInterface::setMaterial(std::string entity, std::string material)
 {
 	getSceneManager()->getEntity(entity)->setMaterialName(material);
 }
 
-void RenderSystemInterface::setMaterial(Entity * entity, String material)
+void RenderSystemInterface::setMaterial(Entity * entity, std::string material)
 {
 	entity->setMaterialName(material);
 }
 
-SceneNode * RenderSystemInterface::getNode(String name)
+SceneNode * RenderSystemInterface::getNode(std::string name)
 {
 	try
 	{
@@ -114,4 +172,75 @@ SceneNode * RenderSystemInterface::getNode(String name)
 		LogSystem::Log("ERROR AL ACCEDER AL NODO " + name + "   " + (string)e.what(), LogSystem::REND);
 		return nullptr;
 	}
+}
+
+inline Ogre::Camera * RenderSystemInterface::getCamera()
+{
+	return camera;
+}
+
+Ogre::SceneNode * RenderSystemInterface::getCameraNode()
+{
+	return camera->getParentSceneNode();
+}
+
+inline Ogre::Viewport * RenderSystemInterface::getViewport()
+{
+	return camera->getViewport();
+}
+
+TextAreaOverlayElement * RenderSystemInterface::createText(std::string nodeName, std::string text, int x, int y, std::string fontName)
+{
+	TextAreaOverlayElement* textElement = static_cast<TextAreaOverlayElement*>(overlayManager->createOverlayElement("TextArea", nodeName));
+	textElement->setMetricsMode(Ogre::GMM_PIXELS); //Maybe RELATIVE ????
+
+	textElement->setCaption(text);
+	textElement->setDimensions(100, 100);
+	textElement->setFontName(fontName);
+
+	textElement->setPosition(x, y);
+
+	panel->addChild(textElement);
+
+	return textElement;
+}
+
+void RenderSystemInterface::setText(TextAreaOverlayElement * element, std::string szString)
+{
+	element->setCaption(szString);
+}
+
+void RenderSystemInterface::setTextPosition(TextAreaOverlayElement * element, float x, float y)
+{
+	element->setPosition(x, y);
+}
+
+void RenderSystemInterface::setTextSize(TextAreaOverlayElement * element, float size)
+{
+	element->setCharHeight(size);
+}
+
+void RenderSystemInterface::setTextCenteredPosition(TextAreaOverlayElement * element, float x, float y)
+{
+	//not workong
+	setTextPosition(element, x, y);
+	element->setAlignment(TextAreaOverlayElement::Center);
+	element->setHorizontalAlignment(Ogre::GuiHorizontalAlignment::GHA_CENTER);
+	element->setVerticalAlignment(Ogre::GuiVerticalAlignment::GVA_CENTER);
+	element->_update();
+}
+
+void RenderSystemInterface::setTextColour(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColour(Ogre::ColourValue(R, G, B, I));
+}
+
+void RenderSystemInterface::setTextColourTop(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColourTop(Ogre::ColourValue(R, G, B, I));
+}
+
+void RenderSystemInterface::setTextColourBot(TextAreaOverlayElement * element, float R, float G, float B, float I)
+{
+	element->setColourBottom(Ogre::ColourValue(R, G, B, I));
 }

@@ -46,6 +46,22 @@ material DebugMaterial3
 	}
 }
 
+material CrosshairMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture CrossHairTest.png
+			}
+		}
+	}
+}
+
 material NinjaMaterial
 {
 	technique

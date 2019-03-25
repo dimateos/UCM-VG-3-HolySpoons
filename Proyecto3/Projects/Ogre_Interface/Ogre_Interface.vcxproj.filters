@@ -21,18 +21,12 @@
     <ClInclude Include="..\..\src\Ogre_Interface\RenderSystemInterface.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Ogre_Interface\OgreText.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Ogre_Interface\RenderSystemInterface.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Ogre_Interface\OgreText.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

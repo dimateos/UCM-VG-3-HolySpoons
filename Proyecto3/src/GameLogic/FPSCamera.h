@@ -2,7 +2,6 @@
 #pragma once
 
 #include "RenderSystemInterface.h"
-#include "OgreText.h"
 
 #include "Component.h"
 class FPSCamera : public Component
@@ -21,10 +20,6 @@ public:
 protected:
 	virtual void setUp(nap_json const & cfg);
 	virtual void setDown();
-
-	//center it
-	void updateCrosshair();
-	OgreText* x;
 
 	void toggleZoom();
 	float zoomed = 2500.0; //amount of zoom
