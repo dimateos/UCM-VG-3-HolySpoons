@@ -1,9 +1,13 @@
 #include "Game.h"
 #include "Windows.h" //temp counter method
 
-#include "PhysicsComponent.h"
-#include "FPSCamera.h"
+#include "LogSystem.h"
 #include "RenderSystemInterface.h"
+
+#include "TestComponent.h"
+#include "PhysicsComponent.h"
+#include "RenderComponent.h"
+#include "FPSCamera.h"
 
 Game::Game() {
 	initGame();
@@ -21,16 +25,82 @@ void Game::initGame() {
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
+	//soundManager_ = new SoundManager(this);
 
 	//!temporary direct creation
 	gsm_ = new GameStateMachine();
-	auto phyx = new PhysicsComponent();
-	auto go = new GameObject({ phyx, new FPSCamera() });
-	gsm_->pushState(new GameState({ go }));
-	phyx->setUserData(go->getTransPtr());
 
+	//proof of concept:
+	// * two GO cfg by json (with render + physx cfg by json)
+	// * tester GO (with testComponent and test names)
 
-	//soundManager_ = new SoundManager(this);
+	nap_json cfg_ground = {
+		{"name", "ground"},
+		{"pos", {
+			{"x", 0.0f}, {"y", -15.0f}, {"z", 0.0f}
+		}},
+		{"ori", {
+			{"w", 1.0f}, {"x", 0.0f}, {"y", 0.0f}, {"z", 0.0f}
+		}}
+	};
+	nap_json cfg_ground_phys = {
+		{"name", "ground_phys"},
+		{"dynamic", false },
+		{"shape", {
+			{"type", "BOX"},
+			{"x", 10.0f}, {"y", 1.0f}, {"z", 10.0f}
+		}},
+	};
+	nap_json cfg_ground_rend = {
+		{"name", "ground_rend"},
+		{"scale", {
+			{"x", 10.0f}, {"y", 1.0f}, {"z", 10.0f}
+		}},
+		{"shape", {
+			{"name", "ground"},
+			{"type", "BOX"},
+			{"mesh", "cube.mesh"}
+		}},
+		{"material", "DebugMaterial2"}
+	};
+	auto phys_ground = new PhysicsComponent(cfg_ground_phys); //physic component is a listner
+	auto ground = new GameObject(cfg_ground, { phys_ground, new RenderComponent(cfg_ground_rend) }, { phys_ground });
+
+	nap_json cfg_cube = {
+		{"name", "cube"},
+		{"pos", {
+			{"x", 0.0f}, {"y", 5.0f}, {"z", 0.0f}
+		}},
+		{"ori", {
+			{"w", 1.0f}, {"x", 0.0f}, {"y", 0.0f}, {"z", 0.0f}
+		}}
+	};
+	nap_json cfg_cube_phys = {
+	{"name", "cube_phys"},
+	{"dynamic", true },
+	{"shape", {
+		{"type", "BOX"},
+		{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
+	}},
+	};
+	nap_json cfg_cube_rend = {
+		{"name", "cube_rend"},
+		{"namess", ""},
+		{"scale", {
+			{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
+		}},
+		{"shape", {
+			{"name", "cube"},
+			{"type", "BOX"},
+			{"mesh", "cube.mesh"}
+		}},
+		{"material", "DebugMaterial2"}
+	};
+	auto phys_cube = new PhysicsComponent(cfg_cube_phys); //physic component is a listner
+	auto cube = new GameObject(cfg_cube, { phys_cube, new RenderComponent(cfg_cube_rend) }, { phys_cube });
+
+	auto tester = new GameObject(nap_json({ {"name", "test_gameObject"} }), { new TestComponent(), new FPSCamera(nap_json({ {"name", "fpsCam"} })) });
+	gsm_->pushState(new GameState({ ground, cube, tester }));
 }
 
 //destroys the gameStateMachine
@@ -132,10 +202,10 @@ void Game::handleEvents() {
 		}
 		else if (evt.type == SDL_KEYDOWN) {
 			switch (evt.key.keysym.sym) {
-				case SDLK_ESCAPE:
-					handled = true;
-					stop();
-					break;
+			case SDLK_ESCAPE:
+				handled = true;
+				stop();
+				break;
 			}
 		}
 
