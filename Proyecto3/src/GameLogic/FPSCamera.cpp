@@ -1,8 +1,6 @@
 #include "FPSCamera.h"
 
-#include "RenderSystemInterface.h"
-
-void FPSCamera::setUp() {
+void FPSCamera::setUp(nap_json const & cfg) {
 	//hide and capture mouse
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -71,6 +69,6 @@ void FPSCamera::loadParameters(std::vector<string> parameters)
 }
 
 void FPSCamera::toggleZoom() {
-	camNode_->translate(-oZ * zoomed, Node::TS_LOCAL);
+	camNode_->translate(-vZ.ogre() * zoomed, Node::TS_LOCAL);
 	zoomed *= -1;
 }

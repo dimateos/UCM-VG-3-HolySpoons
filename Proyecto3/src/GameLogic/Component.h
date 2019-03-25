@@ -1,28 +1,27 @@
+//Nap_Time_Studios
 #ifndef COMPONENT_H_
 #define COMPONENT_H_
 
-#include <vector>
 #include "GameObject.h"
 
-using namespace std;
-
-// every type of component will inherit from this class
-class Component : public Activable
+// every type of component inherites from this class
+class Component : public Activable, public Identifiable
 {
 public:
-	Component() : Activable() {};
-	virtual ~Component() {};
+	inline Component() {};
+	inline Component(nap_json const & cfg) : Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : "") {};
+	inline virtual ~Component() {};
 
 	// called from gameObjects themselves
-	virtual void update(GameObject* ent, float time) = 0;
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt) = 0;
-
-	// each component will define this method depending on its needs
-	virtual void loadParameters(std::vector<string>parameters) = 0;
+	virtual void update(GameObject* ent, float time) = 0;
+	virtual void late_update(GameObject* ent, float time) {};
 
 protected:
-	virtual void setUp() = 0;   // set up in Ogre/physx
-	virtual void setDown() = 0; // set down from Ogre/physx
+	// some structure around setUp / down
+	inline virtual void setUp(nap_json const & cfg) {};
+	inline virtual void setDown() {};
+
 };
 
 #endif /* COMPONENT_H_ */

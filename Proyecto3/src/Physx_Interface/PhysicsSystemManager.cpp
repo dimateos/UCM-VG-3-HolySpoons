@@ -1,5 +1,6 @@
 #include "PhysicsSystemManager.h"
 
+#include "LogSystem.h"
 #include "Transforms.h"
 
 //Set this to the IP address of the system running the PhysX Visual Debugger that you want to connect to.
@@ -98,7 +99,6 @@ void PhysicsSystemManager::updateNodes() {
 	for (PxU32 i = 0; i < nbActiveActors; ++i) {
 		auto px_trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
 		auto nap_trans = static_cast<nap_transform*>(activeActors[i]->userData);
-		//std::cout << trans.p.x << " " << trans.p.y << " " << trans.p.z << " " << std::endl;
 
 		nap_trans->p_ = nap_vector3(px_trans.p.x, px_trans.p.y, px_trans.p.z);
 		nap_trans->q_ = nap_quat(px_trans.q.w, px_trans.q.x, px_trans.q.y, px_trans.q.z);

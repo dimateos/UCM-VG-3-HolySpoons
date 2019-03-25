@@ -1,25 +1,25 @@
 //Nap_Time_Studios
 #pragma once
 
-#include <OgreSceneNode.h>
+#include "RenderSystemInterface.h"
 #include "OgreText.h"
 
 #include "Component.h"
 class FPSCamera : public Component
 {
 public:
-	FPSCamera() : Component() { setUp(); };
-	virtual ~FPSCamera() { setDown(); };
+	inline FPSCamera(nap_json const & cfg) : Component(cfg) { this->setUp(cfg); };
+	inline virtual ~FPSCamera() { setDown(); };
 
-	//smooth movement -> updates all the time
-	virtual void update(GameObject* ent, float time);
 	//mouse move + rightClick and screen resize
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
+	//smooth movement -> updates all the time
+	virtual void update(GameObject* ent, float time);
 
 	virtual void loadParameters(std::vector<string>parameters);
 
 protected:
-	virtual void setUp();
+	virtual void setUp(nap_json const & cfg);
 	virtual void setDown();
 
 	//center it

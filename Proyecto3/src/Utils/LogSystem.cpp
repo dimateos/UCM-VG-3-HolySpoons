@@ -48,6 +48,9 @@ void LogSystem::Log(string const & s, logType t) {
 void LogSystem::Log(string const & s, int n, logType t) {
 	Log(s + to_string(n), t);
 }
+void LogSystem::Log(string const & s, float n, logType t) {
+	Log(s + to_string(n), t);
+}
 void LogSystem::Log() {
 	Log("Test point reached", DEV);
 }
