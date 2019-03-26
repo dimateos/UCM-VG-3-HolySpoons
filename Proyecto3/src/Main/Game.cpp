@@ -7,6 +7,7 @@
 #include "TestComponent.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
+#include "OverlayComponent.h"
 #include "FPSCamera.h"
 
 Game::Game() {
@@ -96,10 +97,30 @@ void Game::initGame() {
 		}},
 		{"material", "DebugMaterial2"}
 	};
+
+	//OverlayTest
+	nap_json cfg_overlay_test_rend = {
+		{ "name", "overlay_test_rend" },
+		{ "namess", "" },
+		{"overlay_name", "TEST_HUD"},
+		{"panel_container", "TEST_HUD_PanelContainer"}
+	};
+
+	nap_json cfg_crosshair_hud_rend = {
+		{ "name", "crosshair_hud_rend" },
+		{ "namess", "" },
+		{ "overlay_name", "CROSSHAIR_HUD" },
+		{ "panel_container", "CROSSHAIR_HUD_PanelContainer" }
+	};
+
 	auto phys_cube = new PhysicsComponent(cfg_cube_phys); //physic component is a listner
 	auto cube = new GameObject(cfg_cube, { phys_cube, new RenderComponent(cfg_cube_rend) }, { phys_cube });
 
-	auto tester = new GameObject(nap_json({ {"name", "test_gameObject"} }), { new TestComponent(), new FPSCamera(nap_json({ {"name", "fpsCam"} })) });
+	GameObject* tester = new GameObject(nap_json({ {"name", "test_gameObject"} }), { new TestComponent(),
+		new FPSCamera(nap_json({ {"name", "fpsCam"} })), new OverlayComponent(cfg_crosshair_hud_rend) });
+
+	GameObject* testOverlay = new GameObject(nap_json({ "name", "test_overlay" }), {new OverlayComponent(cfg_overlay_test_rend)});
+
 	gsm_->pushState(new GameState({ ground, cube, tester }));
 }
 

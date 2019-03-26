@@ -26,9 +26,7 @@ using OgrePair = std::pair<Ogre::SceneNode*, Ogre::Entity*>;
 class RenderSystemInterface
 {
 private:
-	Ogre::OverlayManager *overlayManager = nullptr;
-	Ogre::OverlayContainer *panel = nullptr;
-	Ogre::Overlay *overlay = nullptr;
+	Ogre::OverlayManager *overlayManager = nullptr;	
 	Ogre::SceneManager * mScnMgr = nullptr;
 	Ogre::Camera* camera = nullptr;
 	std::string panelName = "PanelName";

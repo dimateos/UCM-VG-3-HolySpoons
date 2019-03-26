@@ -19,6 +19,7 @@ class Component;
 class GameObject : public Emitter, public Activable, public Identifiable
 {
 public:
+	GameObject() {};
 	GameObject(nap_json const & cfg);
 	GameObject(nap_json const & cfg, std::list<Component*>);
 	GameObject(nap_json const & cfg, std::list<Component*>, std::list<Listener*>);

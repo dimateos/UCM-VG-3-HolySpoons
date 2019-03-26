@@ -1,8 +1,22 @@
-#include "RenderSystemManager.h"
-#include <iostream>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+#include "RenderSystemManager.h"
 #include <OgreOverlaySystem.h>
+#include <OgreFileSystemLayer.h>
+#include <OgreTextureManager.h>
+#include <OgreBuildSettings.h>
+#include <OgreSceneManager.h>
+#include <OgreRenderSystem.h>
+#include "OgreRenderWindow.h"
+#include <OgreConfigFile.h>
+#include <OgreSceneNode.h>
+#include "OgreViewport.h"
+#include <OgreCamera.h>
+#include <OgreEntity.h>
+#include <OgreRoot.h>
+#include <SDL.h>
+
+using namespace Ogre;
 
 RenderSystemManager* RenderSystemManager::instance_ = nullptr;
 
@@ -150,6 +164,11 @@ RenderSystemManager* RenderSystemManager::getSingleton()
 	}
 
 	return instance_;
+}
+
+void RenderSystemManager::renderFrame()
+{
+	mRoot->renderOneFrame();
 }
 
 void RenderSystemManager::shutdown()
