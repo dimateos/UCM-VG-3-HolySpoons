@@ -7,17 +7,15 @@
 class TestComponent : public Component
 {
 public:
-	inline TestComponent() { this->setUp(nap_json()); };
-	inline TestComponent(nap_json const & cfg) : Component(cfg) { this->setUp(cfg); };
-	inline virtual ~TestComponent() { setDown(); };
+	inline TestComponent() { };
+	inline TestComponent(nap_json const & cfg) : Component(cfg) { };
+	inline virtual ~TestComponent() { };
+	virtual void setUp();
 
 	virtual void update(GameObject* ent, float time);
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
-	virtual void late_update(GameObject* ent, float time);
 
 protected:
-	virtual void setUp(nap_json const & cfg);
-	virtual void setDown();
 };
 
 #endif /* TEST_COMP_H_ */

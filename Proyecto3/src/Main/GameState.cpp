@@ -1,24 +1,35 @@
 #include "GameState.h"
+#include "LogSystem.h"
 
-GameState::GameState() {
-	initState();
+GameState::GameState() : Initiable(), gameObjects_() {
 }
-GameState::GameState(std::list<GameObject*> gObjects) : gameObjects_(gObjects) {
-	initState();
+GameState::GameState(std::list<GameObject*> gObjects) : Initiable(), gameObjects_(gObjects) {
 }
 
 GameState::~GameState() {
-	closeState();
+	setDown();
 }
 
-void GameState::initState() {}
+void GameState::setUp() {
+	if (isInited()) return;
+	setInited();
 
-void GameState::closeState() {
+	for (GameObject* o : gameObjects_) {
+		if (o != nullptr) o->setUp();
+	}
+}
+
+void GameState::setDown() {
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) delete o;
 	}
 
 	gameObjects_.clear();
+}
+
+void GameState::addGameObject(GameObject * o) {
+	gameObjects_.push_back(o);
+	if (isInited()) o->setUp();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,7 +46,6 @@ void GameState::closeState() {
 //sends the event too all the entities
 //no controlled propagation, cause it had limitations
 bool GameState::handleEvents(const SDL_Event evt) {
-	//cout << endl << "\t\t state EVENTS" << endl;
 	bool handled = false;
 
 	auto it = gameObjects_.begin();
@@ -50,12 +60,13 @@ bool GameState::handleEvents(const SDL_Event evt) {
 
 //iterates all the Entities and calls their updates
 void GameState::update(float time) {
-	//cout << endl << "\t\t state UPDATE" << endl;
 
+	//LogSystem::Log("state update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
 		if (o->isActive())o->update(time);
 	}
 
+	//LogSystem::Log("state late update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
 		if (o->isActive())o->late_update(time);
 	}

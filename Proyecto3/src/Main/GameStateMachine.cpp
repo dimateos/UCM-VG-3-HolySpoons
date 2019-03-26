@@ -25,6 +25,7 @@ void GameStateMachine::receive(Message* msg) {
 //pushes over the current state (no delete, no pop)
 void GameStateMachine::pushState(GameState *newState) {
 	states_.push(newState);
+	newState->setUp();
 }
 
 void GameStateMachine::popState() {

@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Activable.h" />
+    <ClInclude Include="..\..\src\GameLogic\Initiable.h" />
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
     <ClInclude Include="..\..\src\GameLogic\Component.h" />

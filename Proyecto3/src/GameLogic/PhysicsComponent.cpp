@@ -1,12 +1,15 @@
 #include "PhysicsComponent.h"
 
-void PhysicsComponent::setUp(nap_json const & cfg) {
+void PhysicsComponent::setUp() {
+	if (isInited()) return;
+	setInited();
+
 	//get the correct built shape
-	PxGeometry *geo = getShape(cfg["shape"]);
+	PxGeometry *geo = getShape(cfg_["shape"]);
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
-	dynamic = cfg["dynamic"];
+	dynamic = cfg_["dynamic"];
 	if (dynamic) {
 		rigidBodyD = physicsManager->createDynamicBody(geo, PxTransform());
 		//mass and stuff
@@ -26,8 +29,8 @@ void PhysicsComponent::setDown() {
 	getActor()->release();
 }
 
-void PhysicsComponent::setUserData(nap_transform* trans) {
-	getActor()->userData = trans;
+void PhysicsComponent::setUserData(nap_transform* trans_) {
+	getActor()->userData = trans_;
 }
 nap_transform * PhysicsComponent::getUserData() {
 	return static_cast<nap_transform*> (getActor()->userData);
@@ -38,19 +41,16 @@ nap_transform * PhysicsComponent::getUserData() {
 void PhysicsComponent::receive(Message * msg) {
 	switch (msg->id_) {
 	case PX_USERPTR:
-		auto trans = static_cast<Msg_PX_userPtr*> (msg)->trans_;
-		setUserData(trans);
+		auto trans_ = static_cast<Msg_PX_userPtr*> (msg)->trans_;
+		setUserData(trans_);
 		//actualy update the transform and avoid phsx limits + set raw upToDate true
-		getActor()->setGlobalPose(PxTransform(trans->p_.px(), trans->q_.px()));
-		trans->upToDate_phys = true;
+		getActor()->setGlobalPose(PxTransform(trans_->p_.px(), trans_->q_.px()));
+		trans_->upToDate_phys = true;
 		break;
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-bool PhysicsComponent::handleEvents(GameObject * o, const SDL_Event & evt) { return false; }
-void PhysicsComponent::update(GameObject * o, float time) {}
 
 void PhysicsComponent::late_update(GameObject * o, float time) {
 	if (o->getUpToDate_phys()) return;

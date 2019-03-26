@@ -9,17 +9,13 @@
 class RenderComponent : public Component
 {
 public:
-	inline RenderComponent(nap_json const & cfg) : Component(cfg) { this->setUp(cfg); };
-	inline virtual ~RenderComponent() { setDown(); };
+	inline RenderComponent(nap_json const & cfg) : Component(cfg) { };
+	inline virtual ~RenderComponent() {};
+	virtual void setUp();
 
-	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
-	virtual void update(GameObject* ent, float time);
 	virtual void late_update(GameObject* ent, float time);
 
 protected:
-	virtual void setUp(nap_json const & cfg);
-	virtual void setDown();
-
 	//Assist on setting up the shape
 	OgrePair getOgrePair(nap_json shape);
 

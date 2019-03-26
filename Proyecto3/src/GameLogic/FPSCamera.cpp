@@ -4,7 +4,10 @@
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
 
-void FPSCamera::setUp(nap_json const & cfg) {
+void FPSCamera::setUp() {
+	if (isInited()) return;
+	setInited();
+
 	//hide and capture mouse
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -13,9 +16,6 @@ void FPSCamera::setUp(nap_json const & cfg) {
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
 	camNode_->setPosition(500, 500, 4000);
 	camNode_->lookAt(Ogre::Vector3(0.0f, -500.0f, 0.0f), Ogre::Node::TS_WORLD);
-}
-
-void FPSCamera::setDown() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////

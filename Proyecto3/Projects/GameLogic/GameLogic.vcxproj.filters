@@ -84,5 +84,8 @@
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Initiable.h">
+      <Filter>_GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

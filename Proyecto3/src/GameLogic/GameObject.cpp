@@ -2,16 +2,13 @@
 #include "Component.h"
 
 GameObject::GameObject(nap_json const & cfg)
-	: Emitter(), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_() {
-	setUp(cfg);
+	: Emitter(), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {
 }
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
-	: Emitter(), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_(comps) {
-	setUp(cfg);
+	: Emitter(), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
 }
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps, std::list<Listener*> lis)
-	: Emitter(lis), Activable(), Identifiable(cfg.find("name") != cfg.end() ? cfg["name"] : ""), components_(comps) {
-	setUp(cfg);
+	: Emitter(lis), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
 }
 
 GameObject::~GameObject() {
@@ -22,10 +19,16 @@ GameObject::~GameObject() {
 	components_.clear();
 }
 
-void GameObject::setUp(nap_json const & cfg) {
+void GameObject::setUp() {
+	if (isInited()) return;
+	setInited();
+
+	//init components
+	for (auto comp : components_) if (comp != nullptr) comp->setUp();
+
 	//set transform
-	if (cfg.find("pos") != cfg.end()) setPosition(nap_vector3(cfg["pos"]));
-	if (cfg.find("ori") != cfg.end()) setOrientation(nap_quat(cfg["ori"]));
+	if (cfg_.find("pos") != cfg_.end()) setPosition(nap_vector3(cfg_["pos"]));
+	if (cfg_.find("ori") != cfg_.end()) setOrientation(nap_quat(cfg_["ori"]));
 
 	//send user ptr to physics component
 	send(&Msg_PX_userPtr(getTransPtr()));
@@ -57,9 +60,13 @@ void GameObject::late_update(float time) {
 
 void GameObject::addComponent(Component* comp) {
 	components_.push_back(comp);
+	if (isInited()) comp->setUp();
 }
 void GameObject::addComponent(std::list<Component*> comps) {
-	for (auto comp : comps) components_.push_back(comp);
+	for (auto comp : comps) {
+		components_.push_back(comp);
+		if (isInited()) comp->setUp();
+	}
 }
 
 void GameObject::delComponent(std::string name) {

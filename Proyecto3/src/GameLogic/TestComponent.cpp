@@ -5,7 +5,7 @@
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
 
-void TestComponent::setUp(nap_json const & cfg) {
+void TestComponent::setUp() {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
 
 	//auto light = renderInterface->createLight("light", Ogre::Light::LT_POINT, ColourValue(0.75f, 0.2f, 0.2f));
@@ -38,8 +38,6 @@ void TestComponent::setUp(nap_json const & cfg) {
 	nin->yaw(Ogre::Radian(3.14159));
 	rsi->setMaterial("Ninja", "NinjaMaterial");
 }
-
-void TestComponent::setDown() {}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -77,5 +75,3 @@ bool TestComponent::handleEvents(GameObject * ent, const SDL_Event & evt) {
 
 	return handled;
 }
-
-void TestComponent::late_update(GameObject * ent, float time) {}

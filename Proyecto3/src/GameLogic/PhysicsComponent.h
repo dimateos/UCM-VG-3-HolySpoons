@@ -9,22 +9,18 @@
 class PhysicsComponent : public Component, public Listener
 {
 public:
-	inline PhysicsComponent(nap_json const & cfg) : Component(cfg) { this->setUp(cfg); };
-	inline PhysicsComponent(nap_json const & cfg, nap_transform *trans) : Component(cfg) { this->setUp(cfg); setUserData(trans); };
+	inline PhysicsComponent(nap_json const & cfg) : Component(cfg) { };
 	inline virtual ~PhysicsComponent() { setDown(); };
+	virtual void setUp();
 
 	//physx userData operations
-	void setUserData(nap_transform * trans);
+	void setUserData(nap_transform * trans_);
 	nap_transform* getUserData();
 
 	virtual void receive(Message* msg);
-
-	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
-	virtual void update(GameObject* ent, float time);
 	virtual void late_update(GameObject* ent, float time);
 
 protected:
-	virtual void setUp(nap_json const & cfg);
 	virtual void setDown();
 
 	//Assist on setting up the shape

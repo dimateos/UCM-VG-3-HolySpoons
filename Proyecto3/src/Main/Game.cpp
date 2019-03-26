@@ -19,13 +19,17 @@ Game::~Game() {
 
 //creates the gameStateMachine, pushes the first state...
 void Game::initGame() {
-	cout << endl << "initializing game..." << endl;
+	//Logging system
+	LogSystem::resetLogFile();
+	LogSystem::Log("initializing...", LogSystem::GAME);
 
 	//Get the singleton instances
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
-	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 	//soundManager_ = new SoundManager(this);
+
+	//Config systems
+	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
 	//!temporary direct creation
 	gsm_ = new GameStateMachine();
@@ -35,7 +39,9 @@ void Game::initGame() {
 	// * tester GO (with testComponent and test names)
 
 	nap_json cfg_ground = {
-		{"name", "ground"},
+		{"id", {
+			{"name", "ground"},
+		}},
 		{"pos", {
 			{"x", 0.0f}, {"y", -15.0f}, {"z", 0.0f}
 		}},
@@ -44,7 +50,9 @@ void Game::initGame() {
 		}}
 	};
 	nap_json cfg_ground_phys = {
-		{"name", "ground_phys"},
+		{"id", {
+			{"name", "ground_phys"},
+		}},
 		{"dynamic", false },
 		{"shape", {
 			{"type", "BOX"},
@@ -52,7 +60,9 @@ void Game::initGame() {
 		}},
 	};
 	nap_json cfg_ground_rend = {
-		{"name", "ground_rend"},
+		{"id", {
+			{"name", "ground_rend"},
+		}},
 		{"scale", {
 			{"x", 10.0f}, {"y", 1.0f}, {"z", 10.0f}
 		}},
@@ -67,7 +77,9 @@ void Game::initGame() {
 	auto ground = new GameObject(cfg_ground, { phys_ground, new RenderComponent(cfg_ground_rend) }, { phys_ground });
 
 	nap_json cfg_cube = {
-		{"name", "cube"},
+		{"id", {
+			{"name", "cube"},
+		}},
 		{"pos", {
 			{"x", 0.0f}, {"y", 5.0f}, {"z", 0.0f}
 		}},
@@ -76,15 +88,19 @@ void Game::initGame() {
 		}}
 	};
 	nap_json cfg_cube_phys = {
-	{"name", "cube_phys"},
-	{"dynamic", true },
-	{"shape", {
+		{"id", {
+			{"name", "cube_phys"},
+		}},
+		{"dynamic", true },
+		{"shape", {
 		{"type", "BOX"},
 		{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
 	}},
 	};
 	nap_json cfg_cube_rend = {
-		{"name", "cube_rend"},
+		{"id", {
+			{"name", "cube_rend"},
+		}},
 		{"namess", ""},
 		{"scale", {
 			{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
@@ -99,13 +115,27 @@ void Game::initGame() {
 	auto phys_cube = new PhysicsComponent(cfg_cube_phys); //physic component is a listner
 	auto cube = new GameObject(cfg_cube, { phys_cube, new RenderComponent(cfg_cube_rend) }, { phys_cube });
 
-	auto tester = new GameObject(nap_json({ {"name", "test_gameObject"} }), { new TestComponent(), new FPSCamera(nap_json({ {"name", "fpsCam"} })) });
-	gsm_->pushState(new GameState({ ground, cube, tester }));
+	//PUSH
+	auto state = new GameState({ ground, cube });
+	gsm_->pushState(state);
+
+	//can be created and not added -> doesnt setup
+	auto tester1 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
+		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
+	);
+
+	//can be added afterwards and setsup
+	auto tester2 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
+		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
+	);
+	state->addGameObject(tester2);
+
+	LogSystem::Log("initialized", LogSystem::GAME);
 }
 
 //destroys the gameStateMachine
 void Game::closeGame() {
-	cout << endl << "closing game..." << endl;
+	LogSystem::Log("closing...", LogSystem::GAME);
 
 	//Close singleton instances
 	PhysicsSystemManager::shutdownSingleton();
@@ -113,18 +143,20 @@ void Game::closeGame() {
 
 	delete gsm_;
 	//delete soundManager_;
+
+	LogSystem::Log("closed", LogSystem::GAME);
 }
 
 ///////////////////////////////////////////////////////////////////
 
 void Game::start() {
-	cout << endl << "start game" << endl;
+	LogSystem::Log("start game", LogSystem::GAME);
 	StartCounter();
 	run();
 }
 
 void Game::stop() {
-	cout << endl << "stop game" << endl;
+	LogSystem::Log("stop game", LogSystem::GAME);
 	exit_ = true;
 }
 
@@ -169,19 +201,25 @@ void Game::run() {
 			stepTime = 0.0f;
 		}
 #endif
-		//STEP PHYSICS
+		// STEP PHYSICS
+		//LogSystem::Log("main physics", LogSystem::GAME);
 		physicsManager->stepPhysics(t);
 		physicsManager->updateNodes();
+
 		//retrieve collisions (add to events queue? or messages?)
 
-		//EVENTS
-		//handleCollisions(start_time); //if no events queue?
+		// EVENTS
+		//LogSystem::Log("main handleEvents", LogSystem::GAME);
 		handleEvents(); //atm sets exit
 
-		//LOGIC
+		//handleCollisions(start_time); //if no events queue?
+
+		// LOGIC
+		//LogSystem::Log("main update", LogSystem::GAME);
 		gsm_->update(t); //and its sub-parts like lateUpdate
 
-		//RENDER OGRE
+		// RENDER OGRE
+		//LogSystem::Log("main render", LogSystem::GAME);
 		renderManager->renderFrame();
 	}
 
@@ -190,7 +228,6 @@ void Game::run() {
 
 //handle main events (Ex. quit) and call the gameStateMachine machine update
 void Game::handleEvents() {
-
 	SDL_Event evt;
 	while (SDL_PollEvent(&evt)) {
 		bool handled = false; //stop global propagation

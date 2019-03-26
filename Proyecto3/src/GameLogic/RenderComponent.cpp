@@ -2,18 +2,19 @@
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
 
-void RenderComponent::setUp(nap_json const & cfg) {
+void RenderComponent::setUp() {
+	if (isInited()) return;
+	setInited();
+
 	//get the ogrePair with the node and the correct entity built
-	auto pair = getOgrePair(cfg["shape"]);
+	auto pair = getOgrePair(cfg_["shape"]);
 	node = pair.first;
 	entity = pair.second;
 
 	//other properties
-	node->setScale(nap_vector3(cfg["scale"]).ogre());
-	entity->setMaterialName(cfg["material"]);
+	node->setScale(nap_vector3(cfg_["scale"]).ogre());
+	entity->setMaterialName(cfg_["material"]);
 }
-
-void RenderComponent::setDown() {}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -31,9 +32,6 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-bool RenderComponent::handleEvents(GameObject * o, const SDL_Event & evt) { return false; }
-void RenderComponent::update(GameObject * o, float time) {}
 
 void RenderComponent::late_update(GameObject * o, float time) {
 	if (o->getUpToDate_rend()) return;

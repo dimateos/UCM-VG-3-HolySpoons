@@ -7,8 +7,9 @@
 class FPSCamera : public Component
 {
 public:
-	inline FPSCamera(nap_json const & cfg) : Component(cfg) { this->setUp(cfg); };
-	inline virtual ~FPSCamera() { setDown(); };
+	inline FPSCamera(nap_json const & cfg) : Component(cfg) {};
+	inline virtual ~FPSCamera() {};
+	virtual void setUp();
 
 	//mouse move + rightClick and screen resize
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
@@ -18,9 +19,6 @@ public:
 	virtual void loadParameters(std::vector<string>parameters);
 
 protected:
-	virtual void setUp(nap_json const & cfg);
-	virtual void setDown();
-
 	void toggleZoom();
 	float zoomed = 2500.0; //amount of zoom
 
