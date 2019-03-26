@@ -2,75 +2,58 @@
 #define JSON_READER_H_
 
 #include <string>
-#include <vector>
+#include <list>
+#include <map>
 using namespace std;
+
+#include "json.hpp"
+using nap_json = nlohmann::json;
 
 //-----------------------------READING JSON INFO-----------------------------------
 
-// CompType = vector of the name of each component
-// and another vector with the paramaters of that component
-struct CompStruct {
-	string compName;
-	std::vector<string> compParameters;
-};
-using CompType = std::vector<CompStruct>;
-
-// MessagesType = vector with the name of the Emitter
-// and the name of the Listener that will exchange messages
-struct MessagesStruct {
-	string emitterName, listenerName;
-};
-using MessagesType = std::vector<MessagesStruct>;
-
-// GOType = cointains the name of the GameObject and
-// three vectors: one with its constructor parameters,
-// one with the components of the GameObject and another one
-// with the components that will be Emitters and Listeners
+// GOType = list of Gameobjects configurations (name, pos, etc) and comps cfgs
 struct GOStruct {
-	string GOName;
-	std::vector<string> GOParameters;
-	CompType components;
-	MessagesType compMessages;
+	nap_json go_cfg;
+	nap_json components_cfg;
 };
-using GOType = GOStruct;
+using GOType = std::list<GOStruct>;
 
-// Scene_type = cointains a vector with the GameObjects of the scene
-// and the GameObjects that will be Emitters and Listeners
+// SceneType = scene's name and GOType
 struct SceneStruct {
-	std::vector<GOType> gameObjects;
-	MessagesType GOMessages;
+	string SceneName;
+	GOType gameObjects;
 };
-using Scene_Type = SceneStruct;
 
 //---------------------------------------------------------------------------------
 
 // this class reads json files (singleton)
 class JsonReader
 {
-private:
-	static JsonReader* instance_; //singleton pattern
-
-	// routes to several files that will be read
-	// every new level file must fit in "routeLevel"
-	string routeLevel = "..\\exes\\Assets\\Levels\\";
-	string routePrefabs = "..\\exes\\Assets\\Levels\\Prefabs.json";
-
-	Scene_Type scene; // all the information of the scene (GameObjects, etc.)
-
-	// private methods
-	JsonReader();
-	~JsonReader();
-
-	// auxiliar methods
-	void ReadPrefab(string name, GOType& go);
-	void ReadMap(string level);
-	void setTilePosition(int r, int c, int i, int j, GOType& go);
-	CompType::iterator findComponent(CompType& components, string name);
-
 public:
 	static JsonReader* getSingleton();   // you can obtain/shutdown the instance of the singleton
 	static void shutdownSingleton();
-	Scene_Type* ReadLevel(string level); // reads the file called "level" and return the scene information
+
+	SceneStruct ReadLevel(string level); // reads the file called "level" and return the scene information
+
+
+private:
+	static JsonReader* instance_; //singleton pattern
+	JsonReader();
+	~JsonReader();
+
+	// levels files must be in "routeLevel" and prefabs in "routePrefabs"
+	string routeLevel = ".\\Assets\\Levels\\";
+	string routePrefabs = ".\\Assets\\Levels\\Prefabs\\";
+
+	// prefab preloading
+	void preloadPrefabs();
+	std::map<string, GOStruct*> prefabs;
+
+	// auxiliar methods
+	GOStruct* readGO(nap_json const & cfg);
+
+	void ReadMap(string level);
+	void setTilePosition(int r, int c, int i, int j, GOType& go);
 };
 
 #endif /* JSON_READER_H_ */

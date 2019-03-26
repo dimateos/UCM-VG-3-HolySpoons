@@ -28,92 +28,21 @@ void Game::initGame() {
 	renderManager = RenderSystemManager::getSingleton();
 	//soundManager_ = new SoundManager(this);
 
+	jsonReader_ = JsonReader::getSingleton();
+	gsm_ = new GameStateMachine(); //!temporary direct creation
+
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
-	//!temporary direct creation
-	gsm_ = new GameStateMachine();
-
 	//proof of concept:
-	// * two GO cfg by json (with render + physx cfg by json)
-	// * tester GO (with testComponent and test names)
+	// * reading the scene from json with prefabs and all
+	// * also manually adding the tester GO
 
-	nap_json cfg_ground = {
-		{"id", {
-			{"name", "ground"},
-		}},
-		{"pos", {
-			{"x", 0.0f}, {"y", -15.0f}, {"z", 0.0f}
-		}},
-		{"ori", {
-			{"w", 1.0f}, {"x", 0.0f}, {"y", 0.0f}, {"z", 0.0f}
-		}}
-	};
-	nap_json cfg_ground_phys = {
-		{"id", {
-			{"name", "ground_phys"},
-		}},
-		{"dynamic", false },
-		{"shape", {
-			{"type", "BOX"},
-			{"x", 10.0f}, {"y", 1.0f}, {"z", 10.0f}
-		}},
-	};
-	nap_json cfg_ground_rend = {
-		{"id", {
-			{"name", "ground_rend"},
-		}},
-		{"scale", {
-			{"x", 10.0f}, {"y", 1.0f}, {"z", 10.0f}
-		}},
-		{"shape", {
-			{"name", "ground"},
-			{"type", "BOX"},
-			{"mesh", "cube.mesh"}
-		}},
-		{"material", "DebugMaterial2"}
-	};
-	auto phys_ground = new PhysicsComponent(cfg_ground_phys); //physic component is a listner
-	auto ground = new GameObject(cfg_ground, { phys_ground, new RenderComponent(cfg_ground_rend) }, { phys_ground });
+	auto scene = jsonReader_->ReadLevel("_TEST_LEVEL_");
 
-	nap_json cfg_cube = {
-		{"id", {
-			{"name", "cube"},
-		}},
-		{"pos", {
-			{"x", 0.0f}, {"y", 5.0f}, {"z", 0.0f}
-		}},
-		{"ori", {
-			{"w", 1.0f}, {"x", 0.0f}, {"y", 0.0f}, {"z", 0.0f}
-		}}
-	};
-	nap_json cfg_cube_phys = {
-		{"id", {
-			{"name", "cube_phys"},
-		}},
-		{"dynamic", true },
-		{"shape", {
-		{"type", "BOX"},
-		{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
-	}},
-	};
-	nap_json cfg_cube_rend = {
-		{"id", {
-			{"name", "cube_rend"},
-		}},
-		{"namess", ""},
-		{"scale", {
-			{"x", 1.0f}, {"y", 1.0f}, {"z", 1.0f}
-		}},
-		{"shape", {
-			{"name", "cube"},
-			{"type", "BOX"},
-			{"mesh", "cube.mesh"}
-		}},
-		{"material", "DebugMaterial2"}
-	};
-	auto phys_cube = new PhysicsComponent(cfg_cube_phys); //physic component is a listner
-	auto cube = new GameObject(cfg_cube, { phys_cube, new RenderComponent(cfg_cube_rend) }, { phys_cube });
+
+
+
 
 	//PUSH
 	auto state = new GameState({ ground, cube });
@@ -128,7 +57,7 @@ void Game::initGame() {
 	auto tester2 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
 		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
 	);
-	state->addGameObject(tester2);
+	//state->addGameObject(tester2);
 
 	LogSystem::Log("initialized", LogSystem::GAME);
 }

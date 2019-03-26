@@ -3,8 +3,10 @@
 
 #include "RenderSystemManager.h"
 #include "PhysicsSystemManager.h"
-#include "GameStateMachine.h"
 //#include "SoundManager.h"
+
+#include "JsonReader.h"
+#include "GameStateMachine.h"
 
 class Game {
 public:
@@ -40,6 +42,8 @@ private:
 
 	PhysicsSystemManager* physicsManager;
 	RenderSystemManager* renderManager;
-	GameStateMachine* gsm_; //controls the states
 	//SoundManager* soundManager_; //controls the sound
+
+	JsonReader* jsonReader_;
+	GameStateMachine* gsm_; //controls the states
 };

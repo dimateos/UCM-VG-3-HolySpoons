@@ -1,0 +1,67 @@
+{
+    "stateID_": "TestLevel",
+    "GameObjects": [
+        {
+            "EXAMPLE0": "OBJETO POR PREFAB",
+            "id": {
+				"type": "pref_ground",
+                "EXAMPLE1": "SE PUEDE PONER NOMBRE Y SUBSTITUIR EL DEF EN PREFAB ETC",
+                "name": "ground"
+            },
+            "EXAMPLE2": "A CONTINUEACION TODO LO QUE VARIA O SE AÑADE",
+            "pos": { "x": 0.0, "y": -15.0, "z": 0.0 },
+            "Components": {
+				"ground_phys": {
+					"EXAMPLE3": "SI EN EL PREFAB EXISTE UN COMP CON EL MISMO NOMBRE",
+					"EXAMPLE4": "SE APLICARAN LOS CAMBIOS A ESTE",
+					"id": {
+						"group": "test_comps"
+                    },
+                    "Shape": {
+                        "type": "BOX", "scale": { "x": 20.0, "y": 1.0, "z": 20.0 }
+                    }
+                },
+                "ground_rend": {
+					"id": {
+                        "EXAMPLE5": "NO HACE FALTA NI PONER ID SI NO CAMBIAS NADA"
+                    },
+                    "scale": { "x": 20.0, "y": 1.0, "z": 20.0 }
+                }
+            },
+            "EXAMPLE6": "PUEDES AÑADIR MAS COMPONENTES AL OBJETO COMPS",
+            "EXAMPLE7": "EL ORDEN DE NINGUN OBJETO IMPORTA PERO SI EL NIVEL/LISTA"
+        },
+        {
+            "EXAMPLE8": "OBJETO CONFIGURADO ENTERO AQUI",
+            "id": {
+                "name": "cube",
+                "EXAMPLE9": "NO TIENE TYPE PORQUE NO ES PREFAB",
+                "group": "test_gameObjects"
+            },
+            "pos": { "x": 0.0, "y": 5.0, "z": 0.0 },
+            "Components": {
+                "cube_phys": {
+                    "id": {
+                        "type": "Phys"
+                    },
+                    "dynamic": "true",
+                    "Shape": {
+                        "type": "BOX", "scale": { "x": 1.0, "y": 1.0, "z": 1.0 }
+                    }
+                },
+                "cube_rend": {
+                    "id": {
+                        "type": "Render"
+                    },
+                    "scale": { "x": 1.0, "y": 1.0, "z": 1.0 },
+                    "Shape": {
+                        "entity_name": "cube",
+                        "type": "BOX",
+                        "mesh": "cube.mesh",
+                        "material": "DebugMaterial2"
+                    }
+                }
+            }
+        }
+    ]
+}

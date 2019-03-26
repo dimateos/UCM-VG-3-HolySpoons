@@ -4,9 +4,8 @@
 
 #include "PhysicsSystemManager.h"
 
-#include "Listener.h"
 #include "Component.h"
-class PhysicsComponent : public Component, public Listener
+class PhysicsComponent : public Component
 {
 public:
 	inline PhysicsComponent(nap_json const & cfg) : Component(cfg) { };
@@ -18,7 +17,7 @@ public:
 	nap_transform* getUserData();
 
 	virtual void receive(Message* msg);
-	virtual void late_update(GameObject* ent, float time);
+	virtual void late_update(GameObject* o, float time);
 
 protected:
 	virtual void setDown();

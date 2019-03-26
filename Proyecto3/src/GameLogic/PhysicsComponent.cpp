@@ -50,8 +50,6 @@ void PhysicsComponent::receive(Message * msg) {
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
 void PhysicsComponent::late_update(GameObject * o, float time) {
 	if (o->getUpToDate_phys()) return;
 

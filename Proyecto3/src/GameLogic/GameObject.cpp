@@ -2,13 +2,10 @@
 #include "Component.h"
 
 GameObject::GameObject(nap_json const & cfg)
-	: Emitter(), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {
+	: Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {
 }
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
-	: Emitter(), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
-}
-GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps, std::list<Listener*> lis)
-	: Emitter(lis), Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
+	: Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
 }
 
 GameObject::~GameObject() {
@@ -31,7 +28,7 @@ void GameObject::setUp() {
 	if (cfg_.find("ori") != cfg_.end()) setOrientation(nap_quat(cfg_["ori"]));
 
 	//send user ptr to physics component
-	send(&Msg_PX_userPtr(getTransPtr()));
+	getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

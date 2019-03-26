@@ -9,7 +9,7 @@ class Listener {
 public:
 	Listener();
 	virtual ~Listener();
-	virtual void receive(Message* msg) = 0;
+	virtual void receive(Message* msg) {};
 };
 
 #endif /* LISTENER_H_ */

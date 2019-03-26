@@ -1,0 +1,38 @@
+{
+"Prefabs" :
+[
+    {
+        "id": {
+            "name": "pref_ground",
+            "type": "pref_ground",
+            "group": "prefabs"
+        },
+        "pos": { "x": 0.0, "y": -10.0, "z": 0.0 },
+        "Components": {
+            "ground_phys": {
+                "id": {
+					"type": "Phys",
+					"group": "test_comps"
+                },
+                "dynamic": "false",
+                "Shape": {
+                    "type": "BOX", "scale": { "x": 10.0, "y": 1.0, "z": 10.0 }
+                }
+            },
+            "ground_rend": {
+                "id": {
+                    "type": "Render",
+					"group": "test_comps"
+				},
+                "scale": { "x": 10.0, "y": 1.0, "z": 10.0 },
+                "Shape": {
+                    "entity_name": "ground",
+                    "type": "BOX",
+                    "mesh": "cube.mesh",
+                    "material": "DebugMaterial2"
+                }
+            }
+        }
+    }
+]
+}

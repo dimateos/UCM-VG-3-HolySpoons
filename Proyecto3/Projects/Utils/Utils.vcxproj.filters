@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\src\Utils\Transforms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\dirent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp">

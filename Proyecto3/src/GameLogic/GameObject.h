@@ -8,19 +8,17 @@
 using namespace std;
 
 #include "Transforms.h"
-#include "Emitter.h"
 #include "Activable.h"
 #include "Identifiable.h"
 #include "Initiable.h"
 class Component;
 
 // this class accepts components (empty container waiting for functionality)
-class GameObject : public Emitter, public Activable, public Identifiable, public Initiable
+class GameObject : public Activable, public Identifiable, public Initiable
 {
 public:
 	GameObject(nap_json const & cfg);
 	GameObject(nap_json const & cfg, std::list<Component*>);
-	GameObject(nap_json const & cfg, std::list<Component*>, std::list<Listener*>);
 	virtual ~GameObject();
 
 	//setup on gamestate push
