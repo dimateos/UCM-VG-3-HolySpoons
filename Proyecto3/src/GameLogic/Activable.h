@@ -6,16 +6,16 @@
 class Activable
 {
 public:
-	inline Activable() : active(true) {};
-	inline Activable(bool act): active(act) {};
-	inline ~Activable() {};
+	inline Activable() : active_(true) {};
+	inline Activable(bool act): active_(act) {};
+	inline virtual ~Activable() {};
 
-	inline bool isActive() { return active; }
-	inline bool toggleActive() { active = !active; }
-	inline void setActive(bool active_) { active = active_; }
+	inline bool isActive() { return active_; }
+	inline bool toggleActive() { active_ = !active_; }
+	inline void setActive(bool active) { active_ = active; }
 
-private:
-	bool active;
+protected:
+	bool active_;
 };
 
 #endif /* ACTIVABLE_H_ */

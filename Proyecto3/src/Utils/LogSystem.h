@@ -7,10 +7,6 @@ using namespace std;
 // System that logs messages in a .log file and in the console
 class LogSystem {
 public:
-	//config
-	static bool log_dev, log_cmd, log_file;
-	static string log_route;
-
 	enum logType //set prefix of msg
 	{
 		NOTYPE, DEV, CFG, JSON, PHYS, REND, GAME
@@ -25,6 +21,11 @@ public:
 
 	static void cls(size_t n = 20);	//print n empty lines
 	static string getTime();		//get string with system time
+
+private:
+	//config
+	static bool log_dev, log_cmd, log_file;
+	static string log_route;
 };
 
 #endif /* LOG_SYSTEM_H_ */
