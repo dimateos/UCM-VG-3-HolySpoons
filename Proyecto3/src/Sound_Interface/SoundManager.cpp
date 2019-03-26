@@ -1,8 +1,7 @@
 #include "SoundManager.h"
+#include <irrKlang.h>
 
 using namespace irrklang;
-
-#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 SoundManager* SoundManager::instance_ = nullptr;
 
@@ -19,6 +18,16 @@ void SoundManager::shutdownSingleton() {
 
 	delete instance_;
 	instance_ = nullptr;
+}
+
+irrklang::ISound* SoundManager::play3DSound(const char * soundFileName, float x, float y, float z, bool playLooped, bool startPaused, bool track)
+{
+	return engine->play3D((soundsRoute + soundFileName).c_str(), irrklang::vec3df(x,y,z), playLooped, startPaused, track);
+}
+
+irrklang::ISound * SoundManager::play2DSound(const char * soundFileName, bool playLooped, bool startPaused, bool track)
+{
+	return engine->play2D((soundsRoute + soundFileName).c_str(), playLooped, startPaused, track);
 }
 
 irrklang::ISoundEngine * SoundManager::getEngine()
