@@ -1,4 +1,5 @@
 #include "PhysicsComponent.h"
+#include "LogSystem.h"
 
 void PhysicsComponent::setUp() {
 	if (isInited()) return;
@@ -11,17 +12,19 @@ void PhysicsComponent::setUp() {
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
 	dynamic = cfg_["dynamic"];
 	if (dynamic) {
-		rigidBodyD = physicsManager->createDynamicBody(geo, PxTransform());
+		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform());
 		//mass and stuff
 	}
 	else { //static
-		rigidBodyS = physicsManager->createStaticBody(geo, PxTransform());
+		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform());
 	}
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
+
+	updateUserData();
 }
 
 void PhysicsComponent::setDown() {
@@ -30,11 +33,17 @@ void PhysicsComponent::setDown() {
 }
 
 void PhysicsComponent::setUserData(nap_transform* trans_) {
-	getActor()->userData = trans_;
+	user_trans_ = trans_;
+	if (inited_) updateUserData();
 }
 nap_transform * PhysicsComponent::getUserData() {
-	return static_cast<nap_transform*> (getActor()->userData);
+	return user_trans_;
 }
+void PhysicsComponent::updateUserData() {
+	getActor()->userData = user_trans_;
+	getActor()->setGlobalPose(PxTransform(user_trans_->p_.px(), user_trans_->q_.px()));
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -72,7 +81,7 @@ PxGeometry* PhysicsComponent::getShape(nap_json shape) {
 	//switch the type to construct the correct shape
 	string type = shape["type"];
 	if (type == "BOX") {
-		geo = new PxBoxGeometry(nap_vector3(shape).px() / 2); //half extents
+		geo = new PxBoxGeometry(nap_vector3(shape["scale"]).px() / 2); //half extents
 	}
 
 	return geo;

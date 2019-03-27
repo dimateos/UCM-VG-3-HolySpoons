@@ -20,15 +20,15 @@ void GameObject::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	//init components
-	for (auto comp : components_) if (comp != nullptr) comp->setUp();
-
 	//set transform
 	if (cfg_.find("pos") != cfg_.end()) setPosition(nap_vector3(cfg_["pos"]));
 	if (cfg_.find("ori") != cfg_.end()) setOrientation(nap_quat(cfg_["ori"]));
 
-	//send user ptr to physics component
-	getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
+	//init components
+	for (auto comp : components_) if (comp != nullptr) comp->setUp();
+
+	//send user ptr to physics component (done by component factory)
+	//getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,7 @@ void Game::initGame() {
 
 	//proof of concept:
 	// * reading the scene from json with prefabs and all
-	// * also manually adding the tester GO
+	// * also manually adding the previous tester GO
 
 	gsm_ = new GameStateMachine(); //!temporary direct creation
 
@@ -49,7 +49,8 @@ void Game::initGame() {
 	auto tester2 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
 		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
 	);
-	//level->addGameObject(tester2);
+	//watch out you need a FPS cam to have a properly placed camera (to look at the bodies etc)
+	level->addGameObject(tester2);
 
 	LogSystem::Log("initialized", LogSystem::GAME);
 }

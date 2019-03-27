@@ -1,4 +1,5 @@
 #include "ComponentFactory.h"
+#include "LogSystem.h"
 
 // parses all the comps in nap_json * component_cfg
 std::list<Component*> ComponentFactory::ParseComponents(GameObject * o, nap_json * components_cfg) {
@@ -29,5 +30,6 @@ Component * ComponentFactory::ParseComponent(GameObject * o, nap_json * componen
 	if (type == "Phys") return new PhysicsComponent(*component_cfg, o->getTransPtr()); //example of one comp using the go reference
 	else if (type == "Render") return new RenderComponent(*component_cfg);
 
+	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;
 }

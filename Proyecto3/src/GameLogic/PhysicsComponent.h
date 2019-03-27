@@ -8,12 +8,13 @@
 class PhysicsComponent : public Component
 {
 public:
-	inline PhysicsComponent(nap_json const & cfg) : Component(cfg) { };
+	inline PhysicsComponent(nap_json const & cfg) : Component(cfg) {};
+	inline PhysicsComponent(nap_json const & cfg, nap_transform * trans) : Component(cfg) { setUserData(trans); };
 	inline virtual ~PhysicsComponent() { setDown(); };
 	virtual void setUp();
 
 	//physx userData operations
-	void setUserData(nap_transform * trans_);
+	void setUserData(nap_transform * trans);
 	nap_transform* getUserData();
 
 	virtual void receive(Message* msg);
@@ -26,12 +27,15 @@ protected:
 	PxGeometry * getShape(nap_json shape);
 	//static const map<std::string, PxGeometryType::Enum> geoTypes;
 
+	void updateUserData();
+	nap_transform * user_trans_;
+
 	//RigidBody config
-	PxRigidDynamic* rigidBodyD = nullptr;
-	PxRigidStatic* rigidBodyS = nullptr;
+	PxRigidDynamic* rigidBodyD_ = nullptr;
+	PxRigidStatic* rigidBodyS_ = nullptr;
 	bool dynamic = true;
 	inline PxRigidActor* getActor() const {
-		if (dynamic) return rigidBodyD; else return rigidBodyS;
+		if (dynamic) return rigidBodyD_; else return rigidBodyS_;
 	};
 };
 
