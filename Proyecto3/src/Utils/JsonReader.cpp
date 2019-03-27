@@ -95,6 +95,28 @@ GOStruct* JsonReader::readGO(nap_json const & cfg) {
 	return go;
 }
 
+//update all nested json objects
+void JsonReader::deepUpdateJson(nap_json & j, nap_json const & updater) {
+	//json.update(updater); //not recursive!!!!!!
+	nap_json::json_pointer ptr;
+	deepUpdateJson_rec(j, updater, ptr); //recursive part uses a json pointer
+}
+void JsonReader::deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr) {
+	//iterate objects layer by layer
+	for (auto it = updater.begin(); it != updater.end(); ++it) {
+		if (it->is_structured()) {
+			ptr.push_back(it.key());			//keep track of the pointer
+			deepUpdateJson_rec(j, *it, ptr);	//nested object
+			ptr.pop_back();						//back from nested
+		}
+		else {
+			ptr.push_back(it.key());	//add key to ptr
+			j[ptr] = it.value();		//update the value of j
+			ptr.pop_back();				//back ptr from the key
+		}
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 // returns a Scene_type with all the information read
@@ -147,8 +169,9 @@ SceneStruct JsonReader::ReadLevel(string level) {
 				if (prefabs.find(type) != prefabs.end()) {
 					//update all the prefab values with raw GO
 					GOStruct prefab_go = *prefabs[type];
-					prefab_go.go_cfg.update(go.go_cfg);
-					prefab_go.components_cfg.update(go.components_cfg);
+					//using recursive deep update
+					deepUpdateJson(prefab_go.go_cfg, go.go_cfg);
+					deepUpdateJson(prefab_go.components_cfg, go.components_cfg);
 					go = prefab_go;
 				}
 				else {

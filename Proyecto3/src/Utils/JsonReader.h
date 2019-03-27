@@ -51,6 +51,8 @@ private:
 
 	// auxiliar methods
 	GOStruct* readGO(nap_json const & cfg);
+	void deepUpdateJson(nap_json & j, nap_json const & updater);
+	void deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr);
 
 	void ReadMap(string level);
 	void setTilePosition(int r, int c, int i, int j, GOType& go);
