@@ -46,6 +46,9 @@
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\OverlayComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Initiable.h">
       <Filter>_GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\OverlayComponent.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

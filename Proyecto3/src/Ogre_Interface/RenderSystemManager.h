@@ -1,44 +1,40 @@
 #ifndef RENDERSYSTEMMANAGER_H_
 #define RENDERSYSTEMMANAGER_H_
 
-#include <OgreFileSystemLayer.h>
-#include <OgreTextureManager.h>
 #include <OgreFrameListener.h>
-#include <OgreBuildSettings.h>
-#include <OgreSceneManager.h>
-#include <OgreRenderSystem.h>
-#include "OgreRenderWindow.h"
-#include <OgreConfigFile.h>
-#include <OgreSceneNode.h>
-#include "OgreViewport.h"
-#include <OgreCamera.h>
-#include <OgreEntity.h>
-#include <OgreRoot.h>
-#include <SDL.h>
+#include <string>
 
 //#include <LogSystem.h>
+typedef struct SDL_Window SDL_Window;
+typedef union SDL_Event;
+
 namespace Ogre {
 	class OverlaySystem;
-}
-using namespace Ogre;
-//RenderSystemManager
+	class Root;
+	class RenderWindow;
+	class SceneManager;
+	class Camera;
+	class RenderSystem;
+	class SceneNode;
+	class Light;
+	class Viewport;
+};
 
-class RenderSystemManager : public FrameListener
+class RenderSystemManager : public Ogre::FrameListener
 {
 private:
 	static RenderSystemManager* instance_; //singleton pattern
-
 	//Window and scene management
-	Root* mRoot = nullptr;
-	RenderWindow* mWindow = nullptr;
+	Ogre::Root* mRoot = nullptr;
+	Ogre::RenderWindow* mWindow = nullptr;
 	SDL_Window* SDL_win = nullptr;
-	RenderSystem* rs = nullptr;
-	SceneManager* mSceneMgr = nullptr;
-	Camera* mCamera = nullptr;
-	SceneNode* mCamNode = nullptr;
-	SceneNode* mLightNode = nullptr;
+	Ogre::RenderSystem* rs = nullptr;
+	Ogre::SceneManager* mSceneMgr = nullptr;
+	Ogre::Camera* mCamera = nullptr;
+	Ogre::SceneNode* mCamNode = nullptr;
+	Ogre::SceneNode* mLightNode = nullptr;
 	Ogre::Light* mainLight = nullptr;
-	Viewport* vp = nullptr;
+	Ogre::Viewport* vp = nullptr;
 	Ogre::OverlaySystem * overlaySystem = nullptr;
 
 	std::string projectName = "Holy Spoons";
@@ -62,7 +58,7 @@ public:
 	*/
 	static RenderSystemManager* getSingleton();
 
-	inline void renderFrame() { mRoot->renderOneFrame(); };
+	void renderFrame();
 
 	/*
 	*process all window events since last call
@@ -91,16 +87,10 @@ public:
 	virtual void windowClosed(Ogre::RenderWindow* rw) {};
 	virtual void windowFocusChange(Ogre::RenderWindow* rw) {};
 
-	inline SceneManager* getSceneManager() const { return mSceneMgr; };
+	inline Ogre::SceneManager* getSceneManager() const { return mSceneMgr; };
 
-	inline  Root* getRoot()  { return mRoot; };
+	inline  Ogre::Root* getRoot()  { return mRoot; };
 };
 
 #endif
-
-/*
-*TODO:
-	*Profiler
-	Interfaz de verdad --> otra clase con acceso al scene manager
-*/
 

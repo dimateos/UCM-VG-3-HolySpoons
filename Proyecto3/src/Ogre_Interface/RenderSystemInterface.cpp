@@ -6,8 +6,8 @@
 #include <OgreLog.h>
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayManager.h>
-#include <OgreOverlayContainer.h>
-#include <OgreOverlay.h>
+//#include <OgreOverlayContainer.h>
+//#include <OgreOverlay.h>
 #include <OgreFontManager.h>
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
@@ -18,8 +18,6 @@
 #include <OgreRoot.h>
 
 using namespace Ogre;
-
-
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
@@ -41,28 +39,10 @@ RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(m
 {
 	camera = getSceneManager()->getCamera("MainCam");
 	overlayManager = OverlayManager::getSingletonPtr();
-
-	// Create a panel
-	/*panel = static_cast<OverlayContainer*>(
-		overlayManager->createOverlayElement("Panel", panelName));
-	panel->setMetricsMode(Ogre::GMM_PIXELS);
-	panel->setPosition(10, 10);
-	panel->setDimensions(100, 100);
-	// Create an overlay, and add the panel
-	overlay = overlayManager->create(overlayName);
-	overlay->add2D(panel);*/
-
-	overlay = Ogre::OverlayManager::getSingleton().getByName("HUD");
-	panel = overlay->getChild("PanelContainer");
-	// Show the overlay
-	overlay->show();
 }
 
 RenderSystemInterface::~RenderSystemInterface()
 {
-	//overlayManager->destroyOverlayElement(szElement); SI NOS DEJAMOS BASURA, PROBABLEMENTE SEA POR AQUI
-	overlayManager->destroyOverlayElement(panelName);
-	overlayManager->destroy(overlayName);
 }
 
 void RenderSystemInterface::closeInterface()
@@ -199,7 +179,8 @@ TextAreaOverlayElement * RenderSystemInterface::createText(std::string nodeName,
 
 	textElement->setPosition(x, y);
 
-	panel->addChild(textElement);
+	//panel->addChild(textElement);
+	//le tienes que pasar un padre o el nombre de un padre maybe?
 
 	return textElement;
 }
