@@ -17,7 +17,6 @@ class Component;
 class GameObject : public Activable, public Identifiable, public Initiable
 {
 public:
-	GameObject() {};
 	GameObject(nap_json const & cfg);
 	GameObject(nap_json const & cfg, std::list<Component*>);
 	virtual ~GameObject();

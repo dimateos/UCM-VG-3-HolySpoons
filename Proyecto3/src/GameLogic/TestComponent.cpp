@@ -32,11 +32,11 @@ void TestComponent::setUp() {
 	rsi->setMaterial("planoo", "DebugMaterial");
 
 	//ninja
-	Ogre::SceneNode* nin = rsi->createOgreEntity("Ninja", "monoDebug.mesh").first;
+	Ogre::SceneNode* nin = rsi->createOgreEntity("Mono", "monoDebug.mesh").first;
 	nin->setScale(500, 500, 500);
-	nin->setPosition(0, -1000, 0);
+	nin->setPosition(750, -1000, -250);
 	nin->pitch(Ogre::Radian(-3.14 / 2));
-	rsi->setMaterial("Ninja", "BasicMaterial");
+	rsi->setMaterial("Mono", "BasicMaterial");
 }
 
 ///////////////////////////////////////////////////////////////////////////////

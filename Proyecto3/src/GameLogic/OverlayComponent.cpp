@@ -3,10 +3,11 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlay.h>
 
-void OverlayComponent::setUp(nap_json const & cfg)
+void OverlayComponent::setUp()
 {
-	overlay = Ogre::OverlayManager::getSingleton().getByName(cfg["overlay_name"]);
-	panel = overlay->getChild(cfg["panel_container"]);
+	overlay = Ogre::OverlayManager::getSingleton().getByName(cfg_["overlay_name"]);
+	panel = overlay->getChild(cfg_["panel_container"]);
+
 	// Show the overlay
 	showOverlay();
 }

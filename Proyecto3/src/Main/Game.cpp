@@ -41,24 +41,6 @@ void Game::initGame() {
 	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(level); //you can push it already and add more things later
 
-	//OverlayTest
-	nap_json cfg_overlay_test_rend = {
-		{ "name", "overlay_test_rend" },
-		{ "namess", "" },
-		{"overlay_name", "TEST_HUD"},
-		{"panel_container", "TEST_HUD_PanelContainer"}
-	};
-
-	nap_json cfg_crosshair_hud_rend = {
-		{ "name", "crosshair_hud_rend" },
-		{ "namess", "" },
-		{ "overlay_name", "CROSSHAIR_HUD" },
-		{ "panel_container", "CROSSHAIR_HUD_PanelContainer" }
-	};
-
-	auto phys_cube = new PhysicsComponent(cfg_cube_phys); //physic component is a listner
-	auto cube = new GameObject(cfg_cube, { phys_cube, new RenderComponent(cfg_cube_rend) }, { phys_cube });
-
 	//can be created and not added -> doesnt setup
 	auto tester1 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
 		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
@@ -71,14 +53,23 @@ void Game::initGame() {
 	//watch out you need a FPS cam to have a properly placed camera (to look at the bodies etc)
 	level->addGameObject(tester2);
 
+	//OverlayTest
+	nap_json cfg_overlay_test_rend = {
+		{ "id", { {"name", "overlay_test_rend"}, } },
+		{"overlay_name", "TEST_HUD"},
+		{"panel_container", "TEST_HUD_PanelContainer"}
+	};
+	nap_json cfg_crosshair_hud_rend = {
+		{ "id", { {"name", "crosshair_hud_rend"}, } },
+		{ "overlay_name", "CROSSHAIR_HUD" },
+		{ "panel_container", "CROSSHAIR_HUD_PanelContainer" }
+	};
+
+	//you can add components to already pushed GO and they setup
+	tester2->addComponent(new OverlayComponent(cfg_crosshair_hud_rend));
+	tester2->addComponent(new OverlayComponent(cfg_overlay_test_rend));
+
 	LogSystem::Log("initialized", LogSystem::GAME);
-	
-	GameObject* tester = new GameObject(nap_json({ {"name", "test_gameObject"} }), { new TestComponent(),
-		new FPSCamera(nap_json({ {"name", "fpsCam"} })), new OverlayComponent(cfg_crosshair_hud_rend) });
-
-	GameObject* testOverlay = new GameObject(nap_json({ "name", "test_overlay" }), {new OverlayComponent(cfg_overlay_test_rend)});
-
-	gsm_->pushState(new GameState({ ground, cube, tester }));
 }
 
 //destroys the gameStateMachine
