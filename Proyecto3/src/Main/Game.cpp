@@ -32,14 +32,15 @@ void Game::initGame() {
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
+	//Atm everything is in the jsons
+	gsm_ = new GameStateMachine(); //!temporary direct creation
+	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
+	gsm_->pushState(level); //you can push it already and add more things later
+
+	/*
 	//proof of concept:
 	// * reading the scene from json with prefabs and all
 	// * also manually adding the previous tester GO
-
-	gsm_ = new GameStateMachine(); //!temporary direct creation
-
-	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
-	gsm_->pushState(level); //you can push it already and add more things later
 
 	//can be created and not added -> doesnt setup
 	auto tester1 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
@@ -68,6 +69,7 @@ void Game::initGame() {
 	//you can add components to already pushed GO and they setup
 	tester2->addComponent(new OverlayComponent(cfg_crosshair_hud_rend));
 	tester2->addComponent(new OverlayComponent(cfg_overlay_test_rend));
+	*/
 
 	LogSystem::Log("initialized", LogSystem::GAME);
 }

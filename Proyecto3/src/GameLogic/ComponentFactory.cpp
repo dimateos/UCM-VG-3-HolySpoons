@@ -19,6 +19,9 @@ std::list<Component*> ComponentFactory::ParseComponents(GameObject * o, nap_json
 //all Components
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
+#include "TestComponent.h"
+#include "OverlayComponent.h"
+#include "FPSCamera.h"
 
 // it receives the nap_json * component_cfg with its name and cfg.
 // When you add a new component to the factory, you parse the unique type within cfg["id"]["type"]
@@ -29,6 +32,9 @@ Component * ComponentFactory::ParseComponent(GameObject * o, nap_json * componen
 	//now the switch
 	if (type == "Phys") return new PhysicsComponent(*component_cfg, o->getTransPtr()); //example of one comp using the go reference
 	else if (type == "Render") return new RenderComponent(*component_cfg);
+	else if (type == "Test") return new TestComponent(*component_cfg);
+	else if (type == "Overlay") return new OverlayComponent(*component_cfg);
+	else if (type == "FPSCam") return new FPSCamera(*component_cfg);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

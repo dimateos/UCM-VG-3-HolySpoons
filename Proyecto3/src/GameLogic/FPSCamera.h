@@ -20,9 +20,8 @@ public:
 
 protected:
 	void toggleZoom();
-	float zoomed = 2500.0; //amount of zoom
 
 	Ogre::SceneNode* camNode_;
-	float rotXspeed_ = 10.5, rotYspeed_ = 10.5; //sens
 	float rotX_, rotY_; //updaters
+	bool zoom = false;
 };

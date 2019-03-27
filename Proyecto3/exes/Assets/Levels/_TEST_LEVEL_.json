@@ -3,6 +3,16 @@
     "GameObjects": [
         {
             "id": {
+				"type": "pref_player"
+            }
+        },
+        {
+            "id": {
+				"type": "pref_test_go"
+            }
+        },
+        {
+            "id": {
 				"type": "pref_ground"
             },
             "pos": { "x": 0.0, "y": -15.0, "z": 0.0 },

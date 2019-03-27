@@ -1,0 +1,26 @@
+{
+    "id": {
+        "name": "player",
+        "type": "pref_player"
+    },
+    "Components": {
+        "camera_fps": {
+            "id": {
+                "type": "FPSCam"
+            },
+            "rotXspeed": 10.5,
+            "rotYspeed": 10.5,
+            "zoomed": 25,
+            "baseDir": { "x": 0.0, "y": -1.0, "z": 0.0 },
+            "baseLookAt": { "x": 0.0, "y": -5.0, "z": 0.0 },
+            "basePos": { "x": 5.0, "y": 5.0, "z": 40.0 }
+        },
+        "crosshair_hud_rend": {
+            "id": {
+                "type": "Overlay"
+            },
+            "overlay_name": "CROSSHAIR_HUD",
+            "panel_container": "CROSSHAIR_HUD_PanelContainer"
+        }
+    }
+}

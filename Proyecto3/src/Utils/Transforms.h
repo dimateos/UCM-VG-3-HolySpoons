@@ -19,6 +19,9 @@ namespace physx
 //parse jsons
 #include "json.hpp"
 
+//ogre uses too high units as base scale
+#define ogre_scale 100
+
 //wraps physx and ogre vector3
 class nap_vector3
 {

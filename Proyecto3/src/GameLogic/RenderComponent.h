@@ -3,7 +3,6 @@
 #define RENDER_COMP_H_
 
 #include "RenderSystemInterface.h"
-#define ogre_scale 100
 
 #include "Component.h"
 class RenderComponent : public Component

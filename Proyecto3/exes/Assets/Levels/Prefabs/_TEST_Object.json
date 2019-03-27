@@ -1,0 +1,23 @@
+{
+    "id": {
+        "name": "test_go",
+        "type": "pref_test_go",
+        "group": "test_gameObjects"
+    },
+    "Components": {
+        "tester": {
+            "id": {
+                "type": "Test",
+                "group": "test_comps"
+            }
+        },
+        "overlay_test_rend": {
+            "id": {
+                "type": "Overlay",
+                "group": "test_comps"
+            },
+            "overlay_name": "TEST_HUD",
+            "panel_container": "TEST_HUD_PanelContainer"
+        }
+    }
+}

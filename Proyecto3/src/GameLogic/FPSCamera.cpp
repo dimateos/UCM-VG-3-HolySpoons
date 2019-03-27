@@ -14,15 +14,19 @@ void FPSCamera::setUp() {
 
 	//cam
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
-	camNode_->setPosition(500, 500, 4000);
-	camNode_->lookAt(Ogre::Vector3(0.0f, -500.0f, 0.0f), Ogre::Node::TS_WORLD);
+	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
+
+	//postion atm is fixed, then should follow the player
+	camNode_->setPosition(nap_vector3(cfg_["basePos"]).ogre() * ogre_scale);
+	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 void FPSCamera::update(GameObject * ent, float time) {
-	camNode_->yaw(Ogre::Degree(rotXspeed_ * time * -rotX_), Ogre::Node::TS_PARENT);
-	camNode_->pitch(Ogre::Degree(rotYspeed_ * time * -rotY_), Ogre::Node::TS_LOCAL);
+	//direction
+	camNode_->yaw(Ogre::Degree(cfg_["rotXspeed"] * time * -rotX_), Ogre::Node::TS_PARENT);
+	camNode_->pitch(Ogre::Degree(cfg_["rotYspeed"] * time * -rotY_), Ogre::Node::TS_LOCAL);
 	rotX_ = 0.0f;
 	rotY_ = 0.0f;
 }
@@ -31,11 +35,6 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	bool handled = false;
 
 	switch (evt.type) {
-	//case SDL_WINDOWEVENT:
-	//	if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
-	//		handled = true;
-	//	}
-	//	break;
 
 	case SDL_MOUSEMOTION:
 		rotX_ = evt.motion.xrel;
@@ -54,12 +53,11 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	return handled;
 }
 
-void FPSCamera::loadParameters(std::vector<string> parameters)
-{
+void FPSCamera::loadParameters(std::vector<string> parameters) {
 	// TO COMPLETE (depending on the needed parameters)
 }
 
 void FPSCamera::toggleZoom() {
-	camNode_->translate(-vZ.ogre() * zoomed, Ogre::Node::TS_LOCAL);
-	zoomed *= -1;
+	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * cfg_["zoomed"] * ogre_scale, Ogre::Node::TS_LOCAL);
+	zoom = !zoom;
 }
