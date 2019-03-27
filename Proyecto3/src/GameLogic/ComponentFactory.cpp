@@ -1,35 +1,33 @@
 #include "ComponentFactory.h"
-#include "Component.h"
 
-ComponentFactory* ComponentFactory::instance_ = nullptr;
+// parses all the comps in nap_json * component_cfg
+std::list<Component*> ComponentFactory::ParseComponents(GameObject * o, nap_json * components_cfg) {
+	std::list<Component*> comps;
 
-ComponentFactory* ComponentFactory::getSingleton() {
-	if (instance_ == nullptr) {
-		instance_ = new ComponentFactory();
+	//iterate over the named keys which are the comps names
+	for (auto it = components_cfg->begin(); it != components_cfg->end(); it++) {
+		//set the key as name and part of the id and parse the component
+		(*it)["id"]["name"] = it.key();
+		nap_json * cfg = &(*it);
+		comps.push_back(ParseComponent(o, cfg));
 	}
 
-	return instance_;
+	return comps;
 }
 
-void ComponentFactory::shutdownSingleton() {
-	if (instance_ == nullptr) return;
+//all Components
+#include "PhysicsComponent.h"
+#include "RenderComponent.h"
 
-	delete instance_;
-	instance_ = nullptr;
-}
+// it receives the nap_json * component_cfg with its name and cfg.
+// When you add a new component to the factory, you parse the unique type within cfg["id"]["type"]
+//		and create the new component. You hace acces to the gameObject in case you need its transform etc
+Component * ComponentFactory::ParseComponent(GameObject * o, nap_json * component_cfg) {
+	std::string type = (*component_cfg)["id"]["type"];
 
-// it receives the name of the component and its parameters. When you add a new component to the factory,
-// you'll need to create the component and add its parameters using the vector "params". Here is an example:
-// for the component "Render", so you would write ->
-/*
-if (componentName == "Render") {
-		RenderComponent* rcomp = new RenderComponent();
-		rcomp->loadParameters(params);
-		return rcomp;
-	}
-*/
-Component* ComponentFactory::ParseComponent(string componentName, std::vector<string> params) {
-	// here introduce new components
+	//now the switch
+	if (type == "Phys") return new PhysicsComponent(*component_cfg, o->getTransPtr()); //example of one comp using the go reference
+	else if (type == "Render") return new RenderComponent(*component_cfg);
 
 	return nullptr;
 }

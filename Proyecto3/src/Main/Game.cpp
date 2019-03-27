@@ -28,9 +28,6 @@ void Game::initGame() {
 	renderManager = RenderSystemManager::getSingleton();
 	//soundManager_ = new SoundManager(this);
 
-	jsonReader_ = JsonReader::getSingleton();
-	gsm_ = new GameStateMachine(); //!temporary direct creation
-
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
@@ -38,15 +35,10 @@ void Game::initGame() {
 	// * reading the scene from json with prefabs and all
 	// * also manually adding the tester GO
 
-	auto scene = jsonReader_->ReadLevel("_TEST_LEVEL_");
+	gsm_ = new GameStateMachine(); //!temporary direct creation
 
-
-
-
-
-	//PUSH
-	auto state = new GameState({ ground, cube });
-	gsm_->pushState(state);
+	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
+	gsm_->pushState(level); //you can push it already and add more things later
 
 	//can be created and not added -> doesnt setup
 	auto tester1 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
@@ -57,7 +49,7 @@ void Game::initGame() {
 	auto tester2 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
 		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
 	);
-	//state->addGameObject(tester2);
+	//level->addGameObject(tester2);
 
 	LogSystem::Log("initialized", LogSystem::GAME);
 }

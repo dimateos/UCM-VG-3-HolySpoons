@@ -1,25 +1,18 @@
 #ifndef COMPONENT_FACTORY_H_
 #define COMPONENT_FACTORY_H_
 
-#include <vector>
-#include <string>
+#include <list>
+#include "Component.h"
 
-using namespace std;
-class Component;
-
-// it parses component names (string) to components
-// and creates them with their parameters
+//all pointers so no .h needed
 class ComponentFactory
 {
-private:
-	static ComponentFactory* instance_; //singleton pattern
-	ComponentFactory() {}
-	virtual ~ComponentFactory() {}
-
 public:
-	static ComponentFactory* getSingleton();   // you can obtain/shutdown the instance of the singleton 
-	static void shutdownSingleton();
-	Component* ParseComponent(string componentName, std::vector<string> params);
+	// parses a nap_json components_cfg into a list of configured components*
+	static std::list<Component*> ParseComponents(GameObject *o, nap_json * components_cfg);
+
+	// parse individual comp
+	static Component* ParseComponent(GameObject *o, nap_json * component_cfg);
 };
 
 #endif /* COMPONENT_FACTORY_H_ */

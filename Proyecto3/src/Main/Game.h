@@ -1,11 +1,11 @@
 //Nap_Time_Studios
-#pragma once
+#ifndef GAME_H_
+#define GAME_H_
 
 #include "RenderSystemManager.h"
 #include "PhysicsSystemManager.h"
 //#include "SoundManager.h"
 
-#include "JsonReader.h"
 #include "GameStateMachine.h"
 
 class Game {
@@ -44,6 +44,7 @@ private:
 	RenderSystemManager* renderManager;
 	//SoundManager* soundManager_; //controls the sound
 
-	JsonReader* jsonReader_;
 	GameStateMachine* gsm_; //controls the states
 };
+
+#endif /* GAME_H_ */

@@ -8,7 +8,7 @@
             "pos": { "x": 0.0, "y": -15.0, "z": 0.0 },
             "Components": {
 				"ground_phys": {
-                    "Shape": {
+                    "shape": {
                         "type": "BOX", "scale": { "x": 20.0, "y": 1.0, "z": 20.0 }
                     }
                 },
@@ -28,8 +28,8 @@
                     "id": {
                         "type": "Phys"
                     },
-                    "dynamic": "true",
-                    "Shape": {
+                    "dynamic": true,
+                    "shape": {
                         "type": "BOX", "scale": { "x": 1.0, "y": 1.0, "z": 1.0 }
                     }
                 },
@@ -38,11 +38,11 @@
                         "type": "Render"
                     },
                     "scale": { "x": 1.0, "y": 1.0, "z": 1.0 },
-                    "Shape": {
+                    "material": "DebugMaterial2",
+                    "shape": {
                         "entity_name": "cube",
-                        "type": "BOX",
-                        "mesh": "cube.mesh",
-                        "material": "DebugMaterial2"
+                        "type": "MESH",
+                        "mesh": "cube.mesh"
                     }
                 }
             }
