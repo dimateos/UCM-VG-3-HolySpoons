@@ -1,0 +1,69 @@
+{
+"Prefabs" :
+[
+    {
+        "id": {
+            "name": "pref_fallingTile",
+            "type": "FallingTile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "Phys",
+					"group": "map_comps"
+                },
+                "dynamic": true,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "Render",
+					"group": "map_comps"
+				},
+                "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
+                "material": "DebugMaterial2",
+                "shape": {
+                    "entity_name": "f_tile",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    },
+    {
+        "id": {
+            "name": "pref_Tile",
+            "type": "Tile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "Phys",
+					"group": "map_comps"
+                },
+                "dynamic": false,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "Render",
+					"group": "map_comps"
+				},
+                "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
+                "material": "DebugMaterial2",
+                "shape": {
+                    "entity_name": "tile",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    }
+]
+}

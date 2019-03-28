@@ -38,6 +38,9 @@ public:
 	float x_, y_, z_;
 	Ogre::Vector3 ogre();
 	physx::PxVec3 px();
+	nlohmann::json json() {
+		return nlohmann::json({ {"x", x_}, {"y", y_}, {"z", z_} });
+	};
 };
 
 //wraps physx and ogre quaternions
@@ -56,6 +59,9 @@ public:
 	float w_, x_, y_, z_;
 	Ogre::Quaternion ogre();
 	physx::PxQuat px();
+	nlohmann::json json() {
+		return nlohmann::json({ {"w", w_}, {"x", x_}, {"y", y_}, {"z", z_} });
+	};
 };
 
 // base vectors

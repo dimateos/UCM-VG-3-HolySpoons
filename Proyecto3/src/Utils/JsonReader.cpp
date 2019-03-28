@@ -19,7 +19,7 @@ void JsonReader::shutdownSingleton() {
 	instance_ = nullptr;
 }
 
-JsonReader::JsonReader() { preloadPrefabs(); }
+JsonReader::JsonReader() { preloadPrefabs(); preloadMapTypes(); }
 JsonReader::~JsonReader() {
 	//delete the GOStructs
 	for (auto itr = prefabs.begin(); itr != prefabs.end(); itr++) {
@@ -122,11 +122,13 @@ void JsonReader::deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_
 // returns a Scene_type with all the information read
 // from "level.json" (GameObjects) and "level.txt" (map/tiles)
 SceneStruct JsonReader::ReadLevel(string level) {
-	LogSystem::Log("Reading level "+ level + " ...", LogSystem::JSON);
+	LogSystem::Log("Reading level " + level + " ...", LogSystem::JSON);
 	size_t n = 0;
 
 	SceneStruct scene;
-	//ReadMap(level); // it reads the map/tiles ("level.txt"; it will be an amount of GameObjects)
+
+	//read the map/tiles ("level.txt") and dump all the GOs
+	scene.gameObjects = ReadMap(level);
 
 	//read "level.json"
 	ifstream file(routeLevel + level + ".json");
@@ -166,7 +168,7 @@ SceneStruct JsonReader::ReadLevel(string level) {
 
 				//check the prefab exists and load / throw error and continue
 				string type = cfg["id"]["type"];
-				if (prefabs.find(type) != prefabs.end()) {
+				if (prefabs.count(type) > 0) {
 					//update all the prefab values with raw GO
 					GOStruct prefab_go = *prefabs[type];
 					//using recursive deep update
@@ -181,8 +183,8 @@ SceneStruct JsonReader::ReadLevel(string level) {
 			}
 		}
 
-		n++;
 		scene.gameObjects.push_back(go); //add the go to the scene
+		n++;
 	}
 
 	file.close();
@@ -192,52 +194,97 @@ SceneStruct JsonReader::ReadLevel(string level) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// it adds to the scene the GameObjects (tiles) that will form the floor
-void JsonReader::ReadMap(string level) {
-	ifstream in(routeLevel + level + ".txt");
+void JsonReader::preloadMapTypes() {
+	LogSystem::Log("Reading map types file" + routeMapsTypes + " ...", LogSystem::JSON);
+	size_t n = 0;
 
-	//if (in.is_open()) {
-	//	int r, c;
-	//	in >> r >> c;
-	//	for (int i = 0; i < r; i++) {
-	//		string floor; in >> floor;
-	//		for (int j = 0; j < c; j++) {
-	//			GOType go;
-	//			// two types of gamobject: normal floor and falling floor
-	//			// each of them read from its prefab
-	//			if (floor[j] - 48 == 0) {
-	//				preloadPrefabs("Tile", go);
-	//				setTilePosition(r, c, i, j, go);
-	//				scene.gameObjects.push_back(go);
-	//			}
-	//			else if (floor[j] - 48 == 1) {
-	//				preloadPrefabs("FallingTile", go);
-	//				setTilePosition(r, c, i, j, go);
-	//				scene.gameObjects.push_back(go);
-	//			}
-	//		}
-	//	}
-	//}
+	//check if openned correctly
+	ifstream file(routeMapsTypes);
+	if (!file.is_open()) {
+		LogSystem::Log("El archivo " + routeMapsTypes + " no fue encontrado... abortando parseo", LogSystem::JSON);
+		return;
+	}
 
-	in.close();
+	//read the pairs untill the end
+	char c; string s;
+	while (file >> c >> s) {
+
+		//check the prefab exists and save / throw error and continue
+		if (prefabs.count(s) == 0) {
+			LogSystem::Log("El prefab " + s + " no fue encontrado... abortando parseo del mapType", LogSystem::JSON);
+			continue;
+		}
+
+		mapTypes[c] = s;
+		n++;
+
+	}
+
+	file.close();
+	LogSystem::Log("Leidos " + to_string(n) + " tipos con exito", LogSystem::JSON);
 }
 
-// set the physical position of the tile parsing its logic position (i, j)
-void JsonReader::setTilePosition(int r, int c, int i, int j, GOType& go) {
-	const float POSITION_FACTOR_C = 1.1f;
-	const float POSITION_FACTOR_R = 1.1f;
+// it adds to the scene the GameObjects (tiles) that will form the floor
+GOType JsonReader::ReadMap(string level) {
+	LogSystem::Log("Reading map " + level + " ...", LogSystem::JSON);
+	size_t n = 0;
 
-	//float x, y, z;
-	//x = -((c / 2.0f) * POSITION_FACTOR_C - (POSITION_FACTOR_C / 2.0f)) + j * POSITION_FACTOR_C;
-	//y = 0;
-	//z = (r / 2.0f) * POSITION_FACTOR_R - (POSITION_FACTOR_R / 2.0f) - i * POSITION_FACTOR_R;
-	//try {
-	//	if (go.GOParameters.size() >= 3) {
-	//		go.GOParameters[0] = to_string(x); go.GOParameters[1] = to_string(y); go.GOParameters[2] = to_string(z);
-	//	}
-	//	else throw "Tienes que poner al menos tres parametros en GOParameters de cada prefab Tile (Prefabs.json) para su posicion";
-	//}
-	//catch (const char* e) {
-	//	LogSystem::Log(e, LogSystem::JSON);
-	//}
+	GOType map;
+
+	//check if openned correctly
+	ifstream file(routeLevel + level + ".txt");
+	if (!file.is_open()) {
+		LogSystem::Log("El mapa " + routeLevel + level + ".txt no fue encontrado... abortando parseo", LogSystem::JSON);
+		return map;
+	}
+
+	//read rows and cols
+	int r, c;
+	file >> r >> c;
+
+	//read tiles
+	for (int i = 0; i < r; i++) {
+		string row; file >> row;
+
+		for (int j = 0; j < c; j++) {
+			// the map is composed of chars
+			// the chars are mapped to the prefab name on mapTypes
+			// mapTypes is preloaded from file "routeMapsTypes" in preloadMapTypes()
+
+			//check if mapType exists
+			if (mapTypes.count(row[j]) == 0) {
+				string s = " "; s[0] = row[j];
+				LogSystem::Log("El mapType '" + s + "' no fue encontrado... abortando parseo de tile", LogSystem::JSON);
+				continue;
+			}
+
+			GOStruct go = *prefabs[mapTypes[row[j]]];
+
+			//temporal way of adding suffix to entity name. Ogre dosent allow same name.
+			go.components_cfg["tile_rend"]["shape"]["entity_name"] = "tile_" + to_string(n);
+
+			//configue its position and push it
+			setTilePosition(r, c, i, j, go);
+			map.push_back(go);
+			n++;
+		}
+	}
+
+	file.close();
+	LogSystem::Log("Leidos " + to_string(n) + " Gameobjects con exito", LogSystem::JSON);
+	return map;
+}
+
+#include "Transforms.h"
+// set the physical position of the tile parsing its logic position (i, j)
+void JsonReader::setTilePosition(int r, int c, int i, int j, GOStruct & go) {
+	const float POSITION_FACTOR_C = 5.0f; //at some point moved to and external cfg file
+	const float POSITION_FACTOR_R = 5.0f;
+
+	float x, y, z;
+	x = -((c / 2.0f) * POSITION_FACTOR_C - (POSITION_FACTOR_C / 2.0f)) + j * POSITION_FACTOR_C;
+	y = -5.0;
+	z = (r / 2.0f) * POSITION_FACTOR_R - (POSITION_FACTOR_R / 2.0f) + i * POSITION_FACTOR_R;
+
+	go.go_cfg["pos"] = nap_vector3(x, y, z).json();
 }

@@ -44,18 +44,22 @@ private:
 	// levels files must be in "routeLevel" and prefabs in "routePrefabs"
 	string routeLevel = ".\\Assets\\Levels\\";
 	string routePrefabs = ".\\Assets\\Levels\\Prefabs\\";
+	string routeMapsTypes = ".\\Assets\\Levels\\mapTypes.txt";
 
 	// prefab preloading
 	void preloadPrefabs();
 	std::map<string, GOStruct*> prefabs;
 
-	// auxiliar methods
+	// reading and updating GO
 	GOStruct* readGO(nap_json const & cfg);
 	void deepUpdateJson(nap_json & j, nap_json const & updater);
 	void deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr);
 
-	void ReadMap(string level);
-	void setTilePosition(int r, int c, int i, int j, GOType& go);
+	// reading map
+	void preloadMapTypes();
+	std::map<char, string> mapTypes;
+	GOType ReadMap(string level);
+	void setTilePosition(int r, int c, int i, int j, GOStruct & go);
 };
 
 #endif /* JSON_READER_H_ */
