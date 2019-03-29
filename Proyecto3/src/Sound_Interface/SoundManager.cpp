@@ -20,14 +20,22 @@ void SoundManager::shutdownSingleton() {
 	instance_ = nullptr;
 }
 
-irrklang::ISound* SoundManager::play3DSound(const char * soundFileName, float x, float y, float z, bool playLooped, bool startPaused, bool track)
+void SoundManager::play3DSound(const string& name, float x, float y, float z, bool playLooped, bool startPaused)
 {
-	return engine->play3D((soundsRoute + soundFileName).c_str(), irrklang::vec3df(x,y,z), playLooped, startPaused, track);
+	sounds.insert({ name, engine->play3D((soundsRoute + name).c_str(), irrklang::vec3df(x,y,z), playLooped, startPaused, true) });
 }
 
-irrklang::ISound * SoundManager::play2DSound(const char * soundFileName, bool playLooped, bool startPaused, bool track)
+void SoundManager::play2DSound(const string& name, bool playLooped, bool startPaused)
 {
-	return engine->play2D((soundsRoute + soundFileName).c_str(), playLooped, startPaused, track);
+	sounds.insert({ name, engine->play2D((soundsRoute + name).c_str(), playLooped, startPaused, true) });
+}
+
+bool SoundManager::isPlaying(const string& name) {
+	return engine->isCurrentlyPlaying((soundsRoute + name).c_str());
+}
+
+irrklang::ISound* SoundManager::findeByName(const string& name) {
+	return sounds.at(name);
 }
 
 irrklang::ISoundEngine * SoundManager::getEngine()
@@ -41,6 +49,9 @@ SoundManager::SoundManager():engine(createIrrKlangDevice())
 
 SoundManager::~SoundManager()
 {
-	engine->drop();  // close of the engine
-	engine = nullptr;
+	for (map<string, irrklang::ISound*>::iterator it = sounds.begin(); it != sounds.end(); it++) {
+		it->second->drop();
+	}
+
+	engine->drop();  // close of the engine	
 }
