@@ -17,6 +17,8 @@ public:
 	void setUserData(nap_transform * trans);
 	nap_transform* getUserData();
 
+	PxRigidDynamic * getDynamicBody() const { return rigidBodyD_; };
+
 	virtual void receive(Message* msg);
 	virtual void late_update(GameObject* o, float time);
 

@@ -21,8 +21,11 @@ public:
 	GameObject(nap_json const & cfg, std::list<Component*>);
 	virtual ~GameObject();
 
-	//setup on gamestate push
+	//setup on gamestate push (awake)
 	virtual void setUp();
+
+	//latesetup on gamestate (start)
+	virtual void lateSetUp();
 
 	//MAIN methods (call components)
 	virtual bool handleEvents(const SDL_Event evt);

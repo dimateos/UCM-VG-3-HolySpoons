@@ -21,6 +21,7 @@ std::list<Component*> ComponentFactory::ParseComponents(GameObject * o, nap_json
 #include "RenderComponent.h"
 #include "TestComponent.h"
 #include "OverlayComponent.h"
+#include "FloatingEnemyComponent.h"
 #include "FPSCamera.h"
 
 // it receives the nap_json * component_cfg with its name and cfg.
@@ -35,6 +36,7 @@ Component * ComponentFactory::ParseComponent(GameObject * o, nap_json * componen
 	else if (type == "Test") return new TestComponent(*component_cfg);
 	else if (type == "Overlay") return new OverlayComponent(*component_cfg);
 	else if (type == "FPSCam") return new FPSCamera(*component_cfg);
+	else if (type == "FloatingEnemy") return new FloatingEnemyComponent(o, *component_cfg);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

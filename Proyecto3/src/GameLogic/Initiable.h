@@ -11,6 +11,7 @@ public:
 	inline virtual ~Initiable() {};
 
 	virtual void setUp() = 0;
+	virtual void lateSetUp() {};
 	//virtual void setDown() {}; //maybe not pure virtual
 
 	inline bool isInited() const { return inited_; }

@@ -28,7 +28,13 @@ void GameObject::setUp() {
 	for (auto comp : components_) if (comp != nullptr) comp->setUp();
 
 	//send user ptr to physics component (done by component factory)
+
 	//getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
+}
+
+void GameObject::lateSetUp()
+{
+	for (Component* comp : components_) if (comp != nullptr) comp->lateSetUp();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

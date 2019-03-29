@@ -17,6 +17,10 @@ void GameState::setUp() {
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
 	}
+
+	for (GameObject* o : gameObjects_) {
+		if (o != nullptr) o->lateSetUp();
+	}
 }
 
 void GameState::setDown() {
