@@ -23,5 +23,8 @@
     <ClInclude Include="..\..\src\Sound_Interface\SoundManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Sound_Interface\checkML.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 using namespace std;
+#include "checkML.h"
 
 namespace irrklang {
 	class ISoundEngine;
