@@ -21,22 +21,41 @@ void SoundManager::shutdownSingleton() {
 	instance_ = nullptr;
 }
 
-void SoundManager::play3DSound(const string& name, float x, float y, float z, bool playLooped, bool startPaused)
+irrklang::ISound* SoundManager::play3DSound(const string& name, float x, float y, float z, bool playLooped, bool startPaused, bool tracked)
 {
-	sounds.insert({ name, engine->play3D((soundsRoute + name).c_str(), irrklang::vec3df(x,y,z), playLooped, startPaused, true) });
+	map<string, ISound*>::iterator it = sounds.find(name);
+	if (it != sounds.end() && it->second->isFinished())
+		sounds.erase(it);
+
+	irrklang::ISound* sound3D = engine->play3D((soundsRoute + name).c_str(), irrklang::vec3df(x, y, z), playLooped, startPaused, true);
+	sounds.insert({ name, sound3D });
+
+	if (tracked)return sound3D;
+	else return nullptr;
 }
 
-void SoundManager::play2DSound(const string& name, bool playLooped, bool startPaused)
+irrklang::ISound* SoundManager::play2DSound(const string& name, bool playLooped, bool startPaused, bool tracked)
 {
-	sounds.insert({ name, engine->play2D((soundsRoute + name).c_str(), playLooped, startPaused, true) });
+	map<string, ISound*>::iterator it = sounds.find(name);
+	if (it != sounds.end() && it->second->isFinished())
+		sounds.erase(it);
+
+	irrklang::ISound* sound2D = engine->play2D((soundsRoute + name).c_str(), playLooped, startPaused, true);
+	sounds.insert({ name, sound2D });
+
+	if (tracked)return sound2D;
+	else return nullptr;
 }
 
 bool SoundManager::isPlaying(const string& name) {
 	return engine->isCurrentlyPlaying((soundsRoute + name).c_str());
 }
 
-irrklang::ISound* SoundManager::findeByName(const string& name) {
-	return sounds.at(name);
+irrklang::ISound* SoundManager::findByName(const string& name) {
+	map<string, ISound*>::iterator it = sounds.find(name);
+	if (it != sounds.end())
+		return sounds.at(name);
+	else return nullptr;
 }
 
 irrklang::ISoundEngine * SoundManager::getEngine()
@@ -50,9 +69,5 @@ SoundManager::SoundManager():engine(createIrrKlangDevice())
 
 SoundManager::~SoundManager()
 {
-	for (map<string, irrklang::ISound*>::iterator it = sounds.begin(); it != sounds.end(); it++) {
-		it->second->drop();
-	}
-
 	engine->drop();  // close of the engine	
 }

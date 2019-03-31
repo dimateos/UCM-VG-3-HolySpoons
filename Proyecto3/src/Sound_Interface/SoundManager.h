@@ -27,17 +27,15 @@ public:
 	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton 
 	static void shutdownSingleton();
 
-	void play3DSound(const string& name, float x, float y, float z,  //USAR UTILS
-		bool playLooped = false,
-		bool startPaused = false);
+	irrklang::ISound* play3DSound(const string& name, float x, float y, float z,  //USAR UTILS
+		bool playLooped = false, bool startPaused = false, bool track = false);
 
-	void play2DSound(const string& name, 
-		bool playLooped = false,
-		bool startPaused = false);
+	irrklang::ISound* play2DSound(const string& name,
+		bool playLooped = false, bool startPaused = false, bool track = false);
 
 	bool isPlaying(const string& name);
 
-	irrklang::ISound* findeByName(const string& name);
+	irrklang::ISound* findByName(const string& name);
 
 	irrklang::ISoundEngine* getEngine();
 };
