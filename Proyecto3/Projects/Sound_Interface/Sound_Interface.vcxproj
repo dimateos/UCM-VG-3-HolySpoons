@@ -22,7 +22,6 @@
     <ClCompile Include="..\..\src\Sound_Interface\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Sound_Interface\checkML.h" />
     <ClInclude Include="..\..\src\Sound_Interface\SoundManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

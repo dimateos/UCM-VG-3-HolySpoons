@@ -3,12 +3,8 @@
 
 #include <string>
 #include <map>
+#include <irrKlang.h>
 using namespace std;
-
-namespace irrklang {
-	class ISoundEngine;
-	class ISound;
-}
 
 // interface for irrklang (SoundManager)
 class SoundManager
