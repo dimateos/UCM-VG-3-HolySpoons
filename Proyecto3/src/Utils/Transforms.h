@@ -32,6 +32,8 @@ public:
 	inline nap_vector3(nap_vector3 const & v) : x_(v.x_), y_(v.y_), z_(v.z_) {};
 
 	inline nap_vector3(nlohmann::json const & v) : x_(v["x"]), y_(v["y"]), z_(v["z"]) {};
+	inline nap_vector3 operator+(const nap_vector3 v2) { return nap_vector3(this->x_ + v2.x_,
+		this->y_ + v2.y_, this->z_ + v2.z_); };
 	//inline nap_vector3(Ogre::Vector3 const & v); //requires .h
 	//inline nap_vector3(physx::PxVec3 const & v);
 

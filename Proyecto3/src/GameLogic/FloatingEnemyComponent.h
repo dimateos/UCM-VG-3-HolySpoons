@@ -18,6 +18,7 @@ private:
 	float amplitude = 1; 
 	float horiSpeed = 0.01;
 	float vertSpeed = 1;
+	float initY;
 	float timer = 0;
 	nap_vector3  initPos;
 
