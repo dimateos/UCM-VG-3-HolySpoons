@@ -12,7 +12,14 @@ private:
 	GameObject* o;
 	physx::PxRigidDynamic* rigidBody;
 
-	void WaveyMovement();
+	void WaveyMovement(float t);
+
+
+	float amplitude = 1; 
+	float horiSpeed = 0.01;
+	float vertSpeed = 1;
+	float timer = 0;
+	nap_vector3  initPos;
 
 public:
 	FloatingEnemyComponent() {};
