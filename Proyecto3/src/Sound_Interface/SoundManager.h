@@ -4,17 +4,20 @@
 #include <string>
 #include <map>
 #include <irrKlang.h>
+#include <Transforms.h>
 using namespace std;
 
 // interface for irrklang (SoundManager)
 class SoundManager
 {
 private:
-	static SoundManager* instance_;             //singleton pattern
+	static SoundManager* instance_;                                       //singleton pattern
 	const string soundsRoute = ".\\Assets\\Sound\\";
-	std::map<string, irrklang::ISound*> sounds; // sounds already played
+	std::map<string, pair<irrklang::ISound*, nap_vector3*>> threeDsounds; // 3Dsounds already played, with their position
+	std::map<string, irrklang::ISound*> twoDsounds;                       // 2Dsounds already played
 
-	irrklang::ISoundEngine* engine;             // it plays the sounds, etc
+	irrklang::ISoundEngine* engine;                                       // it plays the sounds, etc
+	nap_transform* listenerTransform;                                     // the transform of the listener (player)
 
 	SoundManager();
 	virtual ~SoundManager();
@@ -22,8 +25,12 @@ public:
 	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton 
 	static void shutdownSingleton();
 
+	void update();
+
+	void setListenerTransform(nap_transform* trans);
+
 	// playing 3D/2D sounds... (3D will need a pointer to the emitter position
-	irrklang::ISound* play3DSound(const string& name, float x, float y, float z, 
+	irrklang::ISound* play3DSound(const string& name, nap_vector3* pos, 
 		bool playLooped = false, bool startPaused = false, bool track = false);
 
 	irrklang::ISound* play2DSound(const string& name,
@@ -31,7 +38,8 @@ public:
 
 	bool isPlaying(const string& name);
 
-	irrklang::ISound* findByName(const string& name);
+	irrklang::ISound* find3DByName(const string& name);
+	irrklang::ISound* find2DByName(const string& name);
 
 	irrklang::ISoundEngine* getEngine();
 };
