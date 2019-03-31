@@ -1,6 +1,5 @@
 #include "SoundManager.h"
 #include <irrKlang.h>
-#include "checkML.h"
 
 using namespace irrklang;
 
@@ -21,6 +20,8 @@ void SoundManager::shutdownSingleton() {
 	instance_ = nullptr;
 }
 
+// it plays a 3D sound. If the sound exists and is not playing, it will be removed before adding it again. If the tracked bool is true,
+// it also returns the sound. If you play an existent sound that is being played, you will have to use this bool to have reference to the new sound
 irrklang::ISound* SoundManager::play3DSound(const string& name, float x, float y, float z, bool playLooped, bool startPaused, bool tracked)
 {
 	map<string, ISound*>::iterator it = sounds.find(name);
@@ -34,6 +35,8 @@ irrklang::ISound* SoundManager::play3DSound(const string& name, float x, float y
 	else return nullptr;
 }
 
+// it plays a 2D sound. If the sound exists and is not playing it will be removed before adding it again. If the tracked bool is true,
+// it also returns the sound. If you play an existent sound that is being played, you will have to use this bool to have reference to the new sound
 irrklang::ISound* SoundManager::play2DSound(const string& name, bool playLooped, bool startPaused, bool tracked)
 {
 	map<string, ISound*>::iterator it = sounds.find(name);
@@ -51,6 +54,7 @@ bool SoundManager::isPlaying(const string& name) {
 	return engine->isCurrentlyPlaying((soundsRoute + name).c_str());
 }
 
+// it returns the sound with the name specified
 irrklang::ISound* SoundManager::findByName(const string& name) {
 	map<string, ISound*>::iterator it = sounds.find(name);
 	if (it != sounds.end())
