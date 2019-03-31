@@ -1,5 +1,6 @@
 #include "SoundManager.h"
-#include <irrKlang.h>
+#include <LogSystem.h>
+
 
 using namespace irrklang;
 
@@ -23,11 +24,10 @@ void SoundManager::shutdownSingleton() {
 // update of all the positions and the engine
 void SoundManager::update() {
 	// listener transform (position, orientation)
-	engine->setListenerPosition(irrklang::vec3df(listenerTransform->p_.x_, listenerTransform->p_.y_, listenerTransform->p_.z_),
-		irrklang::vec3df(listenerTransform->q_.x_, listenerTransform->q_.y_, listenerTransform->q_.z_)); // PARSING NEEDED
+	updateListener();
 
 	// updates each playing sound position
-	for (map<string, pair<irrklang::ISound*, nap_vector3*>>::iterator it; it != threeDsounds.end(); it++) {
+	for (map<string, pair<irrklang::ISound*, nap_vector3*>>::iterator it = threeDsounds.begin(); it != threeDsounds.end(); it++) {
 		if (!it->second.first->isFinished())
 			it->second.first->setPosition(irrklang::vec3df(it->second.second->x_, it->second.second->y_, it->second.second->z_));
 		else threeDsounds.erase(it);
@@ -36,11 +36,20 @@ void SoundManager::update() {
 	engine->update();
 }
 
+void SoundManager::updateListener()
+{
+	if (listenerTransform == nullptr)
+		LogSystem::Log("listenerTransform hasn´t been initialized. Call singleton->getEngine->setListener at least once", LogSystem::SOUND);
+	else engine->setListenerPosition(irrklang::vec3df(listenerTransform->p_.x_, listenerTransform->p_.y_, listenerTransform->p_.z_),
+		irrklang::vec3df(listenerTransform->q_.x_, listenerTransform->q_.y_, listenerTransform->q_.z_)); // PARSING NEEDED
+
+}
+
+//Sets the position of the listener. Call this method at least once after you call getsingleton for the first time. Doesn´t need to be updated since its a pointer
 void SoundManager::setListenerTransform(nap_transform* trans)
 {
 	listenerTransform = trans;
-	engine->setListenerPosition(irrklang::vec3df(trans->p_.x_, trans->p_.y_, trans->p_.z_),
-		irrklang::vec3df(trans->q_.x_, trans->q_.y_, trans->q_.z_)); // PARSING NEEDED
+	updateListener();
 }
 
 // it plays a 3D sound. If the sound exists and is not playing, it will be removed before adding it again. If the tracked bool is true,

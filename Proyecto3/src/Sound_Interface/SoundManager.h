@@ -21,6 +21,9 @@ private:
 
 	SoundManager();
 	virtual ~SoundManager();
+
+	void updateListener();
+
 public:
 	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton 
 	static void shutdownSingleton();

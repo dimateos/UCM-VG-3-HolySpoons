@@ -3,6 +3,7 @@
 
 #include "LogSystem.h"
 #include "RenderSystemInterface.h"
+#include <SoundManager.h>
 
 #include "TestComponent.h"
 #include "PhysicsComponent.h"
@@ -162,6 +163,10 @@ void Game::run() {
 		// RENDER OGRE
 		//LogSystem::Log("main render", LogSystem::GAME);
 		renderManager->renderFrame();
+
+		// SOUND 
+		//LogSystem::Log("main sound", LogSystem::GAME);
+		SoundManager::getSingleton()->update();
 	}
 
 	closeGame();

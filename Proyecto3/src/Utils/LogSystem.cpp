@@ -26,6 +26,7 @@ void LogSystem::Log(string const & s, logType t) {
 	case PHYS: pre = "PHYS"; break;
 	case REND: pre = "REND"; break;
 	case GAME: pre = "GAME"; break;
+	case SOUND: pre = "SOUND"; break;
 
 	case DEV:
 		if (!LogSystem::log_dev) return;
