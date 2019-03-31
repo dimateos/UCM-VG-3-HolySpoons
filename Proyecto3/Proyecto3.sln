@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utils", "Projects\Utils\Uti
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ogre_Interface", "Projects\Ogre_Interface\Ogre_Interface.vcxproj", "{E79D8E14-ED48-48ED-B2A8-627D69807C75}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sound_Interface", "Projects\Sound_Interface\Sound_Interface.vcxproj", "{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{E79D8E14-ED48-48ED-B2A8-627D69807C75}.Release|x64.Build.0 = Release|x64
 		{E79D8E14-ED48-48ED-B2A8-627D69807C75}.Release|x86.ActiveCfg = Release|Win32
 		{E79D8E14-ED48-48ED-B2A8-627D69807C75}.Release|x86.Build.0 = Release|Win32
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Debug|x64.ActiveCfg = Debug|x64
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Debug|x64.Build.0 = Debug|x64
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Debug|x86.ActiveCfg = Debug|Win32
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Debug|x86.Build.0 = Debug|Win32
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Release|x64.ActiveCfg = Release|x64
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Release|x64.Build.0 = Release|x64
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Release|x86.ActiveCfg = Release|Win32
+		{A31FAB00-C6D4-4D50-8A72-EC9DC428E503}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
