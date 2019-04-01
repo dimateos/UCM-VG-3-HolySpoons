@@ -21,6 +21,9 @@ namespace Ogre {
 	typedef Vector<3, Real> Vector3;
 	class Quaternion;
 };
+
+class nap_vector3;
+class nap_quat;
 using OgrePair = std::pair<Ogre::SceneNode*, Ogre::Entity*>;
 
 class RenderSystemInterface
@@ -152,6 +155,15 @@ public:
 	 *create overlayPanel, used for images
 	 */
 	Ogre::OverlayContainer * createOverlayContainer();
+
+	/*
+	 * Returns the dest rotation
+	 */	
+	Ogre::Quaternion getRotationFrom_To(Ogre::Vector3 src, Ogre::Vector3 dest);
+	/*
+	* Returns the dest rotation, uses our nap_vector3 and nap_quat
+	*/
+	nap_quat getRotationFrom_To(nap_vector3 src, nap_vector3 dest);
 };
 
 #endif //ENDERSYSTEMINTERFACE_H_

@@ -3,6 +3,7 @@
 #include <OgreMeshManager.h>
 #include <OgreLogManager.h>
 #include <LogSystem.h>
+#include <Transforms.h>
 #include <OgreLog.h>
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayManager.h>
@@ -224,3 +225,20 @@ void RenderSystemInterface::setTextColourBot(TextAreaOverlayElement * element, f
 {
 	element->setColourBottom(Ogre::ColourValue(R, G, B, I));
 }
+
+Ogre::Quaternion RenderSystemInterface::getRotationFrom_To(Ogre::Vector3 src, Ogre::Vector3 dest)
+{
+	return src.getRotationTo(dest);
+}
+
+nap_quat RenderSystemInterface::getRotationFrom_To(nap_vector3 src, nap_vector3 dest)
+{
+	Vector3 src_ = { src.x_, src.y_, src.z_ };
+	Vector3 dest_ = { dest.x_, dest.y_, dest.z_ };
+	Quaternion quat = src_.getRotationTo(dest_);
+
+	nap_quat nq = {quat.x, quat.y, quat.z, quat.w};
+
+	return nq;
+}
+

@@ -20,18 +20,17 @@ private:
 	float vertSpeed = 1;
 	float initY;
 	float timer = 0;
+	float rotation = 0;
 	nap_vector3  initPos;
 
 public:
 	FloatingEnemyComponent() {};
-	inline FloatingEnemyComponent(GameObject* o, nap_json const & cfg) : Component(cfg), o(o) { this->setUp(); };
+	FloatingEnemyComponent(GameObject* o, nap_json const & cfg) : Component(cfg), o(o) { this->setUp(); };
 	virtual ~FloatingEnemyComponent() {};
 
 	virtual void setUp();
 	virtual void lateSetUp();
 
 	virtual void update(GameObject* ent, float time);
-	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
-
 };
 

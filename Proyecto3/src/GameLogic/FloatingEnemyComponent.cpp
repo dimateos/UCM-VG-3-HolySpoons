@@ -10,7 +10,7 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 	initPos.x_ += horiSpeed;
 
 	o->setPosition(initPos);
-	cout <<"X: "<< o->getOrientation().x_ << "Y: " << o->getOrientation().y_ << "Z: " << o->getOrientation().z_ << "W: " << o->getOrientation().w_ << endl;
+	//cout <<"X: "<< o->getOrientation().x_ << " Y: " << o->getOrientation().y_ << " Z: " << o->getOrientation().z_ << " W: " << o->getOrientation().w_ << endl;
 }
 
 void FloatingEnemyComponent::setUp()
@@ -29,12 +29,7 @@ void FloatingEnemyComponent::lateSetUp()
 	rigidBody->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 }
 
-void FloatingEnemyComponent::update(GameObject * ent, float time)
+void FloatingEnemyComponent::update(GameObject* ent, float time)
 {
 	WaveyMovement(time);
-}
-
-bool FloatingEnemyComponent::handleEvents(GameObject * ent, const SDL_Event & evt)
-{
-	return false;
 }

@@ -52,6 +52,9 @@
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
+      <Filter>_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -97,6 +100,9 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h">
+      <Filter>_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
   </ItemGroup>

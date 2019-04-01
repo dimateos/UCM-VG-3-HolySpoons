@@ -40,6 +40,12 @@
                 "Amplitude":2,
                 "HorizontalSpeed" : 0.02,
                 "VerticalSpeed" : 1
+            },
+            "auto_rotation": {
+            	"id":{
+            		"type": "AutoRotation",
+            		"group": "test_comps"
+            	}
             }
         }
     }
