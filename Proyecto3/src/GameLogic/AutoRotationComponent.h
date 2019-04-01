@@ -7,7 +7,7 @@ class AutoRotationComponent :
 {
 private:
 	GameObject* o_;
-	nap_vector3 dest = {5, 5, 40};
+	nap_vector3 dest = {0, 15, 0};
 
 public:
 	AutoRotationComponent() {};

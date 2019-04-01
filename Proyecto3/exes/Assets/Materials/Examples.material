@@ -14,13 +14,27 @@ material DebugMaterial
 	}
 }
 
-material BasicMaterial
+material Material
 {
 	technique
 	{
 		pass
 		{
 			ambient 0.5 0.5 0.5
+		}
+	}
+}
+
+material EyeMaterial
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture debugeye.png
+			}
 		}
 	}
 }

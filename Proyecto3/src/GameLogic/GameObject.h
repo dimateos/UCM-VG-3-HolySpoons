@@ -11,6 +11,7 @@ using namespace std;
 #include "Activable.h"
 #include "Identifiable.h"
 #include "Initiable.h"
+
 class Component;
 
 // this class accepts components (empty container waiting for functionality)

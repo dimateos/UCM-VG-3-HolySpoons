@@ -34,6 +34,8 @@ public:
 	inline nap_vector3(nlohmann::json const & v) : x_(v["x"]), y_(v["y"]), z_(v["z"]) {};
 	inline nap_vector3 operator+(const nap_vector3 v2) { return nap_vector3(this->x_ + v2.x_,
 		this->y_ + v2.y_, this->z_ + v2.z_); };
+	inline nap_vector3 operator*(float n) {
+		return nap_vector3(this->x_ * n, this->y_ * n, this->z_ * n); };
 	//inline nap_vector3(Ogre::Vector3 const & v); //requires .h
 	//inline nap_vector3(physx::PxVec3 const & v);
 
@@ -53,6 +55,10 @@ public:
 	inline nap_quat(float f) : w_(f), x_(f), y_(f), z_(f) {};
 	inline nap_quat(float w, float x, float y, float z) : w_(w), x_(x), y_(y), z_(z) {};
 	inline nap_quat(nap_quat const & q) : w_(q.w_), x_(q.x_), y_(q.y_), z_(q.z_) {};
+	inline nap_quat operator*(float n) {
+		return nap_quat(this->w_ * n,
+			this->x_ * n, this->y_ * n, this->z_ * n);
+	};
 
 	inline nap_quat(nlohmann::json const & q) : w_(q["w"]), x_(q["x"]), y_(q["y"]), z_(q["z"]) {};
 	//inline nap_quat(Ogre::Quaternion const & v); //requires .h

@@ -232,12 +232,12 @@ Ogre::Quaternion RenderSystemInterface::getRotationFrom_To(Ogre::Vector3 src, Og
 }
 
 nap_quat RenderSystemInterface::getRotationFrom_To(nap_vector3 src, nap_vector3 dest)
-{
-	Vector3 src_ = { src.x_, src.y_, src.z_ };
-	Vector3 dest_ = { dest.x_, dest.y_, dest.z_ };
+{	
+	Vector3 src_ = src.ogre();
+	Vector3 dest_ = dest.ogre();
 	Quaternion quat = src_.getRotationTo(dest_);
 
-	nap_quat nq = {quat.x, quat.y, quat.z, quat.w};
+	nap_quat nq = {quat.w, quat.x, quat.y, quat.z};
 
 	return nq;
 }

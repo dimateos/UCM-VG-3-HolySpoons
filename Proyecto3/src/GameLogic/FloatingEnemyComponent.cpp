@@ -8,6 +8,9 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 	timer += t;
 	initPos.y_ = sin(timer*vertSpeed)*amplitude + initY;
 	initPos.x_ += horiSpeed;
+	//float angle = horiSpeed * timer;
+	//initPos.x_ = cos(angle) * 10;
+	//initPos.z_ = sin(angle) * 10;
 
 	o->setPosition(initPos);
 	//cout <<"X: "<< o->getOrientation().x_ << " Y: " << o->getOrientation().y_ << " Z: " << o->getOrientation().z_ << " W: " << o->getOrientation().w_ << endl;

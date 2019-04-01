@@ -33,7 +33,6 @@ void FPSCamera::update(GameObject * ent, float time) {
 
 bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	bool handled = false;
-
 	switch (evt.type) {
 
 	case SDL_MOUSEMOTION:
@@ -49,7 +48,6 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 		}
 		break;
 	}
-
 	return handled;
 }
 

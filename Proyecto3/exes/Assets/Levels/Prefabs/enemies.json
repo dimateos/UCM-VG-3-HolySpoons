@@ -7,7 +7,7 @@
             "type": "pref_monkey",
             "group": "enemies"
         },
-        "pos": { "x": 10.0, "y": 15.0, "z": 0.0 },
+        "pos": { "x": 10.0, "y": 15.0, "z": 10.0 },
         "Components": {
             "basic_phy": {
                 "id": {
@@ -25,11 +25,11 @@
 					"group": "test_comps"
 				},
                 "scale": { "x": 500.0, "y": 500.0, "z": 500.0 },
-                "material": "BasicMaterial",
+                "material": "Material",
                 "shape": {
                     "entity_name": "monkey",
                     "type": "MESH",
-                    "mesh": "monoDebug.mesh"
+                    "mesh": "monkey.mesh"
                 }
             },
             "floating_mov":{
