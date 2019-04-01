@@ -23,6 +23,7 @@ public:
 	void pushState(GameState* pState);
 	void changeState(GameState* pState);
 	void popState();
+	GameState* getState();
 
 private:
 	stack<GameState*> states_;

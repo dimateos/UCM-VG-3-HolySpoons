@@ -5,6 +5,7 @@
 #include "RenderSystemManager.h"
 #include "PhysicsSystemManager.h"
 //#include "SoundManager.h"
+#include "MessageSystem.h"
 
 #include "GameStateMachine.h"
 
@@ -43,6 +44,7 @@ private:
 	PhysicsSystemManager* physicsManager;
 	RenderSystemManager* renderManager;
 	//SoundManager* soundManager_; //controls the sound
+	MessageSystem* messageSystem;
 
 	GameStateMachine* gsm_; //controls the states
 };

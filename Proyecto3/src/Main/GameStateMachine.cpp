@@ -72,6 +72,13 @@ void GameStateMachine::changeState(GameState *newState) {
 	states_.push(newState);
 }
 
+GameState * GameStateMachine::getState() {
+	if (!states_.empty())
+		return states_.top();
+	else
+		return nullptr;
+}
+
 //////////////////////////////////////////////////////////////////////////////
 
 //quizas podrian recorrer directamente ellos las listas de entidades y nos ahorramos un step

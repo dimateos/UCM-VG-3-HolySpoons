@@ -29,6 +29,7 @@ void Game::initGame() {
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 	//soundManager_ = new SoundManager(this);
+	messageSystem = MessageSystem::getSingleton();
 
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
@@ -37,6 +38,7 @@ void Game::initGame() {
 	gsm_ = new GameStateMachine(); //!temporary direct creation
 	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(level); //you can push it already and add more things later
+	MessageSystem::getSingleton()->updateTargets(gsm_->getState()->getGameObjects()); //this needs to be done everytime we change state
 
 	/*
 	//proof of concept:
@@ -82,6 +84,7 @@ void Game::closeGame() {
 	//Close singleton instances
 	PhysicsSystemManager::shutdownSingleton();
 	renderManager->shutdown(); //maybe static too?
+	MessageSystem::shutdownSingleton();
 
 	delete gsm_;
 	//delete soundManager_;

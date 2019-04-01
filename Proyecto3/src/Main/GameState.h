@@ -21,6 +21,7 @@ public:
 	//void sendToGSM(Message* msg);
 	inline void setStateID(string id) { stateID_ = id; };
 	inline string getStateID() { stateID_; };
+	std::list<GameObject*> getGameObjects(){ return gameObjects_; };
 
 protected:
 	virtual void setDown();
