@@ -29,5 +29,5 @@ physx::PxVec3 nap_vector3::px() {
 	return physx::PxVec3(x_, y_, z_);
 }
 physx::PxQuat nap_quat::px() {
-	return physx::PxQuat(w_, x_, y_, z_);
+	return physx::PxQuat(x_, y_, z_, w_);
 }

@@ -33,7 +33,7 @@ material EyeMaterial
 		{
 			texture_unit
 			{
-				texture debugeye.png
+				texture eyetext.png
 			}
 		}
 	}

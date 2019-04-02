@@ -235,6 +235,8 @@ nap_quat RenderSystemInterface::getRotationFrom_To(nap_vector3 src, nap_vector3 
 {	
 	Vector3 src_ = src.ogre();
 	Vector3 dest_ = dest.ogre();
+	src_.normalise();
+	dest_.normalise();
 	Quaternion quat = src_.getRotationTo(dest_);
 
 	nap_quat nq = {quat.w, quat.x, quat.y, quat.z};
