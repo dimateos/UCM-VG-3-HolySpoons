@@ -34,7 +34,7 @@ public:
 	static void shutdownSingleton();
 
 	SceneStruct ReadLevel(string level); // reads the file called "level" and return the scene information
-
+	GOStruct* getPrefab(string pref);
 
 private:
 	static JsonReader* instance_; //singleton pattern
@@ -42,9 +42,9 @@ private:
 	~JsonReader();
 
 	// levels files must be in "routeLevel" and prefabs in "routePrefabs"
-	string routeLevel = ".\\Assets\\Levels\\";
-	string routePrefabs = ".\\Assets\\Levels\\Prefabs\\";
-	string routeMapsTypes = ".\\Assets\\Levels\\mapTypes.txt";
+	string routeLevel = ".\\Assets\\_Levels\\";
+	string routePrefabs = ".\\Assets\\_Levels\\Prefabs\\";
+	string routeMapsTypes = ".\\Assets\\_Levels\\mapTypes.txt";
 
 	// prefab preloading
 	void preloadPrefabs();

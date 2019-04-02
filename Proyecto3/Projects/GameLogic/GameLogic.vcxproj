@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\ComponentFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp" />
     <ClCompile Include="..\..\src\GameLogic\OverlayComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
@@ -33,8 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\ComponentFactory.h" />
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\GOFactory.h" />
     <ClInclude Include="..\..\src\GameLogic\Identifiable.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="..\..\src\GameLogic\Listener.h" />
     <ClInclude Include="..\..\src\GameLogic\Messages.h" />
     <ClInclude Include="..\..\src\GameLogic\Component.h" />
+    <ClInclude Include="..\..\src\GameLogic\MessageSystem.h" />
     <ClInclude Include="..\..\src\GameLogic\OverlayComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />

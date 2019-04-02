@@ -1,0 +1,44 @@
+{
+    "stateID_": "TestLevel",
+    "GameObjects": [
+        {
+            "id": {
+				"type": "pref_player"
+            }
+        },
+        {
+            "id": {
+				"type": "pref_test_go"
+            }
+        },
+
+
+        {
+            "id": {
+				"type": "pref_ground"
+            },
+            "pos": { "x": 0.0, "y": -15.0, "z": 0.0 }
+        },
+        {
+            "id": {
+				"type": "pref_cube"
+            },
+            "pos": { "x": 0.0, "y": 5.0, "z": 0.0 }
+        },
+
+
+        {
+            "id": {
+				"type": "pref_monkey"
+            }
+        },
+        {
+            "id": {
+				"name": "monkey_target",
+				"type": "pref_cube"
+            },
+            "pos": { "x": 0.0, "y": 30.0, "z": 0.0 },
+            "Components": { "cube_phys": { "dynamic": false } }
+        }
+    ]
+}

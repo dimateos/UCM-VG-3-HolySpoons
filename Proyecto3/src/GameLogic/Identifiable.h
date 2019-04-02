@@ -8,16 +8,29 @@ using nap_json = nlohmann::json;
 #define undef "undefined"
 
 // instead of just a string the id could also have a unique serial number or stuff like that
-struct ID
+class ID
 {
-	inline ID() : name_(undef), type_(undef), group_(undef) {};
-	inline ID(std::string name) : name_(name), type_(undef), group_(undef) {};
-	inline ID(std::string name, std::string type) : name_(name), type_(type), group_(undef) {};
-	inline ID(std::string name, std::string type, std::string group) : name_(name), type_(type), group_(group) {};
+public:
+	inline ID() : name_(undef), type_(undef), group_(undef), sn_(getNewSN()) {};
+	inline ID(std::string name) : name_(name), type_(undef), group_(undef), sn_(getNewSN()) {};
+	inline ID(std::string name, std::string type) : name_(name), type_(type), group_(undef), sn_(getNewSN()) {};
+	inline ID(std::string name, std::string type, std::string group) : name_(name), type_(type), group_(group), sn_(getNewSN()) {};
 
 	std::string name_, type_, group_;
 
-	inline bool equal(std::string name) const { return name_ == name; }
+	size_t sn_;
+	inline std::string sn_string() { return "_" + to_string(sn_); }
+
+	//also compares the serial numbers
+	inline bool equal(std::string name, size_t sn) const { return name_ == name && sn_ == sn; }
+	inline bool equal(ID const & id) const { return equal(id.name_, id.sn_); }
+
+protected:
+	//static unique serial number generator for all identifiables
+	static size_t getNewSN() {
+		static size_t current_last_sn_ = 0; //static initialized once
+		return ++current_last_sn_;
+	}
 };
 
 // class to serve as identification, could be expanded to gropups or etc

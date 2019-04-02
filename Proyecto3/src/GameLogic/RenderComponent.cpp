@@ -27,7 +27,8 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 	//switch the type to construct the correct shape
 	string type = shape["type"];
 	if (type == "MESH") {
-		pair = rsi->createOgreEntity(shape["entity_name"], shape["mesh"]);
+		string e_name = shape["entity_name"];
+		pair = rsi->createOgreEntity( e_name + id().sn_string(), shape["mesh"]);
 	}
 
 	return pair;

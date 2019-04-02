@@ -1,0 +1,67 @@
+{
+"Prefabs" :
+[
+    {
+        "id": {
+            "name": "pref_ground",
+            "type": "pref_ground",
+            "group": "test_prefabs"
+        },
+        "Components": {
+            "ground_phys": {
+                "id": {
+					"type": "Phys",
+					"group": "test_comps"
+                },
+                "dynamic": false,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 30.0, "y": 1.0, "z": 30.0 }
+                }
+            },
+            "ground_rend": {
+                "id": {
+                    "type": "Render",
+					"group": "test_comps"
+				},
+                "scale": { "x": 30.0, "y": 1.0, "z": 30.0 },
+                "material": "DebugMaterial2",
+                "shape": {
+                    "entity_name": "pref_ground",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    },
+    {
+        "id": {
+            "name": "pref_cube",
+            "type": "pref_cube",
+            "group": "test_prefabs"
+        },
+        "Components": {
+            "cube_phys": {
+                "id": {
+                    "type": "Phys"
+                },
+                "dynamic": true,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 2.5, "y": 2.5, "z": 2.5 }
+                }
+            },
+            "cube_rend": {
+                "id": {
+                    "type": "Render"
+                },
+                "scale": { "x": 2.5, "y": 2.5, "z": 2.5 },
+                "material": "DebugMaterial2",
+                "shape": {
+                    "entity_name": "pref_cube",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    }
+]
+}

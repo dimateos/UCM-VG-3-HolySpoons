@@ -82,6 +82,21 @@ void JsonReader::preloadPrefabs() {
 	LogSystem::Log("Precargados " + to_string(n) + " archivos de prefabs con exito", LogSystem::JSON);
 }
 
+GOStruct* JsonReader::getPrefab(string pref) {
+	GOStruct* prefab = nullptr;
+
+	if (prefabs.count(pref) > 0) {
+		prefab = prefabs[pref];
+	}
+	else {
+		LogSystem::Log("El prefab " + pref + "no fue encontrado... abortando parseo del GO", LogSystem::JSON);
+	}
+
+	return prefab;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 GOStruct* JsonReader::readGO(nap_json const & cfg) {
 	auto go = new GOStruct();
 	go->go_cfg = cfg;
@@ -167,19 +182,14 @@ SceneStruct JsonReader::ReadLevel(string level) {
 			if (cfg["id"].find("type") != cfg["id"].end()) {
 
 				//check the prefab exists and load / throw error and continue
-				string type = cfg["id"]["type"];
-				if (prefabs.count(type) > 0) {
-					//update all the prefab values with raw GO
-					GOStruct prefab_go = *prefabs[type];
-					//using recursive deep update
-					deepUpdateJson(prefab_go.go_cfg, go.go_cfg);
-					deepUpdateJson(prefab_go.components_cfg, go.components_cfg);
-					go = prefab_go;
-				}
-				else {
-					LogSystem::Log("El prefab " + type + "no fue encontrado... abortando parseo del GO", LogSystem::JSON);
-					continue;
-				}
+				GOStruct* prefab_go = getPrefab(cfg["id"]["type"]);
+				if (prefab_go == nullptr) continue;
+
+				//update all the prefab values with raw GO
+				//using recursive deep update
+				deepUpdateJson(prefab_go->go_cfg, go.go_cfg);
+				deepUpdateJson(prefab_go->components_cfg, go.components_cfg);
+				go = *prefab_go;
 			}
 		}
 
@@ -260,8 +270,8 @@ GOType JsonReader::ReadMap(string level) {
 
 			GOStruct go = *prefabs[mapTypes[row[j]]];
 
-			//temporal way of adding suffix to entity name. Ogre dosent allow same name.
-			go.components_cfg["tile_rend"]["shape"]["entity_name"] = "tile_" + to_string(n);
+			//temporal way of adding suffix to entity name. Ogre dosent allow same name. //FIXED
+			//go.components_cfg["tile_rend"]["shape"]["entity_name"] = "tile_" + to_string(n);
 
 			//configue its position and push it
 			setTilePosition(r, c, i, j, go);

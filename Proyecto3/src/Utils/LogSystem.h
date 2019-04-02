@@ -19,7 +19,7 @@ public:
 	static void Log(string const & msg, float n, logType t = NOTYPE);	// easier logging of float
 	static void Log();													// default dev log test msg
 
-	static void cls(size_t n = 20);	//print n empty lines
+	static void cls(size_t n = 3);	//print n empty lines
 	static string getTime();		//get string with system time
 
 private:

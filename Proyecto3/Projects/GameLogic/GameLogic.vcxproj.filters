@@ -20,6 +20,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{34dda379-aa0a-44b2-8383-5a76477e43f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
@@ -40,9 +43,6 @@
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\ComponentFactory.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
@@ -50,13 +50,16 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
-      <Filter>_Components</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp">
       <Filter>_Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp">
+      <Filter>_Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +93,6 @@
     <ClInclude Include="..\..\src\GameLogic\Component.h">
       <Filter>_Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\ComponentFactory.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
@@ -103,13 +103,16 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
-      <Filter>_Components</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\MessageSystem.h">
       <Filter>_Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GOFactory.h">
+      <Filter>_Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
