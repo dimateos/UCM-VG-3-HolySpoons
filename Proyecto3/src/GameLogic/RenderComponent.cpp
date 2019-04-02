@@ -36,7 +36,7 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void RenderComponent::late_update(GameObject * o, float time) {
+void RenderComponent::late_update(GameObject * o, double time) {
 	if (o->getUpToDate_rend()) return;
 
 	node->setPosition(o->getPosition().ogre() * ogre_scale);

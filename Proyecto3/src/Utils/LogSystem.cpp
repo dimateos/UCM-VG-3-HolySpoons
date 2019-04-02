@@ -56,6 +56,10 @@ void LogSystem::Log() {
 	Log("Test point reached", DEV);
 }
 
+void LogSystem::Log(string const & msg, nlohmann::json const & j, logType t) {
+	Log(msg + "\n" + j.dump(5), t);
+}
+
 void LogSystem::cls(size_t n) {
 	for (size_t i = 0; i < n; i++) std::cout << std::endl;
 }

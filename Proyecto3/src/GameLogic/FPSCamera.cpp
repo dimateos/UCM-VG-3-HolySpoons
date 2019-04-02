@@ -23,7 +23,7 @@ void FPSCamera::setUp() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void FPSCamera::update(GameObject * ent, float time) {
+void FPSCamera::update(GameObject * ent, double time) {
 	//direction
 	camNode_->yaw(Ogre::Degree(cfg_["rotXspeed"] * time * -rotX_), Ogre::Node::TS_PARENT);
 	camNode_->pitch(Ogre::Degree(cfg_["rotYspeed"] * time * -rotY_), Ogre::Node::TS_LOCAL);
@@ -49,10 +49,6 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 		break;
 	}
 	return handled;
-}
-
-void FPSCamera::loadParameters(std::vector<string> parameters) {
-	// TO COMPLETE (depending on the needed parameters)
 }
 
 void FPSCamera::toggleZoom() {

@@ -3,26 +3,21 @@
 #define MESSAGE_SYSTEM_H_
 
 #include <list>
-#include "GameObject.h"
-#include "Component.h"
-
 using namespace std;
+
+//some fowarding
+class Message;
+class GameObject;
 
 class MessageSystem
 {
-private:
-	static MessageSystem* instance_;
-	list<GameObject*> targets_;
-
-	MessageSystem();
-	~MessageSystem();
-
 public:
-	static MessageSystem* getSingleton(); // you can obtain/shutdown the instance of the singleton 
+	// you can obtain/shutdown the instance of the singleton
+	static MessageSystem* getSingleton();
 	static void shutdownSingleton();
 
-	void updateTargets(list<GameObject*> targets);
-	
+	void updateTargets(list<GameObject*>* targets);
+
 	void sendMessageName(Message* msg, string name);
 	void sendMessageType(Message* msg, string type);
 	void sendMessageGroup(Message* msg, string group);
@@ -30,7 +25,14 @@ public:
 	void sendMessageComponentName(Message* msg, string name, string cname);
 	void sendMessageComponentType(Message* msg, string name, string ctype);
 	void sendMessageComponentGroup(Message* msg, string name, string cgroup);
-	
+
+private:
+	list<GameObject*>* targets_; //dynamic gamestate GO list
+
+	//singleton patern
+	static MessageSystem* instance_;
+	MessageSystem();
+	~MessageSystem();
 };
 
 #endif /* MESSAGE_SYSTEM_H_ */

@@ -14,9 +14,7 @@ public:
 	//mouse move + rightClick and screen resize
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
 	//smooth movement -> updates all the time
-	virtual void update(GameObject* ent, float time);
-
-	virtual void loadParameters(std::vector<string>parameters);
+	virtual void update(GameObject* ent, double time);
 
 protected:
 	void toggleZoom();

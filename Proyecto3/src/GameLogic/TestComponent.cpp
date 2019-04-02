@@ -41,15 +41,18 @@ void TestComponent::setUp() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void TestComponent::update(GameObject * ent, float time) {
+void TestComponent::update(GameObject * o, double time) {
 	//LogSystem::Log();
 
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = , boxS.getSize().y, boxS.getSize().z);
 	//std::cout << boxS.getSize().x << std::endl;
+
+	//debug pos or ori using the json version
+	//LogSystem::Log("json test:", o->getPosition().json());
 }
 
-bool TestComponent::handleEvents(GameObject * ent, const SDL_Event & evt) {
+bool TestComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
 	//const float f = 100;
 

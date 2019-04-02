@@ -10,8 +10,7 @@ void PhysicsComponent::setUp() {
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
-	dynamic = cfg_["dynamic"];
-	if (dynamic) {
+	if (cfg_["dynamic"]) {
 		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform());
 		//mass and stuff
 	}
@@ -59,7 +58,7 @@ void PhysicsComponent::receive(Message * msg) {
 	}
 }
 
-void PhysicsComponent::late_update(GameObject * o, float time) {
+void PhysicsComponent::late_update(GameObject * o, double time) {
 	if (o->getUpToDate_phys()) return;
 
 	getActor()->setGlobalPose(PxTransform(o->getPosition().px(), o->getOrientation().px()));

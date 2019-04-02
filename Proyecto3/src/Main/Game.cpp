@@ -25,7 +25,7 @@ void Game::initGame() {
 	LogSystem::resetLogFile();
 	LogSystem::Log("initializing...", LogSystem::GAME);
 
-	//Get the singleton instances
+	//Get/create the singleton instances
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
 	//soundManager_ = new SoundManager(this);
@@ -34,60 +34,37 @@ void Game::initGame() {
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
 
-	//Atm everything is in the jsons
+	// musiquita que venia de ejemplo jeje. Si quereis ver el 3D modificad la z y lo oireis por la izq o der
+	// siempre hacer el setListenerTransform y como parametro un puntero a la pos&rot del player (o de lo que vaya a escuchar)
+	// la primera vez que se llame al getSingleton
+	SoundManager::getSingleton()->setListenerTransform(new nap_transform());
+	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 10), true, false);
+
+	//Initialize level
+	LogSystem::cls();
+	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
+
 	gsm_ = new GameStateMachine(); //!temporary direct creation
 	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(level); //you can push it already and add more things later
-	MessageSystem::getSingleton()->updateTargets(gsm_->getState()->getGameObjects()); //this needs to be done everytime we change state
 
-	/*
-	//proof of concept:
-	// * reading the scene from json with prefabs and all
-	// * also manually adding the previous tester GO
-
-	//can be created and not added -> doesnt setup
-	auto tester1 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
-		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
-	);
-
-	//can be added afterwards and setsup
-	auto tester2 = new GameObject(nap_json({ { "id", { {"name", "test_gameObject"}, } }, }),
-		{ new TestComponent(), new FPSCamera(nap_json({ {"id", {} } })) }
-	);
-	//watch out you need a FPS cam to have a properly placed camera (to look at the bodies etc)
-	level->addGameObject(tester2);
-
-	//OverlayTest
-	nap_json cfg_overlay_test_rend = {
-		{ "id", { {"name", "overlay_test_rend"}, } },
-		{"overlay_name", "TEST_HUD"},
-		{"panel_container", "TEST_HUD_PanelContainer"}
-	};
-	nap_json cfg_crosshair_hud_rend = {
-		{ "id", { {"name", "crosshair_hud_rend"}, } },
-		{ "overlay_name", "CROSSHAIR_HUD" },
-		{ "panel_container", "CROSSHAIR_HUD_PanelContainer" }
-	};
-
-	//you can add components to already pushed GO and they setup
-	tester2->addComponent(new OverlayComponent(cfg_crosshair_hud_rend));
-	tester2->addComponent(new OverlayComponent(cfg_overlay_test_rend));
-	*/
-
+	//all done
+	LogSystem::cls();
 	LogSystem::Log("initialized", LogSystem::GAME);
 }
 
-//destroys the gameStateMachine
+//shutdown singletons etc in reverse order
 void Game::closeGame() {
 	LogSystem::Log("closing...", LogSystem::GAME);
-
-	//Close singleton instances
-	PhysicsSystemManager::shutdownSingleton();
-	renderManager->shutdown(); //maybe static too?
-	MessageSystem::shutdownSingleton();
+	LogSystem::cls();
 
 	delete gsm_;
-	//delete soundManager_;
+
+	//Close singleton instances
+	MessageSystem::shutdownSingleton();
+	//soundManager_->shutdown();
+	renderManager->shutdown(); //maybe static too?
+	PhysicsSystemManager::shutdownSingleton();
 
 	LogSystem::Log("closed", LogSystem::GAME);
 }
@@ -95,13 +72,12 @@ void Game::closeGame() {
 ///////////////////////////////////////////////////////////////////
 
 void Game::start() {
-	LogSystem::Log("start game", LogSystem::GAME);
-	StartCounter();
+	LogSystem::Log("starting game", LogSystem::GAME);
 	run();
 }
 
 void Game::stop() {
-	LogSystem::Log("stop game", LogSystem::GAME);
+	LogSystem::Log("stopping game", LogSystem::GAME);
 	exit_ = true;
 }
 
@@ -130,6 +106,7 @@ double Game::GetCounter() {
 //main game loop, ends with exit_
 void Game::run() {
 	exit_ = false;
+	StartCounter();
 
 	while (!exit_) {
 		double t = GetCounter();
@@ -167,7 +144,7 @@ void Game::run() {
 		//LogSystem::Log("main render", LogSystem::GAME);
 		renderManager->renderFrame();
 
-		// SOUND 
+		// SOUND
 		//LogSystem::Log("main sound", LogSystem::GAME);
 		SoundManager::getSingleton()->update();
 	}

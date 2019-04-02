@@ -20,7 +20,7 @@ public:
 	PxRigidDynamic * getDynamicBody() const { return rigidBodyD_; };
 
 	virtual void receive(Message* msg);
-	virtual void late_update(GameObject* o, float time);
+	virtual void late_update(GameObject* o, double time);
 
 protected:
 	virtual void setDown();
@@ -35,9 +35,9 @@ protected:
 	//RigidBody config
 	PxRigidDynamic* rigidBodyD_ = nullptr;
 	PxRigidStatic* rigidBodyS_ = nullptr;
-	bool dynamic = true;
 	inline PxRigidActor* getActor() const {
-		if (dynamic) return rigidBodyD_; else return rigidBodyS_;
+		if (rigidBodyD_ != NULL && rigidBodyD_ != nullptr) return rigidBodyD_;
+		else return rigidBodyS_;
 	};
 };
 

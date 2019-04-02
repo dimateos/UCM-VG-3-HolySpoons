@@ -16,8 +16,8 @@ public:
 	// called from gameObjects themselves
 	// non pure so you dont have to create empty functions
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt) { return false; };
-	virtual void update(GameObject* o, float time) {};
-	virtual void late_update(GameObject* o, float time) {};
+	virtual void update(GameObject* o, double time) {};
+	virtual void late_update(GameObject* o, double time) {};
 
 protected:
 	nap_json cfg_; //for async setup

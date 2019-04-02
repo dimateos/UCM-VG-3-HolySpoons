@@ -1,4 +1,5 @@
 #include "GameStateMachine.h"
+#include "MessageSystem.h"
 
 GameStateMachine::GameStateMachine() {}
 
@@ -17,7 +18,7 @@ GameStateMachine::~GameStateMachine() {
 //	}
 //}
 
-#include "ComponentFactory.h" //build comps
+#include "GOFactory.h" //build comps
 #include "JsonReader.h" //reading levels
 
 GameState * GameStateMachine::loadLevel(std::string level) {
@@ -33,11 +34,8 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	//create the gameObjects
 	for (auto & go_struct : scene.gameObjects) {
 
-		//go cfg
-		auto go = new GameObject(go_struct.go_cfg);
-
-		//all its comps created cfg and added
-		go->addComponent(ComponentFactory::ParseComponents(go, &go_struct.components_cfg));
+		//go cfg and components
+		auto go = GOFactory::ParseGO(&go_struct);
 
 		//push the go with its config  and built comps
 		state->addGameObject(go);
@@ -46,13 +44,21 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	return state;
 }
 
-
 //////////////////////////////////////////////////////////////////////////////
+
+GameState * const GameStateMachine::currentState() {
+	if (!states_.empty())
+		return states_.top();
+	else
+		return nullptr;
+}
 
 //pushes over the current state (no delete, no pop)
 void GameStateMachine::pushState(GameState *newState) {
 	states_.push(newState);
 	newState->setUp();
+	//this needs to be done everytime we change state
+	MessageSystem::getSingleton()->updateTargets(newState->getGameObjects());
 }
 
 void GameStateMachine::popState() {
@@ -63,20 +69,17 @@ void GameStateMachine::popState() {
 }
 
 //deletes and pops all the states befor pushing the new one
-void GameStateMachine::changeState(GameState *newState) {
+void GameStateMachine::clearStates() {
 	while (!states_.empty()) {
 		delete states_.top(); //delete before popping
 		states_.pop();
 	}
-
-	states_.push(newState);
 }
 
-GameState * GameStateMachine::getState() {
-	if (!states_.empty())
-		return states_.top();
-	else
-		return nullptr;
+//deletes and pops all the states befor pushing the new one
+void GameStateMachine::changeState(GameState *newState) {
+	clearStates();
+	pushState(newState);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -88,7 +91,7 @@ bool GameStateMachine::handleEvents(const SDL_Event evt) {
 	return states_.top()->handleEvents(evt);
 }
 
-void GameStateMachine::update(float time) {
+void GameStateMachine::update(double time) {
 	if (!states_.empty()) {
 		states_.top()->update(time);
 	}

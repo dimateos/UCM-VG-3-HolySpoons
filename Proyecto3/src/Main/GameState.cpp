@@ -63,7 +63,7 @@ bool GameState::handleEvents(const SDL_Event evt) {
 }
 
 //iterates all the Entities and calls their updates
-void GameState::update(float time) {
+void GameState::update(double time) {
 
 	//LogSystem::Log("state update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {

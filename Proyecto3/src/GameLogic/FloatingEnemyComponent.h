@@ -14,8 +14,7 @@ private:
 
 	void WaveyMovement(float t);
 
-
-	float amplitude = 1; 
+	float amplitude = 1;
 	float horiSpeed = 0.01;
 	float vertSpeed = 1;
 	float initY;
@@ -31,6 +30,6 @@ public:
 	virtual void setUp();
 	virtual void lateSetUp();
 
-	virtual void update(GameObject* ent, float time);
+	virtual void update(GameObject* ent, double time);
 };
 

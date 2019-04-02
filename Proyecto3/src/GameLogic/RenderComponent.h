@@ -12,7 +12,7 @@ public:
 	inline virtual ~RenderComponent() {};
 	virtual void setUp();
 
-	virtual void late_update(GameObject* ent, float time);
+	virtual void late_update(GameObject* ent, double time);
 
 protected:
 	//Assist on setting up the shape

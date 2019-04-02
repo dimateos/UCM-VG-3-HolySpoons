@@ -2,7 +2,7 @@
 #ifndef LISTENER_H_
 #define LISTENER_H_
 
-#include "Messages.h";
+#include "Messages.h"
 
 // it allows to receive messages
 class Listener {

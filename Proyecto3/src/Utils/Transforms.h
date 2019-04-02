@@ -26,50 +26,62 @@ namespace physx
 class nap_vector3
 {
 public:
+	//constructors
 	inline nap_vector3() : x_(0.0f), y_(0.0f), z_(0.0f) {};
 	inline nap_vector3(float f) : x_(f), y_(f), z_(f) {};
 	inline nap_vector3(float x, float y, float z) : x_(x), y_(y), z_(z) {};
 	inline nap_vector3(nap_vector3 const & v) : x_(v.x_), y_(v.y_), z_(v.z_) {};
 
 	inline nap_vector3(nlohmann::json const & v) : x_(v["x"]), y_(v["y"]), z_(v["z"]) {};
-	inline nap_vector3 operator+(const nap_vector3 v2) { return nap_vector3(this->x_ + v2.x_,
-		this->y_ + v2.y_, this->z_ + v2.z_); };
-	inline nap_vector3 operator*(float n) {
-		return nap_vector3(this->x_ * n, this->y_ * n, this->z_ * n); };
 	//inline nap_vector3(Ogre::Vector3 const & v); //requires .h
 	//inline nap_vector3(physx::PxVec3 const & v);
 
-	float x_, y_, z_;
+	//transformations
 	Ogre::Vector3 ogre();
 	physx::PxVec3 px();
-	nlohmann::json json() {
+	nlohmann::json json() { //could be used for easy debug
 		return nlohmann::json({ {"x", x_}, {"y", y_}, {"z", z_} });
 	};
+
+	//some ops
+	inline nap_vector3 operator+(const nap_vector3 & v2) {
+		return nap_vector3(this->x_ + v2.x_, this->y_ + v2.y_, this->z_ + v2.z_);
+	};
+	inline nap_vector3 operator*(float n) {
+		return nap_vector3(this->x_ * n, this->y_ * n, this->z_ * n);
+	};
+
+	float x_, y_, z_;
 };
 
 //wraps physx and ogre quaternions
 class nap_quat
 {
 public:
+	//constructors
 	inline nap_quat() : w_(1.0f), x_(0.0f), y_(0.0f), z_(0.0f) {};
 	inline nap_quat(float f) : w_(f), x_(f), y_(f), z_(f) {};
 	inline nap_quat(float w, float x, float y, float z) : w_(w), x_(x), y_(y), z_(z) {};
 	inline nap_quat(nap_quat const & q) : w_(q.w_), x_(q.x_), y_(q.y_), z_(q.z_) {};
-	inline nap_quat operator*(float n) {
-		return nap_quat(this->w_ * n,
-			this->x_ * n, this->y_ * n, this->z_ * n);
-	};
 
 	inline nap_quat(nlohmann::json const & q) : w_(q["w"]), x_(q["x"]), y_(q["y"]), z_(q["z"]) {};
 	//inline nap_quat(Ogre::Quaternion const & v); //requires .h
 	//inline nap_quat(physx::PxQuat const & v);
 
-	float w_, x_, y_, z_;
+	//transformations
 	Ogre::Quaternion ogre();
 	physx::PxQuat px();
-	nlohmann::json json() {
+	nlohmann::json json() { //could be used for easy debug
 		return nlohmann::json({ {"w", w_}, {"x", x_}, {"y", y_}, {"z", z_} });
 	};
+
+	//some ops
+	inline nap_quat operator*(float n) {
+		return nap_quat(this->w_ * n,
+			this->x_ * n, this->y_ * n, this->z_ * n);
+	};
+
+	float w_, x_, y_, z_;
 };
 
 // base vectors

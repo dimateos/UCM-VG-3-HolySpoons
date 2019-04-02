@@ -32,7 +32,7 @@ void FloatingEnemyComponent::lateSetUp()
 	rigidBody->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 }
 
-void FloatingEnemyComponent::update(GameObject* ent, float time)
+void FloatingEnemyComponent::update(GameObject* ent, double time)
 {
 	WaveyMovement(time);
 }

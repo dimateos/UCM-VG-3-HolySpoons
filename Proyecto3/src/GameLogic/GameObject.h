@@ -30,8 +30,8 @@ public:
 
 	//MAIN methods (call components)
 	virtual bool handleEvents(const SDL_Event evt);
-	virtual void update(float time);
-	virtual void late_update(float time);
+	virtual void update(double time);
+	virtual void late_update(double time);
 
 	//components operations
 	void addComponent(Component* component);

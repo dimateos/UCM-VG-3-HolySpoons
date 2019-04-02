@@ -12,8 +12,8 @@ public:
 	inline virtual ~TestComponent() { };
 	virtual void setUp();
 
-	virtual void update(GameObject* ent, float time);
-	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
+	virtual void update(GameObject* o, double time);
+	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 
 protected:
 };

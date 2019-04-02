@@ -14,7 +14,7 @@ public:
 	AutoRotationComponent(nap_json const & cfg) : Component(cfg) { this->setUp(); };
 	virtual void setUp();
 
-	virtual void update(GameObject* ent, float time);
+	virtual void update(GameObject* ent, double time);
 
 	virtual ~AutoRotationComponent();
 };

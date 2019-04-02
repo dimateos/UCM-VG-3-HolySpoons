@@ -15,15 +15,16 @@ public:
 	GameState* loadLevel(std::string level);
 
 	bool handleEvents(const SDL_Event evt);
-	void update(float time);
+	void update(double time);
 
 	//virtual void receive(Message* msg);
-	//GameState* currentState() { return states_.top(); } //unused
+	GameState* const currentState ();
 
 	void pushState(GameState* pState);
 	void changeState(GameState* pState);
 	void popState();
-	GameState* getState();
+	void clearStates();
+
 
 private:
 	stack<GameState*> states_;

@@ -16,12 +16,12 @@ public:
 	void addGameObject(GameObject* o);
 
 	virtual bool handleEvents(SDL_Event evt);
-	virtual void update(float time);
+	virtual void update(double time);
 
 	//void sendToGSM(Message* msg);
 	inline void setStateID(string id) { stateID_ = id; };
 	inline string getStateID() { stateID_; };
-	std::list<GameObject*> getGameObjects(){ return gameObjects_; };
+	std::list<GameObject*>* getGameObjects(){ return &gameObjects_; };
 
 protected:
 	virtual void setDown();
