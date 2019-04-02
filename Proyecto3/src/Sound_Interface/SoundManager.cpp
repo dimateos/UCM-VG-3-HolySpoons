@@ -26,11 +26,17 @@ void SoundManager::update() {
 	// listener transform (position, orientation)
 	updateListener();
 
-	// updates each playing sound position
+	// 3Dsounds: updates each playing sound position and erases the stopped sounds
 	for (map<string, pair<irrklang::ISound*, nap_vector3*>>::iterator it = threeDsounds.begin(); it != threeDsounds.end(); it++) {
 		if (!it->second.first->isFinished())
 			it->second.first->setPosition(irrklang::vec3df(it->second.second->x_, it->second.second->y_, it->second.second->z_));
 		else threeDsounds.erase(it);
+	}
+	// 2Dsounds: erases the stopped sounds
+	for (map<string, irrklang::ISound*>::iterator it = twoDsounds.begin(); it != twoDsounds.end(); it++) {
+		if (!it->second->isFinished())
+			;
+		else twoDsounds.erase(it);
 	}
 
 	engine->update();
@@ -52,29 +58,33 @@ void SoundManager::setListenerTransform(nap_transform* trans)
 	updateListener();
 }
 
-// it plays a 3D sound. If the sound exists and is not playing, it will be removed before adding it again. If the tracked bool is true,
-// it also returns the sound. If you play an existent sound that is being played, you will have to use this bool to have reference to the new sound
-irrklang::ISound* SoundManager::play3DSound(const string& name, nap_vector3* pos, bool playLooped, bool startPaused, bool tracked)
+// it plays a 3D sound. If the track bool is true, it also returns the sound. 
+// If you want to change a sound in execution, you must name it to have a later reference
+irrklang::ISound* SoundManager::play3DSound(const string& routeName, nap_vector3* pos, bool playLooped, bool startPaused, string customName, bool track)
 {
-	irrklang::ISound* sound3D = engine->play3D((soundsRoute + name).c_str(), irrklang::vec3df(pos->x_, pos->y_, pos->z_), playLooped, startPaused, true);
-	threeDsounds.insert({ name, {sound3D, pos} });
+	irrklang::ISound* sound3D = engine->play3D((soundsRoute + routeName).c_str(), irrklang::vec3df(pos->x_, pos->y_, pos->z_), playLooped, startPaused, true);
+	if(customName != "") threeDsounds.insert({ customName, {sound3D, pos} }); // you will be able to have a reference to that sound later
+	else {
+		threeDsounds.insert({ "__" + to_string(unmodifiedSounds), {sound3D, pos} });
+		unmodifiedSounds++;
+	}
 
-	if (tracked)return sound3D;
+	if (track)return sound3D;
 	else return nullptr;
 }
 
-// it plays a 2D sound. If the sound exists and is not playing it will be removed before adding it again. If the tracked bool is true,
-// it also returns the sound. If you play an existent sound that is being played, you will have to use this bool to have reference to the new sound
-irrklang::ISound* SoundManager::play2DSound(const string& name, bool playLooped, bool startPaused, bool tracked)
+// it plays a 2D sound. If the track bool is true, it also returns the sound. 
+// If you want to change a sound in execution, you must name it to have a later reference
+irrklang::ISound* SoundManager::play2DSound(const string& routeName, bool playLooped, bool startPaused, string customName, bool track)
 {
-	map<string, irrklang::ISound*>::iterator it = twoDsounds.find(name);
-	if (it != twoDsounds.end() && it->second->isFinished())
-		twoDsounds.erase(it);
+	irrklang::ISound* sound2D = engine->play2D((soundsRoute + routeName).c_str(), playLooped, startPaused, true);
+	if (customName != "") twoDsounds.insert({ customName, sound2D }); // you will be able to have a reference to that sound later
+	else {
+		twoDsounds.insert({ "__" + to_string(unmodifiedSounds), sound2D });
+		unmodifiedSounds++;
+	}
 
-	irrklang::ISound* sound2D = engine->play2D((soundsRoute + name).c_str(), playLooped, startPaused, true);
-	twoDsounds.insert({ name, sound2D });
-
-	if (tracked)return sound2D;
+	if (track)return sound2D;
 	else return nullptr;
 }
 
