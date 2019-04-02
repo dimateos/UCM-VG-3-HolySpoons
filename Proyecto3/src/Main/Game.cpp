@@ -3,7 +3,6 @@
 
 #include "LogSystem.h"
 #include "RenderSystemInterface.h"
-#include <SoundManager.h>
 
 #include "TestComponent.h"
 #include "PhysicsComponent.h"
@@ -28,7 +27,7 @@ void Game::initGame() {
 	//Get the singleton instances
 	physicsManager = PhysicsSystemManager::getSingleton();
 	renderManager = RenderSystemManager::getSingleton();
-	//soundManager_ = new SoundManager(this);
+	soundManager_ = SoundManager::getSingleton();
 	messageSystem = MessageSystem::getSingleton();
 
 	//Config systems
@@ -85,9 +84,9 @@ void Game::closeGame() {
 	PhysicsSystemManager::shutdownSingleton();
 	renderManager->shutdown(); //maybe static too?
 	MessageSystem::shutdownSingleton();
+	soundManager_->shutdownSingleton();
 
 	delete gsm_;
-	//delete soundManager_;
 
 	LogSystem::Log("closed", LogSystem::GAME);
 }
@@ -169,7 +168,7 @@ void Game::run() {
 
 		// SOUND 
 		//LogSystem::Log("main sound", LogSystem::GAME);
-		SoundManager::getSingleton()->update();
+		soundManager_->update();
 	}
 
 	closeGame();
