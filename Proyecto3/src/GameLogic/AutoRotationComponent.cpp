@@ -2,6 +2,8 @@
 
 void AutoRotationComponent::setUp()
 {
+	if (isInited()) return;
+	setInited();
 }
 
 void AutoRotationComponent::update(GameObject * ent, double time)

@@ -43,7 +43,7 @@ private:
 
 	PhysicsSystemManager* physicsManager;
 	RenderSystemManager* renderManager;
-	SoundManager* soundManager_; //controls the sound
+	SoundManager* soundManager_;
 	MessageSystem* messageSystem;
 
 	GameStateMachine* gsm_; //controls the states

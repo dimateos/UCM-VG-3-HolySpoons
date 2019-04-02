@@ -18,6 +18,8 @@ void PhysicsComponent::setUp() {
 		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform());
 	}
 
+	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, cfg_["noGravity"]);
+
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();

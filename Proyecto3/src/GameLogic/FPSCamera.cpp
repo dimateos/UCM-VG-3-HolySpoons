@@ -19,14 +19,19 @@ void FPSCamera::setUp() {
 	//postion atm is fixed, then should follow the player
 	camNode_->setPosition(nap_vector3(cfg_["basePos"]).ogre() * ogre_scale);
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
+
+	//set cfg vals
+	rotXspeed_ = cfg_["rotXspeed"];
+	rotYspeed_ = cfg_["rotYspeed"];
+	zoomed_ = cfg_["zoomed"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 void FPSCamera::update(GameObject * ent, double time) {
 	//direction
-	camNode_->yaw(Ogre::Degree(cfg_["rotXspeed"] * time * -rotX_), Ogre::Node::TS_PARENT);
-	camNode_->pitch(Ogre::Degree(cfg_["rotYspeed"] * time * -rotY_), Ogre::Node::TS_LOCAL);
+	camNode_->yaw(Ogre::Degree(rotXspeed_ * time * -rotX_), Ogre::Node::TS_PARENT);
+	camNode_->pitch(Ogre::Degree(rotYspeed_ * time * -rotY_), Ogre::Node::TS_LOCAL);
 	rotX_ = 0.0f;
 	rotY_ = 0.0f;
 }
@@ -52,6 +57,6 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 }
 
 void FPSCamera::toggleZoom() {
-	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * cfg_["zoomed"] * ogre_scale, Ogre::Node::TS_LOCAL);
+	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * zoomed_ * ogre_scale, Ogre::Node::TS_LOCAL);
 	zoom = !zoom;
 }

@@ -19,7 +19,11 @@ public:
 protected:
 	void toggleZoom();
 
+	//logic
 	Ogre::SceneNode* camNode_;
 	float rotX_, rotY_; //updaters
 	bool zoom = false;
+
+	//cfg (json)
+	float rotXspeed_, rotYspeed_, zoomed_;
 };

@@ -2,6 +2,7 @@
 #include "Windows.h" //temp counter method
 
 #include "LogSystem.h"
+#include "JsonReader.h"
 #include "RenderSystemInterface.h"
 
 #include "TestComponent.h"
@@ -36,8 +37,8 @@ void Game::initGame() {
 	// musiquita que venia de ejemplo jeje. Si quereis ver el 3D modificad la z y lo oireis por la izq o der
 	// siempre hacer el setListenerTransform y como parametro un puntero a la pos&rot del player (o de lo que vaya a escuchar)
 	// la primera vez que se llame al getSingleton
-	SoundManager::getSingleton()->setListenerTransform(new nap_transform());
-	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 10), true, false);
+	soundManager_->setListenerTransform(new nap_transform());
+	soundManager_->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 10), true, false);
 
 	//Initialize level
 	LogSystem::cls();
@@ -60,8 +61,9 @@ void Game::closeGame() {
 	delete gsm_;
 
 	//Close singleton instances
+	JsonReader::shutdownSingleton();
 	MessageSystem::shutdownSingleton();
-	soundManager_->shutdownSingleton();
+	SoundManager::shutdownSingleton();
 	renderManager->shutdown(); //maybe static too?
 	PhysicsSystemManager::shutdownSingleton();
 

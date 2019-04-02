@@ -26,6 +26,7 @@ JsonReader::~JsonReader() {
 		delete (itr->second);
 	}
 	prefabs.clear();
+	mapTypes.clear();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

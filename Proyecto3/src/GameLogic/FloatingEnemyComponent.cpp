@@ -18,18 +18,14 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 
 void FloatingEnemyComponent::setUp()
 {
+	if (isInited()) return;
+	setInited();
+
 	amplitude = cfg_["Amplitude"];
 	horiSpeed = cfg_["HorizontalSpeed"];
 	vertSpeed = cfg_["VerticalSpeed"];
 	initPos = o->getPosition();
 	initY = initPos.y_;
-}
-
-void FloatingEnemyComponent::lateSetUp()
-{
-	//THIS SHOULD BE DONE VIA THE JSON
-	rigidBody = static_cast<PhysicsComponent*>(o->getComponent("basic_phy"))->getDynamicBody();
-	rigidBody->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 }
 
 void FloatingEnemyComponent::update(GameObject* ent, double time)
