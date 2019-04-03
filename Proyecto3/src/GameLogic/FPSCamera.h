@@ -1,5 +1,6 @@
 //Nap_Time_Studios
-#pragma once
+#ifndef FPSCAMERA_H_
+#define FPSCAMERA_H_
 
 #include "RenderSystemInterface.h"
 
@@ -24,6 +25,10 @@ protected:
 	float rotX_, rotY_; //updaters
 	bool zoom = false;
 
+	nap_vector3 relativePos;
+
 	//cfg (json)
 	float rotXspeed_, rotYspeed_, zoomed_;
 };
+
+#endif /* FPSCAMERA_H_ */

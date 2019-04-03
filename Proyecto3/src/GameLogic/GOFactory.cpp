@@ -44,6 +44,7 @@ std::list<Component*> GOFactory::ParseComponents(GameObject * o, nap_json & comp
 #include "FloatingEnemyComponent.h"
 #include "FPSCamera.h"
 #include "AutoRotationComponent.h"
+#include "KeyBoardMovement.h"
 
 // it receives the nap_json * component_cfg with its name and cfg.
 // When you add a new component to the factory, you parse the unique type within cfg["id"]["type"]
@@ -59,6 +60,7 @@ Component * GOFactory::ParseComponent(GameObject * o, nap_json const & component
 	else if (type == "FPSCam") return new FPSCamera(component_cfg, o);
 	else if (type == "FloatingEnemy") return new FloatingEnemyComponent(component_cfg, o);
 	else if (type == "AutoRotation") return new AutoRotationComponent(component_cfg, o);
+	else if (type == "KeyBoard") return new KeyBoardMovement(component_cfg, o);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

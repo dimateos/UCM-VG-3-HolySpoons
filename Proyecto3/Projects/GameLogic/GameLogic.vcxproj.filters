@@ -61,6 +61,9 @@
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\KeyBoardMovement.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h">
       <Filter>_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\KeyBoardMovement.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

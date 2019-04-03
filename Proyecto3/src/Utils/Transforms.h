@@ -77,6 +77,7 @@ public:
 	nlohmann::json json() { //could be used for easy debug
 		return nlohmann::json({ {"w", w_}, {"x", x_}, {"y", y_}, {"z", z_} });
 	};
+	nap_vector3 toNapVec3();
 
 	//some ops
 	inline nap_quat operator*(float n) {

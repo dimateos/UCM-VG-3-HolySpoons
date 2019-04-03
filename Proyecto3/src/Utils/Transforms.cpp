@@ -31,3 +31,9 @@ physx::PxVec3 nap_vector3::px() {
 physx::PxQuat nap_quat::px() {
 	return physx::PxQuat(x_, y_, z_, w_);
 }
+nap_vector3 nap_quat::toNapVec3() {
+	physx::PxQuat q = px();
+	physx::PxVec3 v; float angle;
+	q.toRadiansAndUnitAxis(angle, v);
+	return nap_vector3(v.x, v.y, v.z);
+}

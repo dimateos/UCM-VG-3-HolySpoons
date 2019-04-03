@@ -17,7 +17,7 @@ void FPSCamera::setUp() {
 	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
 
 	//postion atm is fixed, then should follow the player
-	camNode_->setPosition(nap_vector3(cfg_["basePos"]).ogre() * ogre_scale);
+	relativePos = nap_vector3(cfg_["relativePos"]);
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
 	//set cfg vals
@@ -29,9 +29,17 @@ void FPSCamera::setUp() {
 ///////////////////////////////////////////////////////////////////////////////
 
 void FPSCamera::update(GameObject * ent, double time) {
+	// camera position = entity position
+	camNode_->setPosition((ent->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
+
+	// entity orientation = camera y orientation
+	nap_quat nq = { ent->getOrientation().w_, ent->getOrientation().x_, camNode_->getOrientation().y, ent->getOrientation().z_ };
+	ent->setOrientation(nq);
+
 	//direction
 	camNode_->yaw(Ogre::Degree(rotXspeed_ * time * -rotX_), Ogre::Node::TS_PARENT);
 	camNode_->pitch(Ogre::Degree(rotYspeed_ * time * -rotY_), Ogre::Node::TS_LOCAL);
+
 	rotX_ = 0.0f;
 	rotY_ = 0.0f;
 }
