@@ -35,7 +35,7 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	for (auto & go_struct : scene.gameObjects) {
 
 		//go cfg and components
-		auto go = GOFactory::ParseGO(&go_struct);
+		auto go = GOFactory::ParseGO(go_struct);
 
 		//push the go with its config  and built comps
 		state->addGameObject(go);

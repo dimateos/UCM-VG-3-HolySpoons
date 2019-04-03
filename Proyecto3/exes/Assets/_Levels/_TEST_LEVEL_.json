@@ -25,6 +25,18 @@
             },
             "pos": { "x": 0.0, "y": 5.0, "z": 0.0 }
         },
+        {
+            "id": {
+				"type": "pref_cube"
+            },
+            "pos": { "x": 5.0, "y": 5.0, "z": 0.0 },
+            "Components": {
+                "cube_rend": {
+                    "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
+                    "shape": { "mesh": "monkey.mesh" }
+                }
+            }
+        },
 
 
         {

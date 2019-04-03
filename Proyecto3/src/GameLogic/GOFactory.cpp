@@ -1,17 +1,25 @@
 #include "GOFactory.h"
 #include "LogSystem.h"
 
-GameObject * GOFactory::ParseGO(GOStruct * cfg) {
-	auto go = new GameObject(cfg->go_cfg);
+GameObject * GOFactory::ParseGO(GOStruct & cfg) {
+	auto go = new GameObject(cfg.go_cfg);
 
 	//all its comps created cfg and added
-	go->addComponent(ParseComponents(go, cfg->components_cfg));
+	go->addComponent(ParseComponents(go, cfg.components_cfg));
 
 	return go;
 }
 
 GameObject * GOFactory::GetGOPrefab(std::string const & name) {
-	return ParseGO(JsonReader::getSingleton()->getPrefab(name));
+	GameObject * go = nullptr;
+
+	bool successs;
+	auto go_struct = JsonReader::getSingleton()->getPrefab(name, successs);
+
+	if (!successs) LogSystem::Log("El prefab " + name + "no fue encontrado... abortando parseo del GO", LogSystem::JSON);
+	else go = ParseGO(go_struct);
+
+	return go;
 }
 
 // parses all the comps in nap_json * component_cfg

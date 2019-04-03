@@ -23,7 +23,7 @@ public:
 
 	static void Log(string const & msg, nlohmann::json const & j, logType t = NOTYPE);	// logging json
 
-	static void cls(size_t n = 3);	//print n empty lines
+	static void cls(size_t n = 2);	//print n empty lines
 	static string getTime();		//get string with system time
 
 private:

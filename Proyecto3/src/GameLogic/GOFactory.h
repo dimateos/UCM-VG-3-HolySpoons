@@ -11,7 +11,7 @@ class GOFactory
 {
 public:
 	// parses a GOType into a GO
-	static GameObject* ParseGO(GOStruct * cfg);
+	static GameObject* ParseGO(GOStruct & cfg);
 
 	// gets the GO parsed of a prefab
 	static GameObject* GetGOPrefab(std::string const & name);

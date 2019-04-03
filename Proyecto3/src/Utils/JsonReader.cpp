@@ -83,17 +83,15 @@ void JsonReader::preloadPrefabs() {
 	LogSystem::Log("Precargados " + to_string(n) + " archivos de prefabs con exito", LogSystem::JSON);
 }
 
-GOStruct* JsonReader::getPrefab(string pref) {
-	GOStruct* prefab = nullptr;
-
+GOStruct JsonReader::getPrefab(string pref, bool & success) {
 	if (prefabs.count(pref) > 0) {
-		prefab = prefabs[pref];
+		return *prefabs[pref];
 	}
 	else {
 		LogSystem::Log("El prefab " + pref + "no fue encontrado... abortando parseo del GO", LogSystem::JSON);
+		success = false;
+		return GOStruct();
 	}
-
-	return prefab;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -183,14 +181,15 @@ SceneStruct JsonReader::ReadLevel(string level) {
 			if (cfg["id"].find("type") != cfg["id"].end()) {
 
 				//check the prefab exists and load / throw error and continue
-				GOStruct* prefab_go = getPrefab(cfg["id"]["type"]);
-				if (prefab_go == nullptr) continue;
+				bool success;
+				GOStruct prefab_go = getPrefab(cfg["id"]["type"], success);
+				if (!success) continue;
 
 				//update all the prefab values with raw GO
 				//using recursive deep update
-				deepUpdateJson(prefab_go->go_cfg, go.go_cfg);
-				deepUpdateJson(prefab_go->components_cfg, go.components_cfg);
-				go = *prefab_go;
+				deepUpdateJson(prefab_go.go_cfg, go.go_cfg);
+				deepUpdateJson(prefab_go.components_cfg, go.components_cfg);
+				go = prefab_go;
 			}
 		}
 

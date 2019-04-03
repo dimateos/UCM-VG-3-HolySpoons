@@ -17,7 +17,7 @@
                 "dynamic": true,
                 "noGravity": true,
                 "shape": {
-                    "type": "BOX", "scale": { "x": 1.0, "y": 1.0, "z": 1.0 }
+                    "type": "BOX", "scale": { "x": 5.0, "y": 5.0, "z": 5.0 }
                 }
             },
             "basic_ren": {
@@ -25,7 +25,7 @@
                     "type": "Render",
 					"group": "test_comps"
 				},
-                "scale": { "x": 500.0, "y": 500.0, "z": 500.0 },
+                "scale": { "x": 200.0, "y": 260.0, "z": 200.0 },
                 "material": "Material",
                 "shape": {
                     "entity_name": "monkey",

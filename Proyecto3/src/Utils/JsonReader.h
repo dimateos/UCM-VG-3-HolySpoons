@@ -33,8 +33,10 @@ public:
 	static JsonReader* getSingleton();   // you can obtain/shutdown the instance of the singleton
 	static void shutdownSingleton();
 
-	SceneStruct ReadLevel(string level); // reads the file called "level" and return the scene information
-	GOStruct* getPrefab(string pref);
+	// reads the file called "level" and return the scene information
+	SceneStruct ReadLevel(string level);
+	// returns a copy of the prefab
+	GOStruct getPrefab(string pref, bool & success);
 
 private:
 	static JsonReader* instance_; //singleton pattern

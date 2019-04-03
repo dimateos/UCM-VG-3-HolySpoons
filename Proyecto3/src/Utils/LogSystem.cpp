@@ -61,7 +61,15 @@ void LogSystem::Log(string const & msg, nlohmann::json const & j, logType t) {
 }
 
 void LogSystem::cls(size_t n) {
-	for (size_t i = 0; i < n; i++) std::cout << std::endl;
+	for (size_t i = 0; i < n; i++) {
+		if (LogSystem::log_cmd) std::cout << std::endl;
+		if (LogSystem::log_file) {
+			// write file ios::app -> every output operation will be performed at the end of the file
+			ofstream o(LogSystem::log_route, ios::app);
+			if (o.is_open()) o << std::endl;
+			o.close();
+		}
+	}
 }
 
 string LogSystem::getTime() {

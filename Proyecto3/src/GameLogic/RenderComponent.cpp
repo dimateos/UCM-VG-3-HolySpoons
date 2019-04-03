@@ -16,6 +16,8 @@ void RenderComponent::setUp() {
 	//other properties
 	node->setScale(nap_vector3(cfg_["scale"]).ogre());
 	entity->setMaterialName(cfg_["material"]);
+
+	node->showBoundingBox(false); //global config
 }
 
 ///////////////////////////////////////////////////////////////////////////////
