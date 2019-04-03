@@ -64,6 +64,12 @@
     <ClCompile Include="..\..\src\GameLogic\KeyBoardMovement.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\Pool.cpp">
+      <Filter>_GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\Spawner.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -119,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\KeyBoardMovement.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Pool.h">
+      <Filter>_GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\Spawner.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
