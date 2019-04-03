@@ -56,7 +56,7 @@
                     "type": "Render"
                 },
                 "scale": { "x": 2.5, "y": 2.5, "z": 2.5 },
-                "material": "DebugMaterial2",
+                "material": "DebugMaterial",
                 "shape": {
                     "entity_name": "pref_cube",
                     "type": "MESH",

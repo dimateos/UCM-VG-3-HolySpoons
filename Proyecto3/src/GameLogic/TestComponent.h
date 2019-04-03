@@ -8,7 +8,7 @@ class TestComponent : public Component
 {
 public:
 	inline TestComponent() { };
-	inline TestComponent(nap_json const & cfg) : Component(cfg) { };
+	inline TestComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~TestComponent() { };
 	virtual void setUp();
 

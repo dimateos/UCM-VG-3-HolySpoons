@@ -17,7 +17,8 @@ void RenderComponent::setUp() {
 	node->setScale(nap_vector3(cfg_["scale"]).ogre());
 	entity->setMaterialName(cfg_["material"]);
 
-	node->showBoundingBox(false); //global config
+	//node->showBoundingBox(true); //global config
+	//node->flipVisibility();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -39,9 +40,9 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 ///////////////////////////////////////////////////////////////////////////////
 
 void RenderComponent::late_update(GameObject * o, double time) {
-	if (o->getUpToDate_rend()) return;
+	if (o->getTransUpToDate_rend()) return;
 
 	node->setPosition(o->getPosition().ogre() * ogre_scale);
 	node->setOrientation(o->getOrientation().ogre());
-	o->setUpToDate_rend();
+	o->setTransUpToDate_rend();
 }

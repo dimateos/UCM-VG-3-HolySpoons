@@ -5,8 +5,6 @@ class FloatingEnemyComponent :
 	public Component
 {
 private:
-	GameObject* o;
-
 	void WaveyMovement(float t);
 
 	//logic
@@ -18,8 +16,8 @@ private:
 	float amplitude = 1, horiSpeed = 0.01, vertSpeed = 1;
 
 public:
-	FloatingEnemyComponent() {};
-	FloatingEnemyComponent(GameObject* o, nap_json const & cfg) : Component(cfg), o(o) {};
+	inline FloatingEnemyComponent() {};
+	inline FloatingEnemyComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~FloatingEnemyComponent() {};
 
 	virtual void setUp();

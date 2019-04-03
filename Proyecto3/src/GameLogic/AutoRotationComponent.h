@@ -11,8 +11,8 @@ private:
 	const nap_vector3 DIRECTOR = {0, 0, 1};
 
 public:
-	AutoRotationComponent() {};
-	AutoRotationComponent(nap_json const & cfg) : Component(cfg) {};
+	inline AutoRotationComponent() {};
+	inline AutoRotationComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual void setUp();
 
 	virtual void update(GameObject* ent, double time);

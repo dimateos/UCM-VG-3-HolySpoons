@@ -52,13 +52,13 @@ Component * GOFactory::ParseComponent(GameObject * o, nap_json const & component
 	std::string type = component_cfg["id"]["type"];
 
 	//now the switch
-	if (type == "Phys") return new PhysicsComponent(component_cfg, o->getTransPtr()); //example of one comp using the go reference
-	else if (type == "Render") return new RenderComponent(component_cfg);
-	else if (type == "Test") return new TestComponent(component_cfg);
-	else if (type == "Overlay") return new OverlayComponent(component_cfg);
-	else if (type == "FPSCam") return new FPSCamera(component_cfg);
-	else if (type == "FloatingEnemy") return new FloatingEnemyComponent(o, component_cfg);
-	else if (type == "AutoRotation") return new AutoRotationComponent(component_cfg);
+	if (type == "Phys") return new PhysicsComponent(component_cfg, o); //example of one comp using the go reference
+	else if (type == "Render") return new RenderComponent(component_cfg, o);
+	else if (type == "Test") return new TestComponent(component_cfg, o);
+	else if (type == "Overlay") return new OverlayComponent(component_cfg, o);
+	else if (type == "FPSCam") return new FPSCamera(component_cfg, o);
+	else if (type == "FloatingEnemy") return new FloatingEnemyComponent(component_cfg, o);
+	else if (type == "AutoRotation") return new AutoRotationComponent(component_cfg, o);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

@@ -12,7 +12,7 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 	initPos.x_ = cos(angle) * 10;
 	initPos.z_ = sin(angle) * 10;
 
-	o->setPosition(initPos);
+	owner_->setPosition(initPos);
 	//cout <<"X: "<< o->getOrientation().x_ << " Y: " << o->getOrientation().y_ << " Z: " << o->getOrientation().z_ << " W: " << o->getOrientation().w_ << endl;
 }
 
@@ -24,7 +24,7 @@ void FloatingEnemyComponent::setUp()
 	amplitude = cfg_["Amplitude"];
 	horiSpeed = cfg_["HorizontalSpeed"];
 	vertSpeed = cfg_["VerticalSpeed"];
-	initPos = o->getPosition();
+	initPos = owner_->getPosition();
 	initY = initPos.y_;
 }
 

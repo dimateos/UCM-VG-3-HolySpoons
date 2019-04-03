@@ -81,7 +81,7 @@ namespace Ogre {
         /** See Node */
         void setParent(Node* parent);
 
-        /** Internal method for setting whether the node is in the scene 
+        /** Internal method for setting whether the node is in the scene
             graph.
         */
         virtual void setInSceneGraph(bool inGraph);
@@ -119,7 +119,7 @@ namespace Ogre {
 
         /** Adds an instance of a scene object to this node.
         @remarks
-            Scene objects can include Entity objects, Camera objects, Light objects, 
+            Scene objects can include Entity objects, Camera objects, Light objects,
             ParticleSystem objects etc. Anything that subclasses from MovableObject.
         */
         virtual void attachObject(MovableObject* obj);
@@ -162,12 +162,12 @@ namespace Ogre {
         */
         bool isInSceneGraph(void) const { return mIsInSceneGraph; }
 
-        /** Notifies this SceneNode that it is the root scene node. 
+        /** Notifies this SceneNode that it is the root scene node.
         @remarks
             Only SceneManager should call this!
         */
         void _notifyRootNode(void) { mIsInSceneGraph = true; }
-            
+
 
         /** Internal method to update the Node.
             @note
@@ -206,7 +206,7 @@ namespace Ogre {
                     as the objects being rendered. For debugging purposes.
         */
         void _findVisibleObjects(Camera* cam, RenderQueue* queue,
-            VisibleObjectsBoundsInfo* visibleBounds, 
+            VisibleObjectsBoundsInfo* visibleBounds,
             bool includeChildren = true, bool displayNodes = false, bool onlyShadowCasters = false);
 
         /** Gets the axis-aligned bounding box of this node (and hence all subnodes).
@@ -234,7 +234,7 @@ namespace Ogre {
             return mObjectsByName;
         }
 
-        /** Gets the creator of this scene node. 
+        /** Gets the creator of this scene node.
         @remarks
             This method returns the SceneManager which created this node.
             This can be useful for destroying this node.
@@ -245,9 +245,9 @@ namespace Ogre {
         @remarks
             Unlike removeChild, which removes a single named child from this
             node but does not destroy it, this method destroys the child
-            and all of it's children. 
+            and all of it's children.
         @par
-            Use this if you wish to recursively destroy a node as well as 
+            Use this if you wish to recursively destroy a node as well as
             detaching it from it's parent. Note that any objects attached to
             the nodes will be detached but will not themselves be destroyed.
         */
@@ -288,7 +288,7 @@ namespace Ogre {
         /** This allows scene managers to determine if the node's bounding box
             should be added to the rendering queue.
         @remarks
-            Scene Managers that implement their own _findVisibleObjects will have to 
+            Scene Managers that implement their own _findVisibleObjects will have to
             check this flag and then use _addBoundingBoxToQueue to add the bounding box
             wireframe.
         */
@@ -301,12 +301,12 @@ namespace Ogre {
             rotate Initial rotation relative to parent
         */
         virtual SceneNode* createChildSceneNode(
-            const Vector3& translate = Vector3::ZERO, 
+            const Vector3& translate = Vector3::ZERO,
             const Quaternion& rotate = Quaternion::IDENTITY );
 
         /** Creates a new named SceneNode as a child of this node.
         @remarks
-            This creates a child node with a given name, which allows you to look the node up from 
+            This creates a child node with a given name, which allows you to look the node up from
             the parent which holds this collection of nodes.
             @param
                 translate Initial translation offset of child relative to parent
@@ -337,7 +337,7 @@ namespace Ogre {
         @remarks
         This method allows you to change the yaw behaviour of the node - by default, it
         yaws around it's own local Y axis when told to yaw with TS_LOCAL, this makes it
-        yaw around a fixed axis. 
+        yaw around a fixed axis.
         You only really need this when you're using auto tracking (see setAutoTracking,
         because when you're manually rotating a node you can specify the TransformSpace
         in which you wish to work anyway.
@@ -354,8 +354,8 @@ namespace Ogre {
         void yaw(const Radian& angle, TransformSpace relativeTo = TS_LOCAL);
         /** Sets the node's direction vector ie it's local -z.
         @remarks
-        Note that the 'up' vector for the orientation will automatically be 
-        recalculated based on the current 'up' vector (i.e. the roll will 
+        Note that the 'up' vector for the orientation will automatically be
+        recalculated based on the current 'up' vector (i.e. the roll will
         remain the same). If you need more control, use setOrientation.
         @param x,y,z The components of the direction vector
         @param relativeTo The space in which this direction vector is expressed
@@ -363,7 +363,7 @@ namespace Ogre {
         direction of the node, usually -Z
         */
         void setDirection(Real x, Real y, Real z,
-            TransformSpace relativeTo = TS_LOCAL, 
+            TransformSpace relativeTo = TS_LOCAL,
             const Vector3& localDirectionVector = Vector3::NEGATIVE_UNIT_Z);
 
         /// @overload
@@ -380,12 +380,12 @@ namespace Ogre {
         /** Enables / disables automatic tracking of another SceneNode.
         @remarks
         If you enable auto-tracking, this SceneNode will automatically rotate to
-        point it's -Z at the target SceneNode every frame, no matter how 
-        it or the other SceneNode move. Note that by default the -Z points at the 
-        origin of the target SceneNode, if you want to tweak this, provide a 
+        point it's -Z at the target SceneNode every frame, no matter how
+        it or the other SceneNode move. Note that by default the -Z points at the
+        origin of the target SceneNode, if you want to tweak this, provide a
         vector in the 'offset' parameter and the target point will be adjusted.
-        @param enabled If true, tracking will be enabled and the next 
-        parameter cannot be null. If false tracking will be disabled and the 
+        @param enabled If true, tracking will be enabled and the next
+        parameter cannot be null. If false tracking will be disabled and the
         current orientation will be maintained.
         @param target Pointer to the SceneNode to track. Make sure you don't
         delete this SceneNode before turning off tracking (e.g. SceneManager::clearScene will
@@ -409,29 +409,29 @@ namespace Ogre {
         /** Gets the parent of this SceneNode. */
         SceneNode* getParentSceneNode(void) const;
         /** Makes all objects attached to this node become visible / invisible.
-        @remarks    
+        @remarks
             This is a shortcut to calling setVisible() on the objects attached
             to this node, and optionally to all objects attached to child
-            nodes. 
+            nodes.
         @param visible Whether the objects are to be made visible or invisible
         @param cascade If true, this setting cascades into child nodes too.
         */
         void setVisible(bool visible, bool cascade = true);
         /** Inverts the visibility of all objects attached to this node.
-        @remarks    
+        @remarks
         This is a shortcut to calling setVisible(!isVisible()) on the objects attached
         to this node, and optionally to all objects attached to child
-        nodes. 
+        nodes.
         @param cascade If true, this setting cascades into child nodes too.
         */
         void flipVisibility(bool cascade = true);
 
         /** Tells all objects attached to this node whether to display their
             debug information or not.
-        @remarks    
+        @remarks
             This is a shortcut to calling setDebugDisplayEnabled() on the objects attached
             to this node, and optionally to all objects attached to child
-            nodes. 
+            nodes.
         @param enabled Whether the objects are to display debug info or not
         @param cascade If true, this setting cascades into child nodes too.
         */

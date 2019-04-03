@@ -26,6 +26,7 @@ void PhysicsComponent::setUp() {
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
 
 	updateUserData();
+	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::DEV);
 }
 
 void PhysicsComponent::setDown() {
@@ -33,16 +34,9 @@ void PhysicsComponent::setDown() {
 	getActor()->release();
 }
 
-void PhysicsComponent::setUserData(nap_transform* trans_) {
-	user_trans_ = trans_;
-	if (inited_) updateUserData();
-}
-nap_transform * PhysicsComponent::getUserData() {
-	return user_trans_;
-}
 void PhysicsComponent::updateUserData() {
-	getActor()->userData = user_trans_;
-	getActor()->setGlobalPose(PxTransform(user_trans_->p_.px(), user_trans_->q_.px()));
+	getActor()->userData = owner_->getTransPtr();
+	getActor()->setGlobalPose(PxTransform(owner_->getPosition().px(), owner_->getOrientation().px()));
 }
 
 
@@ -50,21 +44,14 @@ void PhysicsComponent::updateUserData() {
 
 void PhysicsComponent::receive(Message * msg) {
 	switch (msg->id_) {
-	case PX_USERPTR:
-		auto trans_ = static_cast<Msg_PX_userPtr*> (msg)->trans_;
-		setUserData(trans_);
-		//actualy update the transform and avoid phsx limits + set raw upToDate true
-		getActor()->setGlobalPose(PxTransform(trans_->p_.px(), trans_->q_.px()));
-		trans_->upToDate_phys = true;
-		break;
 	}
 }
 
 void PhysicsComponent::late_update(GameObject * o, double time) {
-	if (o->getUpToDate_phys()) return;
+	if (o->getTransUpToDate_phys()) return;
 
 	getActor()->setGlobalPose(PxTransform(o->getPosition().px(), o->getOrientation().px()));
-	o->setUpToDate_phys();
+	o->setTransUpToDate_phys();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

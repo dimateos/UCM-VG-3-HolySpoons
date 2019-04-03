@@ -96,15 +96,26 @@ public:
 // base quats
 #define qO nap_quat(1.0f, 0.0f, 0.0f, 0.0f)
 
+//struct for the scale (maybe inside transform?)
+class nap_scale
+{
+public:
+	inline nap_scale() : s_(1.0f) {};
+	inline nap_scale(nap_vector3 s) : s_(s) {};
+
+	bool upToDate_phys = false, upToDate_rend = false;
+	nap_vector3 s_;
+};
+
 //struct for the gameObject transform
 class nap_transform
 {
 public:
-	inline nap_transform() : upToDate_phys(false), upToDate_rend(false), p_(), q_() {};
-	inline nap_transform(nap_vector3 p) : upToDate_phys(false), upToDate_rend(false), p_(p), q_() {};
-	inline nap_transform(nap_vector3 p, nap_quat q) : upToDate_phys(false), upToDate_rend(false), p_(p), q_(q) {};
+	inline nap_transform() : p_(), q_() {};
+	inline nap_transform(nap_vector3 p) : p_(p), q_() {};
+	inline nap_transform(nap_vector3 p, nap_quat q, nap_vector3 s) : p_(p), q_(q) {};
 
-	bool upToDate_phys, upToDate_rend;
+	bool upToDate_phys = false, upToDate_rend = false;
 	nap_vector3 p_; nap_quat q_;
 };
 

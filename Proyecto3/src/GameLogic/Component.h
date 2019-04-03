@@ -9,8 +9,9 @@
 class Component : public Listener, public Activable, public Identifiable, public Initiable
 {
 public:
-	inline Component() : Activable(), Identifiable(), cfg_() {};
-	inline Component(nap_json const & cfg) : Activable(), Identifiable(cfg["id"]), cfg_(cfg) {};
+	inline Component() : Activable(), Identifiable(), cfg_(), owner_(nullptr) {};
+	inline Component(nap_json const & cfg) : Activable(), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
+	inline Component(nap_json const & cfg, GameObject* owner) : Activable(), Identifiable(cfg["id"]), cfg_(cfg), owner_(owner) {};
 	inline virtual ~Component() {};
 
 	// called from gameObjects themselves
@@ -19,8 +20,11 @@ public:
 	virtual void update(GameObject* o, double time) {};
 	virtual void late_update(GameObject* o, double time) {};
 
+	inline GameObject* getOwner() { return owner_; };
+
 protected:
-	nap_json cfg_; //for async setup
+	nap_json cfg_;		//for async setup
+	GameObject* owner_; //the go owner
 };
 
 #endif /* COMPONENT_H_ */
