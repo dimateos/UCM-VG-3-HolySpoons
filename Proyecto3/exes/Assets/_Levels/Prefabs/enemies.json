@@ -39,7 +39,7 @@
 					"group": "test_comps"
                 },
                 "Amplitude":2,
-                "HorizontalSpeed" : 0.02,
+                "HorizontalSpeed" : 0.5,
                 "VerticalSpeed" : 1
             },
             "auto_rotation": {

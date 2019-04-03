@@ -42,6 +42,14 @@ public:
 	nlohmann::json json() { //could be used for easy debug
 		return nlohmann::json({ {"x", x_}, {"y", y_}, {"z", z_} });
 	};
+	inline float magnitude() const
+	{
+		return sqrt(x_*x_ + y_*y_ + z_*z_);
+	}
+	inline nap_vector3 normalize() {
+		float m = this->magnitude();
+		return nap_vector3(x_/m, y_/m, z_/m);
+	};
 
 	//some ops
 	inline nap_vector3 operator+(const nap_vector3 & v2) {

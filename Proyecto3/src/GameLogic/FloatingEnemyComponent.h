@@ -11,6 +11,7 @@ private:
 	nap_vector3  initPos;
 	float initY;
 	float timer = 0, rotation = 0;
+	nap_vector3 destPos = {30, 0, 0};
 
 	//cfg (json)
 	float amplitude = 1, horiSpeed = 0.01, vertSpeed = 1;

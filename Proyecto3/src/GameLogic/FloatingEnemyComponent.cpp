@@ -5,10 +5,14 @@
 
 void FloatingEnemyComponent::WaveyMovement(float t)
 {
+	nap_vector3 dir = {destPos.x_ - owner_->getPosition().x_, 0, destPos.y_ - owner_->getPosition().z_};
+	dir = dir.normalize();
+
 	timer += t;
 	//initPos.y_ = sin(timer*vertSpeed)*amplitude + initY;
-	//initPos.x_ += horiSpeed;
-	float angle = horiSpeed * timer*100;
+	//initPos.x_ += dir.x_*t*horiSpeed;
+	//initPos.z_ += dir.z_*t*horiSpeed;
+	float angle = horiSpeed * timer;
 	initPos.x_ = cos(angle) * 10;
 	initPos.z_ = sin(angle) * 10;
 
