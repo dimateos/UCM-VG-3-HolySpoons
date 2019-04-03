@@ -57,7 +57,7 @@ void LogSystem::Log() {
 }
 
 void LogSystem::Log(string const & msg, nlohmann::json const & j, logType t) {
-	Log(msg + "\n" + j.dump(5), t);
+	Log(msg + j.dump(), t);
 }
 
 void LogSystem::cls(size_t n) {

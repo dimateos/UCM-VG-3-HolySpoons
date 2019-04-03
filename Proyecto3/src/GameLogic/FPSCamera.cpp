@@ -1,4 +1,5 @@
 #include "FPSCamera.h"
+//#include "LogSystem.h"
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
@@ -23,6 +24,7 @@ void FPSCamera::setUp() {
 	//set cfg vals
 	rotXspeed_ = cfg_["rotXspeed"];
 	rotYspeed_ = cfg_["rotYspeed"];
+	maxRotY_ = cfg_["maxRotY"];
 	zoomed_ = cfg_["zoomed"];
 }
 
@@ -36,10 +38,25 @@ void FPSCamera::update(GameObject * ent, double time) {
 	nap_quat nq = { ent->getOrientation().w_, ent->getOrientation().x_, camNode_->getOrientation().y, ent->getOrientation().z_ };
 	ent->setOrientation(nq);
 
+	//avoid flips
+	float frame_rotY = rotYspeed_ * time * -rotY_;
+	total_rotY_ += frame_rotY;
+	if (total_rotY_ > maxRotY_) {
+		frame_rotY -= total_rotY_ - maxRotY_;
+		total_rotY_ = maxRotY_;
+	}
+	else if (total_rotY_ < -maxRotY_) {
+		frame_rotY -= total_rotY_ + maxRotY_;
+		total_rotY_ = -maxRotY_;
+	}
+
+	//LogSystem::Log("y: ", total_rotY_);
+
 	//direction
 	camNode_->yaw(Ogre::Degree(rotXspeed_ * time * -rotX_), Ogre::Node::TS_PARENT);
-	camNode_->pitch(Ogre::Degree(rotYspeed_ * time * -rotY_), Ogre::Node::TS_LOCAL);
+	camNode_->pitch(Ogre::Degree(frame_rotY), Ogre::Node::TS_LOCAL);
 
+	//reset
 	rotX_ = 0.0f;
 	rotY_ = 0.0f;
 }
