@@ -22,13 +22,13 @@ protected:
 
 	//logic
 	Ogre::SceneNode* camNode_;
-	float rotX_, rotY_; //updaters
+	float rotX_, rotY_, total_rotY_; //updaters
 	bool zoom = false;
 
 	nap_vector3 relativePos;
 
 	//cfg (json)
-	float rotXspeed_, rotYspeed_, zoomed_;
+	float rotXspeed_, rotYspeed_, zoomed_, maxRotY_;
 };
 
 #endif /* FPSCAMERA_H_ */

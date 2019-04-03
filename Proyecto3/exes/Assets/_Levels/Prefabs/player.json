@@ -11,10 +11,11 @@
             },
             "rotXspeed": 10.5,
             "rotYspeed": 10.5,
+            "maxRotY": 80,
             "zoomed": 25,
             "baseDir": { "x": 0.0, "y": -1.0, "z": 0.0 },
-            "baseLookAt": { "x": 0.0, "y": -5.0, "z": 0.0 },
-            "relativePos": { "x": 0.0, "y": 9.0, "z": 0.0 }
+            "baseLookAt": { "x": 0.0, "y": 0.0, "z": -1.0 },
+            "relativePos": { "x": 0.0, "y": 2.0, "z": 6.0 }
         },
         "crosshair_hud_rend": {
             "id": {
@@ -43,7 +44,7 @@
             },
             "walkVel":3,
             "runVel": 6,
-            "jumpForce": 600
+            "jumpForce": 6000
         },
         "basic_ren": {
             "id": {
