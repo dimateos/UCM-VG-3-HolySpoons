@@ -203,6 +203,46 @@ SceneStruct JsonReader::ReadLevel(string level) {
 	return scene;
 }
 
+GOStruct JsonReader::ReadPlayer(string level)
+{
+	LogSystem::Log("Reading level " + level + " ...", LogSystem::JSON);
+	size_t n = 0;
+
+	//read "level.json"
+	ifstream file(routeLevel + level + ".json");
+	if (!file.is_open()) {
+		LogSystem::Log("El archivo " + routeLevel + level + ".json no fue encontrado... abortando parseo", LogSystem::JSON);
+	}
+
+	//parse it
+	nap_json j;
+	file >> j;
+
+	nap_json cfg = j["Player"];
+
+	//raw read the GO
+	GOStruct player = *readGO(cfg);
+
+	//check if the object has id
+	if (cfg.find("id") != cfg.end()) {
+		//check if the object uses a prefab as base
+		if (cfg["id"].find("type") != cfg["id"].end()) {
+
+			//check the prefab exists and load / throw error and continue
+			bool success;
+			GOStruct prefab_go = getPrefab(cfg["id"]["type"], success);
+
+			//update all the prefab values with raw GO
+			//using recursive deep update
+			deepUpdateJson(prefab_go.go_cfg, player.go_cfg);
+			deepUpdateJson(prefab_go.components_cfg, player.components_cfg);
+			player = prefab_go;
+		}
+	}
+
+	return player;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 void JsonReader::preloadMapTypes() {

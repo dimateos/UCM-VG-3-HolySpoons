@@ -30,6 +30,10 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 
 	//name
 	state->setStateID(scene.SceneName);
+	
+	//player
+	GOStruct player = jReader_->ReadPlayer(level);
+	state->setPlayer(GOFactory::ParseGO(player));
 
 	//create the gameObjects
 	for (auto & go_struct : scene.gameObjects) {

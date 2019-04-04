@@ -35,6 +35,7 @@ public:
 
 	// reads the file called "level" and return the scene information
 	SceneStruct ReadLevel(string level);
+	GOStruct ReadPlayer(string level);
 	// returns a copy of the prefab
 	GOStruct getPrefab(string pref, bool & success);
 

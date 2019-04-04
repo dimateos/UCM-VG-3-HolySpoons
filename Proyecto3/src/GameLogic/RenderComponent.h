@@ -12,6 +12,8 @@ public:
 	inline virtual ~RenderComponent() {};
 	virtual void setUp();
 
+	inline Ogre::SceneNode* getSceneNode() const { return node; }
+
 	virtual void late_update(GameObject* ent, double time);
 
 protected:

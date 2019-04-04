@@ -1,5 +1,6 @@
 #include "GameState.h"
 #include "LogSystem.h"
+#include <SoundManager.h>
 
 GameState::GameState() : Initiable(), gameObjects_() {
 }
@@ -13,6 +14,12 @@ GameState::~GameState() {
 void GameState::setUp() {
 	if (isInited()) return;
 	setInited();
+
+	// musiquita que venia de ejemplo jeje. Si quereis ver el 3D modificad la z y lo oireis por la izq o der
+	// siempre hacer el setListenerTransform y como parametro un puntero a la pos&rot del player (o de lo que vaya a escuchar)
+	// la primera vez que se llame al getSingleton
+	SoundManager::getSingleton()->setListenerTransform(player_->getTransPtr());
+	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 10), true, false);
 
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
@@ -34,6 +41,12 @@ void GameState::setDown() {
 void GameState::addGameObject(GameObject * o) {
 	gameObjects_.push_back(o);
 	if (isInited()) o->setUp();
+}
+
+void GameState::setPlayer(GameObject * player)
+{
+	player_ = player;
+	addGameObject(player_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

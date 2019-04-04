@@ -14,6 +14,8 @@ public:
 
 	virtual void setUp();
 	void addGameObject(GameObject* o);
+	inline GameObject* getPlayer() const { return player_; };
+	void setPlayer(GameObject* player);
 
 	virtual bool handleEvents(SDL_Event evt);
 	virtual void update(double time);
@@ -26,6 +28,8 @@ public:
 protected:
 	virtual void setDown();
 	//void killDeadObjects();
+
+	GameObject* player_;
 
 	std::list<GameObject*> gameObjects_;
 	string stateID_ = "undefinedID";

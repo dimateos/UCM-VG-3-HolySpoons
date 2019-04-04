@@ -1,4 +1,5 @@
 #include "FPSCamera.h"
+#include "RenderComponent.h"
 //#include "LogSystem.h"
 #include <OgreCamera.h>
 #include <OgreViewport.h>
@@ -26,6 +27,8 @@ void FPSCamera::setUp() {
 	rotYspeed_ = cfg_["rotYspeed"];
 	maxRotY_ = cfg_["maxRotY"];
 	zoomed_ = cfg_["zoomed"];
+
+	//RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode());
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,9 +37,9 @@ void FPSCamera::update(GameObject * ent, double time) {
 	// camera position = entity position
 	camNode_->setPosition((ent->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
 
-	// entity orientation = camera y orientation
+	/*// entity orientation = camera y orientation
 	nap_quat nq = { ent->getOrientation().w_, ent->getOrientation().x_, camNode_->getOrientation().y, ent->getOrientation().z_ };
-	ent->setOrientation(nq);
+	ent->setOrientation(nq);*/
 
 	//avoid flips
 	float frame_rotY = rotYspeed_ * time * -rotY_;
