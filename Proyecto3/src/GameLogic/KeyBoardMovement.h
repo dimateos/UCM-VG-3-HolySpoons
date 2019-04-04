@@ -2,6 +2,12 @@
 #define KEYBOARDMOVEMENT_H_
 
 #include "Component.h"
+#include <vector>
+
+namespace physx {
+	class PxRigidDynamic;
+}
+class nap_vector3;
 
 class KeyBoardMovement : public Component
 {
@@ -12,6 +18,8 @@ private:
 	SDL_Keycode right_;     // D
 	SDL_Keycode run_;       // Lft. Shift
 	SDL_Keycode jump_;      // Space
+
+	physx::PxRigidDynamic* physBody;
 
 	// velocities
 	float walkVel_;         // while walking

@@ -46,8 +46,12 @@ void SoundManager::updateListener()
 {
 	if (listenerTransform == nullptr)
 		LogSystem::Log("listenerTransform hasn´t been initialized. Call singleton->getEngine->setListener at least once", LogSystem::SOUND);
-	else engine->setListenerPosition(irrklang::vec3df(listenerTransform->p_.x_, listenerTransform->p_.y_, listenerTransform->p_.z_),
-		irrklang::vec3df(listenerTransform->q_.x_, listenerTransform->q_.y_, listenerTransform->q_.z_)); // PARSING NEEDED
+	else {
+		nap_vector3 dir = listenerTransform->q_.toNapVec3(nap_vector3(0, 0, 1));
+
+		engine->setListenerPosition(irrklang::vec3df(listenerTransform->p_.x_, listenerTransform->p_.y_, listenerTransform->p_.z_),
+			irrklang::vec3df(dir.x_, dir.y_, dir.z_)); // PARSING NEEDED
+	}
 
 }
 
