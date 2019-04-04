@@ -4,6 +4,7 @@
 
 Spawner::Spawner(nap_json const & cfg): Component(cfg)
 {
+	//json parameters
 	pol = new nap_Pool(cfg["itemString"]);
 	pol->setDefault(cfg["default"]);
 	timer = cfg["timer"];
@@ -12,7 +13,10 @@ Spawner::Spawner(nap_json const & cfg): Component(cfg)
 
 Spawner::~Spawner()
 {
-	delete pol;
+	if (pol != nullptr) {
+		delete pol;
+		pol = nullptr;
+	}
 }
 
 void Spawner::setUp()
@@ -23,8 +27,9 @@ void Spawner::setUp()
 void Spawner::update(GameObject * o, double time)
 {
 	if (active) {
-		if(lastActiveT < time){
+		if(lastActiveT < time){ //simple timer
 			lastActiveT = time + timer;
+			//gets object from pool, spawns it
 			GameObject* tmp = pol->getItem();
 			tmp->setPosition(o->getPosition());
 		}

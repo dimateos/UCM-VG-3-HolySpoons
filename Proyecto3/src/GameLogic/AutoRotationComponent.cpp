@@ -8,6 +8,7 @@ void AutoRotationComponent::setUp()
 
 void AutoRotationComponent::update(GameObject * ent, double time)
 {
+	//set rotation
 	ent->setOrientation(RenderSystemInterface::getSingleton()->getRotationFrom_To(DIRECTOR, dest - ent->getPosition()));
 }
 

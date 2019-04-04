@@ -5,21 +5,25 @@
 
 void FloatingEnemyComponent::WaveyMovement(float t)
 {
-	nap_vector3 dir = {destPos.x_ - owner_->getPosition().x_, 0, destPos.y_ - owner_->getPosition().z_};
+	nap_vector3 dir = {destPos.x_ - owner_->getPosition().x_, 0, destPos.y_ - owner_->getPosition().z_}; //simple vector calc dest - src (we dont want to follow the y coord)
 	dir = dir.normalize();
 
+	//timer -> sin mov
 	timer += t;
+
+	//sinusoidal movement
 	initPos.y_ = sin(timer*vertSpeed)*amplitude + initY;
+
+	//move towards dest
 	initPos.x_ += dir.x_*t*horiSpeed;
 	initPos.z_ += dir.z_*t*horiSpeed;
 
-	//movimiento circular
+	//circular movement
 	//float angle = horiSpeed * timer;
 	//initPos.x_ = cos(angle) * 10;
 	//initPos.z_ = sin(angle) * 10;
 
 	owner_->setPosition(initPos);
-	//cout <<"X: "<< o->getOrientation().x_ << " Y: " << o->getOrientation().y_ << " Z: " << o->getOrientation().z_ << " W: " << o->getOrientation().w_ << endl;
 }
 
 void FloatingEnemyComponent::setUp()
@@ -27,6 +31,7 @@ void FloatingEnemyComponent::setUp()
 	if (isInited()) return;
 	setInited();
 
+	//json parameters
 	amplitude = cfg_["Amplitude"];
 	horiSpeed = cfg_["HorizontalSpeed"];
 	vertSpeed = cfg_["VerticalSpeed"];

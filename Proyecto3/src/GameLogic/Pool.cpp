@@ -4,25 +4,29 @@
 
 GameObject * nap_Pool::spawn()
 {
-	GameObject* tmp = new GameObject(original);
-	//CLONE??????????
+	GameObject* tmp = new GameObject(original); //creates a new GO based on the original
 	pool.push_back(tmp);
 	return tmp;
 }
 
 nap_Pool::nap_Pool(std::string entity)
 {
-	//OBETENER EL GO POR LO DE DIEGO
-	//AÑLADIRLO A LA POOL
+	//getting prefab
 	original = GOFactory::GetGOPrefab(entity);
 }
 
 nap_Pool::~nap_Pool()
 {
 	for (int i = 0; i < pool.size(); i++) {
-		delete(pool[i]);	
+		if (pool[i] != nullptr) {
+			delete(pool[i]);
+			pool[i] = nullptr;
+		}
 	}
-	delete original;
+	if (original != nullptr) {
+		delete original;
+		original = nullptr;
+	}
 }
 
 GameObject * nap_Pool::getItem()
