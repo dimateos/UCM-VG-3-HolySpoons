@@ -85,6 +85,7 @@ void JsonReader::preloadPrefabs() {
 
 GOStruct JsonReader::getPrefab(string pref, bool & success) {
 	if (prefabs.count(pref) > 0) {
+		success = true;
 		return *prefabs[pref];
 	}
 	else {
