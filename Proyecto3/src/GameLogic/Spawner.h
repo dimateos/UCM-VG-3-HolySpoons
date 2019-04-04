@@ -15,12 +15,10 @@ public:
 	Spawner(nap_json const & cfg);
 	virtual ~Spawner();
 
-	void init();
+	void setUp();
 	inline void setTimer(double t) { timer = t; };
 	inline void setActive(bool t) { active = t; };
-
 	inline bool getActive() { return active; };
-	
 	
 	virtual void update(GameObject* o, double time);
 };

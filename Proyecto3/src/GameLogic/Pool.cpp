@@ -1,9 +1,10 @@
 #include "Pool.h"
 #include "GameObject.h"
+#include "GOFactory.h"
 
 GameObject * nap_Pool::spawn()
 {
-	GameObject* tmp;
+	GameObject* tmp = new GameObject(original);
 	//CLONE??????????
 	pool.push_back(tmp);
 	return tmp;
@@ -13,8 +14,7 @@ nap_Pool::nap_Pool(std::string entity)
 {
 	//OBETENER EL GO POR LO DE DIEGO
 	//AÑLADIRLO A LA POOL
-
-
+	original = GOFactory::GetGOPrefab(entity);
 }
 
 nap_Pool::~nap_Pool()
@@ -22,6 +22,7 @@ nap_Pool::~nap_Pool()
 	for (int i = 0; i < pool.size(); i++) {
 		delete(pool[i]);	
 	}
+	delete original;
 }
 
 GameObject * nap_Pool::getItem()

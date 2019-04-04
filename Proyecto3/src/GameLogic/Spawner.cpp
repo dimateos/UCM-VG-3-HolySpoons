@@ -2,7 +2,7 @@
 #include "Pool.h"
 
 
-Spawner::Spawner(nap_json const & cfg)
+Spawner::Spawner(nap_json const & cfg): Component(cfg)
 {
 	pol = new nap_Pool(cfg["itemString"]);
 	pol->setDefault(cfg["default"]);
@@ -12,9 +12,10 @@ Spawner::Spawner(nap_json const & cfg)
 
 Spawner::~Spawner()
 {
+	delete pol;
 }
 
-void Spawner::init()
+void Spawner::setUp()
 {
 	pol->init();
 }
@@ -22,7 +23,7 @@ void Spawner::init()
 void Spawner::update(GameObject * o, double time)
 {
 	if (active) {
-		if(lastActiveT<time){
+		if(lastActiveT < time){
 			lastActiveT = time + timer;
 			GameObject* tmp = pol->getItem();
 			tmp->setPosition(o->getPosition());

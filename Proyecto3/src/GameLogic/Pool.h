@@ -7,6 +7,7 @@ private:
 	std::vector<GameObject*> pool;
 	int defaultValue = 10;
 	GameObject* spawn();
+	GameObject* original = nullptr;
 
 public:
 	nap_Pool(std::string entity);

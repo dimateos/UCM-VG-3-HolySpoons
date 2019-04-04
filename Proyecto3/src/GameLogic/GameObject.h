@@ -20,6 +20,7 @@ class GameObject : public Activable, public Identifiable, public Initiable
 public:
 	GameObject(nap_json const & cfg);
 	GameObject(nap_json const & cfg, std::list<Component*>);
+	GameObject(GameObject* o);
 	virtual ~GameObject();
 
 	//setup on gamestate push (awake)

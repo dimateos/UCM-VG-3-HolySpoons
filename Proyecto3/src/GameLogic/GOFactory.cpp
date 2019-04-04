@@ -13,10 +13,10 @@ GameObject * GOFactory::ParseGO(GOStruct & cfg) {
 GameObject * GOFactory::GetGOPrefab(std::string const & name) {
 	GameObject * go = nullptr;
 
-	bool successs;
+	bool successs = false;
 	auto go_struct = JsonReader::getSingleton()->getPrefab(name, successs);
 
-	if (!successs) LogSystem::Log("El prefab " + name + "no fue encontrado... abortando parseo del GO", LogSystem::JSON);
+	if (!successs) LogSystem::Log("El prefab " + name + " no fue encontrado... abortando parseo del GO", LogSystem::JSON);
 	else go = ParseGO(go_struct);
 
 	return go;
@@ -45,6 +45,7 @@ std::list<Component*> GOFactory::ParseComponents(GameObject * o, nap_json & comp
 #include "FPSCamera.h"
 #include "AutoRotationComponent.h"
 #include "KeyBoardMovement.h"
+#include "Spawner.h"
 
 // it receives the nap_json * component_cfg with its name and cfg.
 // When you add a new component to the factory, you parse the unique type within cfg["id"]["type"]
@@ -61,6 +62,7 @@ Component * GOFactory::ParseComponent(GameObject * o, nap_json const & component
 	else if (type == "FloatingEnemy") return new FloatingEnemyComponent(component_cfg, o);
 	else if (type == "AutoRotation") return new AutoRotationComponent(component_cfg, o);
 	else if (type == "KeyBoard") return new KeyBoardMovement(component_cfg, o);
+	else if (type == "Spawner") return new Spawner(component_cfg);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

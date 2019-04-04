@@ -8,6 +8,10 @@ GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
 	: Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
 }
 
+GameObject::GameObject(GameObject * o): Activable(), Identifiable(o->cfg_["id"]), Initiable(), cfg_(o->cfg_), components_()
+{
+}
+
 GameObject::~GameObject() {
 	for (auto comp : components_) {
 		if (comp != nullptr) delete comp;

@@ -12,7 +12,6 @@
             }
         },
 
-
         {
             "id": {
 				"type": "pref_ground"
@@ -38,12 +37,12 @@
             }
         },
 
-
         {
             "id": {
 				"type": "pref_monkey"
             }
         },
+
         {
             "id": {
 				"name": "monkey_target",
