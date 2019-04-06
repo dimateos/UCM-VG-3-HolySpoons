@@ -37,9 +37,9 @@
             }
         },
 
-        {
+         {
             "id": {
-				"type": "pref_monkey"
+				"type": "pref_spawner"
             }
         },
 

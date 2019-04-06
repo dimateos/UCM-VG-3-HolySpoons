@@ -26,8 +26,6 @@ public:
 	void sendMessageComponentType(Message* msg, string name, string ctype);
 	void sendMessageComponentGroup(Message* msg, string name, string cgroup);
 
-	void sendMessageGameObject(Message* msg, GameObject* GO);
-
 private:
 	list<GameObject*>* targets_; //dynamic gamestate GO list
 

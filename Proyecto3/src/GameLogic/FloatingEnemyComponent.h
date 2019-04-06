@@ -8,7 +8,6 @@ private:
 	void WaveyMovement(float t);
 
 	//logic
-	nap_vector3 initPos;
 	float initY; //initial Y, needed sin movement
 	float timer = 0, rotation = 0;
 	nap_vector3 destPos = {30, 0, 0};

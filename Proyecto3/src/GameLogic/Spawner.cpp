@@ -27,11 +27,12 @@ void Spawner::setUp()
 void Spawner::update(GameObject * o, double time)
 {
 	if (active) {
-		if(lastActiveT < time){ //simple timer
-			lastActiveT = time + timer;
-			//gets object from pool, spawns it
+		lastActiveT += time;
+		if(lastActiveT > timer){ //simple timer
+			lastActiveT =0;//gets object from pool, spawns it
 			GameObject* tmp = pol->getItem();
 			tmp->setPosition(o->getPosition());
+			tmp->setActive(true);
 		}
 	}
 }

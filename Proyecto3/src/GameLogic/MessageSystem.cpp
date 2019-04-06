@@ -82,11 +82,4 @@ void MessageSystem::sendMessageComponentGroup(Message * msg, string name, string
 	}
 }
 
-void MessageSystem::sendMessageGameObject(Message * msg, GameObject * o)
-{
-	for (Component* c : o->getComponents())
-		c->receive(msg);
-}
-
-
 

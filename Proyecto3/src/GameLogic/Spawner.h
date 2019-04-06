@@ -10,6 +10,8 @@ private:
 
 	bool active;
 	nap_Pool* pol = nullptr;
+
+	list<Component*> compList;
 public:
 	Spawner() {};
 	Spawner(nap_json const & cfg);

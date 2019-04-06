@@ -17,21 +17,9 @@
     <ClCompile Include="..\..\src\Main\Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Main\GameState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Main\GameStateMachine.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\Game.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Main\GameState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Main\GameStateMachine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
