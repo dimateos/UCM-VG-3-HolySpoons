@@ -110,6 +110,30 @@ GOStruct* JsonReader::readGO(nap_json const & cfg) {
 	return go;
 }
 
+bool JsonReader::applyPrefab(nap_json const & cfg, GOStruct & go) {
+	bool success = true;
+
+	//check if the object has id
+	if (FIND(cfg, "id")) {
+		//check if the object uses a prefab as base
+		if (FIND(cfg["id"], "type")) {
+
+			//check the prefab exists and load / throw error and continue
+			GOStruct prefab_go = getPrefab(cfg["id"]["type"], success);
+
+			if (success) {
+				//update all the prefab values with raw GO
+				//using recursive deep update
+				deepUpdateJson(prefab_go.go_cfg, go.go_cfg);
+				deepUpdateJson(prefab_go.components_cfg, go.components_cfg);
+				go = prefab_go;
+			}
+		}
+	}
+
+	return success;
+}
+
 //update all nested json objects
 void JsonReader::deepUpdateJson(nap_json & j, nap_json const & updater) {
 	//json.update(updater); //not recursive!!!!!!
@@ -176,23 +200,8 @@ SceneStruct JsonReader::ReadLevel(string level) {
 		//raw read the GO
 		GOStruct go = *readGO(cfg);
 
-		//check if the object has id
-		if (FIND(cfg, "id")) {
-			//check if the object uses a prefab as base
-			if (FIND(cfg["id"], "type")) {
-
-				//check the prefab exists and load / throw error and continue
-				bool success;
-				GOStruct prefab_go = getPrefab(cfg["id"]["type"], success);
-				if (!success) continue;
-
-				//update all the prefab values with raw GO
-				//using recursive deep update
-				deepUpdateJson(prefab_go.go_cfg, go.go_cfg);
-				deepUpdateJson(prefab_go.components_cfg, go.components_cfg);
-				go = prefab_go;
-			}
-		}
+		//apply or not a prefab (continue if error)
+		if (!applyPrefab(cfg, go)) continue;
 
 		scene.gameObjects.push_back(go); //add the go to the scene
 		n++;
@@ -203,10 +212,8 @@ SceneStruct JsonReader::ReadLevel(string level) {
 	return scene;
 }
 
-GOStruct JsonReader::ReadPlayer(string level)
-{
-	LogSystem::Log("Reading level " + level + " ...", LogSystem::JSON);
-	size_t n = 0;
+GOStruct JsonReader::ReadPlayer(string level) {
+	LogSystem::Log("Reading player of level " + level + " ...", LogSystem::JSON);
 
 	//read "level.json"
 	ifstream file(routeLevel + level + ".json");
@@ -217,29 +224,16 @@ GOStruct JsonReader::ReadPlayer(string level)
 	//parse it
 	nap_json j;
 	file >> j;
-
 	nap_json cfg = j["Player"];
 
 	//raw read the GO
 	GOStruct player = *readGO(cfg);
 
-	//check if the object has id
-	if (FIND(cfg, "id")) {
-		//check if the object uses a prefab as base
-		if (FIND(cfg["id"], "type")) {
+	//apply or not a prefab (return if error)
+	if (!applyPrefab(cfg, player)) LogSystem::Log("Error al leer player", LogSystem::JSON);
 
-			//check the prefab exists and load / throw error and continue
-			bool success;
-			GOStruct prefab_go = getPrefab(cfg["id"]["type"], success);
-
-			//update all the prefab values with raw GO
-			//using recursive deep update
-			deepUpdateJson(prefab_go.go_cfg, player.go_cfg);
-			deepUpdateJson(prefab_go.components_cfg, player.components_cfg);
-			player = prefab_go;
-		}
-	}
-
+	file.close();
+	LogSystem::Log("Leido player con exito", LogSystem::JSON);
 	return player;
 }
 
@@ -329,13 +323,14 @@ GOType JsonReader::ReadMap(string level) {
 #include "Transforms.h"
 // set the physical position of the tile parsing its logic position (i, j)
 void JsonReader::setTilePosition(int r, int c, int i, int j, GOStruct & go) {
-	const float POSITION_FACTOR_C = 5.0f; //at some point moved to and external cfg file
-	const float POSITION_FACTOR_R = 5.0f;
+	//at some point moved to and external cfg file
+	const float tile_w = 5.0f, tile_h = 5.0f, level_y = -5.0, GAP = 0.1;
 
+	//calculate positions with offsets
 	float x, y, z;
-	x = -((c / 2.0f) * POSITION_FACTOR_C - (POSITION_FACTOR_C / 2.0f)) + j * POSITION_FACTOR_C;
-	y = -5.0;
-	z = (r / 2.0f) * POSITION_FACTOR_R - (POSITION_FACTOR_R / 2.0f) + i * POSITION_FACTOR_R;
+	x = -(c / 2.0f * tile_w) + j * tile_w + j * GAP;
+	y = level_y;
+	z = -(r / 2.0f * tile_h) + i * tile_h + i * GAP;
 
 	go.go_cfg["pos"] = nap_vector3(x, y, z).json();
 }

@@ -3,8 +3,37 @@
         "name": "player",
         "type": "pref_player"
     },
-    "pos": { "x": 0.0, "y": 20.0, "z": 0.0 },
+    "pos": { "x": 0.0, "y": 5.0, "z": -5.0 },
     "Components": {
+        "basic_phy": {
+            "id": {
+                "name": "basic_phy",
+                "type": "Phys",
+                "group": "test_comps"
+            },
+            "dynamic": true,
+            "noGravity": false,
+            "material": "PLAYER",
+            "mass": 0.75,
+            "linDamp": 0.05,
+            "angDamp": 0.05,
+            "shape": {
+                "type": "BOX", "scale": { "x": 3.0, "y": 3.0, "z": 3.0 }
+            }
+        },
+        "basic_ren": {
+            "id": {
+                "type": "Render",
+                "group": "test_comps"
+            },
+            "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
+            "material": "Material",
+            "shape": {
+                "entity_name": "monkey",
+                "type": "MESH",
+                "mesh": "monkey.mesh"
+            }
+        },
         "camera_fps": {
             "id": {
                 "type": "FPSCam"
@@ -24,22 +53,6 @@
             "overlay_name": "CROSSHAIR_HUD",
             "panel_container": "CROSSHAIR_HUD_PanelContainer"
         },
-        "basic_phy": {
-            "id": {
-                "name": "basic_phy",
-                "type": "Phys",
-                "group": "test_comps"
-            },
-            "dynamic": true,
-            "noGravity": false,
-            "material": "PLAYER",
-            "mass": 0.75,
-            "linDamp": 0.05,
-            "angDamp": 0.05,
-            "shape": {
-                "type": "BOX", "scale": { "x": 3.0, "y": 3.0, "z": 3.0 }
-            }
-        },
         "keyboard_mov": {
             "id": {
                 "name": "keyboard_mov",
@@ -49,19 +62,6 @@
             "walkVel":1500,
             "runVel": 3000,
             "jumpForce": 15000
-        },
-        "basic_ren": {
-            "id": {
-                "type": "Render",
-                "group": "test_comps"
-            },
-            "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
-            "material": "Material",
-            "shape": {
-                "entity_name": "monkey",
-                "type": "MESH",
-                "mesh": "monkey.mesh"
-            }
         }
     }
 }

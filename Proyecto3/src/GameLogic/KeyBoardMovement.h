@@ -1,14 +1,11 @@
 #ifndef KEYBOARDMOVEMENT_H_
 #define KEYBOARDMOVEMENT_H_
 
-#include "CollisionListener.h"
 #include "Component.h"
-#include <vector>
 
 namespace physx {
 	class PxRigidDynamic;
 }
-class nap_vector3;
 
 class KeyBoardMovement : public Component
 {
@@ -44,7 +41,6 @@ public:
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void update(GameObject* o, double time);
-	virtual void onCollision(ID* other);
 };
 
 #endif /* KEYBOARDMOVEMENT_H_ */

@@ -56,6 +56,7 @@ private:
 
 	// reading and updating GO
 	GOStruct* readGO(nap_json const & cfg);
+	bool applyPrefab(nap_json const & cfg, GOStruct & go);
 	void deepUpdateJson(nap_json & j, nap_json const & updater);
 	void deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr);
 

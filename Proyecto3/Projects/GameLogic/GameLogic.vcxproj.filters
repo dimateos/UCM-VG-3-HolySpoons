@@ -23,6 +23,9 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{34dda379-aa0a-44b2-8383-5a76477e43f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_GameStates">
+      <UniqueIdentifier>{c74e18b2-e8bc-4e7b-8b0a-d1a3f96d30af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
@@ -70,8 +73,12 @@
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\GameState.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GameState.cpp">
+      <Filter>_GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp">
+      <Filter>_GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -131,7 +138,11 @@
     <ClInclude Include="..\..\src\GameLogic\Spawner.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\GameState.h" />
-    <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h" />
+    <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h">
+      <Filter>_GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GameState.h">
+      <Filter>_GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

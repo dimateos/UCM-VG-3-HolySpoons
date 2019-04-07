@@ -1,24 +1,18 @@
 #include "KeyBoardMovement.h"
 #include "PhysicsComponent.h"
-#include "FPSCamera.h"
 
-KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner)
-	: Component(cfg, owner), CollisionListener(owner)
-{
-}
+KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {}
 KeyBoardMovement::~KeyBoardMovement() {}
 
 // updates the go velocity depending on an orientation
-void KeyBoardMovement::updateVelocity(nap_vector3 orientation)
-{
+void KeyBoardMovement::updateVelocity(nap_vector3 orientation) {
 	nap_vector3 dir = owner_->getOrientation().toNapVec3(orientation);
 	dir.y_ = 0;
 	dir = dir.normalize();
 	velocity = velocity + dir * vel_;
 }
 
-void KeyBoardMovement::setUp()
-{
+void KeyBoardMovement::setUp() {
 	if (isInited()) return;
 	setInited();
 
@@ -50,8 +44,7 @@ void KeyBoardMovement::setUp()
 }
 
 
-bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
-{
+bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
 
 	if (evt.type == SDL_KEYDOWN) {
@@ -123,11 +116,7 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 		if (Xaxis.front() == left_) updateVelocity(nap_vector3(-1, 0, -0));
 		else if (Xaxis.front() == right_) updateVelocity(nap_vector3(1, 0, 0));
 	}
-	
-	physBody->setLinearVelocity(nap_vector3(velocity.x_*time, 
-		physBody->getLinearVelocity().y, velocity.z_*time).px());
-}
 
-void KeyBoardMovement::onCollision(ID * other) {
-	LogSystem::Log(owner_->id().name_ + " collision with " + other->name_);
+	physBody->setLinearVelocity(nap_vector3(velocity.x_*time,
+		physBody->getLinearVelocity().y, velocity.z_*time).px());
 }

@@ -41,7 +41,7 @@ void PhysicsSystemManager::setupInstance() {
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
-	sceneDesc.gravity = { 0.0f, -9.8f, 0.0f };
+	sceneDesc.gravity = { 0.0f, -15.0f, 0.0f };
 
 	// Materials
 	//atm here but should be on global cfg file etc
