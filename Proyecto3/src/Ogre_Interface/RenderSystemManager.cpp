@@ -128,7 +128,7 @@ void RenderSystemManager::setupScene()
 	//Camera
 	mCamera = mSceneMgr->createCamera("MainCam");
 
-	mCamera->setNearClipDistance(1);
+	//values from global cfg class at some future momment
 	mCamera->setFarClipDistance(10000);
 	mCamera->setAutoAspectRatio(true);
 
@@ -140,8 +140,11 @@ void RenderSystemManager::setupScene()
 
 	//Viewport
 	vp = mWindow->addViewport(mCamera);
-
 	vp->setBackgroundColour(ColourValue(0.45, 0.45, 0.6));
+
+	//FOV
+	mCamera->setNearClipDistance(1);
+	mCamera->setFOVy(Radian(Degree(60))); //in theory overrides near clip
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
 	//Lights

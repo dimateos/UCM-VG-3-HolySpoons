@@ -34,8 +34,7 @@ void SoundManager::update() {
 	}
 	// 2Dsounds: erases the stopped sounds
 	for (map<string, irrklang::ISound*>::iterator it = twoDsounds.begin(); it != twoDsounds.end(); it++) {
-		if (!it->second->isFinished())
-			;
+		if (!it->second->isFinished());
 		else twoDsounds.erase(it);
 	}
 
@@ -62,7 +61,7 @@ void SoundManager::setListenerTransform(nap_transform* trans)
 	updateListener();
 }
 
-// it plays a 3D sound. If the track bool is true, it also returns the sound. 
+// it plays a 3D sound. If the track bool is true, it also returns the sound.
 // If you want to change a sound in execution, you must name it to have a later reference
 irrklang::ISound* SoundManager::play3DSound(const string& routeName, nap_vector3* pos, bool playLooped, bool startPaused, string customName, bool track)
 {
@@ -77,7 +76,7 @@ irrklang::ISound* SoundManager::play3DSound(const string& routeName, nap_vector3
 	else return nullptr;
 }
 
-// it plays a 2D sound. If the track bool is true, it also returns the sound. 
+// it plays a 2D sound. If the track bool is true, it also returns the sound.
 // If you want to change a sound in execution, you must name it to have a later reference
 irrklang::ISound* SoundManager::play2DSound(const string& routeName, bool playLooped, bool startPaused, string customName, bool track)
 {
@@ -123,5 +122,5 @@ SoundManager::SoundManager():engine(createIrrKlangDevice())
 
 SoundManager::~SoundManager()
 {
-	engine->drop();  // close of the engine	
+	engine->drop();  // close of the engine
 }

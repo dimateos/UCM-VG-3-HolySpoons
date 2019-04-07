@@ -19,7 +19,8 @@ void GameState::setUp() {
 	// siempre hacer el setListenerTransform y como parametro un puntero a la pos&rot del player (o de lo que vaya a escuchar)
 	// la primera vez que se llame al getSingleton
 	SoundManager::getSingleton()->setListenerTransform(player_->getTransPtr());
-	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 10), true, false);
+	//setting the monkey as emitter to test pushing it around
+	SoundManager::getSingleton()->play3DSound("ophelia.mp3", &getGameObject("monkey_boombox")->getTransPtr()->p_, true, false);
 
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
@@ -36,17 +37,6 @@ void GameState::setDown() {
 	}
 
 	gameObjects_.clear();
-}
-
-void GameState::addGameObject(GameObject * o) {
-	gameObjects_.push_back(o);
-	if (isInited()) o->setUp();
-}
-
-void GameState::setPlayer(GameObject * player)
-{
-	player_ = player;
-	addGameObject(player_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -107,3 +97,47 @@ void GameState::update(double time) {
 //		else ++it;
 //	}
 //}
+
+///////////////////////////////////////////////////////////////////////////////
+
+void GameState::addGameObject(GameObject* go) {
+	gameObjects_.push_back(go);
+	if (isInited()) go->setUp();
+}
+void GameState::addGameObject(std::list<GameObject*> gos) {
+	for (auto go : gos) {
+		gameObjects_.push_back(go);
+		if (isInited()) go->setUp();
+	}
+}
+
+void GameState::delGameObject(std::string name) {
+	for (auto it = gameObjects_.begin(); it != gameObjects_.end(); it++) {
+		if ((*it)->id().name_ == name) {
+			gameObjects_.erase(it);
+			break;
+		}
+	}
+}
+void GameState::delGameObject(GameObject* go) {
+	auto it = std::find(gameObjects_.begin(), gameObjects_.end(), go);
+	if (it != gameObjects_.end()) gameObjects_.erase(it);
+}
+void GameState::delGameObject(std::list<GameObject*> gos) {
+	for (auto go : gos) {
+		auto it = std::find(gameObjects_.begin(), gameObjects_.end(), go);
+		if (it != gameObjects_.end()) gameObjects_.erase(it);
+	}
+}
+
+GameObject* GameState::getGameObject(std::string name) {
+	GameObject* found = nullptr;
+
+	for (auto go : gameObjects_) {
+		if (go->id().name_ == name) {
+			found = go;
+			break;
+		}
+	}
+	return found;
+}
