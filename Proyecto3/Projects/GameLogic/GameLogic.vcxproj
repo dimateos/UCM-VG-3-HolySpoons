@@ -39,7 +39,6 @@
     <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h" />
-    <ClInclude Include="..\..\src\GameLogic\Identifiable.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />

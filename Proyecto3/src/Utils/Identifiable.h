@@ -19,7 +19,7 @@ public:
 	std::string name_, type_, group_;
 
 	size_t sn_;
-	inline std::string sn_string() { return "_" + to_string(sn_); }
+	inline std::string sn_string() { return "_" + std::to_string(sn_); }
 
 	//also compares the serial numbers
 	inline bool equal(std::string name, size_t sn) const { return name_ == name && sn_ == sn; }
@@ -51,6 +51,7 @@ public:
 
 	//identification (atm cannot change it but maybe in the future)
 	ID id() const { return id_; }
+	ID* idPtr() { return &id_; }
 
 protected:
 	ID id_;

@@ -21,6 +21,7 @@ protected:
 	virtual void setDown();
 
 	//sync GO transforms with px
+	nap_userData * ud = nullptr;
 	void updateUserData();
 
 	//Assist on setting up the shape

@@ -1,6 +1,7 @@
 #ifndef KEYBOARDMOVEMENT_H_
 #define KEYBOARDMOVEMENT_H_
 
+#include "CollisionListener.h"
 #include "Component.h"
 #include <vector>
 
@@ -9,7 +10,7 @@ namespace physx {
 }
 class nap_vector3;
 
-class KeyBoardMovement : public Component
+class KeyBoardMovement : public Component, public CollisionListener
 {
 private:
 	SDL_Keycode forward_;   // W
@@ -31,11 +32,11 @@ private:
 
 public:
 	KeyBoardMovement(nap_json const & cfg, GameObject* owner);
-
-	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual ~KeyBoardMovement();
 	virtual void setUp();
 
-	virtual ~KeyBoardMovement();
+	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void onCollision(ID* other);
 };
 
 #endif /* KEYBOARDMOVEMENT_H_ */

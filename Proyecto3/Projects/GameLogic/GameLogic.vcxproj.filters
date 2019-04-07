@@ -93,9 +93,6 @@
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Identifiable.h">
-      <Filter>_GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Activable.h">
       <Filter>_GameObject</Filter>
     </ClInclude>

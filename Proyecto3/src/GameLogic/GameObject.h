@@ -5,6 +5,7 @@
 #include <SDL_events.h>	//events
 
 #include <list>	//components
+#include "CollisionListener.h"
 using namespace std;
 
 #include "Transforms.h"
@@ -15,7 +16,7 @@ using namespace std;
 class Component;
 
 // this class accepts components (empty container waiting for functionality)
-class GameObject : public Activable, public Identifiable, public Initiable
+class GameObject : public Activable, public Identifiable, public Initiable, public CollisionListenersHolder
 {
 public:
 	GameObject(nap_json const & cfg);

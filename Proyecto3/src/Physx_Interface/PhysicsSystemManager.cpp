@@ -1,7 +1,7 @@
 #include "PhysicsSystemManager.h"
 
 #include "LogSystem.h"
-#include "Transforms.h"
+#include "CollisionListener.h"
 
 //Set this to the IP address of the system running the PhysX Visual Debugger that you want to connect to.
 //#define PVD_HOST "127.0.0.1" for the visual debugger attached
@@ -37,17 +37,25 @@ void PhysicsSystemManager::setupInstance() {
 
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, NULL); //gPvd instead of NULL
 
-	// Materials
-	material_ = gPhysics->createMaterial(0.5f, 0.5f, 0.6f); //not color -> friction etc
-	bouncyMaterial_ = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
-
 	// Scene config
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.gravity = { 0.0f, -9.8f, 0.0f };
+
+	// Materials
+	size_t num_Materials = 3;
+	mats_ = std::vector<PxMaterial*> (num_Materials, nullptr);
+	//for (size_t i = 0; i < num_Materials; i++) {
+	//	mats_[i] = gPhysics->createMaterial(VEC3(mats_vals[i]));
+	//}
+	//atm here but should be on global cfg file etc
+	mats_[BASE] = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	mats_[BOUNCY] = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
+	mats_[PLAYER] = gPhysics->createMaterial(0.05f, 0.05f, 0.05f);
+
 	// Collisions
-	sceneDesc.filterShader = PxDefaultSimulationFilterShader; //contactReportFilterShader
+	sceneDesc.filterShader = EventReporter::contactReportFilterShader; //PxDefaultSimulationFilterShader
 	sceneDesc.simulationEventCallback = &eventReporter_;
 
 	gScene = gPhysics->createScene(sceneDesc);
@@ -88,6 +96,7 @@ void PhysicsSystemManager::stepPhysics(double t) {
 	gScene->simulate(t);
 }
 
+//updates moved objects transforms
 void PhysicsSystemManager::updateNodes() {
 	gScene->fetchResults(true);
 
@@ -98,20 +107,19 @@ void PhysicsSystemManager::updateNodes() {
 	// update each render object with the new transform
 	for (PxU32 i = 0; i < nbActiveActors; ++i) {
 		auto px_trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
-		auto nap_trans = static_cast<nap_transform*>(activeActors[i]->userData);
+		nap_userData* nap_UD = static_cast<nap_userData*>(activeActors[i]->userData);
 
 		//update gameobject transform
-		nap_trans->p_ = nap_vector3(px_trans.p.x, px_trans.p.y, px_trans.p.z);
-		nap_trans->q_ = nap_quat(px_trans.q.w, px_trans.q.x, px_trans.q.y, px_trans.q.z);
-		//set flag: ogre is not upToDate
-		nap_trans->upToDate_rend = false;
+		nap_UD->trans_->p_ = nap_vector3(VEC3(px_trans.p));
+		nap_UD->trans_->q_ = nap_quat(QUAT(px_trans.q));
+		nap_UD->trans_->upToDate_rend = false; //render flag not upToDate
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans) {
-	physx::PxShape* shape = gPhysics->createShape(*geo, *material_);
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans, Materials mat) {
+	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
 
 	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans);
 	body->attachShape(*shape);
@@ -123,8 +131,8 @@ PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTran
 	return body;
 }
 
-PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans) {
-	physx::PxShape* shape = gPhysics->createShape(*geo, *material_);
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans, Materials mat) {
+	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
 
 	PxRigidStatic * body = gPhysics->createRigidStatic(trans);
 	body->attachShape(*shape);

@@ -1,10 +1,13 @@
 #include "KeyBoardMovement.h"
 #include "PhysicsComponent.h"
 #include "FPSCamera.h"
+#include "LogSystem.h"
 
-KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) :Component(cfg, owner)
+KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner)
+	: Component(cfg, owner), CollisionListener(owner)
 {
 }
+KeyBoardMovement::~KeyBoardMovement() {}
 
 void KeyBoardMovement::setUp()
 {
@@ -100,6 +103,6 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 	return handled;
 }
 
-KeyBoardMovement::~KeyBoardMovement()
-{
+void KeyBoardMovement::onCollision(ID * other) {
+	LogSystem::Log(owner_->id().name_ + " collision with " + other->name_);
 }

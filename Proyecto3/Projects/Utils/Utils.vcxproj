@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Utils\CollisionListener.h" />
     <ClInclude Include="..\..\src\Utils\dirent.h" />
+    <ClInclude Include="..\..\src\Utils\Identifiable.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
