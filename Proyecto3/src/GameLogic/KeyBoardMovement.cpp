@@ -7,6 +7,7 @@ KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) :Com
 {
 }
 
+// updates the go velocity depending on an orientation
 void KeyBoardMovement::updateVelocity(nap_vector3 orientation)
 {
 	nap_vector3 dir = owner_->getOrientation().toNapVec3(orientation);
@@ -41,8 +42,10 @@ void KeyBoardMovement::setUp()
 	else jumpForce_ = 4;
 	vel_ = walkVel_;
 
+	// physics component
 	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
 	velocity = nap_vector3(0, 0, 0);
+	jumpAccuracy_ = 0.06;
 }
 
 
@@ -73,8 +76,7 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 			vel_ = runVel_;
 			handled = true;
 		}
-		else if (pressedKey == jump_ && !jumped) {
-			jumped = true;
+		else if (pressedKey == jump_ && abs(physBody->getLinearVelocity().y) <= jumpAccuracy_) {
 			nap_vector3 v = { 0, jumpForce_, 0 };
 			physBody->addForce(v.px());
 			handled = true;
@@ -120,8 +122,9 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 		if (Xaxis.front() == left_) updateVelocity(nap_vector3(-1, 0, -0));
 		else if (Xaxis.front() == right_) updateVelocity(nap_vector3(1, 0, 0));
 	}
-
-	physBody->setLinearVelocity(velocity.px()*time);
+	
+	physBody->setLinearVelocity(nap_vector3(velocity.x_*time, 
+		physBody->getLinearVelocity().y, velocity.z_*time).px());
 }
 
 KeyBoardMovement::~KeyBoardMovement()

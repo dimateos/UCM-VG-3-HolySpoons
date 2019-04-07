@@ -9,6 +9,7 @@ namespace physx {
 }
 class nap_vector3;
 
+// controlls the movement of a go with the keyboard
 class KeyBoardMovement : public Component
 {
 private:
@@ -28,12 +29,12 @@ private:
 	float runVel_;           // while running
 	float vel_;              // actual velocity
 	float jumpForce_;
+	float jumpAccuracy_;
 
-	list<SDL_Keycode> Xaxis; // lista de teclas del eje x
-	list<SDL_Keycode> Zaxis; // lista de teclas del eje z
+	list<SDL_Keycode> Xaxis; // x axis keys
+	list<SDL_Keycode> Zaxis; // z axis keys
 
-	bool jumped = false;
-
+	// updates the go velocity depending on an orientation
 	void updateVelocity(nap_vector3 orientation);
 
 public:
