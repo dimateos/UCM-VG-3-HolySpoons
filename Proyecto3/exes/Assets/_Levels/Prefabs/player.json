@@ -32,6 +32,10 @@
             },
             "dynamic": true,
             "noGravity": false,
+            "material": "PLAYER",
+            "mass": 0.75,
+            "linDamp": 0.05,
+            "angDamp": 0.05,
             "shape": {
                 "type": "BOX", "scale": { "x": 3.0, "y": 3.0, "z": 3.0 }
             }

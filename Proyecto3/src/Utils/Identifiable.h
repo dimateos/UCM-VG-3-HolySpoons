@@ -4,6 +4,7 @@
 
 #include "json.hpp"
 using nap_json = nlohmann::json;
+#define FIND(j, s) j.find(s) != j.end()
 
 #define undef "undefined"
 

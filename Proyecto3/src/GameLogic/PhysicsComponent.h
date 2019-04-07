@@ -12,9 +12,8 @@ public:
 	inline virtual ~PhysicsComponent() { setDown(); };
 	virtual void setUp();
 
-	PxRigidDynamic * getDynamicBody() const { return rigidBodyD_; };
+	inline PxRigidDynamic * getDynamicBody() const { return rigidBodyD_; };
 
-	virtual void receive(Message* msg);
 	virtual void late_update(GameObject* o, double time);
 
 protected:

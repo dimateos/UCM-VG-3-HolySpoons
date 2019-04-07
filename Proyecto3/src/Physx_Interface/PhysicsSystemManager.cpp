@@ -44,15 +44,10 @@ void PhysicsSystemManager::setupInstance() {
 	sceneDesc.gravity = { 0.0f, -9.8f, 0.0f };
 
 	// Materials
-	size_t num_Materials = 3;
-	mats_ = std::vector<PxMaterial*> (num_Materials, nullptr);
-	//for (size_t i = 0; i < num_Materials; i++) {
-	//	mats_[i] = gPhysics->createMaterial(VEC3(mats_vals[i]));
-	//}
 	//atm here but should be on global cfg file etc
-	mats_[BASE] = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
-	mats_[BOUNCY] = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
-	mats_[PLAYER] = gPhysics->createMaterial(0.05f, 0.05f, 0.05f);
+	mats_["BASE"] = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	mats_["BOUNCY"] = gPhysics->createMaterial(0.5f, 0.5f, 1.0f);
+	mats_["PLAYER"] = gPhysics->createMaterial(0.0f, 0.0f, 0.0f);
 
 	// Collisions
 	sceneDesc.filterShader = EventReporter::contactReportFilterShader; //PxDefaultSimulationFilterShader
@@ -118,7 +113,7 @@ void PhysicsSystemManager::updateNodes() {
 
 ///////////////////////////////////////////////////////////////////////////
 
-PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans, Materials mat) {
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans, std::string mat) {
 	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
 
 	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans);
@@ -131,7 +126,7 @@ PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTran
 	return body;
 }
 
-PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans, Materials mat) {
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans, std::string mat) {
 	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
 
 	PxRigidStatic * body = gPhysics->createRigidStatic(trans);

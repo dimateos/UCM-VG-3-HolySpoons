@@ -63,7 +63,7 @@ void JsonReader::preloadPrefabs() {
 		n++;
 
 		//json can have just one prefab or a list
-		if (j.find("Prefabs") != j.end()) { //list of prefabs
+		if (FIND(j, "Prefabs")) { //list of prefabs
 			for (size_t i = 0; i < j["Prefabs"].size(); i++) {
 				//parse and add it to the map
 				GOStruct* go = readGO(j["Prefabs"][i]);
@@ -102,7 +102,7 @@ GOStruct* JsonReader::readGO(nap_json const & cfg) {
 	go->go_cfg = cfg;
 
 	//existance of comps
-	if (cfg.find("Components") != cfg.end()) {
+	if (FIND(cfg, "Components")) {
 		go->go_cfg.erase("Components");
 		go->components_cfg = cfg["Components"];
 	}
@@ -157,14 +157,14 @@ SceneStruct JsonReader::ReadLevel(string level) {
 	file >> j;
 
 	//read the scene name
-	if (j.find("stateID_") != j.end()) {
+	if (FIND(j, "stateID_")) {
 		string s = j["stateID_"];
 		scene.SceneName = s;
 	}
 	else scene.SceneName = "undefined";
 
 	//read the gameobjects
-	if (j.find("GameObjects") == j.end() || j["GameObjects"].size() == 0) {
+	if (!(FIND(j, "GameObjects")) || j["GameObjects"].size() == 0) {
 		LogSystem::Log("El archivo " + routeLevel + level + ".json no tiene GOs...", LogSystem::JSON);
 		return scene;
 	}
@@ -177,9 +177,9 @@ SceneStruct JsonReader::ReadLevel(string level) {
 		GOStruct go = *readGO(cfg);
 
 		//check if the object has id
-		if (cfg.find("id") != cfg.end()) {
+		if (FIND(cfg, "id")) {
 			//check if the object uses a prefab as base
-			if (cfg["id"].find("type") != cfg["id"].end()) {
+			if (FIND(cfg["id"], "type")) {
 
 				//check the prefab exists and load / throw error and continue
 				bool success;
@@ -224,9 +224,9 @@ GOStruct JsonReader::ReadPlayer(string level)
 	GOStruct player = *readGO(cfg);
 
 	//check if the object has id
-	if (cfg.find("id") != cfg.end()) {
+	if (FIND(cfg, "id")) {
 		//check if the object uses a prefab as base
-		if (cfg["id"].find("type") != cfg["id"].end()) {
+		if (FIND(cfg["id"], "type")) {
 
 			//check the prefab exists and load / throw error and continue
 			bool success;

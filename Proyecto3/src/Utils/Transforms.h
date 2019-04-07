@@ -108,6 +108,10 @@ public:
 // base quats
 #define qO nap_quat(1.0f, 0.0f, 0.0f, 0.0f)
 
+//macros instead of px/ogre -> nap
+#define VEC3(v) v.x, v.y, v.z
+#define QUAT(q) q.w, q.x, q.y, q.z
+
 //struct for the scale (maybe inside transform?)
 class nap_scale
 {

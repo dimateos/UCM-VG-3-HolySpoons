@@ -7,15 +7,21 @@ void PhysicsComponent::setUp() {
 
 	//get the correct built shape
 	PxGeometry *geo = getShape(cfg_["shape"]);
+	std::string mat = FIND(cfg_, "material") ? cfg_["material"] : BaseMat;
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
 	if (cfg_["dynamic"]) {
-		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform());
-		//mass and stuff
+		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform(), mat);
+
+		//mass and dampings
+		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FIND(cfg_, "mass") ? float(cfg_["mass"]) : BaseDens);
+		rigidBodyD_->setLinearDamping(FIND(cfg_, "linDamp") ? float(cfg_["linDamp"]) : BaseLinDamp);
+		rigidBodyD_->setAngularDamping(FIND(cfg_, "angDamp") ? float(cfg_["angDamp"]) : BaseAngDamp);
+		rigidBodyD_->setMaxAngularVelocity(FIND(cfg_, "maxAngV") ? float(cfg_["maxAngV"]) : BaseMaxAngV);
 	}
 	else { //static
-		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform());
+		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform(), mat);
 	}
 
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, cfg_["noGravity"]);
@@ -44,11 +50,6 @@ void PhysicsComponent::updateUserData() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
-void PhysicsComponent::receive(Message * msg) {
-	switch (msg->id_) {
-	}
-}
 
 void PhysicsComponent::late_update(GameObject * o, double time) {
 	if (o->getTransUpToDate_phys()) return;

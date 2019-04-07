@@ -3,10 +3,18 @@
 
 #include <ctype.h>
 #include <PxPhysicsAPI.h>
+#define PVD 0 //visual debbuger
 using namespace physx;
 
-#define PVD 0
 #include "EventReporter.h"
+
+// Materials
+#define BaseMat "BASE"
+#define BaseDens 1			//atm mass not defined
+#define BaseLinDamp 0.05	//def 0.0 and 1 max
+#define BaseAngDamp 0.05	//def 0.05 and 1 max
+#define BaseMaxAngV 100		//fast spinning objects should raise this (def 100 in px4.0)
+#include <map>
 
 class PhysicsSystemManager
 {
@@ -18,8 +26,10 @@ public:
 	void stepPhysics(double t);
 	void updateNodes();
 
-	PxRigidDynamic* createDynamicBody(PxGeometry *geo, PxTransform const &trans);
-	PxRigidStatic* createStaticBody(PxGeometry *geo, PxTransform const &trans);
+	inline void setGravity(PxVec3 v) { gScene->setGravity(v); }
+
+	PxRigidDynamic* createDynamicBody(PxGeometry *geo, PxTransform const &trans, std::string mat = BaseMat);
+	PxRigidStatic* createStaticBody(PxGeometry *geo, PxTransform const &trans, std::string mat = BaseMat);
 
 private:
 	// Foundation and Scene
@@ -33,11 +43,8 @@ private:
 	PxPvd *gPvd				= NULL;
 #endif
 
-	// Materials
-	PxMaterial *material_ = NULL;
-	PxMaterial *bouncyMaterial_ = NULL;
-
 	// Collisions and events
+	std::map<std::string, PxMaterial*> mats_; //different materials
 	EventReporter eventReporter_;
 	PxDefaultErrorCallback errorCallback_; //unused atm
 
