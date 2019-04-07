@@ -3,7 +3,7 @@
         "name": "player",
         "type": "pref_player"
     },
-    "pos": { "x": 0.0, "y": 40.0, "z": 0.0 },
+    "pos": { "x": 0.0, "y": 20.0, "z": 0.0 },
     "Components": {
         "camera_fps": {
             "id": {
@@ -14,7 +14,7 @@
             "maxRotY": 80,
             "zoomed": 25,
             "baseDir": { "x": 0.0, "y": -1.0, "z": 0.0 },
-            "baseLookAt": { "x": 0.0, "y": -1.0, "z": 0.0 },
+            "baseLookAt": { "x": 0.0, "y": 0.0, "z": 1.0 },
             "relativePos": { "x": 0.0, "y": 3.0, "z": 0.0 }
         },
         "crosshair_hud_rend": {
@@ -42,8 +42,8 @@
                 "type": "KeyBoard",
                 "group": "test_comps"
             },
-            "walkVel":10,
-            "runVel": 20,
+            "walkVel":1500,
+            "runVel": 3000,
             "jumpForce": 60000
         },
         "basic_ren": {

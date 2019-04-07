@@ -3,7 +3,6 @@
 
 #include "Component.h"
 #include <vector>
-#include <stack>
 
 namespace physx {
 	class PxRigidDynamic;
@@ -25,15 +24,17 @@ private:
 	nap_vector3 velocity;
 
 	// velocities
-	float walkVel_;         // while walking
-	float runVel_;          // while running
-	float vel_;             // actual velocity
+	float walkVel_;          // while walking
+	float runVel_;           // while running
+	float vel_;              // actual velocity
 	float jumpForce_;
 
-	stack<SDL_Keycode> Xaxis;//pila de teclas del eje x
-	stack<SDL_Keycode> Zaxis;//pila de teclas del eje z
+	list<SDL_Keycode> Xaxis; // lista de teclas del eje x
+	list<SDL_Keycode> Zaxis; // lista de teclas del eje z
 
 	bool jumped = false;
+
+	void updateVelocity(nap_vector3 orientation);
 
 public:
 	KeyBoardMovement(nap_json const & cfg, GameObject* owner);

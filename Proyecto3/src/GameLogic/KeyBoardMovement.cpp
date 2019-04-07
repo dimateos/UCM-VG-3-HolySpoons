@@ -1,9 +1,18 @@
 #include "KeyBoardMovement.h"
 #include "PhysicsComponent.h"
 #include "FPSCamera.h"
+#include <LogSystem.h>
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) :Component(cfg, owner)
 {
+}
+
+void KeyBoardMovement::updateVelocity(nap_vector3 orientation)
+{
+	nap_vector3 dir = owner_->getOrientation().toNapVec3(orientation);
+	dir.y_ = 0;
+	dir = dir.normalize();
+	velocity = velocity + dir * vel_;
 }
 
 void KeyBoardMovement::setUp()
@@ -45,19 +54,19 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
 		if (pressedKey == forward_) {
-			Zaxis.push(forward_);
+			Zaxis.push_front(forward_);
 			handled = true;
 		}
 		else if (pressedKey == left_) {
-			Xaxis.push(left_);
+			Xaxis.push_front(left_);
 			handled = true;
 		}
 		else if (pressedKey == backward_) {
-			Zaxis.push(backward_);
+			Zaxis.push_front(backward_);
 			handled = true;
 		}
 		else if (pressedKey == right_) {
-			Xaxis.push(right_);
+			Xaxis.push_front(right_);
 			handled = true;
 		}
 		else if (pressedKey == run_) {
@@ -72,23 +81,23 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 		}
 	}
 
-	if (evt.type == SDL_KEYUP) {
+	else if (evt.type == SDL_KEYUP) {
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
 		if (pressedKey == forward_) {
-			while (!Zaxis.empty())Zaxis.pop();
+			Zaxis.remove(forward_);
 			handled = true;
 		}
 		else if (pressedKey == left_) {
-			while (!Xaxis.empty())Xaxis.pop();
+			Xaxis.remove(left_);
 			handled = true;
 		}
 		else if (pressedKey == backward_) {
-			while (!Zaxis.empty())Zaxis.pop();
+			Zaxis.remove(backward_);
 			handled = true;
 		}
 		else if (pressedKey == right_) {
-			while (!Xaxis.empty())Xaxis.pop();
+			Xaxis.remove(right_);
 			handled = true;
 		}
 		else if (pressedKey == run_) {
@@ -97,44 +106,22 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 		}
 	}
 
-	//si no hay teclas en la pila la velocidad se para
-	if (Xaxis.empty()) {
-		velocity = nap_vector3(0, 0, 0);
-	}
-	else {//si hay teclas en la pila se mira cual es y se mueve en esa direccion
-		if (Xaxis.top() == left_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(-1, 0, 0));
-			dir.y_ = 0;
-			velocity = velocity + dir * vel_;
-		}
-		else if (Xaxis.top() == right_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(1, 0, 0));
-			dir.y_ = 0;
-			velocity = velocity + dir * vel_;
-		}
-	}
-
-	if (Zaxis.empty()) {
-		velocity = nap_vector3(0, 0, 0);
-	}
-	else {//si hay teclas en la pila se mira cual es y se mueve en esa direccion
-		if (Zaxis.top() == forward_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(0, 0, -1));
-			dir.y_ = 0;
-			velocity = velocity + dir * vel_;
-		}
-		if (Zaxis.top() == backward_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(0, 0, 1));
-			dir.y_ = 0;
-			velocity = velocity + dir * vel_;
-		}
-
-		return handled;
-	}
+	return handled;
 }
 
 void KeyBoardMovement::update(GameObject* o, double time) {
-	physBody->setLinearVelocity(velocity.px());
+	velocity = nap_vector3(0, 0, 0);
+
+	if (!Zaxis.empty()) {
+		if (Zaxis.front() == forward_)  updateVelocity(nap_vector3(0, 0, -1));
+		if (Zaxis.front() == backward_) updateVelocity(nap_vector3(0, 0, 1));
+	}
+	if (!Xaxis.empty()) {
+		if (Xaxis.front() == left_) updateVelocity(nap_vector3(-1, 0, -0));
+		else if (Xaxis.front() == right_) updateVelocity(nap_vector3(1, 0, 0));
+	}
+
+	physBody->setLinearVelocity(velocity.px()*time);
 }
 
 KeyBoardMovement::~KeyBoardMovement()
