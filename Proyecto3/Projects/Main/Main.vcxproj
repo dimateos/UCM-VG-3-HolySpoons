@@ -187,8 +187,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Main\Game.cpp" />
-    <ClCompile Include="..\..\src\Main\GameState.cpp" />
-    <ClCompile Include="..\..\src\Main\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\Main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,8 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Main\Game.h" />
-    <ClInclude Include="..\..\src\Main\GameState.h" />
-    <ClInclude Include="..\..\src\Main\GameStateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

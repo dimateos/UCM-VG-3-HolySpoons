@@ -37,7 +37,7 @@ void PhysicsComponent::setUp() {
 
 void PhysicsComponent::setDown() {
 	//release the bodies (which releases the shape etc)
-	getActor()->release();
+	if(getActor() != nullptr) getActor()->release();
 }
 
 void PhysicsComponent::updateUserData() {

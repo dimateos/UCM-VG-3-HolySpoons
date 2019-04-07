@@ -34,7 +34,7 @@ void FPSCamera::setUp() {
 ///////////////////////////////////////////////////////////////////////////////
 
 void FPSCamera::update(GameObject * ent, double time) {
-	// camera position = entity position
+	// camera position = entity position + own relative position
 	camNode_->setPosition((ent->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
 
 	// entity orientation = camera y orientation

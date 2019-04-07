@@ -11,6 +11,8 @@
 #include "OverlayComponent.h"
 #include "FPSCamera.h"
 
+#include <GameStateMachine.h>
+
 Game::Game() {
 	initGame();
 }
@@ -38,7 +40,7 @@ void Game::initGame() {
 	LogSystem::cls();
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
 
-	gsm_ = new GameStateMachine(); //!temporary direct creation
+	gsm_ = GameStateMachine::getSingleton(); //!temporary direct creation
 	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(level); //you can push it already and add more things later
 
@@ -52,7 +54,7 @@ void Game::closeGame() {
 	LogSystem::Log("closing...", LogSystem::GAME);
 	LogSystem::cls();
 
-	delete gsm_;
+	gsm_->shutdown();
 
 	//Close singleton instances
 	JsonReader::shutdownSingleton();

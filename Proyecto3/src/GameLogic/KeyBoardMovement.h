@@ -10,7 +10,7 @@ namespace physx {
 }
 class nap_vector3;
 
-class KeyBoardMovement : public Component, public CollisionListener
+class KeyBoardMovement : public Component
 {
 private:
 	SDL_Keycode forward_;   // W
@@ -22,13 +22,20 @@ private:
 
 	physx::PxRigidDynamic* physBody;
 
-	// velocities
-	float walkVel_;         // while walking
-	float runVel_;          // while running
-	float vel_;             // actual velocity
-	float jumpForce_;
+	nap_vector3 velocity;
 
-	bool jumped = false;
+	// velocities
+	float walkVel_;          // while walking
+	float runVel_;           // while running
+	float vel_;              // actual velocity
+	float jumpForce_;
+	float jumpAccuracy_;
+
+	list<SDL_Keycode> Xaxis; // x axis keys
+	list<SDL_Keycode> Zaxis; // z axis keys
+
+	// updates the go velocity depending on an orientation
+	void updateVelocity(nap_vector3 orientation);
 
 public:
 	KeyBoardMovement(nap_json const & cfg, GameObject* owner);
@@ -36,6 +43,7 @@ public:
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void update(GameObject* o, double time);
 	virtual void onCollision(ID* other);
 };
 

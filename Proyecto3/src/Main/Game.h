@@ -7,8 +7,7 @@
 #include "SoundManager.h"
 #include "MessageSystem.h"
 
-#include "GameStateMachine.h"
-
+class GameStateMachine;
 class Game {
 public:
 	Game();

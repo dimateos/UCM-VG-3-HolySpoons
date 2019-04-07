@@ -1,4 +1,5 @@
 #include "AutoRotationComponent.h"
+#include "GameStateMachine.h"
 
 void AutoRotationComponent::setUp()
 {
@@ -9,6 +10,7 @@ void AutoRotationComponent::setUp()
 void AutoRotationComponent::update(GameObject * ent, double time)
 {
 	//set rotation
+	dest = GameStateMachine::getSingleton()->currentState()->getPlayer()->getPosition();
 	ent->setOrientation(RenderSystemInterface::getSingleton()->getRotationFrom_To(DIRECTOR, dest - ent->getPosition()));
 }
 

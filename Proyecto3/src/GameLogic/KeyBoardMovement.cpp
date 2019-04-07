@@ -1,13 +1,21 @@
 #include "KeyBoardMovement.h"
 #include "PhysicsComponent.h"
 #include "FPSCamera.h"
-#include "LogSystem.h"
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner)
 	: Component(cfg, owner), CollisionListener(owner)
 {
 }
 KeyBoardMovement::~KeyBoardMovement() {}
+
+// updates the go velocity depending on an orientation
+void KeyBoardMovement::updateVelocity(nap_vector3 orientation)
+{
+	nap_vector3 dir = owner_->getOrientation().toNapVec3(orientation);
+	dir.y_ = 0;
+	dir = dir.normalize();
+	velocity = velocity + dir * vel_;
+}
 
 void KeyBoardMovement::setUp()
 {
@@ -35,7 +43,10 @@ void KeyBoardMovement::setUp()
 	else jumpForce_ = 4;
 	vel_ = walkVel_;
 
+	// physics component
 	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
+	velocity = nap_vector3(0, 0, 0);
+	jumpAccuracy_ = 0.06;
 }
 
 
@@ -47,51 +58,49 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
 		if (pressedKey == forward_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(0,0,-1));
-			dir.y_ = 0;
-			physBody->setLinearVelocity(dir.px() * vel_);
+			Zaxis.push_front(forward_);
 			handled = true;
 		}
 		else if (pressedKey == left_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(-1, 0, 0));
-			physBody->setLinearVelocity(dir.px() * vel_);
+			Xaxis.push_front(left_);
 			handled = true;
 		}
 		else if (pressedKey == backward_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(0, 0, 1));
-			physBody->setLinearVelocity(dir.px() * vel_);
+			Zaxis.push_front(backward_);
 			handled = true;
 		}
 		else if (pressedKey == right_) {
-			nap_vector3 dir = o->getOrientation().toNapVec3(nap_vector3(1, 0, 0));
-			physBody->setLinearVelocity(dir.px() * vel_);
+			Xaxis.push_front(right_);
 			handled = true;
 		}
 		else if (pressedKey == run_) {
 			vel_ = runVel_;
 			handled = true;
 		}
-		else if (pressedKey == jump_ && !jumped) {
-			jumped = true;
+		else if (pressedKey == jump_ && abs(physBody->getLinearVelocity().y) <= jumpAccuracy_) {
 			nap_vector3 v = { 0, jumpForce_, 0 };
 			physBody->addForce(v.px());
 			handled = true;
 		}
 	}
 
-	if (evt.type == SDL_KEYUP) {
+	else if (evt.type == SDL_KEYUP) {
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
 		if (pressedKey == forward_) {
+			Zaxis.remove(forward_);
 			handled = true;
 		}
 		else if (pressedKey == left_) {
+			Xaxis.remove(left_);
 			handled = true;
 		}
 		else if (pressedKey == backward_) {
+			Zaxis.remove(backward_);
 			handled = true;
 		}
 		else if (pressedKey == right_) {
+			Xaxis.remove(right_);
 			handled = true;
 		}
 		else if (pressedKey == run_) {
@@ -101,6 +110,22 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt)
 	}
 
 	return handled;
+}
+
+void KeyBoardMovement::update(GameObject* o, double time) {
+	velocity = nap_vector3(0, 0, 0);
+
+	if (!Zaxis.empty()) {
+		if (Zaxis.front() == forward_)  updateVelocity(nap_vector3(0, 0, -1));
+		if (Zaxis.front() == backward_) updateVelocity(nap_vector3(0, 0, 1));
+	}
+	if (!Xaxis.empty()) {
+		if (Xaxis.front() == left_) updateVelocity(nap_vector3(-1, 0, -0));
+		else if (Xaxis.front() == right_) updateVelocity(nap_vector3(1, 0, 0));
+	}
+	
+	physBody->setLinearVelocity(nap_vector3(velocity.x_*time, 
+		physBody->getLinearVelocity().y, velocity.z_*time).px());
 }
 
 void KeyBoardMovement::onCollision(ID * other) {

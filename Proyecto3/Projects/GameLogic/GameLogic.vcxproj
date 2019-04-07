@@ -24,6 +24,8 @@
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GameState.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\KeyBoardMovement.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
@@ -38,6 +40,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\GameState.h" />
+    <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h" />
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
@@ -62,6 +66,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Physx_Interface\Physx_Interface.vcxproj">
       <Project>{15a0c92b-437c-4830-8a3f-66f535584d2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Sound_Interface\Sound_Interface.vcxproj">
+      <Project>{a31fab00-c6d4-4d50-8a72-ec9dc428e503}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.vcxproj">
       <Project>{ab0fe5ae-c6f3-4ece-ac9f-1f6556e33454}</Project>
@@ -124,7 +131,7 @@
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Components\Overlay\include;$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\irrKlang-64bit-1.6.0\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Overlay\include;$(SolutionDir)src\Utils\;$(SolutionDir)src\Sound_Interface\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -145,7 +152,7 @@
     <OutDir>$(SolutionDir)libs\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Inter\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)Dependencies\ogre-1.11.5\Components\Overlay\include;$(SolutionDir)src\Utils\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\irrKlang-64bit-1.6.0\include\;$(SolutionDir)Dependencies\ogre-1.11.5\Components\Overlay\include;$(SolutionDir)src\Utils\;$(SolutionDir)src\Sound_Interface\;$(SolutionDir)src\Ogre_Interface\;$(SolutionDir)src\Physx_Interface\;$(SolutionDir)Dependencies\ogre-1.11.5\Build\SDL2-2.0.8\include;$(SolutionDir)Dependencies\ogre-1.11.5\Build\include;$(SolutionDir)Dependencies\ogre-1.11.5\OgreMain\include;$(SolutionDir)Dependencies\physx4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
