@@ -8,6 +8,7 @@ private:
 	int defaultValue = 10;
 	GameObject* spawn();
 	GameObject* original = nullptr;
+	std::string entityName;
 
 public:
 	nap_Pool(std::string entity);

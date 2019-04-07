@@ -1,20 +1,18 @@
 #include "Pool.h"
 #include "GameObject.h"
 #include "GOFactory.h"
-#include "GameStateMachine.h"
 
 GameObject * nap_Pool::spawn()
 {
-	GameObject* tmp = GOFactory::GetGOPrefab("pref_monkey"); //creates a new GO based on the original
-	GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
+	GameObject* tmp = GOFactory::GetGOPrefab(entityName); //creates a new GO based on the original
 	pool.push_back(tmp);
 	return tmp;
 }
 
-nap_Pool::nap_Pool(std::string entity)
+nap_Pool::nap_Pool(std::string entity): entityName(entity)
 {
 	//getting prefab
-	original = GOFactory::GetGOPrefab(entity);
+	//original = GOFactory::GetGOPrefab(entity);
 }
 
 nap_Pool::~nap_Pool()
@@ -50,8 +48,8 @@ GameObject * nap_Pool::getItem()
 void nap_Pool::init()
 {
 	//Creates a default value of items to populate the pool from the start
-	/*for (int i = 0; i < defaultValue-1; i++) {
+	for (int i = 0; i < defaultValue; i++) {
 		spawn();
 		pool.back()->setActive(false);
-	}*/
+	}
 }

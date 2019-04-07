@@ -57,7 +57,7 @@
             "type": "pref_spawner",
             "group": "spawns"
         },
-        "pos": { "x": 50.0, "y": 10.0, "z": 0.0 },
+        "pos": { "x": 0.0, "y": 0.0, "z": 0.0 },
         "Components": {
             "spawner":{
                 "id": {
