@@ -48,6 +48,7 @@ public:
 	//transform operations (set's activates the flags)
 	inline void setPosition(nap_vector3 p) { trans_.p_ = p; setTransUpToDate(false); }
 	inline nap_vector3 getPosition() const { return trans_.p_; }
+	inline nap_vector3& get_Ref_Position() { return trans_.p_; }
 	inline void setOrientation(nap_quat q) { trans_.q_ = q; setTransUpToDate(false); }
 	inline nap_quat getOrientation() const { return trans_.q_; }
 	inline void setTransform(nap_vector3 p, nap_quat q) { trans_.p_ = p; trans_.q_ = q; setTransUpToDate(false); }

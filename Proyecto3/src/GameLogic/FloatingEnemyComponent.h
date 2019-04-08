@@ -10,7 +10,7 @@ private:
 	//logic
 	float initY; //initial Y, needed sin movement
 	float timer = 0, rotation = 0;
-	nap_vector3 destPos;
+	nap_vector3* destPos;
 
 	//cfg (json)
 	float amplitude = 1, horiSpeed = 0.01, vertSpeed = 1;
