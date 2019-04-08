@@ -41,7 +41,7 @@ GameObject * nap_Pool::getItem()
 		}
 		i++;
 	}
-	
+
 	return spawn();
 }
 

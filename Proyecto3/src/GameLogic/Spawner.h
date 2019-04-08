@@ -8,10 +8,9 @@ private:
 	double timer;
 	double lastActiveT=0;
 
-	bool active;
 	nap_Pool* pol = nullptr;
-
 	list<Component*> compList;
+
 public:
 	Spawner() {};
 	Spawner(nap_json const & cfg);
@@ -21,9 +20,7 @@ public:
 
 	//sets and gets
 	inline void setTimer(double t) { timer = t; };
-	inline void setActive(bool t) { active = t; };
-	inline bool getActive() { return active; };
-	
+
 	virtual void update(GameObject* o, double time);
 };
 

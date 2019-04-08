@@ -16,7 +16,7 @@ private:
 
 public:
 	static GameStateMachine* getSingleton();
-	static void shutdown();
+	static void shutdownSingleton();
 	GameState* loadLevel(std::string level);
 
 	bool handleEvents(const SDL_Event evt);

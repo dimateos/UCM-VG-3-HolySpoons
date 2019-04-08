@@ -1,7 +1,6 @@
 #include "FloatingEnemyComponent.h"
-#include "PhysicsComponent.h" //SHOULD NOT BE HERE
-#include <iostream>
 #include "GameStateMachine.h"
+#include "LogSystem.h"
 #include <math.h>
 
 void FloatingEnemyComponent::WaveyMovement(float t)
@@ -30,7 +29,7 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 
 void FloatingEnemyComponent::setUp()
 {
-	cout << "HOWDY PARTNER!" << endl;
+	LogSystem::Log("HOWDY PARTNER!", LogSystem::SPAWNER);
 	if (isInited()) return;
 	setInited();
 

@@ -8,7 +8,6 @@ Spawner::Spawner(nap_json const & cfg): Component(cfg)
 	pol = new nap_Pool(cfg["itemString"]);
 	pol->setDefault(cfg["default"]);
 	timer = cfg["timer"];
-	active = cfg["active"];
 }
 
 Spawner::~Spawner()
@@ -26,14 +25,12 @@ void Spawner::setUp()
 
 void Spawner::update(GameObject * o, double time)
 {
-	if (active) {
-		lastActiveT += time;
-		if(lastActiveT > timer){ //simple timer
-			lastActiveT =0;//gets object from pool, spawns it
-			GameObject* tmp = pol->getItem();
-			tmp->setPosition(o->getPosition());
-			GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
-			tmp->setActive(true);
-		}
+	lastActiveT += time;
+	if(lastActiveT > timer){ //simple timer
+		lastActiveT =0;//gets object from pool, spawns it
+		GameObject* tmp = pol->getItem();
+		tmp->setPosition(o->getPosition());
+		GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
+		tmp->setActive(true);
 	}
 }

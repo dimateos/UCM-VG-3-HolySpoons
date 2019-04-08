@@ -10,8 +10,10 @@ class Component : public Listener, public Activable, public Identifiable, public
 {
 public:
 	inline Component() : Activable(), Identifiable(), cfg_(), owner_(nullptr) {};
-	inline Component(nap_json const & cfg) : Activable(), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
-	inline Component(nap_json const & cfg, GameObject* owner) : Activable(), Identifiable(cfg["id"]), cfg_(cfg), owner_(owner) {};
+	inline Component(nap_json const & cfg) :
+		Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
+	inline Component(nap_json const & cfg, GameObject* owner)
+		: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(owner) {};
 	inline virtual ~Component() {};
 
 	// called from gameObjects themselves

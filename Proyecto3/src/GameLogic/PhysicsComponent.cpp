@@ -7,7 +7,7 @@ void PhysicsComponent::setUp() {
 
 	//get the correct built shape
 	PxGeometry *geo = getShape(cfg_["shape"]);
-	std::string mat = FIND(cfg_, "material") ? cfg_["material"] : BaseMat;
+	std::string mat = FINDnRETURN_s(cfg_, "material", BaseMat);
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
@@ -15,10 +15,10 @@ void PhysicsComponent::setUp() {
 		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform(), mat);
 
 		//mass and dampings
-		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FIND(cfg_, "mass") ? float(cfg_["mass"]) : BaseDens);
-		rigidBodyD_->setLinearDamping(FIND(cfg_, "linDamp") ? float(cfg_["linDamp"]) : BaseLinDamp);
-		rigidBodyD_->setAngularDamping(FIND(cfg_, "angDamp") ? float(cfg_["angDamp"]) : BaseAngDamp);
-		rigidBodyD_->setMaxAngularVelocity(FIND(cfg_, "maxAngV") ? float(cfg_["maxAngV"]) : BaseMaxAngV);
+		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
+		rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
+		rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
+		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
 	}
 	else { //static
 		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform(), mat);

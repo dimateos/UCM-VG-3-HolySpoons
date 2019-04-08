@@ -32,6 +32,9 @@
     <ClInclude Include="..\..\src\Utils\Identifiable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\JsonCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp">

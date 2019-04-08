@@ -63,11 +63,11 @@
                     "type": "Spawner",
                     "group": "test_comps"
                 },
+                "active": true,
 
                 "itemString": "pref_monkey",
                 "default": 10,
-                "timer": 3,
-                "active": true
+                "timer": 3
             }
         }
     }

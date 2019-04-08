@@ -2,15 +2,12 @@
 #include "Component.h"
 
 GameObject::GameObject(nap_json const & cfg)
-	: Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {
-}
+	: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {}
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
-	: Activable(), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {
-}
+	: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {}
 
-GameObject::GameObject(GameObject * o): Activable(), Identifiable(o->cfg_["id"]), Initiable(), cfg_(o->cfg_), components_()
-{
-}
+GameObject::GameObject(GameObject * o) :
+	Activable(o->isActive()), Identifiable(o->cfg_["id"]), Initiable(o->isInited()), cfg_(o->cfg_), components_(o->getComponents()) {}
 
 GameObject::~GameObject() {
 	for (auto comp : components_) {
@@ -36,8 +33,7 @@ void GameObject::setUp() {
 	//getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
 }
 
-void GameObject::lateSetUp()
-{
+void GameObject::lateSetUp() {
 	for (Component* comp : components_) if (comp != nullptr) comp->lateSetUp();
 }
 

@@ -11,7 +11,7 @@ class LogSystem {
 public:
 	enum logType //set prefix of msg
 	{
-		NOTYPE, DEV, CFG, JSON, PHYS, REND, GAME, SOUND
+		NOTYPE, DEV, CFG, JSON, PHYS, REND, GAME, SOUND, SPAWNER
 	};
 
 	static void resetLogFile();

@@ -26,15 +26,10 @@ void KeyBoardMovement::setUp() {
 	jump_ = SDLK_SPACE;
 
 	// velocity sets
-	if (!cfg_["walkVel"].is_null())
-		walkVel_ = cfg_["walkVel"];
-	else vel_ = 2;
-	if (!cfg_["runVel"].is_null())
-		runVel_ = cfg_["runVel"];
-	else runVel_ = 4;
-	if (!cfg_["jumpForce"].is_null())
-		jumpForce_ = cfg_["jumpForce"];
-	else jumpForce_ = 4;
+
+	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
+	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
+	jumpForce_ = FINDnRETURN(cfg_, "jumpForce", float, 4);
 	vel_ = walkVel_;
 
 	// physics component

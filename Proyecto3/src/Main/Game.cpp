@@ -39,8 +39,7 @@ void Game::initGame() {
 	//Initialize level
 	LogSystem::cls();
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
-
-	gsm_ = GameStateMachine::getSingleton(); //!temporary direct creation
+	gsm_ = GameStateMachine::getSingleton();
 	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(level); //you can push it already and add more things later
 
@@ -54,13 +53,13 @@ void Game::closeGame() {
 	LogSystem::Log("closing...", LogSystem::GAME);
 	LogSystem::cls();
 
-	gsm_->shutdown();
+	gsm_->shutdownSingleton();
 
 	//Close singleton instances
 	JsonReader::shutdownSingleton();
 	MessageSystem::shutdownSingleton();
 	SoundManager::shutdownSingleton();
-	renderManager->shutdown(); //maybe static too?
+	renderManager->shutdownSingleton(); //maybe static too?
 	PhysicsSystemManager::shutdownSingleton();
 
 	LogSystem::Log("closed", LogSystem::GAME);

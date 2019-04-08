@@ -68,7 +68,7 @@ public:
 	/*
 	Shutdowns the entire app
 	*/
-	void shutdown();
+	void shutdownSingleton();
 
 	/*
 	Called when the frame starts rendering
