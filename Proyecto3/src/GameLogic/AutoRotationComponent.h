@@ -7,7 +7,7 @@ class AutoRotationComponent :
 {
 private:
 	GameObject* o_;
-	nap_vector3* dest;  //pointer to dest position
+	nap_transform* dest;  //pointer to dest position
 	const nap_vector3 DIRECTOR = {0, 0, 1}; //DEFAULT, ALL OBJECTS MUST BE LOOKING AT THE CAMERA
 
 public:
