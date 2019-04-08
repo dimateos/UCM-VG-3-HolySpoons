@@ -33,5 +33,5 @@ physx::PxQuat nap_quat::px() {
 }
 nap_vector3 nap_quat::toNapVec3(nap_vector3 direction) {
 	Ogre::Vector3 aux = ogre() * direction.ogre();
-	return nap_vector3(aux.x, aux.y, aux.z);
+	return nap_vector3(aux.x, aux.y, aux.z).normalize();
 }

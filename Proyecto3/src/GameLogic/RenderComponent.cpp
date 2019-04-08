@@ -1,6 +1,7 @@
 #include "RenderComponent.h"
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
+#include <OgreSceneManager.h>
 
 #include "LogSystem.h"
 
@@ -19,6 +20,11 @@ void RenderComponent::setUp() {
 
 	//node->showBoundingBox(true); //global config
 	//node->flipVisibility();
+}
+
+void RenderComponent::setDown() {
+	node->removeAndDestroyAllChildren();
+	node->getCreator()->destroySceneNode(node);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

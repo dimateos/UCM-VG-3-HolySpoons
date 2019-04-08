@@ -28,7 +28,7 @@ void TestComponent::setUp() {
 	//text3->setTextColour(.1, .5, .8, 1);
 
 	//graphical plane
-	rsi->createPlane("planoo", Ogre::Vector3::UNIT_Y, 1000, 1000, Ogre::Vector3::UNIT_Y);
+	rsi->createPlane("planoo", Ogre::Vector3::NEGATIVE_UNIT_Z, 1000, 1000, Ogre::Vector3::UNIT_Y).first->setPosition(0,0,2000);
 	rsi->setMaterial("planoo", "DebugMaterial");
 
 	//ninja

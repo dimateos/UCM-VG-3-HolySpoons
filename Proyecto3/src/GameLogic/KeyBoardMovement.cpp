@@ -26,18 +26,19 @@ void KeyBoardMovement::setUp() {
 	jump_ = SDLK_SPACE;
 
 	// velocity sets
-
 	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
 	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
 	jumpForce_ = FINDnRETURN(cfg_, "jumpForce", float, 4);
 	vel_ = walkVel_;
 
-	// physics component
-	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
-	velocity = nap_vector3(0, 0, 0);
+	velocity = vO;
 	jumpAccuracy_ = 0.06;
 }
 
+void KeyBoardMovement::lateSetUp() {
+	// physics component
+	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
+}
 
 bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
@@ -104,12 +105,12 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 	velocity = nap_vector3(0, 0, 0);
 
 	if (!Zaxis.empty()) {
-		if (Zaxis.front() == forward_)  updateVelocity(nap_vector3(0, 0, -1));
-		if (Zaxis.front() == backward_) updateVelocity(nap_vector3(0, 0, 1));
+		if (Zaxis.front() == forward_)  updateVelocity(vZ*-1);
+		if (Zaxis.front() == backward_) updateVelocity(vZ);
 	}
 	if (!Xaxis.empty()) {
-		if (Xaxis.front() == left_) updateVelocity(nap_vector3(-1, 0, -0));
-		else if (Xaxis.front() == right_) updateVelocity(nap_vector3(1, 0, 0));
+		if (Xaxis.front() == left_) updateVelocity(vX*-1);
+		else if (Xaxis.front() == right_) updateVelocity(vX);
 	}
 
 	physBody->setLinearVelocity(nap_vector3(velocity.x_*time,

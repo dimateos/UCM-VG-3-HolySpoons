@@ -24,6 +24,9 @@ public:
 
 	inline GameObject* getOwner() { return owner_; };
 
+	//some debugging reading the config
+	inline nap_json & getCfg() { return cfg_; }
+
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner

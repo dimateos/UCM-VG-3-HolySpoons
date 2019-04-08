@@ -37,7 +37,7 @@ public:
 
 protected:
 	virtual void setDown();
-	//void killDeadObjects();
+	void killDeadObjects();
 
 	GameObject* player_;
 

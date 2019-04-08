@@ -79,6 +79,12 @@
     <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp">
       <Filter>_GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\BulletShooter.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\BulletHit.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -143,6 +149,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GameState.h">
       <Filter>_GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\BulletShooter.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\BulletHit.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

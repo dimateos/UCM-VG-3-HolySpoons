@@ -61,7 +61,7 @@
                     "type": "Spawner",
                     "group": "test_comps"
                 },
-                "active": true,
+                "active": false,
 
                 "itemString": "pref_monkey",
                 "default": 5,

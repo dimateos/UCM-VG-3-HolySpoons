@@ -16,7 +16,7 @@ public:
 	Spawner(nap_json const & cfg);
 	virtual ~Spawner();
 
-	void setUp();
+	virtual void setUp();
 
 	//sets and gets
 	inline void setTimer(double t) { timer = t; };

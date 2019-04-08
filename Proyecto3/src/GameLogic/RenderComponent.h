@@ -9,14 +9,16 @@ class RenderComponent : public Component
 {
 public:
 	inline RenderComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-	inline virtual ~RenderComponent() {};
+	inline virtual ~RenderComponent() { setDown(); };
 	virtual void setUp();
 
-	inline Ogre::SceneNode* getSceneNode() const { return node; }
+	inline Ogre::SceneNode* getSceneNode() { return node; }
 
 	virtual void late_update(GameObject* ent, double time);
 
 protected:
+	virtual void setDown();
+
 	//Assist on setting up the shape
 	OgrePair getOgrePair(nap_json shape);
 

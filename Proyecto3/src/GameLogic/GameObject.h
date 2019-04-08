@@ -72,6 +72,9 @@ public:
 	//to keep track of the scale (Physx, IA, etc)
 	inline nap_scale* getScalePtr() { return &scale_; }
 
+	//some debugging reading the config
+	inline nap_json & getCfg() { return cfg_; }
+
 protected:
 	nap_json cfg_; //for async setup
 

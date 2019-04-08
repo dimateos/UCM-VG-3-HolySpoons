@@ -9,7 +9,7 @@
             "id": {
                 "name": "basic_phy",
                 "type": "Phys",
-                "group": "test_comps"
+                "group": "player_comps"
             },
             "material": "PLAYER",
             "mass": 0.75,
@@ -22,16 +22,16 @@
         "basic_ren": {
             "id": {
                 "type": "Render",
-                "group": "test_comps"
+                "group": "player_comps"
             },
             "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
-            "material": "Material",
             "shape": {
-                "entity_name": "monkey",
+                "entity_name": "player_monkey",
                 "type": "MESH",
                 "mesh": "monkey.mesh"
             }
         },
+
         "camera_fps": {
             "id": {
                 "type": "FPSCam"
@@ -46,20 +46,32 @@
         },
         "crosshair_hud_rend": {
             "id": {
-                "type": "Overlay"
+                "type": "Overlay",
+                "group": "player_comps"
             },
             "overlay_name": "CROSSHAIR_HUD",
             "panel_container": "CROSSHAIR_HUD_PanelContainer"
         },
+
         "keyboard_mov": {
             "id": {
-                "name": "keyboard_mov",
                 "type": "KeyBoard",
-                "group": "test_comps"
+                "group": "player_comps"
             },
             "walkVel":1500,
             "runVel": 3000,
             "jumpForce": 15000
+        },
+        "bullet_shooter": {
+            "id": {
+                "type": "BulletShooter",
+                "group": "player_comps"
+            },
+            "itemString": "base_bullet",
+            "relativeY": 3.0,
+            "relativeZ": 3.0,
+            "vel": 10
         }
+
     }
 }

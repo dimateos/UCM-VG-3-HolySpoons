@@ -1,0 +1,42 @@
+{
+"Prefabs" :
+[
+    {
+        "id": {
+            "name": "base_bullet",
+            "type": "base_bullet",
+            "group": "bullets"
+        },
+        "Components": {
+            "bullet_phys": {
+                "id": {
+                    "type": "Phys"
+                },
+                "dynamic": false,
+                "noGravity": false,
+                "mass": 0.1,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 0.3, "y": 0.3, "z": 0.3 }
+                }
+            },
+            "bullet_rend": {
+                "id": {
+                    "type": "Render"
+                },
+                "scale": { "x": 0.3, "y": 0.3, "z": 0.3 },
+                "material": "DebugMaterial3",
+                "shape": {
+                    "entity_name": "base_bullet",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            },
+            "bullet_hit": {
+                "id": {
+                    "type": "BulletHit"
+                }
+            }
+        }
+    }
+]
+}

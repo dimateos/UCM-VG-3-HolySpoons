@@ -2,10 +2,8 @@
 #include "LogSystem.h"
 #include <SoundManager.h>
 
-GameState::GameState() : Initiable(), gameObjects_() {
-}
-GameState::GameState(std::list<GameObject*> gObjects) : Initiable(), gameObjects_(gObjects) {
-}
+GameState::GameState() : Initiable(), gameObjects_() {}
+GameState::GameState(std::list<GameObject*> gObjects) : Initiable(), gameObjects_(gObjects) {}
 
 GameState::~GameState() {
 	setDown();
@@ -67,6 +65,8 @@ bool GameState::handleEvents(const SDL_Event evt) {
 
 //iterates all the Entities and calls their updates
 void GameState::update(double time) {
+	//first remove msg/collision killed objects + last frame updates
+	killDeadObjects();
 
 	//LogSystem::Log("state update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
@@ -75,28 +75,22 @@ void GameState::update(double time) {
 
 	//LogSystem::Log("state late update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
-		if (o->isActive())o->late_update(time);
+		if (o->isActive() && !o->isKilled())o->late_update(time);
 	}
-
-	//killDeadObjects();
 }
 
 //requires sencond iteration to delete killed objects
-//void GameState::killDeadObjects() {
-//	auto it = entities_.begin();
-//	while (it != entities_.end()) {
-//		if ((*it)->isKilled()) {
-//			delete (*it);
-//			if (it == gameObjects_.begin()) //in case of fisrt one, we fckd up
-//			{
-//				gameObjects_.erase(it);
-//				it = gameObjects_.begin(); //we fix
-//			}
-//			else gameObjects_.erase(it);
-//		}
-//		else ++it;
-//	}
-//}
+void GameState::killDeadObjects() {
+	auto it = gameObjects_.begin();
+	while (it != gameObjects_.end()) {
+
+		if ((*it)->isKilled()) {
+			delete (*it);
+			it = gameObjects_.erase(it);
+		}
+		else ++it;
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 

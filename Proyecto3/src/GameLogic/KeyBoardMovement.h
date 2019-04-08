@@ -38,6 +38,7 @@ public:
 	KeyBoardMovement(nap_json const & cfg, GameObject* owner);
 	virtual ~KeyBoardMovement();
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void update(GameObject* o, double time);

@@ -2,7 +2,7 @@
     "stateID_": "TestLevel",
     "Player": {
         "id": {
-        "type": "pref_player"
+            "type": "pref_player"
         }
     },
     "GameObjects": [

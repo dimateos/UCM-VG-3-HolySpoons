@@ -1,6 +1,7 @@
 #include "FPSCamera.h"
 #include "RenderComponent.h"
-//#include "LogSystem.h"
+#include "LogSystem.h"
+
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
@@ -18,17 +19,21 @@ void FPSCamera::setUp() {
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
 	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
 
-	//postion atm is fixed, then should follow the player
-	relativePos = nap_vector3(cfg_["relativePos"]);
-	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
-
 	//set cfg vals
 	rotXspeed_ = cfg_["rotXspeed"];
 	rotYspeed_ = cfg_["rotYspeed"];
 	maxRotY_ = cfg_["maxRotY"];
 	zoomed_ = cfg_["zoomed"];
+}
 
-	//RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode());
+void FPSCamera::lateSetUp() {
+	//postion atm is fixed, then should follow the player
+	relativePos = nap_vector3(cfg_["relativePos"]);
+	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
+
+	//add camera as child of player render node and move it to its local relative position
+	//RenderSystemInterface::getSingleton()->addChild(static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode(), camNode_);
+	//camNode_->translate(relativePos.ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,7 +43,8 @@ void FPSCamera::update(GameObject * ent, double time) {
 	camNode_->setPosition((ent->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
 
 	// entity orientation = camera y orientation
-	nap_quat nq = { camNode_->getOrientation().w, camNode_->getOrientation().x, camNode_->getOrientation().y, camNode_->getOrientation().z };
+	auto ori = camNode_->getOrientation();
+	nap_quat nq = { ori.w, ori.x, ori.y, ori.z };
 	ent->setOrientation(nq);
 
 	//avoid flips
@@ -76,7 +82,7 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 
 	case SDL_MOUSEBUTTONUP:
 		if (evt.button.button == SDL_BUTTON_RIGHT) {
-			toggleZoom();
+			//toggleZoom(); //for now
 			handled = true;
 		}
 		break;

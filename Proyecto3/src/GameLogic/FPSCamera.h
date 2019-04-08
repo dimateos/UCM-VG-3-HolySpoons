@@ -11,6 +11,7 @@ public:
 	inline FPSCamera(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~FPSCamera() {};
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	//mouse move + rightClick and screen resize
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
