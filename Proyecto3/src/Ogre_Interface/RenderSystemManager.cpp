@@ -157,6 +157,8 @@ void RenderSystemManager::setupScene()
 
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
 
+	//mSceneMgr->setSkyBox(true, "SkyBox");
+
 	mRoot->addFrameListener(this);
 }
 

@@ -19,7 +19,7 @@ void RenderComponent::setUp() {
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//node->showBoundingBox(true); //global config
-	//node->flipVisibility();
+	//node->flipVisibility();''
 }
 
 void RenderComponent::setDown() {
