@@ -85,6 +85,9 @@
     <ClCompile Include="..\..\src\GameLogic\BulletHit.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BulletHit.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\BulletHittable.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

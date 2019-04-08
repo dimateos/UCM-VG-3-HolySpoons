@@ -63,12 +63,18 @@ void GameObject::late_update(double time) {
 
 void GameObject::addComponent(Component* comp) {
 	components_.push_back(comp);
-	if (isInited()) comp->setUp();
+	if (isInited()) {
+		comp->setUp();
+		comp->lateSetUp();
+	}
 }
 void GameObject::addComponent(std::list<Component*> comps) {
 	for (auto comp : comps) {
 		components_.push_back(comp);
-		if (isInited()) comp->setUp();
+		if (isInited()) {
+			comp->setUp();
+			comp->lateSetUp();
+		}
 	}
 }
 

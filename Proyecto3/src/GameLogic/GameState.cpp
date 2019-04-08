@@ -23,7 +23,6 @@ void GameState::setUp() {
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
 	}
-
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->lateSetUp();
 	}
@@ -96,12 +95,18 @@ void GameState::killDeadObjects() {
 
 void GameState::addGameObject(GameObject* go) {
 	gameObjects_.push_back(go);
-	if (isInited()) go->setUp();
+	if (isInited()) {
+		go->setUp();
+		go->lateSetUp();
+	}
 }
 void GameState::addGameObject(std::list<GameObject*> gos) {
 	for (auto go : gos) {
 		gameObjects_.push_back(go);
-		if (isInited()) go->setUp();
+		if (isInited()) {
+			go->setUp();
+			go->lateSetUp();
+		}
 	}
 }
 

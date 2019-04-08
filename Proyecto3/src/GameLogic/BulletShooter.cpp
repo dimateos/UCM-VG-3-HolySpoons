@@ -35,14 +35,17 @@ bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
 void BulletShooter::shoot() {
 	//add to state
 	GameObject* bul = pool_->getItem();
-	bul->setActive(true);
+	bul->setActive();
 	GameStateMachine::getSingleton()->currentState()->addGameObject(bul);
 
-	//cfg pos, dir and vel
+	//dir
 	nap_vector3 dir = owner_trans_->q_.toNapVec3(vZ*-1);
+
+	//vel (uses dir y)
+	static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((dir * vel_).px());
+
+	//vel (ignores dir y)
 	dir.y_ = 0;
 	dir.normalize();
-
 	bul->setPosition(owner_trans_->p_ + vY * relY_ + dir * relZ_);
-	//static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((dir * vel_).px());
 }

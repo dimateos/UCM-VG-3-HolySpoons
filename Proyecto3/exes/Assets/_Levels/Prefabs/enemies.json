@@ -11,7 +11,7 @@
             "basic_phy": {
                 "id": {
 					"type": "Phys",
-					"group": "test_comps"
+					"group": "enemy_comps"
                 },
                 "noGravity": true,
                 "shape": {
@@ -21,7 +21,7 @@
             "basic_ren": {
                 "id": {
                     "type": "Render",
-					"group": "test_comps"
+					"group": "enemy_comps"
 				},
                 "scale": { "x": 200.0, "y": 260.0, "z": 200.0 },
                 "shape": {
@@ -33,7 +33,7 @@
             "floating_mov":{
                 "id": {
                     "type": "FloatingEnemy",
-					"group": "test_comps"
+					"group": "enemy_comps"
                 },
                 "Amplitude":2,
                 "HorizontalSpeed" : 3.5,
@@ -42,7 +42,13 @@
             "auto_rotation": {
             	"id":{
             		"type": "AutoRotation",
-            		"group": "test_comps"
+            		"group": "enemy_comps"
+            	}
+            },
+            "bullet_hittable": {
+            	"id":{
+            		"type": "BulletHittable",
+            		"group": "enemy_comps"
             	}
             }
         }
@@ -61,11 +67,11 @@
                     "type": "Spawner",
                     "group": "test_comps"
                 },
-                "active": false,
+                "active": true,
 
                 "itemString": "pref_monkey",
-                "default": 5,
-                "timer": 3
+                "default": 10,
+                "timer": 1.5
             }
         }
     }

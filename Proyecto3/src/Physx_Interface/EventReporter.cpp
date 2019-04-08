@@ -14,10 +14,10 @@ void EventReporter::onContact(const physx::PxContactPairHeader& pairHeader, cons
 
 	//send onCollision events
 	for (CollisionListener* c : *nap_UD_1->collisionListeners_) {
-		c->onCollision(nap_UD_1->id_);
+		c->onCollision(nap_UD_2->id_);
 	}
 	for (CollisionListener* c : *nap_UD_2->collisionListeners_) {
-		c->onCollision(nap_UD_2->id_);
+		c->onCollision(nap_UD_1->id_);
 	}
 }
 

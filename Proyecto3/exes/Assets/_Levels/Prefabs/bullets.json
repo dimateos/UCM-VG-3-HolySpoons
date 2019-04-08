@@ -12,8 +12,7 @@
                 "id": {
                     "type": "Phys"
                 },
-                "dynamic": false,
-                "noGravity": false,
+                "noGravity": true,
                 "mass": 0.1,
                 "shape": {
                     "type": "BOX", "scale": { "x": 0.3, "y": 0.3, "z": 0.3 }

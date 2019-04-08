@@ -12,7 +12,7 @@ public:
 
 	inline bool isActive() { return active_; }
 	inline bool toggleActive() { active_ = !active_; }
-	inline void setActive(bool active) { active_ = active; }
+	inline void setActive(bool active = true) { active_ = active; }
 
 protected:
 	bool active_;
