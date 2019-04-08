@@ -2,10 +2,7 @@
 #ifndef IDENTIFIABLE_H_
 #define IDENTIFIABLE_H_
 
-#include "json.hpp"
-using nap_json = nlohmann::json;
-#define FIND(j, s) j.find(s) != j.end()
-
+#include "jsonCore.h"
 #define undef "undefined"
 
 // instead of just a string the id could also have a unique serial number or stuff like that

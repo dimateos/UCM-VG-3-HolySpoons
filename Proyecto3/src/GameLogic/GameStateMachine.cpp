@@ -31,7 +31,7 @@ GameStateMachine * GameStateMachine::getSingleton()
 	return instance;
 }
 
-void GameStateMachine::shutdown()
+void GameStateMachine::shutdownSingleton()
 {
 	delete instance;
 }

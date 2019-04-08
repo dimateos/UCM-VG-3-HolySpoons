@@ -1,30 +1,35 @@
 #include "PhysicsComponent.h"
 #include "LogSystem.h"
 
+#define BaseDens 1			//atm mass not defined
+#define BaseLinDamp 0.05	//def 0.0 and 1 max
+#define BaseAngDamp 0.05	//def 0.05 and 1 max
+#define BaseMaxAngV 100		//fast spinning objects should raise this (def 100 in px4.0)
+
 void PhysicsComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
 	//get the correct built shape
 	PxGeometry *geo = getShape(cfg_["shape"]);
-	std::string mat = FIND(cfg_, "material") ? cfg_["material"] : BaseMat;
+	std::string mat = FINDnRETURN_s(cfg_, "material", BaseMat);
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
-	if (cfg_["dynamic"]) {
+	if (FINDnRETURN(cfg_, "dynamic", bool, true)) {
 		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform(), mat);
 
 		//mass and dampings
-		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FIND(cfg_, "mass") ? float(cfg_["mass"]) : BaseDens);
-		rigidBodyD_->setLinearDamping(FIND(cfg_, "linDamp") ? float(cfg_["linDamp"]) : BaseLinDamp);
-		rigidBodyD_->setAngularDamping(FIND(cfg_, "angDamp") ? float(cfg_["angDamp"]) : BaseAngDamp);
-		rigidBodyD_->setMaxAngularVelocity(FIND(cfg_, "maxAngV") ? float(cfg_["maxAngV"]) : BaseMaxAngV);
+		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
+		rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
+		rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
+		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
 	}
 	else { //static
 		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform(), mat);
 	}
 
-	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, cfg_["noGravity"]);
+	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();

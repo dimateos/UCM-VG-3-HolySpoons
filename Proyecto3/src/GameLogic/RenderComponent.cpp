@@ -14,10 +14,8 @@ void RenderComponent::setUp() {
 	entity = pair.second;
 
 	//other properties
-	node->setScale(nap_vector3(cfg_["scale"]).ogre());
-
-	if(cfg_["material"] != "''")
-		entity->setMaterialName(cfg_["material"]);
+	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
+	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//node->showBoundingBox(true); //global config
 	//node->flipVisibility();''

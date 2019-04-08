@@ -6,9 +6,7 @@
 #include <map>
 using namespace std;
 
-#include "json.hpp"
-using nap_json = nlohmann::json;
-#define FIND(j, s) j.find(s) != j.end()
+#include "jsonCore.h"
 
 //-----------------------------READING JSON INFO-----------------------------------
 

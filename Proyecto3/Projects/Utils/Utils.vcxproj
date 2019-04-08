@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\src\Utils\dirent.h" />
     <ClInclude Include="..\..\src\Utils\Identifiable.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />
+    <ClInclude Include="..\..\src\Utils\JsonCore.h" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
     <ClInclude Include="..\..\src\Utils\Transforms.h" />

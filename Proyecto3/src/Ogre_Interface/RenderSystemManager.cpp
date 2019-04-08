@@ -176,7 +176,7 @@ void RenderSystemManager::renderFrame()
 	mRoot->renderOneFrame();
 }
 
-void RenderSystemManager::shutdown()
+void RenderSystemManager::shutdownSingleton()
 {
 	//mShaderGenerator->removeSceneManager(mSM);
 	//mSM->removeRenderQueueListener(mOverlaySystem);

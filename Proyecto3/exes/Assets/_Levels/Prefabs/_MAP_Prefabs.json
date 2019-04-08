@@ -13,7 +13,6 @@
 					"type": "Phys",
 					"group": "map_comps"
                 },
-                "dynamic": true,
                 "noGravity": true,
                 "shape": {
                     "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
@@ -47,7 +46,6 @@
 					"group": "map_comps"
                 },
                 "dynamic": false,
-                "noGravity": false,
                 "shape": {
                     "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
                 }
