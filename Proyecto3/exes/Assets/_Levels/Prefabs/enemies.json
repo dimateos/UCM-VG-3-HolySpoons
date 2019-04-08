@@ -7,7 +7,6 @@
             "type": "pref_monkey",
             "group": "enemies"
         },
-        "pos": { "x": 10.0, "y": 15.0, "z": 10.0 },
         "Components": {
             "basic_phy": {
                 "id": {
