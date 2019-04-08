@@ -5,14 +5,6 @@
 #include "JsonReader.h"
 #include "RenderSystemInterface.h"
 
-#include "TestComponent.h"
-#include "PhysicsComponent.h"
-#include "RenderComponent.h"
-#include "OverlayComponent.h"
-#include "FPSCamera.h"
-
-#include <GameStateMachine.h>
-
 Game::Game() {
 	initGame();
 }

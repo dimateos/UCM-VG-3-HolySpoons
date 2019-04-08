@@ -71,7 +71,7 @@
 
                 "itemString": "pref_monkey",
                 "default": 10,
-                "timer": 1.5
+                "timer": 3.0
             }
         }
     }
