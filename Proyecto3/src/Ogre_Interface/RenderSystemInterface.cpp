@@ -244,3 +244,8 @@ nap_quat RenderSystemInterface::getRotationFrom_To(nap_vector3 src, nap_vector3 
 	return nq;
 }
 
+void RenderSystemInterface::setSkyBox(std::string material, float distance)
+{
+	mScnMgr->setSkyBox(true, material);
+}
+

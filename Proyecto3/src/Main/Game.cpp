@@ -35,6 +35,7 @@ void Game::initGame() {
 
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
+	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox");
 
 	//Initialize level
 	LogSystem::cls();
@@ -47,6 +48,7 @@ void Game::initGame() {
 	//all done
 	LogSystem::cls();
 	LogSystem::Log("initialized", LogSystem::GAME);
+
 }
 
 //shutdown singletons etc in reverse order

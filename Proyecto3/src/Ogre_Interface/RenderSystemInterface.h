@@ -164,6 +164,11 @@ public:
 	* Returns the dest rotation, uses our nap_vector3 and nap_quat
 	*/
 	nap_quat getRotationFrom_To(nap_vector3 src, nap_vector3 dest);
+
+	/*
+	 *
+	 */
+	void setSkyBox(std::string material, float distance = 5000);
 };
 
 #endif //ENDERSYSTEMINTERFACE_H_
