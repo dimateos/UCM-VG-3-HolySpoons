@@ -13,7 +13,6 @@
 					"type": "Phys",
 					"group": "test_comps"
                 },
-                "dynamic": true,
                 "noGravity": true,
                 "shape": {
                     "type": "BOX", "scale": { "x": 5.0, "y": 5.0, "z": 5.0 }
@@ -25,7 +24,6 @@
 					"group": "test_comps"
 				},
                 "scale": { "x": 200.0, "y": 260.0, "z": 200.0 },
-                "material": "Material",
                 "shape": {
                     "entity_name": "monkey",
                     "type": "MESH",
@@ -66,7 +64,7 @@
                 "active": true,
 
                 "itemString": "pref_monkey",
-                "default": 10,
+                "default": 5,
                 "timer": 3
             }
         }

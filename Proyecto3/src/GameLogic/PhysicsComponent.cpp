@@ -1,6 +1,11 @@
 #include "PhysicsComponent.h"
 #include "LogSystem.h"
 
+#define BaseDens 1			//atm mass not defined
+#define BaseLinDamp 0.05	//def 0.0 and 1 max
+#define BaseAngDamp 0.05	//def 0.05 and 1 max
+#define BaseMaxAngV 100		//fast spinning objects should raise this (def 100 in px4.0)
+
 void PhysicsComponent::setUp() {
 	if (isInited()) return;
 	setInited();
@@ -11,7 +16,7 @@ void PhysicsComponent::setUp() {
 
 	//different body for dynamic or static
 	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
-	if (cfg_["dynamic"]) {
+	if (FINDnRETURN(cfg_, "dynamic", bool, true)) {
 		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform(), mat);
 
 		//mass and dampings
@@ -24,7 +29,7 @@ void PhysicsComponent::setUp() {
 		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform(), mat);
 	}
 
-	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, cfg_["noGravity"]);
+	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();

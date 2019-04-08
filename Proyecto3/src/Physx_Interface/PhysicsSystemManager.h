@@ -10,10 +10,6 @@ using namespace physx;
 
 // Materials
 #define BaseMat "BASE"
-#define BaseDens 1			//atm mass not defined
-#define BaseLinDamp 0.05	//def 0.0 and 1 max
-#define BaseAngDamp 0.05	//def 0.05 and 1 max
-#define BaseMaxAngV 100		//fast spinning objects should raise this (def 100 in px4.0)
 #include <map>
 
 class PhysicsSystemManager

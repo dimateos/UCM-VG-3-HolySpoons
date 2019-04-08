@@ -11,8 +11,6 @@
                 "type": "Phys",
                 "group": "test_comps"
             },
-            "dynamic": true,
-            "noGravity": false,
             "material": "PLAYER",
             "mass": 0.75,
             "linDamp": 0.05,

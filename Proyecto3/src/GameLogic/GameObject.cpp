@@ -22,9 +22,9 @@ void GameObject::setUp() {
 	setInited();
 
 	//set transform
-	if (cfg_.find("pos") != cfg_.end()) setPosition(nap_vector3(cfg_["pos"]));
-	if (cfg_.find("ori") != cfg_.end()) setOrientation(nap_quat(cfg_["ori"]));
-	if (cfg_.find("scale") != cfg_.end()) setScale(nap_vector3(cfg_["scale"]));
+	if (FIND(cfg_, "pos")) setPosition(nap_vector3(cfg_["pos"]));
+	if (FIND(cfg_, "ori")) setOrientation(nap_quat(cfg_["ori"]));
+	if (FIND(cfg_, "scale")) setScale(nap_vector3(cfg_["scale"]));
 
 	//init components
 	for (auto comp : components_) if (comp != nullptr) comp->setUp();

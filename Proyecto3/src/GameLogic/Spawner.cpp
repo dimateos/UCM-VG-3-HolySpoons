@@ -27,7 +27,7 @@ void Spawner::update(GameObject * o, double time)
 {
 	lastActiveT += time;
 	if(lastActiveT > timer){ //simple timer
-		lastActiveT =0;//gets object from pool, spawns it
+		lastActiveT = 0;//gets object from pool, spawns it
 		GameObject* tmp = pol->getItem();
 		tmp->setPosition(o->getPosition());
 		GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
