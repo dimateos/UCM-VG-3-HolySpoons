@@ -129,7 +129,7 @@ void RenderSystemManager::setupScene()
 	mCamera = mSceneMgr->createCamera("MainCam");
 
 	//values from global cfg class at some future momment
-	mCamera->setFarClipDistance(10000);
+	mCamera->setFarClipDistance(100000);
 	mCamera->setAutoAspectRatio(true);
 
 	mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("nCam");
