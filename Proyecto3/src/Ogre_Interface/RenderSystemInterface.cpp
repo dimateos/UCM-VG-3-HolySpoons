@@ -93,7 +93,7 @@ SceneNode * RenderSystemInterface::createLight(std::string name, LightTypes type
 	return mLightNode;
 }
 
-OgrePair RenderSystemInterface::createPlane(String name, Vector3 Normal,Real w, Real h, Vector3 up)
+OgrePair RenderSystemInterface::createPlane(std::string name, Vector3 Normal,Real w, Real h, Vector3 up)
 {
 	try{
 		MeshManager::getSingleton().createPlane(name, ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,

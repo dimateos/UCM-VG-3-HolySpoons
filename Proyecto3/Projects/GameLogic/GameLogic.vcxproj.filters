@@ -88,6 +88,9 @@
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -160,6 +163,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h">
       <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>

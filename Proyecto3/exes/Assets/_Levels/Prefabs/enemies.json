@@ -72,6 +72,15 @@
                 "itemString": "pref_monkey",
                 "default": 10,
                 "timer": 3.0
+            },
+            "circular_movement":{
+                "id":{
+                    "type": "CircularMovement",
+                    "group": "test_comps"
+                },
+
+                "Speed":0.3,
+                "Radius":50
             }
         }
     }

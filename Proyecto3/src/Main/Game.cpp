@@ -27,7 +27,7 @@ void Game::initGame() {
 
 	//Config systems
 	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
-	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox");
+	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
 
 	//Initialize level
 	LogSystem::cls();

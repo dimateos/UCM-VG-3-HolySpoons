@@ -1,4 +1,7 @@
-#pragma once
+//Nap_Time_Studios
+#ifndef SPAWNER_H_
+#define SPAWNER_H_
+
 #include "Component.h"
 class nap_Pool;
 
@@ -23,4 +26,6 @@ public:
 
 	virtual void update(GameObject* o, double time);
 };
+
+#endif /* SPAWNER_H_ */
 
