@@ -1,4 +1,6 @@
-#pragma once
+//Nap_Time_Studios
+#ifndef CIRCULARMOVEMENTCOMPONENT_H_
+#define CIRCULARMOVEMENTCOMPONENT_H_
 #include "Component.h"
 
 class CircularMovementComponent :
@@ -32,4 +34,6 @@ public:
 
 	virtual void update(GameObject* ent, double time);
 };
+
+#endif /* CIRCULARMOVEMENTCOMPONENT_H_ */
 

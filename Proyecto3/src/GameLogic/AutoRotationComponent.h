@@ -1,4 +1,7 @@
-#pragma once
+//Nap_Time_Studios
+#ifndef AUTOROTATIONCOMPONENT_H_
+#define AUTOROTATIONCOMPONENT_H_
+
 #include "Component.h"
 #include <RenderSystemInterface.h>
 
@@ -19,4 +22,6 @@ public:
 
 	virtual ~AutoRotationComponent();
 };
+
+#endif /* AUTOROTATIONCOMPONENT_H_ */
 

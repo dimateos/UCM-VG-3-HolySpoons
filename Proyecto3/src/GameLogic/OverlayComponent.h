@@ -1,4 +1,7 @@
-#pragma once
+//Nap_Time_Studios
+#ifndef OVERLAYCOMPONENT_H_
+#define OVERLAYCOMPONENT_H_
+
 #include "Component.h"
 #include <RenderSystemInterface.h>
 
@@ -20,3 +23,5 @@ protected:
 	Ogre::OverlayContainer* panel = nullptr;
 	Ogre::Overlay *overlay = nullptr;
 };
+
+#endif /* OVERLAYCOMPONENT_H_ */

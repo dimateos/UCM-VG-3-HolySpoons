@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FLOATINGENEMYCOMPONENT_H_
+#define FLOATINGENEMYCOMPONENT_H_
+
 #include "Component.h"
 
 class FloatingEnemyComponent :
@@ -34,3 +36,4 @@ public:
 	virtual void update(GameObject* ent, double time);
 };
 
+#endif /* FLOATINGENEMYCOMPONENT_H_ */

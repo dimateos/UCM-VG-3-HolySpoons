@@ -1,4 +1,7 @@
-#pragma once
+//Nap_Time_Studios
+#ifndef NAP_POOL_H_
+#define NAP_POOL_H_
+
 #include <vector>
 class GameObject;
 
@@ -21,4 +24,5 @@ public:
 	inline void setDefault(int def) { defaultValue = def; };
 };
 
+#endif /* NAP_POOL_H_ */
 

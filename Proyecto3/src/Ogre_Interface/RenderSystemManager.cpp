@@ -129,7 +129,7 @@ void RenderSystemManager::setupScene()
 	mCamera = mSceneMgr->createCamera("MainCam");
 
 	//values from global cfg class at some future momment
-	mCamera->setFarClipDistance(100000);
+	mCamera->setFarClipDistance(Real(100000));
 	mCamera->setAutoAspectRatio(true);
 
 	mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("nCam");
@@ -143,7 +143,7 @@ void RenderSystemManager::setupScene()
 	vp->setBackgroundColour(ColourValue(0.45, 0.45, 0.6));
 
 	//FOV
-	mCamera->setNearClipDistance(1);
+	mCamera->setNearClipDistance(0.5);
 	mCamera->setFOVy(Radian(Degree(60))); //in theory overrides near clip
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
@@ -156,8 +156,6 @@ void RenderSystemManager::setupScene()
 	mLightNode->attachObject(mainLight);
 
 	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
-
-	//mSceneMgr->setSkyBox(true, "SkyBox");
 
 	mRoot->addFrameListener(this);
 }
