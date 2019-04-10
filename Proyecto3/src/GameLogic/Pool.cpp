@@ -1,4 +1,5 @@
 #include "Pool.h"
+#include "GameStateMachine.h"
 #include "GameObject.h"
 #include "GOFactory.h"
 
@@ -6,6 +7,7 @@ GameObject * nap_Pool::spawn()
 {
 	GameObject* tmp = GOFactory::GetGOPrefab(entityName); //creates a new GO based on the original
 	pool.push_back(tmp);
+	GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
 	return tmp;
 }
 

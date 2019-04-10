@@ -1,9 +1,6 @@
 #include "BulletShooter.h"
-#include "GameStateMachine.h"
-#include "Pool.h"
-
 #include "PhysicsComponent.h"
-#include "LogSystem.h"
+#include "Pool.h"
 
 void BulletShooter::setUp() {
 	owner_trans_ = owner_->getTransPtr();
@@ -36,7 +33,6 @@ void BulletShooter::shoot() {
 	//add to state
 	GameObject* bul = pool_->getItem();
 	bul->setActive();
-	GameStateMachine::getSingleton()->currentState()->addGameObject(bul);
 
 	//dir
 	nap_vector3 dir = owner_trans_->q_.toNapVec3(vZ*-1);

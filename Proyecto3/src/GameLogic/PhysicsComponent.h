@@ -18,14 +18,15 @@ public:
 
 protected:
 	virtual void setDown();
+	virtual void configActive();
 
 	//sync GO transforms with px
 	nap_userData * ud = nullptr;
 	void updateUserData();
 
 	//Assist on setting up the shape
-	PxGeometry * getShape(nap_json shape);
-	//static const map<std::string, PxGeometryType::Enum> geoTypes;
+	PxGeometry * getGeo(nap_json shape);
+	PxShape * shape_;
 
 	//RigidBody config
 	PxRigidDynamic* rigidBodyD_ = nullptr;

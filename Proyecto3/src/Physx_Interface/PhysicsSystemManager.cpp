@@ -113,9 +113,11 @@ void PhysicsSystemManager::updateNodes() {
 
 ///////////////////////////////////////////////////////////////////////////
 
-PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTransform const &trans, std::string mat) {
-	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
+PxShape* PhysicsSystemManager::createShape(PxGeometry *geo, std::string mat) {
+	return gPhysics->createShape(*geo, *mats_[mat]);
+}
 
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxShape* shape, PxTransform const &trans) {
 	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans);
 	body->attachShape(*shape);
 	body->setLinearDamping(0.1f);
@@ -126,9 +128,7 @@ PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxGeometry *geo, PxTran
 	return body;
 }
 
-PxRigidStatic * PhysicsSystemManager::createStaticBody(PxGeometry *geo, PxTransform const &trans, std::string mat) {
-	physx::PxShape* shape = gPhysics->createShape(*geo, *mats_[mat]);
-
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxShape* shape, PxTransform const &trans) {
 	PxRigidStatic * body = gPhysics->createRigidStatic(trans);
 	body->attachShape(*shape);
 	gScene->addActor(*body);

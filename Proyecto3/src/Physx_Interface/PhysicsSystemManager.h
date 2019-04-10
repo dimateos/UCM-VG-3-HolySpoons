@@ -24,8 +24,10 @@ public:
 
 	inline void setGravity(PxVec3 v) { gScene->setGravity(v); }
 
-	PxRigidDynamic* createDynamicBody(PxGeometry *geo, PxTransform const &trans, std::string mat = BaseMat);
-	PxRigidStatic* createStaticBody(PxGeometry *geo, PxTransform const &trans, std::string mat = BaseMat);
+	//creating bodies
+	PxShape * createShape(PxGeometry * geo, std::string mat);
+	PxRigidDynamic* createDynamicBody(PxShape* shape, PxTransform const &trans);
+	PxRigidStatic* createStaticBody(PxShape* shape, PxTransform const &trans);
 
 private:
 	// Foundation and Scene

@@ -4,5 +4,5 @@
 void BulletHit::setUp() {}
 
 void BulletHit::onCollision(ID * other) {
-	owner_->setKilled();
+	owner_->setActive(false);
 }

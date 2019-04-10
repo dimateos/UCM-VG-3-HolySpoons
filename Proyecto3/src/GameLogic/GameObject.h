@@ -76,6 +76,9 @@ public:
 	inline nap_json & getCfg() { return cfg_; }
 
 protected:
+	void setDown();
+	virtual void configActive();
+
 	nap_json cfg_; //for async setup
 
 	nap_transform trans_;

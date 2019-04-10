@@ -5,6 +5,6 @@ void BulletHittable::setUp() {}
 
 void BulletHittable::onCollision(ID * other) {
 	if (other->group_ == "bullets") {
-		owner_->setKilled();
+		owner_->setActive(false);
 	}
 }

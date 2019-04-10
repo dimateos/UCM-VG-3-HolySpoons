@@ -54,8 +54,7 @@ bool GameState::handleEvents(const SDL_Event evt) {
 
 	auto it = gameObjects_.begin();
 	while (!handled && it != gameObjects_.end()) {
-		if (!(*it)->isActive()) continue;
-		handled = (*it)->handleEvents(evt);
+		if ((*it)->isActive()) handled = (*it)->handleEvents(evt);
 		it++;
 	}
 
@@ -65,17 +64,19 @@ bool GameState::handleEvents(const SDL_Event evt) {
 //iterates all the Entities and calls their updates
 void GameState::update(double time) {
 	//first remove msg/collision killed objects + last frame updates
-	killDeadObjects();
 
 	//LogSystem::Log("state update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
-		if (o->isActive())o->update(time);
+		if (o->isActive() && !o->isKilled())o->update(time);
 	}
 
 	//LogSystem::Log("state late update", LogSystem::GAME);
 	for (GameObject* o : gameObjects_) {
 		if (o->isActive() && !o->isKilled())o->late_update(time);
 	}
+
+	//not used atm, better solution like a separate queue or buffer the deaths / events that kill
+	//killDeadObjects();
 }
 
 //requires sencond iteration to delete killed objects

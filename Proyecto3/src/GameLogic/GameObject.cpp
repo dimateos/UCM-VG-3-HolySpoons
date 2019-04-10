@@ -10,11 +10,7 @@ GameObject::GameObject(GameObject * o) :
 	Activable(o->isActive()), Identifiable(o->cfg_["id"]), Initiable(o->isInited()), cfg_(o->cfg_), components_(o->getComponents()) {}
 
 GameObject::~GameObject() {
-	for (auto comp : components_) {
-		if (comp != nullptr) delete comp;
-	}
-
-	components_.clear();
+	setDown();
 }
 
 void GameObject::setUp() {
@@ -28,19 +24,33 @@ void GameObject::setUp() {
 
 	//init components
 	for (auto comp : components_) if (comp != nullptr) comp->setUp();
-
-	//send user ptr to physics component (done by component factory)
-	//getComponent("Phys")->receive(&Msg_PX_userPtr(getTransPtr()));
 }
 
 void GameObject::lateSetUp() {
 	for (Component* comp : components_) if (comp != nullptr) comp->lateSetUp();
+
+	//config active/inactive
+	configActive();
+}
+
+void GameObject::setDown() {
+	for (auto comp : components_) {
+		if (comp != nullptr) delete comp;
+	}
+
+	components_.clear();
+}
+
+//inactive components will be set to active even if they were not active tho
+void GameObject::configActive() {
+	for (Component* comp : components_) if (comp != nullptr) comp->setActive(active_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 bool GameObject::handleEvents(const SDL_Event evt) {
 	bool handled = false;
+
 	auto it = components_.begin();
 	while (!handled && it != components_.end()) {
 		if ((*it)->isActive()) handled = (*it)->handleEvents(this, evt);

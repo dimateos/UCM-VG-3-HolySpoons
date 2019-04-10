@@ -18,6 +18,7 @@ public:
 
 protected:
 	virtual void setDown();
+	virtual void configActive();
 
 	//Assist on setting up the shape
 	OgrePair getOgrePair(nap_json shape);

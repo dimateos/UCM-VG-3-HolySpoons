@@ -20,11 +20,17 @@ void RenderComponent::setUp() {
 
 	//node->showBoundingBox(true); //global config
 	//node->flipVisibility();''
+
+	configActive();
 }
 
 void RenderComponent::setDown() {
 	node->removeAndDestroyAllChildren();
 	node->getCreator()->destroySceneNode(node);
+}
+
+void RenderComponent::configActive() {
+	node->setVisible(active_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

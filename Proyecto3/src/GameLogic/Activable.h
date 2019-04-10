@@ -11,11 +11,14 @@ public:
 	inline virtual ~Activable() {};
 
 	inline bool isActive() { return active_; }
-	inline bool toggleActive() { active_ = !active_; }
-	inline void setActive(bool active = true) { active_ = active; }
+	inline bool toggleActive() { setActive(!active_); }
+	void setActive(bool active = true) { active_ = active; configActive(); }
 
 protected:
 	bool active_;
+
+	//override to set up/down required stuff
+	virtual void configActive() {}
 };
 
 #endif /* ACTIVABLE_H_ */

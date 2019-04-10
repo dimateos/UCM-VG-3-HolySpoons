@@ -10,14 +10,16 @@ void PhysicsComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
+	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
+
 	//get the correct built shape
-	PxGeometry *geo = getShape(cfg_["shape"]);
+	PxGeometry *geo = getGeo(cfg_["shape"]);
 	std::string mat = FINDnRETURN_s(cfg_, "material", BaseMat);
+	shape_ = physicsManager->createShape(geo, mat);
 
 	//different body for dynamic or static
-	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
 	if (FINDnRETURN(cfg_, "dynamic", bool, true)) {
-		rigidBodyD_ = physicsManager->createDynamicBody(geo, PxTransform(), mat);
+		rigidBodyD_ = physicsManager->createDynamicBody(shape_, PxTransform());
 
 		//mass and dampings
 		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
@@ -26,7 +28,7 @@ void PhysicsComponent::setUp() {
 		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
 	}
 	else { //static
-		rigidBodyS_ = physicsManager->createStaticBody(geo, PxTransform(), mat);
+		rigidBodyS_ = physicsManager->createStaticBody(shape_, PxTransform());
 	}
 
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
@@ -37,12 +39,18 @@ void PhysicsComponent::setUp() {
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
 
 	updateUserData();
+	configActive();
 	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::DEV);
 }
 
 void PhysicsComponent::setDown() {
 	//release the bodies (which releases the shape etc)
 	if(getActor() != nullptr) getActor()->release();
+}
+
+void PhysicsComponent::configActive() {
+	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
+	//shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
 }
 
 void PhysicsComponent::updateUserData() {
@@ -72,7 +80,7 @@ void PhysicsComponent::late_update(GameObject * o, double time) {
 //	{ "CAPSULE", PxGeometryType::eCAPSULE },
 //};
 
-PxGeometry* PhysicsComponent::getShape(nap_json shape) {
+PxGeometry* PhysicsComponent::getGeo(nap_json shape) {
 	PxGeometry* geo = nullptr;
 
 	//switch the type to construct the correct shape
