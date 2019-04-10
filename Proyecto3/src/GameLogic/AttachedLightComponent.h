@@ -18,6 +18,4 @@ public:
 	virtual void lateSetUp();
 };
 
-
-
 #endif //ATTACHEDLIGHTCOMPONENT_H_
