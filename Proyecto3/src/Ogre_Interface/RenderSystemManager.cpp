@@ -148,14 +148,18 @@ void RenderSystemManager::setupScene()
 	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
 	//Lights
-	mSceneMgr->setAmbientLight(Ogre::ColourValue(.5, .5, .5));
-	mainLight = mSceneMgr->createLight("MainLight");
-	mainLight->setType(Ogre::Light::LT_DIRECTIONAL);
-	mainLight->setDiffuseColour(0.75, 0.75, 0.75);
+	mSceneMgr->setAmbientLight(Ogre::ColourValue(0, 0, 0));
+	mSceneMgr->setShadowTechnique(ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
+	/*mainLight = mSceneMgr->createLight("MainLight");
+	mainLight->setType(Light::LT_POINT);
+	mainLight->setDiffuseColour(1.0, 1.0, 1.0);
+	mainLight->setSpecularColour(1.0, 1.0, 1.0);
+	Ogre::Real range = 8000;
+	mainLight->setAttenuation(range, 1.0, 4.5/range, 75.0/(range*range));
 	mLightNode = mCamNode->createChildSceneNode("nLuz");
 	mLightNode->attachObject(mainLight);
 
-	mLightNode->setDirection(Ogre::Vector3(0, 0, -1));
+	//mLightNode->setDirection(Ogre::Vector3(0, 0, -1));*/
 
 	mRoot->addFrameListener(this);
 }

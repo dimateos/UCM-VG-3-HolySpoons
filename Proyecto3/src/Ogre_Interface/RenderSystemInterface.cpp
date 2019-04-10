@@ -81,16 +81,22 @@ SceneNode * RenderSystemInterface::createEmpty(std::string name)
 	return getRootSceneNode()->createChildSceneNode(name);
 }
 
-SceneNode * RenderSystemInterface::createLight(std::string name, LightTypes type, ColourValue color)
+SceneNode * RenderSystemInterface::createLight(std::string name, LightTypes type, ColourValue diffColor, ColourValue specColor, Real range)
 {
 	Ogre::Light* l = getSceneManager()->createLight(name);
 	l->setType(Ogre::Light::LightTypes(type));
-	l->setDiffuseColour(color);
-
+	l->setDiffuseColour(diffColor);
+	l->setSpecularColour(specColor);
+	setLightRange(l, range);
 	SceneNode* mLightNode = getRootSceneNode()->createChildSceneNode(name);
 	mLightNode->attachObject(l);
 
 	return mLightNode;
+}
+
+void RenderSystemInterface::setLightRange(Ogre::Light * L, Ogre::Real Range)
+{
+	L->setAttenuation(Range, 1.0f, 4.5 / Range, 75.0f / (Range*Range));
 }
 
 OgrePair RenderSystemInterface::createPlane(std::string name, Vector3 Normal,Real w, Real h, Vector3 up)

@@ -78,9 +78,12 @@ public:
 	/*
 	 *Crea una luz del tipo elegido. La direccion se setea con el nodo (node->setDirection(Ogre::Vector3(x, y, z));)
 	 */
-	Ogre::SceneNode* createLight(std::string name, LightTypes type, Ogre::ColourValue color);
+	Ogre::SceneNode* createLight(std::string name, LightTypes type, Ogre::ColourValue diffColor, Ogre::ColourValue specColor, Ogre::Real range);
 	/*
-	 *Crea un nodo vacio
+     *set lights range, maths inside
+	*/
+	void setLightRange(Ogre::Light *L, Ogre::Real Range);
+	 /*Crea un nodo vacio
 	 * UP NO PUEDE SER IGUAL A NORMAL
 	 */
 	OgrePair createPlane(std::string name, Ogre::Vector3 Normal, Ogre::Real w, Ogre::Real h, Ogre::Vector3 up);
@@ -116,9 +119,13 @@ public:
 	 *Get cameraNode (modify position, lookAt...)
 	 */
 	Ogre::SceneNode* getCameraNode();
-
+	/*
+	 *get the viewport
+	*/
 	inline Ogre::Viewport* getViewport();
-
+	/*
+	 *creates text element
+	*/
 	Ogre::TextAreaOverlayElement* createText(std::string nodeName, std::string text, int x = 0, int y = 0, std::string fontName = "HackReg");
 	/*
 	*SetText with std::string
@@ -140,7 +147,6 @@ public:
 	*Set text color, rgb values between and alpha value [0, 1]
 	*/
 	void setTextColour(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
-
 	/*
 	*Set Top-font color, rgb values between and alpha value [0, 1]
 	*/
@@ -150,12 +156,10 @@ public:
 	 *Set Dropshadow color, rgb values and alpha value between [0, 1]
 	 */
 	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
-
 	/*
 	 *create overlayPanel, used for images
 	 */
 	Ogre::OverlayContainer * createOverlayContainer();
-
 	/*
 	 * Returns the dest rotation
 	 */	
@@ -164,11 +168,10 @@ public:
 	* Returns the dest rotation, uses our nap_vector3 and nap_quat
 	*/
 	nap_quat getRotationFrom_To(nap_vector3 src, nap_vector3 dest);
-
 	/*
-	 *
+	 *skybox
 	 */
 	void setSkyBox(std::string material, float distance = 5000);
 };
 
-#endif //ENDERSYSTEMINTERFACE_H_
+#endif //RENDERSYSTEMINTERFACE_H_

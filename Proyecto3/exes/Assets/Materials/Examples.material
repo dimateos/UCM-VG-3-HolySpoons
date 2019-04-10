@@ -110,8 +110,6 @@ material SkyBox
 		pass
 		{
 			lighting off
-
-
 			texture_unit
 			{
 				texture cubemap.jpg cubic 
@@ -128,7 +126,6 @@ material SkyBox2
     {
         pass
         {
-            lighting off
             depth_write off
 
             texture_unit

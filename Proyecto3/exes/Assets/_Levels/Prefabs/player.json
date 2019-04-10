@@ -71,7 +71,17 @@
             "relativeY": 3.0,
             "relativeZ": 0.0,
             "vel": 30
+        },
+        "att_light": {
+            "id": {
+                "type": "AttachedLight",
+                "group": "player_comps"
+            },
+            "name": "playerLight",
+            "type": 0,
+            "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
+            "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
+            "range": 8500
         }
-
     }
 }

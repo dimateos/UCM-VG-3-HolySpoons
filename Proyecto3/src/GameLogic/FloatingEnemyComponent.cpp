@@ -29,7 +29,6 @@ void FloatingEnemyComponent::WaveyMovement(float t)
 
 void FloatingEnemyComponent::setUp()
 {
-	LogSystem::Log("HOWDY PARTNER!", LogSystem::SPAWNER);
 	if (isInited()) return;
 	setInited();
 

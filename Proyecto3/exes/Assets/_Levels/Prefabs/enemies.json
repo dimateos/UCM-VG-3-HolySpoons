@@ -24,6 +24,7 @@
 					"group": "enemy_comps"
 				},
                 "scale": { "x": 200.0, "y": 260.0, "z": 200.0 },
+                "material": "Material",
                 "shape": {
                     "entity_name": "monkey",
                     "type": "MESH",
@@ -50,6 +51,17 @@
             		"type": "BulletHittable",
             		"group": "enemy_comps"
             	}
+            },
+            "att_light": {
+                "id": {
+                    "type": "AttachedLight",
+                    "group": "player_comps"
+                },
+                "name": "monkeyLight",
+                "type": 0,
+                "diffColor": { "r": 1.0, "g": 0.0, "b": 0.0 },
+                "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
+                "range": 5000
             }
         }
     },

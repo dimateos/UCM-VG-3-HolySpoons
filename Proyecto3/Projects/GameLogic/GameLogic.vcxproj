@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletHit.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h" />

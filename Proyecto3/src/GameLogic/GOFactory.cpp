@@ -50,6 +50,7 @@ std::list<Component*> GOFactory::ParseComponents(GameObject * o, nap_json & comp
 #include "BulletHit.h"
 #include "BulletHittable.h"
 #include "CircularMovementComponent.h"
+#include "AttachedLightComponent.h"
 
 // it receives the nap_json * component_cfg with its name and cfg.
 // When you add a new component to the factory, you parse the unique type within cfg["id"]["type"]
@@ -71,6 +72,7 @@ Component * GOFactory::ParseComponent(GameObject * o, nap_json const & component
 	else if (type == "BulletHit") return new BulletHit(component_cfg, o);
 	else if (type == "BulletHittable") return new BulletHittable(component_cfg, o);
 	else if (type == "CircularMovement") return new CircularMovementComponent(component_cfg, o);
+	else if (type == "AttachedLight") return new AttachedLightComponent(component_cfg, o);
 
 	else LogSystem::Log("Undefined component type " + type + " ignoring it...", LogSystem::JSON);
 	return nullptr;

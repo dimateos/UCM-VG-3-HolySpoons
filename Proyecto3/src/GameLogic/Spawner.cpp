@@ -20,6 +20,9 @@ Spawner::~Spawner()
 
 void Spawner::setUp()
 {
+	if (isInited()) return;
+
+	setInited();
 	pol->init();
 }
 
