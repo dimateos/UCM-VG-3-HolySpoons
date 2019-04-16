@@ -21,6 +21,8 @@ namespace Ogre {
 	class Viewport;
 };
 
+class RenderSystemInterface;
+
 class RenderSystemManager : public Ogre::FrameListener
 {
 private:
@@ -46,6 +48,12 @@ private:
 
 	RenderSystemManager() : mRoot(0) { initApp(); }; //private constructor
 	virtual ~RenderSystemManager() {};
+protected:
+	friend class RenderSystemInterface;
+	/*
+	 *Use RenderSystemInterface::setRenderingScene(string scene) instead
+	 */
+	void _setRenderingScene(Ogre::String scene);
 
 public:
 	/*
@@ -90,10 +98,7 @@ public:
 
 	inline  Ogre::Root* getRoot()  { return mRoot; };
 
-	/*
-	 *Use RenderSystemInterface::setRenderingScene(string scene) instead 
-	 */
-	void _setRenderingScene(Ogre::String scene);
+
 
 	Ogre::SceneManager* getCurrentSceneManager();
 };
