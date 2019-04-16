@@ -4,6 +4,10 @@
 
 #include "GameObject.h"
 #include "Listener.h"
+#include <string>
+#include <map>
+
+class GOFactory;
 
 // every type of component inherites from this class
 class Component : public Listener, public Activable, public Identifiable, public Initiable
@@ -27,9 +31,14 @@ public:
 	//some debugging reading the config
 	inline nap_json & getCfg() { return cfg_; }
 
+	static void registerType(const string& name, GOFactory* factory);
+
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner
+
+private:
+	static std::map<string, GOFactory*>* factories;
 };
 
 #endif /* COMPONENT_H_ */

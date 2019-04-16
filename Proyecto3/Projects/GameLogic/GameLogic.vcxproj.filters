@@ -92,6 +92,7 @@
       <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\Component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">

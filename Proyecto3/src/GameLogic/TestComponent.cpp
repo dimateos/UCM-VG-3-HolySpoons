@@ -4,6 +4,7 @@
 #include <RenderSystemInterface.h>
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
+#include "GOFactory.h"
 
 void TestComponent::setUp() {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
@@ -78,3 +79,5 @@ bool TestComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 
 	return handled;
 }
+
+REGISTER_TYPE(TestComponent);
