@@ -26,7 +26,10 @@ void Game::initGame() {
 	messageSystem = MessageSystem::getSingleton();
 
 	//Config systems
-	RenderSystemInterface::createSingleton(renderManager->getSceneManager());
+	renderManager->setupScene("MainScene"); //creates the first scene
+	//renderManager->setupScene("AnotherScene");
+	RenderSystemInterface::createSingleton();
+	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
 	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
 
 	//Initialize level

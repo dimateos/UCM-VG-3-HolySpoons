@@ -36,11 +36,11 @@ private:
 	std::string overlayName = "OverlayName";
 
 	static RenderSystemInterface* instance_; //singleton pattern
-	RenderSystemInterface(Ogre::SceneManager * mScnMgr);
+	RenderSystemInterface();
 	virtual ~RenderSystemInterface();
 
 public:
-	static RenderSystemInterface* createSingleton(Ogre::SceneManager * mScnMgr);
+	static RenderSystemInterface* createSingleton();
 	static RenderSystemInterface* getSingleton();
 	void closeInterface();
 	//Resto de interfaz shaders (?), animacion, camara, viewport...
@@ -63,6 +63,7 @@ public:
 	 *Devuelve el Scene Manager
 	 */
 	inline Ogre::SceneManager* getSceneManager();
+	inline void setSceneManager(Ogre::SceneManager* s);
 	/*
 	 *Busca la entidad por nombre y la devuelve
 	 */
@@ -172,6 +173,11 @@ public:
 	 *skybox
 	 */
 	void setSkyBox(std::string material, float distance = 5000);
+
+	/*
+	 *sets up all the neccesary elements. Starts rendering a new scene
+	*/
+	void setRenderingScene(std::string scene);
 };
 
 #endif //RENDERSYSTEMINTERFACE_H_

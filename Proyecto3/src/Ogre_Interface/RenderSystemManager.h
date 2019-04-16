@@ -3,6 +3,7 @@
 
 #include <OgreFrameListener.h>
 #include <string>
+#include <map>
 
 //#include <LogSystem.h>
 typedef struct SDL_Window SDL_Window;
@@ -29,15 +30,11 @@ private:
 	Ogre::RenderWindow* mWindow = nullptr;
 	SDL_Window* SDL_win = nullptr;
 	Ogre::RenderSystem* rs = nullptr;
-	Ogre::SceneManager* mSceneMgr = nullptr;
-	Ogre::Camera* mCamera = nullptr;
-	Ogre::SceneNode* mCamNode = nullptr;
-	Ogre::SceneNode* mLightNode = nullptr;
-	Ogre::Light* mainLight = nullptr;
-	Ogre::Viewport* vp = nullptr;
+	std::map<Ogre::String, Ogre::SceneManager*> scenes;
+	Ogre::SceneManager* currentSceneManager = nullptr;
 	Ogre::OverlaySystem * overlaySystem = nullptr;
 
-	std::string projectName = "Holy Spoons";
+	const std::string projectName = "Holy Spoons";
 
 	void initApp();
 	void createRoot();
@@ -45,8 +42,7 @@ private:
 	bool setConfiguration();
 	void createWindow();
 	void initializeResources();
-	void createSceneManager();
-	void setupScene();
+	Ogre::SceneManager* createSceneManager();
 
 	RenderSystemManager() : mRoot(0) { initApp(); }; //private constructor
 	virtual ~RenderSystemManager() {};
@@ -57,6 +53,11 @@ public:
 	2 or + times called --> returns pointer to RenderSystemManager
 	*/
 	static RenderSystemManager* getSingleton();
+
+	/*
+	 *creates a scene manager, camera, lights... all neccesary elements for a scene. Seek for the name "sceneName"
+	 */
+	void setupScene(Ogre::String sceneName);
 
 	void renderFrame();
 
@@ -87,9 +88,14 @@ public:
 	virtual void windowClosed(Ogre::RenderWindow* rw) {};
 	virtual void windowFocusChange(Ogre::RenderWindow* rw) {};
 
-	inline Ogre::SceneManager* getSceneManager() const { return mSceneMgr; };
-
 	inline  Ogre::Root* getRoot()  { return mRoot; };
+
+	/*
+	 *Use RenderSystemInterface::setRenderingScene(string scene) instead 
+	 */
+	void _setRenderingScene(Ogre::String scene);
+
+	Ogre::SceneManager* getCurrentSceneManager();
 };
 
 #endif

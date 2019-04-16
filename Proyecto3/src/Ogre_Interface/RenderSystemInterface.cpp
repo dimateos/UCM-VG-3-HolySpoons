@@ -17,15 +17,16 @@
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
+#include "RenderSystemManager.h"
 
 using namespace Ogre;
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
-RenderSystemInterface* RenderSystemInterface::createSingleton(SceneManager* mScnMgr)
+RenderSystemInterface* RenderSystemInterface::createSingleton()
 {
 	if (instance_ == nullptr) {
-		instance_ = new RenderSystemInterface(mScnMgr);
+		instance_ = new RenderSystemInterface();
 	}
 
 	return instance_;
@@ -36,9 +37,8 @@ RenderSystemInterface * RenderSystemInterface::getSingleton()
 	return instance_;
 }
 
-RenderSystemInterface::RenderSystemInterface (SceneManager * mScnMgr): mScnMgr(mScnMgr)
+RenderSystemInterface::RenderSystemInterface ()
 {
-	camera = getSceneManager()->getCamera("MainCam");
 	overlayManager = OverlayManager::getSingletonPtr();
 }
 
@@ -59,6 +59,11 @@ inline Ogre::SceneNode* RenderSystemInterface::getRootSceneNode()
 inline Ogre::SceneManager * RenderSystemInterface::getSceneManager()
 {
 	return mScnMgr;
+}
+
+inline void RenderSystemInterface::setSceneManager(Ogre::SceneManager * s)
+{
+	mScnMgr = s;
 }
 
 inline Ogre::Entity * RenderSystemInterface::getEntityByName(std::string name)
@@ -253,5 +258,12 @@ nap_quat RenderSystemInterface::getRotationFrom_To(nap_vector3 src, nap_vector3 
 void RenderSystemInterface::setSkyBox(std::string material, float distance)
 {
 	mScnMgr->setSkyBox(true, material);
+}
+
+void RenderSystemInterface::setRenderingScene(std::string scene)
+{
+	RenderSystemManager::getSingleton()->_setRenderingScene(scene);
+	setSceneManager(RenderSystemManager::getSingleton()->getCurrentSceneManager());
+	camera = getSceneManager()->getCamera("MainCam");
 }
 

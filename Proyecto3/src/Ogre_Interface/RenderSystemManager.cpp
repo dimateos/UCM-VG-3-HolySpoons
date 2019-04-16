@@ -117,39 +117,42 @@ void RenderSystemManager::initializeResources()
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void RenderSystemManager::createSceneManager()
+Ogre::SceneManager* RenderSystemManager::createSceneManager()
 {
-	mSceneMgr = mRoot->createSceneManager();
-	mSceneMgr->addRenderQueueListener(overlaySystem);
+	SceneManager* s = nullptr;
+	s = mRoot->createSceneManager();
+	s->addRenderQueueListener(overlaySystem);
+	
+	return s;
 }
 
-void RenderSystemManager::setupScene()
+void RenderSystemManager::setupScene(Ogre::String sceneName)
 {
+	SceneManager* s = createSceneManager();
+	scenes.insert({ sceneName, s });
 	//Camera
-	mCamera = mSceneMgr->createCamera("MainCam");
+	Camera* mCamera = nullptr;
+	mCamera = s->createCamera("MainCam");
 
 	//values from global cfg class at some future momment
 	mCamera->setFarClipDistance(Real(100000));
 	mCamera->setAutoAspectRatio(true);
 
-	mCamNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("nCam");
+	SceneNode* mCamNode = nullptr;
+	mCamNode = s->getRootSceneNode()->createChildSceneNode("nCam");
 	mCamNode->attachObject(mCamera);
 
 	mCamNode->setPosition(0, 0, 1);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
-	//Viewport
-	vp = mWindow->addViewport(mCamera);
-	vp->setBackgroundColour(ColourValue(0.45, 0.45, 0.6));
-
 	//FOV
 	mCamera->setNearClipDistance(0.5);
 	mCamera->setFOVy(Radian(Degree(60))); //in theory overrides near clip
-	mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
 
 	//Lights
-	mSceneMgr->setAmbientLight(Ogre::ColourValue(0, 0, 0));
-	mSceneMgr->setShadowTechnique(ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
+	s->setAmbientLight(Ogre::ColourValue(0, 0, 0));
+	s->setShadowTechnique(ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
+
 	/*mainLight = mSceneMgr->createLight("MainLight");
 	mainLight->setType(Light::LT_POINT);
 	mainLight->setDiffuseColour(1.0, 1.0, 1.0);
@@ -160,8 +163,6 @@ void RenderSystemManager::setupScene()
 	mLightNode->attachObject(mainLight);
 
 	//mLightNode->setDirection(Ogre::Vector3(0, 0, -1));*/
-
-	mRoot->addFrameListener(this);
 }
 
 RenderSystemManager* RenderSystemManager::getSingleton()
@@ -182,9 +183,12 @@ void RenderSystemManager::shutdownSingleton()
 {
 	//mShaderGenerator->removeSceneManager(mSM);
 	//mSM->removeRenderQueueListener(mOverlaySystem);
-	mSceneMgr->removeRenderQueueListener(overlaySystem);
+	//mSceneMgr->removeRenderQueueListener(overlaySystem);
 
-	mRoot->destroySceneManager(mSceneMgr);
+	for (auto it : scenes) {
+		it.second->removeRenderQueueListener(overlaySystem);
+		mRoot->destroySceneManager(it.second);
+	}
 
 	if (mWindow != nullptr)
 	{
@@ -199,7 +203,6 @@ void RenderSystemManager::shutdownSingleton()
 		SDL_win = nullptr;
 	}
 
-
 	delete overlaySystem;
 	overlaySystem = nullptr;
 
@@ -208,6 +211,37 @@ void RenderSystemManager::shutdownSingleton()
 
 	delete instance_;
 }
+
+void RenderSystemManager::_setRenderingScene(Ogre::String scene)
+{
+	mWindow->removeAllViewports();
+
+	SceneManager* sm = scenes.find(scene)->second;
+
+	Viewport* v = mWindow->addViewport(sm->getCamera("MainCam"));
+
+	sm->getCamera("MainCam")->setAspectRatio(Real(v->getActualWidth()) / Real(v->getActualHeight())); //in case this has changed
+
+	currentSceneManager = sm;
+}
+
+Ogre::SceneManager * RenderSystemManager::getCurrentSceneManager()
+{
+	return currentSceneManager;
+}
+
+//void RenderSystemManager::prueba()
+//{
+	/*if (!kk) {
+		Camera* c = sSceneMgr->getCamera("SecondCam");
+		mWindow->addViewport(c);
+		kk = true;
+	}
+	else {
+		mWindow->addViewport(mCamera);
+		kk = false;
+	}*/
+//}
 
 //initializes the app and starts rendering
 void RenderSystemManager::initApp()
@@ -218,11 +252,10 @@ void RenderSystemManager::initApp()
 	mRoot->initialise(false);
 	createWindow();
 	initializeResources();
-	createSceneManager();
-	setupScene();
+	mRoot->addFrameListener(this);
 
 	//mRoot->startRendering(); // blocks the flow
-	mRoot->renderOneFrame(); // we'll have to use this
+	//mRoot->renderOneFrame(); // we'll have to use this
 }
 
 bool RenderSystemManager::handleEvents(const SDL_Event evt) {
