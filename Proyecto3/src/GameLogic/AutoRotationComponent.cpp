@@ -1,5 +1,6 @@
 #include "AutoRotationComponent.h"
 #include "GameStateMachine.h"
+#include "GOFactory.h"
 
 void AutoRotationComponent::setUp()
 {
@@ -18,3 +19,5 @@ void AutoRotationComponent::update(GameObject * ent, double time)
 AutoRotationComponent::~AutoRotationComponent()
 {
 }
+
+REGISTER_TYPE(AutoRotationComponent);

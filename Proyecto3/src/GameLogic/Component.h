@@ -26,19 +26,30 @@ public:
 	virtual void update(GameObject* o, double time) {};
 	virtual void late_update(GameObject* o, double time) {};
 
+	virtual inline void Init(nap_json const & cfg, GameObject* owner) {
+		setCfg(cfg);
+		setOwner(owner);
+	}
+
+	inline void setOwner(GameObject* owner) { owner_ = owner; }
 	inline GameObject* getOwner() { return owner_; };
 
 	//some debugging reading the config
+	inline void setCfg(nap_json const & cfg) {
+		active_ = FINDnRETURN(cfg, "active", bool, true);
+		setId(cfg["id"]);
+		cfg_ = cfg;
+	}
 	inline nap_json & getCfg() { return cfg_; }
 
 	static void registerType(const string& name, GOFactory* factory);
 
+	static std::map<string, GOFactory*>* factories;
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner
 
 private:
-	static std::map<string, GOFactory*>* factories;
 };
 
 #endif /* COMPONENT_H_ */

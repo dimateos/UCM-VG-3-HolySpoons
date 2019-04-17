@@ -10,7 +10,7 @@
         "Components": {
             "bullet_phys": {
                 "id": {
-                    "type": "Phys"
+                    "type": "PhysicsComponent"
                 },
                 "noGravity": true,
                 "mass": 0.1,
@@ -20,7 +20,7 @@
             },
             "bullet_rend": {
                 "id": {
-                    "type": "Render"
+                    "type": "RenderComponent"
                 },
                 "scale": { "x": 0.3, "y": 0.3, "z": 0.3 },
                 "material": "DebugMaterial3",
@@ -32,7 +32,7 @@
             },
             "bullet_hit": {
                 "id": {
-                    "type": "BulletHit"
+                    "type": "BulletHittable"
                 }
             }
         }

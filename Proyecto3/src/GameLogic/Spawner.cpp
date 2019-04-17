@@ -1,13 +1,8 @@
 #include "Spawner.h"
 #include "Pool.h"
+#include "GOFactory.h"
 
-Spawner::Spawner(nap_json const & cfg): Component(cfg)
-{
-	//json parameters
-	pol = new nap_Pool(cfg["itemString"]);
-	pol->setDefault(cfg["default"]);
-	timer = cfg["timer"];
-}
+Spawner::Spawner(nap_json const & cfg) : Component(cfg) {}
 
 Spawner::~Spawner()
 {
@@ -22,6 +17,12 @@ void Spawner::setUp()
 	if (isInited()) return;
 
 	setInited();
+
+	//json parameters
+	pol = new nap_Pool(cfg_["itemString"]);
+	pol->setDefault(cfg_["default"]);
+	timer = cfg_["timer"];
+
 	pol->init();
 }
 
@@ -35,3 +36,5 @@ void Spawner::update(GameObject * o, double time)
 		tmp->setActive();
 	}
 }
+
+REGISTER_TYPE(Spawner);

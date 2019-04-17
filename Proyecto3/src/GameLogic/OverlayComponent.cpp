@@ -2,6 +2,7 @@
 #include <OgreOverlayManager.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlay.h>
+#include "GOFactory.h"
 
 void OverlayComponent::setUp()
 {
@@ -27,3 +28,5 @@ void OverlayComponent::showOverlay()
 {
 	overlay->show();
 }
+
+REGISTER_TYPE(OverlayComponent);

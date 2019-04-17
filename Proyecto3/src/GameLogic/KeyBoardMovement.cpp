@@ -1,5 +1,6 @@
 #include "KeyBoardMovement.h"
 #include "PhysicsComponent.h"
+#include "GOFactory.h"
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {}
 KeyBoardMovement::~KeyBoardMovement() {}
@@ -116,3 +117,5 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 	physBody->setLinearVelocity(nap_vector3(velocity.x_*time,
 		physBody->getLinearVelocity().y, velocity.z_*time).px());
 }
+
+REGISTER_TYPE(KeyBoardMovement);

@@ -8,6 +8,7 @@ class nap_Pool; //fowarding
 class BulletShooter : public Component
 {
 public:
+	inline BulletShooter() {}
 	inline BulletShooter(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~BulletShooter() {};
 	virtual void setUp();

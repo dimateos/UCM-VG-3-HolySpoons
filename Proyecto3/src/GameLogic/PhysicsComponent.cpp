@@ -1,5 +1,6 @@
 #include "PhysicsComponent.h"
 #include "LogSystem.h"
+#include "GOFactory.h"
 
 #define BaseDens 1			//atm mass not defined
 #define BaseLinDamp 0.05	//def 0.0 and 1 max
@@ -91,3 +92,5 @@ PxGeometry* PhysicsComponent::getGeo(nap_json shape) {
 
 	return geo;
 }
+
+REGISTER_TYPE(PhysicsComponent);

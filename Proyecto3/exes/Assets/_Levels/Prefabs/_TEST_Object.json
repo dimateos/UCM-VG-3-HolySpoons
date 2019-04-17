@@ -8,13 +8,13 @@
         "Components": {
         "tester": {
             "id": {
-                "type": "Test",
+                "type": "TestComponent",
                 "group": "test_comps"
             }
         },
         "overlay_test_rend": {
             "id": {
-                "type": "Overlay",
+                "type": "OverlayComponent",
                 "group": "test_comps"
             },
             "overlay_name": "TEST_HUD",

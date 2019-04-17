@@ -8,7 +8,7 @@
         "basic_phy": {
             "id": {
                 "name": "basic_phy",
-                "type": "Phys",
+                "type": "PhysicsComponent",
                 "group": "player_comps"
             },
             "material": "PLAYER",
@@ -21,7 +21,7 @@
         },
         "basic_ren": {
             "id": {
-                "type": "Render",
+                "type": "RenderComponent",
                 "group": "player_comps"
             },
             "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
@@ -34,7 +34,7 @@
 
         "camera_fps": {
             "id": {
-                "type": "FPSCam"
+                "type": "FPSCamera"
             },
             "rotXspeed": 10.5,
             "rotYspeed": 10.5,
@@ -46,7 +46,7 @@
         },
         "crosshair_hud_rend": {
             "id": {
-                "type": "Overlay",
+                "type": "OverlayComponent",
                 "group": "player_comps"
             },
             "overlay_name": "CROSSHAIR_HUD",
@@ -55,7 +55,7 @@
 
         "keyboard_mov": {
             "id": {
-                "type": "KeyBoard",
+                "type": "KeyBoardMovement",
                 "group": "player_comps"
             },
             "walkVel":1500,
@@ -74,7 +74,7 @@
         },
         "att_light": {
             "id": {
-                "type": "AttachedLight",
+                "type": "AttachedLightComponent",
                 "group": "player_comps"
             },
             "name": "playerLight",

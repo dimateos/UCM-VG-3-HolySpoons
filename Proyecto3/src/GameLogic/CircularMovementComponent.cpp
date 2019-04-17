@@ -2,6 +2,7 @@
 #include "GameStateMachine.h"
 #include "LogSystem.h"
 #include <math.h>
+#include "GOFactory.h"
 
 void CircularMovementComponent::CircularMovement(float t)
 {
@@ -30,3 +31,5 @@ void CircularMovementComponent::update(GameObject* ent, double time)
 {
 	CircularMovement(time);
 }
+
+REGISTER_TYPE(CircularMovementComponent);

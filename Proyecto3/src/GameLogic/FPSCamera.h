@@ -8,6 +8,7 @@
 class FPSCamera : public Component
 {
 public:
+	inline FPSCamera() {};
 	inline FPSCamera(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~FPSCamera() {};
 	virtual void setUp();

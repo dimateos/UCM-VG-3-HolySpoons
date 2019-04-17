@@ -30,7 +30,12 @@ std::list<Component*> GOFactory::ParseComponents(GameObject * o, nap_json & comp
 	for (auto it = components_cfg.begin(); it != components_cfg.end(); it++) {
 		//set the key as name and part of the id and parse the component
 		(*it)["id"]["name"] = it.key();
-		comps.push_back(ParseComponent(o, (*it)));
+		auto index = Component::factories->find((*it)["id"]["type"]);
+		if (index != Component::factories->end()) {
+			Component* comp = index->second->create();
+			comp->Init((*it), o);
+			comps.push_back(comp);
+		}
 	}
 
 	return comps;

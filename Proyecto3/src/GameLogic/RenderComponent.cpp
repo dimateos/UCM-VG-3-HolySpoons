@@ -4,6 +4,7 @@
 #include <OgreSceneManager.h>
 
 #include "LogSystem.h"
+#include "GOFactory.h"
 
 void RenderComponent::setUp() {
 	if (isInited()) return;
@@ -58,3 +59,5 @@ void RenderComponent::late_update(GameObject * o, double time) {
 	node->setOrientation(o->getOrientation().ogre());
 	o->setTransUpToDate_rend();
 }
+
+REGISTER_TYPE(RenderComponent);

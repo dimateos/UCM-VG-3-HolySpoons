@@ -24,6 +24,7 @@ protected:
 class CollisionListener
 {
 public:
+	inline CollisionListener() {}
 	inline CollisionListener(CollisionListenersHolder* owner) { owner->addCollisionListener(this); };
 	inline ~CollisionListener() {};
 
@@ -32,6 +33,7 @@ public:
 	inline bool isListening() { return collisionListening_; }
 	inline bool toggleListening() { collisionListening_ = !collisionListening_; }
 	inline void setListening(bool l) { collisionListening_ = l; }
+	inline void setCollisionListener(CollisionListenersHolder* owner) { owner->addCollisionListener(this); }
 
 private:
 	bool collisionListening_;

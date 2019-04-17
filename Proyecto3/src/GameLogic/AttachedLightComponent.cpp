@@ -1,6 +1,7 @@
 #include "AttachedLightComponent.h"
 #include "RenderComponent.h"
 #include <OgreColourValue.h>
+#include "GOFactory.h"
 
 void AttachedLightComponent::setLight() {
 	std::string name = cfg_["name"];
@@ -25,3 +26,5 @@ void AttachedLightComponent::lateSetUp() {
 
 	setLight();
 }
+
+REGISTER_TYPE(AttachedLightComponent);

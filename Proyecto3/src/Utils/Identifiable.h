@@ -9,7 +9,7 @@
 class ID
 {
 public:
-	inline ID() : name_(undef), type_(undef), group_(undef), sn_(getNewSN()) {};
+	inline ID() : name_(undef), type_(undef), group_(undef), sn_(0) {};
 	inline ID(std::string name) : name_(name), type_(undef), group_(undef), sn_(getNewSN()) {};
 	inline ID(std::string name, std::string type) : name_(name), type_(type), group_(undef), sn_(getNewSN()) {};
 	inline ID(std::string name, std::string type, std::string group) : name_(name), type_(type), group_(group), sn_(getNewSN()) {};
@@ -50,6 +50,12 @@ public:
 	//identification (atm cannot change it but maybe in the future)
 	ID id() const { return id_; }
 	ID* idPtr() { return &id_; }
+
+	inline void setId(nap_json const & cfg) {
+		id_ = ID(cfg.find("name") != cfg.end() ? (cfg["name"] != "" ? cfg["name"] : undef) : undef,
+			cfg.find("type") != cfg.end() ? (cfg["type"] != "" ? cfg["type"] : undef) : undef,
+			cfg.find("group") != cfg.end() ? (cfg["group"] != "" ? cfg["group"] : undef) : undef);
+	}
 
 protected:
 	ID id_;

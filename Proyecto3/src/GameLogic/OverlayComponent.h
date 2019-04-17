@@ -8,7 +8,7 @@
 class OverlayComponent : public Component
 {
 public:
-	inline OverlayComponent() : Component() {};
+	inline OverlayComponent() {};
 	inline OverlayComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~OverlayComponent() { setDown(); };
 

@@ -8,6 +8,7 @@
 class BulletHittable : public Component, public CollisionListener
 {
 public:
+	inline BulletHittable() {}
 	inline BulletHittable(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {};
 	inline virtual ~BulletHittable() {};
 	virtual void setUp();

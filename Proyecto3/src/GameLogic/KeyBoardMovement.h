@@ -35,6 +35,7 @@ private:
 	void updateVelocity(nap_vector3 orientation);
 
 public:
+	KeyBoardMovement() {}
 	KeyBoardMovement(nap_json const & cfg, GameObject* owner);
 	virtual ~KeyBoardMovement();
 	virtual void setUp();

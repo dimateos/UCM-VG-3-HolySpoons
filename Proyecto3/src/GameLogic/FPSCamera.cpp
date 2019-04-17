@@ -6,6 +6,7 @@
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
+#include "GOFactory.h"
 
 void FPSCamera::setUp() {
 	if (isInited()) return;
@@ -94,3 +95,5 @@ void FPSCamera::toggleZoom() {
 	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * zoomed_ * ogre_scale, Ogre::Node::TS_LOCAL);
 	zoom = !zoom;
 }
+
+REGISTER_TYPE(FPSCamera);

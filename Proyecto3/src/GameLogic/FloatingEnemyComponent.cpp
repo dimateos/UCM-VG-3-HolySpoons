@@ -2,6 +2,7 @@
 #include "GameStateMachine.h"
 #include "LogSystem.h"
 #include <math.h>
+#include "GOFactory.h"
 
 void FloatingEnemyComponent::WaveyMovement(float t)
 {
@@ -44,3 +45,5 @@ void FloatingEnemyComponent::update(GameObject* ent, double time)
 {
 	WaveyMovement(time);
 }
+
+REGISTER_TYPE(FloatingEnemyComponent);

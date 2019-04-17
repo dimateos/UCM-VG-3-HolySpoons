@@ -8,6 +8,7 @@
 class RenderComponent : public Component
 {
 public:
+	inline RenderComponent() {}
 	inline RenderComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~RenderComponent() { setDown(); };
 	virtual void setUp();
