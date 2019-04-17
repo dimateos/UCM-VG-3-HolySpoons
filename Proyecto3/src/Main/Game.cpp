@@ -4,6 +4,7 @@
 #include "LogSystem.h"
 #include "JsonReader.h"
 #include "RenderSystemInterface.h"
+#include <OverlayComponent.h>
 
 Game::Game() {
 	initGame();
@@ -27,7 +28,7 @@ void Game::initGame() {
 
 	//Config systems
 	renderManager->setupScene("MainScene"); //creates the first scene
-	//renderManager->setupScene("AnotherScene");
+	renderManager->setupScene("AnotherScene");
 	RenderSystemInterface::createSingleton();
 	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
 	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
@@ -158,10 +159,26 @@ void Game::handleEvents() {
 		}
 		else if (evt.type == SDL_KEYDOWN) {
 			switch (evt.key.keysym.sym) {
-			case SDLK_ESCAPE:
-				handled = true;
-				stop();
-				break;
+				case SDLK_ESCAPE:
+					handled = true;
+					stop();
+					break;
+				case SDLK_8:
+				{
+					//cambio de rendering target
+					RenderSystemInterface::getSingleton()->setRenderingScene("AnotherScene");
+					//cambio de estado
+					GameState* s = new GameState();
+					//s->setPlayer(GameStateMachine::getSingleton()->currentState()->getPlayer()); //esto peta
+					GameStateMachine::getSingleton()->pushState(s);
+					//agregarle objetos
+					//...
+					break;
+				}
+				case SDLK_9:
+					RenderSystemInterface::getSingleton()->setRenderingScene("MainScene");
+					GameStateMachine::getSingleton()->popState();
+					break;
 			}
 		}
 
