@@ -44,6 +44,7 @@ public:
 
 	irrklang::ISound* find3DByName(const string& name);
 	irrklang::ISound* find2DByName(const string& name);
+	void stopSounds();
 
 	irrklang::ISoundEngine* getEngine();
 };

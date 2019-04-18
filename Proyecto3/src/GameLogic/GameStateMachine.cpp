@@ -1,5 +1,6 @@
 #include "GameStateMachine.h"
 #include "MessageSystem.h"
+#include <SoundManager.h>
 
 GameStateMachine* GameStateMachine::instance = nullptr;
 GameStateMachine::GameStateMachine() {}
@@ -48,7 +49,12 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	
 	//player
 	GOStruct player = jReader_->ReadPlayer(level);
-	state->setPlayer(GOFactory::ParseGO(player));
+	if (!player.go_cfg.is_null() && !player.components_cfg.is_null()) {
+		state->setPlayer(GOFactory::ParseGO(player));
+		SoundManager::getSingleton()->setListenerTransform(state->getPlayer()->getTransPtr());
+	}
+	else
+		SoundManager::getSingleton()->setListenerTransform(new nap_transform(nap_vector3(0, 0, 0)));
 
 	//create the gameObjects
 	for (auto & go_struct : scene.gameObjects) {
@@ -74,6 +80,9 @@ GameState * const GameStateMachine::currentState() {
 
 //pushes over the current state (no delete, no pop)
 void GameStateMachine::pushState(GameState *newState) {
+	//Stop all sounds of the previous state.
+	SoundManager::getSingleton()->stopSounds();
+
 	states_.push(newState);
 	newState->setUp();
 	//this needs to be done everytime we change state

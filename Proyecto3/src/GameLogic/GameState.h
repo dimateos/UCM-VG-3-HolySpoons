@@ -8,8 +8,8 @@
 class GameState : public Initiable
 {
 public:
-	GameState();
-	GameState(std::list<GameObject*>);
+	GameState(nap_transform* listenerTrans = new nap_transform(nap_vector3(0, 0, 0)));
+	GameState(std::list<GameObject*>, nap_transform* listenerTrans = new nap_transform(nap_vector3(0,0,0)));
 	virtual ~GameState();
 	virtual void setUp();
 
