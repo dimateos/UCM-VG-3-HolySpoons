@@ -168,8 +168,7 @@ void Game::handleEvents() {
 					//cambio de rendering target
 					RenderSystemInterface::getSingleton()->setRenderingScene("AnotherScene");
 					//cambio de estado
-					GameState* s = new GameState();
-					//s->setPlayer(GameStateMachine::getSingleton()->currentState()->getPlayer()); //esto peta
+					GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
 					GameStateMachine::getSingleton()->pushState(s);
 					//agregarle objetos
 					//...

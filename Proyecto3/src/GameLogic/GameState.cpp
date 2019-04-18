@@ -2,8 +2,9 @@
 #include "LogSystem.h"
 #include <SoundManager.h>
 
-GameState::GameState() : Initiable(), gameObjects_() {}
-GameState::GameState(std::list<GameObject*> gObjects) : Initiable(), gameObjects_(gObjects) {}
+GameState::GameState(nap_transform* listenerTrans) : Initiable(), gameObjects_() { SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
+GameState::GameState(std::list<GameObject*> gObjects, nap_transform* listenerTrans) : Initiable(), gameObjects_(gObjects) 
+{ SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
 
 GameState::~GameState() {
 	setDown();
@@ -13,12 +14,8 @@ void GameState::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	// musiquita que venia de ejemplo jeje. Si quereis ver el 3D modificad la z y lo oireis por la izq o der
-	// siempre hacer el setListenerTransform y como parametro un puntero a la pos&rot del player (o de lo que vaya a escuchar)
-	// la primera vez que se llame al getSingleton
-	SoundManager::getSingleton()->setListenerTransform(player_->getTransPtr());
-	//setting the monkey as emitter to test pushing it around
-	SoundManager::getSingleton()->play3DSound("ophelia.mp3", &getGameObject("monkey_boombox")->getTransPtr()->p_, true, false);
+	//TEMPORARY
+	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0,0,0), true, false);
 
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();

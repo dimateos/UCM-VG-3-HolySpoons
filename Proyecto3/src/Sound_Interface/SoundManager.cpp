@@ -111,6 +111,14 @@ irrklang::ISound* SoundManager::find2DByName(const string& name) {
 	else return nullptr;
 }
 
+void SoundManager::stopSounds()
+{
+	threeDsounds.clear();
+	twoDsounds.clear();
+	unmodifiedSounds = 0;
+	engine->stopAllSounds();
+}
+
 irrklang::ISoundEngine * SoundManager::getEngine()
 {
 	return engine;
