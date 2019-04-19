@@ -2,8 +2,6 @@
 #include "Pool.h"
 #include "GOFactory.h"
 
-Spawner::Spawner(nap_json const & cfg) : Component(cfg) {}
-
 Spawner::~Spawner()
 {
 	if (pol != nullptr) {

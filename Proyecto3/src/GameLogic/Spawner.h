@@ -15,8 +15,8 @@ private:
 	list<Component*> compList;
 
 public:
-	Spawner() {};
-	Spawner(nap_json const & cfg);
+	inline Spawner() {};
+	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~Spawner();
 
 	virtual void setUp();

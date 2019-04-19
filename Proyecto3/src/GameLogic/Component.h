@@ -42,14 +42,9 @@ public:
 	}
 	inline nap_json & getCfg() { return cfg_; }
 
-	static void registerType(const string& name, GOFactory* factory);
-
-	static std::map<string, GOFactory*>* factories;
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner
-
-private:
 };
 
 #endif /* COMPONENT_H_ */
