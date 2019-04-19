@@ -91,7 +91,15 @@
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\Component.cpp">
+      <Filter>_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\GameManager.cpp">
+      <Filter>_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -169,6 +177,11 @@
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GameManager.h">
+      <Filter>_Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

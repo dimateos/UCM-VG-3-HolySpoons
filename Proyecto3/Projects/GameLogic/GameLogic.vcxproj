@@ -28,6 +28,7 @@
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GameManager.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameState.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\src\GameLogic\BulletShooter.h" />
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
     <ClInclude Include="..\..\src\GameLogic\GameState.h" />
     <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h" />
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h" />

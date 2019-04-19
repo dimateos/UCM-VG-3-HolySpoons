@@ -14,8 +14,6 @@ public:
 
 	virtual void update(GameObject* o, double time);
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
-
-protected:
 };
 
 #endif /* TEST_COMP_H_ */
