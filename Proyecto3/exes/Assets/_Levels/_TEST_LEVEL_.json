@@ -8,7 +8,7 @@
     "GameObjects": [
         {
             "id": {
-				"type": "pref_test_go"
+				"type": "pref_gm_go"
             }
         },
 

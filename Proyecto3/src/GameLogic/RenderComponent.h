@@ -5,6 +5,7 @@
 #include "RenderSystemInterface.h"
 
 #include "Component.h"
+
 class RenderComponent : public Component
 {
 public:

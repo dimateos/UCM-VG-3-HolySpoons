@@ -48,8 +48,6 @@ public:
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner
-
-private:
 };
 
 #endif /* COMPONENT_H_ */

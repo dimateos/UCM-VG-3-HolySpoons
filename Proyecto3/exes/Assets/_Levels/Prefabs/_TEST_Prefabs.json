@@ -61,6 +61,30 @@
                 }
             }
         }
+    },
+    {
+        "id": {
+            "name": "gm_go",
+            "type": "pref_gm_go",
+            "group": "manage_gameObjects"
+        },
+            "pos": { "x": 0.0, "y": 0.0, "z": 0.0 },
+            "Components": {
+                "game_manager_comp":{
+                    "id":{
+                        "type": "GameManager",
+                        "group": "manage_components"
+                    }
+                },
+            "overlay_test_rend": {
+                "id": {
+                    "type": "OverlayComponent",
+                    "group": "test_comps"
+                },
+                "overlay_name": "PLAYER_HP_HUD",
+                "panel_container": "PLAYER_HP_HUD_PanelContainer"
+            }
+        }
     }
 ]
 }
