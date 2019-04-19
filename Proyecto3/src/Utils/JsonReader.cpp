@@ -324,7 +324,7 @@ GOType JsonReader::ReadMap(string level) {
 // set the physical position of the tile parsing its logic position (i, j)
 void JsonReader::setTilePosition(int r, int c, int i, int j, GOStruct & go) {
 	//at some point moved to and external cfg file
-	const float tile_w = 5.0f, tile_h = 5.0f, level_y = -5.0, GAP = 0.1;
+	const float tile_w = 5.0f, tile_h = 5.0f, level_y = -5.0, GAP = 0.0;
 
 	//calculate positions with offsets
 	float x, y, z;
