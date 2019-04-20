@@ -32,7 +32,7 @@
             },
             "bullet_hit": {
                 "id": {
-                    "type": "BulletHittable"
+                    "type": "BulletHit"
                 }
             }
         }

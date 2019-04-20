@@ -54,7 +54,7 @@ bool GameObject::handleEvents(const SDL_Event evt) {
 	auto it = components_.begin();
 	while (!handled && it != components_.end()) {
 		if ((*it)->isActive()) handled = (*it)->handleEvents(this, evt);
-		it++;
+		if (!handled) it++;
 	}
 
 	return handled;

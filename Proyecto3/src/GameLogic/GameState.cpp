@@ -52,7 +52,7 @@ bool GameState::handleEvents(const SDL_Event evt) {
 	auto it = gameObjects_.begin();
 	while (!handled && it != gameObjects_.end()) {
 		if ((*it)->isActive()) handled = (*it)->handleEvents(evt);
-		it++;
+		if (!handled) it++;
 	}
 
 	return handled;
