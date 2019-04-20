@@ -2,10 +2,13 @@
 #define GO_FACTORY_H_
 
 #include <list>
-#include "Component.h"
 #include "JsonReader.h"
 
-//macro to register each component
+class Component;
+class GameObject;
+
+// macro to register each component
+// it needs to be called in each "component".cpp
 #define REGISTER_TYPE(klass) \
     class klass##Factory : public GOFactory { \
     public: \
@@ -32,9 +35,6 @@ public:
 
 	// parses a nap_json components_cfg into a list of configured components*
 	static std::list<Component*> ParseComponents(GameObject *o, nap_json & components_cfg);
-
-	// parse individual comp
-	static Component* ParseComponent(GameObject *o, nap_json const & component_cfg);
 
 protected:
 	// used to automate components registration

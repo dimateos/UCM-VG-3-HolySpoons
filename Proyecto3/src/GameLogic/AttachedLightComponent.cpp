@@ -1,5 +1,6 @@
 #include "AttachedLightComponent.h"
 #include "RenderComponent.h"
+#include <RenderSystemInterface.h>
 #include <OgreColourValue.h>
 
 void AttachedLightComponent::setLight() {

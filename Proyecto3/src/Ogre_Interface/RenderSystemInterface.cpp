@@ -188,7 +188,7 @@ TextAreaOverlayElement * RenderSystemInterface::createText(std::string nodeName,
 	textElement->setCaption(text);
 	textElement->setDimensions(100, 100);
 	textElement->setFontName(fontName);
-
+	
 	textElement->setPosition(x, y);
 
 	//panel->addChild(textElement);

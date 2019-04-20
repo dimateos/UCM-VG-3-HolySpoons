@@ -1,7 +1,11 @@
 #ifndef ATTACHEDLIGHTCOMPONENT_H_
 #define ATTACHEDLIGHTCOMPONENT_H_
+
 #include "Component.h"
-#include <RenderSystemInterface.h>
+
+namespace Ogre {
+	class SceneNode;
+}
 
 class AttachedLightComponent: public Component
 {

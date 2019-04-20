@@ -29,4 +29,16 @@ void OverlayComponent::showOverlay()
 	overlay->show();
 }
 
+Ogre::OverlayElement * OverlayComponent::getOverlayElementByName(std::string name)
+{
+	return overlay->getChild(name);
+}
+
+void OverlayComponent::receive(Message * msg)
+{
+	if (msg->id_ == ACTIVATE_UI) {
+		overlay->show();
+	}
+}
+
 REGISTER_TYPE(OverlayComponent);

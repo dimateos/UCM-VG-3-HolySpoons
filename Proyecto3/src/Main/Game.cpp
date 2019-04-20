@@ -4,6 +4,11 @@
 #include "LogSystem.h"
 #include "JsonReader.h"
 #include "RenderSystemInterface.h"
+#include "SoundManager.h"
+#include "GameStateMachine.h"
+#include "MessageSystem.h"
+#include "RenderSystemManager.h"
+#include "PhysicsSystemManager.h"
 #include <OverlayComponent.h>
 
 Game::Game() {
@@ -28,7 +33,7 @@ void Game::initGame() {
 
 	//Config systems
 	renderManager->setupScene("MainScene"); //creates the first scene
-	renderManager->setupScene("AnotherScene");
+	renderManager->setupScene("Pause");
 	RenderSystemInterface::createSingleton();
 	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
 	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
@@ -37,8 +42,9 @@ void Game::initGame() {
 	LogSystem::cls();
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
 	gsm_ = GameStateMachine::getSingleton();
-	auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
-	gsm_->pushState(level); //you can push it already and add more things later
+	//auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
+	auto menu = gsm_->loadLevel("_MENU_LEVEL_"); //gsm uses the parser + factory
+	gsm_->pushState(menu); //you can push it already and add more things later
 
 	//all done
 	LogSystem::cls();
@@ -163,17 +169,6 @@ void Game::handleEvents() {
 					handled = true;
 					stop();
 					break;
-				case SDLK_8:
-				{
-					//cambio de rendering target
-					RenderSystemInterface::getSingleton()->setRenderingScene("AnotherScene");
-					//cambio de estado
-					GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
-					GameStateMachine::getSingleton()->pushState(s);
-					//agregarle objetos
-					//...
-					break;
-				}
 				case SDLK_9:
 					RenderSystemInterface::getSingleton()->setRenderingScene("MainScene");
 					GameStateMachine::getSingleton()->popState();
