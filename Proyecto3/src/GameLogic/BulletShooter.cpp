@@ -4,25 +4,43 @@
 #include "PhysicsComponent.h"
 #include <PxRigidDynamic.h>
 
+BulletShooter::~BulletShooter()
+{
+	for (Weapon* w: weapons)
+		delete w;
+}
+
 void BulletShooter::setUp() {
 	owner_trans_ = owner_->getTransPtr();
 	relY_ = cfg_["relativeY"];
 	relZ_ = cfg_["relativeZ"];
-	vel_ = cfg_["vel"];
 
-	pool_ = new nap_Pool(cfg_["itemString"]);
-	pool_->setDefault(0);
-	pool_->init();
+	addWeapon("base_bullet","baseSpoon", 30,0.2);
+	addWeapon("power_bullet", "powerSpoon", 15, 0.4);
+	addWeapon("base_bullet", "shotSpoon", 30, 0.3);
+	currentWeapon = 0;
 }
 
 bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	bool handled = false;
 
 	switch (evt.type) {
-
+	case SDL_MOUSEBUTTONDOWN:
+		if (evt.button.button == SDL_BUTTON_LEFT) {
+			weapons[currentWeapon]->mouseUpdate(true);
+			handled = true;
+		}
+		break;
 	case SDL_MOUSEBUTTONUP:
 		if (evt.button.button == SDL_BUTTON_LEFT) {
-			shoot();
+			weapons[currentWeapon]->mouseUpdate(false);
+			handled = true;
+		}
+		break;
+	case SDL_KEYUP:
+		int tmp = (int)(evt.key.keysym.sym - SDLK_1);
+		if (tmp >= 0 && tmp < 10) {
+			changeWeapon(tmp);
 			handled = true;
 		}
 		break;
@@ -31,21 +49,36 @@ bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	return handled;
 }
 
-void BulletShooter::shoot() {
-	//add to state
-	GameObject* bul = pool_->getItem();
-	bul->setActive();
+void BulletShooter::update(GameObject * o, double time)
+{
+	weapons[currentWeapon]->shootUpdate(owner_trans_, relY_, relZ_, time);
+}
 
-	//dir
-	nap_vector3 dir = owner_trans_->q_.toNapVec3(vZ*-1);
+void BulletShooter::changeWeapon(int n)
+{
+	if (n >= 0 && n < weapons.size() && weapons[currentWeapon]->isActive()) {
+		currentWeapon = n;
+		weapons[currentWeapon]->swapDelay();
+	}
+}
 
-	//vel (uses dir y)
-	static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((dir * vel_).px());
+void BulletShooter::activeWeapon(int n, bool active = true)
+{
+	if (n >= 0 && n < weapons.size()) {
+		weapons[currentWeapon]->setActive(active);
+		changeWeapon(n);
+	}
+}
 
-	//vel (ignores dir y)
-	dir.y_ = 0;
-	dir.normalize();
-	bul->setPosition(owner_trans_->p_ + vY * relY_ + dir * relZ_);
+void BulletShooter::addWeapon(string prefab, string weaponType, float vel, double shootSpeed)
+{
+	if (weaponType == "baseSpoon")
+		weapons.push_back(new BaseSpoon(prefab, vel, shootSpeed));
+	else if(weaponType == "powerSpoon")
+		weapons.push_back(new PowerSpoon(prefab, vel, shootSpeed));
+	else if (weaponType == "shotSpoon")
+		weapons.push_back(new ShotSpoon(prefab, vel, shootSpeed));
+
 }
 
 #include "GOFactory.h"

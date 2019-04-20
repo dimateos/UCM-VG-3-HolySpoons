@@ -1,41 +1,95 @@
 {
 "Prefabs" :
-[
+  [
     {
-        "id": {
-            "name": "base_bullet",
-            "type": "base_bullet",
-            "group": "bullets"
-        },
-        "Components": {
-            "bullet_phys": {
-                "id": {
-                    "type": "PhysicsComponent"
-                },
-                "noGravity": true,
-                "mass": 0.1,
-                "shape": {
-                    "type": "BOX", "scale": { "x": 0.3, "y": 0.3, "z": 0.3 }
-                }
-            },
-            "bullet_rend": {
-                "id": {
-                    "type": "RenderComponent"
-                },
-                "scale": { "x": 0.3, "y": 0.3, "z": 0.3 },
-                "material": "DebugMaterial3",
-                "shape": {
-                    "entity_name": "base_bullet",
-                    "type": "MESH",
-                    "mesh": "cube.mesh"
-                }
-            },
-            "bullet_hit": {
-                "id": {
-                    "type": "BulletHit"
-                }
+      "id": {
+        "name": "base_bullet",
+        "type": "base_bullet",
+        "group": "bBullets0"
+      },
+      "Components": {
+        "bullet_phys": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": true,
+          "mass": 0.1,
+          "shape": {
+            "type": "BOX",
+            "scale": {
+              "x": 0.3,
+              "y": 0.3,
+              "z": 0.3
             }
+          }
+        },
+        "bullet_rend": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 0.3,
+            "y": 0.3,
+            "z": 0.3
+          },
+          "material": "EyeMaterial",
+          "shape": {
+            "entity_name": "base_bullet",
+            "type": "MESH",
+            "mesh": "cube.mesh"
+          }
+        },
+        "bullet_hit": {
+          "id": {
+            "type": "BulletHit"
+          }
         }
+      }
+    },
+    {
+      "id": {
+        "name": "power_bullet",
+        "type": "power_bullet",
+        "group": "pBullets0"
+      },
+      "Components": {
+        "bullet_phys": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": true,
+          "mass": 0.1,
+          "shape": {
+            "type": "BOX",
+            "scale": {
+              "x": 0.5,
+              "y": 0.5,
+              "z": 0.5
+            }
+          }
+        },
+        "bullet_rend": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "material": "DebugMaterial2",
+          "shape": {
+            "entity_name": "power_bullet",
+            "type": "MESH",
+            "mesh": "cube.mesh"
+          }
+        },
+        "bullet_hit": {
+          "id": {
+            "type": "BulletHit"
+          }
+        }
+      }
     }
-]
+  ]
 }

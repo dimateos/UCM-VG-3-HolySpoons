@@ -58,7 +58,6 @@
                 "type": "BulletShooter",
                 "group": "player_comps"
             },
-            "itemString": "base_bullet",
             "relativeY": 3.0,
             "relativeZ": 0.0,
             "vel": 30

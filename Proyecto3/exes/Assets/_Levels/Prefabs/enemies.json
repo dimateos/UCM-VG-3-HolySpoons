@@ -46,12 +46,13 @@
             		"group": "enemy_comps"
             	}
             },
-            "bullet_hittable": {
-            	"id":{
-            		"type": "BulletHittable",
-            		"group": "enemy_comps"
-            	}
+          "bullet_hittable": {
+            "id": {
+              "type": "BulletHittable",
+              "group": "enemy_comps"
             },
+            "hp": 50
+          },
             "att_light": {
                 "id": {
                     "type": "AttachedLightComponent",

@@ -5,23 +5,30 @@
 class nap_Pool; //fowarding
 
 #include "Component.h"
+#include "Weapon.h"
 class BulletShooter : public Component
 {
 public:
 	inline BulletShooter() {}
 	inline BulletShooter(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-	inline virtual ~BulletShooter() {};
+	virtual ~BulletShooter();
 	virtual void setUp();
 
 	//atm just left click to shoot
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void update(GameObject* o, double time);
 
 protected:
-	nap_transform* owner_trans_;
-	float relY_, relZ_, vel_; //vel maybe bullet prefabs and depending on that
+	virtual void changeWeapon(int n);
+	virtual void activeWeapon(int n, bool active);
+	virtual void addWeapon(string prefab, string weaponType, float vel, double shootSpeed);
 
-	nap_Pool* pool_ = nullptr;
-	virtual void shoot();
+	nap_transform* owner_trans_;
+	float relY_, relZ_;
+
+	
+	int currentWeapon = 0;
+	vector<Weapon*> weapons;
 };
 
 #endif /* BULLETSHOOTER_H_ */

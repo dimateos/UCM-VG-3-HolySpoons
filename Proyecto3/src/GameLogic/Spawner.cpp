@@ -1,6 +1,7 @@
 #include "Spawner.h"
 #include "Pool.h"
 #include "GOFactory.h"
+#include "MessageSystem.h"
 
 Spawner::~Spawner()
 {
@@ -32,6 +33,7 @@ void Spawner::update(GameObject * o, double time)
 		GameObject* tmp = pol->getItem();
 		tmp->setPosition(o->getPosition());
 		tmp->setActive();
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(HP_RESET), tmp);
 	}
 }
 

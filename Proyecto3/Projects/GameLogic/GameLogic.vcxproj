@@ -44,6 +44,7 @@
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ogre_Interface\Ogre_Interface.vcxproj">
