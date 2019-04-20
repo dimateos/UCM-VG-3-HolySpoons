@@ -26,7 +26,7 @@ private:
 	void updateListener();
 
 public:
-	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton 
+	static SoundManager* getSingleton(); // you can obtain/shutdown the instance of the singleton
 	static void shutdownSingleton();
 
 	void update();
@@ -47,6 +47,7 @@ public:
 	void stopSounds();
 
 	irrklang::ISoundEngine* getEngine();
+	void setVolume(float v);
 };
 
 #endif /* SOUND_MANAGER_H_ */

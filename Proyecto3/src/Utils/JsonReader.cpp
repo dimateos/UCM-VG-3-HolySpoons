@@ -3,6 +3,8 @@
 
 #include <fstream>
 
+#define undefLevelName "undefinedName"
+
 JsonReader* JsonReader::instance_ = nullptr;
 JsonReader* JsonReader::getSingleton() {
 	if (instance_ == nullptr) {
@@ -160,14 +162,11 @@ void JsonReader::deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_
 
 // returns a Scene_type with all the information read
 // from "level.json" (GameObjects) and "level.txt" (map/tiles)
-SceneStruct JsonReader::ReadLevel(string level) {
+SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player) {
 	LogSystem::Log("Reading level " + level + " ...", LogSystem::JSON);
 	size_t n = 0;
 
 	SceneStruct scene;
-
-	//read the map/tiles ("level.txt") and dump all the GOs
-	scene.gameObjects = ReadMap(level);
 
 	//read "level.json"
 	ifstream file(routeLevel + level + ".json");
@@ -181,11 +180,21 @@ SceneStruct JsonReader::ReadLevel(string level) {
 	file >> j;
 
 	//read the scene name
-	if (FIND(j, "stateID_")) {
-		string s = j["stateID_"];
-		scene.SceneName = s;
+	string s = FINDnRETURN_s(j, "stateID_", undefLevelName);
+	scene.SceneName = s;
+
+	//read the map/tiles and dump all the GOs IF FOUND
+	if (FIND(j, "mapFile")) {
+		string mapFile = j["mapFile"];
+		scene.gameObjects = ReadMap(mapFile);
 	}
-	else scene.SceneName = "undefined";
+	else LogSystem::Log("La escena " + scene.SceneName + " no contiene mapa...", LogSystem::JSON);
+
+	//read the player
+	if (FIND(j, "Player")) {
+		player = ReadPlayer(j["Player"]);
+	}
+	else LogSystem::Log("La escena " + scene.SceneName + " no contiene player...", LogSystem::JSON);
 
 	//read the gameobjects
 	if (!(FIND(j, "GameObjects")) || j["GameObjects"].size() == 0) {
@@ -212,27 +221,13 @@ SceneStruct JsonReader::ReadLevel(string level) {
 	return scene;
 }
 
-GOStruct JsonReader::ReadPlayer(string level) {
-	LogSystem::Log("Reading player of level " + level + " ...", LogSystem::JSON);
-
-	//read "level.json"
-	ifstream file(routeLevel + level + ".json");
-	if (!file.is_open()) {
-		LogSystem::Log("El archivo " + routeLevel + level + ".json no fue encontrado... abortando parseo", LogSystem::JSON);
-	}
-
-	//parse it
-	nap_json j;
-	file >> j;
-	nap_json cfg = j["Player"];
-
+GOStruct* JsonReader::ReadPlayer(nap_json const & player_cfg) {
 	//raw read the GO
-	GOStruct player = *readGO(cfg);
+	GOStruct * player = readGO(player_cfg);
 
 	//apply or not a prefab (return if error)
-	if (!applyPrefab(cfg, player)) LogSystem::Log("Error al leer player", LogSystem::JSON);
+	if (!applyPrefab(player_cfg, *player)) LogSystem::Log("Error al leer player", LogSystem::JSON);
 
-	file.close();
 	LogSystem::Log("Leido player con exito", LogSystem::JSON);
 	return player;
 }
@@ -277,9 +272,9 @@ GOType JsonReader::ReadMap(string level) {
 	GOType map;
 
 	//check if openned correctly
-	ifstream file(routeLevel + level + ".txt");
+	ifstream file(routeLevel + level);
 	if (!file.is_open()) {
-		LogSystem::Log("El mapa " + routeLevel + level + ".txt no fue encontrado... abortando parseo", LogSystem::JSON);
+		LogSystem::Log("El mapa " + routeLevel + level + " no fue encontrado... abortando parseo", LogSystem::JSON);
 		return map;
 	}
 
@@ -316,7 +311,7 @@ GOType JsonReader::ReadMap(string level) {
 	}
 
 	file.close();
-	LogSystem::Log("Leidos " + to_string(n) + " Gameobjects con exito", LogSystem::JSON);
+	LogSystem::Log("Leidos " + to_string(n) + " Gameobjects (tiles del map) con exito", LogSystem::JSON);
 	return map;
 }
 

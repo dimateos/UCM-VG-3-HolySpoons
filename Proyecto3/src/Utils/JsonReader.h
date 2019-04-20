@@ -33,8 +33,8 @@ public:
 	static void shutdownSingleton();
 
 	// reads the file called "level" and return the scene information
-	SceneStruct ReadLevel(string level);
-	GOStruct ReadPlayer(string level);
+	SceneStruct ReadLevel(string level, GOStruct * & player);
+
 	// returns a copy of the prefab
 	GOStruct getPrefab(string pref, bool & success);
 
@@ -58,6 +58,9 @@ private:
 	void deepUpdateJson(nap_json & j, nap_json const & updater);
 	void deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr);
 
+	// reading player
+	GOStruct* ReadPlayer(nap_json const & player_cfg);
+
 	// reading map
 	void preloadMapTypes();
 	std::map<char, string> mapTypes;
@@ -67,6 +70,7 @@ private:
 
 #endif /* JSON_READER_H_ */
 
+//not updated**
 // Here is an example of reading a level (.json) and creating gameobjects from it.
 // This must be in GameState in the future (the place where we will read levels and create the stuff)
 	/*

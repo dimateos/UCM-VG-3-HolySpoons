@@ -3,7 +3,7 @@
 #include <SoundManager.h>
 
 GameState::GameState(nap_transform* listenerTrans) : Initiable(), gameObjects_() { SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
-GameState::GameState(std::list<GameObject*> gObjects, nap_transform* listenerTrans) : Initiable(), gameObjects_(gObjects) 
+GameState::GameState(std::list<GameObject*> gObjects, nap_transform* listenerTrans) : Initiable(), gameObjects_(gObjects)
 { SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
 
 GameState::~GameState() {

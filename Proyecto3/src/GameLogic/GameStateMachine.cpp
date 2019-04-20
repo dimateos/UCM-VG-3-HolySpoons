@@ -41,20 +41,23 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	GameState * state = new GameState();
 
 	//get the scene parsed json
-	JsonReader* jReader_ = JsonReader::getSingleton();
-	auto scene = jReader_->ReadLevel(level);
+	GOStruct* player = nullptr;
+	auto scene = JsonReader::getSingleton()->ReadLevel(level, player);
 
 	//name
 	state->setStateID(scene.SceneName);
-	
-	//player
-	GOStruct player = jReader_->ReadPlayer(level);
-	if (!player.go_cfg.is_null() && !player.components_cfg.is_null()) {
-		state->setPlayer(GOFactory::ParseGO(player));
-		SoundManager::getSingleton()->setListenerTransform(state->getPlayer()->getTransPtr());
+
+	//set player as listener if exists
+	auto sm = SoundManager::getSingleton();
+	if (player != nullptr) {
+		state->setPlayer(GOFactory::ParseGO(*player));
+		sm->setListenerTransform(state->getPlayer()->getTransPtr());
+		sm->setVolume(0.75);
 	}
-	else
-		SoundManager::getSingleton()->setListenerTransform(new nap_transform(nap_vector3(0, 0, 0)));
+	else {
+		sm->setListenerTransform(new nap_transform(nap_vector3(0, 0, 0)));
+		sm->setVolume(0.35);
+	}
 
 	//create the gameObjects
 	for (auto & go_struct : scene.gameObjects) {

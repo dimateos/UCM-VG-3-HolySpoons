@@ -32,7 +32,6 @@ void PhysicsComponent::setUp() {
 		rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
 		rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
 		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
-		LogSystem::Log("scale: ", rigidBodyD_->getGlobalPose().p.y, LogSystem::DEV);
 	}
 	else { //static
 		rigidBodyS_ = physicsManager->createStaticBody(shape_);

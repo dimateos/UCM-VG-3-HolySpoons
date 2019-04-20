@@ -82,7 +82,7 @@
                 "active": true,
 
                 "itemString": "pref_monkey",
-                "default": 10,
+                "default": 0,
                 "timer": 10.0
             },
             "circular_movement":{

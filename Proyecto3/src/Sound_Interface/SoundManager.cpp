@@ -124,6 +124,10 @@ irrklang::ISoundEngine * SoundManager::getEngine()
 	return engine;
 }
 
+void SoundManager::setVolume(float v) {
+	engine->setSoundVolume(v);
+}
+
 SoundManager::SoundManager():engine(createIrrKlangDevice())
 {
 }

@@ -23,7 +23,7 @@ Game::~Game() {
 void Game::initGame() {
 	//Logging system
 	LogSystem::resetLogFile();
-	LogSystem::Log("initializing...", LogSystem::GAME);
+	LogSystem::Log("initializing...", LogSystem::GAME, {__FILE__, __LINE__});
 
 	//Get/create the singleton instances
 	physicsManager = PhysicsSystemManager::getSingleton();
@@ -39,10 +39,11 @@ void Game::initGame() {
 	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
 
 	//Initialize level
+	JsonReader::getSingleton(); //load prefabs
 	LogSystem::cls();
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
+
 	gsm_ = GameStateMachine::getSingleton();
-	//auto level = gsm_->loadLevel("_TEST_LEVEL_"); //gsm uses the parser + factory
 	auto menu = gsm_->loadLevel("_MENU_LEVEL_"); //gsm uses the parser + factory
 	gsm_->pushState(menu); //you can push it already and add more things later
 
