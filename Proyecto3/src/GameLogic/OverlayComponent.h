@@ -29,6 +29,7 @@ public:
 	void showOverlay();
 
 	Ogre::OverlayElement* getOverlayElementByName(std::string name);
+	virtual void receive(Message* msg);
 };
 
 #endif /* OVERLAYCOMPONENT_H_ */

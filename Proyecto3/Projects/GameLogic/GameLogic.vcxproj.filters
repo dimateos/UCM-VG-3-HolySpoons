@@ -91,15 +91,14 @@
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Component.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GameManager.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -183,5 +182,7 @@
     <ClInclude Include="..\..\src\GameLogic\GameManager.h">
       <Filter>_Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
   </ItemGroup>
 </Project>

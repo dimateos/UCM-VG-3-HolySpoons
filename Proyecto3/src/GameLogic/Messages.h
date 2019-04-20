@@ -7,7 +7,8 @@ class nap_transform;
 enum MessageId // DIFFERENT MESSAGE IDs
 {
 	//PHYSX
-	PX_USERPTR
+	PX_USERPTR,
+	ACTIVATE_UI
 };
 
 struct Message {

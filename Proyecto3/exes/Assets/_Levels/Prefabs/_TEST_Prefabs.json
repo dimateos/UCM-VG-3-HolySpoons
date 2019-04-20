@@ -68,7 +68,6 @@
             "type": "pref_gm_go",
             "group": "manage_gameObjects"
         },
-            "pos": { "x": 0.0, "y": 0.0, "z": 0.0 },
             "Components": {
                 "game_manager_comp":{
                     "id":{
@@ -76,14 +75,75 @@
                         "group": "manage_components"
                     }
                 },
-            "canvas": {
-                "id": {
-                    "type": "OverlayComponent",
-                    "group": "test_comps"
+                "canvas": {
+                    "id": {
+                        "type": "OverlayComponent",
+                        "group": "ui_overlay"
+                    },
+                    "overlay_name": "HUD",
+                    "panel_container": "HUD_PanelContainer"
                 },
-                "overlay_name": "HUD",
-                "panel_container": "HUD_PanelContainer"
-            }
+                "handle_input_pause":{
+                    "id": {
+                        "type": "PushStateComponent",
+                        "group": "test_comps"
+                    },
+                    "key": "8",
+                    "state": "Pause",
+                    "json": "_PAUSE_LEVEL_"
+                }
+        }
+    },
+
+    {
+        "id": {
+            "name": "gmPause_go",
+            "type": "pref_gmPause_go",
+            "group": "manage_gameObjects"
+        },
+            "Components": {
+                "canvas": {
+                    "id": {
+                        "type": "OverlayComponent",
+                        "group": "test_comps"
+                    },
+                    "overlay_name": "PAUSE",
+                    "panel_container": "PAUSE_PanelContainer"
+                },
+                "handle_input":{
+                    "id": {
+                        "type": "PopStateComponent",
+                        "group": "test_comps"
+                    },
+                    "key": "8",
+                    "state": "MainScene"
+                }
+        }
+    },
+    {
+        "id": {
+            "name": "gmMenu_go",
+            "type": "pref_gmMenu_go",
+            "group": "manage_gameObjects"
+        },
+            "Components": {
+                "canvas": {
+                    "id": {
+                        "type": "OverlayComponent",
+                        "group": "test_comps"
+                    },
+                    "overlay_name": "MENU",
+                    "panel_container": "MENU_PanelContainer"
+                },
+                "handle_input":{
+                    "id": {
+                        "type": "PushStateComponent",
+                        "group": "test_comps"
+                    },
+                    "key": " ",
+                    "state": "MainScene",
+                    "json": "_TEST_LEVEL_"
+                }
         }
     }
 ]

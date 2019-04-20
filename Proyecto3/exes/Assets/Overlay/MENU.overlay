@@ -1,0 +1,25 @@
+overlay MENU
+{
+	zorder 100
+	overlay_element MENU_PanelContainer Panel
+	{
+		left 0.0
+		top 0.0
+		width 1.0
+		height 1.0
+
+		overlay_element MENU_Text TextArea
+		{
+            metrics_mode pixels
+            font_name HackReg
+            char_height 40
+            colour_top 0.4 0.4 0.8
+            colour_bottom 1 0.2 0.2
+            left 200
+            top 250
+            width 40
+            caption "PRESS SPACE TO START"
+            height 40
+		}
+	}
+}

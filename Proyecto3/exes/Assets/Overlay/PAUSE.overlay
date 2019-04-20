@@ -1,0 +1,25 @@
+overlay PAUSE
+{
+	zorder 100
+	overlay_element PAUSE_PanelContainer Panel
+	{
+		left 0.0
+		top 0.0
+		width 1.0
+		height 1.0
+
+		overlay_element PAUSE_Text TextArea
+		{
+            metrics_mode pixels
+            font_name HackReg
+            char_height 40
+            colour_top 1 0 0
+            colour_bottom 0.2 0.5 0.2
+            left 330
+            top 250
+            width 40
+            caption "PAUSED"
+            height 40
+		}
+	}
+}
