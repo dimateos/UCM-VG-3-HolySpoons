@@ -1,8 +1,13 @@
 #include "PhysicsComponent.h"
 #include "LogSystem.h"
-#include "GOFactory.h"
 
-#define BaseDens 1			//atm mass not defined
+#include <PhysicsSystemManager.h>
+
+#include <PxRigidDynamic.h>
+#include <PxRigidStatic.h>
+#include <extensions\PxRigidBodyExt.h>
+
+#define BaseDens 1.0		//atm mass not defined
 #define BaseLinDamp 0.05	//def 0.0 and 1 max
 #define BaseAngDamp 0.05	//def 0.05 and 1 max
 #define BaseMaxAngV 100		//fast spinning objects should raise this (def 100 in px4.0)
@@ -20,16 +25,17 @@ void PhysicsComponent::setUp() {
 
 	//different body for dynamic or static
 	if (FINDnRETURN(cfg_, "dynamic", bool, true)) {
-		rigidBodyD_ = physicsManager->createDynamicBody(shape_, PxTransform());
+		rigidBodyD_ = physicsManager->createDynamicBody(shape_);
 
 		//mass and dampings
 		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
 		rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
 		rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
 		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
+		LogSystem::Log("scale: ", rigidBodyD_->getGlobalPose().p.y, LogSystem::DEV);
 	}
 	else { //static
-		rigidBodyS_ = physicsManager->createStaticBody(shape_, PxTransform());
+		rigidBodyS_ = physicsManager->createStaticBody(shape_);
 	}
 
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
@@ -41,7 +47,10 @@ void PhysicsComponent::setUp() {
 
 	updateUserData();
 	configActive();
-	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::DEV);
+}
+
+PxRigidDynamic * PhysicsComponent::getDynamicBody() {
+	return rigidBodyD_;
 }
 
 void PhysicsComponent::setDown() {
@@ -57,10 +66,10 @@ void PhysicsComponent::configActive() {
 void PhysicsComponent::updateUserData() {
 	getActor()->setGlobalPose(PxTransform(owner_->getPosition().px(), owner_->getOrientation().px()));
 
-	if (ud != nullptr) delete ud;
-	else ud = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
+	if (ud_ != nullptr) delete ud_;
+	else ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
 
-	getActor()->userData = ud;
+	getActor()->userData = ud_;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -93,4 +102,10 @@ PxGeometry* PhysicsComponent::getGeo(nap_json shape) {
 	return geo;
 }
 
+PxRigidActor * PhysicsComponent::getActor() {
+	if (rigidBodyD_ != NULL && rigidBodyD_ != nullptr) return rigidBodyD_;
+	else return rigidBodyS_;
+}
+
+#include "GOFactory.h"
 REGISTER_TYPE(PhysicsComponent);

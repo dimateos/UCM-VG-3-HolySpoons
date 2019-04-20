@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Physx_Interface\EventReporter.h" />
+    <ClInclude Include="..\..\src\Physx_Interface\PhyscsFowarder.h" />
     <ClInclude Include="..\..\src\Physx_Interface\PhysicsSystemManager.h" />
   </ItemGroup>
   <ItemGroup>

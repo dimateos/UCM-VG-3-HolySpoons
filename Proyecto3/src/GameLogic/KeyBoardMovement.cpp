@@ -1,6 +1,7 @@
 #include "KeyBoardMovement.h"
+
 #include "PhysicsComponent.h"
-#include "GOFactory.h"
+#include <PxRigidDynamic.h>
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {}
 KeyBoardMovement::~KeyBoardMovement() {}
@@ -37,6 +38,7 @@ void KeyBoardMovement::setUp() {
 }
 
 void KeyBoardMovement::lateSetUp() {
+
 	// physics component
 	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
 }
@@ -118,4 +120,5 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 		physBody->getLinearVelocity().y, velocity.z_*time).px());
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(KeyBoardMovement);

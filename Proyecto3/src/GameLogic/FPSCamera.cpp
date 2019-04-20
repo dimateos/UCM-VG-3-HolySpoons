@@ -1,12 +1,11 @@
 #include "FPSCamera.h"
-#include "RenderComponent.h"
 #include "LogSystem.h"
+//#include "RenderComponent.h"
 
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
-#include "GOFactory.h"
 
 void FPSCamera::setUp() {
 	if (isInited()) return;
@@ -45,7 +44,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 
 	// entity orientation = camera y orientation
 	auto ori = camNode_->getOrientation();
-	nap_quat nq = { ori.w, ori.x, ori.y, ori.z };
+	nap_quat nq = napQUAT(ori);
 	ent->setOrientation(nq);
 
 	//avoid flips
@@ -96,4 +95,5 @@ void FPSCamera::toggleZoom() {
 	zoom = !zoom;
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(FPSCamera);

@@ -23,5 +23,8 @@
     <ClInclude Include="..\..\src\Physx_Interface\PhysicsSystemManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physx_Interface\PhyscsFowarder.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #ifndef PHYS_COMP_H_
 #define PHYS_COMP_H_
 
-#include "PhysicsSystemManager.h"
+#include "PhyscsFowarder.h"
 
 #include "Component.h"
 class PhysicsComponent : public Component
@@ -13,7 +13,7 @@ public:
 	inline virtual ~PhysicsComponent() { setDown(); };
 	virtual void setUp();
 
-	inline PxRigidDynamic * getDynamicBody() const { return rigidBodyD_; };
+	PxRigidDynamic * getDynamicBody();
 
 	virtual void late_update(GameObject* o, double time);
 
@@ -22,7 +22,7 @@ protected:
 	virtual void configActive();
 
 	//sync GO transforms with px
-	nap_userData * ud = nullptr;
+	nap_userData * ud_ = nullptr;
 	void updateUserData();
 
 	//Assist on setting up the shape
@@ -32,10 +32,7 @@ protected:
 	//RigidBody config
 	PxRigidDynamic* rigidBodyD_ = nullptr;
 	PxRigidStatic* rigidBodyS_ = nullptr;
-	inline PxRigidActor* getActor() const {
-		if (rigidBodyD_ != NULL && rigidBodyD_ != nullptr) return rigidBodyD_;
-		else return rigidBodyS_;
-	};
+	PxRigidActor* getActor();
 };
 
 #endif /* PHYS_COMP_H_ */

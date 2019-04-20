@@ -35,3 +35,7 @@ nap_vector3 nap_quat::toNapVec3(nap_vector3 direction) {
 	Ogre::Vector3 aux = ogre() * direction.ogre();
 	return nap_vector3(aux.x, aux.y, aux.z).normalize();
 }
+#include <characterkinematic\PxExtended.h>
+physx::PxExtendedVec3 nap_vector3::pxEx() {
+	return physx::PxExtendedVec3(x_, y_, z_);
+}

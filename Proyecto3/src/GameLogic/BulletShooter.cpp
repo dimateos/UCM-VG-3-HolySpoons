@@ -1,7 +1,8 @@
 #include "BulletShooter.h"
-#include "PhysicsComponent.h"
+
 #include "Pool.h"
-#include "GOFactory.h"
+#include "PhysicsComponent.h"
+#include <PxRigidDynamic.h>
 
 void BulletShooter::setUp() {
 	owner_trans_ = owner_->getTransPtr();
@@ -47,4 +48,5 @@ void BulletShooter::shoot() {
 	bul->setPosition(owner_trans_->p_ + vY * relY_ + dir * relZ_);
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(BulletShooter);

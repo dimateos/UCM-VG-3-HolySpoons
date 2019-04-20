@@ -1,12 +1,9 @@
 #ifndef KEYBOARDMOVEMENT_H_
 #define KEYBOARDMOVEMENT_H_
 
+#include "PhyscsFowarder.h"
+
 #include "Component.h"
-
-namespace physx {
-	class PxRigidDynamic;
-}
-
 class KeyBoardMovement : public Component
 {
 private:

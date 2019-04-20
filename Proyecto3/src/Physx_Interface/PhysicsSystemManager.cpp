@@ -1,7 +1,15 @@
 #include "PhysicsSystemManager.h"
-
 #include "LogSystem.h"
+
+//required
+#include "Transforms.h"
 #include "CollisionListener.h"
+
+//fowarded
+#include "EventReporter.h"
+//#include <ctype.h>
+#include <PxPhysicsAPI.h>
+#include <characterkinematic\PxControllerManager.h>
 
 //Set this to the IP address of the system running the PhysX Visual Debugger that you want to connect to.
 //#define PVD_HOST "127.0.0.1" for the visual debugger attached
@@ -27,7 +35,9 @@ void PhysicsSystemManager::shutdownSingleton() {
 // Initialize physics engine
 void PhysicsSystemManager::setupInstance() {
 	// Foundation
-	gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, gAllocator, errorCallback_);
+	gAllocator = new PxDefaultAllocator();
+	errorCallback_ = new PxDefaultErrorCallback();
+	gFoundation = PxCreateFoundation(PX_PHYSICS_VERSION, *gAllocator, *errorCallback_);
 
 #if PVD // Visual debugger attached
 	gPvd = PxCreatePvd(*gFoundation);
@@ -41,7 +51,7 @@ void PhysicsSystemManager::setupInstance() {
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
-	sceneDesc.gravity = { 0.0f, -15.0f, 0.0f };
+	sceneDesc.gravity = pxG.px();
 
 	// Materials
 	//atm here but should be on global cfg file etc
@@ -51,10 +61,14 @@ void PhysicsSystemManager::setupInstance() {
 
 	// Collisions
 	sceneDesc.filterShader = EventReporter::contactReportFilterShader; //PxDefaultSimulationFilterShader
-	sceneDesc.simulationEventCallback = &eventReporter_;
+	eventReporter_ = new EventReporter();
+	sceneDesc.simulationEventCallback = eventReporter_;
 
+	// Finally scneen
 	gScene = gPhysics->createScene(sceneDesc);
 	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
+
+	gControllerManager = PxCreateControllerManager(*gScene);
 
 	// Add custom application code ?
 	//end of custom code
@@ -68,7 +82,9 @@ void PhysicsSystemManager::shutdownInstance() {
 	// release all rigidBodies!
 
 	// Scene
+	gControllerManager->release();
 	gScene->release();
+	delete eventReporter_;
 	gDispatcher->release();
 
 	// Foundation etc
@@ -81,6 +97,8 @@ void PhysicsSystemManager::shutdownInstance() {
 #endif
 
 	gFoundation->release();
+	delete errorCallback_;
+	delete gAllocator;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -105,20 +123,28 @@ void PhysicsSystemManager::updateNodes() {
 		nap_userData* nap_UD = static_cast<nap_userData*>(activeActors[i]->userData);
 
 		//update gameobject transform
-		nap_UD->trans_->p_ = nap_vector3(VEC3(px_trans.p));
-		nap_UD->trans_->q_ = nap_quat(QUAT(px_trans.q));
+		nap_UD->trans_->p_ = napVEC3(px_trans.p);
+		nap_UD->trans_->q_ = napQUAT(px_trans.q);
 		nap_UD->trans_->upToDate_rend = false; //render flag not upToDate
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
+PxScene * PhysicsSystemManager::getScene() {
+	return gScene;
+}
+
+PxMaterial* PhysicsSystemManager::getMaterial(std::string mat) {
+	return mats_[mat];
+}
+
 PxShape* PhysicsSystemManager::createShape(PxGeometry *geo, std::string mat) {
 	return gPhysics->createShape(*geo, *mats_[mat]);
 }
 
-PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxShape* shape, PxTransform const &trans) {
-	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans);
+PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxShape* shape, PxTransform* trans) {
+	PxRigidDynamic * body = gPhysics->createRigidDynamic(trans == nullptr ? PxTransform() : *trans);
 	body->attachShape(*shape);
 	body->setLinearDamping(0.1f);
 	body->setLinearVelocity(PxVec3(0.0f));
@@ -128,10 +154,14 @@ PxRigidDynamic * PhysicsSystemManager::createDynamicBody(PxShape* shape, PxTrans
 	return body;
 }
 
-PxRigidStatic * PhysicsSystemManager::createStaticBody(PxShape* shape, PxTransform const &trans) {
-	PxRigidStatic * body = gPhysics->createRigidStatic(trans);
+PxRigidStatic * PhysicsSystemManager::createStaticBody(PxShape* shape, PxTransform* trans) {
+	PxRigidStatic * body = gPhysics->createRigidStatic(trans == nullptr ? PxTransform() : *trans);
 	body->attachShape(*shape);
 	gScene->addActor(*body);
 
 	return body;
+}
+
+PxController * PhysicsSystemManager::createController(PxControllerDesc * desc) {
+	return gControllerManager->createController(*desc);;
 }

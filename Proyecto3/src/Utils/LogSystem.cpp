@@ -28,6 +28,8 @@ void LogSystem::Log(string const & s, logType t) {
 	case GAME: pre = "GAME"; break;
 	case SOUND: pre = "SOUND"; break;
 	case SPAWNER: pre = "SPAWNER"; break;
+	case FACTORY: pre = "FACTORY"; break;
+	case CONTROLLER: pre = "CONTROLLER"; break;
 
 	case DEV:
 		if (!LogSystem::log_dev) return;
@@ -41,7 +43,7 @@ void LogSystem::Log(string const & s, logType t) {
 
 	if (LogSystem::log_file) {
 		// write file ios::app -> every output operation will be performed at the end of the file
-		ofstream o (LogSystem::log_route, ios::app);
+		ofstream o(LogSystem::log_route, ios::app);
 		if (o.is_open()) o << msg;
 		o.close();
 	}

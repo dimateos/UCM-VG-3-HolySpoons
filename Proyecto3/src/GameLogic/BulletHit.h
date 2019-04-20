@@ -3,7 +3,6 @@
 #define BULLETHIT_H_
 
 #include "CollisionListener.h"
-
 #include "Component.h"
 class BulletHit : public Component, public CollisionListener
 {

@@ -1,14 +1,12 @@
 //Nap_Time_Studios
-#pragma once
+#ifndef PHYS_SYS_MANAGER_H_
+#define PHYS_SYS_MANAGER_H_
 
-#include <ctype.h>
-#include <PxPhysicsAPI.h>
+#include "PhyscsFowarder.h"
+
 #define PVD 0 //visual debbuger
-using namespace physx;
 
-#include "EventReporter.h"
-
-// Materials
+// Tmp Materials
 #define BaseMat "BASE"
 #include <map>
 
@@ -22,20 +20,22 @@ public:
 	void stepPhysics(double t);
 	void updateNodes();
 
-	inline void setGravity(PxVec3 v) { gScene->setGravity(v); }
-
 	//creating bodies
+	PxScene* getScene();
+	PxMaterial * getMaterial(std::string mat);
 	PxShape * createShape(PxGeometry * geo, std::string mat);
-	PxRigidDynamic* createDynamicBody(PxShape* shape, PxTransform const &trans);
-	PxRigidStatic* createStaticBody(PxShape* shape, PxTransform const &trans);
+	PxRigidDynamic* createDynamicBody(PxShape* shape, PxTransform* trans = nullptr);
+	PxRigidStatic* createStaticBody(PxShape* shape, PxTransform* trans = nullptr);
+	PxController* createController(PxControllerDesc *desc);
 
 private:
 	// Foundation and Scene
-	PxDefaultAllocator gAllocator;
+	PxDefaultAllocator* gAllocator;
 	PxFoundation *gFoundation = NULL;
 	PxPhysics *gPhysics = NULL;
 	PxDefaultCpuDispatcher *gDispatcher = NULL;
 	PxScene *gScene = NULL;
+	PxControllerManager* gControllerManager = NULL;
 
 #if PVD //visual debugger
 	PxPvd *gPvd				= NULL;
@@ -43,8 +43,8 @@ private:
 
 	// Collisions and events
 	std::map<std::string, PxMaterial*> mats_; //different materials
-	EventReporter eventReporter_;
-	PxDefaultErrorCallback errorCallback_; //unused atm
+	EventReporter* eventReporter_;
+	PxDefaultErrorCallback* errorCallback_; //unused atm
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -57,3 +57,5 @@ private:
 	PhysicsSystemManager() { setupInstance(); };
 	~PhysicsSystemManager() { shutdownInstance(); };
 };
+
+#endif /* PHYS_SYS_MANAGER_H_ */
