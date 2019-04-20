@@ -44,15 +44,6 @@
             "baseLookAt": { "x": 0.0, "y": 0.0, "z": 1.0 },
             "relativePos": { "x": 0.0, "y": 3.0, "z": 0.0 }
         },
-        "crosshair_hud_rend": {
-            "id": {
-                "type": "OverlayComponent",
-                "group": "player_comps"
-            },
-            "overlay_name": "CROSSHAIR_HUD",
-            "panel_container": "CROSSHAIR_HUD_PanelContainer"
-        },
-
         "keyboard_mov": {
             "id": {
                 "type": "KeyBoardMovement",

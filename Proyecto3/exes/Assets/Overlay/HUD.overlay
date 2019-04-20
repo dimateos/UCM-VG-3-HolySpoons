@@ -1,7 +1,7 @@
-overlay PLAYER_HP_HUD
+overlay HUD
 {
 	zorder 100
-	overlay_element PLAYER_HP_HUD_PanelContainer Panel
+	overlay_element HUD_PanelContainer Panel
 	{
 		left 0.0
 		top 0.0
@@ -21,5 +21,14 @@ overlay PLAYER_HP_HUD
             caption "HP: "
             height 40
 		}
+		
+        overlay_element Crosshair Panel
+        {
+            left 0.0
+		    top 0.0
+		    width 1.0
+		    height 1.0
+            material CrosshairMaterial
+        }
 	}
 }

@@ -9,6 +9,8 @@
 
 #include "GameStateMachine.h"
 
+class OverlayComponent;
+
 class Game {
 public:
 	Game();
@@ -45,6 +47,7 @@ private:
 	RenderSystemManager* renderManager;
 	SoundManager* soundManager_;
 	MessageSystem* messageSystem;
+	OverlayComponent* canvas = nullptr;
 
 	GameStateMachine* gsm_; //controls the states
 };

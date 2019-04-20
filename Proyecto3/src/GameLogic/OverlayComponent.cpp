@@ -29,4 +29,9 @@ void OverlayComponent::showOverlay()
 	overlay->show();
 }
 
+Ogre::OverlayElement * OverlayComponent::getOverlayElementByName(std::string name)
+{
+	return overlay->getChild(name);
+}
+
 REGISTER_TYPE(OverlayComponent);

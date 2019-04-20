@@ -76,13 +76,13 @@
                         "group": "manage_components"
                     }
                 },
-            "overlay_test_rend": {
+            "canvas": {
                 "id": {
                     "type": "OverlayComponent",
                     "group": "test_comps"
                 },
-                "overlay_name": "PLAYER_HP_HUD",
-                "panel_container": "PLAYER_HP_HUD_PanelContainer"
+                "overlay_name": "HUD",
+                "panel_container": "HUD_PanelContainer"
             }
         }
     }

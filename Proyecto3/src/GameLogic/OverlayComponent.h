@@ -5,8 +5,19 @@
 #include "Component.h"
 #include <RenderSystemInterface.h>
 
+
+namespace Ogre {
+	class OverlayElement;
+}
+
 class OverlayComponent : public Component
 {
+protected:
+	virtual void setDown();
+
+	Ogre::OverlayContainer* panel = nullptr;
+	Ogre::Overlay *overlay = nullptr;
+
 public:
 	inline OverlayComponent() {};
 	inline OverlayComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
@@ -17,11 +28,7 @@ public:
 	void hideOverlay();
 	void showOverlay();
 
-protected:
-	virtual void setDown();
-
-	Ogre::OverlayContainer* panel = nullptr;
-	Ogre::Overlay *overlay = nullptr;
+	Ogre::OverlayElement* getOverlayElementByName(std::string name);
 };
 
 #endif /* OVERLAYCOMPONENT_H_ */
