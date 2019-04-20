@@ -5,9 +5,6 @@
 #include "GameObject.h"
 #include "Listener.h"
 #include <string>
-#include <map>
-
-class GOFactory;
 
 // every type of component inherites from this class
 class Component : public Listener, public Activable, public Identifiable, public Initiable
@@ -26,6 +23,7 @@ public:
 	virtual void update(GameObject* o, double time) {};
 	virtual void late_update(GameObject* o, double time) {};
 
+	// it sets the cfg and the owner
 	virtual inline void Init(nap_json const & cfg, GameObject* owner) {
 		setCfg(cfg);
 		setOwner(owner);
