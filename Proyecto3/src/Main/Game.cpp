@@ -4,6 +4,11 @@
 #include "LogSystem.h"
 #include "JsonReader.h"
 #include "RenderSystemInterface.h"
+#include "SoundManager.h"
+#include "GameStateMachine.h"
+#include "MessageSystem.h"
+#include "RenderSystemManager.h"
+#include "PhysicsSystemManager.h"
 #include <OverlayComponent.h>
 
 Game::Game() {

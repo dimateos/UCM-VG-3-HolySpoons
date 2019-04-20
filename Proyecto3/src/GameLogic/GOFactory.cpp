@@ -1,4 +1,5 @@
 #include "GOFactory.h"
+#include "Component.h"
 #include "LogSystem.h"
 
 std::map<string, GOFactory*>* GOFactory::factories = nullptr;
@@ -46,8 +47,6 @@ std::list<Component*> GOFactory::ParseComponents(GameObject * o, nap_json & comp
 		auto index = GOFactory::factories->find(type);
 
 		if (index != GOFactory::factories->end()) {
-			//Component* comp = index->second->create((*it) , o);
-			//comp->Init((*it), o);
 			comps.push_back(index->second->create((*it), o));
 		}
 		else LogSystem::Log("El componente " + type + " no fue encontrado... type mal puesto en json? olvidaste la macro?", LogSystem::FACTORY);

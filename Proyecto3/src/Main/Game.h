@@ -2,14 +2,12 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include "RenderSystemManager.h"
-#include "PhysicsSystemManager.h"
-#include "SoundManager.h"
-#include "MessageSystem.h"
-
-#include "GameStateMachine.h"
-
 class OverlayComponent;
+class SoundManager;
+class GameStateMachine;
+class MessageSystem;
+class RenderSystemManager;
+class PhysicsSystemManager;
 
 class Game {
 public:
