@@ -260,6 +260,7 @@ void RenderSystemManager::initApp()
 	mRoot->initialise(false);
 	createWindow();
 	initializeResources();
+	SDL_ShowCursor(SDL_DISABLE);
 	mRoot->addFrameListener(this);
 
 	//mRoot->startRendering(); // blocks the flow
