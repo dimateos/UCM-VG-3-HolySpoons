@@ -34,7 +34,8 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 			PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
 
 			//activar overlays del estado que viene
-			//MessageSystem::getSingleton()->sendMessageGroup(&Message(ACTIVATE_UI), "manage_gameObjects");
+			GameObject* o = GameStateMachine::getSingleton()->currentState()->getGameObject("gm_go");
+			MessageSystem::getSingleton()->sendMessageGameObject(&Message(ACTIVATE_UI), o);
 			return true;
 		}
 	}

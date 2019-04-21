@@ -40,9 +40,8 @@ private:
 	virtual ~RenderSystemInterface();
 
 public:
-	static RenderSystemInterface* createSingleton();
 	static RenderSystemInterface* getSingleton();
-	void closeInterface();
+	static void shutdownSingleton();
 	//Resto de interfaz shaders (?), animacion, camara, viewport...
 	/// Defines the type of light
 	enum LightTypes

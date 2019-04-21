@@ -34,7 +34,6 @@ void Game::initGame() {
 	//Config systems
 	renderManager->setupScene("MainScene"); //creates the first scene
 	renderManager->setupScene("Pause");
-	RenderSystemInterface::createSingleton();
 	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
 	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
 
@@ -64,7 +63,8 @@ void Game::closeGame() {
 	JsonReader::shutdownSingleton();
 	MessageSystem::shutdownSingleton();
 	SoundManager::shutdownSingleton();
-	renderManager->shutdownSingleton(); //maybe static too?
+	RenderSystemInterface::shutdownSingleton();
+	RenderSystemManager::shutdownSingleton();
 	PhysicsSystemManager::shutdownSingleton();
 
 	LogSystem::Log("closed", LogSystem::GAME);

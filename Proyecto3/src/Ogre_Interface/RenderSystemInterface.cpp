@@ -23,17 +23,12 @@ using namespace Ogre;
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
-RenderSystemInterface* RenderSystemInterface::createSingleton()
+RenderSystemInterface * RenderSystemInterface::getSingleton()
 {
 	if (instance_ == nullptr) {
 		instance_ = new RenderSystemInterface();
 	}
 
-	return instance_;
-}
-
-RenderSystemInterface * RenderSystemInterface::getSingleton()
-{
 	return instance_;
 }
 
@@ -44,9 +39,10 @@ RenderSystemInterface::RenderSystemInterface ()
 
 RenderSystemInterface::~RenderSystemInterface()
 {
+	overlayManager->destroyAllOverlayElements();
 }
 
-void RenderSystemInterface::closeInterface()
+void RenderSystemInterface::shutdownSingleton()
 {
 	delete instance_;
 }
