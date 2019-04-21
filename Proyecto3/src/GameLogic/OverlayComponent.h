@@ -3,11 +3,11 @@
 #define OVERLAYCOMPONENT_H_
 
 #include "Component.h"
-#include <RenderSystemInterface.h>
-
 
 namespace Ogre {
 	class OverlayElement;
+	class OverlayContainer;
+	class Overlay;
 }
 
 class OverlayComponent : public Component
@@ -29,6 +29,9 @@ public:
 	void showOverlay();
 
 	Ogre::OverlayElement* getOverlayElementByName(std::string name);
+	void hidePanelByName(std::string name);
+	void showPanelByName(std::string name);
+
 	virtual void receive(Message* msg);
 };
 

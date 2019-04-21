@@ -3,17 +3,18 @@
 #define GAMEOBJECT_H_
 
 #include <SDL_events.h>	//events
-
 #include <list>	//components
-#include "CollisionListener.h"
-using namespace std;
-
-#include "Transforms.h"
 #include "Activable.h"
 #include "Identifiable.h"
 #include "Initiable.h"
+#include "CollisionListener.h"
+
+using namespace std;
 
 class Component;
+class nap_transform;
+class nap_vec3;
+class nap_scale;
 
 // this class accepts components (empty container waiting for functionality)
 class GameObject : public Activable, public Identifiable, public Initiable, public CollisionListenersHolder

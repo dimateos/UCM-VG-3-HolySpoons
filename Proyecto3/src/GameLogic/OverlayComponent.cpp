@@ -2,6 +2,7 @@
 #include <OgreOverlayManager.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlay.h>
+#include <RenderSystemInterface.h>
 #include "GOFactory.h"
 
 void OverlayComponent::setUp()
@@ -32,6 +33,16 @@ void OverlayComponent::showOverlay()
 Ogre::OverlayElement * OverlayComponent::getOverlayElementByName(std::string name)
 {
 	return overlay->getChild(name);
+}
+
+void OverlayComponent::hidePanelByName(std::string name)
+{
+	getOverlayElementByName(name)->hide();
+}
+
+void OverlayComponent::showPanelByName(std::string name)
+{
+	getOverlayElementByName(name)->show();
 }
 
 void OverlayComponent::receive(Message * msg)

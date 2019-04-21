@@ -1,6 +1,8 @@
 #include "GameObject.h"
 #include "Component.h"
 
+#include "Transforms.h"
+
 GameObject::GameObject(nap_json const & cfg)
 	: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {}
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)

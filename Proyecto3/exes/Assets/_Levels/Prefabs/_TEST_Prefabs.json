@@ -1,89 +1,101 @@
 {
-"Prefabs" :
-[
-    {
-        "id": {
-            "name": "pref_ground",
-            "type": "pref_ground",
-            "group": "test_prefabs"
-        },
-        "Components": {
-            "ground_phys": {
-                "id": {
-					"type": "PhysicsComponent",
-					"group": "test_comps"
-                },
-                "dynamic": false,
-                "shape": {
-                    "type": "BOX", "scale": { "x": 30.0, "y": 1.0, "z": 30.0 }
-                }
+    "Prefabs": [
+        {
+            "id": {
+                "name": "pref_ground",
+                "type": "pref_ground",
+                "group": "test_prefabs"
             },
-            "ground_rend": {
-                "id": {
-                    "type": "RenderComponent",
-					"group": "test_comps"
-				},
-                "scale": { "x": 30.0, "y": 1.0, "z": 30.0 },
-                "material": "DebugMaterial2",
-                "shape": {
-                    "entity_name": "pref_ground",
-                    "type": "MESH",
-                    "mesh": "cube.mesh"
-                }
-            }
-        }
-    },
-    {
-        "id": {
-            "name": "pref_cube",
-            "type": "pref_cube",
-            "group": "test_prefabs"
-        },
-        "Components": {
-            "cube_phys": {
-                "id": {
-                    "type": "PhysicsComponent"
-                },
-                "shape": {
-                    "type": "BOX", "scale": { "x": 2.5, "y": 2.5, "z": 2.5 }
-                }
-            },
-            "cube_rend": {
-                "id": {
-                    "type": "RenderComponent"
-                },
-                "scale": { "x": 2.5, "y": 2.5, "z": 2.5 },
-                "material": "DebugMaterial",
-                "shape": {
-                    "entity_name": "pref_cube",
-                    "type": "MESH",
-                    "mesh": "cube.mesh"
-                }
-            }
-        }
-    },
-    {
-        "id": {
-            "name": "gm_go",
-            "type": "pref_gm_go",
-            "group": "manage_gameObjects"
-        },
             "Components": {
-                "game_manager_comp":{
-                    "id":{
-                        "type": "GameManager",
-                        "group": "manage_components"
+                "ground_phys": {
+                    "id": {
+                        "type": "PhysicsComponent",
+                        "group": "test_comps"
+                    },
+                    "dynamic": false,
+                    "shape": {
+                        "type": "BOX",
+                        "scale": {
+                            "x": 30.0,
+                            "y": 1.0,
+                            "z": 30.0
+                        }
                     }
                 },
+                "ground_rend": {
+                    "id": {
+                        "type": "RenderComponent",
+                        "group": "test_comps"
+                    },
+                    "scale": {
+                        "x": 30.0,
+                        "y": 1.0,
+                        "z": 30.0
+                    },
+                    "material": "DebugMaterial2",
+                    "shape": {
+                        "entity_name": "pref_ground",
+                        "type": "MESH",
+                        "mesh": "cube.mesh"
+                    }
+                }
+            }
+        },
+        {
+            "id": {
+                "name": "pref_cube",
+                "type": "pref_cube",
+                "group": "test_prefabs"
+            },
+            "Components": {
+                "cube_phys": {
+                    "id": {
+                        "type": "PhysicsComponent"
+                    },
+                    "shape": {
+                        "type": "BOX",
+                        "scale": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 2.5
+                        }
+                    }
+                },
+                "cube_rend": {
+                    "id": {
+                        "type": "RenderComponent"
+                    },
+                    "scale": {
+                        "x": 2.5,
+                        "y": 2.5,
+                        "z": 2.5
+                    },
+                    "material": "DebugMaterial",
+                    "shape": {
+                        "entity_name": "pref_cube",
+                        "type": "MESH",
+                        "mesh": "cube.mesh"
+                    }
+                }
+            }
+        },
+        {
+            "id": {
+                "name": "gm_go",
+                "type": "pref_gm_go",
+                "group": "manage_gameObjects"
+            },
+            "Components": {
                 "canvas": {
                     "id": {
                         "type": "OverlayComponent",
                         "group": "ui_overlay"
                     },
                     "overlay_name": "HUD",
-                    "panel_container": "HUD_PanelContainer"
+                    "panel_container": "HUD_PanelContainer",
+                    "panel container": "DEATH_PANEL"
                 },
-                "handle_input_pause":{
+                "handle_input_pause": {
                     "id": {
                         "type": "PushStateComponent",
                         "group": "test_comps"
@@ -91,16 +103,21 @@
                     "key": "8",
                     "state": "Pause",
                     "json": "_PAUSE_LEVEL_"
+                },
+                "game_manager_comp": {
+                    "id": {
+                        "type": "GameManager",
+                        "group": "manage_components"
+                    }
                 }
-        }
-    },
-
-    {
-        "id": {
-            "name": "gmPause_go",
-            "type": "pref_gmPause_go",
-            "group": "manage_gameObjects"
+            }
         },
+        {
+            "id": {
+                "name": "gmPause_go",
+                "type": "pref_gmPause_go",
+                "group": "manage_gameObjects"
+            },
             "Components": {
                 "canvas": {
                     "id": {
@@ -110,7 +127,7 @@
                     "overlay_name": "PAUSE",
                     "panel_container": "PAUSE_PanelContainer"
                 },
-                "handle_input":{
+                "handle_input": {
                     "id": {
                         "type": "PopStateComponent",
                         "group": "test_comps"
@@ -118,14 +135,14 @@
                     "key": "8",
                     "state": "MainScene"
                 }
-        }
-    },
-    {
-        "id": {
-            "name": "gmMenu_go",
-            "type": "pref_gmMenu_go",
-            "group": "manage_gameObjects"
+            }
         },
+        {
+            "id": {
+                "name": "gmMenu_go",
+                "type": "pref_gmMenu_go",
+                "group": "manage_gameObjects"
+            },
             "Components": {
                 "canvas": {
                     "id": {
@@ -135,7 +152,7 @@
                     "overlay_name": "MENU",
                     "panel_container": "MENU_PanelContainer"
                 },
-                "handle_input":{
+                "handle_input": {
                     "id": {
                         "type": "PushStateComponent",
                         "group": "test_comps"
@@ -144,7 +161,7 @@
                     "state": "MainScene",
                     "json": "_TEST_LEVEL_"
                 }
+            }
         }
-    }
-]
+    ]
 }

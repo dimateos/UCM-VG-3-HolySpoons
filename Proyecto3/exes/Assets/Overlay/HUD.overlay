@@ -18,8 +18,22 @@ overlay HUD
             left 20
             top 20
             width 40
-            caption "HP: "
             height 40
+            caption "HP: "
+		}
+
+        overlay_element SCORE_Text TextArea
+		{
+            metrics_mode pixels
+            font_name HackReg
+            char_height 40
+            colour_top 1 1 0
+            colour_bottom 1 0.2 0.2
+            left 20
+            top 60
+            width 40
+            height 40
+            caption "SCORE: "
 		}
 		
         overlay_element Crosshair Panel
@@ -31,4 +45,21 @@ overlay HUD
             material CrosshairMaterial
         }
 	}
+
+    overlay_element DEATH_PANEL Panel
+    {
+        overlay_element DEATH_TEXT TextArea
+        {
+            metrics_mode pixels
+            font_name HackReg
+            char_height 40
+            colour_top 1 1 0
+            colour_bottom 1 0.2 0.2
+            left 280
+            top 280
+            width 40
+            height 40
+            caption "YOU ARE DEAD"
+        }
+    }
 }
