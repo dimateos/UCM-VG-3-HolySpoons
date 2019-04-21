@@ -32,10 +32,12 @@ void Game::initGame() {
 	messageSystem = MessageSystem::getSingleton();
 
 	//Config systems
+	renderManager->setupScene("Menu"); //creates the first scene
 	renderManager->setupScene("MainScene"); //creates the first scene
 	renderManager->setupScene("Pause");
 	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
-	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");
+	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");          //may be an object?
+	RenderSystemInterface::getSingleton()->setRenderingScene("Menu"); //sets rendering scene
 
 	//Initialize level
 	JsonReader::getSingleton(); //load prefabs

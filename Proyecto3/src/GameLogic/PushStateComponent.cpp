@@ -26,7 +26,7 @@ void PushStateComponent::setUp()
 bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
 	if (evt.type == SDL_KEYDOWN) {
-		if (evt.key.keysym.sym == key) {
+		if (evt.key.keysym.sym == key && RenderSystemInterface::getSingleton()->getCurrentRenderingScene() != state) { //second condition avoids spam fails
 			//cambio de rendering target
 			static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
 			RenderSystemInterface::getSingleton()->setRenderingScene(state);

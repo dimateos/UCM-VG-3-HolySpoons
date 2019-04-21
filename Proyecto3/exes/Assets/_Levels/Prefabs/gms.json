@@ -84,6 +84,21 @@
                 "json": "_MAIN_LEVEL_"
             }
         }
+    },
+    {
+        "id": {
+            "name": "cursor",
+            "type": "cursor_ui",
+            "group": "cursor"
+        },
+        "Components": {
+            "cursor": {
+                "id": {
+                    "type": "CursorComponent",
+                    "group": "test_comps"
+                }
+            }
+        }
     }
 ]
 }
