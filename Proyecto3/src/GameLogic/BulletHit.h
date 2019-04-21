@@ -4,10 +4,11 @@
 
 #include "CollisionListener.h"
 #include "Component.h"
+//component to deactive bullets
 class BulletHit : public Component, public CollisionListener
 {
 public:
-	inline BulletHit(){}
+	inline BulletHit() {}
 	inline BulletHit(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {};
 	inline virtual ~BulletHit() {};
 	virtual void setUp();

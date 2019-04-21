@@ -1,8 +1,8 @@
 #include "BulletShooter.h"
 
+//fowarded
 #include "Pool.h"
-#include "PhysicsComponent.h"
-#include <PxRigidDynamic.h>
+#include "Weapon.h"
 
 BulletShooter::~BulletShooter()
 {
@@ -15,6 +15,7 @@ void BulletShooter::setUp() {
 	relY_ = cfg_["relativeY"];
 	relZ_ = cfg_["relativeZ"];
 
+	//later cfged in json
 	addWeapon("base_bullet","baseSpoon", 30,0.2);
 	addWeapon("power_bullet", "powerSpoon", 15, 0.4);
 	addWeapon("base_bullet", "shotSpoon", 30, 0.3);
@@ -78,7 +79,6 @@ void BulletShooter::addWeapon(string prefab, string weaponType, float vel, doubl
 		weapons.push_back(new PowerSpoon(prefab, vel, shootSpeed));
 	else if (weaponType == "shotSpoon")
 		weapons.push_back(new ShotSpoon(prefab, vel, shootSpeed));
-
 }
 
 #include "GOFactory.h"

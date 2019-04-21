@@ -2,10 +2,12 @@
 #ifndef BULLETSHOOTER_H_
 #define BULLETSHOOTER_H_
 
-class nap_Pool; //fowarding
+//fowarding
+class nap_Pool;
+class Weapon;
 
 #include "Component.h"
-#include "Weapon.h"
+//component to set live and etc to stuff impacted by bullets
 class BulletShooter : public Component
 {
 public:
@@ -26,7 +28,6 @@ protected:
 	nap_transform* owner_trans_;
 	float relY_, relZ_;
 
-	
 	int currentWeapon = 0;
 	vector<Weapon*> weapons;
 };
