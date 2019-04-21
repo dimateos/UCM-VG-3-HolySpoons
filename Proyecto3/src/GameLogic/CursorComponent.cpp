@@ -1,6 +1,8 @@
 #include "CursorComponent.h"
 #include <RenderSystemInterface.h>
 
+#include <SDL_events.h>	//events
+
 void CursorComponent::setUp()
 {
 	if (isInited()) return;

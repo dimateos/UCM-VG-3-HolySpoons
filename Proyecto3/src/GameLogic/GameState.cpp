@@ -1,10 +1,8 @@
 #include "GameState.h"
 #include "LogSystem.h"
-#include <SoundManager.h>
 
-GameState::GameState(nap_transform* listenerTrans) : Initiable(), gameObjects_() { SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
-GameState::GameState(std::list<GameObject*> gObjects, nap_transform* listenerTrans) : Initiable(), gameObjects_(gObjects)
-{ SoundManager::getSingleton()->setListenerTransform(listenerTrans); }
+#include "GameObject.h" //fowarded
+#include <SDL_events.h>	//events
 
 GameState::~GameState() {
 	setDown();
@@ -13,9 +11,6 @@ GameState::~GameState() {
 void GameState::setUp() {
 	if (isInited()) return;
 	setInited();
-
-	//TEMPORARY
-	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0,0,0), true, false);
 
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
@@ -32,15 +27,6 @@ void GameState::setDown() {
 
 	gameObjects_.clear();
 }
-
-///////////////////////////////////////////////////////////////////////////////
-
-//#include "GameStateMachine.h" //avoid fowarded rewriting
-//so states do not need this include and is cleaner
-
-//void GameState::sendToGSM(Message * msg) {
-//	send(msg, game_->getGSM());
-//}
 
 ///////////////////////////////////////////////////////////////////////////////
 

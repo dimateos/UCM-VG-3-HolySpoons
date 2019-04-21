@@ -2,22 +2,24 @@
 #ifndef GAMESTATEMACHINE_H_
 #define GAMESTATEMACHINE_H_
 
-#include "GameState.h"
+#include "GameState.h" //not worth fowarding
 #include <stack>
+using namespace std;
+
+typedef union SDL_Event;
 
 //at some global cfg
 #define mainGameState "MainScene"
 #define mainGameStateJSON "_MAIN_LEVEL_"
 #define introStateJSON "_MENU_LEVEL_"
 
-//#include "Listener.h"
-class GameStateMachine// : public Listener
+class GameStateMachine
 {
 private:
 	stack<GameState*> states_;
 	GameStateMachine();
 	~GameStateMachine();
-	static GameStateMachine* instance;
+	static GameStateMachine* instance_;
 
 public:
 	static GameStateMachine* getSingleton();

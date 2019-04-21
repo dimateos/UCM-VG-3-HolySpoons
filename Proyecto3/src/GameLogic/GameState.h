@@ -1,15 +1,18 @@
 //Nap_Time_Studios
 #pragma once
 
-#include "GameObject.h"
 #include <string>
 #include <list>
+using namespace std;
 
+class GameObject; //fowarding
+typedef union SDL_Event;
+
+#include "Initiable.h"
 class GameState : public Initiable
 {
 public:
-	GameState(nap_transform* listenerTrans = new nap_transform(nap_vector3(0, 0, 0)));
-	GameState(std::list<GameObject*>, nap_transform* listenerTrans = new nap_transform(nap_vector3(0,0,0)));
+	inline GameState() {};
 	virtual ~GameState();
 	virtual void setUp();
 

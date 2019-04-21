@@ -2,6 +2,7 @@
 #include "LogSystem.h"
 
 #include <PhysicsSystemManager.h>
+#include <Transforms.h>
 
 #include <PxRigidDynamic.h>
 #include <PxRigidStatic.h>

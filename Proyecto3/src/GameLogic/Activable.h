@@ -2,6 +2,8 @@
 #ifndef ACTIVABLE_H_
 #define ACTIVABLE_H_
 
+#define activeString "active"
+
 // class to allow active/desactive objects
 class Activable
 {

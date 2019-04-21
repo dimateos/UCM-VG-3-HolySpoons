@@ -1,15 +1,17 @@
 #include "Game.h"
-#include "Windows.h" //temp counter method
 
-#include "LogSystem.h"
-#include "JsonReader.h"
-#include "RenderSystemInterface.h"
-#include "SoundManager.h"
-#include "GameStateMachine.h"
-#include "MessageSystem.h"
-#include "RenderSystemManager.h"
-#include "PhysicsSystemManager.h"
-#include <OverlayComponent.h>
+//fowarded
+#include <LogSystem.h>
+#include <JsonReader.h>
+#include <GameStateMachine.h>
+#include <MessageSystem.h>
+#include <RenderSystemManager.h>
+#include <RenderSystemInterface.h>
+#include <PhysicsSystemManager.h>
+#include <SoundManager.h>
+
+#include <SDL_events.h>	//events
+#include <TimeSystem.h>	//timing
 
 Game::Game() {
 	initGame();
@@ -26,18 +28,18 @@ void Game::initGame() {
 	LogSystem::Log("initializing...", LogSystem::GAME, {__FILE__, __LINE__});
 
 	//Get/create the singleton instances
-	physicsManager = PhysicsSystemManager::getSingleton();
-	renderManager = RenderSystemManager::getSingleton();
+	physicsManager_ = PhysicsSystemManager::getSingleton();
+	renderManager_ = RenderSystemManager::getSingleton();
 	soundManager_ = SoundManager::getSingleton();
-	messageSystem = MessageSystem::getSingleton();
+	messageSystem_ = MessageSystem::getSingleton();
 
-	//Config systems
-	renderManager->setupScene("Menu"); //creates the first scene
-	renderManager->setupScene("MainScene"); //creates the first scene
-	renderManager->setupScene("Pause");
-	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene"); //sets rendering scene
-	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");          //may be an object?
-	RenderSystemInterface::getSingleton()->setRenderingScene("Menu"); //sets rendering scene
+	//Config rendering scenes
+	renderManager_->setupScene("Menu"); //creates the first scene
+	renderManager_->setupScene("MainScene");
+	renderManager_->setupScene("Pause");
+	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene");	//sets rendering scene
+	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");			//may be an object?
+	RenderSystemInterface::getSingleton()->setRenderingScene("Menu");		//sets rendering scene
 
 	//Initialize level
 	JsonReader::getSingleton(); //load prefabs
@@ -51,7 +53,6 @@ void Game::initGame() {
 	//all done
 	LogSystem::cls();
 	LogSystem::Log("initialized", LogSystem::GAME);
-
 }
 
 //shutdown singletons etc in reverse order
@@ -84,35 +85,16 @@ void Game::stop() {
 	exit_ = true;
 }
 
-void Game::StartCounter() {
-	LARGE_INTEGER li;
-	if (!QueryPerformanceFrequency(&li))
-		return;
-
-	PCFreq = double(li.QuadPart) /*/ 1000.0*/;
-
-	QueryPerformanceCounter(&li);
-	CounterStart = li.QuadPart;
-	CounterLast = CounterStart;
-}
-
-double Game::GetCounter() {
-	LARGE_INTEGER li;
-	QueryPerformanceCounter(&li);
-	double t = double(li.QuadPart - CounterLast) / PCFreq;
-	CounterLast = li.QuadPart;
-	return t;
-}
-
 ///////////////////////////////////////////////////////////////////
 
 //main game loop, ends with exit_
 void Game::run() {
 	exit_ = false;
-	StartCounter();
+	TimeSystem::StartCounter();
 
 	while (!exit_) {
-		double t = GetCounter();
+		double t = TimeSystem::GetCounter();
+		LogSystem::Log("time step: ", t, LogSystem::GAME);
 
 #ifdef FIXED_STEP
 		if (t < (1.0f / 30.0f)) {
@@ -128,8 +110,8 @@ void Game::run() {
 #endif
 		// STEP PHYSICS
 		//LogSystem::Log("main physics", LogSystem::GAME);
-		physicsManager->stepPhysics(t);
-		physicsManager->updateNodes();
+		physicsManager_->stepPhysics(t);
+		physicsManager_->updateNodes();
 
 		//retrieve collisions (add to events queue? or messages?)
 
@@ -145,7 +127,7 @@ void Game::run() {
 
 		// RENDER OGRE
 		//LogSystem::Log("main render", LogSystem::GAME);
-		renderManager->renderFrame();
+		renderManager_->renderFrame();
 
 		// SOUND
 		//LogSystem::Log("main sound", LogSystem::GAME);
@@ -179,7 +161,7 @@ void Game::handleEvents() {
 			}
 		}
 
-		if (!handled) handled = renderManager->handleEvents(evt);
+		if (!handled) handled = renderManager_->handleEvents(evt);
 		if (!handled) handled = gsm_->handleEvents(evt);
 	}
 }

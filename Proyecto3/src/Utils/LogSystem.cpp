@@ -68,6 +68,9 @@ void LogSystem::Log(string const & s, int n, logType t, codePath code) {
 void LogSystem::Log(string const & s, float n, logType t, codePath code) {
 	Log(s + to_string(n), t, code);
 }
+void LogSystem::Log(string const & s, double n, logType t, codePath code) {
+	Log(s + to_string(n), t, code);
+}
 void LogSystem::Log(codePath code) {
 	Log("Test point reached", DEV, code);
 }

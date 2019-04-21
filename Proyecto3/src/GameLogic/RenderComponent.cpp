@@ -1,10 +1,11 @@
 #include "RenderComponent.h"
+#include "LogSystem.h"
+
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
 
-#include "LogSystem.h"
-#include "GOFactory.h"
+#include <Transforms.h>
 
 void RenderComponent::setUp() {
 	if (isInited()) return;
@@ -60,4 +61,5 @@ void RenderComponent::late_update(GameObject * o, double time) {
 	o->setTransUpToDate_rend();
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(RenderComponent);

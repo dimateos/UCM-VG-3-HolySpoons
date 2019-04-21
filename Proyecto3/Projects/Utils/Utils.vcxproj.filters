@@ -1,50 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
+    <Filter Include="Json">
+      <UniqueIdentifier>{3d14242b-2251-4a41-9c99-f4ba52abf969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{3a902504-2f79-4e3e-92bd-25ee7983a2ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Utils\json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\JsonReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\LogSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\Transforms.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Utils\dirent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Utils\CollisionListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Utils\Identifiable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\Utils\json.hpp">
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Utils\JsonCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\JsonReader.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\Transforms.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\Identifiable.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\CollisionListener.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\LogSystem.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utils\TimeSystem.h">
+      <Filter>Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Utils\JsonReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\JsonReader.cpp">
+      <Filter>Json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\Transforms.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\TimeSystem.cpp">
+      <Filter>Misc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

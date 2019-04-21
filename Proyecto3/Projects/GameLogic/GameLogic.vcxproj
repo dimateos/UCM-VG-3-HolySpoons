@@ -37,7 +37,6 @@
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\KeyBoardMovement.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\Listener.cpp" />
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp" />
     <ClCompile Include="..\..\src\GameLogic\OverlayComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />

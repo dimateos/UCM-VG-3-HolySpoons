@@ -2,14 +2,16 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-class OverlayComponent;
-class SoundManager;
+//fowarding
 class GameStateMachine;
 class MessageSystem;
-class RenderSystemManager;
 class PhysicsSystemManager;
+class RenderSystemManager;
+class SoundManager;
 
-class Game {
+//main game class: inits / shuts down the app, handles the loop, etc
+class Game
+{
 public:
 	Game();
 	~Game();
@@ -24,30 +26,18 @@ private:
 	void run();
 	void handleEvents();
 
-	///////////////////////////////////////////////////////////////////
-	// based on fixed step by physx example blueprints
-
-	double PCFreq = 0.0;
-	__int64 CounterStart = 0;
-	__int64 CounterLast = 0;
-
-	void StartCounter();
-	double GetCounter();
-
+#undef FIXED_STEP
+#ifdef FIXED_STEP
 	float stepTime = 0.0f;
-	//#define FIXED_STEP
-
-	///////////////////////////////////////////////////////////////////
+#endif
 
 	bool exit_; //ends the game
 
-	PhysicsSystemManager* physicsManager;
-	RenderSystemManager* renderManager;
-	SoundManager* soundManager_;
-	MessageSystem* messageSystem;
-	OverlayComponent* canvas = nullptr;
-
 	GameStateMachine* gsm_; //controls the states
+	MessageSystem* messageSystem_;
+	PhysicsSystemManager* physicsManager_;
+	RenderSystemManager* renderManager_;
+	SoundManager* soundManager_;
 };
 
 #endif /* GAME_H_ */

@@ -4,6 +4,8 @@
 #include <math.h>
 #include "GOFactory.h"
 
+#include <Transforms.h>
+
 void CircularMovementComponent::CircularMovement(float t)
 {
 	nap_vector3 ownerPos = owner_->getPosition();

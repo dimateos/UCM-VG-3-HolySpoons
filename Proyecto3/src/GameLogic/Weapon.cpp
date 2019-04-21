@@ -6,6 +6,8 @@
 #include "PhysicsComponent.h"
 #include "PxRigidDynamic.h"
 
+#include <Transforms.h>
+
 Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2)
 {
 	active_ = false;

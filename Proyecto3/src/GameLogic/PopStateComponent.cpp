@@ -4,6 +4,7 @@
 #include <RenderSystemInterface.h>
 #include "MessageSystem.h"
 #include <PhysicsSystemManager.h>
+#include <TimeSystem.h>
 
 void PopStateComponent::setUp()
 {
@@ -30,12 +31,14 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 			RenderSystemInterface::getSingleton()->setRenderingScene(state);
 			GameStateMachine::getSingleton()->popState();
 
-			//pause/unpause physics
-			PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
-
 			//activar overlays del estado que viene
 			GameObject* o = GameStateMachine::getSingleton()->currentState()->getGameObject("gm_go");
 			MessageSystem::getSingleton()->sendMessageGameObject(&Message(ACTIVATE_UI), o);
+
+			//pause/unpause physics
+			PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
+			TimeSystem::StartCounter();
+
 			return true;
 		}
 	}

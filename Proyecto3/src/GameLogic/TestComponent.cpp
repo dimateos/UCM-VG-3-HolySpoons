@@ -5,6 +5,9 @@
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
 
+#include <Transforms.h>
+#include <SDL_events.h>	//events
+
 void TestComponent::setUp() {
 	RenderSystemInterface* rsi = RenderSystemInterface::getSingleton();
 

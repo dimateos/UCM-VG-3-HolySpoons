@@ -1,8 +1,9 @@
 #ifndef PushStateComponent_H_
 #define PushStateComponent_H_
 
-#include "Component.h"
+#include <SDL_events.h>
 
+#include "Component.h"
 class PushStateComponent : public Component
 {
 private:

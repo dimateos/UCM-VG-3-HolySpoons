@@ -1,12 +1,14 @@
 #include "GameObject.h"
+
+//fowarded
+#include <Transforms.h>
+#include <SDL_events.h>	//events
 #include "Component.h"
 
-#include "Transforms.h"
-
 GameObject::GameObject(nap_json const & cfg)
-	: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {}
+	: Activable(FINDnRETURN(cfg, activeString, bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_() {}
 GameObject::GameObject(nap_json const & cfg, std::list<Component*> comps)
-	: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {}
+	: Activable(FINDnRETURN(cfg, activeString, bool, true)), Identifiable(cfg["id"]), Initiable(), cfg_(cfg), components_(comps) {}
 
 GameObject::GameObject(GameObject * o) :
 	Activable(o->isActive()), Identifiable(o->cfg_["id"]), Initiable(o->isInited()), cfg_(o->cfg_), components_(o->getComponents()) {}

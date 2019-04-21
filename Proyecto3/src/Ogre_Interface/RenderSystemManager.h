@@ -6,7 +6,7 @@
 #include <map>
 
 //#include <LogSystem.h>
-typedef struct SDL_Window SDL_Window;
+typedef struct SDL_Window;
 typedef union SDL_Event;
 
 namespace Ogre {
@@ -46,6 +46,7 @@ private:
 
 	RenderSystemManager() : mRoot(0) { initApp(); }; //private constructor
 	virtual ~RenderSystemManager();
+
 protected:
 	friend class RenderSystemInterface;
 	/*

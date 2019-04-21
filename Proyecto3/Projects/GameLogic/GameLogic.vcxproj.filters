@@ -34,9 +34,6 @@
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Listener.cpp">
-      <Filter>_Messages</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp">
       <Filter>_Messages</Filter>
     </ClCompile>

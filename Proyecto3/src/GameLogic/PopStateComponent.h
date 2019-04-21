@@ -1,8 +1,9 @@
 #ifndef PopStateComponent_H_
 #define PopStateComponent_H_
 
-#include "Component.h"
+#include <SDL_events.h>
 
+#include "Component.h"
 class PopStateComponent : public Component
 {
 private:
