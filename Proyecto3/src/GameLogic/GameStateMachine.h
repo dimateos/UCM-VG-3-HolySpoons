@@ -5,6 +5,11 @@
 #include "GameState.h"
 #include <stack>
 
+//at some global cfg
+#define mainGameState "MainScene"
+#define mainGameStateJSON "_MAIN_LEVEL_"
+#define introStateJSON "_MENU_LEVEL_"
+
 //#include "Listener.h"
 class GameStateMachine// : public Listener
 {

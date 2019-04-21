@@ -1,7 +1,9 @@
 #include "PopStateComponent.h"
-#include <RenderSystemInterface.h>
+
 #include "GameStateMachine.h"
+#include <RenderSystemInterface.h>
 #include "MessageSystem.h"
+#include <PhysicsSystemManager.h>
 
 void PopStateComponent::setUp()
 {
@@ -27,6 +29,10 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 			//cambio de rendering target
 			RenderSystemInterface::getSingleton()->setRenderingScene(state);
 			GameStateMachine::getSingleton()->popState();
+
+			//pause/unpause physics
+			PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
+
 			//activar overlays del estado que viene
 			//MessageSystem::getSingleton()->sendMessageGroup(&Message(ACTIVATE_UI), "manage_gameObjects");
 			return true;

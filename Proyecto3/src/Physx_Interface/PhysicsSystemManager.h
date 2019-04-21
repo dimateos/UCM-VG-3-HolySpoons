@@ -20,6 +20,8 @@ public:
 	void stepPhysics(double t);
 	void updateNodes();
 
+	inline void pausePhysics(bool b = true) { paused = b; }
+
 	//creating bodies
 	PxScene* getScene();
 	PxMaterial * getMaterial(std::string mat);
@@ -29,6 +31,8 @@ public:
 	PxController* createController(PxControllerDesc *desc);
 
 private:
+	bool paused = true;
+
 	// Foundation and Scene
 	PxDefaultAllocator* gAllocator;
 	PxFoundation *gFoundation = NULL;

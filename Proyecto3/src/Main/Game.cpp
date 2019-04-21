@@ -44,7 +44,7 @@ void Game::initGame() {
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
 
 	gsm_ = GameStateMachine::getSingleton();
-	auto menu = gsm_->loadLevel("_MENU_LEVEL_"); //gsm uses the parser + factory
+	auto menu = gsm_->loadLevel(introStateJSON); //gsm uses the parser + factory
 	gsm_->pushState(menu); //you can push it already and add more things later
 
 	//all done

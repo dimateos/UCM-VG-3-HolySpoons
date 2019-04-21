@@ -106,12 +106,16 @@ void PhysicsSystemManager::shutdownInstance() {
 // Function to configure what happens in each step of physics
 // t: time passed since last call in milliseconds
 void PhysicsSystemManager::stepPhysics(double t) {
+	if (paused) return;
 	gScene->simulate(t);
+	//LogSystem::Log("Simulating phys", LogSystem::PHYS);
 }
 
 //updates moved objects transforms
 void PhysicsSystemManager::updateNodes() {
+	if (paused) return;
 	gScene->fetchResults(true);
+	//LogSystem::Log("UpdateNodes phys", LogSystem::PHYS);
 
 	// retrieve array of actors that MOVED (so we just update the least possible nodes)
 	PxU32 nbActiveActors;

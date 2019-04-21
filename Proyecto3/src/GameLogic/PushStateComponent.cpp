@@ -1,7 +1,9 @@
 #include "PushStateComponent.h"
-#include <RenderSystemInterface.h>
+
 #include "GameStateMachine.h"
+#include <RenderSystemInterface.h>
 #include "OverlayComponent.h"
+#include <PhysicsSystemManager.h>
 
 void PushStateComponent::setUp()
 {
@@ -28,10 +30,15 @@ bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 			//cambio de rendering target
 			static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
 			RenderSystemInterface::getSingleton()->setRenderingScene(state);
+
+			//pause/unpause physics
+			PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
+
 			//cambio de estado
 			GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
 			//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
 			GameStateMachine::getSingleton()->pushState(s);
+
 			//agregarle objetos
 			//...
 			return true;
