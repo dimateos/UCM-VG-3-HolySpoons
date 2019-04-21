@@ -1,6 +1,7 @@
 #include "SoundManager.h"
 #include <LogSystem.h>
-
+#include <Transforms.h>
+#include <irrKlang.h>
 
 using namespace irrklang;
 
