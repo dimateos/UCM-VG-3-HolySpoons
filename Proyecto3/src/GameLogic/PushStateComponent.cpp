@@ -4,6 +4,7 @@
 #include <RenderSystemInterface.h>
 #include "OverlayComponent.h"
 #include <PhysicsSystemManager.h>
+#include <TimeSystem.h>
 
 void PushStateComponent::setUp()
 {
@@ -26,21 +27,20 @@ void PushStateComponent::setUp()
 bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
 	if (evt.type == SDL_KEYDOWN) {
-		if (evt.key.keysym.sym == key) {
+		if (evt.key.keysym.sym == key && RenderSystemInterface::getSingleton()->getCurrentRenderingScene() != state) { //second condition avoids spam fails
 			//cambio de rendering target
 			static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
 			RenderSystemInterface::getSingleton()->setRenderingScene(state);
-
-			//pause/unpause physics
-			PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
 
 			//cambio de estado
 			GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
 			//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
 			GameStateMachine::getSingleton()->pushState(s);
 
-			//agregarle objetos
-			//...
+			//pause/unpause physics
+			PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
+			TimeSystem::StartCounter();
+
 			return true;
 		}
 	}

@@ -4,6 +4,8 @@
 #include "Pool.h"
 #include "Weapon.h"
 
+#include <SDL_events.h>	//events
+
 BulletShooter::~BulletShooter()
 {
 	for (Weapon* w: weapons)

@@ -126,6 +126,37 @@ Ogre::SceneManager* RenderSystemManager::createSceneManager()
 	return s;
 }
 
+RenderSystemManager::~RenderSystemManager()
+{
+	//mShaderGenerator->removeSceneManager(mSM);
+	//mSM->removeRenderQueueListener(mOverlaySystem);
+	//mSceneMgr->removeRenderQueueListener(overlaySystem);
+
+	for (auto it : scenes) {
+		it.second->removeRenderQueueListener(overlaySystem);
+		mRoot->destroySceneManager(it.second);
+	}
+
+	if (mWindow != nullptr)
+	{
+		mRoot->destroyRenderTarget(mWindow);
+		mWindow = nullptr;
+	}
+
+	if (SDL_win != nullptr)
+	{
+		SDL_DestroyWindow(SDL_win);
+		SDL_QuitSubSystem(SDL_INIT_VIDEO);
+		SDL_win = nullptr;
+	}
+
+	delete overlaySystem;
+	overlaySystem = nullptr;
+
+	delete mRoot;
+	mRoot = nullptr;
+}
+
 void RenderSystemManager::setupScene(Ogre::String sceneName)
 {
 	SceneManager* s = createSceneManager();
@@ -181,35 +212,12 @@ void RenderSystemManager::renderFrame()
 
 void RenderSystemManager::shutdownSingleton()
 {
-	//mShaderGenerator->removeSceneManager(mSM);
-	//mSM->removeRenderQueueListener(mOverlaySystem);
-	//mSceneMgr->removeRenderQueueListener(overlaySystem);
-
-	for (auto it : scenes) {
-		it.second->removeRenderQueueListener(overlaySystem);
-		mRoot->destroySceneManager(it.second);
-	}
-
-	if (mWindow != nullptr)
-	{
-		mRoot->destroyRenderTarget(mWindow);
-		mWindow = nullptr;
-	}
-
-	if (SDL_win != nullptr)
-	{
-		SDL_DestroyWindow(SDL_win);
-		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		SDL_win = nullptr;
-	}
-
-	delete overlaySystem;
-	overlaySystem = nullptr;
-
-	delete mRoot;
-	mRoot = nullptr;
-
 	delete instance_;
+}
+
+bool RenderSystemManager::frameStarted(const Ogre::FrameEvent & evt)
+{
+	return true;
 }
 
 void RenderSystemManager::_setRenderingScene(Ogre::String scene)
@@ -252,6 +260,7 @@ void RenderSystemManager::initApp()
 	mRoot->initialise(false);
 	createWindow();
 	initializeResources();
+	SDL_ShowCursor(SDL_DISABLE);
 	mRoot->addFrameListener(this);
 
 	//mRoot->startRendering(); // blocks the flow

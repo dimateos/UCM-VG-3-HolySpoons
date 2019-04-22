@@ -6,7 +6,7 @@
 #include <map>
 
 //#include <LogSystem.h>
-typedef struct SDL_Window SDL_Window;
+typedef struct SDL_Window;
 typedef union SDL_Event;
 
 namespace Ogre {
@@ -20,7 +20,6 @@ namespace Ogre {
 	class Light;
 	class Viewport;
 };
-
 class RenderSystemInterface;
 
 class RenderSystemManager : public Ogre::FrameListener
@@ -35,7 +34,6 @@ private:
 	std::map<Ogre::String, Ogre::SceneManager*> scenes;
 	Ogre::SceneManager* currentSceneManager = nullptr;
 	Ogre::OverlaySystem * overlaySystem = nullptr;
-
 	const std::string projectName = "Holy Spoons";
 
 	void initApp();
@@ -47,7 +45,8 @@ private:
 	Ogre::SceneManager* createSceneManager();
 
 	RenderSystemManager() : mRoot(0) { initApp(); }; //private constructor
-	virtual ~RenderSystemManager() {};
+	virtual ~RenderSystemManager();
+
 protected:
 	friend class RenderSystemInterface;
 	/*
@@ -77,12 +76,12 @@ public:
 	/*
 	Shutdowns the entire app
 	*/
-	void shutdownSingleton();
+	static void shutdownSingleton();
 
 	/*
 	Called when the frame starts rendering
 	*/
-	virtual bool frameStarted(const Ogre::FrameEvent& evt) { return true; };
+	virtual bool frameStarted(const Ogre::FrameEvent& evt);
 
 	/*
 	Called when the frame ends rendering

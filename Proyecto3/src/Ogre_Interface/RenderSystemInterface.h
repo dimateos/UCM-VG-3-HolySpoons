@@ -3,11 +3,15 @@
 
 #include <string>
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+
 namespace Ogre {
 	class OverlayManager;
 	class Camera;
 	class OverlayContainer;
 	class Overlay;
+	class OverlayElement;
 	class TextAreaOverlayElement;
 	class SceneManager;
 	class Viewport;
@@ -34,15 +38,15 @@ private:
 	Ogre::Camera* camera = nullptr;
 	std::string panelName = "PanelName";
 	std::string overlayName = "OverlayName";
+	std::string currentRenderingScene;
 
 	static RenderSystemInterface* instance_; //singleton pattern
 	RenderSystemInterface();
 	virtual ~RenderSystemInterface();
 
 public:
-	static RenderSystemInterface* createSingleton();
 	static RenderSystemInterface* getSingleton();
-	void closeInterface();
+	static void shutdownSingleton();
 	//Resto de interfaz shaders (?), animacion, camara, viewport...
 	/// Defines the type of light
 	enum LightTypes
@@ -158,9 +162,25 @@ public:
 	 */
 	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
 	/*
-	 *create overlayPanel, used for images
+	 *create overlay element
 	 */
-	Ogre::OverlayContainer * createOverlayContainer();
+	Ogre::OverlayElement * createOverlayElement(std::string type, std::string name);	
+	/*
+	 *set overlay element dimensions (1.0f = screen width/height)
+	 */
+	void setOverlayElementDimensions(Ogre::OverlayElement* e, float w, float h);	
+	/*
+	 *set overlay element position (1.0f = screen width/height)
+	 */
+	void setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y);
+	/*
+	 *gets overlay element
+	 */
+	Ogre::OverlayElement * getOverlayElement(std::string name);
+	/*
+	 *set overlayMaterial
+	 */
+	void setOverlayElementMaterial(Ogre::OverlayElement* e, std::string matName);
 	/*
 	 * Returns the dest rotation
 	 */	
@@ -178,6 +198,8 @@ public:
 	 *sets up all the neccesary elements. Starts rendering a new scene
 	*/
 	void setRenderingScene(std::string scene);
+
+	std::string getCurrentRenderingScene();
 };
 
 #endif //RENDERSYSTEMINTERFACE_H_

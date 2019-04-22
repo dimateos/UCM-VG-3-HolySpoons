@@ -23,17 +23,12 @@ using namespace Ogre;
 
 RenderSystemInterface* RenderSystemInterface::instance_ = nullptr;
 
-RenderSystemInterface* RenderSystemInterface::createSingleton()
+RenderSystemInterface * RenderSystemInterface::getSingleton()
 {
 	if (instance_ == nullptr) {
 		instance_ = new RenderSystemInterface();
 	}
 
-	return instance_;
-}
-
-RenderSystemInterface * RenderSystemInterface::getSingleton()
-{
 	return instance_;
 }
 
@@ -44,9 +39,10 @@ RenderSystemInterface::RenderSystemInterface ()
 
 RenderSystemInterface::~RenderSystemInterface()
 {
+	overlayManager->destroyAllOverlayElements();
 }
 
-void RenderSystemInterface::closeInterface()
+void RenderSystemInterface::shutdownSingleton()
 {
 	delete instance_;
 }
@@ -237,6 +233,32 @@ void RenderSystemInterface::setTextColourBot(TextAreaOverlayElement * element, f
 	element->setColourBottom(Ogre::ColourValue(R, G, B, I));
 }
 
+Ogre::OverlayElement * RenderSystemInterface::createOverlayElement(std::string type, std::string name)
+{
+	OverlayElement* e = overlayManager->createOverlayElement(type, name);
+	return e;
+}
+
+void RenderSystemInterface::setOverlayElementDimensions(Ogre::OverlayElement* e, float w, float h)
+{
+	e->setDimensions(w, h);
+}
+
+void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y)
+{
+	e->setPosition(x, y);
+}
+
+Ogre::OverlayElement * RenderSystemInterface::getOverlayElement(std::string name)
+{
+	return overlayManager->getOverlayElement(name);
+}
+
+void RenderSystemInterface::setOverlayElementMaterial(Ogre::OverlayElement * e, std::string matName)
+{
+	e->setMaterialName(matName);
+}
+
 Ogre::Quaternion RenderSystemInterface::getRotationFrom_To(Ogre::Vector3 src, Ogre::Vector3 dest)
 {
 	return src.getRotationTo(dest);
@@ -265,5 +287,12 @@ void RenderSystemInterface::setRenderingScene(std::string scene)
 	RenderSystemManager::getSingleton()->_setRenderingScene(scene);
 	setSceneManager(RenderSystemManager::getSingleton()->getCurrentSceneManager());
 	camera = getSceneManager()->getCamera("MainCam");
+
+	currentRenderingScene = scene;
+}
+
+std::string RenderSystemInterface::getCurrentRenderingScene()
+{
+	return currentRenderingScene;
 }
 

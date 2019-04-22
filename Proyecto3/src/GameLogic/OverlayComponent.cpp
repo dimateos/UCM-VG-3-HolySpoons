@@ -16,8 +16,7 @@ void OverlayComponent::setUp()
 
 void OverlayComponent::setDown()
 {
-	Ogre::OverlayManager::getSingletonPtr()->destroyOverlayElement(panel);
-	Ogre::OverlayManager::getSingletonPtr()->destroy(overlay);
+	hideOverlay();
 }
 
 void OverlayComponent::hideOverlay()

@@ -7,8 +7,8 @@
 // it allows to receive messages
 class Listener {
 public:
-	Listener();
-	virtual ~Listener();
+	inline Listener() {};
+	inline virtual ~Listener() {};
 	virtual void receive(Message* msg) {};
 };
 

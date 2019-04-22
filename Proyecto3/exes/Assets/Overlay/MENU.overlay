@@ -21,5 +21,14 @@ overlay MENU
             caption "PRESS SPACE TO START"
             height 40
 		}
+
+		overlay_element Cursor Panel
+        {
+            left 0.0
+		    top 0.0
+		    width 0.1
+		    height 0.1
+            material CursorMaterial
+        }
 	}
 }

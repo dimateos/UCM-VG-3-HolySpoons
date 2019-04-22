@@ -3,18 +3,17 @@
 #define COMPONENT_H_
 
 #include "GameObject.h"
-#include "Listener.h"
-#include <string>
 
+#include "Listener.h"
 // every type of component inherites from this class
 class Component : public Listener, public Activable, public Identifiable, public Initiable
 {
 public:
 	inline Component() : Activable(), Identifiable(), cfg_(), owner_(nullptr) {};
 	inline Component(nap_json const & cfg) :
-		Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
+		Activable(FINDnRETURN(cfg, activeString, bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
 	inline Component(nap_json const & cfg, GameObject* owner)
-		: Activable(FINDnRETURN(cfg, "active", bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(owner) {};
+		: Activable(FINDnRETURN(cfg, activeString, bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(owner) {};
 	inline virtual ~Component() {};
 
 	// called from gameObjects themselves
@@ -34,7 +33,7 @@ public:
 
 	//some debugging reading the config
 	inline void setCfg(nap_json const & cfg) {
-		active_ = FINDnRETURN(cfg, "active", bool, true);
+		active_ = FINDnRETURN(cfg, activeString, bool, true);
 		setId(cfg["id"]);
 		cfg_ = cfg;
 	}

@@ -28,6 +28,7 @@ public:
 	static void Log(string const & msg, logType t = NOTYPE, codePath code = nonCode);			// you can log a message
 	static void Log(string const & msg, int n, logType t = NOTYPE, codePath code = nonCode);	// easier logging of an int
 	static void Log(string const & msg, float n, logType t = NOTYPE, codePath code = nonCode);	// easier logging of float
+	static void Log(string const & msg, double n, logType t = NOTYPE, codePath code = nonCode);	// easier logging of double
 	static void Log(codePath code = nonCode);													// default dev log test msg
 
 	static void Log(string const & msg, nap_json const & j, logType t = NOTYPE, codePath code = nonCode);	// logging json

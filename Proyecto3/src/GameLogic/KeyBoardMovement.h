@@ -2,6 +2,7 @@
 #define KEYBOARDMOVEMENT_H_
 
 #include "PhyscsFowarder.h"
+#include <SDL_events.h>
 
 #include "Component.h"
 class KeyBoardMovement : public Component

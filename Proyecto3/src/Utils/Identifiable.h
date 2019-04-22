@@ -2,6 +2,7 @@
 #ifndef IDENTIFIABLE_H_
 #define IDENTIFIABLE_H_
 
+#include <string>
 #include "jsonCore.h"
 #define undef "undefined"
 

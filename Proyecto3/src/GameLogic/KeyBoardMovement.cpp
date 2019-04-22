@@ -3,6 +3,8 @@
 #include "PhysicsComponent.h"
 #include <PxRigidDynamic.h>
 
+#include <Transforms.h>
+
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {}
 KeyBoardMovement::~KeyBoardMovement() {}
 

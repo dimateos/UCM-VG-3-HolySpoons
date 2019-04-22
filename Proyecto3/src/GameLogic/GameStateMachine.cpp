@@ -1,8 +1,15 @@
 #include "GameStateMachine.h"
-#include "MessageSystem.h"
-#include <SoundManager.h>
 
-GameStateMachine* GameStateMachine::instance = nullptr;
+#include <SDL_events.h>	//fowarded events
+
+//required
+#include "MessageSystem.h"	//update the MessageSystem targets
+#include "GOFactory.h"		//build comps
+#include "GameObject.h"
+#include <Transforms.h>
+#include <SoundManager.h>	//tmp play music
+
+GameStateMachine* GameStateMachine::instance_ = nullptr;
 GameStateMachine::GameStateMachine() {}
 
 GameStateMachine::~GameStateMachine() {
@@ -12,30 +19,21 @@ GameStateMachine::~GameStateMachine() {
 	}
 }
 
-//void GameStateMachine::receive(Message* msg) {
-//	switch (msg->id_) {
-//	default:
-//		break;
-//		//msg recieved
-//	}
-//}
-
-#include "GOFactory.h" //build comps
-#include "JsonReader.h" //reading levels
-
 GameStateMachine * GameStateMachine::getSingleton()
 {
-	if (instance == nullptr) {
-		instance = new GameStateMachine();
+	if (instance_ == nullptr) {
+		instance_ = new GameStateMachine();
 	}
 
-	return instance;
+	return instance_;
 }
 
 void GameStateMachine::shutdownSingleton()
 {
-	delete instance;
+	delete instance_;
 }
+
+///////////////////////////////////////////////////////////////////////////////
 
 GameState * GameStateMachine::loadLevel(std::string level) {
 	GameState * state = new GameState();
@@ -88,8 +86,10 @@ void GameStateMachine::pushState(GameState *newState) {
 
 	states_.push(newState);
 	newState->setUp();
+
 	//this needs to be done everytime we change state
 	MessageSystem::getSingleton()->updateTargets(newState->getGameObjects());
+	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 0), true, false); //tmp play a song
 }
 
 void GameStateMachine::popState() {

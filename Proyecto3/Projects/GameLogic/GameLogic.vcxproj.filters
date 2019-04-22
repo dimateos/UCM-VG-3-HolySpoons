@@ -34,9 +34,6 @@
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Listener.cpp">
-      <Filter>_Messages</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp">
       <Filter>_Messages</Filter>
     </ClCompile>
@@ -105,6 +102,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Weapon.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\CursorComponent.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

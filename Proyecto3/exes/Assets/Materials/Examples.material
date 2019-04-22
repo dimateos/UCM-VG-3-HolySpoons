@@ -40,6 +40,22 @@ material EyeMaterial
 	}
 }
 
+material CursorMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture monkeycursor.png
+			}
+		}
+	}
+}
+
 material DebugMaterial2
 {
 	technique
