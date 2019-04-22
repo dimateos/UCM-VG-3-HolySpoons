@@ -9,7 +9,10 @@ void OverlayComponent::setUp()
 {
 	overlay = Ogre::OverlayManager::getSingleton().getByName(cfg_["overlay_name"]);
 	panel = overlay->getChild(cfg_["panel_container"]);
+}
 
+void OverlayComponent::lateSetUp()
+{
 	// Show the overlay
 	showOverlay();
 }

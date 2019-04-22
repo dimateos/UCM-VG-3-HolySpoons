@@ -24,7 +24,7 @@
     <ClCompile Include="..\..\src\GameLogic\BulletHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletShooter.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\Button.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
@@ -53,7 +53,7 @@
     <ClInclude Include="..\..\src\GameLogic\BulletHit.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletShooter.h" />
-    <ClInclude Include="..\..\src\GameLogic\Button.h" />
+    <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />

@@ -241,12 +241,13 @@ Ogre::OverlayElement * RenderSystemInterface::createOverlayElement(std::string t
 
 void RenderSystemInterface::setOverlayElementDimensions(Ogre::OverlayElement* e, float w, float h)
 {
-	e->setDimensions(w, h);
+	e->setDimensions(w/ getCamera()->getViewport()->getActualWidth(), h/ getCamera()->getViewport()->getActualHeight());
 }
 
 void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y)
 {
-	e->setPosition(x, y);
+
+	e->setPosition(x/getCamera()->getViewport()->getActualWidth(), y/ getCamera()->getViewport()->getActualHeight());
 }
 
 Ogre::OverlayElement * RenderSystemInterface::getOverlayElement(std::string name)
@@ -299,5 +300,4 @@ std::string RenderSystemInterface::getCurrentRenderingScene()
 void RenderSystemInterface::addToPanel(std::string name, Ogre::OverlayElement* elemt)
 {
 	static_cast<OverlayContainer*>(overlayManager->getOverlayElement(name))->addChild(elemt);
-	
 }

@@ -11,6 +11,12 @@
             "id": {
 				"type": "cursor_ui"
             }
+        },
+
+        {
+            "id": {
+				"type": "button_ui"
+            }
         }
     ]
 }

@@ -106,7 +106,7 @@
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\Button.cpp">
+    <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -204,7 +204,7 @@
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\Button.h">
+    <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
   </ItemGroup>

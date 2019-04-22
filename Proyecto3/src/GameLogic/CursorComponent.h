@@ -4,15 +4,18 @@
 #include "Component.h"
 
 namespace Ogre {
-	class SceneNode;
+	class Camera;
 	class OverlayElement;
 }
+
+class RenderSystemInterface;
 
 class CursorComponent : public Component
 {
 private:
 	int x, y;
 	Ogre::OverlayElement* image = nullptr;
+	RenderSystemInterface* rsi = nullptr;
 
 public:
 	CursorComponent() {};

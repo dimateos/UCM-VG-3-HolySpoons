@@ -1,14 +1,14 @@
 #include "Component.h"
 
-#ifndef BUTTON_H_
-#define BUTTON_H_
+#ifndef ButtonComponent_H_
+#define ButtonComponent_H_
 
-class Button : public Component
+class ButtonComponent : public Component
 {
 public:
-	Button() {};
-	Button(nap_json const & cfg, GameObject* owner);
-	~Button() {};
+	ButtonComponent() {};
+	ButtonComponent(nap_json const & cfg, GameObject* owner);
+	~ButtonComponent() {};
 
 private:
 	int X, Y, W, H;
@@ -17,7 +17,6 @@ private:
 
 	void OnClick();
 	void setUp();
-
 	
 	bool handleEvents(GameObject* o, const SDL_Event& evt);
 };
