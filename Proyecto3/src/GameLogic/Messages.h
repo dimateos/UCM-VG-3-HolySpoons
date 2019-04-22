@@ -14,7 +14,9 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	ADD_SCORE,
 
 	//ENEMY GAMELOGIC
-	HP_RESET
+	HP_RESET,
+
+	BUTTON_START_GAME
 };
 
 struct Message {

@@ -246,7 +246,6 @@ void RenderSystemInterface::setOverlayElementDimensions(Ogre::OverlayElement* e,
 
 void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y)
 {
-
 	e->setPosition(x/getCamera()->getViewport()->getActualWidth(), y/ getCamera()->getViewport()->getActualHeight());
 }
 

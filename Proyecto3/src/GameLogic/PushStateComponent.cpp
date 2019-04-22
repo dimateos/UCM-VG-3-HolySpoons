@@ -6,6 +6,22 @@
 #include <PhysicsSystemManager.h>
 #include <TimeSystem.h>
 
+void PushStateComponent::pushState()
+{
+	//cambio de rendering target
+	static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
+	RenderSystemInterface::getSingleton()->setRenderingScene(state);
+
+	//cambio de estado
+	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
+	//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
+	GameStateMachine::getSingleton()->pushState(s);
+
+	//pause/unpause physics
+	PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
+	TimeSystem::StartCounter();
+}
+
 void PushStateComponent::setUp()
 {
 	if (isInited()) return;
@@ -28,24 +44,19 @@ bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
 	if (evt.type == SDL_KEYDOWN) {
 		if (evt.key.keysym.sym == key && RenderSystemInterface::getSingleton()->getCurrentRenderingScene() != state) { //second condition avoids spam fails
-			//cambio de rendering target
-			static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
-			RenderSystemInterface::getSingleton()->setRenderingScene(state);
-
-			//cambio de estado
-			GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
-			//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
-			GameStateMachine::getSingleton()->pushState(s);
-
-			//pause/unpause physics
-			PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
-			TimeSystem::StartCounter();
-
+			pushState();
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void PushStateComponent::receive(Message * msg)
+{
+	if (msg->id_ == BUTTON_START_GAME) {
+		pushState();
+	}
 }
 
 #include "GOFactory.h"

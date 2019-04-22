@@ -18,6 +18,10 @@ public:
 
 	void updateTargets(list<GameObject*>* targets);
 
+	/*
+	 *sends message to all targets
+	 */
+	void sendMessage(Message* msg);
 	void sendMessageName(Message* msg, string name);
 	void sendMessageType(Message* msg, string type);
 	void sendMessageGroup(Message* msg, string group);
