@@ -35,6 +35,7 @@
     <ClCompile Include="..\..\src\GameLogic\GameState.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\KeyBoardMovement.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Activable.h" />
+    <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Initiable.h" />

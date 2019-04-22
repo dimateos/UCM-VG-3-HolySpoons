@@ -12,11 +12,11 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	//UI
 	ACTIVATE_UI,
 	ADD_SCORE,
+	HP_DAMAGE,
+	BUTTON_START_GAME,
 
 	//ENEMY GAMELOGIC
-	HP_RESET,
-
-	BUTTON_START_GAME
+	HP_RESET
 };
 
 struct Message {
@@ -33,6 +33,11 @@ struct Msg_PX_userPtr: public Message
 struct Msg_ADD_SCORE:public Message {
 	inline Msg_ADD_SCORE(int score) : Message(ADD_SCORE), score_(score) { }
 	int score_;
+};
+
+struct Msg_HP_DAMAGE :public Message {
+	inline Msg_HP_DAMAGE(int damage) : Message(HP_DAMAGE), damage_(damage) { }
+	int damage_;
 };
 
 #endif /* MESSAGES_H_ */

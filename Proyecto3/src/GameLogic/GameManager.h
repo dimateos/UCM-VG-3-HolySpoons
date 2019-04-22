@@ -6,6 +6,7 @@
 
 class OverlayComponent;
 class GameObject;
+class HPComponent;
 
 namespace Ogre {
 	class TextAreaOverlayElement;
@@ -22,6 +23,7 @@ private:
 	Ogre::TextAreaOverlayElement* ScoreText;
 
 	GameObject* player_;
+	HPComponent* playerHP_;
 
 	int score;
 

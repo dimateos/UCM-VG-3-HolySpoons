@@ -2,6 +2,7 @@
 #include "GOFactory.h"
 #include "OverlayComponent.h"
 #include "GameStateMachine.h"
+#include "HPComponent.h"
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayContainer.h>
 #include <RenderSystemInterface.h>
@@ -10,7 +11,7 @@ using namespace Ogre;
 
 void GameManager::updateUI()
 {
-	//HPText->setCaption("SCORE: " + std::to_string(playerLife));
+	HPText->setCaption("HP: " + std::to_string(playerHP_->getHP()));
 	ScoreText->setCaption("SCORE: " + std::to_string(score));
 }
 
@@ -27,6 +28,7 @@ void GameManager::setUp() {
 	ScoreText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("SCORE_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
+	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
 
 	// scope
 	Ogre::OverlayElement* scope = RenderSystemInterface::getSingleton()->getOverlayElement("Scope");
@@ -36,9 +38,10 @@ void GameManager::setUp() {
 }
 
 void GameManager::update(GameObject * o, double time) {
-	// update of the HP HUD with the player HP
-	// checks if the player HP is under 0 (DEAD panel)
-	// or if the player has completed the round (NEXT ROUND panel)
+	if(playerHP_->getHP() <= 0) // EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
+		overlayComp->showPanelByName("DEATH_PANEL");
+
+	// or if the player has completed the round (NEXT ROUND state)
 }
 
 void GameManager::receive(Message * msg)

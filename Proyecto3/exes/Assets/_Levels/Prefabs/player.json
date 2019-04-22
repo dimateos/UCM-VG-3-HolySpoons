@@ -72,6 +72,13 @@
             "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "range": 8500
+        },
+        "hp_component": {
+            "id": {
+                "type": "HPComponent",
+                "group": "player_comps"
+            },
+            "hp": 100
         }
     }
 }
