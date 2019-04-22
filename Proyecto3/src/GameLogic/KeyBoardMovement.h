@@ -1,7 +1,7 @@
 #ifndef KEYBOARDMOVEMENT_H_
 #define KEYBOARDMOVEMENT_H_
 
-#include "PhyscsFowarder.h"
+#include "PhysicsControllerComponent.h"
 #include <SDL_events.h>
 
 #include "Component.h"
@@ -15,8 +15,7 @@ private:
 	SDL_Keycode run_;       // Lft. Shift
 	SDL_Keycode jump_;      // Space
 
-	physx::PxRigidDynamic* physBody;
-
+	PhysicsControllerComponent* controller_comp;
 	nap_vector3 velocity;
 
 	// velocities

@@ -1,8 +1,5 @@
 #include "KeyBoardMovement.h"
 
-#include "PhysicsComponent.h"
-#include <PxRigidDynamic.h>
-
 #include <Transforms.h>
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {}
@@ -42,7 +39,7 @@ void KeyBoardMovement::setUp() {
 void KeyBoardMovement::lateSetUp() {
 
 	// physics component
-	physBody = static_cast<PhysicsComponent*>(owner_->getComponent("basic_phy"))->getDynamicBody();
+	controller_comp = static_cast<PhysicsControllerComponent*>(owner_->getComponent("controller_phy"));
 }
 
 bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
@@ -51,56 +48,51 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 	if (evt.type == SDL_KEYDOWN) {
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
+		handled = true;
 		if (pressedKey == forward_) {
 			Zaxis.push_front(forward_);
-			handled = true;
 		}
 		else if (pressedKey == left_) {
 			Xaxis.push_front(left_);
-			handled = true;
 		}
 		else if (pressedKey == backward_) {
 			Zaxis.push_front(backward_);
-			handled = true;
 		}
 		else if (pressedKey == right_) {
 			Xaxis.push_front(right_);
-			handled = true;
 		}
 		else if (pressedKey == run_) {
 			vel_ = runVel_;
-			handled = true;
 		}
-		else if (pressedKey == jump_ && abs(physBody->getLinearVelocity().y) <= jumpAccuracy_) {
-			nap_vector3 v = { 0, jumpForce_, 0 };
-			physBody->addForce(v.px());
-			handled = true;
+		else if (pressedKey == jump_) {
+			if (abs(controller_comp->getV().y_) <= jumpAccuracy_) {
+				nap_vector3 f = { 0, jumpForce_, 0 };
+				controller_comp->addF(f);
+			}
 		}
+		else handled = false;
 	}
 
 	else if (evt.type == SDL_KEYUP) {
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
+		handled = true;
 		if (pressedKey == forward_) {
 			Zaxis.remove(forward_);
-			handled = true;
 		}
 		else if (pressedKey == left_) {
 			Xaxis.remove(left_);
-			handled = true;
 		}
 		else if (pressedKey == backward_) {
 			Zaxis.remove(backward_);
-			handled = true;
 		}
 		else if (pressedKey == right_) {
 			Xaxis.remove(right_);
-			handled = true;
 		}
 		else if (pressedKey == run_) {
 			vel_ = walkVel_;
-			handled = true;
 		}
+		else handled = false;
 	}
 
 	return handled;
@@ -110,7 +102,7 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 	velocity = nap_vector3(0, 0, 0);
 
 	if (!Zaxis.empty()) {
-		if (Zaxis.front() == forward_)  updateVelocity(vZ*-1);
+		if (Zaxis.front() == forward_) updateVelocity(vZ*-1);
 		if (Zaxis.front() == backward_) updateVelocity(vZ);
 	}
 	if (!Xaxis.empty()) {
@@ -118,8 +110,7 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 		else if (Xaxis.front() == right_) updateVelocity(vX);
 	}
 
-	physBody->setLinearVelocity(nap_vector3(velocity.x_*time,
-		physBody->getLinearVelocity().y, velocity.z_*time).px());
+	controller_comp->setV(nap_vector3(velocity.x_*time, controller_comp->getV().y_, velocity.z_*time));
 }
 
 #include "GOFactory.h"

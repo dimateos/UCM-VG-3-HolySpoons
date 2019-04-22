@@ -48,7 +48,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	// entity orientation = camera y orientation
 	auto ori = camNode_->getOrientation();
 	nap_quat nq = napQUAT(ori);
-	ent->setOrientation(nq);
+	//ent->setOrientation(nq);
 
 	//avoid flips
 	float frame_rotY = rotYspeed_ * time * -rotY_;

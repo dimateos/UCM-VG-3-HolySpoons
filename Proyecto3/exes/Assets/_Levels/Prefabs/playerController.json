@@ -1,0 +1,72 @@
+{
+    "id": {
+        "name": "player",
+        "type": "pref_playerController"
+    },
+    "pos": { "x": 0.0, "y": 5.0, "z": -5.0 },
+    "Components": {
+        "controller_phy": {
+            "id": {
+                "type": "PhysicsControllerComponent",
+                "group": "player_comps"
+            },
+            "material": "PLAYER",
+            "radius": 2.0,
+            "height": 3.0
+        },
+        "basic_ren": {
+            "id": {
+                "type": "RenderComponent",
+                "group": "player_comps"
+            },
+            "scale": { "x": 2.0, "y": 7.0, "z": 2.0 },
+            "shape": {
+                "entity_name": "player_prism",
+                "type": "MESH",
+                "mesh": "cube.mesh"
+            }
+        },
+
+        "keyboard_mov": {
+            "id": {
+                "type": "KeyBoardMovement",
+                "group": "player_comps"
+            },
+            "walkVel":1500,
+            "runVel": 3000,
+            "jumpForce": 15000
+        },
+        "camera_fps": {
+            "id": {
+                "type": "FPSCamera"
+            },
+            "rotXspeed": 10.5,
+            "rotYspeed": 10.5,
+            "maxRotY": 80,
+            "zoomed": 25,
+            "baseDir": { "x": 0.0, "y": -1.0, "z": 0.0 },
+            "baseLookAt": { "x": 0.0, "y": 0.0, "z": 1.0 },
+            "relativePos": { "x": 0.0, "y": 3.0, "z": 0.0 }
+        },
+        "bullet_shooter": {
+            "id": {
+                "type": "BulletShooter",
+                "group": "player_comps"
+            },
+            "relativeY": 3.0,
+            "relativeZ": 0.0,
+            "vel": 30
+        },
+        "att_light": {
+            "id": {
+                "type": "AttachedLightComponent",
+                "group": "player_comps"
+            },
+            "name": "playerLight",
+            "type": 0,
+            "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
+            "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
+            "range": 8500
+        }
+    }
+}

@@ -126,6 +126,8 @@ void PhysicsSystemManager::updateNodes() {
 		auto px_trans = static_cast<PxRigidActor *>(activeActors[i])->getGlobalPose();
 		nap_userData* nap_UD = static_cast<nap_userData*>(activeActors[i]->userData);
 
+		//if (nap_UD->id_->name_ == "player") LogSystem::Log();
+
 		//update gameobject transform
 		nap_UD->trans_->p_ = napVEC3(px_trans.p);
 		nap_UD->trans_->q_ = napQUAT(px_trans.q);

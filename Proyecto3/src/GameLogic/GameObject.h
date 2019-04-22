@@ -8,7 +8,8 @@ using namespace std;
 //fowaring
 class Component;
 class nap_transform;
-class nap_vec3;
+class nap_vector3;
+class nap_quat;
 class nap_scale;
 
 typedef union SDL_Event;

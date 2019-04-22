@@ -48,6 +48,12 @@ public:
 	};
 
 	//some ops
+	inline bool operator==(const nap_vector3 & v2) const {
+		return this->x_ == v2.x_ && this->y_ == v2.y_ && this->z_ == v2.z_;
+	};
+	inline bool operator!=(const nap_vector3 & v2) const {
+		return this->x_ != v2.x_ || this->y_ != v2.y_ || this->z_ != v2.z_;
+	};
 	inline nap_vector3 operator+(const nap_vector3 & v2) {
 		return nap_vector3(this->x_ + v2.x_, this->y_ + v2.y_, this->z_ + v2.z_);
 	};
@@ -57,8 +63,14 @@ public:
 	inline nap_vector3 operator*(float n) {
 		return nap_vector3(this->x_ * n, this->y_ * n, this->z_ * n);
 	};
+	inline nap_vector3 operator/(float n) {
+		return nap_vector3(this->x_ / n, this->y_ / n, this->z_ / n);
+	};
 	inline nap_vector3 operator*(const nap_vector3 & v2) {
 		return nap_vector3(this->x_ * v2.x_, this->y_ * v2.y_, this->z_ * v2.z_);
+	};
+	inline nap_vector3 operator/(const nap_vector3 & v2) {
+		return nap_vector3(this->x_ / v2.x_, this->y_ / v2.y_, this->z_ / v2.z_);
 	};
 
 	inline float magnitude() const {
@@ -95,9 +107,19 @@ public:
 	nap_vector3 toNapVec3(nap_vector3 direction);
 
 	//some ops
+	inline bool operator==(const nap_quat & v2) const {
+		return this->w_ == v2.w_ && this->x_ == v2.x_ && this->y_ == v2.y_ && this->z_ == v2.z_;
+	};
+	inline bool operator!=(const nap_quat & v2) const {
+		return this->w_ == v2.x_ || this->w_ != v2.x_ || this->y_ != v2.y_ || this->z_ != v2.z_;
+	};
 	inline nap_quat operator*(float n) {
 		return nap_quat(this->w_ * n,
 			this->x_ * n, this->y_ * n, this->z_ * n);
+	};
+	inline nap_quat operator/(float n) {
+		return nap_quat(this->w_ * n,
+			this->x_ / n, this->y_ / n, this->z_ / n);
 	};
 };
 

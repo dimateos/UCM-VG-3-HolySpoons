@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp" />
     <ClCompile Include="..\..\src\GameLogic\OverlayComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Pool.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="..\..\src\GameLogic\MessageSystem.h" />
     <ClInclude Include="..\..\src\GameLogic\OverlayComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Pool.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />

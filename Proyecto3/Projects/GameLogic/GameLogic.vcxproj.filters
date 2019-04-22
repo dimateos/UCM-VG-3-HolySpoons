@@ -94,6 +94,9 @@
     <ClCompile Include="..\..\src\GameLogic\GameManager.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp">
       <Filter>_GameStates</Filter>
     </ClCompile>
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GameManager.h">
       <Filter>_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h">
+      <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h">
       <Filter>_GameStates</Filter>

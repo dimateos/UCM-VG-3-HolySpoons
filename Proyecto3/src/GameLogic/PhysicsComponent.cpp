@@ -67,7 +67,7 @@ void PhysicsComponent::updateUserData() {
 	getActor()->setGlobalPose(PxTransform(owner_->getPosition().px(), owner_->getOrientation().px()));
 
 	if (ud_ != nullptr) delete ud_;
-	else ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
+	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
 
 	getActor()->userData = ud_;
 }

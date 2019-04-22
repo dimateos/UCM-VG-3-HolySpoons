@@ -3,7 +3,7 @@
     "mapFile": "_MAIN_LEVEL_map.txt",
     "Player": {
         "id": {
-            "type": "pref_player"
+            "type": "pref_playerController"
         }
     },
     "GameObjects": [
