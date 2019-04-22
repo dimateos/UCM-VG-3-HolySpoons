@@ -7,8 +7,8 @@
 #include <OgreLog.h>
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayManager.h>
-//#include <OgreOverlayContainer.h>
-//#include <OgreOverlay.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlay.h>
 #include <OgreFontManager.h>
 #include <OgreBuildSettings.h>
 #include <OgreSceneManager.h>
@@ -296,3 +296,8 @@ std::string RenderSystemInterface::getCurrentRenderingScene()
 	return currentRenderingScene;
 }
 
+void RenderSystemInterface::addToPanel(std::string name, Ogre::OverlayElement* elemt)
+{
+	static_cast<OverlayContainer*>(overlayManager->getOverlayElement(name))->addChild(elemt);
+	
+}

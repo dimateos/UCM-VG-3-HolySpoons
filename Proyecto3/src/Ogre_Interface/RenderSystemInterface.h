@@ -200,6 +200,8 @@ public:
 	void setRenderingScene(std::string scene);
 
 	std::string getCurrentRenderingScene();
+
+	void addToPanel(std::string name, Ogre::OverlayElement* elemt);
 };
 
 #endif //RENDERSYSTEMINTERFACE_H_
