@@ -31,12 +31,13 @@
                         "group": "test_comps"
                     },
                     "X": 200,
-                    "Y": 200,
-                    "W": 200,
-                    "H": 200,
-                    "msgType" : 0,
+                    "Y": 400,
+                    "W": 400,
+                    "H": 50,
+                    "msgType" : 4,
                     "panelName": "MENU_PanelContainer",
-                    "materialName": "CursorMaterial"
+                    "materialName": "CursorMaterial",
+                    "name": "start_button"
                 }
             }
         }

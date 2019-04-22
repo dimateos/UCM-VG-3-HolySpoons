@@ -16,13 +16,13 @@ ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Comp
 
 void ButtonComponent::OnClick()
 {
-	//MessageSystem::getSingleton()->sendMessageType(&Message((MessageId)msgType));
+	MessageSystem::getSingleton()->sendMessage(&Message((MessageId)msgType));
 	std::cout << "Boton Pulsado" << std::endl;
 }
 
 void ButtonComponent::setUp()
 {
-	Ogre::OverlayElement* elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", "kk");
+	Ogre::OverlayElement* elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", this->cfg_["name"]);
 
 	RenderSystemInterface::getSingleton()->addToPanel(this->cfg_["panelName"], elemt);
 
@@ -35,11 +35,12 @@ void ButtonComponent::setUp()
 
 bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
-	if (evt.type == SDL_BUTTON_LEFT) {
-		int x_ = 0, y_ = 0;
-		SDL_GetMouseState(&x_, &y_);
-		if (x_ >= X && x_ <= X + W && y_ >= Y && y_ <= Y + H) {
-			OnClick();
+	if (evt.type == SDL_MOUSEBUTTONDOWN) {
+		if (evt.button.button == SDL_BUTTON_LEFT) {
+			int x_ = evt.button.x, y_ = evt.button.y;
+			if (x_ >= X && x_ <= X + W && y_ >= Y && y_ <= Y + H) {
+				OnClick();
+			}
 		}
 	}
 	return false;
