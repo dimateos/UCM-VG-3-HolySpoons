@@ -246,8 +246,13 @@ void RenderSystemInterface::setOverlayElementDimensions(Ogre::OverlayElement* e,
 
 void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y)
 {
-
 	e->setPosition(x/getCamera()->getViewport()->getActualWidth(), y/ getCamera()->getViewport()->getActualHeight());
+}
+
+void RenderSystemInterface::setOverlayElementCenteredPosition(Ogre::OverlayElement * e, float x, float y)
+{
+	e->setPosition(x / getCamera()->getViewport()->getActualWidth() - e->getWidth() / 2, 
+		y / getCamera()->getViewport()->getActualHeight() - e->getHeight() / 2);
 }
 
 Ogre::OverlayElement * RenderSystemInterface::getOverlayElement(std::string name)

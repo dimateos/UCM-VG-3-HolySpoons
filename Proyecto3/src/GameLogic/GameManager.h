@@ -25,6 +25,8 @@ private:
 
 	int score;
 
+	void updateUI();
+
 public:
 	inline GameManager() { };
 	inline GameManager(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), score(0) {};

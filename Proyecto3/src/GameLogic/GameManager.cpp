@@ -4,23 +4,35 @@
 #include "GameStateMachine.h"
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayContainer.h>
+#include <RenderSystemInterface.h>
 
 using namespace Ogre;
+
+void GameManager::updateUI()
+{
+	//HPText->setCaption("SCORE: " + std::to_string(playerLife));
+	ScoreText->setCaption("SCORE: " + std::to_string(score));
+}
 
 void GameManager::setUp() {
 	if (isInited()) return;
 	setInited();
 
+	// hide of death panel
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
 	overlayComp->hidePanelByName("DEATH_PANEL");
 
-	OverlayContainer* panel = static_cast<OverlayContainer*>(overlayComp->getOverlayElementByName("HUD_PanelContainer"));
-	HPText = static_cast<TextAreaOverlayElement*>(panel->getChild("HP_Text"));
-	ScoreText = static_cast<TextAreaOverlayElement*>(panel->getChild("SCORE_Text"));
+	// player HP and score
+	HPText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("HP_Text"));
+	ScoreText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("SCORE_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
 
-	ScoreText->setCaption("SCORE: " + std::to_string(score));
+	// scope
+	Ogre::OverlayElement* scope = RenderSystemInterface::getSingleton()->getOverlayElement("Scope");
+	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition(scope, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+
+	updateUI();
 }
 
 void GameManager::update(GameObject * o, double time) {
@@ -33,7 +45,7 @@ void GameManager::receive(Message * msg)
 {
 	if (msg->id_ == ADD_SCORE) {
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
-		ScoreText->setCaption("SCORE: " + std::to_string(score));
+		updateUI();
 	}
 }
 
