@@ -38,7 +38,7 @@ void Game::initGame() {
 	renderManager_->setupScene("MainScene");
 	renderManager_->setupScene("Pause");
 	RenderSystemInterface::getSingleton()->setRenderingScene("MainScene");	//sets rendering scene
-	RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");			//may be an object?
+	//RenderSystemInterface::getSingleton()->setSkyBox("SkyBox2");			//may be an object?
 	RenderSystemInterface::getSingleton()->setRenderingScene("Menu");		//sets rendering scene
 
 	//Initialize level

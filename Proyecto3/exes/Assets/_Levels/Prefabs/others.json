@@ -17,6 +17,23 @@
                     "b": 1.0
                 }
             }
+        },
+
+        {
+            "id": {
+                "name": "skybox",
+                "type": "skybox",
+                "group": "ui"
+            },
+            "Components": {
+                "skybox": {
+                    "id": {
+                        "type": "SkyBoxComponent",
+                        "group": "test_comps"
+                    },
+                    "skybox": "SkyBox2"
+                }
+            }
         }
     ]
 }

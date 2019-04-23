@@ -24,6 +24,12 @@
             "id": {
 				"type": "ambient_light"
             }
+        },
+
+        {
+            "id": {
+				"type": "skybox"
+            }
         }
     ]
 }
