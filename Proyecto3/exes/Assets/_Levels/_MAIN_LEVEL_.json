@@ -30,6 +30,11 @@
             "id": {
 				"type": "skybox"
             }
+        },
+        {
+            "id": {
+				"type": "Plane"
+            }
         }
     ]
 }

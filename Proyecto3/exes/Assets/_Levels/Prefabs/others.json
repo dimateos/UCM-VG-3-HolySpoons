@@ -34,6 +34,40 @@
                     "skybox": "SkyBox2"
                 }
             }
-        }
+        },
+        {
+            "id": {
+                "name": "Plane",
+                "type": "Plane",
+                "group": "ui"
+            },
+            "Components": {
+                "Plane": {
+                    "name": "Plane",
+                    "id": {
+                        "type": "PlaneComponent",
+                        "group": "test_comps"
+                    },
+                    "normal": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0
+                    },
+                    "w": 100000,
+                    "h": 100000,
+                    "up": {
+                        "x": 1,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "pos": {
+                        "x": 0,
+                        "y": -500,
+                        "z": 2000
+                    },
+                    "material": "Ocean"
+                }
+            }
+        }        
     ]
 }
