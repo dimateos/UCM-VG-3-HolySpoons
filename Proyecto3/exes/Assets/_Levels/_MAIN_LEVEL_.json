@@ -38,6 +38,12 @@
             "id": {
 				"type": "pref_gm_go"
             }
+        },
+
+        {
+            "id": {
+				"type": "ambient_light"
+            }
         }
     ]
 }

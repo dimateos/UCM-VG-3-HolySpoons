@@ -34,6 +34,7 @@
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameState.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
     <ClInclude Include="..\..\src\GameLogic\GameState.h" />
     <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h" />
+    <ClInclude Include="..\..\src\GameLogic\GlobalAmbientLightComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h" />
     <ClInclude Include="..\..\src\GameLogic\Emitter.h" />
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
