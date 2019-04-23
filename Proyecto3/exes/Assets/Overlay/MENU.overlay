@@ -1,12 +1,21 @@
 overlay MENU
 {
-	zorder 100
+	zorder 400
 	overlay_element MENU_PanelContainer Panel
 	{
 		left 0.0
 		top 0.0
 		width 1.0
 		height 1.0
+
+		overlay_element MENU_Cursor Panel
+        {
+            left 0.0
+		    top 0.0
+		    width 0.1
+		    height 0.1
+            material CursorMaterial
+        }
 
 		overlay_element MENU_Text TextArea
 		{
@@ -21,14 +30,5 @@ overlay MENU
             caption "PRESS SPACE TO START"
             height 40
 		}
-
-		overlay_element Cursor Panel
-        {
-            left 0.0
-		    top 0.0
-		    width 0.1
-		    height 0.1
-            material CursorMaterial
-        }
 	}
 }

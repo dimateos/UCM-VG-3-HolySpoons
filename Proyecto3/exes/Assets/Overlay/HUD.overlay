@@ -36,13 +36,13 @@ overlay HUD
             caption "SCORE: "
 		}
 		
-        overlay_element Crosshair Panel
+        overlay_element Scope Panel
         {
             left 0.0
 		    top 0.0
-		    width 1.0
-		    height 1.0
-            material CrosshairMaterial
+		    width 0.05
+		    height 0.05
+            material ScopeMaterial
         }
 	}
 

@@ -24,6 +24,7 @@ public:
 	virtual ~OverlayComponent() { setDown(); };
 
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	void hideOverlay();
 	void showOverlay();

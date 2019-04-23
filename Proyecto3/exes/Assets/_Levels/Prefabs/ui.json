@@ -1,0 +1,45 @@
+{
+    "Prefabs" :
+    [
+
+        {
+            "id": {
+                "name": "cursor",
+                "type": "cursor_ui",
+                "group": "ui"
+            },
+            "Components": {
+                "cursor": {
+                    "id": {
+                        "type": "CursorComponent",
+                        "group": "test_comps"
+                    }
+                }
+            }
+        },
+
+        {
+            "id": {
+                "name": "button",
+                "type": "button_ui",
+                "group": "ui"
+            },
+            "Components": {
+                "button": {
+                    "id": {
+                        "type": "ButtonComponent",
+                        "group": "test_comps"
+                    },
+                    "X": 200,
+                    "Y": 400,
+                    "W": 400,
+                    "H": 50,
+                    "msgType" : 4,
+                    "panelName": "MENU_PanelContainer",
+                    "materialName": "CursorMaterial",
+                    "name": "start_button"
+                }
+            }
+        }
+    ]
+}

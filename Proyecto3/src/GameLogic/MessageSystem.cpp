@@ -28,6 +28,14 @@ void MessageSystem::updateTargets(list<GameObject*>* targets) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+void MessageSystem::sendMessage(Message * msg)
+{
+	for (GameObject* o : *targets_) {
+			for (Component* c : o->getComponents())
+				c->receive(msg);
+	}
+}
+
 void MessageSystem::sendMessageName(Message * msg, string name) {
 	for (GameObject* o : *targets_) {
 		if (o->id().name_ == name)

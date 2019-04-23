@@ -10,6 +10,7 @@ private:
 	SDL_Keycode key = SDLK_8; //READ IT FROM JSON?
 	std::string state;
 	std::string json;
+	void pushState();
 
 public:
 	PushStateComponent() {};
@@ -19,6 +20,7 @@ public:
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void receive(Message* msg);
 };
 
 
