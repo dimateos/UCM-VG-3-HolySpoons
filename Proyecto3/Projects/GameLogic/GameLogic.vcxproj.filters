@@ -115,8 +115,15 @@
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PlaneComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -221,7 +228,14 @@
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\GlobalAmbientLightComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GlobalAmbientLightComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PlaneComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

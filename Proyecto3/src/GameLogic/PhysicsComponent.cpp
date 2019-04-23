@@ -103,6 +103,9 @@ PxGeometry* PhysicsComponent::getGeo(nap_json shape) {
 	if (type == "BOX") {
 		geo = new PxBoxGeometry(nap_vector3(shape["scale"]).px() / 2); //half extents
 	}
+	else if (type == "SPHERE") {
+		geo = new PxSphereGeometry(shape["r"]); //half extents
+	}
 
 	return geo;
 }
