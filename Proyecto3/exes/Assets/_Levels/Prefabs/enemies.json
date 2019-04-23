@@ -59,6 +59,7 @@
                     "group": "player_comps"
                 },
                 "name": "monkeyLight",
+                "fatherName": "basic_ren",
                 "type": 0,
                 "diffColor": { "r": 1.0, "g": 0.0, "b": 0.0 },
                 "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },

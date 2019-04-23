@@ -8,21 +8,20 @@
 //#include <characterkinematic\PxController.h>
 #include <characterkinematic\PxCapsuleController.h>
 
-#define BaseScaleFactor 1.0f
-#define BaseRadius 0.3f
-#define BaseHeight 1.0f
+//some global cfg?
+#define BaseRadius 2.0f
+#define BaseHeight 3.0f
+#define BaseDens 1.0		//atm mass not defined
+#define BaseImass 14.0		//inverse
+#define BaseLinDamp 0.05	//def 0.0 and 1 max
 
 #define BaseContactOffset 0.01f
 #define BaseStepOffset 0.05f
+#define BaseMinDist 0.001
+
 #define BaseSlopeLimit 0.0f
 #define BaseInvisibleWallsHeight 0.0f
 #define BaseMaxJumpHeight 0.0f
-
-#define BaseLinDamp 0.05	//def 0.0 and 1 max
-#define BaseMinDist 0.001
-
-#define BaseDens 1.0		//atm mass not defined
-#define BaseImass 1.0		//inverse
 
 void PhysicsControllerComponent::setUp() {
 	if (isInited()) return;
@@ -40,31 +39,33 @@ void PhysicsControllerComponent::setUp() {
 	desc.upDirection = vY.px();
 
 	//shape
-	const float scaleFactor = FINDnRETURN(cfg_, "scaleFactor", float, BaseScaleFactor);
-	desc.radius = FINDnRETURN(cfg_, "radius", float, BaseRadius) * scaleFactor;
-	desc.height = FINDnRETURN(cfg_, "height", float, BaseHeight) * scaleFactor;
+	desc.radius = FINDnRETURN(cfg_, "radius", float, BaseRadius);
+	desc.height = FINDnRETURN(cfg_, "height", float, BaseHeight);
 	std::string mat = FINDnRETURN_s(cfg_, "material", BaseMat);
 	desc.material = physicsManager->getMaterial(mat);
 	desc.density = FINDnRETURN(cfg_, "dens", float, BaseDens); //no update mass?
+	i_mass = FINDnRETURN(cfg_, "i_mass", float, BaseImass);
+	damping_ = FINDnRETURN(cfg_, "damping", float, BaseLinDamp);
 
-	//behaviour
+	//main behaviour
 	desc.contactOffset = FINDnRETURN(cfg_, "contactOffset", float, BaseContactOffset);
 	desc.stepOffset = FINDnRETURN(cfg_, "stepOffset", float, BaseStepOffset);
+	minDist = FINDnRETURN(cfg_, "minDist", float, BaseMinDist);
+
+	//more specific behaviour
 	desc.slopeLimit = FINDnRETURN(cfg_, "slopeLimit", float, BaseSlopeLimit);
 	desc.invisibleWallHeight = FINDnRETURN(cfg_, "invisibleWallsHeight", float, BaseInvisibleWallsHeight);
 	desc.maxJumpHeight = FINDnRETURN(cfg_, "maxJumpHeight", float, BaseMaxJumpHeight);
 
+	//unused atm
 	//desc.reportCallback = this;
 	//desc.behaviorCallback = this;
 
 	//create the controller
 	controller_comp = physicsManager->createController(&desc);
 
-	//read custom movement stuff
+	//custom gravity
 	g_ = FINDnRETURN(cfg_, "g", nap_vector3, pxG);
-	i_mass = FINDnRETURN(cfg_, "i_mass", float, BaseImass);
-	damping_ = FINDnRETURN(cfg_, "damping", float, BaseLinDamp);
-	minDist = FINDnRETURN(cfg_, "minDist", float, BaseMinDist);
 
 	updateUserData();
 	configActive();

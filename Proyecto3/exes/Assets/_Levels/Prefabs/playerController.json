@@ -10,18 +10,31 @@
                 "type": "PhysicsControllerComponent",
                 "group": "player_comps"
             },
-            "material": "PLAYER",
+
             "radius": 2.0,
-            "height": 3.0
+            "height": 3.0,
+            "material": "PLAYER",
+            "i_mass": 14.0,
+            "damping_": 0.00,
+
+            "contactOffset": 0.01,
+            "stepOffset": 0.05,
+            "minDist": 0.001,
+
+            "g": { "x": 0.0, "y": -15.0, "z": 0.0 },
+            "slopeLimit": 0.0,
+            "invisibleWallHeight": 0.0,
+            "maxJumpHeight": 0.0
         },
-        "basic_ren": {
+        "hitbox_ren": {
             "id": {
                 "type": "RenderComponent",
                 "group": "player_comps"
             },
+            "active": false,
             "scale": { "x": 2.0, "y": 7.0, "z": 2.0 },
             "shape": {
-                "entity_name": "player_prism",
+                "entity_name": "player_hitbox",
                 "type": "MESH",
                 "mesh": "cube.mesh"
             }
@@ -34,7 +47,7 @@
             },
             "walkVel":1500,
             "runVel": 3000,
-            "jumpForce": 15000
+            "jumpForce": 4000
         },
         "camera_fps": {
             "id": {
@@ -54,7 +67,7 @@
                 "group": "player_comps"
             },
             "relativeY": 3.0,
-            "relativeZ": 0.0,
+            "relativeZ": 3.0,
             "vel": 30
         },
         "att_light": {
@@ -63,6 +76,7 @@
                 "group": "player_comps"
             },
             "name": "playerLight",
+            "fatherName": "hitbox_ren",
             "type": 0,
             "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
