@@ -25,7 +25,7 @@ public:
 
 	virtual void setUp();
 
-	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void update(GameObject* o, double time);
 };
 
 #endif //CURSORCOMPONENT_H_

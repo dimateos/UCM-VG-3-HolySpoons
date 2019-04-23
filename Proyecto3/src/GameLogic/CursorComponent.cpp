@@ -12,15 +12,9 @@ void CursorComponent::setUp()
 	c = LoadCursorFromFileA(path.c_str());
 }
 
-bool CursorComponent::handleEvents(GameObject * o, const SDL_Event & evt)
+void CursorComponent::update(GameObject * o, double time)
 {
-	/*if (evt.type == SDL_MOUSEMOTION) {
-		SDL_GetMouseState(&x, &y);
-		RenderSystemInterface::getSingleton()->setOverlayElementPosition(image, x, y);
-	}*/
-
 	SetCursor(c);
-	return false;
 }
 
 #include "GOFactory.h"
