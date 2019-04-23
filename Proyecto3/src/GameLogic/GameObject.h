@@ -8,8 +8,10 @@ using namespace std;
 //fowaring
 class Component;
 class nap_transform;
-class nap_vec3;
+class nap_vector3;
+class nap_quat;
 class nap_scale;
+class upToDate;
 
 typedef union SDL_Event;
 
@@ -49,31 +51,28 @@ public:
 	void clearComponents();
 
 	//transform operations (set's activates the flags)
-	inline void setPosition(nap_vector3 p) { trans_.p_ = p; setTransUpToDate(false); }
+	inline void setPosition(nap_vector3 p) { trans_.p_ = p; setUpToDate_prop(upToDate::pos, false); (false); }
 	inline nap_vector3 getPosition() const { return trans_.p_; }
-	inline void setOrientation(nap_quat q) { trans_.q_ = q; setTransUpToDate(false); }
+	inline void setOrientation(nap_quat q) { trans_.q_ = q; setUpToDate_prop(upToDate::ori, false); (false); }
 	inline nap_quat getOrientation() const { return trans_.q_; }
-	inline void setTransform(nap_vector3 p, nap_quat q) { trans_.p_ = p; trans_.q_ = q; setTransUpToDate(false); }
-	//transfotm UpToDate flags
-	inline void setTransUpToDate(bool b = true) { trans_.upToDate_phys = b; trans_.upToDate_rend = b; }
-	inline void setTransUpToDate_phys(bool b = true) { trans_.upToDate_phys = b; }
-	inline bool getTransUpToDate_phys() const { return trans_.upToDate_phys; }
-	inline void setTransUpToDate_rend(bool b = true) { trans_.upToDate_rend = b; }
-	inline bool getTransUpToDate_rend() const { return trans_.upToDate_rend; }
+	inline void setTransform(nap_vector3 p, nap_quat q) { trans_.p_ = p; trans_.q_ = q; setUpToDate_trans(false); }
 	//to keep track of the transform (Physx, IA, etc)
 	inline nap_transform* getTransPtr() { return &trans_; }
 
 	//scale operations
-	inline void setScale(nap_vector3 s) { scale_.s_ = s; setScaleUpToDate(false); }
+	inline void setScale(nap_vector3 s) { scale_.s_ = s; setUpToDate_prop(upToDate::scale, false); }
 	inline nap_vector3 getScale() const { return scale_.s_; }
-	//scale UpToDate flags
-	inline void setScaleUpToDate(bool b = true) { scale_.upToDate_phys = b; scale_.upToDate_rend = b; }
-	inline void setScaleUpToDate_phys(bool b = true) { scale_.upToDate_phys = b; }
-	inline bool getScaleUpToDate_phys() const { return scale_.upToDate_phys; }
-	inline void setScaleUpToDate_rend(bool b = true) { scale_.upToDate_rend = b; }
-	inline bool getScaleUpToDate_rend() const { return scale_.upToDate_rend; }
 	//to keep track of the scale (Physx, IA, etc)
 	inline nap_scale* getScalePtr() { return &scale_; }
+
+	//UpToDate flags
+	upToDate* getUpToDate_obj (upToDate::props prop);
+	bool getUpToDate (upToDate::props prop, upToDate::systems sys);
+	void setUpToDate (upToDate::props prop, upToDate::systems sys, bool b = true);
+	void setUpToDate_prop(upToDate::props prop, bool b = true);
+	void setUpToDate_trans(bool b = true);
+	void setUpToDate_trans(upToDate::systems sys, bool b = true);
+	bool getUpToDate_trans(upToDate::systems sys);
 
 	//some debugging reading the config
 	inline nap_json & getCfg() { return cfg_; }

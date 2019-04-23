@@ -11,7 +11,7 @@ void AttachedLightComponent::setLight() {
 				cfg_["diffColor"]["b"]), cfg_["range"]);
 
 	Ogre::SceneNode* father = static_cast<RenderComponent*>(owner_->
-		getComponent("basic_ren"))->getSceneNode();
+		getComponent(cfg_["fatherName"]))->getSceneNode();
 
 	RenderSystemInterface::getSingleton()->addChild(father, lightNode);
 }

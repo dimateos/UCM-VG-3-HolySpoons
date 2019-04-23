@@ -90,11 +90,12 @@ void Game::stop() {
 //main game loop, ends with exit_
 void Game::run() {
 	exit_ = false;
+
+#ifndef FIXED_STEP
 	TimeSystem::StartCounter();
+#endif
 
 	while (!exit_) {
-		double t = TimeSystem::GetCounter();
-		LogSystem::Log("time step: ", t, LogSystem::GAME);
 #ifdef FIXED_STEP
 		if (t < (1.0f / 30.0f)) {
 			//fprintf(stderr, "Time: %f\n", stepTime);
@@ -106,7 +107,11 @@ void Game::run() {
 			t = stepTime;
 			stepTime = 0.0f;
 		}
+#else
+		double t = TimeSystem::GetCounter();
 #endif
+		//LogSystem::Log("time step: ", t, LogSystem::GAME);
+
 		// STEP PHYSICS
 		//LogSystem::Log("main physics", LogSystem::GAME);
 		physicsManager_->stepPhysics(t);

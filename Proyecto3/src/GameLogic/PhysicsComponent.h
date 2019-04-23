@@ -21,6 +21,8 @@ protected:
 	virtual void setDown();
 	virtual void configActive();
 
+	bool updateOri_;
+
 	//sync GO transforms with px
 	nap_userData * ud_ = nullptr;
 	void updateUserData();

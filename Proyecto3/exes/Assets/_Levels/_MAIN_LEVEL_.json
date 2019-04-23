@@ -3,16 +3,10 @@
     "mapFile": "_MAIN_LEVEL_map.txt",
     "Player": {
         "id": {
-            "type": "pref_player"
+            "type": "pref_playerController"
         }
     },
     "GameObjects": [
-        {
-            "id": {
-				"type": "pref_gm_go"
-            }
-        },
-
         {
             "id": {
 				"type": "pref_cube"
@@ -38,6 +32,12 @@
 				"type": "pref_spawner"
             },
             "pos": { "x": -30.0, "y": 0.0, "z": 0.0 }
+        },
+        
+        {
+            "id": {
+				"type": "pref_gm_go"
+            }
         }
     ]
 }

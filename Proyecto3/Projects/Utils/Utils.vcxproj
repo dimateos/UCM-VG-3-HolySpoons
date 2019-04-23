@@ -28,6 +28,7 @@
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
     <ClInclude Include="..\..\src\Utils\TimeSystem.h" />
     <ClInclude Include="..\..\src\Utils\Transforms.h" />
+    <ClInclude Include="..\..\src\Utils\UpToDate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp" />

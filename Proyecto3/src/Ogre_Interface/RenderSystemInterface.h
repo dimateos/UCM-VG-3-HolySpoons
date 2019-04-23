@@ -174,6 +174,10 @@ public:
 	 */
 	void setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y);
 	/*
+	 *set overlay element position (using its center and not its 0, 0 position)
+	 */
+	void setOverlayElementCenteredPosition(Ogre::OverlayElement* e, float x, float y);
+	/*
 	 *gets overlay element
 	 */
 	Ogre::OverlayElement * getOverlayElement(std::string name);

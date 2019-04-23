@@ -37,6 +37,7 @@ void LogSystem::Log(string const & s, logType t, codePath code) {
 	case SPAWNER: pre = "SPAWNER"; break;
 	case FACTORY: pre = "FACTORY"; break;
 	case CONTROLLER: pre = "CONTROLLER"; break;
+	case GM: pre = "GM"; break;
 
 	case DEV:
 		if (!LogSystem::log_dev) return;
