@@ -131,7 +131,8 @@ void PhysicsSystemManager::updateNodes() {
 		//update gameobject transform
 		nap_UD->trans_->p_ = napVEC3(px_trans.p);
 		nap_UD->trans_->q_ = napQUAT(px_trans.q);
-		nap_UD->trans_->upToDate_rend = false; //render flag not upToDate
+		nap_UD->trans_->upToDate_ori.setUpToDate(upToDate::REND, false);
+		nap_UD->trans_->upToDate_pos.setUpToDate(upToDate::REND, false);
 	}
 }
 

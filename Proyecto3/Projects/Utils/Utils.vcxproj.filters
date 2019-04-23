@@ -40,6 +40,9 @@
     <ClInclude Include="..\..\src\Utils\TimeSystem.h">
       <Filter>Misc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\UpToDate.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp">

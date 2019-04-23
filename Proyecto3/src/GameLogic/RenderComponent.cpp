@@ -54,11 +54,11 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 ///////////////////////////////////////////////////////////////////////////////
 
 void RenderComponent::late_update(GameObject * o, double time) {
-	if (o->getTransUpToDate_rend()) return;
+	if (o->getUpToDate_trans(upToDate::REND)) return;
 
 	node->setPosition(o->getPosition().ogre() * ogre_scale);
 	node->setOrientation(o->getOrientation().ogre());
-	o->setTransUpToDate_rend();
+	o->setUpToDate_trans(upToDate::REND);
 }
 
 #include "GOFactory.h"

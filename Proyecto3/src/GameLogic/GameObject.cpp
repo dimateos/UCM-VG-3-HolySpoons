@@ -128,3 +128,38 @@ std::list<Component*> GameObject::getComponents() {
 void GameObject::clearComponents() {
 	components_.clear();
 }
+
+///////////////////////////////////////////////////////////////////////////////
+
+upToDate* GameObject::getUpToDate_obj(upToDate::props prop) {
+	if (prop == upToDate::pos) return &trans_.upToDate_pos;
+	else if (prop == upToDate::ori) return &trans_.upToDate_ori;
+	return &scale_.upToDate_scale;
+}
+
+bool GameObject::getUpToDate(upToDate::props prop, upToDate::systems sys) {
+	return getUpToDate_obj(prop)->getUpToDate_obj(sys);
+}
+void GameObject::setUpToDate(upToDate::props prop, upToDate::systems sys, bool b) {
+	getUpToDate_obj(prop)->setUpToDate(sys, b);
+}
+
+void GameObject::setUpToDate_prop(upToDate::props prop, bool b) {
+	auto p = getUpToDate_obj(prop);
+	p->setUpToDate(upToDate::PHYS, b);
+	p->setUpToDate(upToDate::REND, b);
+}
+
+void GameObject::setUpToDate_trans(bool b) {
+	setUpToDate_prop(upToDate::pos, b);
+	setUpToDate_prop(upToDate::ori, b);
+}
+void GameObject::setUpToDate_trans(upToDate::systems sys, bool b) {
+	setUpToDate(upToDate::pos, sys, b);
+	setUpToDate(upToDate::ori, sys, b);
+}
+bool GameObject::getUpToDate_trans(upToDate::systems sys) {
+	return getUpToDate(upToDate::pos, sys)
+		&& getUpToDate(upToDate::ori, sys);
+}
+

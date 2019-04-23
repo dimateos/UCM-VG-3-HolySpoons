@@ -139,6 +139,8 @@ public:
 #define QUAT(q) q.w, q.x, q.y, q.z
 #define napQUAT(q) nap_quat(QUAT(q))
 
+#include "UpToDate.h"
+
 //struct for the scale (maybe inside transform?)
 class nap_scale
 {
@@ -146,7 +148,7 @@ public:
 	inline nap_scale() : s_(1.0f) {};
 	inline nap_scale(nap_vector3 s) : s_(s) {};
 
-	bool upToDate_phys = false, upToDate_rend = false;
+	upToDate upToDate_scale;
 	nap_vector3 s_;
 };
 
@@ -158,7 +160,7 @@ public:
 	inline nap_transform(nap_vector3 p) : p_(p), q_() {};
 	inline nap_transform(nap_vector3 p, nap_quat q, nap_vector3 s) : p_(p), q_(q) {};
 
-	bool upToDate_phys = false, upToDate_rend = false;
+	upToDate upToDate_pos, upToDate_ori;
 	nap_vector3 p_; nap_quat q_;
 };
 

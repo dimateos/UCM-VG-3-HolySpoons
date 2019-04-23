@@ -2,6 +2,7 @@
 #include "LogSystem.h"
 
 #include <PhysicsSystemManager.h>
+#include <Transforms.h>
 
 #include <PxRigidDynamic.h>
 //#include <characterkinematic\PxController.h>
@@ -129,10 +130,11 @@ void PhysicsControllerComponent::update(GameObject * o, double time) {
 }
 
 void PhysicsControllerComponent::late_update(GameObject * o, double time) {
-	if (o->getTransUpToDate_phys()) return;
+	//the controller ignores changes on orientation
+	if (o->getUpToDate(upToDate::pos, upToDate::PHYS)) return;
 
 	controller_comp->setPosition(o->getPosition().pxEx());
-	o->setTransUpToDate_phys();
+	o->setUpToDate(upToDate::pos, upToDate::PHYS);
 }
 
 #include "GOFactory.h"

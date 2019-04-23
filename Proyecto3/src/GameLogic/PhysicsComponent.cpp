@@ -38,7 +38,9 @@ void PhysicsComponent::setUp() {
 		rigidBodyS_ = physicsManager->createStaticBody(shape_);
 	}
 
+	//more custom stuff
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
+	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
@@ -75,10 +77,13 @@ void PhysicsComponent::updateUserData() {
 ///////////////////////////////////////////////////////////////////////////////
 
 void PhysicsComponent::late_update(GameObject * o, double time) {
-	if (o->getTransUpToDate_phys()) return;
+	if (updateOri_ && o->getUpToDate_trans(upToDate::PHYS)) return;
+	else if (o->getUpToDate(upToDate::pos, upToDate::PHYS)) return;
 
 	getActor()->setGlobalPose(PxTransform(o->getPosition().px(), o->getOrientation().px()));
-	o->setTransUpToDate_phys();
+
+	if (updateOri_) o->setUpToDate_trans(upToDate::PHYS);
+	else o->setUpToDate(upToDate::pos, upToDate::PHYS);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
