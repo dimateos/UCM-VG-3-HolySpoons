@@ -8,18 +8,18 @@ void CursorComponent::setUp()
 {
 	if (isInited()) return;
 	setInited();
-
-	image = RenderSystemInterface::getSingleton()->getOverlayElement("MENU_Cursor");
-
+	string path = this->cfg_["image"];
+	c = LoadCursorFromFileA(path.c_str());
 }
 
 bool CursorComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
-	if (evt.type == SDL_MOUSEMOTION) {
+	/*if (evt.type == SDL_MOUSEMOTION) {
 		SDL_GetMouseState(&x, &y);
 		RenderSystemInterface::getSingleton()->setOverlayElementPosition(image, x, y);
-	}
+	}*/
 
+	SetCursor(c);
 	return false;
 }
 

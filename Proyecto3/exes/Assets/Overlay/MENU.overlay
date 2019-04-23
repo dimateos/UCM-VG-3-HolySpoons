@@ -8,15 +8,6 @@ overlay MENU
 		width 1.0
 		height 1.0
 
-		overlay_element MENU_Cursor Panel
-        {
-            left 0.0
-		    top 0.0
-		    width 0.1
-		    height 0.1
-            material CursorMaterial
-        }
-
 		overlay_element MENU_Text TextArea
 		{
             metrics_mode pixels

@@ -260,8 +260,8 @@ void RenderSystemManager::initApp()
 	mRoot->initialise(false);
 	createWindow();
 	initializeResources();
-	SDL_ShowCursor(SDL_DISABLE);
 	mRoot->addFrameListener(this);
+	SDL_ShowCursor(SDL_DISABLE); //Standard cursor must be turned off
 
 	//mRoot->startRendering(); // blocks the flow
 	//mRoot->renderOneFrame(); // we'll have to use this

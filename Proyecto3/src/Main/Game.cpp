@@ -95,7 +95,6 @@ void Game::run() {
 	while (!exit_) {
 		double t = TimeSystem::GetCounter();
 		LogSystem::Log("time step: ", t, LogSystem::GAME);
-
 #ifdef FIXED_STEP
 		if (t < (1.0f / 30.0f)) {
 			//fprintf(stderr, "Time: %f\n", stepTime);
@@ -114,7 +113,6 @@ void Game::run() {
 		physicsManager_->updateNodes();
 
 		//retrieve collisions (add to events queue? or messages?)
-
 		// EVENTS
 		//LogSystem::Log("main handleEvents", LogSystem::GAME);
 		handleEvents(); //atm sets exit
@@ -127,7 +125,9 @@ void Game::run() {
 
 		// RENDER OGRE
 		//LogSystem::Log("main render", LogSystem::GAME);
+	
 		renderManager_->renderFrame();
+		//SetCursor(c);
 
 		// SOUND
 		//LogSystem::Log("main sound", LogSystem::GAME);

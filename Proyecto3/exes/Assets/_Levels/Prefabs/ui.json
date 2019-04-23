@@ -13,7 +13,8 @@
                     "id": {
                         "type": "CursorComponent",
                         "group": "test_comps"
-                    }
+                    },
+                    "image": "POINTER.cur"
                 }
             }
         },

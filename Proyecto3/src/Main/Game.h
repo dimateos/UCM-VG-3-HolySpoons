@@ -2,13 +2,12 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-//fowarding
+//forwarding
 class GameStateMachine;
 class MessageSystem;
 class PhysicsSystemManager;
 class RenderSystemManager;
 class SoundManager;
-
 //main game class: inits / shuts down the app, handles the loop, etc
 class Game
 {
