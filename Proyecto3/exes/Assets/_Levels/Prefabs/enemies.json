@@ -1,102 +1,183 @@
 {
-"Prefabs" :
-[
-    {
-        "id": {
-            "name": "pref_monkey",
-            "type": "pref_monkey",
-            "group": "enemies"
-        },
-        "Components": {
-            "basic_phy": {
-                "id": {
-					"type": "PhysicsComponent",
-					"group": "enemy_comps"
-                },
-                "noGravity": true,
-                "shape": {
-                    "type": "BOX", "scale": { "x": 5.0, "y": 5.0, "z": 5.0 }
-                }
-            },
-            "basic_ren": {
-                "id": {
-                    "type": "RenderComponent",
-					"group": "enemy_comps"
-				},
-                "scale": { "x": 200.0, "y": 260.0, "z": 200.0 },
-                "material": "Material",
-                "shape": {
-                    "entity_name": "monkey",
-                    "type": "MESH",
-                    "mesh": "monkey.mesh"
-                }
-            },
-            "floating_mov":{
-                "id": {
-                    "type": "FloatingEnemyComponent",
-					"group": "enemy_comps"
-                },
-                "Amplitude":2,
-                "HorizontalSpeed" : 3.5,
-                "VerticalSpeed" : 1
-            },
-            "auto_rotation": {
-            	"id":{
-            		"type": "AutoRotationComponent",
-            		"group": "enemy_comps"
-            	}
-            },
-          "bullet_hittable": {
+    "Prefabs": [
+        {
             "id": {
-              "type": "BulletHittable",
-              "group": "enemy_comps"
+                "name": "pref_monkey",
+                "type": "pref_monkey",
+                "group": "enemies"
             },
-            "hp": 50
-          },
-            "att_light": {
-                "id": {
-                    "type": "AttachedLightComponent",
-                    "group": "player_comps"
+            "Components": {
+                "basic_phy": {
+                    "id": {
+                        "type": "PhysicsComponent",
+                        "group": "enemy_comps"
+                    },
+                    "noGravity": true,
+                    "shape": {
+                        "type": "BOX",
+                        "scale": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        }
+                    }
                 },
-                "name": "monkeyLight",
-                "fatherName": "basic_ren",
-                "type": 0,
-                "diffColor": { "r": 1.0, "g": 0.0, "b": 0.0 },
-                "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
-                "range": 5000
+                "basic_ren": {
+                    "id": {
+                        "type": "RenderComponent",
+                        "group": "enemy_comps"
+                    },
+                    "scale": {
+                        "x": 200.0,
+                        "y": 260.0,
+                        "z": 200.0
+                    },
+                    "material": "Material",
+                    "shape": {
+                        "entity_name": "monkey",
+                        "type": "MESH",
+                        "mesh": "monkey.mesh"
+                    }
+                },
+                "floating_mov": {
+                    "id": {
+                        "type": "FloatingEnemyComponent",
+                        "group": "enemy_comps"
+                    },
+                    "Amplitude": 2,
+                    "HorizontalSpeed": 3.5,
+                    "VerticalSpeed": 1
+                },
+                "auto_rotation": {
+                    "id": {
+                        "type": "AutoRotationComponent",
+                        "group": "enemy_comps"
+                    }
+                },
+                "bullet_hittable": {
+                    "id": {
+                        "type": "BulletHittable",
+                        "group": "enemy_comps"
+                    },
+                    "hp": 50
+                },
+                "att_light": {
+                    "id": {
+                        "type": "AttachedLightComponent",
+                        "group": "player_comps"
+                    },
+                    "name": "monkeyLight",
+                    "fatherName": "basic_ren",
+                    "type": 0,
+                    "diffColor": {
+                        "r": 1.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specColor": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "range": 5000
+                }
             }
-        }
-    },
-
-    {
-        "id": {
-            "name": "pref_spawner",
-            "type": "pref_spawner",
-            "group": "spawns"
         },
-        "pos": { "x": 0.0, "y": 0.0, "z": 0.0 },
-        "Components": {
-            "spawner":{
-                "id": {
-                    "type": "Spawner",
-                    "group": "test_comps"
-                },
-                "active": true,
-
-                "itemString": "pref_monkey",
-                "default": 0,
-                "timer": 10.0
+        {
+            "id": {
+                "name": "pref_spawner",
+                "type": "pref_spawner",
+                "group": "spawns"
             },
-            "circular_movement":{
-                "id":{
-                    "type": "CircularMovementComponent",
-                    "group": "test_comps"
+            "pos": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "Components": {
+                "spawner": {
+                    "id": {
+                        "type": "Spawner",
+                        "group": "test_comps"
+                    },
+                    "active": true,
+                    "itemString": "pref_monkey",
+                    "default": 0,
+                    "timer": 10.0
                 },
-
-                "Speed":0.3,
-                "Radius":50
+                "circular_movement": {
+                    "id": {
+                        "type": "CircularMovementComponent",
+                        "group": "test_comps"
+                    },
+                    "Speed": 0.3,
+                    "Radius": 50
+                }
+            }
+        },
+        {
+            "id": {
+                "name": "pref_Enemyspawner",
+                "type": "pref_Enemyspawner",
+                "group": "spawns"
+            },
+            "pos": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "Components": {
+                "spawner": {
+                    "id": {
+                        "type": "Spawner",
+                        "group": "test_comps"
+                    },
+                    "active": true,
+                    "itemString": "pref_monkey",
+                    "default": 0,
+                    "timer": 10.0
+                },
+                "basic_phy": {
+                    "id": {
+                        "type": "PhysicsComponent",
+                        "group": "enemy_comps"
+                    },
+                    "dynamic": false,
+                    "noGravity": true,
+                    "shape": {
+                        "type": "BOX",
+                        "scale": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        }
+                    }
+                },
+                "basic_ren": {
+                    "id": {
+                        "type": "RenderComponent",
+                        "group": "enemy_comps"
+                    },
+                    "scale": {
+                        "x": 5.0,
+                        "y": 5.0,
+                        "z": 5.0
+                    },
+                    "material": "NinjaMaterial",
+                    "shape": {
+                        "entity_name": "ninja",
+                        "type": "MESH",
+                        "mesh": "ninja.mesh"
+                    }
+                },
+                "bullet_hittable": {
+                    "id": {
+                        "type": "BulletHittable",
+                        "group": "enemy_comps"
+                    },
+                    "hp": 50
+                }
             }
         }
-    }
-]
+    ]
 }
