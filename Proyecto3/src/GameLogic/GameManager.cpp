@@ -6,12 +6,18 @@
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayContainer.h>
 #include <RenderSystemInterface.h>
+#include <LogSystem.h>
 
 using namespace Ogre;
 
+// updates player HP and score information
 void GameManager::updateUI()
 {
-	HPText->setCaption("HP: " + std::to_string(playerHP_->getHP()));
+	if(playerHP_ != nullptr)
+		HPText->setCaption("HP: " + std::to_string(playerHP_->getHP()));
+	else 
+		LogSystem::Log("Componente HPComponent no establecido. No es posible mostrar HP", LogSystem::GM);
+
 	ScoreText->setCaption("SCORE: " + std::to_string(score));
 }
 
@@ -38,7 +44,7 @@ void GameManager::setUp() {
 }
 
 void GameManager::update(GameObject * o, double time) {
-	if(playerHP_->getHP() <= 0) // EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
+	if(playerHP_ != nullptr && playerHP_->getHP() <= 0) // EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
 		overlayComp->showPanelByName("DEATH_PANEL");
 
 	// or if the player has completed the round (NEXT ROUND state)
