@@ -153,3 +153,35 @@ material SkyBox2
         }
     }
 }
+
+material SimpleTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture wood.jpg
+			}
+		}
+	}
+}
+
+material FallingTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture brokenWood.jpg
+			}
+		}
+	}
+}

@@ -21,7 +21,7 @@
             "stepOffset": 0.05,
             "minDist": 0.001,
 
-            "g": { "x": 0.0, "y": -15.0, "z": 0.0 },
+            "g": { "x": 0.0, "y": -35.0, "z": 0.0 },
             "slopeLimit": 0.0,
             "invisibleWallHeight": 0.0,
             "maxJumpHeight": 0.0

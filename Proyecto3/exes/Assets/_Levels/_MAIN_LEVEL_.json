@@ -9,26 +9,6 @@
     "GameObjects": [
         {
             "id": {
-				"type": "pref_cube"
-            },
-            "pos": { "x": -5.0, "y": 5.0, "z": 0.0 }
-        },
-        {
-            "id": {
-				"name": "monkey_boombox",
-				"type": "pref_cube"
-            },
-            "pos": { "x": 5.0, "y": 5.0, "z": 0.0 },
-            "Components": {
-                "cube_rend": {
-                    "scale": { "x": 100.0, "y": 130.0, "z": 100.0 },
-                    "shape": { "mesh": "monkey.mesh" }
-                }
-            }
-        },
-
-        {
-            "id": {
 				"type": "pref_spawner"
             },
             "pos": { "x": -30.0, "y": 0.0, "z": 0.0 }

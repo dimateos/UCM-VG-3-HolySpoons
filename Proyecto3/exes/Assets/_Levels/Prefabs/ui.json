@@ -21,25 +21,6 @@
 
         {
             "id": {
-                "name": "ambient_light",
-                "type": "ambient_light",
-                "group": "ui"
-            },
-            "Components": {
-                "globallight": {
-                    "id": {
-                        "type": "GlobalAmbientLightComponent",
-                        "group": "test_comps"
-                    },
-                    "r": 1.0,
-                    "g": 0.3,
-                    "b": 0.3
-                }
-            }
-        },
-
-        {
-            "id": {
                 "name": "button",
                 "type": "button_ui",
                 "group": "ui"

@@ -1,0 +1,22 @@
+{
+    "Prefabs": [
+        {
+            "id": {
+                "name": "ambient_light",
+                "type": "ambient_light",
+                "group": "ui"
+            },
+            "Components": {
+                "globallight": {
+                    "id": {
+                        "type": "GlobalAmbientLightComponent",
+                        "group": "test_comps"
+                    },
+                    "r": 0.7,
+                    "g": 0.7,
+                    "b": 1.0
+                }
+            }
+        }
+    ]
+}

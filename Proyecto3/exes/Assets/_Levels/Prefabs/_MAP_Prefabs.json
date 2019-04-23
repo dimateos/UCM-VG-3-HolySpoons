@@ -24,7 +24,7 @@
 					"group": "map_comps"
 				},
                 "scale": { "x": 4.0, "y": 1.0, "z": 4.0 },
-                "material": "DebugMaterial3",
+                "material": "FallingTile",
                 "shape": {
                     "entity_name": "f_tile",
                     "type": "MESH",
@@ -56,7 +56,7 @@
 					"group": "map_comps"
 				},
                 "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
-                "material": "DebugMaterial2",
+                "material": "SimpleTile",
                 "shape": {
                     "entity_name": "tile",
                     "type": "MESH",
