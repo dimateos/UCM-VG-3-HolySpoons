@@ -31,9 +31,12 @@
                 "type": "RenderComponent",
                 "group": "player_comps"
             },
-            "active": false,
+            "updateOri": false,
+            "boundingBox": true,
+            "invisible": true,
             "scale": { "x": 2.0, "y": 7.0, "z": 2.0 },
-            "shape": {
+            "material": "DebugMaterial3",
+                "shape": {
                 "entity_name": "player_hitbox",
                 "type": "MESH",
                 "mesh": "cube.mesh"
@@ -81,6 +84,13 @@
             "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "range": 8500
+        },
+        "hp_component": {
+            "id": {
+                "type": "HPComponent",
+                "group": "player_comps"
+            },
+            "hp": 100
         }
     }
 }

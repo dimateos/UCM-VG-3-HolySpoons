@@ -122,7 +122,7 @@ Ogre::SceneManager* RenderSystemManager::createSceneManager()
 	SceneManager* s = nullptr;
 	s = mRoot->createSceneManager();
 	s->addRenderQueueListener(overlaySystem);
-	
+
 	return s;
 }
 
@@ -181,8 +181,8 @@ void RenderSystemManager::setupScene(Ogre::String sceneName)
 	mCamera->setFOVy(Radian(Degree(60))); //in theory overrides near clip
 
 	//Lights
-	s->setAmbientLight(Ogre::ColourValue(0, 0, 0));
-	s->setShadowTechnique(ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
+	s->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+	//s->setShadowTechnique(ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
 
 	/*mainLight = mSceneMgr->createLight("MainLight");
 	mainLight->setType(Light::LT_POINT);
