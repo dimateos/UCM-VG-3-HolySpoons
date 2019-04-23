@@ -46,6 +46,7 @@
     <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Pool.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Pool.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Weapon.h" />

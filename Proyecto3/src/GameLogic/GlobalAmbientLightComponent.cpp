@@ -4,8 +4,8 @@
 #include <OgreColourValue.h>
 
 void GlobalAmbientLightComponent::setLight() {
-	in_ambientLight = { this->cfg_["r"], this->cfg_["g"], this->cfg_["b"] };
-	RenderSystemInterface::getSingleton()->setAmbientLight(Ogre::ColourValue(in_ambientLight.x_, in_ambientLight.y_, in_ambientLight.z_));
+	_ambientLight = { this->cfg_["r"], this->cfg_["g"], this->cfg_["b"] };
+	RenderSystemInterface::getSingleton()->setAmbientLight(Ogre::ColourValue(_ambientLight.x_, _ambientLight.y_, _ambientLight.z_));
 }
 
 void GlobalAmbientLightComponent::setUp() {
@@ -16,6 +16,17 @@ void GlobalAmbientLightComponent::setUp() {
 void GlobalAmbientLightComponent::lateSetUp() {
 
 	setLight();
+}
+
+void GlobalAmbientLightComponent::setAmbientLight(nap_vector3 nLight)
+{
+	_ambientLight = nLight;
+	RenderSystemInterface::getSingleton()->setAmbientLight(Ogre::ColourValue(_ambientLight.x_, _ambientLight.y_, _ambientLight.z_));
+}
+
+const nap_vector3 GlobalAmbientLightComponent::getAmbientLight() const
+{
+	return _ambientLight;
 }
 
 #include "GOFactory.h"

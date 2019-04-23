@@ -116,6 +116,7 @@
       <Filter>_Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -221,5 +222,6 @@
       <Filter>_Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GlobalAmbientLightComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
   </ItemGroup>
 </Project>

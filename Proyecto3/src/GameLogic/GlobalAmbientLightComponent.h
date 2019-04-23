@@ -11,7 +11,7 @@ class GlobalAmbientLightComponent : public Component
 {
 private:
 	void setLight();
-	nap_vector3 in_ambientLight;
+	nap_vector3 _ambientLight;
 
 public:
 	GlobalAmbientLightComponent() {};
@@ -20,6 +20,8 @@ public:
 
 	virtual void setUp();
 	virtual void lateSetUp();
+	void setAmbientLight(nap_vector3 nLight);
+	const nap_vector3 getAmbientLight() const;
 };
 
 #endif //GLOBALAMBIENTLIGHTCOMPONENT_H_
