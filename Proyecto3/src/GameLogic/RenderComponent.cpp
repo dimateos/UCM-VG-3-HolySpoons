@@ -4,6 +4,7 @@
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
+#include <OgreAnimationState.h>
 
 #include <Transforms.h>
 
@@ -29,6 +30,13 @@ void RenderComponent::setUp() {
 	//update trans
 	ignoreTrans_ = FINDnRETURN(cfg_, "ignoreTrans", bool, false);
 	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
+
+	//idle animation (if it has one)
+	if (FIND(cfg_, "idleAnimation") && entity->hasAnimationState(cfg_["idleAnimation"])) {
+		idleAnimation = entity->getAnimationState(cfg_["idleAnimation"]);
+		idleAnimation->setEnabled(true);
+		idleAnimation->setLoop(true);
+	}
 
 	configActive();
 }
@@ -58,6 +66,10 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+void RenderComponent::update(GameObject * o, double time) {
+	if (idleAnimation != nullptr) idleAnimation->addTime(time);
+}
 
 void RenderComponent::late_update(GameObject * o, double time) {
 	if (ignoreTrans_) return;

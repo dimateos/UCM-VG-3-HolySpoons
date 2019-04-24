@@ -19,6 +19,7 @@ namespace Ogre {
 	class Entity;
 	class Light;
 	class ColourValue;
+	class AnimationState;
 
 	template <int dims, typename T> class Vector;
 	typedef float Real;

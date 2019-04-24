@@ -12,9 +12,9 @@
                         "type": "GlobalAmbientLightComponent",
                         "group": "test_comps"
                     },
-                    "r": 0.7,
+                    "r": 1.0,
                     "g": 0.7,
-                    "b": 1.0
+                    "b": 0.7
                 }
             }
         },
@@ -65,7 +65,7 @@
                         "y": -500,
                         "z": 2000
                     },
-                    "material": "Ocean"
+                    "material": "DebugOcean"
                 }
             }
         }        

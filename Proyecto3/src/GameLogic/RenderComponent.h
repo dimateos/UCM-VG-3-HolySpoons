@@ -16,6 +16,7 @@ public:
 
 	inline Ogre::SceneNode* getSceneNode() { return node; }
 
+	virtual void update(GameObject* ent, double time);
 	virtual void late_update(GameObject* ent, double time);
 
 protected:
@@ -30,6 +31,8 @@ protected:
 
 	Ogre::SceneNode *node;
 	Ogre::Entity *entity;
+
+	Ogre::AnimationState* idleAnimation;
 };
 
 #endif /* RENDER_COMP_H_ */

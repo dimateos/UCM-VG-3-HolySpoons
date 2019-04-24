@@ -147,7 +147,7 @@ material SkyBox2
 
             texture_unit
             {
-                cubic_texture stormy.jpg separateUV
+                cubic_texture hell.png separateUV
                 tex_address_mode clamp
             }
         }
@@ -189,14 +189,14 @@ technique
 	}
 }
 
-material Ocean{
+material DebugOcean{
     technique{
         pass{
             diffuse 0.0 0.0 0.0
             ambient 0.0 0.0 0.0
             specular 0.0 0.0 0.0 0
             texture_unit{
-                texture Water01.jpg
+                texture lava.png
                 scroll_anim 0.1 0.0
 				scale 0.01 0.01
                 colour_op add
