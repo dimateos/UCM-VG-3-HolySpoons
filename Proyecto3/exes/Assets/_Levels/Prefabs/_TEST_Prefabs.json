@@ -32,11 +32,11 @@
                         "y": 1.0,
                         "z": 30.0
                     },
-                    "material": "DebugMaterial2",
+                    "material": "Ocean",
                     "shape": {
                         "entity_name": "pref_ground",
                         "type": "MESH",
-                        "mesh": "cube.mesh"
+                        "mesh": "Ocean.mesh"
                     }
                 }
             }
