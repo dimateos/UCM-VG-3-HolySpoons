@@ -4,6 +4,7 @@
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
 #include <OgreSceneManager.h>
+#include <OgreAnimationState.h>
 
 #include <Transforms.h>
 
@@ -26,6 +27,13 @@ void RenderComponent::setUp() {
 	//visibility
 	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(cfg_["boundingBox"]);
 	invisible_ = FINDnRETURN(cfg_, "invisible", bool, false);
+
+	//idle animation (if it has one)
+	if (FIND(cfg_, "idleAnimation") && entity->hasAnimationState(cfg_["idleAnimation"])) {
+		idleAnimation = entity->getAnimationState(cfg_["idleAnimation"]);
+		idleAnimation->setEnabled(true);
+		idleAnimation->setLoop(true);
+	}
 
 	configActive();
 }

@@ -29,6 +29,8 @@ protected:
 
 	Ogre::SceneNode *node;
 	Ogre::Entity *entity;
+
+	Ogre::AnimationState* idleAnimation;
 };
 
 #endif /* RENDER_COMP_H_ */
