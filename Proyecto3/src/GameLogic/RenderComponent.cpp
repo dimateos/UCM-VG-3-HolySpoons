@@ -21,11 +21,14 @@ void RenderComponent::setUp() {
 	//other properties
 	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
-	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
 
 	//visibility
 	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(cfg_["boundingBox"]);
 	invisible_ = FINDnRETURN(cfg_, "invisible", bool, false);
+
+	//update trans
+	ignoreTrans_ = FINDnRETURN(cfg_, "ignoreTrans", bool, false);
+	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
 
 	configActive();
 }
@@ -57,14 +60,19 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 ///////////////////////////////////////////////////////////////////////////////
 
 void RenderComponent::late_update(GameObject * o, double time) {
-	if (updateOri_ && o->getUpToDate_trans(upToDate::REND)) return;
-	else if (o->getUpToDate(upToDate::pos, upToDate::REND)) return;
+	if (ignoreTrans_) return;
 
-	node->setPosition(o->getPosition().ogre() * ogre_scale);
-	if (updateOri_) node->setOrientation(o->getOrientation().ogre());
+	//check pos
+	if (!o->getUpToDate(upToDate::pos, upToDate::REND)) {
+		node->setPosition(o->getPosition().ogre() * ogre_scale);
+		o->setUpToDate(upToDate::pos, upToDate::REND);
+	}
 
-	if (updateOri_) o->setUpToDate_trans(upToDate::REND);
-	else o->setUpToDate(upToDate::pos, upToDate::REND);
+	//now check the orientation if interested
+	if (updateOri_ && !o->getUpToDate(upToDate::ori, upToDate::REND)) {
+		node->setOrientation(o->getOrientation().ogre());
+		o->setUpToDate(upToDate::ori, upToDate::REND);
+	}
 }
 
 #include "GOFactory.h"

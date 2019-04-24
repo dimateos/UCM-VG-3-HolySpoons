@@ -14,7 +14,6 @@ Spawner::~Spawner()
 void Spawner::setUp()
 {
 	if (isInited()) return;
-
 	setInited();
 
 	//json parameters

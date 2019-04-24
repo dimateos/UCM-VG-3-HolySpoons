@@ -22,7 +22,8 @@ protected:
 	virtual void setDown();
 	virtual void configActive();
 
-	bool updateOri_, invisible_;
+	//used to optimize synchronization on late_update when not required
+	bool ignoreTrans_, updateOri_, invisible_;
 
 	//Assist on setting up the shape
 	OgrePair getOgrePair(nap_json shape);

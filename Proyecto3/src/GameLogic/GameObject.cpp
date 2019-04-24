@@ -32,9 +32,6 @@ void GameObject::setUp() {
 
 void GameObject::lateSetUp() {
 	for (Component* comp : components_) if (comp != nullptr) comp->lateSetUp();
-
-	//config active/inactive
-	configActive();
 }
 
 void GameObject::setDown() {

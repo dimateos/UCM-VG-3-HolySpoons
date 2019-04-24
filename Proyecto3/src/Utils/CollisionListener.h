@@ -43,10 +43,11 @@ private:
 class nap_userData
 {
 public:
-	inline nap_userData(nap_transform * trans, std::list<CollisionListener*>* cls, ID* id)
-		: trans_(trans), collisionListeners_(cls), id_(id) {};
+	inline nap_userData(nap_transform * trans, std::list<CollisionListener*>* cls, ID* id, bool updateOri)
+		: trans_(trans), collisionListeners_(cls), id_(id), updateOri_(updateOri) {};
 
 	nap_transform * trans_;
+	bool updateOri_;
 	std::list<CollisionListener*>* collisionListeners_;
 	ID* id_;
 };

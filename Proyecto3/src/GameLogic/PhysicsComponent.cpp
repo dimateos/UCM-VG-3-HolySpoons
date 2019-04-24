@@ -40,12 +40,15 @@ void PhysicsComponent::setUp() {
 
 	//more custom stuff
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
-	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
+
+	//update trans
+	ignoreTrans_ = FINDnRETURN(cfg_, "ignoreTrans", bool, false);
+	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
 
 	updateUserData();
 	configActive();
@@ -69,7 +72,7 @@ void PhysicsComponent::updateUserData() {
 	getActor()->setGlobalPose(PxTransform(owner_->getPosition().px(), owner_->getOrientation().px()));
 
 	if (ud_ != nullptr) delete ud_;
-	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
+	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr(), updateOri_);
 
 	getActor()->userData = ud_;
 }
@@ -77,13 +80,23 @@ void PhysicsComponent::updateUserData() {
 ///////////////////////////////////////////////////////////////////////////////
 
 void PhysicsComponent::late_update(GameObject * o, double time) {
-	if (updateOri_ && o->getUpToDate_trans(upToDate::PHYS)) return;
-	else if (o->getUpToDate(upToDate::pos, upToDate::PHYS)) return;
+	if (ignoreTrans_) return;
+	PxTransform trans = getActor()->getGlobalPose();
 
-	getActor()->setGlobalPose(PxTransform(o->getPosition().px(), o->getOrientation().px()));
+	//check pos
+	if (!o->getUpToDate(upToDate::pos, upToDate::PHYS)) {
+		trans.p = o->getPosition().px();
+		o->setUpToDate(upToDate::pos, upToDate::PHYS);
+	}
 
-	if (updateOri_) o->setUpToDate_trans(upToDate::PHYS);
-	else o->setUpToDate(upToDate::pos, upToDate::PHYS);
+	//now check the orientation if interested
+	if (updateOri_ && !o->getUpToDate(upToDate::ori, upToDate::PHYS)) {
+		trans.q = o->getOrientation().px();
+		o->setUpToDate(upToDate::ori, upToDate::PHYS);
+	}
+
+	//set the transform
+	getActor()->setGlobalPose(trans);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

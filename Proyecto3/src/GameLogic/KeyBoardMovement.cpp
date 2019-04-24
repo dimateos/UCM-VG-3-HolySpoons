@@ -37,7 +37,6 @@ void KeyBoardMovement::setUp() {
 }
 
 void KeyBoardMovement::lateSetUp() {
-
 	// physics component
 	controller_comp = static_cast<PhysicsControllerComponent*>(owner_->getComponent("controller_phy"));
 }

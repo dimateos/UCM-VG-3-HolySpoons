@@ -15,12 +15,11 @@ struct GOStruct {
 	nap_json go_cfg;
 	nap_json components_cfg;
 };
-using GOType = std::list<GOStruct>;
 
 // SceneType = scene's name and GOType
 struct SceneStruct {
 	string SceneName;
-	GOType gameObjects;
+	std::list<GOStruct> gameObjects;
 };
 
 //---------------------------------------------------------------------------------
@@ -64,7 +63,7 @@ private:
 	// reading map
 	void preloadMapTypes();
 	std::map<char, string> mapTypes;
-	GOType ReadMap(string level);
+	std::list<GOStruct> ReadMap(string level);
 	void setTilePosition(int r, int c, int i, int j, GOStruct & go);
 };
 

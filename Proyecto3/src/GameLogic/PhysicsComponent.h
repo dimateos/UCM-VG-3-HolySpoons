@@ -21,7 +21,8 @@ protected:
 	virtual void setDown();
 	virtual void configActive();
 
-	bool updateOri_;
+	//used to optimize synchronization on late_update when not required
+	bool ignoreTrans_, updateOri_;
 
 	//sync GO transforms with px
 	nap_userData * ud_ = nullptr;

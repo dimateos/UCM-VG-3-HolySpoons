@@ -113,13 +113,12 @@ void Game::run() {
 		// STEP PHYSICS
 		//LogSystem::Log("main physics", LogSystem::GAME);
 		physicsManager_->stepPhysics(t);
+		//retrieve collisions (add to events queue? or messages?)
 		physicsManager_->updateNodes();
 
-		//retrieve collisions (add to events queue? or messages?)
 		// EVENTS
 		//LogSystem::Log("main handleEvents", LogSystem::GAME);
 		handleEvents(); //atm sets exit
-
 		//handleCollisions(start_time); //if no events queue?
 
 		// LOGIC
@@ -128,7 +127,6 @@ void Game::run() {
 
 		// RENDER OGRE
 		//LogSystem::Log("main render", LogSystem::GAME);
-	
 		renderManager_->renderFrame();
 		//SetCursor(c);
 

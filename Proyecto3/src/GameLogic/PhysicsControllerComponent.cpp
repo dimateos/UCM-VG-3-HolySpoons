@@ -12,7 +12,7 @@
 #define BaseRadius 2.0f
 #define BaseHeight 3.0f
 #define BaseDens 1.0		//atm mass not defined
-#define BaseImass 14.0		//inverse
+#define BaseImass 1.0		//inverse
 #define BaseLinDamp 0.05	//def 0.0 and 1 max
 
 #define BaseContactOffset 0.01f
@@ -85,7 +85,7 @@ void PhysicsControllerComponent::updateUserData() {
 	controller_comp->setPosition(owner_->getPosition().pxEx());
 
 	if (ud_ != nullptr) delete ud_;
-	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr());
+	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr(), false);
 
 	//controller_->setUserData(ud_); //unused atm
 	getActor()->userData = ud_;
@@ -99,7 +99,7 @@ PxRigidActor * PhysicsControllerComponent::getActor() {
 
 void PhysicsControllerComponent::update(GameObject * o, double time) {
 	//update a
-	nap_vector3 frame_f = f_ * i_mass * time;
+	nap_vector3 frame_f = f_ * i_mass;
 	a_ = a_ + frame_f;
 
 	//update v

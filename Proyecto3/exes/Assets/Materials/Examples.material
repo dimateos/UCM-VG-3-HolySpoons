@@ -5,7 +5,7 @@ material DebugMaterial
 		pass
 		{
 			ambient 0.8 0.8 0.8
-			
+
 			texture_unit
 			{
 				texture 1d_debug.png
@@ -129,7 +129,7 @@ material SkyBox
 			lighting off
 			texture_unit
 			{
-				texture cubemap.jpg cubic 
+				texture cubemap.jpg cubic
 				tex_address_mode clamp
 				env_map cubic_reflection
 			}
@@ -165,6 +165,8 @@ technique
 			texture_unit
 			{
 				texture wood.jpg
+				tex_address_mode wrap
+				scale 0.4 0.25
 			}
 		}
 	}
@@ -181,6 +183,7 @@ technique
 			texture_unit
 			{
 				texture brokenWood.jpg
+				tex_address_mode wrap
 			}
 		}
 	}

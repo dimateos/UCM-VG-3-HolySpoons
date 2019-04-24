@@ -1,2 +1,5 @@
-0 Tile
 1 FallingTile
+n non
+O BigTile
+o Tile
+0 non

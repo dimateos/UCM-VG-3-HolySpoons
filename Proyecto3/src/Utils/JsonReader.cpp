@@ -234,6 +234,7 @@ GOStruct* JsonReader::ReadPlayer(nap_json const & player_cfg) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+#define non "non"
 void JsonReader::preloadMapTypes() {
 	LogSystem::Log("Reading map types file" + routeMapsTypes + " ...", LogSystem::JSON);
 	size_t n = 0;
@@ -250,7 +251,7 @@ void JsonReader::preloadMapTypes() {
 	while (file >> c >> s) {
 
 		//check the prefab exists and save / throw error and continue
-		if (prefabs.count(s) == 0) {
+		if (s != non && prefabs.count(s) == 0) {
 			LogSystem::Log("El prefab " + s + " no fue encontrado... abortando parseo del mapType", LogSystem::JSON);
 			continue;
 		}
@@ -265,11 +266,11 @@ void JsonReader::preloadMapTypes() {
 }
 
 // it adds to the scene the GameObjects (tiles) that will form the floor
-GOType JsonReader::ReadMap(string level) {
+std::list<GOStruct> JsonReader::ReadMap(string level) {
 	LogSystem::Log("Reading map " + level + " ...", LogSystem::JSON);
 	size_t n = 0;
 
-	GOType map;
+	std::list<GOStruct> map;
 
 	//check if openned correctly
 	ifstream file(routeLevel + level);
@@ -298,7 +299,10 @@ GOType JsonReader::ReadMap(string level) {
 				continue;
 			}
 
-			GOStruct go = *prefabs[mapTypes[row[j]]];
+			string prefName = mapTypes[row[j]];
+			if (prefName == non) continue; //some are ignored but added to the map to not proc errors messages
+
+			GOStruct go = *prefabs[prefName];
 
 			//temporal way of adding suffix to entity name. Ogre dosent allow same name. //FIXED
 			//go.components_cfg["tile_rend"]["shape"]["entity_name"] = "tile_" + to_string(n);

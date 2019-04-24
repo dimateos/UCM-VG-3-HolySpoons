@@ -11,17 +11,17 @@
                 "group": "player_comps"
             },
 
-            "radius": 2.0,
+            "radius": 1.6,
             "height": 3.0,
             "material": "PLAYER",
-            "i_mass": 14.0,
+            "i_mass": 1.0,
             "damping_": 0.00,
 
             "contactOffset": 0.01,
             "stepOffset": 0.05,
             "minDist": 0.001,
 
-            "g": { "x": 0.0, "y": -35.0, "z": 0.0 },
+            "g": { "x": 0.0, "y": -15.0, "z": 0.0 },
             "slopeLimit": 0.0,
             "invisibleWallHeight": 0.0,
             "maxJumpHeight": 0.0
@@ -34,7 +34,7 @@
             "updateOri": false,
             "boundingBox": true,
             "invisible": true,
-            "scale": { "x": 2.0, "y": 7.0, "z": 2.0 },
+            "scale": { "x": 1.6, "y": 6.2, "z": 1.6 },
             "material": "DebugMaterial3",
                 "shape": {
                 "entity_name": "player_hitbox",
@@ -48,16 +48,16 @@
                 "type": "KeyBoardMovement",
                 "group": "player_comps"
             },
-            "walkVel":1500,
-            "runVel": 3000,
-            "jumpForce": 4000
+            "walkVel":2000,
+            "runVel": 4000,
+            "jumpForce": 3000
         },
         "camera_fps": {
             "id": {
                 "type": "FPSCamera"
             },
-            "rotXspeed": 10.5,
-            "rotYspeed": 10.5,
+            "rotXspeed": 15.0,
+            "rotYspeed": 15.0,
             "maxRotY": 80,
             "zoomed": 25,
             "baseDir": { "x": 0.0, "y": -1.0, "z": 0.0 },
