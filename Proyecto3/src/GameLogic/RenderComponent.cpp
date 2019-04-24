@@ -64,6 +64,10 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+void RenderComponent::update(GameObject * o, double time) {
+	if (idleAnimation != nullptr) idleAnimation->addTime(time);
+}
+
 void RenderComponent::late_update(GameObject * o, double time) {
 	if (updateOri_ && o->getUpToDate_trans(upToDate::REND)) return;
 	else if (o->getUpToDate(upToDate::pos, upToDate::REND)) return;
