@@ -65,7 +65,7 @@
                         "y": -500,
                         "z": 2000
                     },
-                    "material": "Ocean"
+                    "material": "DebugOcean"
                 }
             }
         }        

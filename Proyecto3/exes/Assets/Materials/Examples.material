@@ -186,7 +186,7 @@ technique
 	}
 }
 
-material Ocean{
+material DebugOcean {
     technique{
         pass{
             diffuse 0.0 0.0 0.0
