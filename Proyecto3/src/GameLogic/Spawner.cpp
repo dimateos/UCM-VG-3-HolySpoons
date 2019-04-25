@@ -1,7 +1,22 @@
+#include "GameStateMachine.h"
+#include "MessageSystem.h"
+#include "GOFactory.h"
 #include "Spawner.h"
 #include "Pool.h"
-#include "GOFactory.h"
-#include "MessageSystem.h"
+
+nap_vector3 Spawner::smartPositioning(GameObject * o)
+{
+	//target position
+	nap_transform* trgPos = GameStateMachine::getSingleton()->currentState()->getPlayer()->getTransPtr();	
+	//We get the direction
+	nap_vector3 vec = { trgPos->p_.x_ - o->getTransPtr()->p_.x_, 0, trgPos->p_.z_ - o->getTransPtr()->p_.z_ };
+	//We normalizer the vector to length 1
+	vec.normalize();
+	//We muiltiply the vector by the radius to ensure the item spawns outside the bounding box EJ:5
+	vec *= 5;
+	//We add the vector to our position and return the resulting position
+	return o->getTransPtr()->p_ + vec;
+}
 
 Spawner::~Spawner()
 {
@@ -20,6 +35,7 @@ void Spawner::setUp()
 	pol = new nap_Pool(cfg_["itemString"]);
 	pol->setDefault(cfg_["default"]);
 	timer = cfg_["timer"];
+	//We have to read the smart boolean
 
 	pol->init();
 }
@@ -27,10 +43,12 @@ void Spawner::setUp()
 void Spawner::update(GameObject * o, double time)
 {
 	lastActiveT += time;
-	if(lastActiveT > timer){ //simple timer
-		lastActiveT = 0;//gets object from pool, spawns it
-		GameObject* tmp = pol->getItem();
-		tmp->setPosition(o->getPosition());
+	if(lastActiveT > timer){					//simple timer
+		lastActiveT = 0;						//Timer reset
+		GameObject* tmp = pol->getItem();		//gets object from pool, spawns it
+		if(!smart)
+			tmp->setPosition(o->getPosition());	//Basic Spawn point
+		else tmp->setPosition(smartPositioning(o));
 		tmp->setActive();
 		MessageSystem::getSingleton()->sendMessageGameObject(&Message(HP_RESET), tmp);
 	}

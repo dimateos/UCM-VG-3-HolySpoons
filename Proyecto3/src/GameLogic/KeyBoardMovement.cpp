@@ -69,6 +69,12 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 				controller_comp->addF(f);
 			}
 		}
+		//HAXS
+		#if _DEBUG
+			else if (pressedKey == SDLK_r) {
+				o->setPosition({ 0,10,0 });
+			}
+		#endif
 		else handled = false;
 	}
 

@@ -11,8 +11,12 @@ private:
 	double timer;
 	double lastActiveT=0;
 
+	bool smart = false;
+
 	nap_Pool* pol = nullptr;
 	list<Component*> compList;
+
+	nap_vector3 smartPositioning(GameObject* o);
 
 public:
 	inline Spawner() {};

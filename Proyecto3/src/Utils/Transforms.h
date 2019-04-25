@@ -72,6 +72,10 @@ public:
 	inline nap_vector3 operator/(const nap_vector3 & v2) {
 		return nap_vector3(this->x_ / v2.x_, this->y_ / v2.y_, this->z_ / v2.z_);
 	};
+	inline nap_vector3 operator*=(float n) {
+		return  nap_vector3(this->x_ * n + n, this->y_ * n + n, this->z_ * n + n);
+	}
+
 
 	inline float magnitude() const {
 		return sqrt(x_*x_ + y_ * y_ + z_ * z_);
