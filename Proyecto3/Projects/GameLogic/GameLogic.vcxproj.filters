@@ -124,6 +124,9 @@
     <ClCompile Include="..\..\src\GameLogic\PlaneComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\CameraMenu.cpp">
+      <Filter>_GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -236,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PlaneComponent.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\CameraMenu.h">
+      <Filter>_GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

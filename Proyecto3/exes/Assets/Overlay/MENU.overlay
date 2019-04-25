@@ -7,19 +7,5 @@ overlay MENU
 		top 0.0
 		width 1.0
 		height 1.0
-
-		overlay_element MENU_Text TextArea
-		{
-            metrics_mode relative
-            font_name HackReg
-            char_height 0.05
-            colour_top 0.4 0.4 0.8
-            colour_bottom 1 0.2 0.2
-            left 0.5
-            top 0.8
-            width 0.6
-            caption "PRESS SPACE TO START"
-            height 0.4
-		}
 	}
 }

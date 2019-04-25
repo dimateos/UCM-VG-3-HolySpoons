@@ -154,6 +154,23 @@ material SkyBox2
     }
 }
 
+material SkyBox3
+{
+    technique
+    {
+        pass
+        {
+            depth_write off
+
+            texture_unit
+            {
+                cubic_texture stormy.jpg separateUV
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+
 material SimpleTile
 {
 technique
