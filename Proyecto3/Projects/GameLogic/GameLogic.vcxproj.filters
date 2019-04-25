@@ -23,7 +23,7 @@
     <Filter Include="_GameStates">
       <UniqueIdentifier>{c74e18b2-e8bc-4e7b-8b0a-d1a3f96d30af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_Messages\Enemy">
+    <Filter Include="Enemy">
       <UniqueIdentifier>{34dda379-aa0a-44b2-8383-5a76477e43f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -50,13 +50,13 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp">
       <Filter>_Messages</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp">
       <Filter>_Components</Filter>
@@ -68,7 +68,7 @@
       <Filter>_GameObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GameState.cpp">
       <Filter>_GameStates</Filter>
@@ -83,10 +83,10 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp">
       <Filter>Render</Filter>
@@ -163,13 +163,13 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\MessageSystem.h">
       <Filter>_Messages</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h">
       <Filter>_Components</Filter>
@@ -181,7 +181,7 @@
       <Filter>_GameObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Spawner.h">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h">
       <Filter>_GameStates</Filter>
@@ -196,10 +196,10 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h">
-      <Filter>_Messages\Enemy</Filter>
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h">
       <Filter>Render</Filter>
