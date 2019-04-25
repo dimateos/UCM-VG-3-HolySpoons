@@ -42,6 +42,12 @@
             "id": {
 				"type": "Plane"
             }
+        },
+        {
+            "id":{
+                "type":"pref_Enemyspawner"
+            },
+            "pos": { "x": 0.0, "y": 0.0, "z": 50.0 }
         }
     ]
 }

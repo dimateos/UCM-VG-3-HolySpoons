@@ -103,7 +103,8 @@
                     "active": true,
                     "itemString": "pref_monkey",
                     "default": 0,
-                    "timer": 10.0
+                    "timer": 10.0,
+                    "smart": false
                 },
                 "circular_movement": {
                     "id": {
@@ -135,7 +136,8 @@
                     "active": true,
                     "itemString": "pref_monkey",
                     "default": 0,
-                    "timer": 10.0
+                    "timer": 10.0,
+                    "smart": true
                 },
                 "basic_phy": {
                     "id": {
