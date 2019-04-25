@@ -15,7 +15,7 @@ public:
 
 private:
 	double X, Y, W, H;
-	double bigX, bigY;
+	double bigX, bigY, bigW, bigH;
 	int msgType;
 	std::string panelName;
 	Ogre::OverlayElement* elemt;
