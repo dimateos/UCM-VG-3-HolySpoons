@@ -43,6 +43,9 @@
     <ClInclude Include="..\..\src\Utils\UpToDate.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\Timer.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp">
@@ -55,6 +58,9 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utils\TimeSystem.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utils\Timer.cpp">
       <Filter>Misc</Filter>
     </ClCompile>
   </ItemGroup>

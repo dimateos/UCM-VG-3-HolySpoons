@@ -38,7 +38,8 @@
         "bullet_hit": {
           "id": {
             "type": "BulletHit"
-          }
+          },
+          "time": 5
         }
       }
     },
@@ -83,7 +84,8 @@
         "bullet_hit": {
           "id": {
             "type": "BulletHit"
-          }
+          },
+          "time": 5
         }
       }
     }

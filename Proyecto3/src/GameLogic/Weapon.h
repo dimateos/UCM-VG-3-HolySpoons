@@ -3,6 +3,7 @@
 #define WEAPON_H_
 
 #include <string>
+#include <Timer.h>
 using namespace std;
 
 //fowarding
@@ -25,10 +26,10 @@ public:
 	virtual void swapDelay();
 
 protected:
-	bool down_ = false;
+	bool down_ = false, ready_ = true;
 	nap_Pool* pool_ = nullptr;
 	float vel_ = 0;
-	double shootSpeed_ = 0.2, timer = 0;
+	Timer t;
 };
 
 //automatic shooting

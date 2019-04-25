@@ -26,6 +26,7 @@
     <ClInclude Include="..\..\src\Utils\JsonCore.h" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
+    <ClInclude Include="..\..\src\Utils\Timer.h" />
     <ClInclude Include="..\..\src\Utils\TimeSystem.h" />
     <ClInclude Include="..\..\src\Utils\Transforms.h" />
     <ClInclude Include="..\..\src\Utils\UpToDate.h" />
@@ -33,6 +34,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp" />
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp" />
+    <ClCompile Include="..\..\src\Utils\Timer.cpp" />
     <ClCompile Include="..\..\src\Utils\TimeSystem.cpp" />
     <ClCompile Include="..\..\src\Utils\Transforms.cpp" />
   </ItemGroup>

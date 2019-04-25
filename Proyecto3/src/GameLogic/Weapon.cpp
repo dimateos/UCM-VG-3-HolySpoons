@@ -12,7 +12,7 @@ Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2)
 {
 	active_ = false;
 	vel_ = vel;
-	shootSpeed_ = shootSpeed;
+	t.start(shootSpeed);
 	pool_ = new nap_Pool(prefab);
 	pool_->setDefault(0);
 	pool_->init();
@@ -30,9 +30,11 @@ void Weapon::mouseUpdate(bool down)
 
 void Weapon::shootUpdate(nap_transform * owner_trans, float relY, float relZ, double time)
 {
-	timer -= time;
-	if (timer <= 0 && down_) {
-		timer = shootSpeed_;
+	if (t.update(time))
+		ready_ = true;
+	if (ready_ && down_) {
+		ready_ = false;
+		t.start();
 		shoot(owner_trans, relY, relZ);
 	}
 }
@@ -57,7 +59,7 @@ void Weapon::shoot(nap_transform* owner_trans, float relY, float relZ)
 
 void Weapon::swapDelay()
 {
-	timer = 0.5;
+	t.start();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
