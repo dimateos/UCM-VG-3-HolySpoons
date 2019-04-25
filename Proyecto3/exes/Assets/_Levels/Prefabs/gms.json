@@ -55,7 +55,8 @@
                     "group": "test_comps"
                 },
                 "key": "8",
-                "state": "MainScene"
+                "state": "MainScene",
+                "IncomingGameManager": "gm_go"
             }
         }
     },
