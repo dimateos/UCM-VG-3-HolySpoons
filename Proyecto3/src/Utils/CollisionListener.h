@@ -24,7 +24,6 @@ protected:
 class CollisionListener
 {
 public:
-	inline CollisionListener() {}
 	inline CollisionListener(CollisionListenersHolder* owner) { owner->addCollisionListener(this); };
 	inline ~CollisionListener() {};
 

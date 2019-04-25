@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Physx_Interface\ControllerReporter.cpp" />
     <ClCompile Include="..\..\src\Physx_Interface\EventReporter.cpp" />
     <ClCompile Include="..\..\src\Physx_Interface\PhysicsSystemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\Physx_Interface\ControllerReporter.h" />
     <ClInclude Include="..\..\src\Physx_Interface\EventReporter.h" />
     <ClInclude Include="..\..\src\Physx_Interface\PhyscsFowarder.h" />
     <ClInclude Include="..\..\src\Physx_Interface\PhysicsSystemManager.h" />

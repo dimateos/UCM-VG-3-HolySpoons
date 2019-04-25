@@ -15,6 +15,9 @@
     <ClCompile Include="..\..\src\Physx_Interface\EventReporter.cpp">
       <Filter>Archivs de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Physx_Interface\ControllerReporter.cpp">
+      <Filter>Archivs de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Physx_Interface\EventReporter.h">
@@ -24,6 +27,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Physx_Interface\PhyscsFowarder.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physx_Interface\ControllerReporter.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

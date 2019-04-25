@@ -20,8 +20,8 @@ public:
 	inline void setV(nap_vector3 v) { v_ = v; };
 	inline nap_vector3 getA() const { return a_; };
 	inline void setA(nap_vector3 a) { a_ = a; };
-	inline nap_vector3 getF() const { return f_; };
-	inline void addF(nap_vector3 f) { f_ = f_ + f; };
+	inline nap_vector3 getI() const { return i_; };
+	inline void addI(nap_vector3 i) { i_ = i_ + i; };
 	inline nap_vector3 getG() const { return g_; };
 	inline void setG(nap_vector3 g) { g_ = g; };
 
@@ -43,7 +43,7 @@ protected:
 	PxRigidActor* getActor();
 
 	//Custom movement for the controller
-	nap_vector3 v_, a_, f_, g_;
+	nap_vector3 v_, a_, i_, g_;
 	float damping_, minDist, i_mass;
 };
 

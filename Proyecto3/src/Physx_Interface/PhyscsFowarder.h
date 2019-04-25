@@ -4,6 +4,8 @@
 
 //fowarding
 class EventReporter;
+class ControllerReporter;
+
 namespace physx
 {
 	class PxMaterial;

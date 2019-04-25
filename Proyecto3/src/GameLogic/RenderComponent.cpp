@@ -50,6 +50,7 @@ void RenderComponent::setDown() {
 
 void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
+	if (!active_ && FIND(cfg_, "boundingBox")) node->showBoundingBox(!cfg_["boundingBox"]);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

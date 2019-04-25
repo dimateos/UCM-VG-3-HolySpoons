@@ -8,13 +8,16 @@ public:
 	Timer();
 	Timer(double time);
 	virtual ~Timer();
+
 	void setDuration(double time);
 	void start();
 	void start(double time);
 	void stop();
+
 	bool update(double timePassed);
 	bool checkEnd();
 	bool isActive();
+
 protected:
 	double duration = 0, timeLeft = 0;
 	bool active = false;

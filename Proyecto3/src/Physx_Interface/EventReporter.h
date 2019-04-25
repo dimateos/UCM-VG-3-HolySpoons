@@ -1,8 +1,7 @@
 //Nap_Time_Studios
 #pragma once
 
-#include <PxPhysicsAPI.h>
-
+#include <PxSimulationEventCallback.h>
 class EventReporter : public physx::PxSimulationEventCallback
 {
 public:

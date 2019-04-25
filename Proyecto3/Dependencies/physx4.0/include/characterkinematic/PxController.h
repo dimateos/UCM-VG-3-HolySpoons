@@ -25,7 +25,7 @@
 //
 // Copyright (c) 2008-2019 NVIDIA Corporation. All rights reserved.
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
-// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
+// Copyright (c) 2001-2004 NovodeX AG. All rights reserved.
 
 
 
@@ -399,7 +399,7 @@ public:
 	Specifies a skin around the object within which contacts will be generated.
 	Use it to avoid numerical precision issues.
 
-	This is dependant on the scale of the users world, but should be a small, positive 
+	This is dependant on the scale of the users world, but should be a small, positive
 	non zero value.
 
 	<b>Default:</b> 0.1
@@ -409,13 +409,13 @@ public:
 	/**
 	\brief Defines the maximum height of an obstacle which the character can climb.
 
-	A small value will mean that the character gets stuck and cannot walk up stairs etc, 
-	a value which is too large will mean that the character can climb over unrealistically 
+	A small value will mean that the character gets stuck and cannot walk up stairs etc,
+	a value which is too large will mean that the character can climb over unrealistically
 	high obstacles.
 
 	<b>Default:</b> 0.5
 
-	@see upDirection 
+	@see upDirection
 	*/
 	PxF32						stepOffset;
 
@@ -487,7 +487,7 @@ public:
 
 	/**
 	\brief The material for the actor associated with the controller.
-	
+
 	The controller internally creates a rigid body actor. This parameter specifies the material of the actor.
 
 	<b>Default:</b> NULL
@@ -723,8 +723,8 @@ public:
 	virtual		PxExtendedVec3			getFootPosition()		const	= 0;
 
 	/**
-	\brief Get the rigid body actor associated with this controller (see PhysX documentation). 
-	The behavior upon manually altering this actor is undefined, you should primarily 
+	\brief Get the rigid body actor associated with this controller (see PhysX documentation).
+	The behavior upon manually altering this actor is undefined, you should primarily
 	use it for reading const properties.
 
 	\return the actor associated with the controller.
@@ -827,15 +827,15 @@ public:
 
 	/**
 	\brief Flushes internal geometry cache.
-	
+
 	The character controller uses caching in order to speed up collision testing. The cache is
 	automatically flushed when a change to static objects is detected in the scene. For example when a
 	static shape is added, updated, or removed from the scene, the cache is automatically invalidated.
-	
+
 	However there may be situations that cannot be automatically detected, and those require manual
 	invalidation of the cache. Currently the user must call this when the filtering behavior changes (the
-	PxControllerFilters parameter of the PxController::move call).  While the controller in principle 
-	could detect a change in these parameters, it cannot detect a change in the behavior of the filtering 
+	PxControllerFilters parameter of the PxController::move call).  While the controller in principle
+	could detect a change in these parameters, it cannot detect a change in the behavior of the filtering
 	function.
 
 	@see PxController.move

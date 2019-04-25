@@ -2,10 +2,10 @@
 #include "LogSystem.h"
 
 #include <PhysicsSystemManager.h>
+#include <ControllerReporter.h>
 #include <Transforms.h>
 
 #include <PxRigidDynamic.h>
-//#include <characterkinematic\PxController.h>
 #include <characterkinematic\PxCapsuleController.h>
 
 //some global cfg?
@@ -57,8 +57,8 @@ void PhysicsControllerComponent::setUp() {
 	desc.invisibleWallHeight = FINDnRETURN(cfg_, "invisibleWallsHeight", float, BaseInvisibleWallsHeight);
 	desc.maxJumpHeight = FINDnRETURN(cfg_, "maxJumpHeight", float, BaseMaxJumpHeight);
 
-	//unused atm
-	//desc.reportCallback = this;
+	//collisions
+	desc.reportCallback = new ControllerReporter(&ud_);
 	//desc.behaviorCallback = this;
 
 	//create the controller
@@ -98,13 +98,13 @@ PxRigidActor * PhysicsControllerComponent::getActor() {
 ///////////////////////////////////////////////////////////////////////////////
 
 void PhysicsControllerComponent::update(GameObject * o, double time) {
-	//update a
-	nap_vector3 frame_f = f_ * i_mass;
-	a_ = a_ + frame_f;
-
-	//update v
+	//update with constants v
 	v_ = v_ + (a_ + g_) * time;
-	v_ = v_ * powf(1-damping_, time);
+	v_ = v_ * powf(1 - damping_, time);
+
+	//update puntual impulses
+	v_ = v_ + i_ * i_mass;
+	i_ = vO;
 
 	//update pos
 	nap_vector3 prevPos = napVEC3(controller_comp->getPosition());
@@ -119,10 +119,6 @@ void PhysicsControllerComponent::update(GameObject * o, double time) {
 	//integrate real v
 	nap_vector3 finalPos = napVEC3(controller_comp->getPosition());
 	v_ = (finalPos - prevPos) / time;
-
-	//clear force
-	a_ = a_ - frame_f;
-	f_ = vO;
 
 	//LogSystem::Log("prevPos: ", prevPos.json(), LogSystem::DEV);
 	//LogSystem::Log("newPos: ", newPos.json(), LogSystem::DEV);

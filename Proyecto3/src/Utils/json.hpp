@@ -10959,7 +10959,7 @@ struct diyfp // f * 2^e
     std::uint64_t f = 0;
     int e = 0;
 
-    constexpr diyfp(std::uint64_t f_, int e_) noexcept : f(f_), e(e_) {}
+    constexpr diyfp(std::uint64_t i_, int e_) noexcept : f(i_), e(e_) {}
 
     /*!
     @brief returns x - y

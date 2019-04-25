@@ -69,6 +69,7 @@ void PhysicsSystemManager::setupInstance() {
 	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
 
 	gControllerManager = PxCreateControllerManager(*gScene);
+	gControllerManager->setTessellation(true, 15.0);
 
 	// Add custom application code ?
 	//end of custom code

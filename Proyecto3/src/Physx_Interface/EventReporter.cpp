@@ -1,16 +1,16 @@
 #include "EventReporter.h"
 #include "LogSystem.h"
 
+#include <PxRigidStatic.h>
+
 #include "CollisionListener.h"
 void EventReporter::onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs) {
 	PX_UNUSED(pairs);
 	PX_UNUSED(nbPairs);
-	physx::PxActor* actor1 = pairHeader.actors[0];
-	physx::PxActor* actor2 = pairHeader.actors[1];
 
 	//get userDatas
-	nap_userData* nap_UD_1 = static_cast<nap_userData*>(actor1->userData);
-	nap_userData* nap_UD_2 = static_cast<nap_userData*>(actor2->userData);
+	nap_userData* nap_UD_1 = static_cast<nap_userData*>(pairHeader.actors[0]->userData);
+	nap_userData* nap_UD_2 = static_cast<nap_userData*>(pairHeader.actors[1]->userData);
 
 	//send onCollision events
 	for (CollisionListener* c : *nap_UD_1->collisionListeners_) {

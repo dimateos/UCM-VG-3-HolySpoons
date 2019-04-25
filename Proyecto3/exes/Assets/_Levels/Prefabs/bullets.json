@@ -13,7 +13,7 @@
             "type": "PhysicsComponent"
           },
           "noGravity": true,
-          "mass": 0.1,
+          "mass": 0.01,
           "shape": {
             "type": "SPHERE",
             "r": 0.3
@@ -55,7 +55,7 @@
             "type": "PhysicsComponent"
           },
           "noGravity": true,
-          "mass": 0.1,
+          "mass": 0.01,
           "shape": {
             "type": "BOX",
             "scale": {
