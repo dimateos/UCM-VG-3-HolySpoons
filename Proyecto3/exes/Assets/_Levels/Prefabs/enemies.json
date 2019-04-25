@@ -44,15 +44,17 @@
                         "type": "FloatingEnemyComponent",
                         "group": "enemy_comps"
                     },
-                    "Amplitude": 2,
+                    "Amplitude": 1,
                     "HorizontalSpeed": 3.5,
-                    "VerticalSpeed": 1
+                    "VerticalSpeed": 1,
+                    "Target": "player"
                 },
                 "auto_rotation": {
                     "id": {
                         "type": "AutoRotationComponent",
                         "group": "enemy_comps"
-                    }
+                    },
+                    "Target": "player"
                 },
                 "bullet_hittable": {
                     "id": {

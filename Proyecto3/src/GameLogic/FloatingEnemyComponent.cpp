@@ -40,7 +40,16 @@ void FloatingEnemyComponent::setUp()
 	horiSpeed = cfg_["HorizontalSpeed"];
 	vertSpeed = cfg_["VerticalSpeed"];
 	initY = owner_->getPosition().y_;
-	dest = GameStateMachine::getSingleton()->currentState()->getPlayer()->getTransPtr(); //should be a pointer...
+
+	string target = this->cfg_["Target"];
+	GameObject* o = GameStateMachine::getSingleton()->currentState()->getGameObject(target);
+
+	if (o != nullptr) {
+		dest = o->getTransPtr();
+	}
+	else {
+		LogSystem::Log("GameObject " + target + " does not exist in the current state", LogSystem::GAME,  {__FILE__, __LINE__} );
+	}
 }
 
 void FloatingEnemyComponent::update(GameObject* ent, double time)

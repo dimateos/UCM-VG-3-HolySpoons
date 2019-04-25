@@ -110,7 +110,7 @@ material NinjaMaterial
 	{
 		pass
 		{
-			ambient 0.1 0.1 0.1
+			ambient 0.8 0.8 0.8
 
 			texture_unit
 			{
@@ -154,6 +154,23 @@ material SkyBox2
     }
 }
 
+material SkyBox3
+{
+    technique
+    {
+        pass
+        {
+            depth_write off
+
+            texture_unit
+            {
+                cubic_texture stormy.jpg separateUV
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+
 material SimpleTile
 {
 technique
@@ -183,6 +200,40 @@ technique
 			texture_unit
 			{
 				texture brokenWood.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Spoon
+{
+technique
+	{
+		pass
+		{
+			ambient 0.4 0.4 0.4
+
+			texture_unit
+			{
+				texture spoon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Bullet
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture orange.jpg
 				tex_address_mode wrap
 			}
 		}

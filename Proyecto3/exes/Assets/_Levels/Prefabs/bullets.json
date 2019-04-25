@@ -28,7 +28,7 @@
             "y": 0.3,
             "z": 0.3
           },
-          "material": "EyeMaterial",
+          "material": "Bullet",
           "shape": {
             "entity_name": "base_bullet",
             "type": "MESH",

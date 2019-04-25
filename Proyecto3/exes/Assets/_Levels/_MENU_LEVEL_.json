@@ -3,19 +3,67 @@
     "GameObjects": [
         {
             "id": {
-				"type": "pref_gmMenu_go"
+                "type": "pref_gmMenu_go"
             }
         },
-
         {
             "id": {
-				"type": "cursor_ui"
+                "type": "cursor_ui"
             }
         },
-
         {
             "id": {
-				"type": "button_ui"
+                "type": "button_ui"
+            }
+        },
+        {
+            "id": {
+                "type": "camera_menu"
+            }
+        },
+        {
+            "id":{
+                "type": "skybox"
+            },
+            "Components":{
+                "skybox":{
+                    "skybox":"SkyBox3"
+                }
+            }
+        },
+        {
+            "id":{
+                "type": "monkey_menu"
+            }
+        },
+        {
+            "id":{
+                "type": "monkey_menu"
+            },
+            "pos":{
+                "x": 1.0,
+                "y": 15.0,
+                "z": 0.0
+            },
+            "Components":{
+                "circular_movement":{
+                    "Speed":-1
+                }
+            }
+        },
+        {
+            "id":{
+                "type": "monkey_menu"
+            },
+            "pos":{
+                "x": 1.0,
+                "y": -15.0,
+                "z": 0.0
+            },
+            "Components":{
+                "circular_movement":{
+                    "Speed":-1
+                }
             }
         }
     ]

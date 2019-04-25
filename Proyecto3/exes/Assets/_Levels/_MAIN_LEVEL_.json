@@ -3,6 +3,7 @@
     "mapFile": "_MAIN_LEVEL_map.txt",
     "Player": {
         "id": {
+            "name": "player",
             "type": "pref_playerController"
         }
     },
@@ -10,13 +11,6 @@
         {
             "id": {
 				"type": "pref_spawner"
-            },
-            "pos": { "x": -30.0, "y": 0.0, "z": 0.0 }
-        },
-
-        {
-            "id": {
-				"type": "pref_ground"
             },
             "pos": { "x": -30.0, "y": 0.0, "z": 0.0 }
         },
@@ -47,7 +41,7 @@
             "id":{
                 "type":"pref_Enemyspawner"
             },
-            "pos": { "x": 0.0, "y": 0.0, "z": 50.0 }
+            "pos": { "x": 0.0, "y": 20.0, "z": 70.0 }
         }
     ]
 }
