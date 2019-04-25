@@ -21,27 +21,48 @@
             "stepOffset": 0.05,
             "minDist": 0.001,
 
-            "g": { "x": 0.0, "y": -15.0, "z": 0.0 },
+            "g": { "x": 0.0, "y": -65.0, "z": 0.0 },
             "slopeLimit": 0.0,
             "invisibleWallHeight": 0.0,
             "maxJumpHeight": 0.0
         },
+        
         "hitbox_ren": {
             "id": {
-                "type": "RenderComponent",
-                "group": "player_comps"
+              "type": "RenderComponent",
+              "group": "player_comps"
             },
             "updateOri": false,
             "boundingBox": true,
             "invisible": true,
-            "scale": { "x": 1.6, "y": 6.2, "z": 1.6 },
+            "scale": {
+              "x": 2.0,
+              "y": 7.0,
+              "z": 2.0
+            },
             "material": "DebugMaterial3",
-                "shape": {
-                "entity_name": "player_hitbox",
-                "type": "MESH",
-                "mesh": "cube.mesh"
+            "shape": {
+              "entity_name": "player_hitbox",
+              "type": "MESH",
+              "mesh": "cube.mesh"
             }
-        },
+          },
+    
+          "basic_ren": {
+                "id": {
+                    "type": "RenderComponent",
+                    "group": "player_comps"
+                },
+                "scale": { "x": 50.0, "y": 65.0, "z": 50.0 },
+                "relativePos": { "x": 0.5, "y": 0.0, "z": 0.5 },
+                "shape": {
+                    "entity_name": "player_spoon",
+                    "type": "MESH",
+                    "mesh": "spoon.mesh"
+                },
+                "updateOri": false,
+                "ignoreTrans": true
+            },
 
         "keyboard_mov": {
             "id": {
@@ -50,7 +71,7 @@
             },
             "walkVel":2000,
             "runVel": 4000,
-            "jumpForce": 3000
+            "jumpForce": 2000
         },
         "camera_fps": {
             "id": {

@@ -7,6 +7,8 @@
 #include <OgreOverlayContainer.h>
 #include <RenderSystemInterface.h>
 #include <LogSystem.h>
+#include <OgreCamera.h>
+#include <OgreViewport.h>
 
 using namespace Ogre;
 
@@ -38,7 +40,9 @@ void GameManager::setUp() {
 
 	// scope
 	Ogre::OverlayElement* scope = RenderSystemInterface::getSingleton()->getOverlayElement("Scope");
-	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition(scope, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
+	(scope, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
+		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
 
 	updateUI();
 }

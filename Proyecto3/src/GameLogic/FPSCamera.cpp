@@ -1,6 +1,6 @@
 #include "FPSCamera.h"
 #include "LogSystem.h"
-//#include "RenderComponent.h"
+#include "RenderComponent.h"
 
 #include <OgreCamera.h>
 #include <OgreViewport.h>
@@ -34,9 +34,7 @@ void FPSCamera::lateSetUp() {
 	relativePos = nap_vector3(cfg_["relativePos"]);
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
-	//add camera as child of player render node and move it to its local relative position
-	//RenderSystemInterface::getSingleton()->addChild(static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode(), camNode_);
-	//camNode_->translate(relativePos.ogre() * ogre_scale, Ogre::Node::TS_WORLD);
+	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

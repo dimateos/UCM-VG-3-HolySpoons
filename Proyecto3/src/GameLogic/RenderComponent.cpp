@@ -21,6 +21,8 @@ void RenderComponent::setUp() {
 
 	//other properties
 	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
+	if (FIND(cfg_, "relativePos")) relativePos = nap_vector3(cfg_["relativePos"]);
+	else relativePos = nap_vector3(0, 0, 0);
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//visibility
@@ -72,11 +74,14 @@ void RenderComponent::update(GameObject * o, double time) {
 }
 
 void RenderComponent::late_update(GameObject * o, double time) {
-	if (ignoreTrans_) return;
+	if (ignoreTrans_) {
+		node->setPosition(relativePos.ogre() * ogre_scale);
+		return;
+	}
 
 	//check pos
 	if (!o->getUpToDate(upToDate::pos, upToDate::REND)) {
-		node->setPosition(o->getPosition().ogre() * ogre_scale);
+		node->setPosition((o->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
 		o->setUpToDate(upToDate::pos, upToDate::REND);
 	}
 

@@ -37,7 +37,7 @@ overlay HUD
             left 0.0
 		    top 0.0
 		    width 0.05
-		    height 0.05
+		    height 0.06
             material ScopeMaterial
         }
 	}
