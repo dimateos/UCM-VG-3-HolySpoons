@@ -1,12 +1,5 @@
 #include "CameraMenu.h"
-#include "LogSystem.h"
-#include "RenderComponent.h"
-
-#include <OgreCamera.h>
-#include <OgreViewport.h>
 #include <OgreSceneNode.h>
-#include <OgreNode.h>
-#include <LogSystem.h>
 
 void CameraMenu::setUp() {
 	if (isInited()) return;
