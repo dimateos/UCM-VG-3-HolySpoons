@@ -1,5 +1,5 @@
 {
-    "stateID_": "PauseLevel",
+    "stateID_": "MenuLevel",
     "GameObjects": [
         {
             "id": {
@@ -27,8 +27,18 @@
             },
             "Components":{
                 "skybox":{
-                    "skybox":"SkyBox3"
+                    "skybox":"SkyBox2"
                 }
+            }
+        },
+        {
+            "id": {
+                "type": "PlaneTitle"
+            }
+        },
+        {
+            "id": {
+                "type": "PlaneLavaMenu"
             }
         },
         {

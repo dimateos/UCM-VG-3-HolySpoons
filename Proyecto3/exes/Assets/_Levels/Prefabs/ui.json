@@ -31,13 +31,13 @@
                         "type": "ButtonComponent",
                         "group": "test_comps"
                     },
-                    "X": 0.3,
-                    "Y": 0.5,
-                    "W": 0.5,
+                    "X": 0.35,
+                    "Y": 0.6,
+                    "W": 0.3,
                     "H": 0.1,
                     "msgType" : 4,
                     "panelName": "MENU_PanelContainer",
-                    "materialName": "CursorMaterial",
+                    "materialName": "ButtonMaterial",
                     "name": "start_button"
                 }
             }

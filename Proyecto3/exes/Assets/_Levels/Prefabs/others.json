@@ -36,13 +36,13 @@
         },
         {
             "id": {
-                "name": "Plane",
-                "type": "Plane",
+                "name": "PlaneLava",
+                "type": "PlaneLava",
                 "group": "ui"
             },
             "Components": {
                 "Plane": {
-                    "name": "Plane",
+                    "name": "PlaneLava",
                     "id": {
                         "type": "PlaneComponent",
                         "group": "test_comps"
@@ -68,6 +68,75 @@
                 }
             }
         },
+        {
+            "id": {
+                "name": "PlaneLavaMenu",
+                "type": "PlaneLavaMenu",
+                "group": "ui"
+            },
+            "Components": {
+                "Plane": {
+                    "name": "PlaneLavaMenu",
+                    "id": {
+                        "type": "PlaneComponent",
+                        "group": "test_comps"
+                    },
+                    "normal": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0
+                    },
+                    "w": 100,
+                    "h": 100,
+                    "up": {
+                        "x": 1,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "pos": {
+                        "x": -5,
+                        "y": -6,
+                        "z": 0
+                    },
+                    "material": "DebugOcean"
+                }
+            }
+        },
+        {
+            "id": {
+                "name": "PlaneTitle",
+                "type": "PlaneTitle",
+                "group": "ui"
+            },
+            "Components": {
+                "Plane": {
+                    "name": "PlaneTitle",
+                    "id": {
+                        "type": "PlaneComponent",
+                        "group": "test_comps"
+                    },
+                    "normal": {
+                        "x": -1,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "w": 15,
+                    "h": 8,
+                    "up": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0
+                    },
+                    "pos": {
+                        "x": 15,
+                        "y": 3,
+                        "z": 0
+                    },
+                    "material": "TitleMaterial"
+                }
+            }
+        },
+
         {
             "id": {
                 "name": "camera_menu",

@@ -34,7 +34,7 @@
         },
         {
             "id": {
-				"type": "Plane"
+				"type": "PlaneLava"
             }
         },
         {

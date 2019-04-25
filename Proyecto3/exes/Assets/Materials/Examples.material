@@ -40,7 +40,7 @@ material EyeMaterial
 	}
 }
 
-material CursorMaterial
+material TitleMaterial
 {
 	technique
 	{
@@ -50,7 +50,23 @@ material CursorMaterial
 
 			texture_unit
 			{
-				texture monkeycursor.png
+				texture Title.png
+			}
+		}
+	}
+}
+
+material ButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture startButton.png
 			}
 		}
 	}
