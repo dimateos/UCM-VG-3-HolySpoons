@@ -43,6 +43,11 @@ bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 			}
 		}
 	}
+	else if (evt.type == SDL_WINDOWEVENT) {
+		if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
+
+		}
+	}
 	return false;
 }
 

@@ -10,16 +10,14 @@ overlay PAUSE
 
 		overlay_element PAUSE_Text TextArea
 		{
-            metrics_mode pixels
+            metrics_mode relative
             font_name HackReg
-            char_height 40
+            char_height 0.05
             colour_top 1 0 0
             colour_bottom 0.2 0.5 0.2
-            left 330
-            top 250
-            width 40
+            left 0.45
+            top 0.45
             caption "PAUSED"
-            height 40
 		}
 	}
 }
