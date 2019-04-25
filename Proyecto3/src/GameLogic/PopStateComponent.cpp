@@ -21,6 +21,7 @@ void PopStateComponent::setUp()
 	}
 
 	state = this->getCfg()["state"];
+	incGM = this->getCfg()["IncomingGameManager"]; //wtf why this doesnt work
 }
 
 bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)

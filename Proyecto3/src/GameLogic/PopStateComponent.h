@@ -9,7 +9,7 @@ class PopStateComponent : public Component
 private:
 	SDL_Keycode key = SDLK_8; //READ IT FROM JSON?
 	std::string state;
-
+	std::string incGM;
 public:
 	PopStateComponent() {};
 	virtual ~PopStateComponent() {};
