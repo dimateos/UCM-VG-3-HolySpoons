@@ -3,6 +3,8 @@
 #include <SDL_events.h>	
 #include <iostream>
 #include "ButtonComponent.h"
+#include "OgreCamera.h"
+#include "OgreViewport.h"
 
 ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Component(cfg,owner) {
 
@@ -22,13 +24,15 @@ void ButtonComponent::OnClick()
 
 void ButtonComponent::setUp()
 {
-	Ogre::OverlayElement* elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", this->cfg_["name"]);
+	elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", this->cfg_["name"]);
 
 	RenderSystemInterface::getSingleton()->addToPanel(this->cfg_["panelName"], elemt);
 
 	RenderSystemInterface::getSingleton()->setOverlayElementMaterial(elemt, cfg_["materialName"]);
 
-	RenderSystemInterface::getSingleton()->setOverlayElementPosition(elemt, X, Y);
+	bigX = RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth()* X;
+	bigY = RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() * Y;
+	RenderSystemInterface::getSingleton()->setOverlayElementPosition(elemt,bigX, bigY);
 
 	RenderSystemInterface::getSingleton()->setOverlayElementDimensions(elemt, W, H);
 }
@@ -38,14 +42,16 @@ bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 	if (evt.type == SDL_MOUSEBUTTONDOWN) {
 		if (evt.button.button == SDL_BUTTON_LEFT) {
 			int x_ = evt.button.x, y_ = evt.button.y;
-			if (x_ >= X && x_ <= X + W && y_ >= Y && y_ <= Y + H) {
+			if (x_ >= bigX && x_ <= bigX + W && y_ >= bigY && y_ <= bigY + H) {
 				OnClick();
 			}
 		}
 	}
 	else if (evt.type == SDL_WINDOWEVENT) {
 		if (evt.window.event == SDL_WINDOWEVENT_RESIZED) {
-
+			bigX = RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() * X;
+			bigY = RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() * Y;
+			RenderSystemInterface::getSingleton()->setOverlayElementPosition(elemt, bigX, bigY);
 		}
 	}
 	return false;

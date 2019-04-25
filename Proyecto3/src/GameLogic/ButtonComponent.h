@@ -3,6 +3,9 @@
 #ifndef ButtonComponent_H_
 #define ButtonComponent_H_
 
+namespace Ogre {
+	class OverlayElement;
+}
 class ButtonComponent : public Component
 {
 public:
@@ -11,9 +14,11 @@ public:
 	~ButtonComponent() {};
 
 private:
-	int X, Y, W, H;
+	double X, Y, W, H;
+	double bigX, bigY;
 	int msgType;
 	std::string panelName;
+	Ogre::OverlayElement* elemt;
 
 	void OnClick();
 	void setUp();

@@ -31,8 +31,8 @@
                         "type": "ButtonComponent",
                         "group": "test_comps"
                     },
-                    "X": 200,
-                    "Y": 400,
+                    "X": 0.3,
+                    "Y": 0.5,
                     "W": 400,
                     "H": 50,
                     "msgType" : 4,
