@@ -45,7 +45,8 @@
               "entity_name": "player_hitbox",
               "type": "MESH",
               "mesh": "cube.mesh"
-            }
+            },
+            "active": false
           },
     
           "basic_ren": {
@@ -61,6 +62,7 @@
                     "type": "MESH",
                     "mesh": "spoon.mesh"
                 },
+                "material": "Spoon",
                 "idleAnimation": "Shoot",
                 "updateOri": false,
                 "ignoreTrans": true

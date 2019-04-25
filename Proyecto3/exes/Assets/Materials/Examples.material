@@ -110,7 +110,7 @@ material NinjaMaterial
 	{
 		pass
 		{
-			ambient 0.1 0.1 0.1
+			ambient 0.8 0.8 0.8
 
 			texture_unit
 			{
@@ -183,6 +183,40 @@ technique
 			texture_unit
 			{
 				texture brokenWood.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Spoon
+{
+technique
+	{
+		pass
+		{
+			ambient 0.4 0.4 0.4
+
+			texture_unit
+			{
+				texture spoon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Bullet
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture orange.jpg
 				tex_address_mode wrap
 			}
 		}

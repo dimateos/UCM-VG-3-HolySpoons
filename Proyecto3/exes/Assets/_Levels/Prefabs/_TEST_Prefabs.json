@@ -36,9 +36,8 @@
                     "shape": {
                         "entity_name": "pref_ground",
                         "type": "MESH",
-                        "mesh": "Sinbad.mesh"
-                    },
-                    "idleAnimation": "RunBase"
+                        "mesh": "Ocean.mesh"
+                    }
                 }
             }
         },
