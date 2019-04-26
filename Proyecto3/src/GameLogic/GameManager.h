@@ -36,11 +36,11 @@ public:
 	virtual void setUp();
 
 	virtual void update(GameObject* o, double time);
-	virtual bool handleEvents(GameObject* o, const SDL_Event& evt) { return false; }
-
-	inline void addScore(int moreScore) { score += moreScore; }
-
+	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void receive(Message* msg);
+
+	void resetPlayer();
+	inline void addScore(int moreScore) { score += moreScore; }
 };
 
 #endif /* GAME_MANAGER_H_ */

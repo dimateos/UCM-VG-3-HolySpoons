@@ -3,7 +3,6 @@
 #define HP_COMPONENT_H_
 
 #include "Component.h"
-
 class HPComponent : public Component
 {
 private:
@@ -11,7 +10,6 @@ private:
 	int HP;
 
 public:
-	HPComponent() {}
 	HPComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), InitHP(0), HP(0) {}
 	virtual ~HPComponent() {}
 
@@ -19,7 +17,7 @@ public:
 
 	inline int getHP() const { return HP; }
 	inline void resetHP() { HP = InitHP; }
-	inline void subHP(int damage) { HP -= damage; if (HP < 0)HP = 0; }
+	inline void subHP(int damage) { HP -= damage; if (HP < 0) HP = 0; }
 	inline void addHP(int health) { HP += health; }
 
 	virtual void receive(Message* msg);

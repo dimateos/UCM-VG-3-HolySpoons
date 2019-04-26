@@ -45,7 +45,6 @@
             },
             "active": false
           },
-
           "basic_ren": {
                 "id": {
                     "type": "RenderComponent",
@@ -61,7 +60,6 @@
                 },
                 "material": "Spoon",
                 "idleAnimation": "Shoot",
-                "updateOri": false,
                 "ignoreTrans": true
             },
 
@@ -72,7 +70,8 @@
             },
             "walkVel":25,
             "runVel": 40,
-            "jumpImpulse": 20
+            "jumpImpulse": 20,
+            "jumpResetersGroups": ["map"]
         },
         "camera_fps": {
             "id": {
@@ -95,6 +94,7 @@
             "relativeZ": 3.0,
             "vel": 50
         },
+
         "att_light": {
             "id": {
                 "type": "AttachedLightComponent",
@@ -107,12 +107,21 @@
             "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
             "range": 8500
         },
+
         "hp_component": {
             "id": {
                 "type": "HPComponent",
                 "group": "player_comps"
             },
-            "hp": 100
+            "hp": 50
+        },
+        "player_hit": {
+            "id": {
+                "type": "PlayerHit",
+                "group": "player_comps"
+            },
+            "inv_t": 3,
+            "damageDealers": [ {"group": "death", "dmg": 50}, {"group": "enemies", "dmg": 10} ]
         }
     }
 }

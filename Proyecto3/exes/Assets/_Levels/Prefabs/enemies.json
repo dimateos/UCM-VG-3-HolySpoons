@@ -61,7 +61,8 @@
                         "type": "BulletHittable",
                         "group": "enemy_comps"
                     },
-                    "hp": 50
+                    "hp": 50,
+                    "points": 50
                 },
                 "att_light": {
                     "id": {
@@ -179,7 +180,8 @@
                         "type": "BulletHittable",
                         "group": "enemy_comps"
                     },
-                    "hp": 50
+                    "hp": 50,
+                    "points": 50
                 }
             }
         }

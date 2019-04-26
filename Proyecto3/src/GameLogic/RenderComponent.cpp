@@ -22,9 +22,8 @@ void RenderComponent::setUp() {
 	//other properties
 	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
 	if (FIND(cfg_, "relativePos")) relativePos = nap_vector3(cfg_["relativePos"]);
-	if (FIND(cfg_, "localRot")) 
-		node->setOrientation(nap_quat(cfg_["localRot"]["w"], cfg_["localRot"]["x"], cfg_["localRot"]["y"], cfg_["localRot"]["z"]).ogre());
-	else relativePos = nap_vector3(0, 0, 0);
+	else relativePos = vO;
+	if (FIND(cfg_, "localRot")) node->setOrientation(nap_quat(cfg_["localRot"]).ogre());
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//visibility

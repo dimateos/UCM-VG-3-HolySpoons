@@ -30,10 +30,12 @@ void KeyBoardMovement::setUp() {
 	// velocity sets
 	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
 	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
-	jumpImpulse_ = FINDnRETURN(cfg_, "jumpImpulse", float, 4);
 	vel_ = walkVel_;
-
 	velocity = vO;
+
+	//jump
+	jumpImpulse_ = FINDnRETURN(cfg_, "jumpImpulse", float, 4);
+	for (auto group : cfg_["jumpResetersGroups"]) jumpResetersGroups_.push_back(group);
 }
 
 void KeyBoardMovement::lateSetUp() {
@@ -66,14 +68,6 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		else if (pressedKey == jumpKey_) {
 			jumping_ = true;
 		}
-		//HAXS
-#if _DEBUG
-		else if (pressedKey == SDLK_r) {
-			o->setPosition({ 0,10,0 });
-			controller_comp->setV(vO);
-			LogSystem::Log("RESET POS");
-		}
-#endif
 		else handled = false;
 	}
 
@@ -108,9 +102,13 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 void KeyBoardMovement::onCollision(ID * other) {
 	if (jump_available_) return;
 
-	if (other->group_ == "map") {
-		//LogSystem::Log("JUMP RESTORED");
-		jump_available_ = true;
+	//check if is a jump reseter
+	for (auto & group : jumpResetersGroups_) {
+		if (other->group_ == group) {
+			jump_available_ = true;
+			//LogSystem::Log("JUMP RESTORED");
+			break;
+		}
 	}
 }
 

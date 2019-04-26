@@ -14,7 +14,7 @@ private:
 	SDL_Keycode backward_;  // S
 	SDL_Keycode right_;     // D
 	SDL_Keycode run_;       // Lft. Shift
-	SDL_Keycode jumpKey_;      // Space
+	SDL_Keycode jumpKey_;   // Space
 
 	PhysicsControllerComponent* controller_comp;
 	nap_vector3 velocity;
@@ -24,6 +24,8 @@ private:
 	float walkVel_;          // while walking
 	float runVel_;           // while running
 	float vel_;              // actual velocity
+
+	std::list<std::string> jumpResetersGroups_;
 	float jumpImpulse_;
 
 	list<SDL_Keycode> Xaxis; // x axis keys

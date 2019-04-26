@@ -3,6 +3,7 @@
 
 void BulletHit::setUp() {
 	t.setDuration(cfg_["time"]);
+	configActive();
 }
 
 void BulletHit::update(GameObject * o, double time) {

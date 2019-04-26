@@ -112,9 +112,6 @@
     <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -126,6 +123,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\CameraMenu.cpp">
       <Filter>_GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +231,6 @@
     <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h">
       <Filter>_Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\HPComponent.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -242,6 +242,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\CameraMenu.h">
       <Filter>_GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\HPComponent.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PlayerHit.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

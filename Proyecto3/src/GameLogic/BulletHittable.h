@@ -18,8 +18,8 @@ public:
 	virtual void onCollision(ID* other);
 
 protected:
-	static std::map<string, int> bulletDamage;
-	int hitPoints = 0, maxHitPoints = 0;
+	static std::map<string, int> bulletDamages_;
+	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
 };
 
 #endif /* BULLETHITABLE_H_ */

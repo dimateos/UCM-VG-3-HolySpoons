@@ -13,6 +13,7 @@ void HPComponent::receive(Message * msg)
 {
 	if (msg->id_ == HP_DAMAGE) {
 		subHP(static_cast<Msg_HP_DAMAGE*>(msg)->damage_);
+		//reenviar to GM en vez del GM todo el rato en el update?
 	}
 }
 
