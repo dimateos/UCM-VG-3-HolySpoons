@@ -40,6 +40,7 @@ public:
 	virtual void receive(Message* msg);
 
 	void resetPlayer();
+	void checkHP();
 	inline void addScore(int moreScore) { score += moreScore; }
 };
 

@@ -52,7 +52,7 @@
                 },
                 "scale": { "x": 50.0, "y": 65.0, "z": 50.0 },
                 "localRot": { "w": 0.1, "x": 0.0, "y": -0.6, "z": 0.5 },
-                "relativePos": { "x": 2.5, "y": -1.5, "z": -5.0 },
+                "relativePos": { "x": 3.5, "y": -7.5, "z": -2.0 },
                 "shape": {
                     "entity_name": "player_spoon",
                     "type": "MESH",
@@ -121,7 +121,7 @@
                 "group": "player_comps"
             },
             "inv_t": 3,
-            "damageDealers": [ {"group": "death", "dmg": 50}, {"group": "enemies", "dmg": 10} ]
+            "damageDealers": [ {"group": "bounds", "dmg": 50}, {"group": "enemies", "dmg": 10} ]
         }
     }
 }

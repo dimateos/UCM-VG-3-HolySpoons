@@ -85,9 +85,7 @@ void GameManager::receive(Message * msg)
 		updateUI();
 	}
 	else if (msg->id_ == CHECK_HP) {
-		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
-		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) overlayComp->showPanelByName("DEATH_PANEL");
-		updateUI();
+		checkHP();
 	}
 }
 
@@ -96,6 +94,14 @@ void GameManager::resetPlayer() {
 	player_->setPosition({ 0,10,0 });
 	static_cast<PhysicsControllerComponent*>(player_->getComponent("controller_phy"))->setV(vO);
 	playerHP_->resetHP();
+	if (playerHP_ != nullptr) overlayComp->hidePanelByName("DEATH_PANEL");
+	checkHP();
+}
+
+void GameManager::checkHP() {
+	// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
+	if (playerHP_ != nullptr && playerHP_->getHP() <= 0) overlayComp->showPanelByName("DEATH_PANEL");
+	updateUI();
 }
 
 #include "GOFactory.h"

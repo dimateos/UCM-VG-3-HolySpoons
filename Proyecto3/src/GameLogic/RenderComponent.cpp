@@ -52,6 +52,7 @@ void RenderComponent::setDown() {
 void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
 	if (!active_ && FIND(cfg_, "boundingBox")) node->showBoundingBox(!cfg_["boundingBox"]);
+	node->setPosition((owner_->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -65,6 +66,9 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 	string type = shape["type"];
 	if (type == "EMPTY") pair.first = rsi->createEmpty(e_name + id().sn_string());
 	else if (type == "MESH") pair = rsi->createOgreEntity(e_name + id().sn_string(), shape["mesh"]);
+	else if (type == "PLANE")
+		pair = rsi->createPlane(e_name + id().sn_string(), nap_vector3(shape["normal"]).ogre(),
+			shape["w"] * ogre_scale, shape["h"] * ogre_scale, nap_vector3(shape["up"]).ogre());
 
 	return pair;
 }
@@ -76,10 +80,7 @@ void RenderComponent::update(GameObject * o, double time) {
 }
 
 void RenderComponent::late_update(GameObject * o, double time) {
-	if (ignoreTrans_) {
-		node->setPosition(relativePos.ogre() * ogre_scale);
-		return;
-	}
+	if (ignoreTrans_) return;
 
 	//check pos
 	if (!o->getUpToDate(upToDate::pos, upToDate::REND)) {
