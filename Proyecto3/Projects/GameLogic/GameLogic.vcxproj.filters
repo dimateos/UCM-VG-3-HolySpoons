@@ -49,9 +49,6 @@
     <ClCompile Include="..\..\src\GameLogic\OverlayComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp">
       <Filter>_Messages</Filter>
     </ClCompile>
@@ -127,6 +124,10 @@
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -164,9 +165,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\OverlayComponent.h">
       <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\MessageSystem.h">
       <Filter>_Messages</Filter>
@@ -242,6 +240,10 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h" />
+    <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

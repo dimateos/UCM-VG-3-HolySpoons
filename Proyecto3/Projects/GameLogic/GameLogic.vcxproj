@@ -29,7 +29,7 @@
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\FloatingEnemyComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameManager.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GameObject.cpp" />
@@ -48,6 +48,7 @@
     <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Pool.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
@@ -63,7 +64,7 @@
     <ClInclude Include="..\..\src\GameLogic\CameraMenu.h" />
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\FloatingEnemyComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
     <ClInclude Include="..\..\src\GameLogic\GameState.h" />
     <ClInclude Include="..\..\src\GameLogic\GameStateMachine.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Pool.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h" />
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />

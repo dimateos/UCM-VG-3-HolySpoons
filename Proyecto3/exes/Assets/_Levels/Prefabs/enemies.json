@@ -39,15 +39,21 @@
                         "mesh": "monkey.mesh"
                     }
                 },
-                "floating_mov": {
+                "FollowTargetComponent": {
                     "id": {
-                        "type": "FloatingEnemyComponent",
+                        "type": "FollowTargetComponent",
+                        "group": "enemy_comps"
+                    },
+                    "HorizontalSpeed": 3.5,
+                    "Target": "player"
+                },
+                "SinusoidalMovementComponent":{
+                    "id": {
+                        "type": "SinusoidalMovementComponent",
                         "group": "enemy_comps"
                     },
                     "Amplitude": 1,
-                    "HorizontalSpeed": 3.5,
-                    "VerticalSpeed": 1,
-                    "Target": "player"
+                    "VerticalSpeed": 1
                 },
                 "auto_rotation": {
                     "id": {
