@@ -29,6 +29,7 @@ public:
 	inline void setTimer(double t) { timer = t; };
 
 	virtual void update(GameObject* o, double time);
+	virtual void receive(Message* msg);
 };
 
 #endif /* SPAWNER_H_ */

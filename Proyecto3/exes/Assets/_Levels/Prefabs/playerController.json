@@ -45,14 +45,14 @@
             },
             "active": false
           },
-          "basic_ren": {
+          "spoon_ren": {
                 "id": {
                     "type": "RenderComponent",
                     "group": "player_comps"
                 },
                 "scale": { "x": 50.0, "y": 65.0, "z": 50.0 },
                 "localRot": { "w": 0.1, "x": 0.0, "y": -0.6, "z": 0.5 },
-                "relativePos": { "x": 3.5, "y": -7.5, "z": -2.0 },
+                "relativePos": { "x": 3.5, "y": -7.5, "z": -0.1 },
                 "shape": {
                     "entity_name": "player_spoon",
                     "type": "MESH",

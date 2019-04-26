@@ -8,13 +8,14 @@
 
 #include <Transforms.h>
 
+#define defInitialBullets 10
 Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2)
 {
 	active_ = false;
 	vel_ = vel;
 	t.start(shootSpeed);
 	pool_ = new nap_Pool(prefab);
-	pool_->setDefault(0);
+	pool_->setDefault(defInitialBullets);
 	pool_->init();
 }
 

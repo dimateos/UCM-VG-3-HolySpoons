@@ -4,6 +4,7 @@
 #include <SDL_events.h>
 #include <Transforms.h>
 
+#include "MessageSystem.h"
 #include "GameStateMachine.h"
 #include "HPComponent.h"
 #include "PhysicsControllerComponent.h"
@@ -82,6 +83,7 @@ void GameManager::receive(Message * msg)
 {
 	if (msg->id_ == ADD_SCORE) {
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
+		updateUI();
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
@@ -100,6 +102,8 @@ void GameManager::resetPlayer() {
 
 	score_ = 0;
 	updateUI();
+
+	MessageSystem::getSingleton()->sendMessage(new Message(RESET_PULL));
 }
 
 #include "GOFactory.h"

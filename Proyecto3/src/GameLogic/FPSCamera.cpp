@@ -34,7 +34,8 @@ void FPSCamera::lateSetUp() {
 	relativePos = nap_vector3(cfg_["relativePos"]);
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
-	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("basic_ren"))->getSceneNode());
+	//add spoon ren as child
+	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"))->getSceneNode());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

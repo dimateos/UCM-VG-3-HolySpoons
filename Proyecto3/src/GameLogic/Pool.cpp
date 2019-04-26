@@ -32,6 +32,10 @@ nap_Pool::~nap_Pool()
 	}
 }
 
+void nap_Pool::resetPool() {
+		for (auto & go : pool) go->setActive(false);
+}
+
 GameObject * nap_Pool::getItem()
 {
 	//Returns the 1º aviable item, if there's none it creates a new one

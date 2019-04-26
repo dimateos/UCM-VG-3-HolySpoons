@@ -7,7 +7,7 @@
 nap_vector3 Spawner::smartPositioning(GameObject * o)
 {
 	//target position
-	nap_transform* trgPos = GameStateMachine::getSingleton()->currentState()->getPlayer()->getTransPtr();	
+	nap_transform* trgPos = GameStateMachine::getSingleton()->currentState()->getPlayer()->getTransPtr();
 	//We get the direction
 	nap_vector3 vec = { trgPos->p_.x_ - o->getTransPtr()->p_.x_, 0, trgPos->p_.z_ - o->getTransPtr()->p_.z_ };
 	//We normalizer the vector to length 1
@@ -55,6 +55,13 @@ void Spawner::update(GameObject * o, double time)
 			tmp->setActive();
 			MessageSystem::getSingleton()->sendMessageGameObject(&Message(HP_RESET), tmp);
 		}
+	}
+}
+
+void Spawner::receive(Message * msg) {
+	if (msg->id_ == RESET_PULL) {
+		pol->resetPool();
+		lastActiveT = 0;
 	}
 }
 

@@ -5,7 +5,8 @@
 #include <vector>
 class GameObject;
 
-class nap_Pool {
+class nap_Pool
+{
 private:
 	std::vector<GameObject*> pool;
 	int defaultValue = 10;
@@ -16,6 +17,8 @@ private:
 public:
 	nap_Pool(std::string entity);
 	virtual ~nap_Pool();
+
+	void resetPool();
 
 	GameObject* getItem();
 	void init();

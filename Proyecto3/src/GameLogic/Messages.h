@@ -19,7 +19,8 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	PX_USERPTR,
 
 	//ENEMY GAMELOGIC
-	HP_RESET
+	HP_RESET,
+	RESET_PULL
 };
 
 struct Message {
