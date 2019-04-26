@@ -25,13 +25,13 @@ private:
 	GameObject* player_;
 	HPComponent* playerHP_;
 
-	int score;
+	int score_;
 
 	void updateUI();
 
 public:
 	inline GameManager() { };
-	inline GameManager(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), score(0) {};
+	inline GameManager(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), score_(0) {};
 	inline virtual ~GameManager() { };
 	virtual void setUp();
 
@@ -40,8 +40,7 @@ public:
 	virtual void receive(Message* msg);
 
 	void resetPlayer();
-	void checkHP();
-	inline void addScore(int moreScore) { score += moreScore; }
+	inline void addScore(int moreScore) { score_ += moreScore; }
 };
 
 #endif /* GAME_MANAGER_H_ */

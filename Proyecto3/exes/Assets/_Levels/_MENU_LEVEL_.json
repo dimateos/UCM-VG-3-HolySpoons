@@ -33,12 +33,13 @@
         },
         {
             "id": {
-                "type": "PlaneTitle"
-            }
-        },
-        {
-            "id": {
-                "type": "PlaneLavaMenu"
+				"type": "PlaneLava"
+            },
+            "pos": { "x": -5.0, "y": -25.0, "z": 0.0 },
+            "Components": {
+                "basic_ren": {
+                    "shape": { "w": 3000, "h": 3000 }
+                }
             }
         },
         {

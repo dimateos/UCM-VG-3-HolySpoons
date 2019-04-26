@@ -12,9 +12,9 @@
                         "type": "GlobalAmbientLightComponent",
                         "group": "test_comps"
                     },
-                    "r": 0.8,
-                    "g": 0.6,
-                    "b": 0.6
+                    "r": 0.4,
+                    "g": 0.3,
+                    "b": 0.3
                 }
             }
         },
@@ -54,8 +54,8 @@
                             "y": 1,
                             "z": 0
                         },
-                        "w": 100000,
-                        "h": 100000,
+                        "w": 3000,
+                        "h": 3000,
                         "up": {
                             "x": 1,
                             "y": 0,
@@ -105,7 +105,7 @@
                     "dynamic": false,
                     "ignoreTrans": true,
                     "shape": {
-                        "type": "BOX", "scale": { "x": 250.0, "y": 1.0, "z": 250.0 }
+                        "type": "BOX", "scale": { "x": 300.0, "y": 1.0, "z": 300.0 }
                     }
                 }
             }

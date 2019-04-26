@@ -21,5 +21,14 @@ overlay MENU
             caption "PRESS SPACE TO START"
             height 0.4
 		}
+
+		overlay_element Title Panel
+        {
+            left 0.15
+		    top 0.15
+		    width 0.7
+		    height 0.4
+            material TitleMaterial
+        }
 	}
 }

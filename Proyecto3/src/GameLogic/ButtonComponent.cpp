@@ -1,10 +1,10 @@
 #include <RenderSystemInterface.h>
 #include "MessageSystem.h"
-#include <SDL_events.h>	
-#include <iostream>
 #include "ButtonComponent.h"
 #include "OgreCamera.h"
 #include "OgreViewport.h"
+
+#include <SDL_events.h>
 
 ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Component(cfg,owner) {
 }
@@ -12,7 +12,6 @@ ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Comp
 void ButtonComponent::OnClick()
 {
 	MessageSystem::getSingleton()->sendMessage(&Message((MessageId)msgType));
-	std::cout << "Boton Pulsado" << std::endl;
 }
 
 void ButtonComponent::setUp()

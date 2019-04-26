@@ -184,7 +184,7 @@ TextAreaOverlayElement * RenderSystemInterface::createText(std::string nodeName,
 	textElement->setCaption(text);
 	textElement->setDimensions(100, 100);
 	textElement->setFontName(fontName);
-	
+
 	textElement->setPosition(x, y);
 
 	//panel->addChild(textElement);
@@ -251,7 +251,7 @@ void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, f
 
 void RenderSystemInterface::setOverlayElementCenteredPosition(Ogre::OverlayElement * e, float x, float y)
 {
-	e->setPosition(x / getCamera()->getViewport()->getActualWidth() - e->getWidth() / 2, 
+	e->setPosition(x / getCamera()->getViewport()->getActualWidth() - e->getWidth() / 2,
 		y / getCamera()->getViewport()->getActualHeight() - e->getHeight() / 2);
 }
 

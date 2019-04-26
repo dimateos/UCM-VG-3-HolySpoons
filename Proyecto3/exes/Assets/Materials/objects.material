@@ -1,0 +1,69 @@
+material SimpleTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture wood.jpg
+				tex_address_mode wrap
+				scale 0.4 0.25
+			}
+		}
+	}
+}
+
+material FallingTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture brokenWood.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Spoon
+{
+technique
+	{
+		pass
+		{
+			ambient 0.4 0.4 0.4
+			emissive 0.7 0.7 0.7
+
+			texture_unit
+			{
+				texture spoon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Bullet
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture orange.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}

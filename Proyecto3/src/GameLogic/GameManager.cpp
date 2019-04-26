@@ -26,7 +26,7 @@ void GameManager::updateUI()
 	else
 		LogSystem::Log("Componente HPComponent no establecido. No es posible mostrar HP", LogSystem::GM);
 
-	ScoreText->setCaption("SCORE: " + std::to_string(score));
+	ScoreText->setCaption("SCORE: " + std::to_string(score_));
 }
 
 void GameManager::setUp() {
@@ -82,10 +82,11 @@ void GameManager::receive(Message * msg)
 {
 	if (msg->id_ == ADD_SCORE) {
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
-		updateUI();
 	}
 	else if (msg->id_ == CHECK_HP) {
-		checkHP();
+		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
+		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) overlayComp->showPanelByName("DEATH_PANEL");
+		updateUI();
 	}
 }
 
@@ -93,14 +94,11 @@ void GameManager::resetPlayer() {
 	LogSystem::Log("RESET");
 	player_->setPosition({ 0,10,0 });
 	static_cast<PhysicsControllerComponent*>(player_->getComponent("controller_phy"))->setV(vO);
+
 	playerHP_->resetHP();
 	if (playerHP_ != nullptr) overlayComp->hidePanelByName("DEATH_PANEL");
-	checkHP();
-}
 
-void GameManager::checkHP() {
-	// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
-	if (playerHP_ != nullptr && playerHP_->getHP() <= 0) overlayComp->showPanelByName("DEATH_PANEL");
+	score_ = 0;
 	updateUI();
 }
 

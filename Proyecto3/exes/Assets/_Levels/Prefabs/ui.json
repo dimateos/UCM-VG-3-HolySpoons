@@ -35,7 +35,7 @@
                     "Y": 0.6,
                     "W": 0.3,
                     "H": 0.1,
-                    "msgType" : 4,
+                    "msgType" : 0,
                     "panelName": "MENU_PanelContainer",
                     "materialName": "ButtonMaterial",
                     "name": "start_button"

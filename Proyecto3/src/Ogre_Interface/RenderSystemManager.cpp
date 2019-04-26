@@ -65,6 +65,7 @@ void RenderSystemManager::setupResources()
 }
 
 //Window size, full screen... --> read it from json
+#define winConfig "1280 x 720 @ 32-bit colour"
 bool RenderSystemManager::setConfiguration()
 {
 	RenderSystemList l = mRoot->getAvailableRenderers();
@@ -72,7 +73,7 @@ bool RenderSystemManager::setConfiguration()
 
 	mRoot->setRenderSystem(rs);
 	rs->setConfigOption("Full Screen", "No");
-	rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit colour");
+	rs->setConfigOption("Video Mode", winConfig);
 
 	return true;
 }
@@ -87,9 +88,9 @@ void RenderSystemManager::createWindow()
 
 	std::istringstream mode(ropts["Video Mode"].currentValue);
 	Ogre::String token;
-	mode >> w; // width
-	mode >> token; // 'x' as seperator between width and height
-	mode >> h; // height
+	mode >> w;		// width
+	mode >> token;	// 'x' as seperator between width and height
+	mode >> h;		// height
 
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;

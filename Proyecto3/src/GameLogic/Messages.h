@@ -6,15 +6,17 @@ class nap_transform;
 
 enum MessageId // DIFFERENT MESSAGE IDs
 {
-	//PHYSX
-	PX_USERPTR,
+	//BUTTONS
+	BUTTON_START_GAME,
 
 	//UI
 	ACTIVATE_UI,
 	ADD_SCORE,
 	CHECK_HP,
 	HP_DAMAGE,
-	BUTTON_START_GAME,
+
+	//PHYSX
+	PX_USERPTR,
 
 	//ENEMY GAMELOGIC
 	HP_RESET
@@ -32,7 +34,7 @@ struct Msg_PX_userPtr: public Message
 };
 
 struct Msg_ADD_SCORE:public Message {
-	inline Msg_ADD_SCORE(int score) : Message(ADD_SCORE), score_(score) { }
+	inline Msg_ADD_SCORE(int score_) : Message(ADD_SCORE), score_(score_) { }
 	int score_;
 };
 
