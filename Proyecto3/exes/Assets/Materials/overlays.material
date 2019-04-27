@@ -46,57 +46,18 @@ material ScopeMaterial
 	}
 }
 
-material SkyBox2
+material HitMarkerMaterial
 {
-    technique
-    {
-        pass
-        {
-            depth_write off
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
 
-            texture_unit
-            {
-                cubic_texture hell.png separateUV
-                tex_address_mode clamp
-            }
-        }
-    }
-}
-
-material SkyBox3
-{
-    technique
-    {
-        pass
-        {
-            depth_write off
-
-            texture_unit
-            {
-                cubic_texture stormy.jpg separateUV
-                tex_address_mode clamp
-            }
-        }
-    }
-}
-
-material DebugOcean{
-    technique{
-        pass{
-            diffuse 0.0 0.0 0.0
-            ambient 0.0 0.0 0.0
-            specular 0.0 0.0 0.0 0
-            texture_unit{
-                texture lava.png
-                scroll_anim 0.1 0.0
-				scale 0.01 0.01
-                colour_op add
-            }
-        }
-    }
-    technique {
-        pass{
-            diffuse 0.5 0.5 0.5
-        }
-    }
+			texture_unit
+			{
+				texture hit-marker.png
+			}
+		}
+	}
 }

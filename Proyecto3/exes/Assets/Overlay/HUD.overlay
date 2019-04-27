@@ -56,4 +56,16 @@ overlay HUD
             caption "YOU ARE DEAD"
         }
     }
+
+     overlay_element HIT_MARKER_PANEL Panel
+    {
+        overlay_element HitMarker Panel
+        {
+            left 0.0
+		    top 0.0
+		    width 0.05
+		    height 0.06
+            material HitMarkerMaterial
+        }
+    }
 }

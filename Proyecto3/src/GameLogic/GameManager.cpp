@@ -37,6 +37,7 @@ void GameManager::setUp() {
 	// hide of death panel
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
 	overlayComp->hidePanelByName("DEATH_PANEL");
+	overlayComp->hidePanelByName("HIT_MARKER_PANEL");
 
 	// player HP and score
 	HPText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("HP_Text"));
@@ -49,6 +50,12 @@ void GameManager::setUp() {
 	Ogre::OverlayElement* scope = RenderSystemInterface::getSingleton()->getOverlayElement("Scope");
 	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
 	(scope, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
+		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
+
+	// hitMarker
+	Ogre::OverlayElement* hitMarker = RenderSystemInterface::getSingleton()->getOverlayElement("HitMarker");
+	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
+	(hitMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
 		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
 
 	updateUI();
@@ -82,6 +89,7 @@ bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
 void GameManager::receive(Message * msg)
 {
 	if (msg->id_ == ADD_SCORE) {
+		overlayComp->showPanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
 		updateUI();
 	}
