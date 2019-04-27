@@ -56,7 +56,7 @@ void OverlayComponent::setPanelAlpha(float alpha)
 
 void OverlayComponent::receive(Message * msg)
 {
-	if (msg->id_ == ACTIVATE_UI) {
+	if (msg->id_ == STATE_CHANGED) {
 		overlay->show();
 	}
 }

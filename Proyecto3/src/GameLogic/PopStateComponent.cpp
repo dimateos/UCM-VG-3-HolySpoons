@@ -21,7 +21,6 @@ void PopStateComponent::setUp()
 	}
 
 	state = this->getCfg()["state"];
-	incGM = this->getCfg()["IncomingGameManager"]; //wtf why this doesnt work
 }
 
 bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
@@ -34,8 +33,6 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 
 			//activar overlays del estado que viene
 			MessageSystem::getSingleton()->updateTargets(GameStateMachine::getSingleton()->currentState()->getGameObjects());
-			GameObject* o = GameStateMachine::getSingleton()->currentState()->getGameObject("gm_go");
-			MessageSystem::getSingleton()->sendMessageGameObject(&Message(ACTIVATE_UI), o);
 			MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
 
 			//pause/unpause physics
