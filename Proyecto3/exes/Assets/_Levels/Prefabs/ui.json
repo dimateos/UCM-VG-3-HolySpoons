@@ -41,6 +41,24 @@
                     "name": "start_button"
                 }
             }
+        },
+
+        {
+            "id": {
+                "name": "basic_postprocessing",
+                "type": "basic_postprocessing",
+                "group": "ui"
+            },
+            "Components": {
+                "BasicPostProcessingComponent": {
+                    "id": {
+                        "type": "BasicPostProcessingComponent",
+                        "group": "test_comps"
+                    },
+                    "CompositorName": "Blood",
+                    "EnabledOnStart": true
+                }
+            }
         }
     ]
 }

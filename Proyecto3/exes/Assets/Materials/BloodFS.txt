@@ -1,0 +1,28 @@
+#version 330 core
+
+uniform sampler2D text; // tipo sampler2D para texturas 2D
+
+in vec2 vUv0;
+
+uniform sampler2D RTT0; //textura de la escena
+
+out vec4 fragColor;
+
+//weight vector for luminance in sRGB
+
+const vec3 WsRGB = vec3(0.95, 0.0154, 0.0721);
+
+void main() {
+    vec3 color = vec3(texture(text, vUv0));
+    vec3 sceneColor = vec3(texture(RTT0, vUv0));
+
+    if(color.x > 0.55)
+    {
+        float lum = dot(sceneColor, WsRGB);
+        fragColor = vec4(lum, 0.0, 0.0, 1.0);
+    }
+    else
+    {
+        fragColor = vec4(sceneColor, 1.0);
+    }
+}

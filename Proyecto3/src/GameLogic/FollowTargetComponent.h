@@ -7,7 +7,7 @@ class FollowTargetComponent :
 	public Component
 {
 private:
-	void WaveyMovement(float t);
+	void follow(float t);
 
 	//logic
 	float timer = 0;

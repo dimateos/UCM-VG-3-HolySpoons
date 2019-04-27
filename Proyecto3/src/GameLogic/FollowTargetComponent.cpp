@@ -6,7 +6,7 @@
 
 #include <Transforms.h>
 
-void FollowTargetComponent::WaveyMovement(float t)
+void FollowTargetComponent::follow(float t)
 {
 	nap_vector3 ownerPos = owner_->getPosition();
 	nap_vector3 dir = {dest->p_.x_ - ownerPos.x_, dest->p_.y_ - ownerPos.y_, dest->p_.z_ - ownerPos.z_}; //simple vector calc dest - src (we dont want to follow the y coord)
@@ -47,7 +47,7 @@ void FollowTargetComponent::setUp()
 
 void FollowTargetComponent::update(GameObject* ent, double time)
 {
-	WaveyMovement(time);
+	follow(time);
 }
 
 REGISTER_TYPE(FollowTargetComponent);

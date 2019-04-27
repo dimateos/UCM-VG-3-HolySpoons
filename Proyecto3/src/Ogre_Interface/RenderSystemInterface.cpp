@@ -17,6 +17,7 @@
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
+#include <OgreCompositorManager.h>
 #include "RenderSystemManager.h"
 
 using namespace Ogre;
@@ -305,4 +306,14 @@ std::string RenderSystemInterface::getCurrentRenderingScene()
 void RenderSystemInterface::addToPanel(std::string name, Ogre::OverlayElement* elemt)
 {
 	static_cast<OverlayContainer*>(overlayManager->getOverlayElement(name))->addChild(elemt);
+}
+
+void RenderSystemInterface::addCompositor(std::string name)
+{
+	CompositorManager::getSingleton().addCompositor(getViewport(), name);
+}
+
+void RenderSystemInterface::setCompositorEnabled(std::string name, bool en)
+{
+	CompositorManager::getSingleton().setCompositorEnabled(getViewport(), name, en);
 }

@@ -207,6 +207,16 @@ public:
 	std::string getCurrentRenderingScene();
 
 	void addToPanel(std::string name, Ogre::OverlayElement* elemt);
+
+
+	/*
+	 *Adds a new compositor
+	 */
+	void addCompositor(std::string name);
+	/*
+	 *Enables(bool) the compositor "name"
+	 */
+	void setCompositorEnabled(std::string name, bool en);
 };
 
 #endif //RENDERSYSTEMINTERFACE_H_
