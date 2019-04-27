@@ -29,7 +29,7 @@ protected:
 	bool down_ = false, ready_ = true;
 	nap_Pool* pool_ = nullptr;
 	float vel_ = 0;
-	Timer t;
+	napTimer t;
 };
 
 //automatic shooting

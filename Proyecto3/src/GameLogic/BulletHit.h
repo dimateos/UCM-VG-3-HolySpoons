@@ -19,7 +19,7 @@ public:
 
 protected:
 	virtual void configActive();
-	Timer t;
+	napTimer t;
 };
 
 #endif /* BULLETHIT_H_ */

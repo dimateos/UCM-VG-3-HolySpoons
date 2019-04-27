@@ -58,12 +58,17 @@ void GameManager::setUp() {
 	(hitMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
 		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
 
+	//Timer
+	timer = napTimer(0.3);
+
 	updateUI();
 }
 
 void GameManager::update(GameObject * o, double time) {
 	//if(playerHP_ != nullptr && playerHP_->getHP() <= 0) // EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
 	//	overlayComp->showPanelByName("DEATH_PANEL");
+
+	if(timer.update(time)) overlayComp->hidePanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
 
 	// or if the player has completed the round (NEXT ROUND state)
 }
@@ -89,9 +94,12 @@ bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
 void GameManager::receive(Message * msg)
 {
 	if (msg->id_ == ADD_SCORE) {
-		overlayComp->showPanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
 		updateUI();
+	}
+	if (msg->id_ == ENEMY_DAMAGE) {
+		overlayComp->showPanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
+		timer.start();
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE

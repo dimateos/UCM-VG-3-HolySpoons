@@ -47,6 +47,13 @@ void OverlayComponent::showPanelByName(std::string name)
 	getOverlayElementByName(name)->show();
 }
 
+void OverlayComponent::setPanelAlpha(float alpha)
+{
+	Ogre::ColourValue color = panel->getColour();
+	color.a = alpha;
+	panel->setColour(color);
+}
+
 void OverlayComponent::receive(Message * msg)
 {
 	if (msg->id_ == ACTIVATE_UI) {

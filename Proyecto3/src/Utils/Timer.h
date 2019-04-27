@@ -2,12 +2,12 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-class Timer
+class napTimer
 {
 public:
-	Timer();
-	Timer(double time);
-	virtual ~Timer();
+	napTimer();
+	napTimer(double time);
+	virtual ~napTimer();
 
 	void setDuration(double time);
 	void start();

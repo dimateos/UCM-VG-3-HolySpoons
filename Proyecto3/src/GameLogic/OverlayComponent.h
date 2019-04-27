@@ -33,6 +33,8 @@ public:
 	void hidePanelByName(std::string name);
 	void showPanelByName(std::string name);
 
+	void setPanelAlpha(float alpha);
+
 	virtual void receive(Message* msg);
 };
 
