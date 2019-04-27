@@ -1,45 +1,45 @@
 #include "Timer.h"
 
-Timer::Timer()
+napTimer::napTimer()
 {
 }
 
-Timer::Timer(double time) : duration(time)
+napTimer::napTimer(double time) : duration(time)
 {
 }
 
-Timer::~Timer()
+napTimer::~napTimer()
 {
 }
 
 //Changes the timer's duration
-void Timer::setDuration(double time)
+void napTimer::setDuration(double time)
 {
 	duration = time;
 }
 
 //Starts the timer with a previously configured timer duration
-void Timer::start()
+void napTimer::start()
 {
 	active = true;
 	timeLeft = duration;
 }
 
 //Starts the timer with a new timer duration(time)
-void Timer::start(double time)
+void napTimer::start(double time)
 {
 	active = true;
 	timeLeft = duration = time;
 }
 
 //Stops the timer
-void Timer::stop()
+void napTimer::stop()
 {
 	active = false;
 }
 
 //Returns true if an active timer has ended, false otherwise
-bool Timer::checkEnd()
+bool napTimer::checkEnd()
 {
 	if (timeLeft <= 0 && active) {
 		active = false;
@@ -48,13 +48,13 @@ bool Timer::checkEnd()
 	return false;
 }
 
-bool Timer::isActive()
+bool napTimer::isActive()
 {
 	return active;
 }
 
 //Updates the timer's remaining duration if it's active and checks end
-bool Timer::update(double timePassed)
+bool napTimer::update(double timePassed)
 {
 	if (active)
 		timeLeft -= timePassed;

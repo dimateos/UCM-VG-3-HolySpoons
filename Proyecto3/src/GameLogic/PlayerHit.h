@@ -28,7 +28,7 @@ public:
 protected:
 	virtual void configActive();
 
-	Timer inv_t;
+	napTimer inv_t;
 	bool inv = false;
 	std::list<damageDeal> damageDealers_;
 };

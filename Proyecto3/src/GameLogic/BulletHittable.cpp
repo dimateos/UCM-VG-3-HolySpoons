@@ -20,8 +20,10 @@ void BulletHittable::receive(Message * msg)
 void BulletHittable::onCollision(ID * other) {
 	//find the damage value of the impacted bullet
 	if (bulletDamages_.find(other->group_) != bulletDamages_.end())
-		if (owner_->isActive() && hitPoints_ > 0)
+		if (owner_->isActive() && hitPoints_ > 0) {
 			hitPoints_ -= bulletDamages_.at(other->group_);
+			MessageSystem::getSingleton()->sendMessageGroup(new Message(ENEMY_DAMAGE), "manage_gameObjects");
+		}
 
 	//check death
 	if (hitPoints_ <= 0) {

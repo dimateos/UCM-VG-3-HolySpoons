@@ -3,10 +3,12 @@
 #define GAME_MANAGER_H_
 
 #include "Component.h"
+#include <Timer.h>
 
 class OverlayComponent;
 class GameObject;
 class HPComponent;
+class napTimer;
 
 namespace Ogre {
 	class TextAreaOverlayElement;
@@ -21,6 +23,8 @@ private:
 	OverlayComponent* overlayComp;
 	Ogre::TextAreaOverlayElement* HPText;
 	Ogre::TextAreaOverlayElement* ScoreText;
+
+	napTimer timer;
 
 	GameObject* player_;
 	HPComponent* playerHP_;
