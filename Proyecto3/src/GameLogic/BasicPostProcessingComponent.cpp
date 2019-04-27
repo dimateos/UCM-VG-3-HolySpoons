@@ -29,6 +29,14 @@ void BasicPostProcessingComponent::setCompositorName(std::string name)
 	compositorName = name;
 }
 
+void BasicPostProcessingComponent::receive(Message * msg)
+{
+	if (msg->id_ == MessageId::STATE_CHANGED) {
+		/*RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //wtf this can fix the pause problem
+		setPostProcessingEnabled(true);*/
+	}
+}
+
 
 #include "GOFactory.h"
 REGISTER_TYPE(BasicPostProcessingComponent);

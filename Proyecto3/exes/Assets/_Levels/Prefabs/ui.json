@@ -53,7 +53,7 @@
                 "BasicPostProcessingComponent": {
                     "id": {
                         "type": "BasicPostProcessingComponent",
-                        "group": "test_comps"
+                        "group": "postProcessing_comps"
                     },
                     "CompositorName": "Blood",
                     "EnabledOnStart": true

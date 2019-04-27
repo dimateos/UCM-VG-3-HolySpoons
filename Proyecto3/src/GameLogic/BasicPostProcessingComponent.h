@@ -20,6 +20,8 @@ public:
 
 	void setCompositorName(std::string name);
 
+	virtual void receive(Message* msg);
+
 	//this will probably need a "receive" method -> set enabled/disabled the compositor
 };
 

@@ -5,6 +5,7 @@
 #include "OverlayComponent.h"
 #include <PhysicsSystemManager.h>
 #include <TimeSystem.h>
+#include "MessageSystem.h"
 
 void PushStateComponent::pushState()
 {
@@ -16,6 +17,7 @@ void PushStateComponent::pushState()
 	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
 	//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
 	GameStateMachine::getSingleton()->pushState(s);
+	//MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
 
 	//pause/unpause physics
 	PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
