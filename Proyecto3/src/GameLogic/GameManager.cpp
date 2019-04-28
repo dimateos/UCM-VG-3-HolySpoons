@@ -38,6 +38,7 @@ void GameManager::setUp() {
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
 	overlayComp->hidePanelByName("DEATH_PANEL");
 	overlayComp->hidePanelByName("HIT_MARKER_PANEL");
+	overlayComp->hidePanelByName("DEATH_MARKER_PANEL");
 
 	// player HP and score
 	HPText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("HP_Text"));
@@ -58,6 +59,12 @@ void GameManager::setUp() {
 	(hitMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
 		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
 
+	// deathMarker
+	Ogre::OverlayElement* deathMarker = RenderSystemInterface::getSingleton()->getOverlayElement("DeathMarker");
+	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
+	(deathMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
+		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
+
 	//Timer
 	timer = napTimer(0.3);
 
@@ -65,10 +72,10 @@ void GameManager::setUp() {
 }
 
 void GameManager::update(GameObject * o, double time) {
-	//if(playerHP_ != nullptr && playerHP_->getHP() <= 0) // EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
-	//	overlayComp->showPanelByName("DEATH_PANEL");
-
-	if(timer.update(time)) overlayComp->hidePanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
+	if (timer.update(time)) {
+		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
+		overlayComp->hidePanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
+	}
 
 	// or if the player has completed the round (NEXT ROUND state)
 }
@@ -96,9 +103,11 @@ void GameManager::receive(Message * msg)
 	if (msg->id_ == ADD_SCORE) {
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
 		updateUI();
+		overlayComp->showPanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
+		timer.start();
 	}
-	if (msg->id_ == ENEMY_DAMAGE) {
-		overlayComp->showPanelByName("HIT_MARKER_PANEL"); // enemy damage -> hit marker
+	else if (msg->id_ == ENEMY_DAMAGE) {
+		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		timer.start();
 	}
 	else if (msg->id_ == CHECK_HP) {

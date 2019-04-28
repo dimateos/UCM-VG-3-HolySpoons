@@ -61,3 +61,19 @@ material HitMarkerMaterial
 		}
 	}
 }
+
+material DeathMarkerMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture death-marker.png
+			}
+		}
+	}
+}

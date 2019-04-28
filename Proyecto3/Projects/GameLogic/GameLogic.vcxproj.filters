@@ -130,7 +130,9 @@
     <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -250,6 +252,8 @@
     <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\BasicPostProcessingComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\BasicPostProcessingComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

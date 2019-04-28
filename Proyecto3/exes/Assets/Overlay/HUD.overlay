@@ -68,4 +68,16 @@ overlay HUD
             material HitMarkerMaterial
         }
     }
+
+     overlay_element DEATH_MARKER_PANEL Panel
+    {
+        overlay_element DeathMarker Panel
+        {
+            left 0.0
+		    top 0.0
+		    width 0.05
+		    height 0.06
+            material DeathMarkerMaterial
+        }
+    }
 }
