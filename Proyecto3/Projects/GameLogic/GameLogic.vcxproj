@@ -53,6 +53,7 @@
     <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +96,7 @@
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Weapon.h" />
   </ItemGroup>
   <ItemGroup>

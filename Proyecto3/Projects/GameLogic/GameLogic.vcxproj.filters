@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -255,5 +256,6 @@
     <ClInclude Include="..\..\src\GameLogic\BasicPostProcessingComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h" />
   </ItemGroup>
 </Project>

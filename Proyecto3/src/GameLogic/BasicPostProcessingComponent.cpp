@@ -10,13 +10,15 @@ void BasicPostProcessingComponent::setUp() {
 
 	bool enabledOnStart = true;
 	if (FIND(this->cfg_, "EnabledOnStart")) enabledOnStart = this->cfg_["EnabledOnStart"];
+	currentlyActive = enabledOnStart;
 
 	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabledOnStart);
 }
 
 void BasicPostProcessingComponent::setPostProcessingEnabled(bool enabled)
 {
-	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, true);
+	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabled);
+	currentlyActive = enabled;
 }
 
 std::string BasicPostProcessingComponent::getCompositorName()
@@ -32,8 +34,8 @@ void BasicPostProcessingComponent::setCompositorName(std::string name)
 void BasicPostProcessingComponent::receive(Message * msg)
 {
 	if (msg->id_ == MessageId::STATE_CHANGED) {
-		/*RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //wtf this can fix the pause problem
-		setPostProcessingEnabled(true);*/
+		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //wtf this can fix the pause problem
+		setPostProcessingEnabled(currentlyActive);
 	}
 }
 

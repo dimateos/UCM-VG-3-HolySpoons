@@ -122,6 +122,14 @@
             },
             "inv_t": 3,
             "damageDealers": [ {"group": "bounds", "dmg": 50}, {"group": "enemies", "dmg": 10} ]
+        },
+        "timedPostProcessing": {
+            "id": {
+                "type": "TimedPostProcessingComponent",
+                "group": "player_comps"
+            },
+            "ActiveTime": 3,
+            "CompositorName": "Luminance"
         }
     }
 }
