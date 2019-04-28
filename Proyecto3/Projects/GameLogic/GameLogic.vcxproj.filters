@@ -139,6 +139,9 @@
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\BombardierBehavior.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -260,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BasicPostProcessingComponent.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\BombardierBehavior.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h">
       <Filter>_Components</Filter>

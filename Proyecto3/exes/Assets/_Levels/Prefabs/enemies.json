@@ -52,8 +52,9 @@
                         "type": "SinusoidalMovementComponent",
                         "group": "enemy_comps"
                     },
-                    "Amplitude": 1,
-                    "VerticalSpeed": 1
+                    "Amplitude": 0.02,
+                    "speed": 1,
+					"moveY": true
                 },
                 "auto_rotation": {
                     "id": {
@@ -103,6 +104,96 @@
                 }
             }
         },
+		{
+			"id": {
+				"name": "pref_bombardier",
+				"type": "pref_bombardier",
+				"group": "enemies"
+			},
+			"Components": {
+				"basic_phy": {
+					"id": {
+						"type": "PhysicsComponent",
+						"group": "enemy_comps"
+					},
+					"noGravity": true,
+					"shape": {
+						"type": "BOX",
+						"scale": {
+							"x": 5.0,
+							"y": 5.0,
+							"z": 5.0
+						}
+					}
+				},
+				"basic_ren": {
+					"id": {
+						"type": "RenderComponent",
+						"group": "enemy_comps"
+					},
+					"scale": {
+						"x": 200.0,
+						"y": 260.0,
+						"z": 200.0
+					},
+					"material": "Material",
+					"shape": {
+						"entity_name": "monkey",
+						"type": "MESH",
+						"mesh": "monkey.mesh"
+					}
+				},
+				"bombardier": {
+					"id": {
+						"type": "BombardierBehavior",
+						"group": "enemy_comps"
+					},
+					"speed": 15,
+					"Target": "player",
+					"lowY": 10,
+					"highY": 30,
+					"shootSpeed": 0.15,
+					"chargeSize": 20
+				},
+				"bullet_hittable": {
+					"id": {
+						"type": "BulletHittable",
+						"group": "enemy_comps"
+					},
+					"hp": 200,
+					"points": 250
+				},
+				"att_light": {
+					"id": {
+						"type": "AttachedLightComponent",
+						"group": "player_comps"
+					},
+					"name": "monkeyLight",
+					"fatherName": "basic_ren",
+					"type": 0,
+						"diffColor": {
+							"r": 0.0,
+							"g": 1.0,
+							"b": 0.0
+						},
+						"specColor": {
+							"r": 1.0,
+							"g": 1.0,
+							"b": 1.0
+						},
+						"range": 5000
+					},
+					"SinusoidalMovementComponent":{
+						"id": {
+							"type": "SinusoidalMovementComponent",
+							"group": "enemy_comps"
+						},
+						"Amplitude": 0.02,
+						"speed": 2,
+						"moveX": true
+					}
+				}
+		},
         {
             "id": {
                 "name": "pref_spawner",
@@ -159,22 +250,6 @@
                     "timer": 10.0,
                     "smart": true
                 },
-                "basic_phy": {
-                    "id": {
-                        "type": "PhysicsComponent",
-                        "group": "enemy_comps"
-                    },
-                    "dynamic": false,
-                    "noGravity": true,
-                    "shape": {
-                        "type": "BOX",
-                        "scale": {
-                            "x": 5.0,
-                            "y": 5.0,
-                            "z": 5.0
-                        }
-                    }
-                },
                 "basic_ren": {
                     "id": {
                         "type": "RenderComponent",
@@ -199,6 +274,39 @@
                     },
                     "hp": 50,
                     "points": 50
+                }
+            }
+        },
+		{
+            "id": {
+                "name": "bombardier_spawner",
+                "type": "bombardier_spawner",
+                "group": "spawns"
+            },
+            "pos": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "Components": {
+                "spawner": {
+                    "id": {
+                        "type": "Spawner",
+                        "group": "test_comps"
+                    },
+                    "active": true,
+                    "itemString": "pref_bombardier",
+                    "default": 0,
+                    "timer": 10.0,
+                    "smart": false
+                },
+                "circular_movement": {
+                    "id": {
+                        "type": "CircularMovementComponent",
+                        "group": "test_comps"
+                    },
+                    "Speed": 0.3,
+                    "Radius": 50
                 }
             }
         }

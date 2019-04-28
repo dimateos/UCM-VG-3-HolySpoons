@@ -88,6 +88,48 @@
           "time": 5
         }
       }
+    },
+	{
+      "id": {
+        "name": "e_bomb",
+        "type": "e_bomb",
+        "group": "e_bomb"
+      },
+      "Components": {
+        "bullet_phys": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": false,
+          "mass": 0.04,
+          "shape": {
+            "type": "SPHERE",
+            "r": 0.4
+          }
+        },
+        "bullet_rend": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 0.4,
+            "y": 0.4,
+            "z": 0.4
+          },
+          "material": "DebugMaterial2",
+          "shape": {
+            "entity_name": "e_bomb",
+            "type": "MESH",
+            "mesh": "uv_sphere.mesh"
+          }
+        },
+        "bullet_hit": {
+          "id": {
+            "type": "BulletHit"
+          },
+          "time": 5
+        }
+      }
     }
   ]
 }

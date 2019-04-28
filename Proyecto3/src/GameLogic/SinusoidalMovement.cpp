@@ -3,6 +3,11 @@
 #include <Transforms.h>
 #include "GOFactory.h"
 
+void SinusoidalMovementComponent::configActive()
+{
+	timer = 0;
+}
+
 void SinusoidalMovementComponent::setUp()
 {
 	if (isInited()) return;
@@ -10,10 +15,12 @@ void SinusoidalMovementComponent::setUp()
 
 	//json parameters
 	amplitude = cfg_["Amplitude"];
-	vertSpeed = cfg_["VerticalSpeed"];
+	speed = cfg_["speed"];
 
-	if (FIND(cfg_, "InitY")) { initY = this->cfg_["InitY"]; }
-	else { initY = owner_->getPosition().y_; }
+	if (FIND(cfg_, "moveX"))  moveX = this->cfg_["moveX"];
+	if (FIND(cfg_, "moveY"))  moveY = this->cfg_["moveY"];
+	if (FIND(cfg_, "moveZ"))  moveZ = this->cfg_["moveZ"];
+	
 }
 
 void SinusoidalMovementComponent::late_update(GameObject * ent, double time)
@@ -23,7 +30,12 @@ void SinusoidalMovementComponent::late_update(GameObject * ent, double time)
 	timer += time;
 
 	//sinusoidal movement
-	ownerPos.y_ = sin(timer*vertSpeed)*amplitude + initY;
+	if (moveX)
+		ownerPos.x_ += sin(timer*speed)*amplitude;
+	if (moveY)
+		ownerPos.y_ += sin(timer*speed)*amplitude;
+	if (moveZ)
+	    ownerPos.z_ += sin(timer*speed)*amplitude;
 
 	owner_->setPosition(ownerPos);
 }

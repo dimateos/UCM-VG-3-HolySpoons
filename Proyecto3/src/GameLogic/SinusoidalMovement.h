@@ -8,12 +8,15 @@ class SinusoidalMovementComponent : public Component
 private:
 
 	//logic
-	float initY; //initial Y, needed sin movement
 	float timer = 0, rotation = 0;
 	nap_transform* dest;
 
 	//cfg (json)
-	float amplitude = 1, horiSpeed = 0.01, vertSpeed = 1;
+	bool moveX = false, moveY = false, moveZ = false;
+	float amplitude = 1, speed = 1;
+
+
+	virtual void configActive();
 
 public:
 	SinusoidalMovementComponent() {};
