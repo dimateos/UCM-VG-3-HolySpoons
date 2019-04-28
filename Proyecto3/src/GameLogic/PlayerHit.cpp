@@ -27,8 +27,8 @@ void PlayerHit::onCollision(ID * other) {
 	//check if is a damage dealer
 	for (damageDeal & dealer : damageDealers_) {
 		if (other->group_ == dealer.group) {
-			MessageSystem::getSingleton()->sendMessageGameObject(new Msg_HP_DAMAGE(dealer.dmg), owner_);
-			MessageSystem::getSingleton()->sendMessageGroup(new Message(CHECK_HP), "manage_gameObjects");
+			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_HP_DAMAGE(dealer.dmg), owner_);
+			MessageSystem::getSingleton()->sendMessageGroup(&Message(CHECK_HP), "manage_gameObjects");
 			inv = true;
 			inv_t.start();
 		}

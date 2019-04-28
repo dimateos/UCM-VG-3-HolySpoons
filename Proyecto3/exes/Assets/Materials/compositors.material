@@ -81,7 +81,7 @@ material BloodMat{
             }
 
             texture_unit text{
-                texture corrosion.jpg 2d
+                texture Sintitulo.jpg 2d
             }
         }
     }
