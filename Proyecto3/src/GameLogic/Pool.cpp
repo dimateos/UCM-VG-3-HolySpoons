@@ -6,6 +6,7 @@
 GameObject * nap_Pool::spawn()
 {
 	GameObject* tmp = GOFactory::GetGOPrefab(entityName); //creates a new GO based on the original
+	tmp->idPtr()->name_ = entityName + std::to_string(pool.size());
 	pool.push_back(tmp);
 	GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
 	return tmp;

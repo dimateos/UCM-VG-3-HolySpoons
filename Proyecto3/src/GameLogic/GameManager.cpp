@@ -13,6 +13,7 @@
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayContainer.h>
 #include <RenderSystemInterface.h>
+#include <SoundManager.h>
 #include <LogSystem.h>
 #include <OgreCamera.h>
 #include <OgreViewport.h>
@@ -33,6 +34,8 @@ void GameManager::updateUI()
 void GameManager::setUp() {
 	if (isInited()) return;
 	setInited();
+
+	SoundManager::getSingleton()->stopSounds();
 
 	// hide of death panel
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
@@ -64,9 +67,6 @@ void GameManager::setUp() {
 	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
 	(deathMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
 		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
-
-	//Timer
-	timer = napTimer(0.3);
 
 	updateUI();
 }
@@ -104,11 +104,14 @@ void GameManager::receive(Message * msg)
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
 		updateUI();
 		overlayComp->showPanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
+		timer.setDuration(0.3);
 		timer.start();
 	}
 	else if (msg->id_ == ENEMY_DAMAGE) {
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
+		timer.setDuration(0.1);
 		timer.start();
+		MessageSystem::getSingleton()->sendMessageComponentName(new Message(PLAY_SOUND), owner_->id().name_, "hitSound");
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE

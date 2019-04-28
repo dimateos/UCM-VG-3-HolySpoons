@@ -46,6 +46,9 @@ public:
 	irrklang::ISound* play2DSound(const string& routeName,
 		bool playLooped = false, bool startPaused = false, string customName = "", bool track = false);
 
+	void stop3DSoundByName(const string& name);
+	void stop2DSoundByName(const string& name);
+
 	bool isPlaying(const string& name);
 
 	irrklang::ISound* find3DByName(const string& name);
@@ -53,7 +56,9 @@ public:
 	void stopSounds();
 
 	irrklang::ISoundEngine* getEngine();
-	void setVolume(float v);
+	void setAllVolumes(float v);
+	void set3DVolumeByName(const string& name, float v);
+	void set2DVolumeByName(const string& name, float v);
 };
 
 #endif /* SOUND_MANAGER_H_ */

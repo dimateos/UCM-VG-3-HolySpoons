@@ -155,10 +155,6 @@ void Game::handleEvents() {
 					handled = true;
 					stop();
 					break;
-				case SDLK_9:
-					RenderSystemInterface::getSingleton()->setRenderingScene("MainScene");
-					GameStateMachine::getSingleton()->popState();
-					break;
 			}
 		}
 

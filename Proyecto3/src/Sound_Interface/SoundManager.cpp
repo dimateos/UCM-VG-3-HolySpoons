@@ -31,13 +31,15 @@ void SoundManager::update() {
 	for (map<string, pair<irrklang::ISound*, nap_vector3*>>::iterator it = threeDsounds.begin(); it != threeDsounds.end(); it++) {
 		if (!it->second.first->isFinished())
 			it->second.first->setPosition(irrklang::vec3df(it->second.second->x_, it->second.second->y_, it->second.second->z_));
-		else threeDsounds.erase(it);
+		/*else 
+			threeDsounds.erase(it);*/
 	}
 	// 2Dsounds: erases the stopped sounds
-	for (map<string, irrklang::ISound*>::iterator it = twoDsounds.begin(); it != twoDsounds.end(); it++) {
-		if (!it->second->isFinished());
-		else twoDsounds.erase(it);
-	}
+	/*for (map<string, irrklang::ISound*>::iterator it = twoDsounds.begin(); it != twoDsounds.end(); it++) {
+		if (it->second->isFinished()){
+			twoDsounds.erase(it);
+		}
+	}*/
 
 	engine->update();
 }
@@ -67,13 +69,16 @@ void SoundManager::setListenerTransform(nap_transform* trans)
 irrklang::ISound* SoundManager::play3DSound(const string& routeName, nap_vector3* pos, bool playLooped, bool startPaused, string customName, bool track)
 {
 	irrklang::ISound* sound3D = engine->play3D((soundsRoute + routeName).c_str(), irrklang::vec3df(pos->x_, pos->y_, pos->z_), playLooped, startPaused, true);
-	if(customName != "") threeDsounds.insert({ customName, {sound3D, pos} }); // you will be able to have a reference to that sound later
+	if (customName != "") {
+		threeDsounds.erase(customName);
+		threeDsounds.insert({ customName, {sound3D, pos} }); // you will be able to have a reference to that sound later
+	}
 	else {
 		threeDsounds.insert({ "__" + to_string(unmodifiedSounds), {sound3D, pos} });
 		unmodifiedSounds++;
 	}
 
-	if (track)return sound3D;
+	if (track) return sound3D;
 	else return nullptr;
 }
 
@@ -82,14 +87,30 @@ irrklang::ISound* SoundManager::play3DSound(const string& routeName, nap_vector3
 irrklang::ISound* SoundManager::play2DSound(const string& routeName, bool playLooped, bool startPaused, string customName, bool track)
 {
 	irrklang::ISound* sound2D = engine->play2D((soundsRoute + routeName).c_str(), playLooped, startPaused, true);
-	if (customName != "") twoDsounds.insert({ customName, sound2D }); // you will be able to have a reference to that sound later
+	if (customName != "") {
+		twoDsounds.erase(customName);
+		twoDsounds.insert({ customName, sound2D }); // you will be able to have a reference to that sound later
+	}
 	else {
 		twoDsounds.insert({ "__" + to_string(unmodifiedSounds), sound2D });
 		unmodifiedSounds++;
 	}
 
-	if (track)return sound2D;
+	if (track) return sound2D;
 	else return nullptr;
+}
+
+void SoundManager::stop3DSoundByName(const string & name)
+{
+	auto it = threeDsounds.find(name);
+	if (it != threeDsounds.end())
+		it->second.first->stop();
+}
+
+void SoundManager::stop2DSoundByName(const string & name)
+{
+	auto it = twoDsounds.find(name);
+	if(it != twoDsounds.end())it->second->stop();
 }
 
 bool SoundManager::isPlaying(const string& name) {
@@ -125,8 +146,20 @@ irrklang::ISoundEngine * SoundManager::getEngine()
 	return engine;
 }
 
-void SoundManager::setVolume(float v) {
+void SoundManager::setAllVolumes(float v) {
 	engine->setSoundVolume(v);
+}
+
+void SoundManager::set3DVolumeByName(const string& name, float v)
+{
+	auto it = threeDsounds.find(name);
+	if (it != threeDsounds.end())it->second.first->setVolume(v);
+}
+
+void SoundManager::set2DVolumeByName(const string& name, float v)
+{
+	auto it = twoDsounds.find(name);
+	if (it != twoDsounds.end())it->second->setVolume(v);
 }
 
 SoundManager::SoundManager():engine(createIrrKlangDevice())

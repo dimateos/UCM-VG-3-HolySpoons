@@ -50,11 +50,9 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	if (player != nullptr) {
 		state->setPlayer(GOFactory::ParseGO(*player));
 		sm->setListenerTransform(state->getPlayer()->getTransPtr());
-		sm->setVolume(0.75);
 	}
 	else {
 		sm->setListenerTransform(new nap_transform(nap_vector3(0, 0, 0)));
-		sm->setVolume(0.35);
 	}
 
 	//create the gameObjects
@@ -81,15 +79,12 @@ GameState * const GameStateMachine::currentState() {
 
 //pushes over the current state (no delete, no pop)
 void GameStateMachine::pushState(GameState *newState) {
-	//Stop all sounds of the previous state.
-	SoundManager::getSingleton()->stopSounds();
 
 	states_.push(newState);
 	newState->setUp();
 
 	//this needs to be done everytime we change state
 	MessageSystem::getSingleton()->updateTargets(newState->getGameObjects());
-	SoundManager::getSingleton()->play3DSound("ophelia.mp3", new nap_vector3(0, 0, 0), true, false); //tmp play a song
 }
 
 void GameStateMachine::popState() {

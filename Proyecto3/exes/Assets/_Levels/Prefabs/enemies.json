@@ -89,6 +89,17 @@
                         "b": 1.0
                     },
                     "range": 5000
+                },
+                "pruebaMusic3d": {
+                    "id": {
+                        "type": "SoundEmitterComponent",
+                        "group": "test_comps"
+                    },
+                    "routeName": "bell.wav",
+                    "loop": true,
+                    "startPaused": true,
+                    "3D": true,
+                    "volume": 0.5
                 }
             }
         },

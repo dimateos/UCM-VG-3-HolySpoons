@@ -31,6 +31,28 @@
                     "type": "GameManager",
                     "group": "manage_components"
                 }
+            },
+            "mainMusic": {
+                "id": {
+                    "type": "SoundEmitterComponent",
+                    "group": "test_comps"
+                },
+                "routeName": "ophelia.mp3",
+                "customName": "mainMusic",
+                "3D": false,
+                "volume": 0.025
+            },
+            "hitSound": {
+                "id": {
+                    "type": "SoundEmitterComponent",
+                    "group": "test_comps"
+                },
+                "routeName": "hitmarker.ogg",
+                "customName": "hitSound",
+                "3D": false,
+                "volume": 0.2,
+                "startPaused": true,
+                "loop": false
             }
         }
     },

@@ -54,6 +54,7 @@ void Spawner::update(GameObject * o, double time)
 			else tmp->setPosition(smartPositioning(o));//Smart spawn point
 			tmp->setActive();
 			MessageSystem::getSingleton()->sendMessageGameObject(&Message(HP_RESET), tmp);
+			MessageSystem::getSingleton()->sendMessageComponentName(new Message(PLAY_SOUND), tmp->id().name_, "pruebaMusic3d");
 		}
 	}
 }

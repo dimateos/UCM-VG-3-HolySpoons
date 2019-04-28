@@ -29,6 +29,7 @@ void BulletHittable::onCollision(ID * other) {
 	if (hitPoints_ <= 0) {
 		owner_->setActive(false);
 		MessageSystem::getSingleton()->sendMessageGroup(new Msg_ADD_SCORE(valuePoints_), "manage_gameObjects");
+		MessageSystem::getSingleton()->sendMessageComponentName(new Message(STOP_SOUND), owner_->id().name_, "pruebaMusic3d");
 	}
 }
 
