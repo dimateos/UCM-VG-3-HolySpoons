@@ -8,20 +8,25 @@ namespace irrklang {
 	class ISound;
 }
 
+// it allows its owner to play a sound
 class SoundEmitterComponent : public Component
 {
 private:
 	string routeName;
-	string customName;
-	nap_transform* emitterPos;
+	string customName;         // custom name for searching it in the sounds map (SoundManager)
+
+	nap_transform* emitterPos; // only if it is a 3D sound
+
 	bool threeD;
 	bool playLooped;
 	bool startPaused;
 	bool track;
+
 	float volume;
 
 	irrklang::ISound* sound;
 
+	// some methods
 	void playSound();
 	void stopSound();
 	void setVolume(float v);
