@@ -14,10 +14,10 @@ public:
 	inline virtual ~BulletHittable() {};
 	virtual void setUp();
 
-	virtual void receive(Message* msg);
 	virtual void onCollision(ID* other);
 
 protected:
+	virtual void configActive();
 	static std::map<string, int> bulletDamages_;
 	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
 };

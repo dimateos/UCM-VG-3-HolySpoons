@@ -11,12 +11,6 @@ void BulletHittable::setUp() {
 	valuePoints_ = FINDnRETURN(cfg_, "points", int, 50);
 }
 
-void BulletHittable::receive(Message * msg)
-{
-	if (msg->id_ == HP_RESET)
-		hitPoints_ = maxHitPoints_;
-}
-
 void BulletHittable::onCollision(ID * other) {
 	//find the damage value of the impacted bullet
 	if (bulletDamages_.find(other->group_) != bulletDamages_.end())
@@ -31,6 +25,11 @@ void BulletHittable::onCollision(ID * other) {
 		MessageSystem::getSingleton()->sendMessageGroup(new Msg_ADD_SCORE(valuePoints_), "manage_gameObjects");
 		MessageSystem::getSingleton()->sendMessageComponentName(new Message(STOP_SOUND), owner_->id().name_, "pruebaMusic3d");
 	}
+}
+
+void BulletHittable::configActive()
+{
+	hitPoints_ = maxHitPoints_;
 }
 
 #include "GOFactory.h"
