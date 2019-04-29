@@ -14,6 +14,7 @@ public:
 	virtual void setUp();
 
 	inline PxController * getController() const { return controller_comp; };
+	void invalidateChache();
 
 	//interacting with the controller movement
 	inline nap_vector3 getV() const { return v_; };

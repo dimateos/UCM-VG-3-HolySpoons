@@ -72,6 +72,10 @@ void PhysicsControllerComponent::setUp() {
 	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::DEV);
 }
 
+void PhysicsControllerComponent::invalidateChache() {
+	controller_comp->invalidateCache();
+}
+
 void PhysicsControllerComponent::setDown() {
 	//release the controller (which releases the actor, shape etc)
 	controller_comp->release();

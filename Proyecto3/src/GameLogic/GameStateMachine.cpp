@@ -91,6 +91,9 @@ void GameStateMachine::popState() {
 	if (!states_.empty()) {
 		delete states_.top(); //delete before popping
 		states_.pop();
+
+		//this needs to be done everytime we change state
+		MessageSystem::getSingleton()->updateTargets(currentState()->getGameObjects());
 	}
 }
 

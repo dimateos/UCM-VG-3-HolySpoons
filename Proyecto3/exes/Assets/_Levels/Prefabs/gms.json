@@ -22,7 +22,7 @@
                     "type": "PushStateComponent",
                     "group": "test_comps"
                 },
-                "key": "8",
+                "key": "p",
                 "state": "Pause",
                 "json": "_PAUSE_LEVEL_"
             },
@@ -76,7 +76,7 @@
                     "type": "PopStateComponent",
                     "group": "test_comps"
                 },
-                "key": "8",
+                "key": "p",
                 "state": "MainScene"
             }
         }

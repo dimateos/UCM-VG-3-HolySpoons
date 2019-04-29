@@ -65,7 +65,7 @@ void PhysicsComponent::setDown() {
 
 void PhysicsComponent::configActive() {
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
-	//shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
+	shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
 }
 
 void PhysicsComponent::updateUserData() {

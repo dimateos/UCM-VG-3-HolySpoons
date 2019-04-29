@@ -247,7 +247,7 @@
                     "active": true,
                     "itemString": "pref_monkey",
                     "default": 0,
-                    "timer": 10.0,
+                    "timer": 25.0,
                     "smart": true
                 },
                 "basic_ren": {

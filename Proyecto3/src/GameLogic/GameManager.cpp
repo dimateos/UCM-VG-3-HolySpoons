@@ -123,7 +123,9 @@ void GameManager::receive(Message * msg)
 void GameManager::resetPlayer() {
 	LogSystem::Log("RESET");
 	player_->setPosition({ 0,10,0 });
-	static_cast<PhysicsControllerComponent*>(player_->getComponent("controller_phy"))->setV(vO);
+	auto pc = static_cast<PhysicsControllerComponent*>(player_->getComponent("controller_phy"));
+	pc->setV(vO);
+	pc->invalidateChache();
 
 	playerHP_->resetHP();
 	if (playerHP_ != nullptr) overlayComp->hidePanelByName("DEATH_PANEL");
