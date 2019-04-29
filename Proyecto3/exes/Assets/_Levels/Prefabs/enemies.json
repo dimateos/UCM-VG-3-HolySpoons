@@ -148,7 +148,7 @@
 						"type": "BombardierBehavior",
 						"group": "enemy_comps"
 					},
-					"speed": 15,
+					"speed": 18,
 					"Target": "player",
 					"lowY": 10,
 					"highY": 30,
@@ -160,7 +160,7 @@
 						"type": "BulletHittable",
 						"group": "enemy_comps"
 					},
-					"hp": 200,
+					"hp": 160,
 					"points": 250
 				},
 				"att_light": {
@@ -297,7 +297,7 @@
                     "active": true,
                     "itemString": "pref_bombardier",
                     "default": 0,
-                    "timer": 10.0,
+                    "timer": 18.0,
                     "smart": false
                 },
                 "circular_movement": {

@@ -93,7 +93,7 @@
       "id": {
         "name": "e_bomb",
         "type": "e_bomb",
-        "group": "e_bomb"
+        "group": "enemies"
       },
       "Components": {
         "bullet_phys": {
