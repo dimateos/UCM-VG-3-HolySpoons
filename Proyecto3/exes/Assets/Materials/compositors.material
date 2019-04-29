@@ -41,37 +41,37 @@ material B&WMat{
     }
 }
 
-//-------------------------------------BLOOD------------------------------
-vertex_program BloodVS glsl
+//-------------------------------------Test------------------------------
+vertex_program TestVS glsl
 {
-    source vertexShaderSimple.txt //reutilizamos del vertexShaderSimple
-
+    source TestVS.txt
     default_params
     {
         param_named_auto modelViewProjMat worldviewproj_matrix
+        param_named_auto timeA time_0_1 10
     }
 }
 
-fragment_program BloodFS glsl
+fragment_program TestFS glsl
 {
-    source BloodFS.txt
+    source TestFS.txt
     default_params{
         param_named RTT0 int 0 //textura con la escena
         param_named text int 1
     }
 }
 
-material BloodMat{
+material TestMat{
     technique{
         pass{
             depth_check off //descativamos el depth-buffer
             depth_write off
 
-            vertex_program_ref BloodVS{
+            vertex_program_ref TestVS{
 
             }
 
-            fragment_program_ref BloodFS{
+            fragment_program_ref TestFS{
 
             }
 
@@ -86,4 +86,48 @@ material BloodMat{
         }
     }
 }
+
+//-------------------------------------BLOOD (MIX)------------------------------
+vertex_program BloodMixVS glsl
+{
+    source vertexShaderSimple.txt //reutilizamos del vertexShaderSimple
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program BloodMixFS glsl
+{
+    source SceneTextureMixFS.txt
+    default_params{
+        param_named RTT0 int 0 //textura con la escena
+        param_named text int 1
+    }
+}
+
+material BloodMixMat{
+    technique{
+        pass{
+            depth_check off //descativamos el depth-buffer
+            depth_write off
+
+            vertex_program_ref BloodMixVS{
+
+            }
+
+            fragment_program_ref BloodMixFS{
+
+            }
+
+            texture_unit RTT0{
+                //sin imagen de archivo -> render target previo
+                filtering none //resolucion del viewport
+            }
+
+            texture_unit text{
+                texture blood.png 2d
+            }
+        }
+    }
 }

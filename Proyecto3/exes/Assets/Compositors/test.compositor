@@ -1,4 +1,4 @@
-compositor BloodMix{ //nombre
+compositor Test{ //nombre
     technique{
         //temporary textures for use in subsequient target passes
         //dimensions based on the physical dimensios of the viewport to wich compositor is attached
@@ -12,7 +12,7 @@ compositor BloodMix{ //nombre
             input none //start without initializing
 
             pass render_quad{ //render a fullscreen quad with
-                material BloodMixMat //the luminance material
+                material TestMat //the luminance material
                 input 0  RTT0 //the luminance material
             }    //para usar la textura en el fragment shader del material
         }
