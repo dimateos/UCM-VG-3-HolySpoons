@@ -21,7 +21,7 @@ public:
 
 	//void sendToGSM(Message* msg);
 	inline void setStateID(string id) { stateID_ = id; };
-	inline string getStateID() { stateID_; };
+	inline string getStateID() { return stateID_; };
 
 	//gameObjects methods
 	void addGameObject(GameObject* go);
@@ -36,13 +36,16 @@ public:
 
 	//specific for player
 	inline GameObject* getPlayer() const { return player_; };
+	inline GameObject* getGM() const { return gm_; };
 	inline void setPlayer(GameObject* player) { player_ = player; addGameObject(player_); };
+	inline void setGM(GameObject* gm) { gm_ = gm; addGameObject(gm_); };
 
 protected:
 	virtual void setDown();
 	void killDeadObjects();
 
 	GameObject* player_;
+	GameObject* gm_;
 
 	std::list<GameObject*> gameObjects_;
 	string stateID_ = "undefinedID";

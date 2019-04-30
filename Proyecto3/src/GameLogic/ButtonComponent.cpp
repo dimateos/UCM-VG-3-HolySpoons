@@ -21,8 +21,9 @@ void ButtonComponent::setUp()
 	W = this->cfg_["W"];
 	H = this->cfg_["H"];
 	msgType = this->cfg_["msgType"];
+	string name = this->cfg_["name"];
 
-	elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", this->cfg_["name"]);
+	elemt = RenderSystemInterface::getSingleton()->createOverlayElement("Panel", name + id().sn_string());
 
 	RenderSystemInterface::getSingleton()->addToPanel(this->cfg_["panelName"], elemt);
 

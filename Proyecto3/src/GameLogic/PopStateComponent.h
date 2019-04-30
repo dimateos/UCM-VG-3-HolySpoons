@@ -9,6 +9,8 @@ class PopStateComponent : public Component
 private:
 	SDL_Keycode key = SDLK_8; //READ IT FROM JSON?
 	std::string state;
+	void popState();
+
 public:
 	PopStateComponent() {};
 	virtual ~PopStateComponent() {};
@@ -17,6 +19,7 @@ public:
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void receive(Message * msg);
 };
 
 

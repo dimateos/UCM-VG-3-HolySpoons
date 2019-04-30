@@ -21,6 +21,7 @@ public:
 
 protected:
 	void toggleZoom();
+	virtual void receive(Message * msg);
 
 	//logic
 	Ogre::SceneNode* camNode_;

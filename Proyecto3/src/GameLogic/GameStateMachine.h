@@ -32,6 +32,8 @@ public:
 	//virtual void receive(Message* msg);
 	GameState* const currentState ();
 
+	inline int stackSize() const { return states_.size(); }
+
 	void pushState(GameState* pState);
 	void changeState(GameState* pState);
 	void popState();

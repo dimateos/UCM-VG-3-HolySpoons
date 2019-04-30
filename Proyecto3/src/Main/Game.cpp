@@ -37,6 +37,7 @@ void Game::initGame() {
 	renderManager_->setupScene("Menu"); //creates the first scene
 	renderManager_->setupScene("MainScene");
 	renderManager_->setupScene("Pause");
+	renderManager_->setupScene("Death");
 	RenderSystemInterface::getSingleton()->setRenderingScene("Menu");		//sets rendering scene
 
 	//Initialize level

@@ -1,111 +1,154 @@
 {
-"Prefabs" :
-[
+  "Prefabs": [
     {
-        "id": {
-            "name": "gm_go",
-            "type": "pref_gm_go",
-            "group": "manage_gameObjects"
+      "id": {
+        "name": "gm_go",
+        "type": "pref_gm_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "ui_overlay"
+          },
+          "overlay_name": "HUD",
+          "panel_container": "HUD_PanelContainer",
+          "panel container": "DEATH_PANEL"
         },
-        "Components": {
-            "canvas": {
-                "id": {
-                    "type": "OverlayComponent",
-                    "group": "ui_overlay"
-                },
-                "overlay_name": "HUD",
-                "panel_container": "HUD_PanelContainer",
-                "panel container": "DEATH_PANEL"
-            },
-            "handle_input_pause": {
-                "id": {
-                    "type": "PushStateComponent",
-                    "group": "test_comps"
-                },
-                "key": "p",
-                "state": "Pause",
-                "json": "_PAUSE_LEVEL_"
-            },
-            "game_manager_comp": {
-                "id": {
-                    "type": "GameManager",
-                    "group": "manage_components"
-                }
-            },
-            "mainMusic": {
-                "id": {
-                    "type": "SoundEmitterComponent",
-                    "group": "test_comps"
-                },
-                "routeName": "ophelia.mp3",
-                "customName": "mainMusic",
-                "3D": false,
-                "volume": 0.025
-            },
-            "hitSound": {
-                "id": {
-                    "type": "SoundEmitterComponent",
-                    "group": "test_comps"
-                },
-                "routeName": "hitmarker.ogg",
-                "customName": "hitSound",
-                "3D": false,
-                "volume": 0.2,
-                "startPaused": true,
-                "loop": false
-            }
+        "handle_input_pause": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "p",
+          "state": "Pause",
+          "json": "_PAUSE_LEVEL_"
+        },
+        "push_death": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "Death",
+          "json": "_DEATH_LEVEL_"
+        },
+        "game_manager_comp": {
+          "id": {
+            "type": "GameManager",
+            "group": "manage_components"
+          },
+          "state": "Pause",
+          "json": "_PAUSE_LEVEL_"
+        },
+        "mainMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "ophelia.mp3",
+          "customName": "mainMusic",
+          "3D": false,
+          "volume": 0.025
+        },
+        "hitSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "hitmarker.ogg",
+          "customName": "hitSound",
+          "3D": false,
+          "volume": 0.2,
+          "startPaused": true,
+          "loop": false
+        },
+        "handle_input": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "j",
+          "state": "Menu"
         }
+      }
     },
     {
-        "id": {
-            "name": "gmPause_go",
-            "type": "pref_gmPause_go",
-            "group": "manage_gameObjects"
+      "id": {
+        "name": "gmPause_go",
+        "type": "pref_gmPause_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "test_comps"
+          },
+          "overlay_name": "PAUSE",
+          "panel_container": "PAUSE_PanelContainer"
         },
-        "Components": {
-            "canvas": {
-                "id": {
-                    "type": "OverlayComponent",
-                    "group": "test_comps"
-                },
-                "overlay_name": "PAUSE",
-                "panel_container": "PAUSE_PanelContainer"
-            },
-            "handle_input": {
-                "id": {
-                    "type": "PopStateComponent",
-                    "group": "test_comps"
-                },
-                "key": "p",
-                "state": "MainScene"
-            }
+        "handle_input": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "p",
+          "state": "MainScene"
         }
+      }
     },
     {
-        "id": {
-            "name": "gmMenu_go",
-            "type": "pref_gmMenu_go",
-            "group": "manage_gameObjects"
+      "id": {
+        "name": "gmMenu_go",
+        "type": "pref_gmMenu_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "test_comps"
+          },
+          "overlay_name": "MENU",
+          "panel_container": "MENU_PanelContainer"
         },
-        "Components": {
-            "canvas": {
-                "id": {
-                    "type": "OverlayComponent",
-                    "group": "test_comps"
-                },
-                "overlay_name": "MENU",
-                "panel_container": "MENU_PanelContainer"
-            },
-            "handle_input": {
-                "id": {
-                    "type": "PushStateComponent",
-                    "group": "test_comps"
-                },
-                "key": " ",
-                "state": "MainScene",
-                "json": "_MAIN_LEVEL_"
-            }
+        "handle_input": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": " ",
+          "state": "MainScene",
+          "json": "_MAIN_LEVEL_"
         }
+      }
+    },
+    {
+      "id": {
+        "name": "gmDeath_go",
+        "type": "pref_gmDeath_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "test_comps"
+          },
+          "overlay_name": "DEATH",
+          "panel_container": "DEATH_PANEL"
+        },
+        "pop_state": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "Menu"
+        }
+      }
     }
-]
+  ]
 }

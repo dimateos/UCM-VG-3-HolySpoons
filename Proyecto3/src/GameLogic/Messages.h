@@ -6,8 +6,9 @@ class nap_transform;
 
 enum MessageId // DIFFERENT MESSAGE IDs
 {
-	//BUTTONS
-	BUTTON_START_GAME,
+	//STATES
+	PUSH_STATE,
+	POP_STATE,
 
 	//UI
 	ACTIVATE_UI,

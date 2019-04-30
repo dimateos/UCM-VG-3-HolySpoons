@@ -22,14 +22,14 @@ void BulletHittable::onCollision(ID * other) {
 	if (bulletDamages_.find(other->group_) != bulletDamages_.end())
 		if (owner_->isActive() && hitPoints_ > 0) {
 			hitPoints_ -= bulletDamages_.at(other->group_);
-			MessageSystem::getSingleton()->sendMessageGroup(new Message(ENEMY_DAMAGE), "manage_gameObjects");
+			MessageSystem::getSingleton()->sendMessageGroup(&Message(ENEMY_DAMAGE), "manage_gameObjects");
 		}
 
 	//check death
 	if (hitPoints_ <= 0) {
 		owner_->setActive(false);
-		MessageSystem::getSingleton()->sendMessageGroup(new Msg_ADD_SCORE(valuePoints_), "manage_gameObjects");
-		MessageSystem::getSingleton()->sendMessageComponentName(new Message(STOP_SOUND), owner_->id().name_, "pruebaMusic3d");
+		MessageSystem::getSingleton()->sendMessageGroup(&Msg_ADD_SCORE(valuePoints_), "manage_gameObjects");
+		MessageSystem::getSingleton()->sendMessageComponentName(&Message(STOP_SOUND), owner_->id().name_, "pruebaMusic3d");
 	}
 }
 

@@ -31,6 +31,9 @@ private:
 
 	int score_;
 
+	std::string state;
+	std::string json;
+
 	void updateUI();
 
 public:

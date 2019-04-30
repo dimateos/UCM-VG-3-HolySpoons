@@ -1,0 +1,33 @@
+{
+    "stateID_": "Death",
+  "GameObjects": [
+    {
+      "id": {
+        "type": "pref_gmDeath_go"
+      }
+    },
+    {
+      "id": {
+        "type": "cursor_ui"
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "msgType": 1,
+          "panelName": "DEATH_PANEL",
+          "materialName": "ButtonMaterial",
+          "name": "menu_button"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "camera_menu"
+      }
+    }
+  ]
+}

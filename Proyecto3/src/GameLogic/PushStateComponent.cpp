@@ -56,7 +56,7 @@ bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 
 void PushStateComponent::receive(Message * msg)
 {
-	if (msg->id_ == BUTTON_START_GAME) {
+	if (msg->id_ == PUSH_STATE) {
 		pushState();
 	}
 }

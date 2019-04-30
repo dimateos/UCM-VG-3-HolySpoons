@@ -35,11 +35,13 @@ void GameManager::setUp() {
 	if (isInited()) return;
 	setInited();
 
+	state = this->getCfg()["state"];
+	json = this->getCfg()["json"];
+
 	SoundManager::getSingleton()->stopSounds();
 
 	// hide of death panel
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
-	overlayComp->hidePanelByName("DEATH_PANEL");
 	overlayComp->hidePanelByName("HIT_MARKER_PANEL");
 	overlayComp->hidePanelByName("DEATH_MARKER_PANEL");
 
@@ -111,11 +113,11 @@ void GameManager::receive(Message * msg)
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		timer.setDuration(0.1);
 		timer.start();
-		MessageSystem::getSingleton()->sendMessageComponentName(new Message(PLAY_SOUND), owner_->id().name_, "hitSound");
+		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), owner_->id().name_, "hitSound");
 	}
 	else if (msg->id_ == CHECK_HP) {
-		// EN UN FUTURO ESTO PUSEHARA UN ESTADO DE MUERTE
-		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) overlayComp->showPanelByName("DEATH_PANEL");
+		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) 
+			MessageSystem::getSingleton()->sendMessageComponentName(&Message(PUSH_STATE), owner_->idPtr()->name_, "push_death");
 		updateUI();
 	}
 }
@@ -133,7 +135,7 @@ void GameManager::resetPlayer() {
 	score_ = 0;
 	updateUI();
 
-	MessageSystem::getSingleton()->sendMessage(new Message(RESET_PULL));
+	MessageSystem::getSingleton()->sendMessage(&Message(RESET_PULL));
 }
 
 #include "GOFactory.h"

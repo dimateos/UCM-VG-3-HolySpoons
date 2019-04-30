@@ -27,23 +27,39 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
 	if (evt.type == SDL_KEYDOWN) {
 		if (evt.key.keysym.sym == key) {
-			//cambio de rendering target
-			RenderSystemInterface::getSingleton()->setRenderingScene(state);
-			GameStateMachine::getSingleton()->popState();
-
-			//activar overlays del estado que viene
-			MessageSystem::getSingleton()->updateTargets(GameStateMachine::getSingleton()->currentState()->getGameObjects());
-			MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
-
-			//pause/unpause physics
-			PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
-			TimeSystem::StartCounter();
+			popState();
 
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void PopStateComponent::popState() {
+	string s = state;
+
+	while (GameStateMachine::getSingleton()->stackSize() > 0
+		&& s != GameStateMachine::getSingleton()->currentState()->getStateID()) {
+		GameStateMachine::getSingleton()->popState();
+	}
+
+	RenderSystemInterface::getSingleton()->setRenderingScene(s);
+
+	//activar overlays del estado que viene
+	MessageSystem::getSingleton()->updateTargets(GameStateMachine::getSingleton()->currentState()->getGameObjects());
+	MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
+
+	//pause/unpause physics
+	PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
+	TimeSystem::StartCounter();
+}
+
+void PopStateComponent::receive(Message * msg)
+{
+	if (msg->id_ == POP_STATE) {
+		popState();
+	}
 }
 
 #include "GOFactory.h"

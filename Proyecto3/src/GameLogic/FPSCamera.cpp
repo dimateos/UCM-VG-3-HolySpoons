@@ -14,10 +14,6 @@ void FPSCamera::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	//hide and capture mouse
-	SDL_ShowCursor(SDL_DISABLE);
-	SDL_SetRelativeMouseMode(SDL_TRUE);
-
 	//cam
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
 	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
@@ -95,6 +91,15 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 void FPSCamera::toggleZoom() {
 	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * zoomed_ * ogre_scale, Ogre::Node::TS_LOCAL);
 	zoom = !zoom;
+}
+
+void FPSCamera::receive(Message * msg)
+{
+	if (msg->id_ == STATE_CHANGED) {
+		//hide and capture mouse
+		SDL_ShowCursor(SDL_DISABLE);
+		SDL_SetRelativeMouseMode(SDL_TRUE);
+	}
 }
 
 #include "GOFactory.h"

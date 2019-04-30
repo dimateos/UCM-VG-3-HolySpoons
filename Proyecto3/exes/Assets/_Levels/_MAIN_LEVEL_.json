@@ -1,67 +1,87 @@
 {
-    "stateID_": "TestLevel",
-    "mapFile": "_MAIN_LEVEL_map.txt",
-    "Player": {
-        "id": {
-            "name": "player",
-            "type": "pref_playerController"
-        }
+  "stateID_": "MainScene",
+  "mapFile": "_MAIN_LEVEL_map.txt",
+  "Player": {
+    "id": {
+      "name": "player",
+      "type": "pref_playerController"
+    }
+  },
+  "GameObjects": [
+    {
+      "id": {
+        "type": "pref_spawner"
+      },
+      "pos": {
+        "x": -30.0,
+        "y": 0.0,
+        "z": 0.0
+      }
     },
-    "GameObjects": [
-        {
-            "id": {
-				"type": "pref_spawner"
-            },
-            "pos": { "x": -30.0, "y": 0.0, "z": 0.0 }
-        },
 
-        {
-            "id": {
-				"type": "pref_gm_go"
-            }
-        },
+    {
+      "id": {
+        "type": "pref_gm_go"
+      }
+    },
 
-        {
-            "id": {
-				"type": "ambient_light"
-            }
-        },
+    {
+      "id": {
+        "type": "ambient_light"
+      }
+    },
 
-        {
-            "id": {
-				"type": "skybox"
-            }
-        },
-        {
-            "id": {
-				"type": "DeathPlaneLava"
-            },
-            "pos": { "x": 0.0, "y": -25.0, "z": 0.0 }
-        },
-        {
-            "id": {
-				"type": "PlaneLava"
-            },
-            "pos": { "x": 0.0, "y": -6.0, "z": 0.0 }
-        },
-		
-		{
-            "id": {
-				"type": "bombardier_spawner"
-            },
-            "pos": { "x": -40.0, "y": 30.0, "z": 0.0 }
-        },
-		
-        {
-            "id":{
-                "type":"pref_Enemyspawner"
-            },
-            "pos": { "x": 0.0, "y": 0.0, "z": 70.0 }
-        },
-        {
-            "id": {
-				"type": "basic_postprocessing"
-            }
-        }
-    ]
+    {
+      "id": {
+        "type": "skybox"
+      }
+    },
+    {
+      "id": {
+        "type": "DeathPlaneLava"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": -25.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": {
+        "type": "PlaneLava"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": -6.0,
+        "z": 0.0
+      }
+    },
+
+    {
+      "id": {
+        "type": "bombardier_spawner"
+      },
+      "pos": {
+        "x": -40.0,
+        "y": 30.0,
+        "z": 0.0
+      }
+    },
+
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 70.0
+      }
+    },
+    {
+      "id": {
+        "type": "basic_postprocessing"
+      }
+    }
+  ]
 }

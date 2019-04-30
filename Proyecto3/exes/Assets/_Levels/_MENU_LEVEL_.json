@@ -1,81 +1,88 @@
 {
-    "stateID_": "MenuLevel",
-    "GameObjects": [
-        {
-            "id": {
-                "type": "pref_gmMenu_go"
-            }
-        },
-        {
-            "id": {
-                "type": "cursor_ui"
-            }
-        },
-        {
-            "id": {
-                "type": "button_ui"
-            }
-        },
-        {
-            "id": {
-                "type": "camera_menu"
-            }
-        },
-        {
-            "id":{
-                "type": "skybox"
-            },
-            "Components":{
-                "skybox":{
-                    "skybox":"SkyBox2"
-                }
-            }
-        },
-        {
-            "id": {
-				"type": "PlaneLava"
-            },
-            "pos": { "x": -5.0, "y": -25.0, "z": 0.0 },
-            "Components": {
-                "basic_ren": {
-                    "shape": { "w": 3000, "h": 3000 }
-                }
-            }
-        },
-        {
-            "id":{
-                "type": "monkey_menu"
-            }
-        },
-        {
-            "id":{
-                "type": "monkey_menu"
-            },
-            "pos":{
-                "x": 1.0,
-                "y": 15.0,
-                "z": 0.0
-            },
-            "Components":{
-                "circular_movement":{
-                    "Speed":-1
-                }
-            }
-        },
-        {
-            "id":{
-                "type": "monkey_menu"
-            },
-            "pos":{
-                "x": 1.0,
-                "y": -15.0,
-                "z": 0.0
-            },
-            "Components":{
-                "circular_movement":{
-                    "Speed":-1
-                }
-            }
+  "stateID_": "Menu",
+  "GameObjects": [
+    {
+      "id": {
+        "type": "pref_gmMenu_go"
+      }
+    },
+    {
+      "id": {
+        "type": "cursor_ui"
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      }
+    },
+    {
+      "id": {
+        "type": "camera_menu"
+      }
+    },
+    {
+      "id": {
+        "type": "skybox"
+      },
+      "Components": {
+        "skybox": {
+          "skybox": "SkyBox2"
         }
-    ]
+      }
+    },
+    {
+      "id": {
+        "type": "PlaneLava"
+      },
+      "pos": {
+        "x": -5.0,
+        "y": -25.0,
+        "z": 0.0
+      },
+      "Components": {
+        "basic_ren": {
+          "shape": {
+            "w": 3000,
+            "h": 3000
+          }
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "monkey_menu"
+      }
+    },
+    {
+      "id": {
+        "type": "monkey_menu"
+      },
+      "pos": {
+        "x": 1.0,
+        "y": 15.0,
+        "z": 0.0
+      },
+      "Components": {
+        "circular_movement": {
+          "Speed": -1
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "monkey_menu"
+      },
+      "pos": {
+        "x": 1.0,
+        "y": -15.0,
+        "z": 0.0
+      },
+      "Components": {
+        "circular_movement": {
+          "Speed": -1
+        }
+      }
+    }
+  ]
 }
