@@ -10,15 +10,17 @@
 class BulletHittable : public Component, public CollisionListener
 {
 public:
+	static std::map<string, int> bulletDamages_;
+
 	inline BulletHittable(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {};
 	inline virtual ~BulletHittable() {};
 	virtual void setUp();
 
-	virtual void receive(Message* msg);
 	virtual void onCollision(ID* other);
 
 protected:
-	static std::map<string, int> bulletDamages_;
+	virtual void configActive();
+	
 	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
 };
 

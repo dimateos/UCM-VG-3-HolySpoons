@@ -3,13 +3,13 @@
 #define SPAWNER_H_
 
 #include "Component.h"
+#include <Timer.h>
 class nap_Pool;
 
 class Spawner : public Component
 {
 private:
-	double timer;
-	double lastActiveT=0;
+	napTimer t;
 
 	bool smart = false;
 
@@ -24,9 +24,6 @@ public:
 	virtual ~Spawner();
 
 	virtual void setUp();
-
-	//sets and gets
-	inline void setTimer(double t) { timer = t; };
 
 	virtual void update(GameObject* o, double time);
 	virtual void receive(Message* msg);

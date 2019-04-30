@@ -1,6 +1,5 @@
 {
-"Prefabs" :
-  [
+  "Prefabs": [
     {
       "id": {
         "name": "base_bullet",
@@ -89,7 +88,7 @@
         }
       }
     },
-	{
+    {
       "id": {
         "name": "e_bomb",
         "type": "e_bomb",
@@ -128,6 +127,56 @@
             "type": "BulletHit"
           },
           "time": 5
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "e_bullet",
+        "type": "e_bullet",
+        "group": "enemies"
+      },
+      "Components": {
+        "bullet_phys": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": true,
+          "mass": 0.04,
+          "shape": {
+            "type": "SPHERE",
+            "r": 2
+          }
+        },
+        "bullet_rend": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 2,
+            "y": 2,
+            "z": 2
+          },
+          "material": "DebugMaterial2",
+          "shape": {
+            "entity_name": "e_bullet",
+            "type": "MESH",
+            "mesh": "uv_sphere.mesh"
+          }
+        },
+        "heavy_bullet_hit": {
+          "id": {
+            "type": "HeavyBulletHit"
+          },
+          "time": 5
+        },
+        "bullet_hittable": {
+          "id": {
+            "type": "BulletHittable",
+            "group": "enemy_comps"
+          },
+          "hp": 30,
+          "points": 0
         }
       }
     }

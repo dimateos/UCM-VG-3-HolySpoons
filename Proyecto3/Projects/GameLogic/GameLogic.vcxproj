@@ -39,6 +39,7 @@
     <ClCompile Include="..\..\src\GameLogic\GameStateMachine.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\HeavyBullethit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SniperBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
@@ -80,6 +82,7 @@
     <ClInclude Include="..\..\src\GameLogic\FPSCamera.h" />
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Activable.h" />
+    <ClInclude Include="..\..\src\GameLogic\HeavyBulletHit.h" />
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h" />
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
@@ -97,6 +100,7 @@
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h" />
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
