@@ -1,11 +1,11 @@
 {
   "stateID_": "Menu",
+  "Manager":{
+    "id": {
+      "type": "pref_gmMenu_go"
+    }
+  },
   "GameObjects": [
-    {
-      "id": {
-        "type": "pref_gmMenu_go"
-      }
-    },
     {
       "id": {
         "type": "cursor_ui"

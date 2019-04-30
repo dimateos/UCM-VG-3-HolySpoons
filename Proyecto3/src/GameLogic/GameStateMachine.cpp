@@ -40,12 +40,13 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 
 	//get the scene parsed json
 	GOStruct* player = nullptr;
-	auto scene = JsonReader::getSingleton()->ReadLevel(level, player);
+	GOStruct* manager = nullptr;
+	auto scene = JsonReader::getSingleton()->ReadLevel(level, player, manager);
 
 	//name
 	state->setStateID(scene.SceneName);
 
-	//set player as listener if exists
+	//set player in the state and as listener, if it exists
 	auto sm = SoundManager::getSingleton();
 	if (player != nullptr) {
 		state->setPlayer(GOFactory::ParseGO(*player));
@@ -53,6 +54,11 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	}
 	else {
 		sm->setListenerTransform(new nap_transform(nap_vector3(0, 0, 0)));
+	}
+
+	// set the manager int the state, if it exists 
+	if (manager != nullptr) {
+		state->setGM(GOFactory::ParseGO(*manager));
 	}
 
 	//create the gameObjects

@@ -1,10 +1,8 @@
 {
   "stateID_": "Pause",
-  "GameObjects": [
-    {
-      "id": {
-        "type": "pref_gmPause_go"
-      }
+  "Manager": {
+    "id": {
+      "type": "pref_gmPause_go"
     }
-  ]
+  }
 }

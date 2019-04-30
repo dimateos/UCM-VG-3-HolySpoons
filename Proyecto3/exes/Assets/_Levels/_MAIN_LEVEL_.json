@@ -7,6 +7,11 @@
       "type": "pref_playerController"
     }
   },
+  "Manager":{
+    "id": {
+      "type": "pref_gm_go"
+    }
+  },
   "GameObjects": [
     {
       "id": {
@@ -16,12 +21,6 @@
         "x": -30.0,
         "y": 0.0,
         "z": 0.0
-      }
-    },
-
-    {
-      "id": {
-        "type": "pref_gm_go"
       }
     },
 

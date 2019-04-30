@@ -32,7 +32,7 @@ public:
 	static void shutdownSingleton();
 
 	// reads the file called "level" and return the scene information
-	SceneStruct ReadLevel(string level, GOStruct * & player);
+	SceneStruct ReadLevel(string level, GOStruct * & player, GOStruct * & manager);
 
 	// returns a copy of the prefab
 	GOStruct getPrefab(string pref, bool & success);

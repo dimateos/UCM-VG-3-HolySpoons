@@ -3,6 +3,7 @@
 #include "ButtonComponent.h"
 #include "OgreCamera.h"
 #include "OgreViewport.h"
+#include "GameStateMachine.h"
 
 #include <SDL_events.h>
 
@@ -11,7 +12,8 @@ ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Comp
 
 void ButtonComponent::OnClick()
 {
-	MessageSystem::getSingleton()->sendMessage(&Message((MessageId)msgType));
+	MessageSystem::getSingleton()->sendMessageName(&Message((MessageId)msgType), 
+		GameStateMachine::getSingleton()->currentState()->getGM()->id().name_);
 }
 
 void ButtonComponent::setUp()

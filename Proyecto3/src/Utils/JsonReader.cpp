@@ -162,7 +162,7 @@ void JsonReader::deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_
 
 // returns a Scene_type with all the information read
 // from "level.json" (GameObjects) and "level.txt" (map/tiles)
-SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player) {
+SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player, GOStruct * & manager) {
 	LogSystem::Log("Reading level " + level + " ...", LogSystem::JSON);
 	size_t n = 0;
 
@@ -195,6 +195,13 @@ SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player) {
 		player = ReadPlayer(j["Player"]);
 	}
 	else LogSystem::Log("La escena " + scene.SceneName + " no contiene player...", LogSystem::JSON);
+
+	//read the manager of the scene
+	if (FIND(j, "Manager")) {
+		manager = readGO(j["Manager"]);
+		applyPrefab(j["Manager"], *manager);
+	}
+	else LogSystem::Log("La escena " + scene.SceneName + " no contiene manager...", LogSystem::JSON);
 
 	//read the gameobjects
 	if (!(FIND(j, "GameObjects")) || j["GameObjects"].size() == 0) {

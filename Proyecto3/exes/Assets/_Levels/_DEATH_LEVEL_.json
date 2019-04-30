@@ -1,11 +1,11 @@
 {
     "stateID_": "Death",
-  "GameObjects": [
-    {
+    "Manager":{
       "id": {
         "type": "pref_gmDeath_go"
       }
     },
+  "GameObjects": [
     {
       "id": {
         "type": "cursor_ui"
