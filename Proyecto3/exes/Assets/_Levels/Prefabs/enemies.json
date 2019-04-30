@@ -241,8 +241,9 @@
           "speed": 8,
           "Target": "player",
           "lowY": -8,
+          "highY": 4,
           "shotSpeed": 50,
-          "actionDelay": 2
+          "actionDelay": 1.5
         },
         "bullet_hittable": {
           "id": {

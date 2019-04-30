@@ -12,7 +12,7 @@ void BulletHit::update(GameObject * o, double time) {
 }
 
 void BulletHit::onCollision(ID * other) {
-	if (other->group_ != owner_->id().group_) {
+	if (other->type_ != owner_->id().type_) {
 		owner_->setActive(false);
 	}
 }

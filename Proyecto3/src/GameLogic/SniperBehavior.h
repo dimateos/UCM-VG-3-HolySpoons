@@ -28,8 +28,9 @@ protected:
 	vector<nap_vector3> positions;
 
 	//cfg (json)
-	float speed = 0.1, shotSpeed = 0.1, actionDelay = 0.1, lowY = -8;
+	float speed = 0.1, shotSpeed = 0.1, lowY = -8, highY = 5;
 	state status = advance;
+	bool wait = false;
 
 public:
 

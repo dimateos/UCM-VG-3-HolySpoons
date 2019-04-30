@@ -145,7 +145,7 @@
           "mass": 0.04,
           "shape": {
             "type": "SPHERE",
-            "r": 3
+            "r": 2
           }
         },
         "bullet_rend": {
@@ -153,9 +153,9 @@
             "type": "RenderComponent"
           },
           "scale": {
-            "x": 3,
-            "y": 3,
-            "z": 3
+            "x": 2,
+            "y": 2,
+            "z": 2
           },
           "material": "DebugMaterial2",
           "shape": {
@@ -164,11 +164,19 @@
             "mesh": "uv_sphere.mesh"
           }
         },
-        "bullet_hit": {
+        "heavy_bullet_hit": {
           "id": {
-            "type": "BulletHit"
+            "type": "HeavyBulletHit"
           },
           "time": 5
+        },
+        "bullet_hittable": {
+          "id": {
+            "type": "BulletHittable",
+            "group": "enemy_comps"
+          },
+          "hp": 30,
+          "points": 0
         }
       }
     }

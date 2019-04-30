@@ -35,7 +35,7 @@ void Spawner::setUp()
 	//json parameters
 	pol = new nap_Pool(cfg_["itemString"]);
 	pol->setDefault(cfg_["default"]);
-	timer = cfg_["timer"];
+	t.start(cfg_["timer"]);
 	//We have to read the smart boolean
 	smart = cfg_["smart"];
 
@@ -45,15 +45,13 @@ void Spawner::setUp()
 void Spawner::update(GameObject * o, double time)
 {
 	if (!o->isKilled()) { //Shoulld not be required
-		lastActiveT += time;
-		if (lastActiveT > timer) {					//simple timer
-			lastActiveT = 0;						//Timer reset
+		if (t.update(time)) {					//simple timer
+			t.start();					//Timer reset
 			GameObject* tmp = pol->getItem();		//gets object from pool, spawns it
 			if (!smart)
 				tmp->setPosition(o->getPosition());	//Basic Spawn point
 			else tmp->setPosition(smartPositioning(o));//Smart spawn point
 			tmp->setActive();
-			MessageSystem::getSingleton()->sendMessageGameObject(&Message(HP_RESET), tmp);
 			MessageSystem::getSingleton()->sendMessageComponentName(new Message(PLAY_SOUND), tmp->id().name_, "pruebaMusic3d");
 		}
 	}
@@ -62,7 +60,7 @@ void Spawner::update(GameObject * o, double time)
 void Spawner::receive(Message * msg) {
 	if (msg->id_ == RESET_PULL) {
 		pol->resetPool();
-		lastActiveT = 0;
+		t.start();
 	}
 }
 

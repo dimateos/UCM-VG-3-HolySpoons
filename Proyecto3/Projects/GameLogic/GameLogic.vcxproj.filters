@@ -145,6 +145,9 @@
     <ClCompile Include="..\..\src\GameLogic\SniperBehavior.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\HeavyBullethit.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -277,6 +280,9 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\HeavyBulletHit.h">
       <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
