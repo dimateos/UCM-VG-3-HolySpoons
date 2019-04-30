@@ -192,14 +192,13 @@ SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player, GOStruct * 
 
 	//read the player
 	if (FIND(j, "Player")) {
-		player = ReadPlayer(j["Player"]);
+		player = ReadObject(j["Player"]);
 	}
 	else LogSystem::Log("La escena " + scene.SceneName + " no contiene player...", LogSystem::JSON);
 
 	//read the manager of the scene
 	if (FIND(j, "Manager")) {
-		manager = readGO(j["Manager"]);
-		applyPrefab(j["Manager"], *manager);
+		manager = ReadObject(j["Manager"]);
 	}
 	else LogSystem::Log("La escena " + scene.SceneName + " no contiene manager...", LogSystem::JSON);
 
@@ -228,15 +227,15 @@ SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player, GOStruct * 
 	return scene;
 }
 
-GOStruct* JsonReader::ReadPlayer(nap_json const & player_cfg) {
+GOStruct* JsonReader::ReadObject(nap_json const & object_cfg) {
 	//raw read the GO
-	GOStruct * player = readGO(player_cfg);
+	GOStruct * object = readGO(object_cfg);
 
 	//apply or not a prefab (return if error)
-	if (!applyPrefab(player_cfg, *player)) LogSystem::Log("Error al leer player", LogSystem::JSON);
+	if (!applyPrefab(object_cfg, *object)) LogSystem::Log("Error al leer el objeto", LogSystem::JSON);
 
-	LogSystem::Log("Leido player con exito", LogSystem::JSON);
-	return player;
+	LogSystem::Log("Leido objeto con exito", LogSystem::JSON);
+	return object;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

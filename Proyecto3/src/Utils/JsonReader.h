@@ -57,8 +57,8 @@ private:
 	void deepUpdateJson(nap_json & j, nap_json const & updater);
 	void deepUpdateJson_rec(nap_json & j, nap_json const & updater, nap_json::json_pointer & ptr);
 
-	// reading player
-	GOStruct* ReadPlayer(nap_json const & player_cfg);
+	// reading object (readGO + applyPrefab)
+	GOStruct* ReadObject(nap_json const & player_cfg);
 
 	// reading map
 	void preloadMapTypes();

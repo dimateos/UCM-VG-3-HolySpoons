@@ -33,7 +33,7 @@ void Game::initGame() {
 	soundManager_ = SoundManager::getSingleton();
 	messageSystem_ = MessageSystem::getSingleton();
 
-	//Config rendering scenes
+	//Config rendering scenes (must have same name as the stateID)
 	renderManager_->setupScene("Menu"); //creates the first scene
 	renderManager_->setupScene("MainScene");
 	renderManager_->setupScene("Pause");

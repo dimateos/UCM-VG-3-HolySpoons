@@ -37,8 +37,9 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 }
 
 void PopStateComponent::popState() {
-	string s = state;
+	string s = state; // we need to keep this variable (otherwise when pop, "state" gets corrupted)
 
+	// while it is not the state that you want, pop()
 	while (GameStateMachine::getSingleton()->stackSize() > 0
 		&& s != GameStateMachine::getSingleton()->currentState()->getStateID()) {
 		GameStateMachine::getSingleton()->popState();

@@ -12,8 +12,8 @@ ButtonComponent::ButtonComponent(nap_json const & cfg, GameObject* owner) : Comp
 
 void ButtonComponent::OnClick()
 {
-	MessageSystem::getSingleton()->sendMessageName(&Message((MessageId)msgType), 
-		GameStateMachine::getSingleton()->currentState()->getGM()->id().name_);
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message((MessageId)msgType),
+		GameStateMachine::getSingleton()->currentState()->getGM());
 }
 
 void ButtonComponent::setUp()
