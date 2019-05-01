@@ -89,7 +89,7 @@
           "overlay_name": "PAUSE",
           "panel_container": "PAUSE_PanelContainer"
         },
-        "handle_input": {
+        "pop_state": {
           "id": {
             "type": "PopStateComponent",
             "group": "test_comps"
@@ -114,7 +114,7 @@
           "overlay_name": "MENU",
           "panel_container": "MENU_PanelContainer"
         },
-        "handle_input": {
+        "pop_state": {
           "id": {
             "type": "PushStateComponent",
             "group": "test_comps"
@@ -145,7 +145,7 @@
             "type": "PopStateComponent",
             "group": "test_comps"
           },
-          "key": "",
+          "key": " ",
           "state": "Menu"
         }
       }

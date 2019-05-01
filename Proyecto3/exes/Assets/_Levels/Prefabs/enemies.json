@@ -98,7 +98,6 @@
           },
           "routeName": "bell.wav",
           "loop": true,
-          "startPaused": true,
           "3D": true,
           "volume": 0.5
         }

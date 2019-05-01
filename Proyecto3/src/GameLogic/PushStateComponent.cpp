@@ -2,16 +2,22 @@
 
 #include "GameStateMachine.h"
 #include <RenderSystemInterface.h>
+#include <RenderSystemManager.h>
 #include "OverlayComponent.h"
 #include <PhysicsSystemManager.h>
 #include <TimeSystem.h>
+#include <SoundManager.h>
 #include "MessageSystem.h"
 
 void PushStateComponent::pushState()
 {
 	//cambio de rendering target
 	static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
+	RenderSystemManager::getSingleton()->setupScene(state);
 	RenderSystemInterface::getSingleton()->setRenderingScene(state);
+
+	// sounds
+	SoundManager::getSingleton()->stopSounds();
 
 	//cambio de estado
 	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT

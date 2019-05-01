@@ -47,8 +47,6 @@ void SoundEmitterComponent::setUp() {
 
 	if (FIND(cfg_, "volume")) volume = cfg_["volume"];
 	else volume = 1;
-
-	if (!startPaused) playSound();
 }
 
 void SoundEmitterComponent::receive(Message * msg)
@@ -58,6 +56,9 @@ void SoundEmitterComponent::receive(Message * msg)
 	}
 	else if (msg->id_ == STOP_SOUND) {
 		stopSound();
+	}
+	else if (msg->id_ == STATE_CHANGED && !startPaused) {
+		playSound();
 	}
 }
 

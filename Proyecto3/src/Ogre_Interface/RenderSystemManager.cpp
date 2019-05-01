@@ -161,6 +161,7 @@ RenderSystemManager::~RenderSystemManager()
 void RenderSystemManager::setupScene(Ogre::String sceneName)
 {
 	SceneManager* s = createSceneManager();
+	scenes.erase(sceneName);
 	scenes.insert({ sceneName, s });
 	//Camera
 	Camera* mCamera = nullptr;
