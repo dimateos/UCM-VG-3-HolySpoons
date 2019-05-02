@@ -14,6 +14,7 @@ class nap_scale;
 class upToDate;
 
 typedef union SDL_Event;
+typedef signed __int32 SDL_Keycode;
 
 #include "Activable.h"
 #include "Identifiable.h"

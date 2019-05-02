@@ -1,13 +1,11 @@
 #ifndef PushStateComponent_H_
 #define PushStateComponent_H_
 
-#include <SDL_events.h>
-
 #include "Component.h"
 class PushStateComponent : public Component
 {
 private:
-	SDL_Keycode key = SDLK_8; //READ IT FROM JSON?
+	SDL_Keycode key;
 	std::string state;
 	std::string json;
 	void pushState();

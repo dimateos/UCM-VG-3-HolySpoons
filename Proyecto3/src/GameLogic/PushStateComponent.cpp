@@ -1,4 +1,5 @@
 #include "PushStateComponent.h"
+#include <SDL_events.h>
 
 #include <RenderSystemInterface.h>
 #include <RenderSystemManager.h>

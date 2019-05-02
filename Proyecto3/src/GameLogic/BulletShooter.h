@@ -11,7 +11,6 @@ class Weapon;
 class BulletShooter : public Component
 {
 public:
-	inline BulletShooter() {}
 	inline BulletShooter(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~BulletShooter();
 	virtual void setUp();
@@ -27,6 +26,8 @@ protected:
 
 	nap_transform* owner_trans_;
 	float relY_, relZ_;
+
+	SDL_Keycode first_, second_, third_;
 
 	int currentWeapon = 0;
 	vector<Weapon*> weapons;

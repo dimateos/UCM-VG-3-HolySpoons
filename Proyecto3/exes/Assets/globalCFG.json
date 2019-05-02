@@ -1,0 +1,21 @@
+{
+    "paths": [
+      {"log_route": "..\\exes\\P3.log"}
+    ],
+
+    "strings": [
+
+    ],
+
+    "flags": [
+      {"log_dev": true},
+      {"log_cmd": true},
+      {"log_file": true},
+      {"log_time": true},
+      {"log_code": true}
+    ],
+
+    "floats": [
+      {"cam_sensBase": 0.20}
+    ]
+}

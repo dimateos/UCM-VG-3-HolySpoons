@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Utils\CollisionListener.h" />
     <ClInclude Include="..\..\src\Utils\dirent.h" />
+    <ClInclude Include="..\..\src\Utils\GlobalConfig.h" />
     <ClInclude Include="..\..\src\Utils\Identifiable.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />
     <ClInclude Include="..\..\src\Utils\JsonCore.h" />
     <ClInclude Include="..\..\src\Utils\JsonReader.h" />
+    <ClInclude Include="..\..\src\Utils\KeyMapper.h" />
     <ClInclude Include="..\..\src\Utils\LogSystem.h" />
     <ClInclude Include="..\..\src\Utils\Timer.h" />
     <ClInclude Include="..\..\src\Utils\TimeSystem.h" />
@@ -32,7 +34,9 @@
     <ClInclude Include="..\..\src\Utils\UpToDate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Utils\GlobalConfig.cpp" />
     <ClCompile Include="..\..\src\Utils\JsonReader.cpp" />
+    <ClCompile Include="..\..\src\Utils\KeyMapper.cpp" />
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp" />
     <ClCompile Include="..\..\src\Utils\Timer.cpp" />
     <ClCompile Include="..\..\src\Utils\TimeSystem.cpp" />
@@ -122,6 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,6 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,6 +158,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,6 +177,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\ogre-1.11.5\Build\Dependencies\include\SDL2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

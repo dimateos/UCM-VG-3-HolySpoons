@@ -7,7 +7,7 @@
 
 void PlayerHit::setUp() {
 	//damage dealers
-	for (auto dealer : cfg_["damageDealers"]) {
+	for (auto & dealer : cfg_["damageDealers"]) {
 		std::string g = dealer["group"];
 		int d = dealer["dmg"];
 		damageDealers_.push_back(damageDeal(g, d));

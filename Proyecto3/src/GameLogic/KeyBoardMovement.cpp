@@ -1,11 +1,10 @@
 #include "KeyBoardMovement.h"
 #include <LogSystem.h>
+#include <GlobalConfig.h>
 
+#include <SDL_events.h>
 #include <Transforms.h>
 #include "Messages.h"
-
-KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {}
-KeyBoardMovement::~KeyBoardMovement() {}
 
 // updates the go velocity depending on an orientation
 void KeyBoardMovement::updateVelocity(nap_vector3 orientation) {
@@ -19,14 +18,13 @@ void KeyBoardMovement::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	// always these keycodes, if you want to use others in the .json
-	// you must do a factory of them
-	forward_ = SDLK_w;
-	left_ = SDLK_a;
-	backward_ = SDLK_s;
-	right_ = SDLK_d;
-	run_ = SDLK_LSHIFT;
-	jumpKey_ = SDLK_SPACE;
+	//read the keys from global cfg
+	forward_ = GlobalCFG::keys["FORWARD"];
+	backward_ = GlobalCFG::keys["BACKWARD"];
+	left_ = GlobalCFG::keys["LEFT"];
+	right_ = GlobalCFG::keys["RIGHT"];
+	jumpKey_ = GlobalCFG::keys["JUMP"];
+	run_ = GlobalCFG::keys["RUN"];
 
 	// velocity sets
 	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);

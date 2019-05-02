@@ -1,14 +1,16 @@
 #include "FPSCamera.h"
-#include "LogSystem.h"
-#include "RenderComponent.h"
+#include <GlobalConfig.h>
 
+#include "LogSystem.h"
+
+#include "RenderComponent.h"
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneNode.h>
 #include <OgreNode.h>
 
-#include <Transforms.h>
 #include <SDL_events.h>	//events
+#include <Transforms.h>
 #include "Messages.h"
 
 void FPSCamera::setUp() {
@@ -20,10 +22,12 @@ void FPSCamera::setUp() {
 	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
 
 	//set cfg vals
-	rotXspeed_ = cfg_["rotXspeed"];
-	rotYspeed_ = cfg_["rotYspeed"];
 	maxRotY_ = cfg_["maxRotY"];
 	zoomed_ = cfg_["zoomed"];
+
+	//read fromm global cfg
+	rotXspeed_ = GlobalCFG::floats["cam_sensX"] * GlobalCFG::floats["cam_sensBase"];
+	rotYspeed_ = GlobalCFG::floats["cam_sensY"] * GlobalCFG::floats["cam_sensBase"];
 }
 
 void FPSCamera::lateSetUp() {
@@ -47,7 +51,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	ent->setOrientation(nq);
 
 	//avoid flips
-	float frame_rotY = rotYspeed_ * time * -rotY_;
+	float frame_rotY = rotYspeed_ * -rotY_;
 	total_rotY_ += frame_rotY;
 	if (total_rotY_ > maxRotY_) {
 		frame_rotY -= total_rotY_ - maxRotY_;
@@ -61,7 +65,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	//LogSystem::Log("y: ", total_rotY_);
 
 	//direction
-	camNode_->yaw(Ogre::Degree(rotXspeed_ * time * -rotX_), Ogre::Node::TS_PARENT);
+	camNode_->yaw(Ogre::Degree(rotXspeed_ * -rotX_), Ogre::Node::TS_PARENT);
 	camNode_->pitch(Ogre::Degree(frame_rotY), Ogre::Node::TS_LOCAL);
 
 	//reset

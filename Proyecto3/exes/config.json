@@ -1,0 +1,28 @@
+{
+    "controls": [
+      {"FORWARD": "w"},
+      {"BACKWARD": "s"},
+      {"LEFT": "a"},
+      {"RIGHT": "d"},
+
+      {"FIRST": "1"},
+      {"SECOND": "2"},
+      {"THIRD": "3"},
+
+      {"PAUSE": "p"},
+      {"JUMP": "space"},
+      {"RUN": "shift"}
+    ],
+
+    "camera": [
+      {"cam_sensX": 1.00},
+      {"cam_sensY": 1.00}
+    ],
+
+    "sound": [
+      {"sound_music": 1.0},
+      {"sound_sfx": 1.0}
+    ],
+
+    "appConfigPath": "./Assets/globalCFG.json"
+}

@@ -2,7 +2,6 @@
 #define KEYBOARDMOVEMENT_H_
 
 #include "PhysicsControllerComponent.h"
-#include <SDL_events.h>
 
 #include "CollisionListener.h"
 #include "Component.h"
@@ -36,8 +35,8 @@ private:
 	void jump();
 
 public:
-	KeyBoardMovement(nap_json const & cfg, GameObject* owner);
-	virtual ~KeyBoardMovement();
+	inline KeyBoardMovement(nap_json const & cfg, GameObject* owner) {};
+	inline virtual ~KeyBoardMovement() {};
 	virtual void setUp();
 	virtual void lateSetUp();
 

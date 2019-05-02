@@ -1,4 +1,7 @@
 #include "PopStateComponent.h"
+#include <SDL_events.h>
+#include <KeyMapper.h>
+
 
 #include "GameStateMachine.h"
 #include "Messages.h"
@@ -8,13 +11,8 @@ void PopStateComponent::setUp() {
 	setInited();
 
 	//key to press
-	std::string keycode = this->cfg_["key"];
-	if (keycode == "esc") {
-		key = SDLK_ESCAPE; //cant read special chars
-	}
-	else {
-		key = SDL_Keycode(keycode[0]);
-	}
+	std::string k = this->cfg_["key"];
+	key = KeyMapper::getKeycode(k);
 
 	//name of the target state
 	std::string s = this->cfg_["state"];
