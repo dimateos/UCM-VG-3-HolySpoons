@@ -145,7 +145,7 @@
             "type": "PopStateComponent",
             "group": "test_comps"
           },
-          "key": " ",
+          "key": "",
           "state": "Menu"
         }
       }
