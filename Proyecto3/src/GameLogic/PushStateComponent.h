@@ -13,10 +13,8 @@ private:
 	void pushState();
 
 public:
-	PushStateComponent() {};
-	virtual ~PushStateComponent() {};
-	PushStateComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-
+	inline virtual ~PushStateComponent() {};
+	inline PushStateComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);

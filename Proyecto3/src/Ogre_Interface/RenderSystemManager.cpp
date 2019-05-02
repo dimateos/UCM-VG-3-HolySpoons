@@ -1,6 +1,5 @@
-#include <SDL_video.h>
-#include <SDL_syswm.h>
 #include "RenderSystemManager.h"
+
 #include <OgreOverlaySystem.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreTextureManager.h>
@@ -14,6 +13,9 @@
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
+
+#include <SDL_video.h>
+#include <SDL_syswm.h>
 #include <SDL.h>
 
 using namespace Ogre;
@@ -263,6 +265,7 @@ void RenderSystemManager::initApp()
 	createWindow();
 	initializeResources();
 	mRoot->addFrameListener(this);
+
 	SDL_ShowCursor(SDL_DISABLE); //Standard cursor must be turned off
 
 	//mRoot->startRendering(); // blocks the flow
@@ -279,7 +282,7 @@ bool RenderSystemManager::handleEvents(const SDL_Event evt) {
 					Ogre::RenderWindow* win = mWindow;
 					win->windowMovedOrResized();
 					windowResized(win);
-					//handled = true; //tmp for crosshair repositioning
+					//handled = true; //doesnt handle it because some comp may need it
 				}
 			}
 			break;

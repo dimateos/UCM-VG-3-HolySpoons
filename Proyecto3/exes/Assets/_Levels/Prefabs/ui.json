@@ -12,7 +12,7 @@
                 "cursor": {
                     "id": {
                         "type": "CursorComponent",
-                        "group": "test_comps"
+                        "group": "ui_comps"
                     },
                     "image": "POINTER.cur"
                 }
@@ -29,7 +29,7 @@
                 "button": {
                     "id": {
                         "type": "ButtonComponent",
-                        "group": "test_comps"
+                        "group": "ui_comps"
                     },
                     "X": 0.35,
                     "Y": 0.6,

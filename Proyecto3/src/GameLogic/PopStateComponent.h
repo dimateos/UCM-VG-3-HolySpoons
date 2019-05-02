@@ -12,15 +12,12 @@ private:
 	void popState();
 
 public:
-	PopStateComponent() {};
-	virtual ~PopStateComponent() {};
-	PopStateComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-
+	inline virtual ~PopStateComponent() {};
+	inline PopStateComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void receive(Message * msg);
 };
-
 
 #endif //PopStateComponent_H_

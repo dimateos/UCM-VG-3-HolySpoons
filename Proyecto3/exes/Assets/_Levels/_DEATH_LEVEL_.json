@@ -13,6 +13,19 @@
     },
     {
       "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "msgType": 1,
+          "panelName": "DEATH_PANEL",
+          "materialName": "ButtonMaterial",
+          "name": "menu_button"
+        }
+      }
+    },
+    {
+      "id": {
         "type": "camera_menu"
       }
     }

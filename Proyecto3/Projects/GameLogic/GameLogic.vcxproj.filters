@@ -26,6 +26,12 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{34dda379-aa0a-44b2-8383-5a76477e43f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{a89fddf4-1304-4585-a320-5e4eeba1f5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{745016c5-29cd-4698-bda9-049ba95b12be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
@@ -88,17 +94,8 @@
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\GameManager.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp">
       <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp">
-      <Filter>_GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp">
-      <Filter>_GameStates</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp">
       <Filter>Player</Filter>
@@ -106,17 +103,11 @@
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp">
       <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\CameraMenu.cpp">
-      <Filter>_GameStates</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp">
       <Filter>Player</Filter>
@@ -133,9 +124,6 @@
     <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp">
-      <Filter>_Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -148,6 +136,22 @@
     <ClCompile Include="..\..\src\GameLogic\HeavyBullethit.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\CameraMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -225,17 +229,8 @@
     <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\GameManager.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h">
       <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h">
-      <Filter>_GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h">
-      <Filter>_GameStates</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\Weapon.h">
       <Filter>Player</Filter>
@@ -243,17 +238,11 @@
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GlobalAmbientLightComponent.h">
       <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\CameraMenu.h">
-      <Filter>_GameStates</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h">
       <Filter>Player</Filter>
@@ -273,9 +262,6 @@
     <ClInclude Include="..\..\src\GameLogic\BombardierBehavior.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h">
-      <Filter>_Components</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -285,5 +271,21 @@
     <ClInclude Include="..\..\src\GameLogic\HeavyBulletHit.h">
       <Filter>Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\CameraMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
   </ItemGroup>
 </Project>

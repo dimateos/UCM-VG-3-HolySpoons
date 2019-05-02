@@ -116,7 +116,7 @@ void GameManager::receive(Message * msg)
 		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), owner_->id().name_, "hitSound");
 	}
 	else if (msg->id_ == CHECK_HP) {
-		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) 
+		if (playerHP_ != nullptr && playerHP_->getHP() <= 0)
 			MessageSystem::getSingleton()->sendMessageComponentName(&Message(PUSH_STATE), owner_->idPtr()->name_, "push_death");
 		updateUI();
 	}
@@ -130,8 +130,6 @@ void GameManager::resetPlayer() {
 	pc->invalidateChache();
 
 	playerHP_->resetHP();
-	if (playerHP_ != nullptr) overlayComp->hidePanelByName("DEATH_PANEL");
-
 	score_ = 0;
 	updateUI();
 

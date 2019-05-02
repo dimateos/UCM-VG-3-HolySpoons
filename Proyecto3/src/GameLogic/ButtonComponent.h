@@ -1,17 +1,18 @@
-#include "Component.h"
-
 #ifndef ButtonComponent_H_
 #define ButtonComponent_H_
 
+//fowarding
 namespace Ogre {
 	class OverlayElement;
 }
+
+#include "Component.h"
 class ButtonComponent : public Component
 {
 public:
-	ButtonComponent() {};
-	ButtonComponent(nap_json const & cfg, GameObject* owner);
-	~ButtonComponent() {};
+	inline ButtonComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
+	inline virtual ~ButtonComponent() {};
+	virtual void setUp();
 
 private:
 	double X, Y, W, H;
@@ -21,9 +22,10 @@ private:
 	Ogre::OverlayElement* elemt;
 
 	void OnClick();
-	void setUp();
-	
+	void centerOverlay();
+
 	bool handleEvents(GameObject* o, const SDL_Event& evt);
+	bool inside(int x, int y);
 };
 
-#endif
+#endif /* ButtonComponent_H_ */
