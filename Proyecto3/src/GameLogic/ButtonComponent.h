@@ -21,11 +21,11 @@ private:
 	std::string panelName;
 	Ogre::OverlayElement* elemt;
 
-	void OnClick();
+	bool inside(int x, int y);
+	void onClick();
 	void centerOverlay();
 
 	bool handleEvents(GameObject* o, const SDL_Event& evt);
-	bool inside(int x, int y);
 };
 
 #endif /* ButtonComponent_H_ */

@@ -209,9 +209,9 @@ RenderSystemManager* RenderSystemManager::getSingleton()
 	return instance_;
 }
 
-void RenderSystemManager::renderFrame()
+void RenderSystemManager::renderFrame(double time)
 {
-	mRoot->renderOneFrame();
+	mRoot->renderOneFrame(time);
 }
 
 void RenderSystemManager::shutdownSingleton()

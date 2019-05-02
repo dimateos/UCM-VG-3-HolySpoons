@@ -1,5 +1,6 @@
 #include "HPComponent.h"
-#include "GOFactory.h"
+
+#include "Messages.h"
 
 void HPComponent::setUp()
 {
@@ -17,4 +18,5 @@ void HPComponent::receive(Message * msg)
 	}
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(HPComponent);

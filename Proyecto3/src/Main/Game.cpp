@@ -117,7 +117,7 @@ void Game::run() {
 		// EVENTS
 		//LogSystem::Log("main handleEvents", LogSystem::GAME);
 		handleEvents(); //atm sets exit
-		//handleCollisions(start_time); //if no events queue?
+		//handleCollisions(); //if no events queue?
 
 		// LOGIC
 		//LogSystem::Log("main update", LogSystem::GAME);
@@ -125,8 +125,7 @@ void Game::run() {
 
 		// RENDER OGRE
 		//LogSystem::Log("main render", LogSystem::GAME);
-		renderManager_->renderFrame();
-		//SetCursor(c);
+		renderManager_->renderFrame(t);
 
 		// SOUND
 		//LogSystem::Log("main sound", LogSystem::GAME);

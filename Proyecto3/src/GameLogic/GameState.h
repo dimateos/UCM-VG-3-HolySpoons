@@ -5,7 +5,8 @@
 #include <list>
 using namespace std;
 
-class GameObject; //fowarding
+//fowarding
+class GameObject;
 typedef union SDL_Event;
 
 #include "Initiable.h"
@@ -19,7 +20,7 @@ public:
 	virtual bool handleEvents(SDL_Event evt);
 	virtual void update(double time);
 
-	//void sendToGSM(Message* msg);
+	//simple state id
 	inline void setStateID(string id) { stateID_ = id; };
 	inline string getStateID() { return stateID_; };
 
@@ -29,12 +30,11 @@ public:
 	void delGameObject(std::string name);
 	void delGameObject(GameObject* go);
 	void delGameObject(std::list<GameObject*> gos);
-
 	GameObject* getGameObject(std::string name);
 	inline std::list<GameObject*>* getGameObjects(){ return &gameObjects_; };
 	inline void clearGameObject() { gameObjects_.clear(); };
 
-	//specific for player
+	//specific for player and gm
 	inline GameObject* getPlayer() const { return player_; };
 	inline GameObject* getGM() const { return gm_; };
 	inline void setPlayer(GameObject* player) { player_ = player; addGameObject(player_); };

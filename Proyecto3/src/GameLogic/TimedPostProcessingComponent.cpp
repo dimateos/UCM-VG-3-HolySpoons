@@ -1,12 +1,15 @@
 #include "TimedPostProcessingComponent.h"
-#include <RenderSystemInterface.h>
 
+#include <RenderSystemInterface.h>
+#include "Messages.h"
 
 void TimedPostProcessingComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	compositorName = this->cfg_["CompositorName"];
+	std::string s = this->cfg_["CompositorName"];
+	compositorName = s;
+
 	RenderSystemInterface::getSingleton()->addCompositor(compositorName);
 	timer.setDuration(cfg_["ActiveTime"]);
 	timer.stop();
@@ -14,9 +17,9 @@ void TimedPostProcessingComponent::setUp() {
 
 void TimedPostProcessingComponent::update(GameObject* ent, double time)
 {
-	if (timer.update(time)) { 
-		currentlyActive = false;  
-		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive); 
+	if (timer.update(time)) {
+		currentlyActive = false;
+		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}
 }
 

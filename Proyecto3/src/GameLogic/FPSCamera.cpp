@@ -9,6 +9,7 @@
 
 #include <Transforms.h>
 #include <SDL_events.h>	//events
+#include "Messages.h"
 
 void FPSCamera::setUp() {
 	if (isInited()) return;

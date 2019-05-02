@@ -66,7 +66,7 @@ public:
 	 */
 	void setupScene(Ogre::String sceneName);
 
-	void renderFrame();
+	void renderFrame(double time);
 
 	/*
 	*process all window events since last call

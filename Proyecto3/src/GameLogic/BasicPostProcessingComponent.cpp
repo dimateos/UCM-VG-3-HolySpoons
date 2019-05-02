@@ -1,5 +1,7 @@
 #include "BasicPostProcessingComponent.h"
+
 #include <RenderSystemInterface.h>
+#include "Messages.h"
 
 void BasicPostProcessingComponent::setUp() {
 	if (isInited()) return;

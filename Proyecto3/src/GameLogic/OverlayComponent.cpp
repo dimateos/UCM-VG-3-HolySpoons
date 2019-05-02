@@ -1,9 +1,11 @@
 #include "OverlayComponent.h"
+
+#include <RenderSystemInterface.h>
 #include <OgreOverlayManager.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlay.h>
-#include <RenderSystemInterface.h>
-#include "GOFactory.h"
+
+#include "Messages.h"
 
 void OverlayComponent::setUp()
 {
@@ -61,4 +63,5 @@ void OverlayComponent::receive(Message * msg)
 	}
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(OverlayComponent);

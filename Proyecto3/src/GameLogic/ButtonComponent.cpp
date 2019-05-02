@@ -9,21 +9,30 @@
 #include <SDL_events.h>
 
 void ButtonComponent::setUp() {
+	if (isInited()) return;
+	setInited();
+
+	//!no handling if values are in the json / no default fals
+
+	//dimensions
 	X = this->cfg_["X"];
 	Y = this->cfg_["Y"];
 	W = this->cfg_["W"];
 	H = this->cfg_["H"];
-	msgType = this->cfg_["msgType"];
-	string name = this->cfg_["name"];
 
+	//name and type
+	string name = this->cfg_["name"];
+	msgType = this->cfg_["msgType"];
+
+	//create the panel
 	auto rsi = RenderSystemInterface::getSingleton();
 	elemt = rsi->createOverlayElement("Panel", name + id().sn_string());
 	rsi->addToPanel(this->cfg_["panelName"], elemt);
 	rsi->setOverlayElementMaterial(elemt, cfg_["materialName"]);
-
 	centerOverlay();
 }
 
+//center the overlay based on its dimensions
 void ButtonComponent::centerOverlay() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	auto vp = rsi->getCamera()->getViewport();
@@ -43,7 +52,7 @@ bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 
 	if (evt.type == SDL_MOUSEBUTTONUP) {
 		if (evt.button.button == SDL_BUTTON_LEFT && inside(evt.button.x, evt.button.y)) {
-			OnClick();
+			onClick();
 			handled = true;
 		}
 	}
@@ -60,7 +69,7 @@ bool ButtonComponent::inside(int x, int y) {
 	return x >= bigX && x <= bigX + bigW && y >= bigY && y <= bigY + bigH;
 }
 
-void ButtonComponent::OnClick() {
+void ButtonComponent::onClick() {
 	MessageSystem::getSingleton()->sendMessageGameObject(&Message((MessageId)msgType),
 		GameStateMachine::getSingleton()->currentState()->getGM());
 }

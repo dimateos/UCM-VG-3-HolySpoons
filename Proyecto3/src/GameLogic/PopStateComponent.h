@@ -7,7 +7,7 @@
 class PopStateComponent : public Component
 {
 private:
-	SDL_Keycode key = SDLK_8; //READ IT FROM JSON?
+	SDL_Keycode key;
 	std::string state;
 	void popState();
 

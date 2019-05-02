@@ -1,6 +1,9 @@
 #include "SoundEmitterComponent.h"
+
 #include <SoundManager.h>
 #include <irrKlang.h>
+
+#include "Messages.h"
 
 void SoundEmitterComponent::playSound()
 {

@@ -5,9 +5,8 @@
 #include <list>
 using namespace std;
 
-//some fowarding
-class Message;
-class GameObject;
+#include "Messages.h"
+class GameObject; //fowarded
 
 class MessageSystem
 {
