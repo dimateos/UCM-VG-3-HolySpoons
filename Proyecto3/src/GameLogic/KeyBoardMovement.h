@@ -44,6 +44,7 @@ public:
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void update(GameObject* o, double time);
 	virtual void onCollision(ID* other);
+	virtual void receive(Message * msg);
 };
 
 #endif /* KEYBOARDMOVEMENT_H_ */

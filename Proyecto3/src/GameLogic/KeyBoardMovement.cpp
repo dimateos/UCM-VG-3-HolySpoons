@@ -2,6 +2,7 @@
 #include <LogSystem.h>
 
 #include <Transforms.h>
+#include "Messages.h"
 
 KeyBoardMovement::KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {}
 KeyBoardMovement::~KeyBoardMovement() {}
@@ -109,6 +110,16 @@ void KeyBoardMovement::onCollision(ID * other) {
 			//LogSystem::Log("JUMP RESTORED");
 			break;
 		}
+	}
+}
+
+void KeyBoardMovement::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		//clear the buffers
+		jumping_ = false;
+		Zaxis.clear();
+		Xaxis.clear();
+		vel_ = walkVel_;
 	}
 }
 

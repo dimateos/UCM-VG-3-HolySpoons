@@ -40,11 +40,11 @@ void ButtonComponent::centerOverlay() {
 
 	bigX = vpW * X;
 	bigY = vpH * Y;
-	rsi->setOverlayElementPosition(elemt, bigX, bigY);
+	rsi->setOverlayElementPosition_abs(elemt, bigX, bigY);
 
 	bigW = vpW * W;
 	bigH = vpH * H;
-	rsi->setOverlayElementDimensions(elemt, bigW, bigH);
+	rsi->setOverlayElementDimensions_abs(elemt, bigW, bigH);
 }
 
 bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt) {

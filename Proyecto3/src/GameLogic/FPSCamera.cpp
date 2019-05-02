@@ -98,8 +98,10 @@ void FPSCamera::receive(Message * msg)
 {
 	if (msg->id_ == STATE_CHANGED) {
 		//hide and capture mouse
-		SDL_ShowCursor(SDL_DISABLE);
+		//SDL_ShowCursor(SDL_DISABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_TRUE);
+
+		//reset zoom if readded
 	}
 }
 

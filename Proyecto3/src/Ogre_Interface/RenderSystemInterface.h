@@ -34,7 +34,7 @@ using OgrePair = std::pair<Ogre::SceneNode*, Ogre::Entity*>;
 class RenderSystemInterface
 {
 private:
-	Ogre::OverlayManager *overlayManager = nullptr;	
+	Ogre::OverlayManager *overlayManager = nullptr;
 	Ogre::SceneManager * mScnMgr = nullptr;
 	Ogre::Camera* camera = nullptr;
 	std::string panelName = "PanelName";
@@ -129,6 +129,7 @@ public:
 	 *get the viewport
 	*/
 	inline Ogre::Viewport* getViewport();
+
 	/*
 	 *creates text element
 	*/
@@ -157,27 +158,15 @@ public:
 	*Set Top-font color, rgb values between and alpha value [0, 1]
 	*/
 	void setTextColourTop(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
-
 	/*
 	 *Set Dropshadow color, rgb values and alpha value between [0, 1]
 	 */
 	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
+
 	/*
 	 *create overlay element
 	 */
-	Ogre::OverlayElement * createOverlayElement(std::string type, std::string name);	
-	/*
-	 *set overlay element dimensions (1.0f = screen width/height)
-	 */
-	void setOverlayElementDimensions(Ogre::OverlayElement* e, float w, float h);	
-	/*
-	 *set overlay element position (1.0f = screen width/height)
-	 */
-	void setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y);
-	/*
-	 *set overlay element position (using its center and not its 0, 0 position)
-	 */
-	void setOverlayElementCenteredPosition(Ogre::OverlayElement* e, float x, float y);
+	Ogre::OverlayElement * createOverlayElement(std::string type, std::string name);
 	/*
 	 *gets overlay element
 	 */
@@ -186,9 +175,26 @@ public:
 	 *set overlayMaterial
 	 */
 	void setOverlayElementMaterial(Ogre::OverlayElement* e, std::string matName);
+
+	/*
+	 *set overlay element dimensions (1.0f = screen width/height)
+	 */
+	void setOverlayElementDimensions_rel(Ogre::OverlayElement* e, float w, float h);
+	void setOverlayElementDimensions_abs(Ogre::OverlayElement* e, float w, float h);
+	/*
+	 *set overlay element position (1.0f = screen width/height)
+	 */
+	void setOverlayElementPosition_rel(Ogre::OverlayElement* e, float x, float y);
+	void setOverlayElementPosition_abs(Ogre::OverlayElement* e, float x, float y);
+	/*
+	 *set overlay element position (using its center and not its 0, 0 position)
+	 */
+	void setOverlayElementCenteredPosition_rel(Ogre::OverlayElement* e, float x, float y);
+	void setOverlayElementCenteredPosition_abs(Ogre::OverlayElement* e, float x, float y);
+
 	/*
 	 * Returns the dest rotation
-	 */	
+	 */
 	Ogre::Quaternion getRotationFrom_To(Ogre::Vector3 src, Ogre::Vector3 dest);
 	/*
 	* Returns the dest rotation, uses our nap_vector3 and nap_quat

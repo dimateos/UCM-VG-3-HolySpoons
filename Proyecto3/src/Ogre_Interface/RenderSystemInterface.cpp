@@ -240,17 +240,31 @@ Ogre::OverlayElement * RenderSystemInterface::createOverlayElement(std::string t
 	return e;
 }
 
-void RenderSystemInterface::setOverlayElementDimensions(Ogre::OverlayElement* e, float w, float h)
+void RenderSystemInterface::setOverlayElementDimensions_rel(Ogre::OverlayElement* e, float w, float h)
+{
+	e->setDimensions(w, h);
+}
+void RenderSystemInterface::setOverlayElementDimensions_abs(Ogre::OverlayElement* e, float w, float h)
 {
 	e->setDimensions(w/ getCamera()->getViewport()->getActualWidth(), h/ getCamera()->getViewport()->getActualHeight());
 }
 
-void RenderSystemInterface::setOverlayElementPosition(Ogre::OverlayElement* e, float x, float y)
+void RenderSystemInterface::setOverlayElementPosition_rel(Ogre::OverlayElement* e, float x, float y)
+{
+	e->setPosition(x ,y);
+}
+void RenderSystemInterface::setOverlayElementPosition_abs(Ogre::OverlayElement* e, float x, float y)
 {
 	e->setPosition(x/getCamera()->getViewport()->getActualWidth(), y/ getCamera()->getViewport()->getActualHeight());
 }
 
-void RenderSystemInterface::setOverlayElementCenteredPosition(Ogre::OverlayElement * e, float x, float y)
+void RenderSystemInterface::setOverlayElementCenteredPosition_rel(Ogre::OverlayElement * e, float x, float y)
+{
+	float eW = e->getWidth() / getCamera()->getViewport()->getWidth(),
+		eH = e->getHeight() / getCamera()->getViewport()->getHeight();
+	e->setPosition(x - eW / 2, y - eH / 2);
+}
+void RenderSystemInterface::setOverlayElementCenteredPosition_abs(Ogre::OverlayElement * e, float x, float y)
 {
 	e->setPosition(x / getCamera()->getViewport()->getActualWidth() - e->getWidth() / 2,
 		y / getCamera()->getViewport()->getActualHeight() - e->getHeight() / 2);

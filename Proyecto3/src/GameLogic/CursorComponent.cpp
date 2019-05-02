@@ -1,6 +1,4 @@
 #include "CursorComponent.h"
-#include <RenderSystemInterface.h>
-#include <OgreOverlayElement.h>
 
 #include <SDL_events.h>	//events
 #include "Messages.h"
@@ -22,11 +20,8 @@ void CursorComponent::update(GameObject * o, double time)
 
 void CursorComponent::receive(Message * msg) {
 	if (msg->id_ == STATE_CHANGED) {
-		//set cursor in the middle more less
-		//SetCursorPos( _In_ int X, _In_ int Y);
-
 		//show and no capture mouse
-		SDL_ShowCursor(SDL_ENABLE);
+		//SDL_ShowCursor(SDL_ENABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_FALSE);
 	}
 }

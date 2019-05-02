@@ -54,21 +54,15 @@ void GameManager::setUp() {
 
 	// scope
 	Ogre::OverlayElement* scope = rsi->getOverlayElement("Scope");
-	rsi->setOverlayElementCenteredPosition
-	(scope, rsi->getCamera()->getViewport()->getActualWidth() / 2,
-		rsi->getCamera()->getViewport()->getActualHeight() / 2);
+	rsi->setOverlayElementCenteredPosition_rel(scope, 0.5, 0.5);
 
 	// hitMarker
 	Ogre::OverlayElement* hitMarker = rsi->getOverlayElement("HitMarker");
-	rsi->setOverlayElementCenteredPosition
-	(hitMarker, rsi->getCamera()->getViewport()->getActualWidth() / 2,
-		rsi->getCamera()->getViewport()->getActualHeight() / 2);
+	rsi->setOverlayElementCenteredPosition_rel(hitMarker, 0.5, 0.5);
 
 	// deathMarker
 	Ogre::OverlayElement* deathMarker = rsi->getOverlayElement("DeathMarker");
-	rsi->setOverlayElementCenteredPosition
-	(deathMarker, rsi->getCamera()->getViewport()->getActualWidth() / 2,
-		rsi->getCamera()->getViewport()->getActualHeight() / 2);
+	rsi->setOverlayElementCenteredPosition_rel(deathMarker, 0.5, 0.5);
 
 	updateUI();
 }
