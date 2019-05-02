@@ -79,7 +79,7 @@
                         "type": "CircularMovementComponent",
                         "group": "test_comps"
                     },
-                    "Speed": 1,
+                    "Speed": 1.5,
                     "Radius": 40
                 },
 

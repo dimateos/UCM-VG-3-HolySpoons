@@ -11,7 +11,7 @@ namespace irrklang {
 // it allows its owner to play a sound
 class SoundEmitterComponent : public Component
 {
-private:
+protected:
 	string routeName;
 	string customName;         // custom name for searching it in the sounds map (SoundManager)
 
@@ -23,13 +23,14 @@ private:
 	bool track;
 
 	float volume;
-
 	irrklang::ISound* sound;
 
 	// some methods
 	void playSound();
 	void stopSound();
 	void setVolume(float v);
+
+	virtual void configActive();
 
 public:
 	inline SoundEmitterComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};

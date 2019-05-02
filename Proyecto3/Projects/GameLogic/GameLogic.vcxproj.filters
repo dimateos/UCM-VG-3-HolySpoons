@@ -26,11 +26,11 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{34dda379-aa0a-44b2-8383-5a76477e43f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Menu">
-      <UniqueIdentifier>{a89fddf4-1304-4585-a320-5e4eeba1f5d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{745016c5-29cd-4698-bda9-049ba95b12be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{a89fddf4-1304-4585-a320-5e4eeba1f5d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

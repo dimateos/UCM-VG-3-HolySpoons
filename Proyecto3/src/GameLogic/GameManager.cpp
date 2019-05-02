@@ -35,10 +35,10 @@ void GameManager::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	state = this->getCfg()["state"];
-	json = this->getCfg()["json"];
+	string s = this->cfg_["state"], j = this->cfg_["json"];
+	state = s, json = j;
 
-	SoundManager::getSingleton()->stopSounds();
+	auto rsi = RenderSystemInterface::getSingleton();
 
 	// hide of death panel
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
@@ -46,29 +46,29 @@ void GameManager::setUp() {
 	overlayComp->hidePanelByName("DEATH_MARKER_PANEL");
 
 	// player HP and score
-	HPText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("HP_Text"));
-	ScoreText = static_cast<TextAreaOverlayElement*>(RenderSystemInterface::getSingleton()->getOverlayElement("SCORE_Text"));
+	HPText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("HP_Text"));
+	ScoreText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("SCORE_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
 
 	// scope
-	Ogre::OverlayElement* scope = RenderSystemInterface::getSingleton()->getOverlayElement("Scope");
-	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
-	(scope, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
-		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
+	Ogre::OverlayElement* scope = rsi->getOverlayElement("Scope");
+	rsi->setOverlayElementCenteredPosition
+	(scope, rsi->getCamera()->getViewport()->getActualWidth() / 2,
+		rsi->getCamera()->getViewport()->getActualHeight() / 2);
 
 	// hitMarker
-	Ogre::OverlayElement* hitMarker = RenderSystemInterface::getSingleton()->getOverlayElement("HitMarker");
-	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
-	(hitMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
-		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
+	Ogre::OverlayElement* hitMarker = rsi->getOverlayElement("HitMarker");
+	rsi->setOverlayElementCenteredPosition
+	(hitMarker, rsi->getCamera()->getViewport()->getActualWidth() / 2,
+		rsi->getCamera()->getViewport()->getActualHeight() / 2);
 
 	// deathMarker
-	Ogre::OverlayElement* deathMarker = RenderSystemInterface::getSingleton()->getOverlayElement("DeathMarker");
-	RenderSystemInterface::getSingleton()->setOverlayElementCenteredPosition
-	(deathMarker, RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualWidth() / 2,
-		RenderSystemInterface::getSingleton()->getCamera()->getViewport()->getActualHeight() / 2);
+	Ogre::OverlayElement* deathMarker = rsi->getOverlayElement("DeathMarker");
+	rsi->setOverlayElementCenteredPosition
+	(deathMarker, rsi->getCamera()->getViewport()->getActualWidth() / 2,
+		rsi->getCamera()->getViewport()->getActualHeight() / 2);
 
 	updateUI();
 }

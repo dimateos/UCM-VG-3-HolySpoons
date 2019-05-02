@@ -1,0 +1,120 @@
+{
+  "Prefabs": [
+    {
+      "id": {
+        "name": "pref_spawner",
+        "type": "pref_spawner",
+        "group": "spawns"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Components": {
+        "spawner": {
+          "id": {
+            "type": "Spawner",
+            "group": "test_comps"
+          },
+          "active": true,
+          "itemString": "pref_monkey",
+          "default": 5,
+          "timer": 10.0,
+          "smart": false
+        },
+        "circular_movement": {
+          "id": {
+            "type": "CircularMovementComponent",
+            "group": "test_comps"
+          },
+          "Speed": 0.3,
+          "Radius": 50
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "pref_Enemyspawner",
+        "type": "pref_Enemyspawner",
+        "group": "spawns"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Components": {
+        "spawner": {
+          "id": {
+            "type": "Spawner",
+            "group": "test_comps"
+          },
+          "active": true,
+          "itemString": "pref_monkey",
+          "default": 5,
+          "timer": 25.0,
+          "smart": true
+        },
+        "basic_ren": {
+          "id": {
+            "type": "RenderComponent",
+            "group": "enemy_comps"
+          },
+          "scale": {
+            "x": 5.0,
+            "y": 5.0,
+            "z": 5.0
+          },
+          "material": "NinjaMaterial",
+          "shape": {
+            "entity_name": "ninja",
+            "type": "MESH",
+            "mesh": "ninja.mesh"
+          }
+        },
+        "bullet_hittable": {
+          "id": {
+            "type": "BulletHittable",
+            "group": "enemy_comps"
+          },
+          "hp": 50,
+          "points": 50
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "bombardier_spawner",
+        "type": "bombardier_spawner",
+        "group": "spawns"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Components": {
+        "spawner": {
+          "id": {
+            "type": "Spawner",
+            "group": "test_comps"
+          },
+          "active": true,
+          "itemString": "pref_sniper",
+          "default": 5,
+          "timer": 18.0,
+          "smart": false
+        },
+        "circular_movement": {
+          "id": {
+            "type": "CircularMovementComponent",
+            "group": "test_comps"
+          },
+          "Speed": 0.3,
+          "Radius": 50
+        }
+      }
+    }
+  ]
+}

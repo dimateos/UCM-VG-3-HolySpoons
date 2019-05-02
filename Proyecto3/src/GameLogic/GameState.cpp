@@ -12,10 +12,6 @@ void GameState::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	//hide and capture mouse
-	SDL_ShowCursor(SDL_ENABLE);
-	SDL_SetRelativeMouseMode(SDL_FALSE);
-
 	for (GameObject* o : gameObjects_) {
 		if (o != nullptr) o->setUp();
 	}

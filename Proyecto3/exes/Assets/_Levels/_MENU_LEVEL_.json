@@ -65,7 +65,7 @@
       },
       "Components": {
         "circular_movement": {
-          "Speed": -1
+          "Speed": -1.5
         }
       }
     },
@@ -80,7 +80,7 @@
       },
       "Components": {
         "circular_movement": {
-          "Speed": -1
+          "Speed": -1.5
         }
       }
     }

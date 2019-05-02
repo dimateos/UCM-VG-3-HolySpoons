@@ -18,14 +18,14 @@ private:
 	Ogre::OverlayElement* image = nullptr;
 	RenderSystemInterface* rsi = nullptr;
 	HCURSOR c;
-public:
-	CursorComponent() {};
-	virtual ~CursorComponent() {};
-	CursorComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 
+public:
+	inline virtual ~CursorComponent() {};
+	inline CursorComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual void setUp();
 
 	virtual void update(GameObject* o, double time);
+	virtual void receive(Message * msg);
 };
 
 #endif //CURSORCOMPONENT_H_

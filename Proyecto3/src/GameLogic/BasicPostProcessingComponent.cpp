@@ -7,7 +7,8 @@ void BasicPostProcessingComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	compositorName = this->cfg_["CompositorName"];
+	string s = this->cfg_["CompositorName"];
+	compositorName = s;
 	RenderSystemInterface::getSingleton()->addCompositor(compositorName);
 
 	bool enabledOnStart = true;
@@ -19,8 +20,8 @@ void BasicPostProcessingComponent::setUp() {
 
 void BasicPostProcessingComponent::setPostProcessingEnabled(bool enabled)
 {
-	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabled);
 	currentlyActive = enabled;
+	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabled);
 }
 
 std::string BasicPostProcessingComponent::getCompositorName()
@@ -36,11 +37,10 @@ void BasicPostProcessingComponent::setCompositorName(std::string name)
 void BasicPostProcessingComponent::receive(Message * msg)
 {
 	if (msg->id_ == MessageId::STATE_CHANGED) {
-		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //wtf this can fix the pause problem
-		setPostProcessingEnabled(currentlyActive);
+		RenderSystemInterface::getSingleton()->addCompositor(compositorName); //changing ogre scene resets the compositor
+		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}
 }
-
 
 #include "GOFactory.h"
 REGISTER_TYPE(BasicPostProcessingComponent);

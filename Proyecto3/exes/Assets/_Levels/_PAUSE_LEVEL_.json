@@ -4,5 +4,12 @@
     "id": {
       "type": "pref_gmPause_go"
     }
-  }
+  },
+  "GameObjects": [
+    {
+      "id": {
+        "type": "cursor_ui"
+      }
+    }
+  ]
 }

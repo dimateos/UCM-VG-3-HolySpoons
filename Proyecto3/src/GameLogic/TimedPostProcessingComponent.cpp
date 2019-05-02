@@ -33,7 +33,7 @@ void TimedPostProcessingComponent::receive(Message * msg)
 		}
 	}
 	else if (msg->id_ == MessageId::STATE_CHANGED) {
-		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //wtf this can fix the pause problem
+		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //changing ogre scene resets the compositor
 		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}
 }

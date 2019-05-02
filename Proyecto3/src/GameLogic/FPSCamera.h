@@ -18,10 +18,10 @@ public:
 	virtual bool handleEvents(GameObject* ent, const SDL_Event& evt);
 	//smooth movement -> updates all the time
 	virtual void update(GameObject* ent, double time);
+	virtual void receive(Message * msg);
 
 protected:
 	void toggleZoom();
-	virtual void receive(Message * msg);
 
 	//logic
 	Ogre::SceneNode* camNode_;
