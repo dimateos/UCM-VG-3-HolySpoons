@@ -4,5 +4,25 @@
     "id": {
       "type": "pref_gmPause_go"
     }
-  }
+  },
+  "GameObjects": [
+    {
+      "id": {
+        "type": "cursor_ui"
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "msgType": 1,
+          "panelName": "PAUSE_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "pause_button"
+        }
+      }
+    }
+  ]
 }

@@ -20,7 +20,7 @@
           "msgType": 1,
           "panelName": "DEATH_PANEL",
           "materialName": "ButtonMaterial",
-          "name": "menu_button"
+          "name": "death_button"
         }
       }
     },
