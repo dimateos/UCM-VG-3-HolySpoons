@@ -33,10 +33,6 @@ void Game::initGame() {
 	soundManager_ = SoundManager::getSingleton();
 	messageSystem_ = MessageSystem::getSingleton();
 
-	//Config rendering scenes (must have same name as the stateID)
-	renderManager_->setupScene("Menu"); //creates the first scene
-	RenderSystemInterface::getSingleton()->setRenderingScene("Menu");		//sets rendering scene
-
 	//Initialize level
 	JsonReader::getSingleton(); //load prefabs
 	LogSystem::cls();

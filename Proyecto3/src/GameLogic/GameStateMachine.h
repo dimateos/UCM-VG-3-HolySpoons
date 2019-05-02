@@ -9,7 +9,7 @@ using namespace std;
 typedef union SDL_Event;
 
 //at some global cfg
-#define mainGameState "MainScene"
+#define mainGameStateName "MainScene"
 #define mainGameStateJSON "_MAIN_LEVEL_"
 #define introStateJSON "_MENU_LEVEL_"
 
@@ -21,6 +21,9 @@ private:
 	~GameStateMachine();
 	static GameStateMachine* instance_;
 
+	void preStateChanged();
+	void postStateChanged();
+
 public:
 	static GameStateMachine* getSingleton();
 	static void shutdownSingleton();
@@ -31,13 +34,13 @@ public:
 
 	//virtual void receive(Message* msg);
 	GameState* const currentState ();
-
 	inline int stackSize() const { return states_.size(); }
 
 	void pushState(GameState* pState);
-	void changeState(GameState* pState);
+	void popToState(std::string targetName);
 	void popState();
 	void clearStates();
+	void clearToState(GameState* pState);
 };
 
 #endif /* GAMESTATEMACHINE_H_ */

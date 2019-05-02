@@ -114,7 +114,7 @@
           "overlay_name": "MENU",
           "panel_container": "MENU_PanelContainer"
         },
-        "pop_state": {
+        "push_state": {
           "id": {
             "type": "PushStateComponent",
             "group": "test_comps"

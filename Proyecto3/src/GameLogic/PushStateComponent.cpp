@@ -1,41 +1,16 @@
 #include "PushStateComponent.h"
 
-#include "GameStateMachine.h"
 #include <RenderSystemInterface.h>
 #include <RenderSystemManager.h>
 #include "OverlayComponent.h"
-#include <PhysicsSystemManager.h>
-#include <TimeSystem.h>
-#include <SoundManager.h>
-#include "MessageSystem.h"
+#include "GameStateMachine.h"
+#include "Messages.h"
 
-void PushStateComponent::pushState()
-{
-	//cambio de rendering target
-	static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
-	RenderSystemManager::getSingleton()->setupScene(state);
-	RenderSystemInterface::getSingleton()->setRenderingScene(state);
-
-	// sounds
-	SoundManager::getSingleton()->stopSounds();
-
-	//cambio de estado
-	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
-	//GameState* s = new GameState(new nap_transform(nap_vector3(10, 0, 10)));
-	GameStateMachine::getSingleton()->pushState(s);
-	MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
-
-	//pause/unpause physics
-	PhysicsSystemManager::getSingleton()->pausePhysics(state != mainGameState);
-	TimeSystem::StartCounter();
-}
-
-void PushStateComponent::setUp()
-{
+void PushStateComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	string keycode = this->getCfg()["key"];
+	std::string keycode = this->cfg_["key"];
 
 	if (keycode == "esc") {
 		key = SDLK_ESCAPE; //cant read special chars
@@ -44,14 +19,25 @@ void PushStateComponent::setUp()
 		key = SDL_Keycode(keycode[0]);
 	}
 
-	state = this->getCfg()["state"];
-	json = this->getCfg()["json"];
+	string s = this->cfg_["state"], j = this->cfg_["json"];
+	state = s;
+	json = j;
+}
+
+void PushStateComponent::pushState()
+{
+	//cambio de rendering target
+	static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
+
+	//cambio de estado
+	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
+	GameStateMachine::getSingleton()->pushState(s);
 }
 
 bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 {
 	if (evt.type == SDL_KEYDOWN) {
-		if (evt.key.keysym.sym == key && RenderSystemInterface::getSingleton()->getCurrentRenderingScene() != state) { //second condition avoids spam fails
+		if (evt.key.keysym.sym == key) {
 			pushState();
 			return true;
 		}

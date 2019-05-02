@@ -1,18 +1,14 @@
 #include "PopStateComponent.h"
 
 #include "GameStateMachine.h"
-#include <RenderSystemInterface.h>
-#include "MessageSystem.h"
-#include <PhysicsSystemManager.h>
-#include <TimeSystem.h>
+#include "Messages.h"
 
-void PopStateComponent::setUp()
-{
+void PopStateComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	string keycode = this->getCfg()["key"];
-
+	//key to press
+	std::string keycode = this->cfg_["key"];
 	if (keycode == "esc") {
 		key = SDLK_ESCAPE; //cant read special chars
 	}
@@ -20,15 +16,19 @@ void PopStateComponent::setUp()
 		key = SDL_Keycode(keycode[0]);
 	}
 
-	state = this->getCfg()["state"];
+	//name of the target state
+	std::string s = this->cfg_["state"];
+	state = s;
 }
 
-bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
-{
+void PopStateComponent::popState() {
+	GameStateMachine::getSingleton()->popToState(state);
+}
+
+bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 	if (evt.type == SDL_KEYDOWN) {
 		if (evt.key.keysym.sym == key) {
 			popState();
-
 			return true;
 		}
 	}
@@ -36,28 +36,8 @@ bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)
 	return false;
 }
 
-void PopStateComponent::popState() {
-	string s = state; // we need to keep this variable (otherwise when pop, "state" gets corrupted)
-
-	// while it is not the state that you want, pop()
-	while (GameStateMachine::getSingleton()->stackSize() > 0
-		&& s != GameStateMachine::getSingleton()->currentState()->getStateID()) {
-		GameStateMachine::getSingleton()->popState();
-	}
-
-	RenderSystemInterface::getSingleton()->setRenderingScene(s);
-
-	//activar overlays del estado que viene
-	MessageSystem::getSingleton()->updateTargets(GameStateMachine::getSingleton()->currentState()->getGameObjects());
-	MessageSystem::getSingleton()->sendMessage(&Message(MessageId::STATE_CHANGED));
-
-	//pause/unpause physics
-	PhysicsSystemManager::getSingleton()->pausePhysics(state == mainGameState);
-	TimeSystem::StartCounter();
-}
-
-void PopStateComponent::receive(Message * msg)
-{
+//other methods to pop like pressing a button
+void PopStateComponent::receive(Message * msg) {
 	if (msg->id_ == POP_STATE) {
 		popState();
 	}
