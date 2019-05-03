@@ -2,6 +2,7 @@
 #include <LogSystem.h>
 #include <GlobalConfig.h>
 
+#include "PhysicsControllerComponent.h"
 #include <SDL_events.h>
 #include <Transforms.h>
 #include "Messages.h"
