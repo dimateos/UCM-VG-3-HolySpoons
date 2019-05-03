@@ -28,7 +28,7 @@ void PushStateComponent::setUp() {
 void PushStateComponent::pushState()
 {
 	//cambio de rendering target
-	static_cast<OverlayComponent*>(this->getOwner()->getComponent("canvas"))->hideOverlay();
+	static_cast<OverlayComponent*>(owner_->getComponent("canvas"))->hideOverlay();
 
 	//cambio de estado
 	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT

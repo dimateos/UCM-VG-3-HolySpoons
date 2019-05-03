@@ -21,17 +21,6 @@ public:
 	virtual void update(GameObject* o, double time) {};
 	virtual void late_update(GameObject* o, double time) {};
 
-	inline void setOwner(GameObject* owner) { owner_ = owner; }
-	inline GameObject* getOwner() { return owner_; };
-
-	//some debugging reading the config
-	inline void setCfg(nap_json const & cfg) {
-		active_ = FINDnRETURN(cfg, activeString, bool, true);
-		setId(cfg["id"]);
-		cfg_ = cfg;
-	}
-	inline nap_json & getCfg() { return cfg_; }
-
 protected:
 	nap_json cfg_;		//for async setup
 	GameObject* owner_; //the go owner
