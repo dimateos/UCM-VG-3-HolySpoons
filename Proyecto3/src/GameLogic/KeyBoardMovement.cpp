@@ -26,11 +26,11 @@ void KeyBoardMovement::setUp() {
 	right_ = GlobalCFG::keys["RIGHT"];
 	jumpKey_ = GlobalCFG::keys["JUMP"];
 	run_ = GlobalCFG::keys["RUN"];
+	holdSprint_ = GlobalCFG::flags["hold_sprint"];
 
 	// velocity sets
 	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
 	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
-	vel_ = walkVel_;
 	velocity = vO;
 
 	//jump
@@ -47,9 +47,9 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
 
 	if (evt.type == SDL_KEYDOWN) {
+		handled = true;
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
-		handled = true;
 		if (pressedKey == forward_) {
 			Zaxis.push_front(forward_);
 		}
@@ -62,19 +62,22 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		else if (pressedKey == right_) {
 			Xaxis.push_front(right_);
 		}
+
 		else if (pressedKey == run_) {
-			vel_ = runVel_;
+			if (holdSprint_) sprinting_ = true;
+			else sprinting_ = !sprinting_;
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = true;
 		}
+
 		else handled = false;
 	}
 
 	else if (evt.type == SDL_KEYUP) {
+		handled = true;
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
-		handled = true;
 		if (pressedKey == forward_) {
 			Zaxis.remove(forward_);
 		}
@@ -87,12 +90,14 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		else if (pressedKey == right_) {
 			Xaxis.remove(right_);
 		}
+
 		else if (pressedKey == run_) {
-			vel_ = walkVel_;
+			if (holdSprint_) sprinting_ = false;
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = false;
 		}
+
 		else handled = false;
 	}
 
@@ -116,9 +121,9 @@ void KeyBoardMovement::receive(Message * msg) {
 	if (msg->id_ == STATE_CHANGED) {
 		//clear the buffers
 		jumping_ = false;
+		sprinting_ = false;
 		Zaxis.clear();
 		Xaxis.clear();
-		vel_ = walkVel_;
 	}
 }
 
@@ -136,7 +141,7 @@ void KeyBoardMovement::update(GameObject* o, double time) {
 	}
 
 	//if velocity edited
-	if (velocity != vO) velocity = velocity.normalize() * vel_;
+	if (velocity != vO) velocity = velocity.normalize() * (sprinting_ ? runVel_ : walkVel_);
 
 	//if no edited anyway way stop the player
 	controller_comp->setV(nap_vector3(velocity.x_, controller_comp->getV().y_, velocity.z_));

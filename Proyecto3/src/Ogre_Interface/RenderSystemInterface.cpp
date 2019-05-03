@@ -1,9 +1,9 @@
-#include <OgreResourceGroupManager.h>
 #include "RenderSystemInterface.h"
+#include "RenderSystemManager.h"
+
+#include <OgreResourceGroupManager.h>
 #include <OgreMeshManager.h>
 #include <OgreLogManager.h>
-#include <LogSystem.h>
-#include <Transforms.h>
 #include <OgreLog.h>
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayManager.h>
@@ -18,7 +18,9 @@
 #include <OgreEntity.h>
 #include <OgreRoot.h>
 #include <OgreCompositorManager.h>
-#include "RenderSystemManager.h"
+
+#include <LogSystem.h>
+#include <Transforms.h>
 
 using namespace Ogre;
 

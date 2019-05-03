@@ -19,6 +19,7 @@ void GlobalCFG::loadIniCFG() {
 	readKeys(j["controls"]);
 	readVals(j["camera"], floats);
 	readVals(j["sound"], floats);
+	readVals(j["holding"], flags);
 
 	//finally load the global config
 	nap_json jCFG = loadJson(j["appConfigPath"]);

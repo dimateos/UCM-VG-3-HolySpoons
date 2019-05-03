@@ -18,6 +18,8 @@
 #include <SDL_syswm.h>
 #include <SDL.h>
 
+#include <GlobalConfig.h>
+
 using namespace Ogre;
 
 RenderSystemManager* RenderSystemManager::instance_ = nullptr;
@@ -182,7 +184,7 @@ void RenderSystemManager::setupScene(Ogre::String sceneName)
 
 	//FOV
 	mCamera->setNearClipDistance(0.5);
-	mCamera->setFOVy(Radian(Degree(60))); //in theory overrides near clip
+	mCamera->setFOVy(Degree(GlobalCFG::floats["cam_fovY"]));
 
 	//Lights
 	s->setAmbientLight(Ogre::ColourValue(1, 1, 1));

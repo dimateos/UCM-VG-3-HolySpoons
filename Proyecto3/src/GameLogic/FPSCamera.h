@@ -20,17 +20,18 @@ public:
 	virtual void receive(Message * msg);
 
 protected:
-	void toggleZoom();
+	void setZoom(bool b);
 
 	//logic
 	Ogre::SceneNode* camNode_;
+	Ogre::Camera * cam_;
 	float rotX_, rotY_, total_rotY_; //updaters
-	bool zoom = false;
-
-	nap_vector3 relativePos;
+	bool zoomed_ = false;
 
 	//cfg (json)
-	float rotXspeed_, rotYspeed_, zoomed_, maxRotY_;
+	nap_vector3 relativePos_;
+	float rotXspeed_, rotYspeed_, zoomFovScale_, zoomSensScale_, maxRotY_, baseFovY_;
+	bool holdZoom_;
 };
 
 #endif /* FPSCAMERA_H_ */

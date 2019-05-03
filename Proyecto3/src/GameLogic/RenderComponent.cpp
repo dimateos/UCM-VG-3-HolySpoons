@@ -21,8 +21,8 @@ void RenderComponent::setUp() {
 
 	//other properties
 	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
-	if (FIND(cfg_, "relativePos")) relativePos = nap_vector3(cfg_["relativePos"]);
-	else relativePos = vO;
+	if (FIND(cfg_, "relativePos")) relativePos_ = nap_vector3(cfg_["relativePos"]);
+	else relativePos_ = vO;
 	if (FIND(cfg_, "localRot")) node->setOrientation(nap_quat(cfg_["localRot"]).ogre());
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
@@ -52,7 +52,7 @@ void RenderComponent::setDown() {
 void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
 	if (!active_ && FIND(cfg_, "boundingBox")) node->showBoundingBox(!cfg_["boundingBox"]);
-	node->setPosition((owner_->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
+	node->setPosition((owner_->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ void RenderComponent::late_update(GameObject * o, double time) {
 
 	//check pos
 	if (!o->getUpToDate(upToDate::pos, upToDate::REND)) {
-		node->setPosition((o->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
+		node->setPosition((o->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
 		o->setUpToDate(upToDate::pos, upToDate::REND);
 	}
 

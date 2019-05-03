@@ -18,11 +18,11 @@ private:
 	PhysicsControllerComponent* controller_comp;
 	nap_vector3 velocity;
 	bool jumping_ = false, jump_available_ = false;
+	bool holdSprint_, sprinting_ = false;
 
 	// velocities
 	float walkVel_;          // while walking
 	float runVel_;           // while running
-	float vel_;              // actual velocity
 
 	std::list<std::string> jumpResetersGroups_;
 	float jumpImpulse_;

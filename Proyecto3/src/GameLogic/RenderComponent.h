@@ -31,7 +31,7 @@ protected:
 	Ogre::SceneNode *node;
 	Ogre::Entity *entity;
 
-	nap_vector3 relativePos;
+	nap_vector3 relativePos_;
 
 	Ogre::AnimationState* idleAnimation;
 };

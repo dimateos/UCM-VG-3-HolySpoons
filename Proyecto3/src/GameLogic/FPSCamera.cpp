@@ -4,10 +4,11 @@
 #include "LogSystem.h"
 
 #include "RenderComponent.h"
-#include <OgreCamera.h>
-#include <OgreViewport.h>
 #include <OgreSceneNode.h>
-#include <OgreNode.h>
+//#include <OgreNode.h>
+
+//#include <OgreViewport.h>
+#include <OgreCamera.h>
 
 #include <SDL_events.h>	//events
 #include <Transforms.h>
@@ -19,23 +20,26 @@ void FPSCamera::setUp() {
 
 	//cam
 	camNode_ = RenderSystemInterface::getSingleton()->getCameraNode();
-	//camNode_->setDirection(nap_vector3(cfg_["baseDir"]).ogre());
+	cam_ = RenderSystemInterface::getSingleton()->getCamera();
 
-	//set cfg vals
+	//set cfg valss
 	maxRotY_ = cfg_["maxRotY"];
-	zoomed_ = cfg_["zoomed"];
+	zoomFovScale_ = cfg_["zoomFovScale"];
+	zoomSensScale_ = cfg_["zoomSensScale"];
 
 	//read fromm global cfg
 	rotXspeed_ = GlobalCFG::floats["cam_sensX"] * GlobalCFG::floats["cam_sensBase"];
 	rotYspeed_ = GlobalCFG::floats["cam_sensY"] * GlobalCFG::floats["cam_sensBase"];
+	baseFovY_ = GlobalCFG::floats["cam_fovY"];
+	holdZoom_ = GlobalCFG::flags["hold_zoom"];
 }
 
 void FPSCamera::lateSetUp() {
 	//postion atm is fixed, then should follow the player
-	relativePos = nap_vector3(cfg_["relativePos"]);
+	relativePos_ = nap_vector3(cfg_["relativePos"]);
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
-	//add spoon ren as child
+	//add spoon ren as child instead of vice versa because the fps cam is permanent
 	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"))->getSceneNode());
 }
 
@@ -43,7 +47,8 @@ void FPSCamera::lateSetUp() {
 
 void FPSCamera::update(GameObject * ent, double time) {
 	// camera position = entity position + own relative position
-	camNode_->setPosition((ent->getPosition().ogre() + relativePos.ogre()) * ogre_scale);
+	auto pos = ent->getPosition().ogre() + relativePos_.ogre();
+	camNode_->setPosition(pos * ogre_scale);
 
 	// entity orientation = camera y orientation
 	auto ori = camNode_->getOrientation();
@@ -51,7 +56,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	ent->setOrientation(nq);
 
 	//avoid flips
-	float frame_rotY = rotYspeed_ * -rotY_;
+	float frame_rotY = rotYspeed_ * -rotY_ * (zoomed_ ? zoomSensScale_ : 1);
 	total_rotY_ += frame_rotY;
 	if (total_rotY_ > maxRotY_) {
 		frame_rotY -= total_rotY_ - maxRotY_;
@@ -65,7 +70,8 @@ void FPSCamera::update(GameObject * ent, double time) {
 	//LogSystem::Log("y: ", total_rotY_);
 
 	//direction
-	camNode_->yaw(Ogre::Degree(rotXspeed_ * -rotX_), Ogre::Node::TS_PARENT);
+	float frame_rotX = rotXspeed_ * -rotX_ * (zoomed_ ? zoomSensScale_ : 1);
+	camNode_->yaw(Ogre::Degree(frame_rotX), Ogre::Node::TS_PARENT);
 	camNode_->pitch(Ogre::Degree(frame_rotY), Ogre::Node::TS_LOCAL);
 
 	//reset
@@ -83,9 +89,17 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 		handled = true;
 		break;
 
+	case SDL_MOUSEBUTTONDOWN:
+		if (evt.button.button == SDL_BUTTON_RIGHT) {
+			if (holdZoom_) setZoom(true);
+			else setZoom(!zoomed_);
+			handled = true;
+		}
+		break;
+
 	case SDL_MOUSEBUTTONUP:
 		if (evt.button.button == SDL_BUTTON_RIGHT) {
-			//toggleZoom(); //for now
+			if (holdZoom_) setZoom(false);
 			handled = true;
 		}
 		break;
@@ -93,20 +107,20 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 	return handled;
 }
 
-void FPSCamera::toggleZoom() {
-	camNode_->translate(-vZ.ogre() * (zoom ? -1 : 1) * zoomed_ * ogre_scale, Ogre::Node::TS_LOCAL);
-	zoom = !zoom;
-}
-
-void FPSCamera::receive(Message * msg)
-{
+void FPSCamera::receive(Message * msg) {
 	if (msg->id_ == STATE_CHANGED) {
 		//hide and capture mouse
 		//SDL_ShowCursor(SDL_DISABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 
 		//reset zoom if readded
+		setZoom(false);
 	}
+}
+
+void FPSCamera::setZoom(bool b) {
+	zoomed_ = b;
+	cam_->setFOVy(Ogre::Degree(baseFovY_ * (zoomed_ ? zoomFovScale_ : 1)));
 }
 
 #include "GOFactory.h"
