@@ -20,7 +20,23 @@
           "msgType": 1,
           "panelName": "PAUSE_PanelContainer",
           "materialName": "ButtonMaterial",
-          "name": "pause_button"
+          "name": "continue_button",
+          "listener": "pop_state_main"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "msgType": 1,
+          "Y": 0.75,
+          "panelName": "PAUSE_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "backToMenu_button",
+          "listener": "pop_state_menu"
         }
       }
     }

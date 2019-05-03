@@ -35,8 +35,13 @@ void GameManager::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	string s = this->cfg_["state"], j = this->cfg_["json"];
-	state = s, json = j;
+	// name of the component that pushes the death state
+	string state = this->cfg_["death_state"];
+	death_state = state;
+
+	// name of the component that will play the hit marker sound effect
+	string sound = this->cfg_["hitMarker_sound"];
+	hitMarker_sound = sound;
 
 	auto rsi = RenderSystemInterface::getSingleton();
 
@@ -107,11 +112,12 @@ void GameManager::receive(Message * msg)
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		timer.setDuration(0.1);
 		timer.start();
-		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), owner_->id().name_, "hitSound");
+		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), owner_->id().name_, hitMarker_sound);
 	}
 	else if (msg->id_ == CHECK_HP) {
-		if (playerHP_ != nullptr && playerHP_->getHP() <= 0)
-			MessageSystem::getSingleton()->sendMessageComponentName(&Message(PUSH_STATE), owner_->idPtr()->name_, "push_death");
+		// gm has two pushComponents (pause and death), so we need to specify which one will push its state
+		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) // in this case (HP == 0) -> death state
+			MessageSystem::getSingleton()->sendMessageComponentName(&Message(PUSH_STATE), owner_->idPtr()->name_, death_state);
 		updateUI();
 	}
 }

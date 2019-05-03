@@ -18,7 +18,7 @@ private:
 	double X, Y, W, H;
 	double bigX, bigY, bigW, bigH;
 	int msgType;
-	std::string panelName;
+	std::string listener;
 	Ogre::OverlayElement* elemt;
 
 	bool inside(int x, int y);

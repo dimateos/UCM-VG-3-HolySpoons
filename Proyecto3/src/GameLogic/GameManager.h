@@ -31,8 +31,8 @@ private:
 
 	int score_;
 
-	std::string state;
-	std::string json;
+	std::string death_state;
+	std::string hitMarker_sound;
 
 	void updateUI();
 

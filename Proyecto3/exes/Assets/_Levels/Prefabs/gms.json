@@ -16,7 +16,7 @@
           "panel_container": "HUD_PanelContainer",
           "panel container": "DEATH_PANEL"
         },
-        "handle_input_pause": {
+        "push_pause": {
           "id": {
             "type": "PushStateComponent",
             "group": "test_comps"
@@ -39,7 +39,8 @@
             "type": "GameManager",
             "group": "manage_components"
           },
-          "state": "Pause",
+          "death_state": "push_death",
+          "hitMarker_sound": "hitSound",
           "json": "_PAUSE_LEVEL_"
         },
         "mainMusic": {
@@ -89,13 +90,21 @@
           "overlay_name": "PAUSE",
           "panel_container": "PAUSE_PanelContainer"
         },
-        "pop_state": {
+        "pop_state_main": {
           "id": {
             "type": "PopStateComponent",
             "group": "test_comps"
           },
           "key": "p",
           "state": "MainScene"
+        },
+        "pop_state_menu": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "Menu"
         }
       }
     },

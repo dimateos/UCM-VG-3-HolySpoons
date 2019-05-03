@@ -24,6 +24,13 @@ void ButtonComponent::setUp() {
 	string name = this->cfg_["name"];
 	msgType = this->cfg_["msgType"];
 
+	// name of the component that will listen the message (push or pop)
+	if (FIND(cfg_, "listener")) {
+		string s = this->cfg_["listener"];
+		listener = s;
+	}
+	else listener = ""; // listener not specified (there is only one possible listener)
+
 	//create the panel
 	auto rsi = RenderSystemInterface::getSingleton();
 	elemt = rsi->createOverlayElement("Panel", name + id().sn_string());
@@ -70,8 +77,13 @@ bool ButtonComponent::inside(int x, int y) {
 }
 
 void ButtonComponent::onClick() {
-	MessageSystem::getSingleton()->sendMessageGameObject(&Message((MessageId)msgType),
-		GameStateMachine::getSingleton()->currentState()->getGM());
+	if (listener == "") { // if listener is not specified (only one possible listener in the entire gm)
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message((MessageId)msgType),
+			GameStateMachine::getSingleton()->currentState()->getGM());
+	}
+	// if listener is specified we send the message to that component of the gm
+	else MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message((MessageId)msgType),
+		GameStateMachine::getSingleton()->currentState()->getGM(), listener);
 }
 
 #include "GOFactory.h"

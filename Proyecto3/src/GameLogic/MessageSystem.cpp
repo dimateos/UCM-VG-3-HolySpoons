@@ -96,4 +96,13 @@ void MessageSystem::sendMessageGameObject(Message * msg, GameObject * o)
 		c->receive(msg);
 }
 
+void MessageSystem::sendMessageGameObjectComponentName(Message * msg, GameObject * o, string cname)
+{
+	for (Component* c : o->getComponents())
+		if (c->id().name_ == cname) {
+			c->receive(msg);
+			return;
+		}
+}
+
 
