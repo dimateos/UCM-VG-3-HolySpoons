@@ -44,6 +44,7 @@ GameObject * nap_Pool::getItem()
 	while (i < pool.size())
 	{
 		if (!pool[i]->isActive()) {
+			pool[i]->setActive();
 			return pool[i];
 		}
 		i++;

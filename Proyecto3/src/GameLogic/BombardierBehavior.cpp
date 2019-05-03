@@ -60,7 +60,6 @@ void BombardierBehavior::backBehavior(float time)
 void BombardierBehavior::shoot()
 {
 	GameObject* o = p->getItem();
-	o->setActive();
 	o->setPosition(owner_->getPosition() - (vY * 3) + (vZ * (rand() % 6 - 3)) + (vX * (rand() % 6 - 3)));
 }
 

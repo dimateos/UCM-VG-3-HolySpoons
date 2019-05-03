@@ -68,7 +68,7 @@
             "type": "BulletHittable",
             "group": "enemy_comps"
           },
-          "hp": 50,
+          "hp": 150,
           "points": 50
         },
         "att_light": {

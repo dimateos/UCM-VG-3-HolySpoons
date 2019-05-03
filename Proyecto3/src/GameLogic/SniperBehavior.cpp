@@ -23,7 +23,7 @@ void SniperBehavior::advanceBehavior(float time)
 		status = attack;
 	}
 	owner_->setPosition(ownerPos);
-	
+
 }
 
 void SniperBehavior::attackBehavior(float time)
@@ -44,7 +44,7 @@ void SniperBehavior::backBehavior(float time)
 
 	ownerPos.y_ -= time * speed;
 
-	
+
 	if (ownerPos.y_ < lowY) {
 		t.start();
 		status = advance;
@@ -66,7 +66,6 @@ void SniperBehavior::shoot()
 	nap_vector3 dir = { dest->p_.x_ - ownerPos.x_, dest->p_.y_ - ownerPos.y_, dest->p_.z_ - ownerPos.z_ }; //simple vector calc dest - src
 	dir = dir.normalize();
 	GameObject* o = p->getItem();
-	o->setActive();
 	o->setPosition(owner_->getPosition() + dir*6);
 	static_cast<PhysicsComponent*>(o->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((dir * shotSpeed).px());
 }

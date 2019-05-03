@@ -44,7 +44,6 @@ void Weapon::shoot(nap_transform* owner_trans, float relY, float relZ)
 {
 	//add to state
 	GameObject* bul = pool_->getItem();
-	bul->setActive();
 
 	//dir
 	nap_vector3 dir = owner_trans->q_.toNapVec3(vZ*-1);

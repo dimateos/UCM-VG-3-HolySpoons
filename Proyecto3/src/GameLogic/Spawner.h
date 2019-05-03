@@ -12,11 +12,12 @@ private:
 	napTimer t;
 
 	bool smart = false;
+	float radius_;
 
 	nap_Pool* pol = nullptr;
 	list<Component*> compList;
 
-	nap_vector3 smartPositioning(GameObject* o);
+	nap_vector3 smartPositioning(nap_vector3 pos);
 
 public:
 	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
