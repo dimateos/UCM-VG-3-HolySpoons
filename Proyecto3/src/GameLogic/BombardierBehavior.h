@@ -34,8 +34,6 @@ protected:
 
 public:
 
-	inline BombardierBehavior() {};
-
 	inline BombardierBehavior(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~BombardierBehavior() {};
 

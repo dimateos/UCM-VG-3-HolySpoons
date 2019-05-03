@@ -14,7 +14,6 @@ private:
 	const nap_vector3 DIRECTOR = {0, 0, 1}; //DEFAULT, ALL OBJECTS MUST BE LOOKING AT THE CAMERA
 
 public:
-	inline AutoRotationComponent() {};
 	inline AutoRotationComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual void setUp();
 

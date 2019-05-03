@@ -13,7 +13,6 @@ private:
 	std::string _skyBox;
 	void updateSkyBox();
 public:
-	SkyBoxComponent() {};
 	virtual ~SkyBoxComponent() {};
 	SkyBoxComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 

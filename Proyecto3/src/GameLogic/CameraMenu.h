@@ -8,7 +8,6 @@
 class CameraMenu : public Component
 {
 public:
-	inline CameraMenu() {};
 	inline CameraMenu(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~CameraMenu() {};
 	virtual void setUp();

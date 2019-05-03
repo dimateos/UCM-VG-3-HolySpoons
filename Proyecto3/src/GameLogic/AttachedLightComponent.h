@@ -14,7 +14,6 @@ private:
 	void setLight();
 
 public:
-	AttachedLightComponent() {};
 	virtual ~AttachedLightComponent() {};
 	AttachedLightComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 

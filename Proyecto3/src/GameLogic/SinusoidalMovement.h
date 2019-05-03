@@ -19,7 +19,6 @@ private:
 	virtual void configActive();
 
 public:
-	SinusoidalMovementComponent() {};
 	virtual ~SinusoidalMovementComponent() {};
 	SinusoidalMovementComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 

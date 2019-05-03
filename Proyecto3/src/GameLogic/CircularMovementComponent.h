@@ -18,10 +18,6 @@ private:
 
 public:
 	/*
-	 *Default constructor
-	 */
-	inline CircularMovementComponent() {};
-	/*
 	 *Owner needed
 	 */
 	inline CircularMovementComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};

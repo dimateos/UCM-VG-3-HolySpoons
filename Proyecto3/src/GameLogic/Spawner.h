@@ -19,7 +19,6 @@ private:
 	nap_vector3 smartPositioning(GameObject* o);
 
 public:
-	inline Spawner() {};
 	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~Spawner();
 

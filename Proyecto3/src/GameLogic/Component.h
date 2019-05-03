@@ -9,7 +9,6 @@
 class Component : public Listener, public Activable, public Identifiable, public Initiable
 {
 public:
-	inline Component() : Activable(), Identifiable(), cfg_(), owner_(nullptr) {};
 	inline Component(nap_json const & cfg) :
 		Activable(FINDnRETURN(cfg, activeString, bool, true)), Identifiable(cfg["id"]), cfg_(cfg), owner_(nullptr) {};
 	inline Component(nap_json const & cfg, GameObject* owner)
@@ -21,12 +20,6 @@ public:
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt) { return false; };
 	virtual void update(GameObject* o, double time) {};
 	virtual void late_update(GameObject* o, double time) {};
-
-	// it sets the cfg and the owner
-	virtual inline void Init(nap_json const & cfg, GameObject* owner) {
-		setCfg(cfg);
-		setOwner(owner);
-	}
 
 	inline void setOwner(GameObject* owner) { owner_ = owner; }
 	inline GameObject* getOwner() { return owner_; };

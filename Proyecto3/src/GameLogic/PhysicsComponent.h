@@ -8,7 +8,6 @@
 class PhysicsComponent : public Component
 {
 public:
-	inline PhysicsComponent() {}
 	inline PhysicsComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	inline virtual ~PhysicsComponent() { setDown(); };
 	virtual void setUp();

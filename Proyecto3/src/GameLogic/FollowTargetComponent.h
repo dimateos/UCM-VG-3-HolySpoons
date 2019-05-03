@@ -19,10 +19,6 @@ private:
 
 public:
 	/*
-	 *Default constructor
-	 */
-	inline FollowTargetComponent() {};
-	/*
 	 *Owner needed
 	 */
 	inline FollowTargetComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};

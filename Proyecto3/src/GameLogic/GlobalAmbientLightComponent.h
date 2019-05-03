@@ -14,7 +14,6 @@ private:
 	nap_vector3 _ambientLight;
 
 public:
-	GlobalAmbientLightComponent() {};
 	virtual ~GlobalAmbientLightComponent() {};
 	GlobalAmbientLightComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 

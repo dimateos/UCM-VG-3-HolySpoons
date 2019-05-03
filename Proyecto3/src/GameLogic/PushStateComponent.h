@@ -11,8 +11,8 @@ private:
 	void pushState();
 
 public:
-	inline virtual ~PushStateComponent() {};
 	inline PushStateComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
+	inline virtual ~PushStateComponent() {};
 	virtual void setUp();
 
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);

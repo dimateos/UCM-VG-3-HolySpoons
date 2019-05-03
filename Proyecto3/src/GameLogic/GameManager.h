@@ -37,7 +37,6 @@ private:
 	void updateUI();
 
 public:
-	inline GameManager() { };
 	inline GameManager(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), score_(0) {};
 	inline virtual ~GameManager() { };
 	virtual void setUp();

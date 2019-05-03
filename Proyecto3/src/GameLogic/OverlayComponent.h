@@ -19,7 +19,6 @@ protected:
 	Ogre::Overlay *overlay = nullptr;
 
 public:
-	inline OverlayComponent() {};
 	inline OverlayComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~OverlayComponent() { setDown(); };
 

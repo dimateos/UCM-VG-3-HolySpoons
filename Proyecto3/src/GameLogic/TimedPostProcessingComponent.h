@@ -12,7 +12,6 @@ private:
 	napTimer timer;
 
 public:
-	TimedPostProcessingComponent() {};
 	virtual ~TimedPostProcessingComponent() {};
 	TimedPostProcessingComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 

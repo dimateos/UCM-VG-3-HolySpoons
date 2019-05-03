@@ -34,8 +34,6 @@ protected:
 
 public:
 
-	inline SniperBehavior() {};
-
 	inline SniperBehavior(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~SniperBehavior() {};
 
