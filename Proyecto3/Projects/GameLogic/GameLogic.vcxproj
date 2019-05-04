@@ -42,6 +42,7 @@
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HeavyBullethit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="..\..\src\GameLogic\Activable.h" />
     <ClInclude Include="..\..\src\GameLogic\HeavyBulletHit.h" />
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h" />
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h" />

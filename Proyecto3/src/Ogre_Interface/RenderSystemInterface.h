@@ -204,17 +204,18 @@ public:
 	 *skybox
 	 */
 	void setSkyBox(std::string material, float distance = 5000);
-
 	/*
 	 *sets up all the neccesary elements. Starts rendering a new scene
 	*/
 	void setRenderingScene(std::string scene);
-
+	/*
+	 *Gets the current rendering scene (OGRE)
+	 */
 	std::string getCurrentRenderingScene();
-
+	/*
+	 *Add one element to overlayPanel 
+	 */
 	void addToPanel(std::string name, Ogre::OverlayElement* elemt);
-
-
 	/*
 	 *Adds a new compositor
 	 */

@@ -81,6 +81,11 @@
       "id": {
         "type": "basic_postprocessing"
       }
+    },
+    {
+      "id": {
+        "type": "leaderBoard"
+      }
     }
   ]
 }
