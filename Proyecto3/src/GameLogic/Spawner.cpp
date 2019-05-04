@@ -1,8 +1,11 @@
-#include "GameStateMachine.h"
-#include "MessageSystem.h"
-#include "GOFactory.h"
 #include "Spawner.h"
 #include "Pool.h"
+
+#include <SDL_events.h>
+#include "GameStateMachine.h"
+#include "MessageSystem.h"
+
+#include "LogSystem.h"
 
 Spawner::~Spawner() {
 	if (pol != nullptr) {
@@ -20,14 +23,19 @@ void Spawner::setUp() {
 	pol->setDefault(cfg_["default"]);
 
 	smart = cfg_["smart"];
-	radius_ = cfg_["radius"];
-	t.start(cfg_["timer"]);
+	if (smart) radius_ = cfg_["radius"];
 
+	t.start(cfg_["timer"]);
 	pol->init();
 }
 
-nap_vector3 Spawner::smartPositioning(nap_vector3 pos)
-{
+void Spawner::spawn() {
+	GameObject* tmp = pol->getItem(); //gets object from pool, spawns it
+	if (!smart) tmp->setPosition(owner_->getPosition());	//Basic Spawn point
+	else tmp->setPosition(smartPositioning(owner_->getPosition()));		//Smart spawn point
+}
+
+nap_vector3 Spawner::smartPositioning(nap_vector3 pos) {
 	//target position
 	nap_vector3 trgPos = GameStateMachine::getSingleton()->currentState()->getPlayer()->getPosition();
 	//We get the direction
@@ -40,17 +48,29 @@ nap_vector3 Spawner::smartPositioning(nap_vector3 pos)
 	return pos + vec;
 }
 
-void Spawner::update(GameObject * o, double time)
-{
-	if (!o->isKilled()) { //Shoulld not be required
-		if (t.update(time)) {
-			t.start();	//Timer reset
+void Spawner::update(GameObject * o, double time) {
+	if (t.update(time)) {
+		t.start();	//Timer reset
+		spawn();
+	}
+}
 
-			GameObject* tmp = pol->getItem(); //gets object from pool, spawns it
-			if (!smart) tmp->setPosition(o->getPosition());	//Basic Spawn point
-			else tmp->setPosition(smartPositioning(owner_->getPosition()));		//Smart spawn point
+bool Spawner::handleEvents(GameObject * o, const SDL_Event & evt) {
+	bool handled = false;
+
+#if _DEBUG //HAXS
+	if (evt.type == SDL_KEYDOWN) {
+		SDL_Keycode pressedKey = evt.key.keysym.sym;
+
+		if (pressedKey == SDLK_o) {
+			LogSystem::Log("Manually spawned go", LogSystem::SPAWNER);
+			spawn();
+			handled = true;
 		}
 	}
+#endif
+
+	return handled;
 }
 
 void Spawner::receive(Message * msg) {
@@ -60,4 +80,5 @@ void Spawner::receive(Message * msg) {
 	}
 }
 
+#include "GOFactory.h"
 REGISTER_TYPE(Spawner);

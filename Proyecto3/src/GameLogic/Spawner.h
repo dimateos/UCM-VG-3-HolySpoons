@@ -17,6 +17,7 @@ private:
 	nap_Pool* pol = nullptr;
 	list<Component*> compList;
 
+	void spawn();
 	nap_vector3 smartPositioning(nap_vector3 pos);
 
 public:
@@ -26,6 +27,7 @@ public:
 	virtual void setUp();
 
 	virtual void update(GameObject* o, double time);
+	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void receive(Message* msg);
 };
 

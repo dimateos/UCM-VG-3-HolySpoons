@@ -156,11 +156,14 @@ public:
 	nap_vector3 s_;
 };
 
+//moved away
+#define baseTransPos nap_vector3(0.0f, -50.0f, 0.0f) //better in global cfg
+
 //struct for the gameObject transform
 class nap_transform
 {
 public:
-	inline nap_transform() : p_(), q_() {};
+	inline nap_transform() : p_(baseTransPos), q_() {};
 	inline nap_transform(nap_vector3 p) : p_(p), q_() {};
 	inline nap_transform(nap_vector3 p, nap_quat q, nap_vector3 s) : p_(p), q_(q) {};
 

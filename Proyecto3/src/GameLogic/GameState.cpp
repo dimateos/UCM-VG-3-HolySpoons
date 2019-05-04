@@ -46,15 +46,18 @@ bool GameState::handleEvents(const SDL_Event evt) {
 
 //iterates all the Entities and calls their updates
 void GameState::update(double time) {
-	//first remove msg/collision killed objects + last frame updates
+
+	//LogSystem::Log("state doConfigActive", LogSystem::GAME);
+	for (Activable* & a : Activable::changedActive_) a->configActive();
+	Activable::changedActive_.clear();
 
 	//LogSystem::Log("state update", LogSystem::GAME);
-	for (GameObject* o : gameObjects_) {
+	for (GameObject* & o : gameObjects_) {
 		if (o->isActive() && !o->isKilled())o->update(time);
 	}
 
 	//LogSystem::Log("state late update", LogSystem::GAME);
-	for (GameObject* o : gameObjects_) {
+	for (GameObject* & o : gameObjects_) {
 		if (o->isActive() && !o->isKilled())o->late_update(time);
 	}
 

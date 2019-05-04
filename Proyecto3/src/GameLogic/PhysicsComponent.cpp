@@ -64,13 +64,15 @@ void PhysicsComponent::setDown() {
 }
 
 void PhysicsComponent::configActive() {
+	//shape_->setFlag(active_ ? PxShapeFlag::eTRIGGER_SHAPE : PxShapeFlag::eSIMULATION_SHAPE, !active_);
+	//shape_->setFlag(active_ ? PxShapeFlag::eSIMULATION_SHAPE : PxShapeFlag::eTRIGGER_SHAPE, active_);
+	//shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
+
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
-	shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
+	getActor()->setGlobalPose(PxTransform((!active_ ? baseTransPos : owner_->getPosition()).px(), owner_->getOrientation().px()));
 }
 
 void PhysicsComponent::updateUserData() {
-	getActor()->setGlobalPose(PxTransform(owner_->getPosition().px(), owner_->getOrientation().px()));
-
 	if (ud_ != nullptr) delete ud_;
 	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr(), updateOri_);
 

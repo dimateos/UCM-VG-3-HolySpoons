@@ -7,8 +7,9 @@ void BulletHit::setUp() {
 }
 
 void BulletHit::update(GameObject * o, double time) {
-	if (t.update(time))
+	if (t.update(time)) {
 		owner_->setActive(false);
+	}
 }
 
 void BulletHit::onCollision(ID * other) {

@@ -3,6 +3,7 @@
 
 #include <PhysicsSystemManager.h>
 #include <ControllerReporter.h>
+#include <SDL_events.h>
 #include <Transforms.h>
 
 #include <PxRigidDynamic.h>
@@ -62,32 +63,32 @@ void PhysicsControllerComponent::setUp() {
 	//desc.behaviorCallback = this;
 
 	//create the controller
-	controller_comp = physicsManager->createController(&desc);
+	controller_ = physicsManager->createController(&desc);
 
 	//custom gravity
 	g_ = FINDnRETURN(cfg_, "g", nap_vector3, pxG);
 
 	updateUserData();
 	configActive();
-	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::DEV);
+	//LogSystem::Log("scale: ", owner_->getScale().json(), LogSystem::CONTROLLER);
 }
 
 void PhysicsControllerComponent::invalidateChache() {
-	controller_comp->invalidateCache();
+	controller_->invalidateCache();
 }
 
 void PhysicsControllerComponent::setDown() {
 	//release the controller (which releases the actor, shape etc)
-	controller_comp->release();
+	controller_->release();
 }
 
 void PhysicsControllerComponent::configActive() {
+	invalidateChache();
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
+	controller_->setPosition((!active_ ? baseTransPos : owner_->getPosition()).pxEx());
 }
 
 void PhysicsControllerComponent::updateUserData() {
-	controller_comp->setPosition(owner_->getPosition().pxEx());
-
 	if (ud_ != nullptr) delete ud_;
 	ud_ = new nap_userData(owner_->getTransPtr(), owner_->getCollisionListeners(), owner_->idPtr(), false);
 
@@ -96,7 +97,7 @@ void PhysicsControllerComponent::updateUserData() {
 }
 
 PxRigidActor * PhysicsControllerComponent::getActor() {
-	return controller_comp->getActor();
+	return controller_->getActor();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -111,31 +112,49 @@ void PhysicsControllerComponent::update(GameObject * o, double time) {
 	i_ = vO;
 
 	//update pos
-	nap_vector3 prevPos = napVEC3(controller_comp->getPosition());
+	nap_vector3 prevPos = napVEC3(controller_->getPosition());
 	nap_vector3 newPos = prevPos + v_ * time;
 
 	//calculate disp
 	nap_vector3 disp = newPos - prevPos;
 
 	//MOVE THE CONTROLLER
-	controller_comp->move(disp.px(), minDist, time, NULL, NULL);
+	controller_->move(disp.px(), minDist, time, NULL, NULL);
 
 	//integrate real v
-	nap_vector3 finalPos = napVEC3(controller_comp->getPosition());
+	nap_vector3 finalPos = napVEC3(controller_->getPosition());
 	v_ = (finalPos - prevPos) / time;
 
-	//LogSystem::Log("prevPos: ", prevPos.json(), LogSystem::DEV);
-	//LogSystem::Log("newPos: ", newPos.json(), LogSystem::DEV);
-	//LogSystem::Log("finalPos: ", finalPos.json(), LogSystem::DEV);
-	//LogSystem::Log("finalV: ", v_.json(), LogSystem::DEV);
+	//LogSystem::Log("prevPos: ", prevPos.json(), LogSystem::CONTROLLER);
+	//LogSystem::Log("newPos: ", newPos.json(), LogSystem::CONTROLLER);
+	//LogSystem::Log("finalPos: ", finalPos.json(), LogSystem::CONTROLLER);
+	//LogSystem::Log("finalV: ", v_.json(), LogSystem::CONTROLLER);
 }
 
 void PhysicsControllerComponent::late_update(GameObject * o, double time) {
 	//the controller ignores changes on orientation
 	if (o->getUpToDate(upToDate::pos, upToDate::PHYS)) return;
 
-	controller_comp->setPosition(o->getPosition().pxEx());
+	controller_->setPosition(o->getPosition().pxEx());
 	o->setUpToDate(upToDate::pos, upToDate::PHYS);
+}
+
+bool PhysicsControllerComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
+	bool handled = false;
+
+#if _DEBUG //HAXS
+	if (evt.type == SDL_KEYDOWN) {
+		SDL_Keycode pressedKey = evt.key.keysym.sym;
+
+		if (pressedKey == SDLK_c) {
+			LogSystem::Log("Manually invalidated chache", LogSystem::CONTROLLER);
+			invalidateChache();
+			handled = true;
+		}
+	}
+#endif
+
+	return handled;
 }
 
 #include "GOFactory.h"

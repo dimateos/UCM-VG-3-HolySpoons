@@ -152,6 +152,9 @@
       <Filter>Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GameManager.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\Activable.cpp">
+      <Filter>_GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">

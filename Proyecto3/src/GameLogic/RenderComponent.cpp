@@ -27,7 +27,6 @@ void RenderComponent::setUp() {
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//visibility
-	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(cfg_["boundingBox"]);
 	invisible_ = FINDnRETURN(cfg_, "invisible", bool, false);
 
 	//update trans
@@ -51,7 +50,7 @@ void RenderComponent::setDown() {
 
 void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
-	if (!active_ && FIND(cfg_, "boundingBox")) node->showBoundingBox(!cfg_["boundingBox"]);
+	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(active_ && cfg_["boundingBox"]);
 	node->setPosition((owner_->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
 }
 

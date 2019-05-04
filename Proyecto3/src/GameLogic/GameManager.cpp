@@ -84,18 +84,17 @@ void GameManager::update(GameObject * o, double time) {
 bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
 
+#if _DEBUG //HAXS
 	if (evt.type == SDL_KEYDOWN) {
 		SDL_Keycode pressedKey = evt.key.keysym.sym;
 
-		//HAXS
-#if _DEBUG
 		if (pressedKey == SDLK_r) {
 			resetPlayer();
 			handled = true;
 		}
-#endif
 	}
 
+#endif
 	return handled;
 }
 

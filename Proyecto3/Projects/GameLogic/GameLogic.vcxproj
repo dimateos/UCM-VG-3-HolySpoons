@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\GameLogic\Activable.cpp" />
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp" />

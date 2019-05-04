@@ -12,7 +12,7 @@ public:
 	inline virtual ~PhysicsControllerComponent() { setDown(); };
 	virtual void setUp();
 
-	inline PxController * getController() const { return controller_comp; };
+	inline PxController * getController() const { return controller_; };
 	void invalidateChache();
 
 	//interacting with the controller movement
@@ -27,6 +27,7 @@ public:
 
 	virtual void update(GameObject* ent, double time);
 	virtual void late_update(GameObject* o, double time);
+	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 
 protected:
 	virtual void setDown();
@@ -39,7 +40,7 @@ protected:
 	void updateUserData();
 
 	//Controller stuff
-	PxController* controller_comp;
+	PxController* controller_;
 	PxRigidActor* getActor();
 
 	//Custom movement for the controller
