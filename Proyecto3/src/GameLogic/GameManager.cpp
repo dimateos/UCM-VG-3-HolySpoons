@@ -111,27 +111,29 @@ void GameManager::receive(Message * msg)
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		timer.setDuration(0.1);
 		timer.start();
-		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), owner_->id().name_, hitMarker_sound);
+		MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, hitMarker_sound);
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// gm has two pushComponents (pause and death), so we need to specify which one will push its state
 		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) // in this case (HP == 0) -> death state
-			MessageSystem::getSingleton()->sendMessageComponentName(&Message(PUSH_STATE), owner_->idPtr()->name_, death_state);
+			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PUSH_STATE), owner_, death_state);
 		updateUI();
 	}
 }
 
 void GameManager::resetPlayer() {
 	LogSystem::Log("RESET");
+
+	//reset the p controller
 	player_->setPosition({ 0,10,0 });
 	auto pc = static_cast<PhysicsControllerComponent*>(player_->getComponent("controller_phy"));
 	pc->setV(vO);
 	pc->invalidateChache();
 
-	playerHP_->resetHP();
 	score_ = 0;
 	updateUI();
 
+	MessageSystem::getSingleton()->sendMessage(&Message(RESET_HP));
 	MessageSystem::getSingleton()->sendMessage(&Message(RESET_PULL));
 }
 

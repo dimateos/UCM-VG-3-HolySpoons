@@ -17,10 +17,11 @@ public:
 	virtual void setUp();
 
 	virtual void onCollision(ID* other);
+	virtual void receive(Message* msg);
 
 protected:
 	virtual void configActive();
-	
+
 	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
 };
 

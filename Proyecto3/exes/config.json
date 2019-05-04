@@ -16,8 +16,8 @@
 
     "camera": [
       {"cam_fovY": 80.00},
-      {"cam_sensX": 1.00},
-      {"cam_sensY": 1.00}
+      {"cam_sensX": 1.25},
+      {"cam_sensY": 1.25}
     ],
 
     "holding": [

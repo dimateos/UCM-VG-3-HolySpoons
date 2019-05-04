@@ -24,9 +24,11 @@ public:
 
 	virtual void update(GameObject* o, double time);
 	virtual void onCollision(ID* other);
+	virtual void receive(Message* msg);
 
 protected:
 	virtual void configActive();
+	void endInv();
 
 	napTimer inv_t;
 	bool inv = false;

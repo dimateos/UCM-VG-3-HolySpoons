@@ -10,9 +10,9 @@ class nap_Pool
 private:
 	std::vector<GameObject*> pool;
 	int defaultValue = 10;
-	GameObject* spawn();
-	GameObject* original = nullptr;
 	std::string entityName;
+
+	GameObject* spawn();
 
 public:
 	nap_Pool(std::string entity);

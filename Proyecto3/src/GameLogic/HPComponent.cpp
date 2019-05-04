@@ -1,6 +1,7 @@
 #include "HPComponent.h"
 
-#include "Messages.h"
+#include "GameStateMachine.h"
+#include "MessageSystem.h"
 
 void HPComponent::setUp()
 {
@@ -14,8 +15,10 @@ void HPComponent::receive(Message * msg)
 {
 	if (msg->id_ == HP_DAMAGE) {
 		subHP(static_cast<Msg_HP_DAMAGE*>(msg)->damage_);
-		//reenviar to GM en vez del GM todo el rato en el update?
+		//tell GM to check
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(CHECK_HP), GameStateMachine::getSingleton()->currentState()->getGM());
 	}
+	else if (msg->id_ == RESET_HP) resetHP();
 }
 
 #include "GOFactory.h"

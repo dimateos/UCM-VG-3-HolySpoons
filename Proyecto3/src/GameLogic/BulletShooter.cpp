@@ -4,6 +4,7 @@
 //fowarded
 #include "Pool.h"
 #include "Weapon.h"
+#include "Messages.h"
 
 #include <SDL_events.h>	//events
 
@@ -62,6 +63,12 @@ bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
 
 void BulletShooter::update(GameObject * o, double time) {
 	weapons[currentWeapon]->shootUpdate(owner_trans_, relY_, relZ_, time);
+}
+
+void BulletShooter::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		weapons[currentWeapon]->mouseUpdate(false);
+	}
 }
 
 void BulletShooter::changeWeapon(int n) {

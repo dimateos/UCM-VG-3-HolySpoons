@@ -17,8 +17,17 @@ void PlayerHit::setUp() {
 	configActive();
 }
 
+void PlayerHit::configActive() {
+	inv_t.stop();
+}
+
 void PlayerHit::update(GameObject * o, double time) {
-	if (inv_t.update(time)) inv = false;
+	if (inv_t.update(time)) endInv();
+}
+
+void PlayerHit::endInv() {
+	inv = false;
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(END_INV), owner_);
 }
 
 void PlayerHit::onCollision(ID * other) {
@@ -28,15 +37,17 @@ void PlayerHit::onCollision(ID * other) {
 	for (damageDeal & dealer : damageDealers_) {
 		if (other->group_ == dealer.group) {
 			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_HP_DAMAGE(dealer.dmg), owner_);
-			MessageSystem::getSingleton()->sendMessageGroup(&Message(CHECK_HP), "manage_gameObjects");
 			inv = true;
 			inv_t.start();
 		}
 	}
 }
 
-void PlayerHit::configActive() {
-	inv_t.stop();
+void PlayerHit::receive(Message * msg) {
+	if (msg->id_ == RESET_HP) {
+		inv_t.stop();
+		endInv();
+	}
 }
 
 #include "GOFactory.h"

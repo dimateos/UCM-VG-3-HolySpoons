@@ -58,6 +58,7 @@
     <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\HitPostProcessingComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\HitPostProcessingComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Weapon.h" />
   </ItemGroup>

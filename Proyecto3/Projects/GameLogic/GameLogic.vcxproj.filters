@@ -124,9 +124,6 @@
     <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\BombardierBehavior.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
@@ -154,6 +151,12 @@
     <ClCompile Include="..\..\src\GameLogic\GameManager.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Activable.cpp">
       <Filter>_GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\HitPostProcessingComponent.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,9 +268,6 @@
     <ClInclude Include="..\..\src\GameLogic\BombardierBehavior.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h">
       <Filter>Enemy</Filter>
     </ClInclude>
@@ -290,5 +290,11 @@
       <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
+    <ClInclude Include="..\..\src\GameLogic\HitPostProcessingComponent.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

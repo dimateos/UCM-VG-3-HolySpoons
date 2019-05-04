@@ -18,6 +18,7 @@ public:
 	//atm just left click to shoot
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void update(GameObject* o, double time);
+	virtual void receive(Message* msg);
 
 protected:
 	virtual void changeWeapon(int n);

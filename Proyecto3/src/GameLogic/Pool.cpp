@@ -5,8 +5,8 @@
 
 GameObject * nap_Pool::spawn()
 {
-	GameObject* tmp = GOFactory::GetGOPrefab(entityName); //creates a new GO based on the original
-	tmp->idPtr()->name_ = entityName + std::to_string(pool.size());
+	GameObject* tmp = GOFactory::GetGOPrefab(entityName); //creates a new GO based on the prefab
+	//tmp->id().name_ = entityName + std::to_string(pool.size()); //no so names are the expected
 	pool.push_back(tmp);
 	GameStateMachine::getSingleton()->currentState()->addGameObject(tmp);
 	return tmp;
@@ -26,11 +26,6 @@ nap_Pool::~nap_Pool()
 			pool[i] = nullptr;
 		}
 	}*/   //deleted by the gamestate
-
-	if (original != nullptr) {
-		delete original;
-		original = nullptr;
-	}
 }
 
 void nap_Pool::resetPool() {

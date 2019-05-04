@@ -12,7 +12,6 @@ private:
 public:
 	HPComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), InitHP(0), HP(0) {}
 	virtual ~HPComponent() {}
-
 	virtual void setUp();
 
 	inline int getHP() const { return HP; }
