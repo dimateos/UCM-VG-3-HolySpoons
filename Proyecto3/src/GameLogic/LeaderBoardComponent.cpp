@@ -43,21 +43,29 @@ void LeaderBoardComponent::readFromJSON()
 
 void LeaderBoardComponent::update(int newPunt)
 {
-	auto it = punt.begin();
-	bool found = false;
+	if (punt.size() < LIMIT) {
+		punt.push_back(newPunt);
+		std::sort(punt.begin(), punt.end(), greater<int>());
+		//name???
+		//better if we have one vector{ int, string }
+	}
+	else {
+		auto it = punt.begin();
+		bool found = false;
 
-	while(it != punt.end() && !found) {
-		if (newPunt > *it) {
-			//insert
-			it = punt.insert(it, newPunt);
-			punt.pop_back(); //pops the last element
+		while (it != punt.end() && !found) {
+			if (newPunt > *it) { //vector is sorted
+				//insert
+				it = punt.insert(it, newPunt);
+				punt.pop_back(); //pops the last element
 
-			//update names??
+				//update names??
 
-			found = true;
-		}
-		else {
-			it++;
+				found = true;
+			}
+			else {
+				it++;
+			}
 		}
 	}
 }
