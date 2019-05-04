@@ -122,3 +122,17 @@ material DebugOcean{
         }
     }
 }
+
+material portal {
+    technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture stone.jpg
+			}
+		}
+	}
+}
+
