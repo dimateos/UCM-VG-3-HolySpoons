@@ -12,7 +12,6 @@ enum MessageId // DIFFERENT MESSAGE IDs
 
 	//UI
 	ACTIVATE_UI,
-	ADD_SCORE,
 	CHECK_HP,
 	END_INV,
 	HP_DAMAGE,
@@ -29,6 +28,7 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	RESET_SPAWNER,
 	ACTIVE_SPAWNER,
 	ADD_ENEMY,
+	BULLET_HIT,
 
 	//CHANGE STATES
 	STATE_CHANGED,
@@ -49,9 +49,10 @@ struct Msg_PX_userPtr: public Message
 	nap_transform *trans_;
 };
 
-struct Msg_ADD_SCORE:public Message {
-	inline Msg_ADD_SCORE(int score_) : Message(ADD_SCORE), score_(score_) { }
+struct Msg_BULLET_HIT :public Message {
+	inline Msg_BULLET_HIT(int score, bool enemy) : Message(BULLET_HIT), score_(score), enemy_(enemy) { }
 	int score_;
+	bool enemy_;
 };
 
 struct Msg_HP_DAMAGE :public Message {

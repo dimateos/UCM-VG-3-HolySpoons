@@ -23,6 +23,7 @@ protected:
 	virtual void configActive();
 
 	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
+	bool enemy;
 };
 
 #endif /* BULLETHITABLE_H_ */

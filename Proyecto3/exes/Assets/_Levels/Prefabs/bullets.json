@@ -176,7 +176,8 @@
             "group": "enemy_comps"
           },
           "hp": 30,
-          "points": 0
+          "points": 0,
+          "enemy": false
         }
       }
     }

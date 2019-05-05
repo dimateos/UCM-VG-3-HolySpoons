@@ -128,14 +128,17 @@ bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
 
 void GameManager::receive(Message * msg)
 {
-	if (msg->id_ == ADD_SCORE) {
-		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
+	if (msg->id_ == BULLET_HIT) {
+		Msg_BULLET_HIT* aux = static_cast<Msg_BULLET_HIT*>(msg); // object hit by a bullet
+		addScore(aux->score_);
 		updateUI();
 		overlayComp->showPanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
 		hitTimer.setDuration(deathTime);
 		hitTimer.start();
-		enemies_--;
-		if (enemies_ == 0)nextRound(); // if you kill all the enemies -> next round
+		if (aux->enemy_) { // if the object was an enemy
+			enemies_--;
+			if (enemies_ == 0)nextRound(); // if you kill all the enemies -> next round
+		}
 	}
 	else if (msg->id_ == ENEMY_DAMAGE) {
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
