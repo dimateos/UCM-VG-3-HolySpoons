@@ -62,6 +62,7 @@
             "type": "PhysicsComponent",
             "group": "enemy_comps"
           },
+          "dynamic": false,
           "noGravity": true,
           "shape": {
             "type": "BOX",

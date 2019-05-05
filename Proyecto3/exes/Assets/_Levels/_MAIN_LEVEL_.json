@@ -23,6 +23,11 @@
         "z": 0.0
       }
     },
+    {
+      "id": {
+        "type": "sniper_spawner"
+      }
+    },
 
     {
       "id": {

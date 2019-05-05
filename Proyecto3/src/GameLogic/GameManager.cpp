@@ -99,6 +99,8 @@ void GameManager::setUp() {
 }
 
 void GameManager::update(GameObject * o, double time) {
+	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+
 	if (hitTimer.update(time)) {
 		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		overlayComp->hidePanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
