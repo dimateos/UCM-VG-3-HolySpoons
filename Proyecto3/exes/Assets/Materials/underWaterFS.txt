@@ -16,6 +16,6 @@ out vec4 fragColor;
 
 void main(){
     vec3 sceneColor = vec3(texture(RTT0, vUv0));
-    float lum = dot(sceneColor, mixColor);
-    fragColor= vec4(lum, lum, lum, 1.0);
+    vec3 lum = sceneColor * mixColor;
+    fragColor= vec4(lum, 1.0);
 }
