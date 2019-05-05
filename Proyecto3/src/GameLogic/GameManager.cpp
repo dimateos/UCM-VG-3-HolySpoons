@@ -29,6 +29,25 @@ void GameManager::updateUI()
 		LogSystem::Log("Componente HPComponent no establecido. No es posible mostrar HP", LogSystem::GM);
 
 	ScoreText->setCaption("SCORE: " + std::to_string(score_));
+	RoundText->setCaption("ROUND: " + std::to_string(round_));
+	MiniRoundText->setCaption(std::to_string(round_));
+}
+
+void GameManager::nextRound()
+{
+	round_++;
+	updateUI();
+
+	overlayComp->showPanelByName("ROUND_PANEL");
+	roundTimer.setDuration(roundTime);
+	roundTimer.start();
+
+	// destructible spawners -> reactive them
+	MessageSystem::getSingleton()->sendMessageGroup(&Message(ACTIVE_SPAWNER), "destructible_spawner");
+	// indestructuble spawners -> set their new enemies number to spawn (depending on the type of enemy that it spawns)
+	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "usual_spawner");
+	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "bombardier_spawner");
+	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "sniper_spawner");
 }
 
 void GameManager::setUp() {
@@ -49,10 +68,13 @@ void GameManager::setUp() {
 	overlayComp = static_cast<OverlayComponent*>(owner_->getComponent("canvas"));
 	overlayComp->hidePanelByName("HIT_MARKER_PANEL");
 	overlayComp->hidePanelByName("DEATH_MARKER_PANEL");
+	overlayComp->hidePanelByName("ROUND_PANEL");
 
 	// player HP and score
 	HPText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("HP_Text"));
 	ScoreText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("SCORE_Text"));
+	RoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("ROUND_Text"));
+	MiniRoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("MINI_ROUND_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
@@ -64,21 +86,25 @@ void GameManager::setUp() {
 	// hitMarker
 	Ogre::OverlayElement* hitMarker = rsi->getOverlayElement("HitMarker");
 	rsi->setOverlayElementCenteredPosition_rel(hitMarker, 0.5, 0.5);
+	hitTime = cfg_["hitTime"]; // hit marker duration
 
 	// deathMarker
 	Ogre::OverlayElement* deathMarker = rsi->getOverlayElement("DeathMarker");
 	rsi->setOverlayElementCenteredPosition_rel(deathMarker, 0.5, 0.5);
+	deathTime = cfg_["deathTime"]; // death marker duration
 
-	updateUI();
+	roundTime = cfg_["roundTime"]; // round UI duration
+
+	nextRound(); // round 1
 }
 
 void GameManager::update(GameObject * o, double time) {
-	if (timer.update(time)) {
+	if (hitTimer.update(time)) {
 		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		overlayComp->hidePanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
 	}
 
-	// or if the player has completed the round (NEXT ROUND state)
+	if(roundTimer.update(time))overlayComp->hidePanelByName("ROUND_PANEL");
 }
 
 bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
@@ -104,13 +130,15 @@ void GameManager::receive(Message * msg)
 		addScore(static_cast<Msg_ADD_SCORE*>(msg)->score_);
 		updateUI();
 		overlayComp->showPanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
-		timer.setDuration(0.3);
-		timer.start();
+		hitTimer.setDuration(deathTime);
+		hitTimer.start();
+		enemies_--;
+		if (enemies_ == 0)nextRound(); // if you kill all the enemies -> next round
 	}
 	else if (msg->id_ == ENEMY_DAMAGE) {
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
-		timer.setDuration(0.1);
-		timer.start();
+		hitTimer.setDuration(hitTime);
+		hitTimer.start();
 		MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, hitMarker_sound);
 	}
 	else if (msg->id_ == CHECK_HP) {
@@ -120,6 +148,9 @@ void GameManager::receive(Message * msg)
 			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PUSH_STATE), owner_, death_state);
 		}
 		updateUI();
+	}
+	else if (msg->id_ == ADD_ENEMY) { // when a spawner spawns another enemy, you will have to kill him
+		enemies_ += static_cast<Msg_ADD_ENEMY*>(msg)->num_;
 	}
 }
 

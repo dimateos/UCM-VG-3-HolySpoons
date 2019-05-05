@@ -41,7 +41,10 @@
           },
           "death_state": "push_death",
           "hitMarker_sound": "hitSound",
-          "json": "_PAUSE_LEVEL_"
+          "json": "_PAUSE_LEVEL_",
+          "hitTime":0.1,
+          "deathTime":0.3,
+          "roundTime":2.5
         },
         "mainMusic": {
           "id": {

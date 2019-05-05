@@ -4,7 +4,7 @@
       "id": {
         "name": "pref_spawner",
         "type": "pref_spawner",
-        "group": "spawns"
+        "group": "usual_spawner"
       },
       "pos": {
         "x": 0.0,
@@ -37,7 +37,7 @@
       "id": {
         "name": "pref_Enemyspawner",
         "type": "pref_Enemyspawner",
-        "group": "spawns"
+        "group": "destructible_spawner"
       },
       "pos": {
         "x": 0.0,
@@ -97,7 +97,7 @@
             "type": "BulletHittable",
             "group": "enemy_comps"
           },
-          "hp": 100,
+          "hp": 300,
           "points": 50
         },
         "att_light": {
@@ -126,7 +126,40 @@
       "id": {
         "name": "bombardier_spawner",
         "type": "bombardier_spawner",
-        "group": "spawns"
+        "group": "bombardier_spawner"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Components": {
+        "spawner": {
+          "id": {
+            "type": "Spawner",
+            "group": "test_comps"
+          },
+          "active": true,
+          "itemString": "pref_bombardier",
+          "default": 5,
+          "timer": 18.0,
+          "smart": false
+        },
+        "circular_movement": {
+          "id": {
+            "type": "CircularMovementComponent",
+            "group": "test_comps"
+          },
+          "Speed": 0.3,
+          "Radius": 50
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "sniper_spawner",
+        "type": "sniper_spawner",
+        "group": "sniper_spawner"
       },
       "pos": {
         "x": 0.0,

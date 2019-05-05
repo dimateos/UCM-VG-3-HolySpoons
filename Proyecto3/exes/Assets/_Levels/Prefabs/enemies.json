@@ -68,7 +68,7 @@
             "type": "BulletHittable",
             "group": "enemy_comps"
           },
-          "hp": 150,
+          "hp": 50,
           "points": 50
         },
         "att_light": {
@@ -159,7 +159,7 @@
             "type": "BulletHittable",
             "group": "enemy_comps"
           },
-          "hp": 160,
+          "hp": 100,
           "points": 250
         },
         "att_light": {
@@ -249,7 +249,7 @@
             "type": "BulletHittable",
             "group": "enemy_comps"
           },
-          "hp": 160,
+          "hp": 100,
           "points": 250
         },
         "att_light": {

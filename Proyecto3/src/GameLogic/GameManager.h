@@ -23,21 +23,34 @@ private:
 	OverlayComponent* overlayComp;
 	Ogre::TextAreaOverlayElement* HPText;
 	Ogre::TextAreaOverlayElement* ScoreText;
+	Ogre::TextAreaOverlayElement* RoundText;
+	Ogre::TextAreaOverlayElement* MiniRoundText;
 
-	napTimer timer;
+	// timers
+	napTimer hitTimer;
+	napTimer roundTimer;
+
+	// timer durations
+	float hitTime;
+	float deathTime;
+	float roundTime;
 
 	GameObject* player_;
 	HPComponent* playerHP_;
 
 	int score_;
+	int enemies_; // enemies to kill in the actual round
+	int round_;
 
 	std::string death_state;
 	std::string hitMarker_sound;
 
 	void updateUI();
+	void nextRound();
 
 public:
-	inline GameManager(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), score_(0) {};
+	inline GameManager(nap_json const & cfg, GameObject* owner) : 
+		Component(cfg, owner), score_(0), enemies_(0), round_(0) {};
 	inline virtual ~GameManager() { };
 	virtual void setUp();
 

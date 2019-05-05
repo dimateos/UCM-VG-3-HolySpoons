@@ -51,7 +51,19 @@ nap_vector3 Spawner::smartPositioning(nap_vector3 pos) {
 void Spawner::update(GameObject * o, double time) {
 	if (t.update(time)) {
 		t.start();	//Timer reset
-		spawn();
+
+		// numToSpawn == -1 -> infinite spawning
+		if (numToSpawn == -1) {
+			spawn();
+			// we add 1 to the GM foreach enemy spwaned
+			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1), 
+				GameStateMachine::getSingleton()->currentState()->getGM());
+		}
+		// numToSpawn > 0 -> limit of enemies to spawn
+		else if (numToSpawn > 0) {
+			spawn();
+			numToSpawn--;
+		}
 	}
 }
 
@@ -77,6 +89,18 @@ void Spawner::receive(Message * msg) {
 	if (msg->id_ == RESET_PULL) {
 		pol->resetPool();
 		t.start();
+	}
+	// when you reset a limited spawner, you reset its numToSpawn
+	else if (msg->id_ == RESET_SPAWNER) {
+		numToSpawn = static_cast<Msg_RESET_SPAWNER*>(msg)->num_;
+		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(numToSpawn),
+			GameStateMachine::getSingleton()->currentState()->getGM());
+	}
+	// when you reactive a ilimited spawner (destructible) you add himself to the GM (you will have to destroy it)
+	else if (msg->id_ == ACTIVE_SPAWNER) {
+		owner_->setActive(true);
+		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
+			GameStateMachine::getSingleton()->currentState()->getGM());
 	}
 }
 

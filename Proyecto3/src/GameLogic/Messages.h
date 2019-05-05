@@ -26,6 +26,9 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	HP_RESET,
 	RESET_PULL,
 	RESET_HP,
+	RESET_SPAWNER,
+	ACTIVE_SPAWNER,
+	ADD_ENEMY,
 
 	//CHANGE STATES
 	STATE_CHANGED,
@@ -60,6 +63,16 @@ struct Msg_PLAYER_DEAD :public Message {
 	inline Msg_PLAYER_DEAD(std::string name, int score) : Message(PLAYER_DEAD), name_(name), score_(score) { }
 	std::string name_;
 	int score_;
+};
+
+struct Msg_RESET_SPAWNER :public Message {
+	inline Msg_RESET_SPAWNER(int num) : Message(RESET_SPAWNER), num_(num) { }
+	int num_;
+};
+
+struct Msg_ADD_ENEMY :public Message {
+	inline Msg_ADD_ENEMY(int num) : Message(ADD_ENEMY), num_(num) { }
+	int num_;
 };
 
 #endif /* MESSAGES_H_ */

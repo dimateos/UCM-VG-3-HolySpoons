@@ -13,6 +13,7 @@ private:
 
 	bool smart = false;
 	float radius_;
+	int numToSpawn;
 
 	nap_Pool* pol = nullptr;
 	list<Component*> compList;
@@ -21,7 +22,7 @@ private:
 	nap_vector3 smartPositioning(nap_vector3 pos);
 
 public:
-	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
+	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), numToSpawn(-1) {};
 	virtual ~Spawner();
 
 	virtual void setUp();

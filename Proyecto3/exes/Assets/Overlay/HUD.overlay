@@ -65,4 +65,36 @@ overlay HUD
             material DeathMarkerMaterial
         }
     }
+
+    overlay_element ROUND_PANEL Panel
+    {
+        overlay_element ROUND_Text TextArea
+        {
+            metrics_mode relative
+            font_name HackReg
+            char_width 0.08
+            char_height 0.08
+            colour_top 1 1 1
+            colour_bottom 1 0 0
+            left 0.4
+            top 0.3
+            caption "ROUND "
+        }
+    }
+
+    overlay_element MINI_ROUND_PANEL Panel
+    {
+        overlay_element MINI_ROUND_Text TextArea
+        {
+            metrics_mode relative
+            font_name HackReg
+            char_width 0.04
+            char_height 0.04
+            colour_top 1 1 1
+            colour_bottom 1 0 0
+            left 0.95
+            top 0.02
+            caption ""
+        }
+    }
 }
