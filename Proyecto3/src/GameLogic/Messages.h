@@ -17,6 +17,7 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	END_INV,
 	HP_DAMAGE,
 	ENEMY_DAMAGE,
+	PLAYER_DEAD,
 
 	//PHYSX
 	PX_USERPTR,
@@ -53,6 +54,12 @@ struct Msg_ADD_SCORE:public Message {
 struct Msg_HP_DAMAGE :public Message {
 	inline Msg_HP_DAMAGE(int damage) : Message(HP_DAMAGE), damage_(damage) { }
 	int damage_;
+};
+
+struct Msg_PLAYER_DEAD :public Message {
+	inline Msg_PLAYER_DEAD(std::string name, int score) : Message(PLAYER_DEAD), name_(name), score_(score) { }
+	std::string name_;
+	int score_;
 };
 
 #endif /* MESSAGES_H_ */

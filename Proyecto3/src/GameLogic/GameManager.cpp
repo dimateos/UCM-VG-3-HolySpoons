@@ -115,8 +115,10 @@ void GameManager::receive(Message * msg)
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// gm has two pushComponents (pause and death), so we need to specify which one will push its state
-		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) // in this case (HP == 0) -> death state
+		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) { // in this case (HP == 0) -> death state
+			MessageSystem::getSingleton()->sendMessageGroup(&Msg_PLAYER_DEAD("random", this->score_), "leaderBoard");
 			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PUSH_STATE), owner_, death_state);
+		}
 		updateUI();
 	}
 }

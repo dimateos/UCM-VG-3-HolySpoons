@@ -120,7 +120,7 @@
             "id": {
                 "name": "leaderBoard",
                 "type": "leaderBoard",
-                "group": "ui"
+                "group": "leaderBoard"
             },
             "Components": {
                 "LeaderBoardComponent": {

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <LogSystem.h>
+#include "Messages.h"
 
 using json = nlohmann::json;
 
@@ -12,15 +13,22 @@ void LeaderBoardComponent::saveToJSON()
 
 	//save things
 	for (int i = 0; i < punt.size(); i++) {
-		j["Puntuaciones"][i] = punt[i];
-	}
-	for (int i = 0; i < names.size(); i++) {
-		j["Nombres"][i] = names[i];
+		j["Nombres"][i] = punt[i].first;
+		j["Puntuaciones"][i] = punt[i].second;
 	}
 
 	i << std::setw(3) << j; //pretty identacion para leer mejor el archivo
 	i.close(); //cierra el flujo
 }
+
+//operador comparador
+struct Pair_Comparator
+{
+	bool operator()(const std::pair<string, int> p1, const std::pair<string, int> p2) const
+	{
+		return p1.second > p2.second;
+	}
+};
 
 void LeaderBoardComponent::readFromJSON()
 {
@@ -33,33 +41,26 @@ void LeaderBoardComponent::readFromJSON()
 		nap_json j;
 		file >> j;
 		for (int i = 0; i < j["Puntuaciones"].size(); i++) {
-			punt.push_back(j["Puntuaciones"][i]);
-		}
-		for (int i = 0; i < j["Nombres"].size(); i++) {
-			names.push_back(j["Nombres"][i]);
+			punt.push_back({ j["Nombres"][i], j["Puntuaciones"][i] });
 		}
 	}
 }
 
-void LeaderBoardComponent::update(int newPunt)
+void LeaderBoardComponent::update(std::string name, int newPunt)
 {
 	if (punt.size() < LIMIT) {
-		punt.push_back(newPunt);
-		std::sort(punt.begin(), punt.end(), greater<int>());
-		//name???
-		//better if we have one vector{ int, string }
+		punt.push_back({ name, newPunt });
+		std::sort(punt.begin(), punt.end(), Pair_Comparator());
 	}
 	else {
 		auto it = punt.begin();
 		bool found = false;
 
 		while (it != punt.end() && !found) {
-			if (newPunt > *it) { //vector is sorted
+			if (newPunt > (*it).second) { //vector is sorted
 				//insert
-				it = punt.insert(it, newPunt);
+				it = punt.insert(it, { name, newPunt });
 				punt.pop_back(); //pops the last element
-
-				//update names??
 
 				found = true;
 			}
@@ -79,6 +80,10 @@ void LeaderBoardComponent::setUp() {
 
 void LeaderBoardComponent::receive(Message * msg)
 {
+	if (msg->id_ == PLAYER_DEAD) {
+		Msg_PLAYER_DEAD* p_msg = static_cast<Msg_PLAYER_DEAD*>(msg);
+		update(p_msg->name_, p_msg->score_);
+	}
 }
 
 #include "GOFactory.h"

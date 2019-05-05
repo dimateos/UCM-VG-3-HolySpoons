@@ -8,14 +8,13 @@ class LeaderBoardComponent: public Component
 private:
 	std::string jsonName = "test.json";
 	int LIMIT = 5;
-	std::vector<int> punt;
-	std::vector<std::string> names; //better if we have one vector {int, string}
+	std::vector<std::pair<string, int>> punt;
 	//std::vector<double> times;
 	void saveToJSON();
 	void readFromJSON();
-	void update(int newPunt);
+	void update(std::string name, int newPunt);
 public:
-	virtual ~LeaderBoardComponent() { /*saveToJSON();*/ };
+	virtual ~LeaderBoardComponent() { saveToJSON(); };
 	LeaderBoardComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 
 	virtual void setUp();
