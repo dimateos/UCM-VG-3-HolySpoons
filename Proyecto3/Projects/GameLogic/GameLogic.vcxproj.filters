@@ -159,6 +159,9 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\EliteBehavior.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -298,5 +301,8 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\EliteBehavior.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

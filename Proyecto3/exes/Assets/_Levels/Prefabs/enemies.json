@@ -13,6 +13,8 @@
             "group": "enemy_comps"
           },
           "noGravity": true,
+          "linDamp": 1,
+          "angDamp": 1,
           "shape": {
             "type": "BOX",
             "scale": {
@@ -116,6 +118,8 @@
             "group": "enemy_comps"
           },
           "noGravity": true,
+          "linDamp": 1,
+          "angDamp": 1,
           "shape": {
             "type": "BOX",
             "scale": {
@@ -206,12 +210,14 @@
             "group": "enemy_comps"
           },
           "noGravity": true,
+          "linDamp": 1,
+          "angDamp": 1,
           "shape": {
             "type": "BOX",
             "scale": {
-              "x": 7.0,
-              "y": 7.0,
-              "z": 7.0
+              "x": 5.0,
+              "y": 5.0,
+              "z": 5.0
             }
           }
         },
@@ -239,10 +245,10 @@
           },
           "speed": 8,
           "Target": "player",
-          "lowY": -8,
+          "lowY": -11,
           "highY": 4,
           "shotSpeed": 50,
-          "actionDelay": 1.5
+          "actionDelay": 1.4
         },
         "bullet_hittable": {
           "id": {
@@ -271,6 +277,78 @@
             "b": 1.0
           },
           "range": 5000
+        },
+        "auto_rotation": {
+          "id": {
+            "type": "AutoRotationComponent",
+            "group": "enemy_comps"
+          },
+          "Target": "player"
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "pref_elite",
+        "type": "pref_elite",
+        "group": "enemies"
+      },
+      "Components": {
+        "basic_phy": {
+          "id": {
+            "type": "PhysicsComponent",
+            "group": "enemy_comps"
+          },
+          "noGravity": true,
+          "linDamp": 1,
+          "angDamp": 1,
+          "shape": {
+            "type": "BOX",
+            "scale": {
+              "x": 5.0,
+              "y": 5.0,
+              "z": 5.0
+            }
+          }
+        },
+        "basic_ren": {
+          "id": {
+            "type": "RenderComponent",
+            "group": "enemy_comps"
+          },
+          "scale": {
+            "x": 300.0,
+            "y": 360.0,
+            "z": 300.0
+          },
+          "material": "Material",
+          "shape": {
+            "entity_name": "monkey",
+            "type": "MESH",
+            "mesh": "monkey.mesh"
+          }
+        },
+        "elite": {
+          "id": {
+            "type": "EliteBehavior",
+            "group": "enemy_comps"
+          },
+          "Target": "player",
+          "speed": 45,
+          "actionDelay": 2,
+          "shotSpeed": 50,
+          "lowY": 1,
+          "highY": 20,
+          "maxBullets": 3,
+          "maxJumps": 2
+        },
+        "bullet_hittable": {
+          "id": {
+            "type": "BulletHittable",
+            "group": "enemy_comps"
+          },
+          "hp": 300,
+          "points": 500
         },
         "auto_rotation": {
           "id": {

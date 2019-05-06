@@ -89,8 +89,7 @@
                 "group": "player_comps"
             },
             "relativeY": 3.0,
-            "relativeZ": 3.0,
-            "vel": 50
+            "relativeZ": 3.0
         },
 
         "att_light": {

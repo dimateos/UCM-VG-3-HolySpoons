@@ -141,7 +141,7 @@
             "group": "test_comps"
           },
           "active": true,
-          "itemString": "pref_bombardier",
+          "itemString": "pref_elite",
           "default": 5,
           "timer": 18.0,
           "smart": false
