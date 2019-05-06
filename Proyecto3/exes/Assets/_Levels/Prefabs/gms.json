@@ -22,7 +22,6 @@
             "group": "test_comps"
           },
           "key": "p",
-          "state": "Pause",
           "json": "_PAUSE_LEVEL_"
         },
         "push_death": {
@@ -31,7 +30,6 @@
             "group": "test_comps"
           },
           "key": "",
-          "state": "Death",
           "json": "_DEATH_LEVEL_"
         },
         "game_manager_comp": {
@@ -132,7 +130,6 @@
             "group": "test_comps"
           },
           "key": " ",
-          "state": "MainScene",
           "json": "_MAIN_LEVEL_"
         },
         "push_state_leader_board": {
@@ -141,7 +138,6 @@
             "group": "test_comps"
           },
           "key": "",
-          "state": "LeaderBoard",
           "json": "_LEADER_BOARD_LEVEL_"
         }
       }

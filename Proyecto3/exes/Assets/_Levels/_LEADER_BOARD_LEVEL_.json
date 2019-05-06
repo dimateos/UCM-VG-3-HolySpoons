@@ -1,6 +1,6 @@
 {
   "stateID_": "LeaderBoard",
-  "Manager":{
+  "Manager": {
     "id": {
       "type": "pref_gmLeaderBoard_go"
     }
@@ -17,11 +17,20 @@
       },
       "Components": {
         "button": {
+          "X": 0.95,
+          "Y": 0.0,
+          "W": 0.05,
+          "H": 0.05,
           "msgType": 1,
           "panelName": "LEADER_BOARD_PanelContainer",
           "materialName": "ButtonMaterial",
           "name": "go_to_menu_button"
         }
+      }
+    },
+    {
+      "id": {
+        "type": "showLeaderBoard"
       }
     }
   ]

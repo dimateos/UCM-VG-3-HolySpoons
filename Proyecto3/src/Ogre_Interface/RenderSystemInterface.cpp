@@ -272,6 +272,11 @@ void RenderSystemInterface::setOverlayElementCenteredPosition_abs(Ogre::OverlayE
 		y / getCamera()->getViewport()->getActualHeight() - e->getHeight() / 2);
 }
 
+void RenderSystemInterface::destroyOverlayElement(std::string name)
+{
+	overlayManager->destroyOverlayElement(name);
+}
+
 Ogre::OverlayElement * RenderSystemInterface::getOverlayElement(std::string name)
 {
 	return overlayManager->getOverlayElement(name);

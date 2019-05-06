@@ -32,6 +32,9 @@
     <Filter Include="Menu">
       <UniqueIdentifier>{a89fddf4-1304-4585-a320-5e4eeba1f5d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LeaderBoard">
+      <UniqueIdentifier>{5afdad81-916d-4b8d-add9-111f6485b3fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp">
@@ -158,9 +161,14 @@
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\EliteBehavior.cpp">
       <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp">
+      <Filter>LeaderBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\ShowLeaderBoardComponent.cpp">
+      <Filter>LeaderBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,9 +308,14 @@
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\EliteBehavior.h">
       <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h">
+      <Filter>LeaderBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\ShowLeaderBoardComponent.h">
+      <Filter>LeaderBoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
