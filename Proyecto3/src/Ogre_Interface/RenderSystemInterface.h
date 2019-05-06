@@ -157,11 +157,11 @@ public:
 	/*
 	*Set Top-font color, rgb values between and alpha value [0, 1]
 	*/
-	void setTextColourTop(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
+	void setTextColourTop(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I = 1.0f);
 	/*
 	 *Set Dropshadow color, rgb values and alpha value between [0, 1]
 	 */
-	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I);
+	void setTextColourBot(Ogre::TextAreaOverlayElement* element, float R, float G, float B, float I = 1.0f);
 
 	/*
 	 *create overlay element
@@ -191,6 +191,10 @@ public:
 	 */
 	void setOverlayElementCenteredPosition_rel(Ogre::OverlayElement* e, float x, float y);
 	void setOverlayElementCenteredPosition_abs(Ogre::OverlayElement* e, float x, float y);
+	/*
+	 *destroy the overlay element with the given name
+	 */
+	void destroyOverlayElement(std::string name);
 
 	/*
 	 * Returns the dest rotation

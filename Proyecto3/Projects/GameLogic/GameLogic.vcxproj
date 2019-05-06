@@ -54,6 +54,7 @@
     <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Pool.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\ShowLeaderBoardComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SkyBoxComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SniperBehavior.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Pool.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\ShowLeaderBoardComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h" />
     <ClInclude Include="..\..\src\GameLogic\SkyBoxComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h" />
