@@ -2,12 +2,13 @@
 #define PushStateComponent_H_
 
 #include "Component.h"
+class GameState;
 class PushStateComponent : public Component
 {
 private:
 	SDL_Keycode key;
-	std::string state;
 	std::string json;
+	GameState* state = nullptr;
 	void pushState();
 
 public:

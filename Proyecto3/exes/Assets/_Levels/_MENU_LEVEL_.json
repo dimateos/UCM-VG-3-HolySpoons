@@ -1,6 +1,6 @@
 {
   "stateID_": "Menu",
-  "Manager":{
+  "Manager": {
     "id": {
       "type": "pref_gmMenu_go"
     }
@@ -14,6 +14,24 @@
     {
       "id": {
         "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "listener": "push_state_main"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "Y": 0.75,
+          "materialName": "ButtonMaterial",
+          "name": "leader_board_button",
+          "listener": "push_state_leader_board"
+        }
       }
     },
     {

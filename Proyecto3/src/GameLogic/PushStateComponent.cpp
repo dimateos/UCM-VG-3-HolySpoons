@@ -20,8 +20,7 @@ void PushStateComponent::setUp() {
 		key = SDL_Keycode(keycode[0]);
 	}
 
-	string s = this->cfg_["state"], j = this->cfg_["json"];
-	state = s;
+	string  j = this->cfg_["json"];
 	json = j;
 }
 
@@ -31,8 +30,8 @@ void PushStateComponent::pushState()
 	static_cast<OverlayComponent*>(owner_->getComponent("canvas"))->hideOverlay();
 
 	//cambio de estado
-	GameState* s = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
-	GameStateMachine::getSingleton()->pushState(s);
+	state = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT
+	GameStateMachine::getSingleton()->pushState(state);
 }
 
 bool PushStateComponent::handleEvents(GameObject * o, const SDL_Event & evt)

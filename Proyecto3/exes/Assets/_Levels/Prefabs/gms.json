@@ -126,7 +126,7 @@
           "overlay_name": "MENU",
           "panel_container": "MENU_PanelContainer"
         },
-        "push_state": {
+        "push_state_main": {
           "id": {
             "type": "PushStateComponent",
             "group": "test_comps"
@@ -134,6 +134,15 @@
           "key": " ",
           "state": "MainScene",
           "json": "_MAIN_LEVEL_"
+        },
+        "push_state_leader_board": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "LeaderBoard",
+          "json": "_LEADER_BOARD_LEVEL_"
         }
       }
     },
@@ -151,6 +160,31 @@
           },
           "overlay_name": "DEATH",
           "panel_container": "DEATH_PANEL"
+        },
+        "pop_state": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "Menu"
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "gmLeaderBoard_go",
+        "type": "pref_gmLeaderBoard_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "ui_overlay"
+          },
+          "overlay_name": "LEADER_BOARD",
+          "panel_container": "LEADER_BOARD_PanelContainer"
         },
         "pop_state": {
           "id": {
