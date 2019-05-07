@@ -1,34 +1,36 @@
 {
-    "controls": [
-      {"FORWARD": "w"},
-      {"BACKWARD": "s"},
-      {"LEFT": "a"},
-      {"RIGHT": "d"},
+  "name": "Paco",
 
-      {"FIRST": "1"},
-      {"SECOND": "2"},
-      {"THIRD": "3"},
+  "controls": [
+    { "FORWARD": "w" },
+    { "BACKWARD": "s" },
+    { "LEFT": "a" },
+    { "RIGHT": "d" },
 
-      {"PAUSE": "p"},
-      {"JUMP": "space"},
-      {"RUN": "shift"}
-    ],
+    { "FIRST": "1" },
+    { "SECOND": "2" },
+    { "THIRD": "3" },
 
-    "camera": [
-      {"cam_fovY": 80.00},
-      {"cam_sensX": 1.25},
-      {"cam_sensY": 1.25}
-    ],
+    { "PAUSE": "p" },
+    { "JUMP": "space" },
+    { "RUN": "shift" }
+  ],
 
-    "holding": [
-      {"hold_zoom": true},
-      {"hold_sprint": true}
-    ],
+  "camera": [
+    { "cam_fovY": 80.00 },
+    { "cam_sensX": 1.25 },
+    { "cam_sensY": 1.25 }
+  ],
 
-    "sound": [
-      {"sound_music": 1.0},
-      {"sound_sfx": 1.0}
-    ],
+  "holding": [
+    { "hold_zoom": true },
+    { "hold_sprint": true }
+  ],
 
-    "appConfigPath": "./Assets/globalCFG.json"
+  "sound": [
+    { "sound_music": 1.0 },
+    { "sound_sfx": 1.0 }
+  ],
+
+  "appConfigPath": "./Assets/globalCFG.json"
 }

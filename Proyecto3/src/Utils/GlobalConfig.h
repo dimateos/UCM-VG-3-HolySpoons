@@ -14,6 +14,7 @@ typedef signed __int32 SDL_Keycode; //fowarded
 class GlobalCFG
 {
 public:
+	static std::string name;
 	static std::map<std::string, std::string> paths, strings;
 	static std::map<std::string, bool> flags;
 	static std::map<std::string, float> floats;

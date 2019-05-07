@@ -5,6 +5,9 @@
 #include <fstream>	//files
 #include <iostream> //raw debuggin
 
+//string
+std::string GlobalCFG::name = "";
+
 //maps
 std::map<std::string, std::string> GlobalCFG::paths = {};
 std::map<std::string, std::string> GlobalCFG::strings = {};
@@ -14,6 +17,10 @@ std::map<std::string, SDL_Keycode> GlobalCFG::keys = {};
 
 void GlobalCFG::loadIniCFG() {
 	nap_json j = loadJson(iniCFG_path);
+
+	//name loading
+	std::string temp = j["name"];
+	name = temp;
 
 	//base user config set here for easy access
 	readKeys(j["controls"]);

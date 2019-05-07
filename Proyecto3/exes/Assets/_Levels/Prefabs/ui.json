@@ -77,9 +77,9 @@
                         "group": "ui_comps"
                     },
                     "panelName": "LEADER_BOARD_PanelContainer",
-                    "offset_X": 0.3,
-                    "offset_Y": 0.2,
-                    "top_distance": 0.075,
+                    "offset_X": 0.33,
+                    "offset_Y": 0.14,
+                    "top_distance": 0.3,
                     "btw_distance": 350,
                     "charHeight": 0.08,
                     "color_top": {"r": 1.0, "g": 1.0, "b": 1.0},
