@@ -87,7 +87,7 @@ void Game::run() {
 	TimeSystem::StartCounter();
 #endif
 
-	while (!exit_) {
+	while (!exit_ && !gsm_->stackIsEmpty()) {
 #ifdef FIXED_STEP
 		if (t < (1.0f / 30.0f)) {
 			//fprintf(stderr, "Time: %f\n", stepTime);
@@ -142,6 +142,7 @@ void Game::handleEvents() {
 			handled = true;
 			stop();
 		}
+#if _DEBUG
 		else if (evt.type == SDL_KEYDOWN) {
 			switch (evt.key.keysym.sym) {
 				case SDLK_ESCAPE:
@@ -150,6 +151,8 @@ void Game::handleEvents() {
 					break;
 			}
 		}
+
+#endif
 
 		if (!handled) handled = renderManager_->handleEvents(evt);
 		if (!handled) handled = gsm_->handleEvents(evt);

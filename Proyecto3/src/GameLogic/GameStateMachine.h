@@ -41,6 +41,7 @@ public:
 	void popState();
 	void clearStates();
 	void clearToState(GameState* pState);
+	bool const stackIsEmpty() const;
 };
 
 #endif /* GAMESTATEMACHINE_H_ */

@@ -40,9 +40,9 @@
           "death_state": "push_death",
           "hitMarker_sound": "hitSound",
           "json": "_PAUSE_LEVEL_",
-          "hitTime":0.1,
-          "deathTime":0.3,
-          "roundTime":2.5
+          "hitTime": 0.1,
+          "deathTime": 0.3,
+          "roundTime": 2.5
         },
         "mainMusic": {
           "id": {
@@ -139,6 +139,12 @@
           },
           "key": "",
           "json": "_LEADER_BOARD_LEVEL_"
+        },
+        "QuitGameComponent": {
+          "id": {
+            "type": "QuitGameComponent",
+            "group": "test_comps"
+          }
         }
       }
     },

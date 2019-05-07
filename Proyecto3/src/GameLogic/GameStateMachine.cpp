@@ -160,6 +160,11 @@ void GameStateMachine::clearToState(GameState *newState) {
 	pushState(newState);
 }
 
+bool const GameStateMachine::stackIsEmpty() const
+{
+	return states_.empty();
+}
+
 //////////////////////////////////////////////////////////////////////////////
 
 //quizas podrian recorrer directamente ellos las listas de entidades y nos ahorramos un step

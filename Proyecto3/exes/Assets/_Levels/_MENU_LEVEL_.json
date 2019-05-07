@@ -101,6 +101,23 @@
           "Speed": -1.5
         }
       }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "msgType": 2,
+          "X": 0.95,
+          "Y": 0.0,
+          "W": 0.05,
+          "H": 0.05,
+          "materialName": "ButtonMaterial",
+          "name": "quit_game_button",
+          "listener": "QuitGameComponent"
+        }
+      }
     }
   ]
 }

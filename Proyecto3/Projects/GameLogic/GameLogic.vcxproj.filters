@@ -170,6 +170,12 @@
     <ClCompile Include="..\..\src\GameLogic\ShowLeaderBoardComponent.cpp">
       <Filter>LeaderBoard</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\QuitGameComponent.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\HoverButton.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -316,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\ShowLeaderBoardComponent.h">
       <Filter>LeaderBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\QuitGameComponent.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\HoverButton.h">
+      <Filter>Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

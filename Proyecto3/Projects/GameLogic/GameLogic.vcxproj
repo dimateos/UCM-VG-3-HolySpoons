@@ -42,6 +42,7 @@
     <ClCompile Include="..\..\src\GameLogic\GlobalAmbientLightComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HeavyBullethit.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\HoverButton.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp" />
@@ -53,6 +54,7 @@
     <ClCompile Include="..\..\src\GameLogic\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PhysicsControllerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Pool.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\QuitGameComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\ShowLeaderBoardComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp" />
@@ -89,6 +91,7 @@
     <ClInclude Include="..\..\src\GameLogic\GameObject.h" />
     <ClInclude Include="..\..\src\GameLogic\Activable.h" />
     <ClInclude Include="..\..\src\GameLogic\HeavyBulletHit.h" />
+    <ClInclude Include="..\..\src\GameLogic\HoverButton.h" />
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h" />
@@ -104,6 +107,7 @@
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PhysicsControllerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Pool.h" />
+    <ClInclude Include="..\..\src\GameLogic\QuitGameComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\RenderComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\ShowLeaderBoardComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h" />
