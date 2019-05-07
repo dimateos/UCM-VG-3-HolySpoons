@@ -6,7 +6,7 @@ overlay DEATH
         overlay_element DEATH_Text TextArea
         {
             metrics_mode relative
-            font_name HackReg
+            font_name Metal-Mania
             char_width 0.08
             char_height 0.08
             colour_top 1 1 1

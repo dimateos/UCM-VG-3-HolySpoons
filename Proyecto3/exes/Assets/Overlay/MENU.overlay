@@ -11,7 +11,7 @@ overlay MENU
 		overlay_element MENU_Text TextArea
 		{
             metrics_mode relative
-            font_name HackReg
+            font_name Metal-Mania
             char_height 0.0
             colour_top 0.4 0.4 0.8
             colour_bottom 1 0.2 0.2

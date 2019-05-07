@@ -133,7 +133,7 @@ public:
 	/*
 	 *creates text element
 	*/
-	Ogre::TextAreaOverlayElement* createText(std::string nodeName, std::string text, int x = 0, int y = 0, std::string fontName = "HackReg");
+	Ogre::TextAreaOverlayElement* createText(std::string nodeName, std::string text, int x = 0, int y = 0, std::string fontName = "Metal-Mania");
 	/*
 	*SetText with std::string
 	*/

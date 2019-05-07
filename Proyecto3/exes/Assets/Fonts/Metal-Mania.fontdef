@@ -1,0 +1,7 @@
+font Metal-Mania
+{
+type truetype
+source Metal-Mania.ttf
+size 16
+resolution 96
+}

@@ -11,7 +11,7 @@ overlay PAUSE
 		overlay_element PAUSE_Text TextArea
 		{
             metrics_mode relative
-            font_name HackReg
+            font_name Metal-Mania
             char_height 0.05
             colour_top 1 1 1
             colour_bottom 1 1 1
