@@ -33,6 +33,27 @@
         "type": "stomper_spawner"
       }
     },
+    {
+      "id": {
+        "type": "bombardier_spawner"
+      },
+      "pos": {
+        "x": -40.0,
+        "y": 30.0,
+        "z": 0.0
+      }
+    },
+
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": -1.0,
+        "z": 0.0
+      }
+    },
 
     {
       "id": {
@@ -62,28 +83,6 @@
       "pos": {
         "x": 0.0,
         "y": -6.0,
-        "z": 0.0
-      }
-    },
-
-    {
-      "id": {
-        "type": "bombardier_spawner"
-      },
-      "pos": {
-        "x": -40.0,
-        "y": 30.0,
-        "z": 0.0
-      }
-    },
-
-    {
-      "id": {
-        "type": "pref_Enemyspawner"
-      },
-      "pos": {
-        "x": 80.0,
-        "y": -1.0,
         "z": 0.0
       }
     },
