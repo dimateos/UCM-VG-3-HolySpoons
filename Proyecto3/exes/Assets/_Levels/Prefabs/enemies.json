@@ -289,8 +289,8 @@
     },
     {
       "id": {
-        "name": "pref_elite",
-        "type": "pref_elite",
+        "name": "pref_stomper",
+        "type": "pref_stomper",
         "group": "enemies"
       },
       "Components": {
@@ -328,9 +328,9 @@
             "mesh": "monkey.mesh"
           }
         },
-        "elite": {
+        "stomper": {
           "id": {
-            "type": "EliteBehavior",
+            "type": "StomperBehavior",
             "group": "enemy_comps"
           },
           "Target": "player",

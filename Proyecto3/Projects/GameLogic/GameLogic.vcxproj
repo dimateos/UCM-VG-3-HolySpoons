@@ -31,7 +31,6 @@
     <ClCompile Include="..\..\src\GameLogic\CameraMenu.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\EliteBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FPSCamera.cpp" />
@@ -60,6 +59,7 @@
     <ClCompile Include="..\..\src\GameLogic\SniperBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\StomperBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HitPostProcessingComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp" />
@@ -77,7 +77,6 @@
     <ClInclude Include="..\..\src\GameLogic\CameraMenu.h" />
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\EliteBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\GameManager.h" />
     <ClInclude Include="..\..\src\GameLogic\GameState.h" />
@@ -111,6 +110,7 @@
     <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
+    <ClInclude Include="..\..\src\GameLogic\StomperBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\HitPostProcessingComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h" />

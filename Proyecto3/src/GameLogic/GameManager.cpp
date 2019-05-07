@@ -44,10 +44,8 @@ void GameManager::nextRound()
 
 	// destructible spawners -> reactive them
 	MessageSystem::getSingleton()->sendMessageGroup(&Message(ACTIVE_SPAWNER), "destructible_spawner");
-	// indestructuble spawners -> set their new enemies number to spawn (depending on the type of enemy that it spawns)
-	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "usual_spawner");
-	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "bombardier_spawner");
-	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(1), "sniper_spawner");
+	// indestructuble spawners -> set their new enemies number to spawn (depending on the round)
+	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(round_), "indestructible_spawner");
 }
 
 void GameManager::setUp() {
@@ -95,11 +93,15 @@ void GameManager::setUp() {
 
 	roundTime = cfg_["roundTime"]; // round UI duration
 
+}
+
+void GameManager::lateSetUp()
+{
 	nextRound(); // round 1
 }
 
 void GameManager::update(GameObject * o, double time) {
-	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
 
 	if (hitTimer.update(time)) {
 		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
