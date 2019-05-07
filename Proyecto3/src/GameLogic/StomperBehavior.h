@@ -1,6 +1,6 @@
 //Nap_Time_Studios
-#ifndef ELITEBEHAVIOR_H_
-#define ELITEBEHAVIOR_H_
+#ifndef StomperBehavior_H_
+#define StomperBehavior_H_
 
 #include "Component.h"
 #include "Pool.h"
@@ -8,7 +8,7 @@
 
 
 
-class EliteBehavior :
+class StomperBehavior :
 	public Component
 {
 protected:
@@ -36,12 +36,12 @@ protected:
 
 public:
 
-	inline EliteBehavior(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-	virtual ~EliteBehavior() {};
+	inline StomperBehavior(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
+	virtual ~StomperBehavior() {};
 
 	virtual void setUp();
 
 	virtual void update(GameObject* ent, double time);
 };
 
-#endif /* ELITEBEHAVIOR_H_ */
+#endif /* StomperBehavior_H_ */

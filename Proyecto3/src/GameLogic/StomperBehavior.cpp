@@ -1,4 +1,4 @@
-#include "EliteBehavior.h"
+#include "StomperBehavior.h"
 #include "GameStateMachine.h"
 #include "LogSystem.h"
 #include <math.h>
@@ -10,7 +10,7 @@
 #include <Transforms.h>
 
 #define defInitialBullets 10
-void EliteBehavior::moveBehavior(float time)
+void StomperBehavior::moveBehavior(float time)
 {
 	if (t.update(time) || t.isActive()) return;
 
@@ -29,7 +29,7 @@ void EliteBehavior::moveBehavior(float time)
 	}
 }
 
-void EliteBehavior::jumpBehavior(float time)
+void StomperBehavior::jumpBehavior(float time)
 {
 	if (t.update(time) || t.isActive()) return;
 
@@ -49,7 +49,7 @@ void EliteBehavior::jumpBehavior(float time)
 }
 
 
-void EliteBehavior::rocketBehavior(float time)
+void StomperBehavior::rocketBehavior(float time)
 {
 	if (t.update(time) || t.isActive()) return;
 
@@ -70,7 +70,7 @@ void EliteBehavior::rocketBehavior(float time)
 	}
 }
 
-void EliteBehavior::shieldBehavior(float time)
+void StomperBehavior::shieldBehavior(float time)
 {
 	if (t.update(time) || t.isActive()) return;
 
@@ -81,7 +81,9 @@ void EliteBehavior::shieldBehavior(float time)
 	o->setActive();
 	o->setPosition(owner_->getPosition() + (dir * (10 - i)));
 	MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), o);
-	//MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), o->id().name_, "pruebaMusic3d");
+
+	MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
+		GameStateMachine::getSingleton()->currentState()->getGM());
 	i++;
 
 	if (i < maxBullets)
@@ -93,7 +95,7 @@ void EliteBehavior::shieldBehavior(float time)
 	}
 }
 
-void EliteBehavior::shoot()
+void StomperBehavior::shoot()
 {
 	nap_vector3 ownerPos = owner_->getPosition(), dir;
 	GameObject* o;
@@ -108,7 +110,7 @@ void EliteBehavior::shoot()
 	
 }
 
-void EliteBehavior::configActive()
+void StomperBehavior::configActive()
 {
 	status = move;
 	lastAttack = 3;
@@ -116,7 +118,7 @@ void EliteBehavior::configActive()
 	owner_->setPosition(positions[rand() % positions.size()] + nap_vector3(0, lowY, 0));
 }
 
-void EliteBehavior::setUp()
+void StomperBehavior::setUp()
 {
 	if (isInited()) return;
 	setInited();
@@ -170,7 +172,7 @@ void EliteBehavior::setUp()
 	owner_->setPosition(positions[rand() % positions.size()]);
 }
 
-void EliteBehavior::update(GameObject* ent, double time)
+void StomperBehavior::update(GameObject* ent, double time)
 {
 	owner_->setPosition(nap_vector3(owner_->getPosition().x_, baseY, owner_->getPosition().z_));
 	switch (status)
@@ -192,4 +194,4 @@ void EliteBehavior::update(GameObject* ent, double time)
 	}
 }
 
-REGISTER_TYPE(EliteBehavior);
+REGISTER_TYPE(StomperBehavior);

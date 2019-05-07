@@ -4,7 +4,7 @@
       "id": {
         "name": "pref_spawner",
         "type": "pref_spawner",
-        "group": "usual_spawner"
+        "group": "indestructible_spawner"
       },
       "pos": {
         "x": 0.0,
@@ -127,7 +127,7 @@
       "id": {
         "name": "bombardier_spawner",
         "type": "bombardier_spawner",
-        "group": "bombardier_spawner"
+        "group": "indestructible_spawner"
       },
       "pos": {
         "x": 0.0,
@@ -141,7 +141,7 @@
             "group": "test_comps"
           },
           "active": true,
-          "itemString": "pref_elite",
+          "itemString": "pref_bombardier",
           "default": 5,
           "timer": 18.0,
           "smart": false
@@ -160,7 +160,7 @@
       "id": {
         "name": "sniper_spawner",
         "type": "sniper_spawner",
-        "group": "sniper_spawner"
+        "group": "indestructible_spawner"
       },
       "pos": {
         "x": 0.0,
@@ -175,6 +175,39 @@
           },
           "active": true,
           "itemString": "pref_sniper",
+          "default": 5,
+          "timer": 18.0,
+          "smart": false
+        },
+        "circular_movement": {
+          "id": {
+            "type": "CircularMovementComponent",
+            "group": "test_comps"
+          },
+          "Speed": 0.3,
+          "Radius": 50
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "stomper_spawner",
+        "type": "stomper_spawner",
+        "group": "indestructible_spawner"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Components": {
+        "spawner": {
+          "id": {
+            "type": "Spawner",
+            "group": "test_comps"
+          },
+          "active": true,
+          "itemString": "pref_stomper",
           "default": 5,
           "timer": 18.0,
           "smart": false

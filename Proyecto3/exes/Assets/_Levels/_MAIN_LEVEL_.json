@@ -30,6 +30,11 @@
     },
     {
       "id": {
+        "type": "stomper_spawner"
+      }
+    },
+    {
+      "id": {
         "type": "bombardier_spawner"
       },
       "pos": {
@@ -38,6 +43,7 @@
         "z": 0.0
       }
     },
+
     {
       "id": {
         "type": "pref_Enemyspawner"

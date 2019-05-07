@@ -53,6 +53,7 @@ public:
 		Component(cfg, owner), score_(0), enemies_(0), round_(0) {};
 	inline virtual ~GameManager() { };
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	virtual void update(GameObject* o, double time);
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);

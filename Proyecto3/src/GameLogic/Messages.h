@@ -68,8 +68,8 @@ struct Msg_PLAYER_DEAD :public Message {
 };
 
 struct Msg_RESET_SPAWNER :public Message {
-	inline Msg_RESET_SPAWNER(int num) : Message(RESET_SPAWNER), num_(num) { }
-	int num_;
+	inline Msg_RESET_SPAWNER(int round) : Message(RESET_SPAWNER), round_(round) { }
+	int round_;
 };
 
 struct Msg_ADD_ENEMY :public Message {
