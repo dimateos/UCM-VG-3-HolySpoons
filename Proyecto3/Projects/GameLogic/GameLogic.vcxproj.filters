@@ -161,6 +161,9 @@
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\EliteBehavior.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp">
       <Filter>LeaderBoard</Filter>
     </ClCompile>
@@ -172,8 +175,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\HoverButton.cpp">
       <Filter>Menu</Filter>
-    <ClCompile Include="..\..\src\GameLogic\StomperBehavior.cpp">
-      <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +314,9 @@
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\EliteBehavior.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h">
       <Filter>LeaderBoard</Filter>
     </ClInclude>
@@ -324,8 +328,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\HoverButton.h">
       <Filter>Menu</Filter>
-    <ClInclude Include="..\..\src\GameLogic\StomperBehavior.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
