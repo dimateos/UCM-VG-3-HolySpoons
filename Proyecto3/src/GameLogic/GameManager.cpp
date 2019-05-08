@@ -172,7 +172,7 @@ void GameManager::receive(Message * msg)
 		hitTimer.start();
 		if (aux->enemy_) { // if the object was an enemy
 			enemies_--;
-			if (enemies_ == 0)nextRound(); // if you kill all the enemies -> next round
+			if (enemies_ <= 0)nextRound(); // if you kill all the enemies -> next round
 		}
 	}
 	else if (msg->id_ == ENEMY_DAMAGE) {
@@ -186,6 +186,9 @@ void GameManager::receive(Message * msg)
 		if (playerHP_ != nullptr && playerHP_->getHP() <= 0) { // in this case (HP == 0) -> death state
 			MessageSystem::getSingleton()->sendMessageGroup(&Msg_PLAYER_DEAD(GlobalCFG::name, this->score_), "leaderBoard");
 			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PUSH_STATE), owner_, death_state);
+		}
+		else if (playerHP_ != nullptr && playerHP_->getHP() <= playerHP_->getInitHP() / 4) { //4lel
+			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(POST_PROCESSING_HEALTH), GameStateMachine::getSingleton()->currentState()->getPlayer(), "lowHealthPostProcessing");
 		}
 		updateUI();
 	}

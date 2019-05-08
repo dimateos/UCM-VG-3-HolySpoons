@@ -51,15 +51,7 @@
                         "type": "BasicPostProcessingComponent",
                         "group": "postProcessing_comps"
                     },
-                    "CompositorName": "BloodMix",
-                    "EnabledOnStart": true
-                },
-                "BasicPostProcessingComponent2": {
-                    "id": {
-                        "type": "BasicPostProcessingComponent",
-                        "group": "postProcessing_comps"
-                    },
-                    "CompositorName": "Test",
+                    "CompositorName": "Luminance",
                     "EnabledOnStart": true
                 }
             }

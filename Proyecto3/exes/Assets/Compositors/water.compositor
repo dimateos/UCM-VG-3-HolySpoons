@@ -1,0 +1,20 @@
+compositor Water{ //nombre
+    technique{
+        //temporary textures for use in subsequient target passes
+        //dimensions based on the physical dimensios of the viewport to wich compositor is attached
+        texture RTT0 target_width target_height PF_R8G8B8A8
+
+        target RTT0{ //render target texture
+            input previous //start with the previous content of the viewport
+        }  //from original scene or from previous compositor in the chain
+
+        target_output{ //final render output
+            input none //start without initializing
+
+            pass render_quad{ //render a fullscreen quad with
+                material WaterMat //the luminance material
+                input 0  RTT0 //the luminance material
+            }    //para usar la textura en el fragment shader del material
+        }
+    }
+}

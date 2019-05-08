@@ -6,8 +6,6 @@ uniform vec3 mixColor;  //Color a mezclar, por si varia segun el mapa
 
 uniform sampler2D RTT0; //textura de la escena
 
-
-
 out vec4 fragColor;
 
 //weight vector for luminance in sRGB

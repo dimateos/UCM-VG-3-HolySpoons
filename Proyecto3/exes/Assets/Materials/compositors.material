@@ -132,3 +132,126 @@ material BloodMixMat{
         }
     }
 }
+
+//-------------------------------------LAVA (MIX)------------------------------
+vertex_program LavaVS glsl
+{
+    source vertexShaderSimple.txt //reutilizamos del vertexShaderSimple
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program LavaFS glsl
+{
+    source underWaterFS.txt
+    default_params{
+        param_named RTT0 int 0 //textura con la escena
+        param_named mixColor float3 0.8 0.0 0.0
+    }
+}
+
+material LavaMat{
+    technique{
+        pass{
+            depth_check off //descativamos el depth-buffer
+            depth_write off
+
+            vertex_program_ref LavaVS{
+
+            }
+
+            fragment_program_ref LavaFS{
+
+            }
+
+            texture_unit RTT0{
+                //sin imagen de archivo -> render target previo
+                filtering none //resolucion del viewport
+            }
+        }
+    }
+}
+
+//-------------------------------------WATER (MIX)------------------------------
+vertex_program WaterVS glsl
+{
+    source vertexShaderSimple.txt //reutilizamos del vertexShaderSimple
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program WaterFS glsl
+{
+    source underWaterFS.txt
+    default_params{
+        param_named RTT0 int 0 //textura con la escena
+        param_named mixColor float3 0.0 0.0 0.8
+    }
+}
+
+material WaterMat{
+    technique{
+        pass{
+            depth_check off //descativamos el depth-buffer
+            depth_write off
+
+            vertex_program_ref WaterVS{
+
+            }
+
+            fragment_program_ref WaterFS{
+
+            }
+
+            texture_unit RTT0{
+                //sin imagen de archivo -> render target previo
+                filtering none //resolucion del viewport
+            }
+        }
+    }
+}
+
+//-------------------------------------CLOUD (MIX)------------------------------
+vertex_program CloudVS glsl
+{
+    source vertexShaderSimple.txt //reutilizamos del vertexShaderSimple
+    default_params
+    {
+        param_named_auto modelViewProjMat worldviewproj_matrix
+    }
+}
+
+fragment_program CloudFS glsl
+{
+    source underWaterFS.txt
+    default_params{
+        param_named RTT0 int 0 //textura con la escena
+        param_named mixColor float3 0.5 0.5 0.5
+    }
+}
+
+material CloudMat{
+    technique{
+        pass{
+            depth_check off //descativamos el depth-buffer
+            depth_write off
+
+            vertex_program_ref CloudVS{
+
+            }
+
+            fragment_program_ref CloudFS{
+
+            }
+
+            texture_unit RTT0{
+                //sin imagen de archivo -> render target previo
+                filtering none //resolucion del viewport
+            }
+        }
+    }
+}

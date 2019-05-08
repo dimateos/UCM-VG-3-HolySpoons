@@ -15,6 +15,8 @@ void BasicPostProcessingComponent::setUp() {
 	if (FIND(this->cfg_, "EnabledOnStart")) enabledOnStart = this->cfg_["EnabledOnStart"];
 	currentlyActive = enabledOnStart;
 
+	if (FIND(this->cfg_, "Message")) message_ = this->cfg_["Message"];
+
 	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabledOnStart);
 }
 
@@ -38,6 +40,10 @@ void BasicPostProcessingComponent::receive(Message * msg)
 {
 	if (msg->id_ == MessageId::STATE_CHANGED) {
 		RenderSystemInterface::getSingleton()->addCompositor(compositorName); //changing ogre scene resets the compositor
+		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
+	}
+	else if (msg->id_ == (MessageId)message_) {
+		currentlyActive = !currentlyActive;
 		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}
 }

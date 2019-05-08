@@ -18,6 +18,7 @@ public:
 	inline void resetHP() { HP = InitHP; }
 	inline void subHP(int damage) { HP -= damage; if (HP < 0) HP = 0; }
 	inline void addHP(int health) { HP += health; }
+	inline int const getInitHP() const { return InitHP; };
 
 	virtual void receive(Message* msg);
 };

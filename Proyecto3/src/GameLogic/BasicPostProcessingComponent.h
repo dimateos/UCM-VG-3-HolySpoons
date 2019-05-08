@@ -8,6 +8,7 @@ class BasicPostProcessingComponent: public Component
 private:
 	std::string compositorName;
 	bool currentlyActive;
+	int message_ = -1;
 
 public:
 	virtual ~BasicPostProcessingComponent() {};
