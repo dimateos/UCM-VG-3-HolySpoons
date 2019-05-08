@@ -8,15 +8,11 @@ class nap_Pool;
 
 class Spawner : public Component
 {
-private:
+protected:
 	napTimer t;
 
 	bool smart = false;
-	int round_, numToSpawn;
-	float spawnFactor, timeFactor, radius_, timeToSpawn;
-
-
-	string spawnAlgorithm, timeAlgorithm;
+	float radius_;
 
 	nap_Pool* pol = nullptr;
 	list<Component*> compList;
@@ -24,12 +20,8 @@ private:
 	void spawn();
 	nap_vector3 smartPositioning(nap_vector3 pos);
 
-	void upToRound();
-	void upNumToSpawn();
-	void upTimeToSpawn();
-
 public:
-	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), numToSpawn(-1) {};
+	inline Spawner(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~Spawner();
 
 	virtual void setUp();

@@ -123,7 +123,7 @@ material DebugOcean{
     }
 }
 
-material portal {
+material stone {
     technique
 	{
 		pass
@@ -134,5 +134,27 @@ material portal {
 			}
 		}
 	}
+}
+
+material portal{
+    technique{
+        pass{
+			scene_blend alpha_blend
+            diffuse 0.0 0.0 0.0 0.5
+            ambient 0.0 0.0 0.0 0.5
+			cull_hardware none
+            texture_unit{
+                texture portal.png
+				rotate_anim -0.25
+                colour_op add
+				tex_address_mode clamp
+            }
+        }
+    }
+    technique {
+        pass{
+            diffuse 0.5 0.5 0.5
+        }
+    }
 }
 

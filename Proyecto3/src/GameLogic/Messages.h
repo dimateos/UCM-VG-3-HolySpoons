@@ -3,6 +3,7 @@
 #define MESSAGES_H_
 
 class nap_transform;
+class GameObject;
 
 enum MessageId // DIFFERENT MESSAGE IDs
 {
@@ -30,6 +31,7 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	ACTIVE_SPAWNER,
 	ADD_ENEMY,
 	BULLET_HIT,
+	ADD_SPAWNER,
 
 	//CHANGE STATES
 	STATE_CHANGED,
@@ -75,6 +77,11 @@ struct Msg_RESET_SPAWNER :public Message {
 struct Msg_ADD_ENEMY :public Message {
 	inline Msg_ADD_ENEMY(int num) : Message(ADD_ENEMY), num_(num) { }
 	int num_;
+};
+
+struct Msg_ADD_SPAWNER :public Message {
+	inline Msg_ADD_SPAWNER(GameObject* spawner) : Message(ADD_SPAWNER), spawner_(spawner) { }
+	GameObject* spawner_;
 };
 
 #endif /* MESSAGES_H_ */

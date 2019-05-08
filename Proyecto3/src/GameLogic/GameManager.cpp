@@ -43,10 +43,36 @@ void GameManager::nextRound()
 	roundTimer.setDuration(roundTime);
 	roundTimer.start();
 
-	// destructible spawners -> reactive them
-	MessageSystem::getSingleton()->sendMessageGroup(&Message(ACTIVE_SPAWNER), "destructible_spawner");
 	// indestructuble spawners -> set their new enemies number to spawn (depending on the round)
 	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(round_), "indestructible_spawner");
+
+	// destructible spawners -> we reactivate them (depending on the round)
+	if(destructibleSpawners.size() > 0)activateDestrSpawners();
+}
+
+// it activates destructible spawners depending on the round
+void GameManager::activateDestrSpawners()
+{
+	int auxRound = round_;
+	float auxProbabilty = probability_;
+	int i = 1;
+
+	auxRound--; // we activate at least one destructible spawner per round
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(ACTIVE_SPAWNER), destructibleSpawners[0]);
+	enemies_++;
+
+	// the rest of the spawners will have a probability to be activated
+	// the highest the round, the more probability of being activated (more difficult for the player)
+	while (auxRound > 0 && i < destructibleSpawners.size()) {
+		int random = rand() % 101;
+		if (random <= auxProbabilty) {
+			MessageSystem::getSingleton()->sendMessageGameObject(&Message(ACTIVE_SPAWNER), destructibleSpawners[i]);
+			enemies_++;
+			auxProbabilty -= probability_ / (destructibleSpawners.size() - 1);
+			i++;
+		}
+		auxRound--;
+	}
 }
 
 void GameManager::setUp() {
@@ -94,6 +120,7 @@ void GameManager::setUp() {
 
 	roundTime = cfg_["roundTime"]; // round UI duration
 
+	probability_ = FINDnRETURN(cfg_, "probability", float, 30);
 }
 
 void GameManager::lateSetUp()
@@ -102,7 +129,7 @@ void GameManager::lateSetUp()
 }
 
 void GameManager::update(GameObject * o, double time) {
-	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
 
 	if (hitTimer.update(time)) {
 		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
@@ -121,6 +148,11 @@ bool GameManager::handleEvents(GameObject * o, const SDL_Event & evt) {
 
 		if (pressedKey == SDLK_r) {
 			resetPlayer();
+			handled = true;
+		}
+		else if (pressedKey == SDLK_e) {
+			enemies_ = 0;
+			nextRound();
 			handled = true;
 		}
 	}
@@ -159,6 +191,9 @@ void GameManager::receive(Message * msg)
 	}
 	else if (msg->id_ == ADD_ENEMY) { // when a spawner spawns another enemy, you will have to kill him
 		enemies_ += static_cast<Msg_ADD_ENEMY*>(msg)->num_;
+	}
+	else if (msg->id_ == ADD_SPAWNER) {
+		destructibleSpawners.push_back(static_cast<Msg_ADD_SPAWNER*>(msg)->spawner_);
 	}
 }
 

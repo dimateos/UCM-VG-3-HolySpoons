@@ -41,12 +41,17 @@ private:
 	int score_;
 	int enemies_; // enemies to kill in the actual round
 	int round_;
+	float probability_; // initial prob of a destr spawner to be activated
 
 	std::string death_state;
 	std::string hitMarker_sound;
 
 	void updateUI();
 	void nextRound();
+
+	void activateDestrSpawners();
+
+	std::vector<GameObject*>destructibleSpawners;
 
 public:
 	inline GameManager(nap_json const & cfg, GameObject* owner) : 

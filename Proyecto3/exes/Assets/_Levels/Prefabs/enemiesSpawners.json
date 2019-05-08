@@ -14,14 +14,18 @@
       "Components": {
         "spawner": {
           "id": {
-            "type": "Spawner",
+            "type": "IndestructibleSpawner",
             "group": "test_comps"
           },
           "active": true,
           "itemString": "pref_monkey",
           "default": 5,
           "timer": 10.0,
-          "smart": false
+          "smart": false,
+          "spawnAlgorithm": "LOG",
+          "spawnFactor": 1.3,
+          "timeAlgorithm": "JUMPS",
+          "timeFactor": 0.2
         },
         "circular_movement": {
           "id": {
@@ -47,7 +51,7 @@
       "Components": {
         "spawner": {
           "id": {
-            "type": "Spawner",
+            "type": "DestructibleSpawner",
             "group": "test_comps"
           },
           "active": true,
@@ -85,13 +89,38 @@
           },
           "relativePos": { "x": 0, "y": -5, "z": 0 },
           "localRot": { "w" : 1, "x": 1, "y": 0, "z": 0},
-          "material": "portal",
+          "material": "stone",
           "shape": {
             "entity_name": "portal",
             "type": "MESH",
             "mesh": "portal.mesh"
           },
           "updateOri": false
+        },
+        "portal_rend":{
+          "id": {
+            "type": "RenderComponent",
+            "group": "enemy_comps"
+          },
+          "shape": {
+            "entity_name": "portal_plane",
+            "type": "PLANE",
+            "normal": {
+                "x": -1,
+                "y": 0,
+                "z": 0
+            },
+            "w": 9,
+            "h": 9,
+            "up": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            }
+          },
+          "relativePos": { "x": 0, "y": 1, "z": 0 },
+          "material": "portal",
+          "ignoreTrans": true
         },
         "bullet_hittable": {
           "id": {
@@ -137,14 +166,18 @@
       "Components": {
         "spawner": {
           "id": {
-            "type": "Spawner",
+            "type": "IndestructibleSpawner",
             "group": "test_comps"
           },
           "active": true,
           "itemString": "pref_bombardier",
           "default": 5,
-          "timer": 18.0,
-          "smart": false
+          "timer": 12.0,
+          "smart": false,
+          "spawnAlgorithm": "MOD",
+          "spawnFactor": 2,
+          "timeAlgorithm": "JUMPS",
+          "timeFactor": 0.05
         },
         "circular_movement": {
           "id": {
@@ -170,14 +203,18 @@
       "Components": {
         "spawner": {
           "id": {
-            "type": "Spawner",
+            "type": "IndestructibleSpawner",
             "group": "test_comps"
           },
           "active": true,
           "itemString": "pref_sniper",
           "default": 5,
-          "timer": 18.0,
-          "smart": false
+          "timer": 10.0,
+          "smart": false,
+          "spawnAlgorithm": "MOD",
+          "spawnFactor": 3,
+          "timeAlgorithm": "JUMPS",
+          "timeFactor": 0.05
         },
         "circular_movement": {
           "id": {
@@ -203,14 +240,18 @@
       "Components": {
         "spawner": {
           "id": {
-            "type": "Spawner",
+            "type": "IndestructibleSpawner",
             "group": "test_comps"
           },
           "active": true,
           "itemString": "pref_stomper",
           "default": 5,
-          "timer": 18.0,
-          "smart": false
+          "timer": 20.0,
+          "smart": false,
+          "spawnAlgorithm": "MOD",
+          "spawnFactor": 5,
+          "timeAlgorithm": "JUMPS",
+          "timeFactor": 0
         },
         "circular_movement": {
           "id": {
