@@ -90,7 +90,7 @@ ShotSpoon::~ShotSpoon() {}
 #define pi 3.141592
 #define toRadian (pi / 180)
 void ShotSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
-	//for (size_t i = 0; i < 3; i++) Weapon::shoot(owner_trans, relY, relZ);
+	down_ = false;
 
 	//get the owner axes
 	nap_vector3 dirZ = owner_trans->q_.toNapVec3(vZ*-1);
@@ -100,14 +100,24 @@ void ShotSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 	//add to state
 	GameObject* bul = pool_->getItem();
 	nap_vector3 tmpDir;
+	PxQuat qx, qy;
 
-	//rotate dir using its axis instead of global
-	physx::PxQuat qx(10 * toRadian, dirX.px());
-	physx::PxQuat qy(10 * toRadian, dirY.px());
-	tmpDir = napVEC3((qx*qy).rotate(dirZ.px()));
+	float rndX, rndY;
 
-	//vel
-	static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((tmpDir * vel_).px());
-	//pos (moves relative)
-	bul->setPosition(owner_trans->p_ + vY * relY + tmpDir * relZ);
+	for (size_t i = 0; i < nBullets; i++) {
+		rndX = rand() % (2*maxSpreadX) - maxSpreadX;
+		rndY = rand() % (2 * maxSpreadY) - maxSpreadY;
+		//add to state
+		bul = pool_->getItem();
+
+		//rotate dir using its axis instead of global
+		qx = PxQuat(rndX * toRadian, dirX.px());
+		qy = PxQuat(rndY * toRadian, dirY.px());
+		tmpDir = napVEC3((qx*qy).rotate(dirZ.px()));
+
+		//vel
+		static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((tmpDir * vel_).px());
+		//pos (moves relative)
+		bul->setPosition(owner_trans->p_ + vY * relY + dirZ * relZ + dirY * (rndX*iniDispersionFactor) + dirX * (rndY*iniDispersionFactor));
+	}
 }

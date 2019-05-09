@@ -60,6 +60,9 @@ public:
 	virtual ~ShotSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
+protected:
+	int nBullets = 5, maxSpreadX = 8, maxSpreadY = 8;
+	float iniDispersionFactor = 1/40;
 };
 
 #endif /* WEAPON_H_ */

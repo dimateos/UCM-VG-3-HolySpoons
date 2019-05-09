@@ -5,7 +5,7 @@
 #include "MessageSystem.h"
 
 //at some point move to json
-std::map<string, int> BulletHittable::bulletDamages_ = { {"bBullets0", 10}, {"pBullets0", 50} };
+std::map<string, int> BulletHittable::bulletDamages_ = { {"bBullets0", 12}, {"pBullets0", 30} };
 
 void BulletHittable::setUp() {
 	maxHitPoints_ = hitPoints_ = FINDnRETURN(cfg_, "hp", int, 0);

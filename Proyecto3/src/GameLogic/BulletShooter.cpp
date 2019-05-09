@@ -19,9 +19,9 @@ void BulletShooter::setUp() {
 	relZ_ = cfg_["relativeZ"];
 
 	//later cfged in json
-	addWeapon("base_bullet", "baseSpoon", 90, 0.2);
-	addWeapon("power_bullet", "powerSpoon", 70, 0.6);
-	addWeapon("base_bullet", "shotSpoon", 90, 0.3);
+	addWeapon("base_bullet", "baseSpoon", 110, 0.2);
+	addWeapon("power_bullet", "powerSpoon", 90, 0.6);
+	addWeapon("base_bullet", "shotSpoon", 110, 0.8);
 	currentWeapon = 0;
 
 	//read the keys from global cfg
