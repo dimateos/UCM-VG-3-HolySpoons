@@ -182,6 +182,9 @@
     <ClCompile Include="..\..\src\GameLogic\IndestructubleSpawner.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\BoxTriggerComponent.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\IndestructubleSpawner.h">
       <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\BoxTriggerComponent.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

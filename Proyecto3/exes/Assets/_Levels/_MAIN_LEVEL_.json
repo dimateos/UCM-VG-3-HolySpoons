@@ -114,6 +114,16 @@
         "x": 0.0,
         "y": -6.0,
         "z": 0.0
+      },
+      "Components": {
+        "triggeraxis": {
+          "id": {
+            "type": "BoxTriggerComponent",
+            "group": "trigger_comps"
+          },
+          "y": true,
+          "target": "player"
+        }
       }
     },
     {

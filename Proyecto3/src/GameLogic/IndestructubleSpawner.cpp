@@ -34,20 +34,23 @@ void IndestructibleSpawner::upToRound()
 void IndestructibleSpawner::upNumToSpawn()
 {
 	if (spawnAlgorithm == "JUMPS") {
-		numToSpawn += round_ + spawnFactor;
+		numToSpawn = prevNumToSpawn + spawnFactor;
+		prevNumToSpawn = numToSpawn;
+
 	}
 	else if (spawnAlgorithm == "LINEAR") {
-		numToSpawn += round_ * spawnFactor;
+		numToSpawn = round_ * spawnFactor;
 	}
 	else if (spawnAlgorithm == "LOG") {
-		numToSpawn += (log(round_ + 1) / log(spawnFactor));
+		numToSpawn = (log(round_ + 1) / log(spawnFactor)) - 15;
 	}
 	else if (spawnAlgorithm == "EXP") {
-		numToSpawn += pow(round_, spawnFactor);
+		numToSpawn = pow(round_, spawnFactor);
 	}
 	else if (spawnAlgorithm == "MOD") {
-		numToSpawn += round_ / spawnFactor;
+		numToSpawn = prevNumToSpawn + 1;
 		if (round_ % (int)spawnFactor != 0) numToSpawn = 0;
+		else prevNumToSpawn = numToSpawn;
 	}
 }
 

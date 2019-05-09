@@ -188,7 +188,7 @@ void GameManager::receive(Message * msg)
 			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PUSH_STATE), owner_, death_state);
 		}
 		else if (playerHP_ != nullptr && playerHP_->getHP() <= playerHP_->getInitHP() / 4) { //4lel
-			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(POST_PROCESSING_HEALTH), GameStateMachine::getSingleton()->currentState()->getPlayer(), "lowHealthPostProcessing");
+			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(ACTIVATE_POST_PROCESSING_HEALTH), GameStateMachine::getSingleton()->currentState()->getPlayer(), "lowHealthPostProcessing");
 		}
 		updateUI();
 	}

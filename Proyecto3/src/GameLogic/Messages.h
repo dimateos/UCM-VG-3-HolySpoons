@@ -13,7 +13,8 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	QUIT_GAME,
 
 	//UI
-	POST_PROCESSING_HEALTH,
+	ACTIVATE_POST_PROCESSING_HEALTH,
+	DEACTIVATE_POST_PROCESSING_HEALTH,
 	ACTIVATE_UI,
 	CHECK_HP,
 	END_INV,
@@ -23,6 +24,8 @@ enum MessageId // DIFFERENT MESSAGE IDs
 
 	//PHYSX
 	PX_USERPTR,
+	TRIGGER_ENTER,
+	TRIGGER_EXIT,
 
 	//ENEMY GAMELOGIC
 	HP_RESET,
@@ -83,6 +86,16 @@ struct Msg_ADD_ENEMY :public Message {
 struct Msg_ADD_SPAWNER :public Message {
 	inline Msg_ADD_SPAWNER(GameObject* spawner) : Message(ADD_SPAWNER), spawner_(spawner) { }
 	GameObject* spawner_;
+};
+
+struct Msg_Trigger_Enter :public Message {
+	inline Msg_Trigger_Enter(GameObject* msg_emitter) : Message(TRIGGER_ENTER), msg_emitter_(msg_emitter) { }
+	GameObject* msg_emitter_;
+};
+
+struct Msg_Trigger_Exit :public Message {
+	inline Msg_Trigger_Exit(GameObject* msg_emitter) : Message(TRIGGER_EXIT), msg_emitter_(msg_emitter) { }
+	GameObject* msg_emitter_;
 };
 
 #endif /* MESSAGES_H_ */

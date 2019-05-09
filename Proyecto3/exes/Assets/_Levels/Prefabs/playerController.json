@@ -133,7 +133,7 @@
                 "type": "HitPostProcessingComponent",
                 "group": "player_comps"
             },
-            "CompositorName": "Cloud"
+            "CompositorName": "BloodMix"
         }
     }
 }

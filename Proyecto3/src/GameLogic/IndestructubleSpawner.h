@@ -6,7 +6,7 @@
 class IndestructibleSpawner : public Spawner
 {
 private:
-	int round_, numToSpawn;
+	int round_, numToSpawn, prevNumToSpawn;
 	float spawnFactor, timeFactor, timeToSpawn;
 
 	// algotithms that determinates the number of enemies to spawn
@@ -18,7 +18,7 @@ private:
 	void upTimeToSpawn();
 
 public:
-	IndestructibleSpawner(nap_json const & cfg, GameObject* owner) :Spawner(cfg, owner) {}
+	IndestructibleSpawner(nap_json const & cfg, GameObject* owner) :Spawner(cfg, owner), prevNumToSpawn(0) {}
 
 	virtual void setUp();
 
