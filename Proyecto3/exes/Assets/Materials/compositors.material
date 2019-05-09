@@ -145,10 +145,10 @@ vertex_program LavaVS glsl
 
 fragment_program LavaFS glsl
 {
-    source underWaterFS.txt
+    source SceneTextureMixFS.txt
     default_params{
         param_named RTT0 int 0 //textura con la escena
-        param_named mixColor float3 0.8 0.0 0.0
+        param_named text int 1
     }
 }
 
@@ -169,6 +169,10 @@ material LavaMat{
             texture_unit RTT0{
                 //sin imagen de archivo -> render target previo
                 filtering none //resolucion del viewport
+            }
+
+             texture_unit text{
+                texture lava.png 2d
             }
         }
     }

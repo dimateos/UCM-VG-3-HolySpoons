@@ -121,7 +121,12 @@
             "type": "BoxTriggerComponent",
             "group": "trigger_comps"
           },
-          "y": true,
+          "x": -1500,
+          "y": -6.0,
+          "z": -1500,
+          "w": 3000,
+          "h": -3000,
+          "d": 3000,
           "target": "player"
         }
       }

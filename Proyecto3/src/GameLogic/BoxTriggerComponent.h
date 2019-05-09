@@ -9,8 +9,9 @@ class BoxTriggerComponent: public Component
 {
 private:
 	GameObject* target = nullptr;
-	float axis;
-	bool x, y, z, inside;
+	float x, y, z, w, h, d;
+	bool already_inside;
+	bool is_inside();
 
 public:
 	virtual ~BoxTriggerComponent() {};

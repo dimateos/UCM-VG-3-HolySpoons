@@ -126,7 +126,8 @@
             },
             "CompositorName": "Luminance",
             "EnabledOnStart": false,
-            "Message": 3
+            "Active_Message": 3,
+            "Inactive_Message":  4
         },
         "hitPostProcessing": {
             "id": {
@@ -134,6 +135,25 @@
                 "group": "player_comps"
             },
             "CompositorName": "BloodMix"
+        },
+        "lavaPostProcessing": {
+            "id": {
+                "type": "BasicPostProcessingComponent",
+                "group": "player_comps"
+            },
+            "CompositorName": "Lava",
+            "EnabledOnStart": false,
+            "Active_Message": 12,
+            "Inactive_Message": 13
+        },
+        "ChangePlayerGravityComponent":{
+            "id": {
+                "type": "ChangePlayerGravityComponent",
+                "group": "player_comps"
+            },
+            "Active_Message": 12,
+            "Inactive_Message": 13,
+            "Custom_Gravity": {"x": 0.0, "y": 55.0, "z": 0.0 }
         }
     }
 }

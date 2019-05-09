@@ -185,6 +185,9 @@
     <ClCompile Include="..\..\src\GameLogic\BoxTriggerComponent.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\ChangePlayerGravityComponent.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -345,6 +348,9 @@
       <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BoxTriggerComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\ChangePlayerGravityComponent.h">
       <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
