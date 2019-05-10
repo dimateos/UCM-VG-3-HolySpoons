@@ -4,6 +4,8 @@
 #include <LogSystem.h>
 #include "Messages.h"
 
+#include <GlobalConfig.h>
+
 using json = nlohmann::json;
 
 void LeaderBoardComponent::saveToJSON()
@@ -74,6 +76,8 @@ void LeaderBoardComponent::update(std::string name, int newPunt)
 void LeaderBoardComponent::setUp() {
 	if (isInited()) return;
 	setInited();
+
+	jsonName = GlobalCFG::paths["leaderBoard_route"];
 
 	readFromJSON();
 }
