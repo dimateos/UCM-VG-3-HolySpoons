@@ -9,6 +9,7 @@ class BoxTriggerComponent: public Component
 {
 private:
 	GameObject* target = nullptr;
+	nap_transform* position;
 	float x, y, z, w, h, d;
 	bool already_inside;
 	bool is_inside();

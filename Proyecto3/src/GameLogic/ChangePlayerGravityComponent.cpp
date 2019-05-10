@@ -25,6 +25,8 @@ void ChangePlayerGravityComponent::receive(Message * msg)
 {
 	if (msg->id_ == (MessageId)active_message) {
 		controller->setG(custom_gravity);
+		if(controller->getV().y_< 0)
+			controller->setV(vO);
 	}
 	else if (msg->id_ == (MessageId)inactive_message) {
 		controller->setG(initial_gravity);

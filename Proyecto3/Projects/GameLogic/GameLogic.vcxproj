@@ -33,6 +33,7 @@
     <ClCompile Include="..\..\src\GameLogic\ChangePlayerGravityComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\CursorComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\DamageTickComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\DestructibleSpawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Emitter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="..\..\src\GameLogic\ChangePlayerGravityComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\CursorComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\DamageTickComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\DestructibleSpawner.h" />
     <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\GameManager.h" />

@@ -152,7 +152,7 @@
             },
             "Active_Message": 12,
             "Inactive_Message": 13,
-            "Custom_Gravity": {"x": 0.0, "y": 55.0, "z": 0.0 }
+            "Custom_Gravity": {"x": 0.0, "y": -2.0, "z": 0.0 }
         }
     }
 }
