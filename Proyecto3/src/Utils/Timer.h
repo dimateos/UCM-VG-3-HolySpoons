@@ -13,7 +13,7 @@ public:
 	void start();
 	void start(double time);
 	void stop();
-	void resetTimeLeft();
+	//void resetTimeLeft();
 
 	bool update(double timePassed);
 	bool checkEnd();
