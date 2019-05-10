@@ -22,7 +22,7 @@ void napTimer::setDuration(double time)
 void napTimer::start()
 {
 	active = true;
-	resetTimeLeft();
+	timeLeft = duration;
 }
 
 //Starts the timer with a new timer duration(time)
@@ -38,9 +38,9 @@ void napTimer::stop()
 	active = false;
 }
 
-void napTimer::resetTimeLeft() {
-	timeLeft = duration;
-}
+//void napTimer::resetTimeLeft() {
+//	timeLeft = duration;
+//}
 
 //Returns true if an active timer has ended, false otherwise
 bool napTimer::checkEnd()
@@ -52,6 +52,7 @@ bool napTimer::checkEnd()
 	return false;
 }
 
+//Returns tha ctive state of the timer
 bool napTimer::isActive()
 {
 	return active;

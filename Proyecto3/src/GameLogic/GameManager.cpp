@@ -40,8 +40,7 @@ void GameManager::nextRound()
 	updateUI();
 
 	overlayComp->showPanelByName("ROUND_PANEL");
-	roundTimer.setDuration(roundTime);
-	roundTimer.start();
+	roundTimer.start(roundTime);
 
 	// indestructuble spawners -> set their new enemies number to spawn (depending on the round)
 	MessageSystem::getSingleton()->sendMessageGroup(&Msg_RESET_SPAWNER(round_), "indestructible_spawner");

@@ -72,7 +72,6 @@ void IndestructibleSpawner::upTimeToSpawn()
 	}
 
 	t.setDuration(timeToSpawn);
-	t.resetTimeLeft();
 }
 
 void IndestructibleSpawner::update(GameObject * o, double time) {
@@ -94,6 +93,7 @@ void IndestructibleSpawner::receive(Message * msg) {
 	if (msg->id_ == RESET_SPAWNER) {
 		round_ = static_cast<Msg_RESET_SPAWNER*>(msg)->round_;
 		upToRound(); // update algorithms
+		t.start();
 	}
 }
 

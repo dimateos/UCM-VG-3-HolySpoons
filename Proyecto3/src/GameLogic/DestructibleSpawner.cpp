@@ -17,7 +17,7 @@ void DestructibleSpawner::receive(Message * msg) {
 
 	// when you reactive this spawner, you add himself to the GM (player will have to kill it)
 	if (msg->id_ == ACTIVE_SPAWNER) {
-		t.resetTimeLeft();
+		t.start();
 		owner_->setActive(true);
 	}
 }
