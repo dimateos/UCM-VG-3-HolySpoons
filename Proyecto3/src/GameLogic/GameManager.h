@@ -22,13 +22,17 @@ class GameManager : public Component
 {
 private:
 	OverlayComponent* overlayComp;
-	Ogre::OverlayElement* HPbar;
+	Ogre::OverlayElement* HPStripe;
+	Ogre::OverlayElement* HPDif;
+	Ogre::OverlayElement* HPContainer;
 	Ogre::TextAreaOverlayElement* ScoreText;
 	Ogre::TextAreaOverlayElement* RoundText;
 	Ogre::TextAreaOverlayElement* MiniRoundText;
 
 	// HP bar
 	float HPwidth, HPleft, HPtop;
+	float HPCwidth, HPCleft, HPCtop, HPBCdiff;
+	float HPDifDecr;
 
 	// timers
 	napTimer hitTimer;
@@ -41,6 +45,7 @@ private:
 
 	GameObject* player_;
 	HPComponent* playerHP_;
+	float prevHP;
 
 	int score_;
 	int enemies_; // enemies to kill in the actual round

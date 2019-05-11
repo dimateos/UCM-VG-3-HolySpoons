@@ -42,7 +42,7 @@ void IndestructibleSpawner::upNumToSpawn()
 		numToSpawn = round_ * spawnFactor;
 	}
 	else if (spawnAlgorithm == "LOG") {
-		numToSpawn = (log(round_ + 1) / log(spawnFactor)) - 15;
+		numToSpawn = (log(round_ + 3) / log(spawnFactor)) - 32;
 	}
 	else if (spawnAlgorithm == "EXP") {
 		numToSpawn = pow(round_, spawnFactor);

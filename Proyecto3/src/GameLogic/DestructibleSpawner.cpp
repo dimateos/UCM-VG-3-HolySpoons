@@ -37,11 +37,6 @@ void DestructibleSpawner::setUp() {
 		GameStateMachine::getSingleton()->currentState()->getGM());
 }
 
-void DestructibleSpawner::lateSetUp()
-{
-	Deactivate();
-}
-
 void DestructibleSpawner::receive(Message * msg) {
 	Spawner::receive(msg);
 

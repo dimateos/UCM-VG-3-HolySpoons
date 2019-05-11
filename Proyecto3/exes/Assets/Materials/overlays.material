@@ -78,7 +78,7 @@ material DeathMarkerMaterial
 	}
 }
 
-material LifeBarMaterial
+material LifeStripeMaterial
 {
 	technique
 	{
@@ -88,7 +88,23 @@ material LifeBarMaterial
 
 			texture_unit
 			{
-				texture lifeBar.png
+				texture lifeStripe.png
+			}
+		}
+	}
+}
+
+material LifeDifMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture lifeDif.png
 			}
 		}
 	}

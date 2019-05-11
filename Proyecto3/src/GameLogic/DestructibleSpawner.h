@@ -19,7 +19,6 @@ public:
 	DestructibleSpawner(nap_json const & cfg, GameObject* owner) :Spawner(cfg, owner) {}
 
 	virtual void setUp();
-	virtual void lateSetUp();
 
 	virtual void receive(Message* msg);
 

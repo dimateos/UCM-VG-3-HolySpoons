@@ -29,13 +29,31 @@ overlay HUD
             material ScopeMaterial
         }
 
-         overlay_element LifeBar Panel
+         overlay_element LifeStripe Panel
         {
             left 0.01
 		    top 0.02
 		    width 0.002
 		    height 0.04
-            material LifeBarMaterial
+            material LifeStripeMaterial
+        }
+
+        overlay_element LifeDif Panel
+        {
+            left 0.01
+		    top 0.02
+		    width 0.002
+		    height 0.04
+            material LifeDifMaterial
+        }
+
+        overlay_element LifeContainer Panel
+        {
+            left 0.007
+		    top 0.014
+		    width 0.002
+		    height 0.051
+            material LifeContainerMaterial
         }
 	}
 

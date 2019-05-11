@@ -34,11 +34,9 @@ void Spawner::setUp() {
 }
 
 void Spawner::spawn() {
-	if (canSpawn) {
 		GameObject* tmp = pol->getItem(); //gets object from pool, spawns it
 		if (!smart) tmp->setPosition(owner_->getPosition());	//Basic Spawn point
 		else tmp->setPosition(smartPositioning(owner_->getPosition()));		//Smart spawn point
-	}
 }
 
 nap_vector3 Spawner::smartPositioning(nap_vector3 pos) {
@@ -55,12 +53,14 @@ nap_vector3 Spawner::smartPositioning(nap_vector3 pos) {
 }
 
 void Spawner::update(GameObject * o, double time) {
-	if (t.update(time)) {
-		t.start();	//Timer reset
-		spawn();
-		// we add 1 to the GM foreach enemy spwaned
-		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
-			GameStateMachine::getSingleton()->currentState()->getGM());
+	if (canSpawn) {
+		if (t.update(time)) {
+			t.start();	//Timer reset
+			spawn();
+			// we add 1 to the GM foreach enemy spwaned
+			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
+				GameStateMachine::getSingleton()->currentState()->getGM());
+		}
 	}
 }
 

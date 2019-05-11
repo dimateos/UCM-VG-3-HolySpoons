@@ -25,8 +25,12 @@ using namespace Ogre;
 void GameManager::updateUI()
 {
 	if (playerHP_ != nullptr) {
-		HPbar->setWidth(HPwidth*playerHP_->getHP());
-		RenderSystemInterface::getSingleton()->setOverlayElementPosition_rel(HPbar, HPleft, HPtop);
+		HPStripe->setWidth(HPwidth*playerHP_->getHP());
+		RenderSystemInterface::getSingleton()->setOverlayElementPosition_rel(HPStripe, HPleft, HPtop);
+		HPDif->setWidth(HPwidth*prevHP);
+		RenderSystemInterface::getSingleton()->setOverlayElementPosition_rel(HPDif, HPleft, HPtop);
+		HPContainer->setWidth(HPCwidth*playerHP_->getInitHP() + HPBCdiff*2);
+		RenderSystemInterface::getSingleton()->setOverlayElementPosition_rel(HPContainer, HPCleft, HPCtop);
 	}
 	else
 		LogSystem::Log("Componente HPComponent no establecido. No es posible mostrar HP", LogSystem::GM);
@@ -97,14 +101,19 @@ void GameManager::setUp() {
 	overlayComp->hidePanelByName("ROUND_PANEL");
 
 	// player HP and score
-	HPbar = static_cast<OverlayElement*>(rsi->getOverlayElement("LifeBar"));
+	HPStripe = static_cast<OverlayElement*>(rsi->getOverlayElement("LifeStripe"));
+	HPDif = static_cast<OverlayElement*>(rsi->getOverlayElement("LifeDif"));
+	HPContainer = static_cast<OverlayElement*>(rsi->getOverlayElement("LifeContainer"));
 	ScoreText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("SCORE_Text"));
 	RoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("ROUND_Text"));
 	MiniRoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("MINI_ROUND_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
-	HPleft = HPbar->getLeft(); HPtop = HPbar->getTop(); HPwidth = HPbar->getWidth();
+	prevHP = playerHP_->getHP();
+	HPleft = HPStripe->getLeft(); HPtop = HPStripe->getTop(); HPwidth = HPStripe->getWidth();
+	HPCleft = HPContainer->getLeft(); HPCtop = HPContainer->getTop(); HPCwidth = HPContainer->getWidth();
+	HPBCdiff = HPleft - HPCleft;
 
 	// scope
 	Ogre::OverlayElement* scope = rsi->getOverlayElement("Scope");
@@ -123,15 +132,20 @@ void GameManager::setUp() {
 	roundTime = cfg_["roundTime"]; // round UI duration
 
 	probability_ = FINDnRETURN(cfg_, "probability", float, 30);
+	HPDifDecr = FINDnRETURN(cfg_, "HPDifDecr", float, 0.25);
 }
 
 void GameManager::lateSetUp()
 {
+	for(int i = 0; i < destructibleSpawners.size(); i++) MessageSystem::getSingleton()->sendMessageGameObject(&Message(DEACTIVATE_OBJECT), destructibleSpawners[i]);
 	nextRound(); // round 1
 }
 
 void GameManager::update(GameObject * o, double time) {
-	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+
+	if (prevHP > playerHP_->getHP()) { prevHP -= HPDifDecr;	updateUI();	}
+	else prevHP = playerHP_->getHP();
 
 	if (hitTimer.update(time)) {
 		overlayComp->hidePanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
@@ -221,7 +235,9 @@ void GameManager::resetPlayer() {
 GameManager::~GameManager() {
 	// we need to reset the width because the overlay keeps the last width
 	// and if you return to main game, the HPbar width will be bugged
-	HPbar->setWidth(HPwidth);
+	HPStripe->setWidth(HPwidth);
+	HPDif->setWidth(HPwidth);
+	HPContainer->setWidth(HPCwidth);
 }
 
 #include "GOFactory.h"
