@@ -8,18 +8,6 @@ overlay HUD
 		width 1.0
 		height 1.0
 
-		overlay_element HP_Text TextArea
-		{
-            metrics_mode relative
-            font_name Metal-Mania
-            char_height 0.05
-            colour_top 1 1 0
-            colour_bottom 1 0.2 0.2
-            left 0.01
-            top 0.02
-            caption "HP: "
-		}
-
         overlay_element SCORE_Text TextArea
 		{
             metrics_mode relative
@@ -39,6 +27,15 @@ overlay HUD
 		    width 0.05
 		    height 0.06
             material ScopeMaterial
+        }
+
+         overlay_element LifeBar Panel
+        {
+            left 0.01
+		    top 0.02
+		    width 0.002
+		    height 0.04
+            material LifeBarMaterial
         }
 	}
 

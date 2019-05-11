@@ -12,6 +12,7 @@ class napTimer;
 
 namespace Ogre {
 	class TextAreaOverlayElement;
+	class OverlayElement;
 }
 
 // the gameManager object would have this component
@@ -21,10 +22,13 @@ class GameManager : public Component
 {
 private:
 	OverlayComponent* overlayComp;
-	Ogre::TextAreaOverlayElement* HPText;
+	Ogre::OverlayElement* HPbar;
 	Ogre::TextAreaOverlayElement* ScoreText;
 	Ogre::TextAreaOverlayElement* RoundText;
 	Ogre::TextAreaOverlayElement* MiniRoundText;
+
+	// HP bar
+	float HPwidth, HPleft, HPtop;
 
 	// timers
 	napTimer hitTimer;
@@ -56,7 +60,7 @@ private:
 public:
 	inline GameManager(nap_json const & cfg, GameObject* owner) : 
 		Component(cfg, owner), score_(0), enemies_(0), round_(0) {};
-	inline virtual ~GameManager() { };
+	inline virtual ~GameManager();
 	virtual void setUp();
 	virtual void lateSetUp();
 

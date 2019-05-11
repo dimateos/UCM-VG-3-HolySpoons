@@ -24,8 +24,10 @@ using namespace Ogre;
 // updates player HP and score information
 void GameManager::updateUI()
 {
-	if(playerHP_ != nullptr)
-		HPText->setCaption("HP: " + std::to_string(playerHP_->getHP()));
+	if (playerHP_ != nullptr) {
+		HPbar->setWidth(HPwidth*playerHP_->getHP());
+		RenderSystemInterface::getSingleton()->setOverlayElementPosition_rel(HPbar, HPleft, HPtop);
+	}
 	else
 		LogSystem::Log("Componente HPComponent no establecido. No es posible mostrar HP", LogSystem::GM);
 
@@ -95,13 +97,14 @@ void GameManager::setUp() {
 	overlayComp->hidePanelByName("ROUND_PANEL");
 
 	// player HP and score
-	HPText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("HP_Text"));
+	HPbar = static_cast<OverlayElement*>(rsi->getOverlayElement("LifeBar"));
 	ScoreText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("SCORE_Text"));
 	RoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("ROUND_Text"));
 	MiniRoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("MINI_ROUND_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
+	HPleft = HPbar->getLeft(); HPtop = HPbar->getTop(); HPwidth = HPbar->getWidth();
 
 	// scope
 	Ogre::OverlayElement* scope = rsi->getOverlayElement("Scope");
@@ -213,6 +216,12 @@ void GameManager::resetPlayer() {
 
 	MessageSystem::getSingleton()->sendMessage(&Message(RESET_HP));
 	MessageSystem::getSingleton()->sendMessage(&Message(RESET_PULL));
+}
+
+GameManager::~GameManager() {
+	// we need to reset the width because the overlay keeps the last width
+	// and if you return to main game, the HPbar width will be bugged
+	HPbar->setWidth(HPwidth);
 }
 
 #include "GOFactory.h"

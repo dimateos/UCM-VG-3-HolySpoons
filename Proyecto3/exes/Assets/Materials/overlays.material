@@ -77,3 +77,35 @@ material DeathMarkerMaterial
 		}
 	}
 }
+
+material LifeBarMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture lifeBar.png
+			}
+		}
+	}
+}
+
+material LifeContainerMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture lifeContainer.png
+			}
+		}
+	}
+}
