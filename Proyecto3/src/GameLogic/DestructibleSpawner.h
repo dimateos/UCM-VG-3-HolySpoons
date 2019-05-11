@@ -12,14 +12,16 @@ private:
 	BulletHittable *phy_comp;
 	RenderComponent *rend_comp;
 
+	void Activate();
+	void Deactivate();
+
 public:
 	DestructibleSpawner(nap_json const & cfg, GameObject* owner) :Spawner(cfg, owner) {}
 
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	virtual void receive(Message* msg);
-
-	virtual void configActive();
 
 	virtual ~DestructibleSpawner() {}
 };

@@ -24,6 +24,9 @@ protected:
 
 	int hitPoints_ = 0, maxHitPoints_ = 0, valuePoints_;
 	bool enemy;
+
+private:
+	bool deactivate;
 };
 
 #endif /* BULLETHITABLE_H_ */

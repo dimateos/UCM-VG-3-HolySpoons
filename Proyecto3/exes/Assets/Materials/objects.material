@@ -111,7 +111,7 @@ material DebugOcean{
             texture_unit{
                 texture lava.png
                 scroll_anim 0.1 0.0
-				scale 0.01 0.01
+				scale 0.05 0.05
                 colour_op add
             }
         }

@@ -77,7 +77,7 @@
             }
           }
         },
-        "portal_rend": {
+        "portal_ren": {
           "id": {
             "type": "RenderComponent",
             "group": "enemy_comps"
@@ -141,7 +141,8 @@
             "group": "enemy_comps"
           },
           "hp": 300,
-          "points": 50
+          "points": 50,
+          "deactivate": false
         },
         "att_light": {
           "id": {
@@ -149,7 +150,7 @@
             "group": "player_comps"
           },
           "name": "portalLight",
-          "fatherName": "basic_ren",
+          "fatherName": "portal_ren",
           "type": 1,
           "diffColor": {
             "r": 7.0,

@@ -11,6 +11,7 @@ void BulletHittable::setUp() {
 	maxHitPoints_ = hitPoints_ = FINDnRETURN(cfg_, "hp", int, 0);
 	valuePoints_ = FINDnRETURN(cfg_, "points", int, 50);
 	enemy = FINDnRETURN(cfg_, "enemy", bool, true);
+	deactivate = FINDnRETURN(cfg_, "deactivate", bool, true);
 }
 
 void BulletHittable::configActive() {
@@ -18,7 +19,7 @@ void BulletHittable::configActive() {
 }
 
 void BulletHittable::onCollision(ID * other) {
-	if (!owner_->isActive())return;
+	if (!owner_->isActive() || !isActive())return;
 
 	//find the damage value of the impacted bullet
 	if (bulletDamages_.find(other->group_) != bulletDamages_.end())
@@ -30,7 +31,9 @@ void BulletHittable::onCollision(ID * other) {
 
 	//check death
 	if (hitPoints_ <= 0) {
-		owner_->setActive(false);
+		if(deactivate)owner_->setActive(false); // if bulletHittable has to deactivate its owner, it does
+		else MessageSystem::getSingleton()->sendMessageGameObject(&Message(DEACTIVATE_OBJECT), owner_); // else, it sends a message to its owner
+
 		MessageSystem::getSingleton()->sendMessageGameObject(
 			&Msg_BULLET_HIT(valuePoints_, enemy), GameStateMachine::getSingleton()->currentState()->getGM());
 	}
