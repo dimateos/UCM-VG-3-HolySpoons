@@ -15,7 +15,10 @@ public:
 
 	inline bool isActive() { return active_; }
 	inline bool toggleActive() { setActive(!active_); }
-	void setActive(bool active = true) { active_ = active; changedActive_.push_back(this); }
+	void setActive(bool active = true, bool instant = false) { 
+		active_ = active; 
+		if(!instant) changedActive_.push_back(this); 
+	}
 
 	//list of objects that changed active, all will be config active before update
 	static std::list<Activable*> changedActive_;

@@ -11,7 +11,7 @@ class Spawner : public Component
 protected:
 	napTimer t;
 
-	bool smart = false;
+	bool smart = false, canSpawn;
 	float radius_;
 
 	nap_Pool* pol = nullptr;

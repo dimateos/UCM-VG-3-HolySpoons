@@ -77,7 +77,7 @@
             }
           }
         },
-        "basic_ren": {
+        "portal_rend": {
           "id": {
             "type": "RenderComponent",
             "group": "enemy_comps"
@@ -87,8 +87,17 @@
             "y": 1.25,
             "z": 1.5
           },
-          "relativePos": { "x": 0, "y": -5, "z": 0 },
-          "localRot": { "w" : 1, "x": 1, "y": 0, "z": 0},
+          "relativePos": {
+            "x": 0,
+            "y": -5,
+            "z": 0
+          },
+          "localRot": {
+            "w": 1,
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
           "material": "stone",
           "shape": {
             "entity_name": "portal",
@@ -97,7 +106,7 @@
           },
           "updateOri": false
         },
-        "portal_rend":{
+        "basic_ren": {
           "id": {
             "type": "RenderComponent",
             "group": "enemy_comps"
@@ -106,19 +115,23 @@
             "entity_name": "portal_plane",
             "type": "PLANE",
             "normal": {
-                "x": -1,
-                "y": 0,
-                "z": 0
+              "x": -1,
+              "y": 0,
+              "z": 0
             },
             "w": 9,
             "h": 9,
             "up": {
-                "x": 0,
-                "y": 1,
-                "z": 0
+              "x": 0,
+              "y": 1,
+              "z": 0
             }
           },
-          "relativePos": { "x": 0, "y": 1, "z": 0 },
+          "relativePos": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
           "material": "portal",
           "ignoreTrans": true
         },

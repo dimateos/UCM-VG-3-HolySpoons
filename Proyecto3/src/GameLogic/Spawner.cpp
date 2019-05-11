@@ -27,14 +27,18 @@ void Spawner::setUp() {
 	smart = cfg_["smart"];
 	if (smart) radius_ = cfg_["radius"];
 
+	canSpawn = FINDnRETURN(cfg_, "canSpawn", bool, true);
+
 	t.start(cfg_["timer"]);
 	pol->init();
 }
 
 void Spawner::spawn() {
-	GameObject* tmp = pol->getItem(); //gets object from pool, spawns it
-	if (!smart) tmp->setPosition(owner_->getPosition());	//Basic Spawn point
-	else tmp->setPosition(smartPositioning(owner_->getPosition()));		//Smart spawn point
+	if (canSpawn) {
+		GameObject* tmp = pol->getItem(); //gets object from pool, spawns it
+		if (!smart) tmp->setPosition(owner_->getPosition());	//Basic Spawn point
+		else tmp->setPosition(smartPositioning(owner_->getPosition()));		//Smart spawn point
+	}
 }
 
 nap_vector3 Spawner::smartPositioning(nap_vector3 pos) {
