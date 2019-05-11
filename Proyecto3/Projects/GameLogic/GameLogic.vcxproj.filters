@@ -188,6 +188,9 @@
     <ClCompile Include="..\..\src\GameLogic\ChangePlayerGravityComponent.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\DamageTickComponent.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -352,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\ChangePlayerGravityComponent.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\DamageTickComponent.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

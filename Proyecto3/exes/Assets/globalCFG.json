@@ -1,6 +1,7 @@
 {
     "paths": [
-      {"log_route": "..\\exes\\P3.log"}
+      {"log_route": "..\\exes\\P3.log"},
+      {"leaderBoard_route": "..\\exes\\user\\scores\\leaderBorad.json"}
     ],
 
     "strings": [
@@ -16,6 +17,7 @@
     ],
 
     "floats": [
-      {"cam_sensBase": 0.20}
-    ]
+      {"cam_sensBase": 0.20},
+      {"cam_fovY_max": 90.00 }
+  ]
 }

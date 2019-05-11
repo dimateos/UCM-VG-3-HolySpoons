@@ -31,6 +31,7 @@ void FPSCamera::setUp() {
 	rotXspeed_ = GlobalCFG::floats["cam_sensX"] * GlobalCFG::floats["cam_sensBase"];
 	rotYspeed_ = GlobalCFG::floats["cam_sensY"] * GlobalCFG::floats["cam_sensBase"];
 	baseFovY_ = GlobalCFG::floats["cam_fovY"];
+	if (baseFovY_ > GlobalCFG::floats["cam_fovY_max"]) baseFovY_ = GlobalCFG::floats["cam_fovY_max"];
 	holdZoom_ = GlobalCFG::flags["hold_zoom"];
 }
 

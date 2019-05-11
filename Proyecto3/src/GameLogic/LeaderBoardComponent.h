@@ -6,7 +6,7 @@
 class LeaderBoardComponent: public Component
 {
 private:
-	std::string jsonName = "test.json";
+	std::string jsonName;
 	int LIMIT = 5;
 	std::vector<std::pair<string, int>> punt;
 	//std::vector<double> times;

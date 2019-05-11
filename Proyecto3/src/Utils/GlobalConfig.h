@@ -8,7 +8,7 @@ using namespace std;
 
 typedef signed __int32 SDL_Keycode; //fowarded
 
-#define iniCFG_path "./config.json"
+#define iniCFG_path "./user/config.json"
 
 // loads and holds some values for all the game
 class GlobalCFG

@@ -4,11 +4,9 @@
 
 bool BoxTriggerComponent::is_inside()
 {
-	nap_vector3 position = target->getPosition();
-
-	return (position.x_ >= this->x && position.x_ < this->x + this->w 
-		&& position.y_ <= this->y && position.y_ > this->y + this->h 
-			&& position.z_ >= this->z && position.z_ < this->z + this->d);
+	return (position->p_.x_ >= this->x && position->p_.x_ < this->x + this->w 
+		&& position->p_.y_ <= this->y && position->p_.y_ > this->y + this->h 
+			&& position->p_.z_ >= this->z && position->p_.z_ < this->z + this->d);
 }
 
 void BoxTriggerComponent::setUp()
@@ -19,6 +17,7 @@ void BoxTriggerComponent::setUp()
 
 void BoxTriggerComponent::lateSetUp() {
 	target = GameStateMachine::getSingleton()->currentState()->getGameObject(this->cfg_["target"]);
+	position = target->getTransPtr();
 
 	x = this->cfg_["x"];
 	y = this->cfg_["y"];

@@ -121,12 +121,23 @@
             "type": "BoxTriggerComponent",
             "group": "trigger_comps"
           },
-          "x": -1500,
+          "x": -100,
           "y": -6.0,
-          "z": -1500,
-          "w": 3000,
+          "z": -100,
+          "w": 200,
           "h": -3000,
-          "d": 3000,
+          "d": 200,
+          "target": "player"
+        },
+        "TickDmg":{
+          "id": {
+            "type": "DamageTickComponent",
+            "group": "trigger_comps"
+          },
+          "timer": 2,
+          "dmg": 5,
+          "enterId":12,
+          "exitId": 13,  
           "target": "player"
         }
       }
