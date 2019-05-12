@@ -33,13 +33,15 @@ void BoxTriggerComponent::update(GameObject * o, double time)
 {
 	if (is_inside()) {
 		if (!already_inside) {
-			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Enter(owner_), target);
+			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Enter(owner_), target); //send message to the object entering the trigger
+			MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Enter(owner_), owner_); //send message to the owner of the trigger
 			already_inside = true;
 		}
 	}
 	else if(already_inside){
 		already_inside = false;
-		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Exit(owner_), target);
+		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Exit(owner_), target); //send message to the object exiting the trigger
+		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_Trigger_Exit(owner_), owner_); //send message to the owner of the trigger
 	}
 }
 
