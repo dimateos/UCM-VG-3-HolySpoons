@@ -1,0 +1,165 @@
+{
+  "stateID_": "MainScene",
+  "mapFile": "_SECOND_LEVEL_map.txt",
+  "Player": {
+    "id": {
+      "name": "player",
+      "type": "pref_playerController"
+    },
+    "Components": {
+      "lavaPostProcessing": {
+        "id": {
+          "type": "BasicPostProcessingComponent",
+          "group": "player_comps"
+        },
+        "CompositorName": "Water",
+        "EnabledOnStart": false,
+        "Active_Message": 12,
+        "Inactive_Message": 13
+      }
+    }
+  },
+  "Manager": {
+    "id": {
+      "type": "pref_gm_go"
+    }
+  },
+  "GameObjects": [
+    {
+      "id": {
+        "type": "pref_spawner"
+      },
+      "pos": {
+        "x": -30.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": {
+        "type": "sniper_spawner"
+      }
+    },
+    {
+      "id": {
+        "type": "stomper_spawner"
+      }
+    },
+    {
+      "id": {
+        "type": "bombardier_spawner"
+      },
+      "pos": {
+        "x": -40.0,
+        "y": 30.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": -1.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": 80.0
+      }
+    },
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": -80.0,
+        "y": -1.0,
+        "z": 0.0
+      }
+    },
+    {
+      "id": {
+        "type": "pref_Enemyspawner"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": -1.0,
+        "z": -80.0
+      }
+    },
+    {
+      "id": {
+        "type": "ambient_light"
+      },
+      "Components": {
+        "globallight": {
+          "r": 0.2,
+          "g": 0.6,
+          "b": 0.7
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "skybox"
+      },
+      "Components": {
+        "skybox": {
+          "skybox": "SkyBox3"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "PlaneLava"
+      },
+      "pos": {
+        "x": 0.0,
+        "y": -6.0,
+        "z": 0.0
+      },
+      "Components": {
+        "triggeraxis": {
+          "id": {
+            "type": "BoxTriggerComponent",
+            "group": "trigger_comps"
+          },
+          "x": -100,
+          "y": -6.0,
+          "z": -100,
+          "w": 200,
+          "h": -3000,
+          "d": 200,
+          "target": "player"
+        },
+        "TickDmg": {
+          "id": {
+            "type": "DamageTickComponent",
+            "group": "trigger_comps"
+          },
+          "timer": 2,
+          "dmg": 5,
+          "enterId": 12,
+          "exitId": 13,
+          "target": "player"
+        },
+        "basic_ren": {
+          "material": "Water"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "leaderBoard"
+      }
+    }
+  ]
+}
