@@ -131,7 +131,7 @@ void GameManager::setUp() {
 
 	roundTime = cfg_["roundTime"]; // round UI duration
 
-	probability_ = FINDnRETURN(cfg_, "probability", float, 30);
+	probability_ = FINDnRETURN(cfg_, "probability", float, 20); // probability of the destructible portals to appear
 	HPDifDecr = FINDnRETURN(cfg_, "HPDifDecr", float, 0.25);
 }
 
@@ -142,7 +142,7 @@ void GameManager::lateSetUp()
 }
 
 void GameManager::update(GameObject * o, double time) {
-	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
 
 	if (prevHP > playerHP_->getHP()) { prevHP -= HPDifDecr;	updateUI();	}
 	else prevHP = playerHP_->getHP();

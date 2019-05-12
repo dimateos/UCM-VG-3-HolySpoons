@@ -86,6 +86,74 @@ technique
 	}
 }
 
+material SpecialBullet
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture melon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material Bomb
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture lemon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material EnemyBullet
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture pomegranate.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material EnemyRocket
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture apple.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
 material SkyBox2
 {
     technique
