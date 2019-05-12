@@ -24,6 +24,7 @@ void DamageTickComponent::receive(Message * msg)
 	}
 	else if (msg->id_ == (MessageId)exitId) {
 		active_ = false;
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(END_INV), target_);
 		timer.stop();
 	}
 }

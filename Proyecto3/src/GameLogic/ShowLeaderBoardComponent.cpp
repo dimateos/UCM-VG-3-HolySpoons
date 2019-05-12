@@ -3,6 +3,7 @@
 #include <fstream>
 #include <RenderSystemInterface.h>
 #include <OgreTextAreaOverlayElement.h>
+#include <GlobalConfig.h>
 
 void ShowLeaderBoardComponent::display()
 {
@@ -68,6 +69,8 @@ void ShowLeaderBoardComponent::setUp() {
 
 	color_top = { this->cfg_["color_top"]["r"], this->cfg_["color_top"]["g"], this->cfg_["color_top"]["b"] };
 	color_bot = { this->cfg_["color_bot"]["r"], this->cfg_["color_bot"]["g"], this->cfg_["color_bot"]["b"] };
+
+	jsonName = GlobalCFG::paths["leaderBoard_route"];
 
 	display();
 }
