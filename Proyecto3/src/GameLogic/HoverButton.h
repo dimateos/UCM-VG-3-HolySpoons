@@ -17,7 +17,8 @@ public:
 private:
 	double X, Y, W, H;
 	double bigX, bigY, bigW, bigH;
-	int enterMsg, exitMsg;
+	//int enterMsg, exitMsg;
+	std::string buttonMat = "", imgMat = "";
 	std::string listener;
 	Ogre::OverlayElement* elemt;
 

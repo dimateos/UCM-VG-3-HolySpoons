@@ -78,6 +78,29 @@
                     "color_bot": {"r": 0.0, "g": 1.0, "b": 0.0}
                 }
             }
+        },
+        {
+            "id": {
+                "name": "Hoverbutton",
+                "type": "HoverButton_ui",
+                "group": "ui"
+            },
+            "Components": {
+                "button": {
+                    "id": {
+                        "type": "HoverButton",
+                        "group": "ui_comps"
+                    },
+                    "X": 0.0,
+                    "Y": 0.8,
+                    "W": 0.3,
+                    "H": 0.3,
+                    "panelName": "MENU_PanelContainer",
+                    "materialName": "startButtonMaterial",
+                    "imgMat":"ButtonMaterial",
+                    "name": "hover_button"
+                }
+            }
         }
     ]
 }

@@ -118,6 +118,11 @@
           "listener": "QuitGameComponent"
         }
       }
+    },
+    {
+      "id": {
+        "type": "HoverButton_ui"
+      }
     }
   ]
 }

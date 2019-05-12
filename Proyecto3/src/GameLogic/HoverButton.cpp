@@ -20,10 +20,13 @@ void HoverButton::setUp() {
 	W = this->cfg_["W"];
 	H = this->cfg_["H"];
 
+	buttonMat = cfg_["materialName"];
+	imgMat = cfg_["imgMat"];
+
 	//name and type
 	string name = this->cfg_["name"];
-	enterMsg = this->cfg_["enterMsg"];
-	exitMsg = this->cfg_["exitMsg"];
+	//enterMsg = this->cfg_["enterMsg"];
+	//exitMsg = this->cfg_["exitMsg"];
 
 	// name of the component that will listen the message (push or pop)
 	if (FIND(cfg_, "listener")) {
@@ -36,7 +39,7 @@ void HoverButton::setUp() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	elemt = rsi->createOverlayElement("Panel", name + id().sn_string());
 	rsi->addToPanel(this->cfg_["panelName"], elemt);
-	rsi->setOverlayElementMaterial(elemt, cfg_["materialName"]);
+	rsi->setOverlayElementMaterial(elemt, buttonMat);
 	centerOverlay();
 }
 
@@ -58,7 +61,7 @@ void HoverButton::centerOverlay() {
 bool HoverButton::handleEvents(GameObject * o, const SDL_Event & evt) {
 	bool handled = false;
 
-	if (evt.type == SDL_MOUSEBUTTONUP) {
+	if (evt.type == SDL_MOUSEMOTION) {
 		if (outside && inside(evt.button.x, evt.button.y)) { //if previously the mouse was outside the button, i check for when it enters it's range
 			onClick();
 			outside = false;
@@ -84,7 +87,7 @@ bool HoverButton::inside(int x, int y) {
 }
 
 void HoverButton::onClick() {
-
+	/*
 	Message msg = Message((MessageId)0);
 	if(outside) msg = (MessageId)enterMsg;
 	else  msg = (MessageId)exitMsg;
@@ -96,6 +99,13 @@ void HoverButton::onClick() {
 	// if listener is specified we send the message to that component of the gm
 	else MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&msg,
 		GameStateMachine::getSingleton()->currentState()->getGM(), listener);
+	*/
+	auto rsi = RenderSystemInterface::getSingleton();
+	if(outside)
+		rsi->setOverlayElementMaterial(elemt, buttonMat);
+	else 
+		rsi->setOverlayElementMaterial(elemt, imgMat);
+
 }
 
 #include "GOFactory.h"
