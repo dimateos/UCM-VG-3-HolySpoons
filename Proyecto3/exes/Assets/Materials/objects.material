@@ -209,6 +209,23 @@ material SkyBox3
     }
 }
 
+material SkyBox4
+{
+    technique
+    {
+        pass
+        {
+            depth_write off
+
+            texture_unit
+            {
+                cubic_texture cloud.png separateUV
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+
 material DebugOcean{
     technique{
         pass{
