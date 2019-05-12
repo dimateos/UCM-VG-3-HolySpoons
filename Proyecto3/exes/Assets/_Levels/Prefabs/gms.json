@@ -197,6 +197,47 @@
           "state": "Menu"
         }
       }
+    },
+    {
+      "id": {
+        "name": "gmSelectLevel_go",
+        "type": "pref_gmSelectLevel_go",
+        "group": "manage_gameObjects"
+      },
+      "Components": {
+        "canvas": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "ui_overlay"
+          },
+          "overlay_name": "SELECT_LEVEL",
+          "panel_container": "SELECT_LEVEL_PanelContainer"
+        },
+        "pop_state": {
+          "id": {
+            "type": "PopStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "state": "Menu"
+        },
+        "push_state_main": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "json": "_MAIN_LEVEL_"
+        },
+        "push_state_second": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "json": "_SECOND_LEVEL_"
+        }
+      }
     }
   ]
 }

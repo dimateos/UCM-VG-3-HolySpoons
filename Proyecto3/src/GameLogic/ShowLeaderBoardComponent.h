@@ -11,7 +11,7 @@ namespace Ogre {
 class ShowLeaderBoardComponent: public Component
 {
 private:
-	std::string jsonName = "test.json";
+	std::string jsonName;
 	RenderSystemInterface* rsi = nullptr;
 	float offset_X, offset_Y, charHeight, top_distance, btw_distance;
 	std::vector<std::string> textNames;

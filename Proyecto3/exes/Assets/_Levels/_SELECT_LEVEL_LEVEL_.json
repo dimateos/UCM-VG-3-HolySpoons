@@ -1,0 +1,32 @@
+{
+  "stateID_": "SelectLevel",
+  "Manager": {
+    "id": {
+      "type": "pref_gmSelectLevel_go"
+    }
+  },
+  "GameObjects": [
+    {
+      "id": {
+        "type": "cursor_ui"
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "X": 0.95,
+          "Y": 0.0,
+          "W": 0.05,
+          "H": 0.05,
+          "msgType": 1,
+          "panelName": "SELECT_LEVEL_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "go_to_menu_"
+        }
+      }
+    }
+  ]
+}
