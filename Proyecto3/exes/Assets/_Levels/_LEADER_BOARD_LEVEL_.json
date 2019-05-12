@@ -17,13 +17,13 @@
       },
       "Components": {
         "button": {
-          "X": 0.95,
+          "X": 0.92,
           "Y": 0.0,
-          "W": 0.05,
+          "W": 0.08,
           "H": 0.05,
           "msgType": 1,
           "panelName": "LEADER_BOARD_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "exitButtonMaterial",
           "name": "go_to_menu_button"
         }
       }

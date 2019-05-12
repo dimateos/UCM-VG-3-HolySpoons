@@ -24,7 +24,119 @@ material ButtonMaterial
 
 			texture_unit
 			{
+				texture 1d_debug.png
+			}
+		}
+	}
+}
+
+material LavaLevelSS
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture LavaLevelSS.png
+			}
+		}
+	}
+}
+
+material IceLevelSS
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture IceLevelSS.png
+			}
+		}
+	}
+}
+
+material startButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
 				texture startButton.png
+			}
+		}
+	}
+}
+
+material scoreButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture scoreButton.png
+			}
+		}
+	}
+}
+
+material menuButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture menuButton.png
+			}
+		}
+	}
+}
+
+material exitButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture exitButton.png
+			}
+		}
+	}
+}
+
+material continueButtonMaterial
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+
+			texture_unit
+			{
+				texture continueButton.png
 			}
 		}
 	}

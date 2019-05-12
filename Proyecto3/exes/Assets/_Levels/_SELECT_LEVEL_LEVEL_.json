@@ -17,13 +17,13 @@
       },
       "Components": {
         "button": {
-          "X": 0.95,
+          "X": 0.92,
           "Y": 0.0,
-          "W": 0.05,
+          "W": 0.08,
           "H": 0.05,
           "msgType": 1,
           "panelName": "SELECT_LEVEL_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "menuButtonMaterial",
           "name": "go_to_menu_",
           "listener": "pop_state"
         }
@@ -41,7 +41,7 @@
           "H": 0.2,
           "msgType": 0,
           "panelName": "SELECT_LEVEL_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "LavaLevelSS",
           "name": "go_to_MAIN_",
           "listener": "push_state_main"
         }
@@ -59,7 +59,7 @@
           "H": 0.2,
           "msgType": 0,
           "panelName": "SELECT_LEVEL_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "IceLevelSS",
           "name": "go_to_SECOND_",
           "listener": "push_state_second"
         }

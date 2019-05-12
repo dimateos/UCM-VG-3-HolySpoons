@@ -34,7 +34,7 @@
                     "H": 0.1,
                     "msgType": 0,
                     "panelName": "MENU_PanelContainer",
-                    "materialName": "ButtonMaterial",
+                    "materialName": "startButtonMaterial",
                     "name": "start_button"
                 }
             }

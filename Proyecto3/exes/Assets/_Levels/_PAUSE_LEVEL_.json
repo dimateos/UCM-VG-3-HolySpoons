@@ -19,7 +19,7 @@
         "button": {
           "msgType": 1,
           "panelName": "PAUSE_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "continueButtonMaterial",
           "name": "continue_button",
           "listener": "pop_state_main"
         }
@@ -34,7 +34,7 @@
           "msgType": 1,
           "Y": 0.75,
           "panelName": "PAUSE_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "menuButtonMaterial",
           "name": "backToMenu_button",
           "listener": "pop_state_menu"
         }
