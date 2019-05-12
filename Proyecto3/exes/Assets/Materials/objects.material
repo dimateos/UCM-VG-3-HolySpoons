@@ -16,16 +16,36 @@ technique
 	}
 }
 
+material WoodTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+
+			texture_unit
+			{
+				colour_op add
+				texture stone.jpg
+				tex_address_mode wrap
+				scale 0.4 0.25
+			}
+		}
+	}
+}
+
 material IceTile
 {
 technique
 	{
 		pass
 		{
-			ambient 0.8 0.8 0.8
+			ambient 0.2 0.2 0.2
 
 			texture_unit
 			{
+				colour_op add
 				texture hielo.jpg
 				tex_address_mode wrap
 				scale 0.4 0.25
@@ -57,11 +77,12 @@ technique
 	{
 		pass
 		{
-			ambient 0.4 0.4 0.4
+			ambient 0.0 0.0 0.0
 			emissive 0.7 0.7 0.7
 
 			texture_unit
 			{
+				colour_op add
 				texture spoon.jpg
 				tex_address_mode wrap
 			}
@@ -213,13 +234,13 @@ material Water{
     technique{
         pass{
             diffuse 0.0 0.0 0.0
-            ambient 0.0 0.0 0.0
+            ambient 0.0 0.8 1.0
             specular 0.0 0.0 0.0 0
             texture_unit{
-                texture Water02.jpg
+                texture water.jpg
                 scroll_anim 0.1 0.0
 				scale 0.05 0.05
-                colour_op add
+                colour_op modulate
             }
         }
     }

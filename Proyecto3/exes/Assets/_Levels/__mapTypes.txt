@@ -3,3 +3,5 @@ n non
 O BigTile
 o Tile
 0 non
+H IceBigTile
+h WoodIceTile

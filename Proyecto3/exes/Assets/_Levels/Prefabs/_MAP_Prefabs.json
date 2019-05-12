@@ -102,7 +102,7 @@
     {
         "id": {
             "name": "pref_IceTile",
-            "type": "IceTile",
+            "type": "WoodIceTile",
             "group": "map"
         },
         "Components": {
@@ -123,7 +123,7 @@
 					"group": "map_comps"
 				},
                 "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
-                "material": "IceTile",
+                "material": "WoodTile",
                 "shape": {
                     "entity_name": "tile",
                     "type": "MESH",
