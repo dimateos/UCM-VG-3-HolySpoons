@@ -15,8 +15,8 @@ overlay HUD
             char_height 0.05
             colour_top 1 1 0
             colour_bottom 1 0.2 0.2
-            left 0.01
-            top 0.07
+            left 0.45
+            top 0.03
             caption "SCORE: "
 		}
 		
