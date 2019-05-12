@@ -31,7 +31,7 @@
                 "type": "monkey_menu",
                 "group": "menus"
             },
-            "pos":{
+            "pos": {
                 "x": 1.0,
                 "y": 0.0,
                 "z": 0.0
@@ -82,7 +82,6 @@
                     "Speed": 1.5,
                     "Radius": 40
                 },
-
                 "auto_rotation": {
                     "id": {
                         "type": "AutoRotationComponent",

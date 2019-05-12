@@ -98,6 +98,72 @@
                 }
             }
         }
+    },
+    {
+        "id": {
+            "name": "pref_IceTile",
+            "type": "IceTile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "PhysicsComponent",
+					"group": "map_comps"
+                },
+                "ignoreTrans": true,
+                "dynamic": false,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "RenderComponent",
+					"group": "map_comps"
+				},
+                "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
+                "material": "IceTile",
+                "shape": {
+                    "entity_name": "tile",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    },
+    {
+        "id": {
+            "name": "pref_IceBigTile",
+            "type": "IceBigTile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "PhysicsComponent",
+					"group": "map_comps"
+                },
+                "dynamic": false,
+                "ignoreTrans": true,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 35.0, "y": 1.0, "z": 35.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "RenderComponent",
+					"group": "map_comps"
+				},
+                "scale": { "x": 35.0, "y": 1.0, "z": 35.0 },
+                "material": "IceTile",
+                "shape": {
+                    "entity_name": "bigTile",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
     }
 ]
 }

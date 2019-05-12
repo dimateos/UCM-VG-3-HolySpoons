@@ -16,6 +16,24 @@ technique
 	}
 }
 
+material IceTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+			texture_unit
+			{
+				texture hielo.jpg
+				tex_address_mode wrap
+				scale 0.4 0.25
+			}
+		}
+	}
+}
+
 material FallingTile
 {
 technique

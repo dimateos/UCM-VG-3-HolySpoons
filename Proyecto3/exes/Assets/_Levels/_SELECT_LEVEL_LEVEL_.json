@@ -24,7 +24,62 @@
           "msgType": 1,
           "panelName": "SELECT_LEVEL_PanelContainer",
           "materialName": "ButtonMaterial",
-          "name": "go_to_menu_"
+          "name": "go_to_menu_",
+          "listener": "pop_state"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "X": 0.1,
+          "Y": 0.4,
+          "W": 0.2,
+          "H": 0.2,
+          "msgType": 0,
+          "panelName": "SELECT_LEVEL_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "go_to_MAIN_",
+          "listener": "push_state_main"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "X": 0.4,
+          "Y": 0.4,
+          "W": 0.2,
+          "H": 0.2,
+          "msgType": 0,
+          "panelName": "SELECT_LEVEL_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "go_to_SECOND_",
+          "listener": "push_state_second"
+        }
+      }
+    },
+    {
+      "id": {
+        "type": "button_ui"
+      },
+      "Components": {
+        "button": {
+          "X": 0.7,
+          "Y": 0.4,
+          "W": 0.2,
+          "H": 0.2,
+          "msgType": 0,
+          "panelName": "SELECT_LEVEL_PanelContainer",
+          "materialName": "ButtonMaterial",
+          "name": "go_to_THIRD_",
+          "listener": "push_state_second"
         }
       }
     }

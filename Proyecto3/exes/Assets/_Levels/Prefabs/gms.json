@@ -129,8 +129,8 @@
             "type": "PushStateComponent",
             "group": "test_comps"
           },
-          "key": " ",
-          "json": "_MAIN_LEVEL_"
+          "key": "",
+          "json": "_SELECT_LEVEL_LEVEL_"
         },
         "push_state_leader_board": {
           "id": {

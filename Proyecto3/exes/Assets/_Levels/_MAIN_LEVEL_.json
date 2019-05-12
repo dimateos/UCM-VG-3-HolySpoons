@@ -135,7 +135,7 @@
             "group": "trigger_comps"
           },
           "timer": 2,
-          "dmg": 5,
+          "dmg": 10,
           "enterId":12,
           "exitId": 13,  
           "target": "player"

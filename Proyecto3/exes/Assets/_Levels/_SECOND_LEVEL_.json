@@ -63,6 +63,15 @@
         "x": 80.0,
         "y": -1.0,
         "z": 0.0
+      },
+      "Components": {
+        "att_light": {
+          "diffColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 1.0
+          }
+        }
       }
     },
     {
@@ -73,6 +82,15 @@
         "x": 0.0,
         "y": -1.0,
         "z": 80.0
+      },
+      "Components": {
+        "att_light": {
+          "diffColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 1.0
+          }
+        }
       }
     },
     {
@@ -83,6 +101,15 @@
         "x": -80.0,
         "y": -1.0,
         "z": 0.0
+      },
+      "Components": {
+        "att_light": {
+          "diffColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 1.0
+          }
+        }
       }
     },
     {
@@ -93,6 +120,15 @@
         "x": 0.0,
         "y": -1.0,
         "z": -80.0
+      },
+      "Components": {
+        "att_light": {
+          "diffColor": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 1.0
+          }
+        }
       }
     },
     {
@@ -103,7 +139,7 @@
         "globallight": {
           "r": 0.2,
           "g": 0.6,
-          "b": 0.7
+          "b": 0.8
         }
       }
     },
@@ -146,7 +182,7 @@
             "group": "trigger_comps"
           },
           "timer": 2,
-          "dmg": 5,
+          "dmg": 10,
           "enterId": 12,
           "exitId": 13,
           "target": "player"
