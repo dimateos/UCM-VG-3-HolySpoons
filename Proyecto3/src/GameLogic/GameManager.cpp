@@ -143,7 +143,11 @@ void GameManager::lateSetUp()
 }
 
 void GameManager::update(GameObject * o, double time) {
-	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	if (endRound) {
+		endRound = false;
+		upgradeManager.generateUpgrades(round_);
+	}
+	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
 
 	if (prevHP > playerHP_->getHP()) { prevHP -= HPDifDecr;	updateUI();	}
 	else prevHP = playerHP_->getHP();
@@ -250,8 +254,4 @@ GameManager::~GameManager() {
 
 #include "GOFactory.h"
 REGISTER_TYPE(GameManager);
-	if (endRound) {
-		endRound = false;
-		upgradeManager.generateUpgrades(round_);
-	}
-	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	
