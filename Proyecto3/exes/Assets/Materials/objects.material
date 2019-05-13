@@ -54,6 +54,24 @@ technique
 	}
 }
 
+material HolyTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+
+			texture_unit
+			{
+				colour_op add
+				texture gold.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
 material FallingTile
 {
 technique
@@ -226,12 +244,13 @@ material SkyBox4
     }
 }
 
-material DebugOcean{
+material Lava{
     technique{
         pass{
             diffuse 0.0 0.0 0.0
             ambient 0.0 0.0 0.0
             specular 0.0 0.0 0.0 0
+			cull_hardware none
             texture_unit{
                 texture lava.png
                 scroll_anim 0.1 0.0
@@ -253,6 +272,7 @@ material Water{
             diffuse 0.0 0.0 0.0
             ambient 0.0 0.8 1.0
             specular 0.0 0.0 0.0 0
+			cull_hardware none
             texture_unit{
                 texture water.jpg
                 scroll_anim 0.1 0.0

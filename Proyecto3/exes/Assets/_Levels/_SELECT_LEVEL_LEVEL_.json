@@ -79,7 +79,7 @@
           "panelName": "SELECT_LEVEL_PanelContainer",
           "materialName": "ButtonMaterial",
           "name": "go_to_THIRD_",
-          "listener": "push_state_second"
+          "listener": "push_state_third"
         }
       }
     }

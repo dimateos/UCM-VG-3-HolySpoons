@@ -98,7 +98,7 @@
     },
     {
       "id": {
-        "type": "DeathPlaneLava"
+        "type": "DeathPlane"
       },
       "pos": {
         "x": 0.0,
@@ -135,7 +135,7 @@
             "group": "trigger_comps"
           },
           "timer": 2,
-          "dmg": 10,
+          "dmg": 30,
           "enterId":12,
           "exitId": 13,  
           "target": "player"

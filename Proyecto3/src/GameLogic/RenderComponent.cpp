@@ -75,9 +75,11 @@ OgrePair RenderComponent::getOgrePair(nap_json shape) {
 	string type = shape["type"];
 	if (type == "EMPTY") pair.first = rsi->createEmpty(e_name + id().sn_string());
 	else if (type == "MESH") pair = rsi->createOgreEntity(e_name + id().sn_string(), shape["mesh"]);
-	else if (type == "PLANE")
+	else if (type == "PLANE") {
+		float auxWidth = shape["w"], auxHeight = shape["h"];
 		pair = rsi->createPlane(e_name + id().sn_string(), nap_vector3(shape["normal"]).ogre(),
-			shape["w"] * ogre_scale, shape["h"] * ogre_scale, nap_vector3(shape["up"]).ogre());
+			auxWidth * ogre_scale, auxHeight * ogre_scale, nap_vector3(shape["up"]).ogre());
+	}
 
 	return pair;
 }

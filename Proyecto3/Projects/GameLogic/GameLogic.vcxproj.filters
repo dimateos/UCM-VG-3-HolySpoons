@@ -191,8 +191,12 @@
     <ClCompile Include="..\..\src\GameLogic\DamageTickComponent.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\UpgradeComponent.cpp" />
-    <ClCompile Include="..\..\src\GameLogic\UpgradeManager.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\UpgradeComponent.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\UpgradeManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -361,7 +365,11 @@
     <ClInclude Include="..\..\src\GameLogic\DamageTickComponent.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\UpgradeComponent.h" />
-    <ClInclude Include="..\..\src\GameLogic\UpgradeManager.h" />
+    <ClInclude Include="..\..\src\GameLogic\UpgradeComponent.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\UpgradeManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

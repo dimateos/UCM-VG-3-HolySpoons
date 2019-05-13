@@ -54,23 +54,23 @@
               "y": 1,
               "z": 0
             },
-            "w": 200,
-            "h": 200,
+            "w": 1000,
+            "h": 1000,
             "up": {
               "x": 1,
               "y": 0,
               "z": 0
             }
           },
-          "material": "DebugOcean",
+          "material": "Lava",
           "ignoreTrans": true
         }
       }
     },
     {
       "id": {
-        "name": "DeathPlaneLava",
-        "type": "DeathPlaneLava",
+        "name": "DeathPlane",
+        "type": "DeathPlane",
         "group": "bounds"
       },
       "Components": {
@@ -95,8 +95,9 @@
               "z": 0
             }
           },
-          "material": "DebugOcean",
-          "ignoreTrans": true
+          "material": "",
+          "ignoreTrans": true,
+          "invisible": true
         },
         "basic_phy": {
           "id": {

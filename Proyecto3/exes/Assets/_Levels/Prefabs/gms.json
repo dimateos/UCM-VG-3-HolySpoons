@@ -236,6 +236,14 @@
           },
           "key": "",
           "json": "_SECOND_LEVEL_"
+        },
+        "push_state_third": {
+          "id": {
+            "type": "PushStateComponent",
+            "group": "test_comps"
+          },
+          "key": "",
+          "json": "_THIRD_LEVEL_"
         }
       }
     }

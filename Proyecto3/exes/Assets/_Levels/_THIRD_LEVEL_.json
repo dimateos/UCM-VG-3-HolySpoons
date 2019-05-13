@@ -1,24 +1,25 @@
 {
   "stateID_": "MainScene",
-  "mapFile": "_SECOND_LEVEL_map.txt",
+  "mapFile": "_THIRD_LEVEL_map.txt",
   "Player": {
     "id": {
       "name": "player",
       "type": "pref_playerController"
     },
+    "pos": { "x": 70.0, "y": 5.0, "z": -5.0 },
     "Components": {
       "lavaPostProcessing": {
         "id": {
           "type": "BasicPostProcessingComponent",
           "group": "player_comps"
         },
-        "CompositorName": "Water",
+        "CompositorName": "",
         "EnabledOnStart": false,
         "Active_Message": 12,
         "Inactive_Message": 13
       },
       "ChangePlayerGravityComponent":{
-        "Custom_Gravity": {"x": 0.0, "y": -10.0, "z": 0.0 }
+        "Custom_Gravity": {"x": 0.0, "y": -50.0, "z": 0.0 }
       }
     }
   },
@@ -70,9 +71,9 @@
       "Components": {
         "att_light": {
           "diffColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 1.0
+            "r": 1.0,
+            "g": 1.0,
+            "b": 0.0
           }
         }
       }
@@ -89,9 +90,9 @@
       "Components": {
         "att_light": {
           "diffColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 1.0
+            "r": 1.0,
+            "g": 1.0,
+            "b": 0.0
           }
         }
       }
@@ -108,9 +109,9 @@
       "Components": {
         "att_light": {
           "diffColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 1.0
+            "r": 1.0,
+            "g": 1.0,
+            "b": 0.0
           }
         }
       }
@@ -127,9 +128,9 @@
       "Components": {
         "att_light": {
           "diffColor": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 1.0
+            "r": 1.0,
+            "g": 1.0,
+            "b": 0.0
           }
         }
       }
@@ -140,9 +141,9 @@
       },
       "Components": {
         "globallight": {
-          "r": 0.2,
-          "g": 0.6,
-          "b": 0.8
+          "r": 3.0,
+          "g": 3.0,
+          "b": 3.0
         }
       }
     },
@@ -152,7 +153,7 @@
       },
       "Components": {
         "skybox": {
-          "skybox": "SkyBox3"
+          "skybox": "SkyBox4"
         }
       }
     },
@@ -162,7 +163,7 @@
       },
       "pos": {
         "x": 0.0,
-        "y": -50.0,
+        "y": -100.0,
         "z": 0.0
       }
     },
@@ -195,13 +196,13 @@
             "group": "trigger_comps"
           },
           "timer": 2,
-          "dmg": 10,
+          "dmg": 0,
           "enterId": 12,
           "exitId": 13,
           "target": "player"
         },
         "basic_ren": {
-          "material": "Water"
+          "invisible":true
         }
       }
     },

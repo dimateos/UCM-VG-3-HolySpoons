@@ -5,3 +5,4 @@ o Tile
 0 non
 H IceBigTile
 h WoodIceTile
+g HolyTile
