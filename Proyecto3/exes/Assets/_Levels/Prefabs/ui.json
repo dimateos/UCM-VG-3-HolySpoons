@@ -36,6 +36,13 @@
                     "panelName": "MENU_PanelContainer",
                     "materialName": "startButtonMaterial",
                     "name": "start_button"
+                },
+                "ButtonSizeChangeComponent":{
+                    "id": {
+                        "type": "ButtonSizeChangeComponent",
+                        "group": "ui_comps"
+                    },
+                    "Multiplier": 2
                 }
             }
         },

@@ -195,6 +195,10 @@ public:
 	 *destroy the overlay element with the given name
 	 */
 	void destroyOverlayElement(std::string name);
+	/*
+	 *destroy the overlay with the given name
+	 */
+	void destroyOverlay(std::string name);
 
 	/*
 	 * Returns the dest rotation

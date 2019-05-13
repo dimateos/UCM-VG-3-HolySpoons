@@ -277,6 +277,11 @@ void RenderSystemInterface::destroyOverlayElement(std::string name)
 	overlayManager->destroyOverlayElement(name);
 }
 
+void RenderSystemInterface::destroyOverlay(std::string name)
+{
+	overlayManager->destroy(name);
+}
+
 Ogre::OverlayElement * RenderSystemInterface::getOverlayElement(std::string name)
 {
 	return overlayManager->getOverlayElement(name);

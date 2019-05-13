@@ -11,7 +11,7 @@ class ButtonComponent : public Component
 {
 public:
 	inline ButtonComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
-	inline virtual ~ButtonComponent() {};
+	inline virtual ~ButtonComponent();
 	virtual void setUp();
 	Ogre::OverlayElement* getElement() { return elemt; };
 
