@@ -197,6 +197,9 @@
     <ClCompile Include="..\..\src\GameLogic\UpgradeManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\ButtonSizeChangeComponent.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\UpgradeManager.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\ButtonSizeChangeComponent.h">
+      <Filter>Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,12 @@
 #include "MessageSystem.h"
 #include "GameStateMachine.h"
 #include <SDL_events.h>
+#include <OgreOverlayElement.h>
+
+inline ButtonComponent::~ButtonComponent()
+{
+	RenderSystemInterface::getSingleton()->destroyOverlayElement(elemt->getName());
+}
 
 void ButtonComponent::setUp() {
 	if (isInited()) return;
