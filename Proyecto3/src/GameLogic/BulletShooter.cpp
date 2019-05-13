@@ -21,7 +21,7 @@ void BulletShooter::setUp() {
 	//later cfged in json
 	addWeapon("base_bullet", "baseSpoon", 110, 0.2);
 	addWeapon("power_bullet", "powerSpoon", 90, 0.6);
-	addWeapon("base_bullet", "shotSpoon", 110, 0.8);
+	addWeapon("disperse_bullet", "shotSpoon", 110, 0.8);
 	currentWeapon = 0;
 
 	//read the keys from global cfg
@@ -66,21 +66,42 @@ void BulletShooter::update(GameObject * o, double time) {
 }
 
 void BulletShooter::receive(Message * msg) {
+
 	if (msg->id_ == STATE_CHANGED) {
 		weapons[currentWeapon]->mouseUpdate(false);
+	}
+	else if (msg->id_ == UPGRADE_TAKEN) {
+		int upgrade = static_cast<Msg_UPGRADE_TAKEN*>(msg)->upgrade_;
+		switch (upgrade)
+		{
+		case 2:
+		case 3:
+			activeWeapon(upgrade - 1, true);
+			break;
+		case 7:
+		case 8:
+		case 9:
+			weapons[upgrade - 7]->shootSpeed_ -= weapons[upgrade - 7]->shootSpeed_ / 12;
+			break;
+		case 10:
+			static_cast<ShotSpoon*>(weapons[2])->nBullets += 1;
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void BulletShooter::changeWeapon(int n) {
-	if (n >= 0 && n < weapons.size() && weapons[currentWeapon]->isActive()) {
+	if (n >= 0 && n < weapons.size() && weapons[n]->isActive()) {
 		currentWeapon = n;
-		weapons[currentWeapon]->swapDelay();
+		weapons[n]->swapDelay();
 	}
 }
 
 void BulletShooter::activeWeapon(int n, bool active = true) {
 	if (n >= 0 && n < weapons.size()) {
-		weapons[currentWeapon]->setActive(active);
+		weapons[n]->setActive(active);
 		changeWeapon(n);
 	}
 }

@@ -12,6 +12,7 @@
 Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2) {
 	active_ = false;
 	vel_ = vel;
+	shootSpeed_ = shootSpeed;
 	t.start(shootSpeed);
 	pool_ = new nap_Pool(prefab);
 	pool_->setDefault(defInitialBullets);
@@ -31,7 +32,7 @@ void Weapon::shootUpdate(nap_transform * owner_trans, float relY, float relZ, do
 		ready_ = true;
 	if (ready_ && down_) {
 		ready_ = false;
-		t.start();
+		t.start(shootSpeed_);
 		shoot(owner_trans, relY, relZ);
 	}
 }
@@ -51,7 +52,7 @@ void Weapon::shoot(nap_transform* owner_trans, float relY, float relZ) {
 }
 
 void Weapon::swapDelay() {
-	t.start();
+	t.start(shootSpeed_);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +70,7 @@ void BaseSpoon::shoot(nap_transform* owner_trans, float relY, float relZ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 PowerSpoon::PowerSpoon(string prefab, float vel, double shootSpeed) : Weapon(prefab, vel, shootSpeed) {
-	active_ = true;
+	//active_ = true;
 }
 
 PowerSpoon::~PowerSpoon() {}
@@ -82,7 +83,7 @@ void PowerSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 ShotSpoon::ShotSpoon(string prefab, float vel, double shootSpeed) :Weapon(prefab, vel, shootSpeed) {
-	active_ = true;
+	//active_ = true;
 }
 
 ShotSpoon::~ShotSpoon() {}

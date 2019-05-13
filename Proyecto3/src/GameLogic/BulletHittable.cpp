@@ -5,11 +5,18 @@
 #include "MessageSystem.h"
 
 //at some point move to json
-std::map<string, int> BulletHittable::bulletDamages_ = { {"bBullets0", 12}, {"pBullets0", 30} };
+std::map<string, int> BulletHittable::bulletDamages_ = { {"bBullets", 12},{"dBullets", 10}, {"pBullets", 30} };
+
+void BulletHittable::updateBulletDamage(string name, int damage)
+{
+	auto it = bulletDamages_.find(name);
+	if (it != bulletDamages_.end())
+		it->second += damage;
+}
 
 void BulletHittable::setUp() {
 	maxHitPoints_ = hitPoints_ = FINDnRETURN(cfg_, "hp", int, 0);
-	valuePoints_ = FINDnRETURN(cfg_, "points", int, 50);
+	valuePoints_ = FINDnRETURN(cfg_, "points", int, 0);
 	enemy = FINDnRETURN(cfg_, "enemy", bool, true);
 	deactivate = FINDnRETURN(cfg_, "deactivate", bool, true);
 }

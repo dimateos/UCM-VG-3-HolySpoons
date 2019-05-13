@@ -70,6 +70,8 @@
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HitPostProcessingComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TimedPostProcessingComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\UpgradeComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\UpgradeManager.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +130,8 @@
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\HitPostProcessingComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\TimedPostProcessingComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\UpgradeComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\UpgradeManager.h" />
     <ClInclude Include="..\..\src\GameLogic\Weapon.h" />
   </ItemGroup>
   <ItemGroup>

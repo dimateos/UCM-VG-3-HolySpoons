@@ -67,8 +67,8 @@
                 "type": "KeyBoardMovement",
                 "group": "player_comps"
             },
-            "walkVel":25,
-            "runVel": 40,
+            "walkVel":20,
+            "runVel": 28,
             "jumpImpulse": 20,
             "jumpResetersGroups": ["map"]
         },

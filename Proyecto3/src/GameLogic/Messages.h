@@ -38,6 +38,10 @@ enum MessageId // DIFFERENT MESSAGE IDs
 	DEACTIVATE_OBJECT,
 	BULLET_HIT,
 	RESET_HP,
+	UPGRADE_TAKEN,
+	ADD_HP,
+	ADD_SPEED,
+
 
 	//CHANGE STATES
 	STATE_CHANGED,
@@ -70,6 +74,11 @@ struct Msg_BULLET_HIT :public Message {
 struct Msg_HP_DAMAGE :public Message {
 	inline Msg_HP_DAMAGE(int damage) : Message(HP_DAMAGE), damage_(damage) { }
 	int damage_;
+};
+
+struct Msg_UPGRADE_TAKEN :public Message {
+	inline Msg_UPGRADE_TAKEN(int upgrade) : Message(UPGRADE_TAKEN), upgrade_(upgrade) { }
+	int upgrade_;
 };
 
 struct Msg_PLAYER_DEAD :public Message {

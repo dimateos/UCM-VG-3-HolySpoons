@@ -19,6 +19,11 @@ void HPComponent::receive(Message * msg)
 		MessageSystem::getSingleton()->sendMessageGameObject(&Message(CHECK_HP), GameStateMachine::getSingleton()->currentState()->getGM());
 	}
 	else if (msg->id_ == RESET_HP) resetHP();
+	else if (msg->id_ == ADD_HP) {
+		InitHP += 10;
+		resetHP();
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(CHECK_HP), GameStateMachine::getSingleton()->currentState()->getGM());
+	}
 }
 
 #include "GOFactory.h"

@@ -1,135 +1,180 @@
 {
-    "Prefabs": [
-        {
-            "id": {
-                "name": "ambient_light",
-                "type": "ambient_light",
-                "group": "ui"
-            },
-            "Components": {
-                "globallight": {
-                    "id": {
-                        "type": "GlobalAmbientLightComponent",
-                        "group": "test_comps"
-                    },
-                    "r": 0.4,
-                    "g": 0.3,
-                    "b": 0.3
-                }
-            }
-        },
-        {
-            "id": {
-                "name": "skybox",
-                "type": "skybox",
-                "group": "ui"
-            },
-            "Components": {
-                "skybox": {
-                    "id": {
-                        "type": "SkyBoxComponent",
-                        "group": "test_comps"
-                    },
-                    "skybox": "SkyBox2"
-                }
-            }
-        },
-        {
-            "id": {
-                "name": "PlaneLava",
-                "type": "PlaneLava",
-                "group": "decor"
-            },
-            "Components": {
-                "basic_ren": {
-                    "id": {
-                        "type": "RenderComponent",
-                        "group": "decor_comps"
-                    },
-                    "shape": {
-                        "entity_name": "lava_plane",
-                        "type": "PLANE",
-                        "normal": {
-                            "x": 0,
-                            "y": 1,
-                            "z": 0
-                        },
-                        "w": 200,
-                        "h": 200,
-                        "up": {
-                            "x": 1,
-                            "y": 0,
-                            "z": 0
-                        }
-                    },
-                    "material": "DebugOcean",
-                    "ignoreTrans": true
-                }
-            }
-        },
-        {
-            "id": {
-                "name": "DeathPlaneLava",
-                "type": "DeathPlaneLava",
-                "group": "bounds"
-            },
-            "Components": {
-                "basic_ren": {
-                    "id": {
-                        "type": "RenderComponent",
-                        "group": "bounds_comps"
-                    },
-                    "shape": {
-                        "entity_name": "lava_plane",
-                        "type": "PLANE",
-                        "normal": {
-                            "x": 0,
-                            "y": 1,
-                            "z": 0
-                        },
-                        "w": 1000,
-                        "h": 1000,
-                        "up": {
-                            "x": 1,
-                            "y": 0,
-                            "z": 0
-                        }
-                    },
-                    "material": "DebugOcean",
-                    "ignoreTrans": true
-                },
-                "basic_phy": {
-                    "id": {
-                        "type": "PhysicsComponent",
-                        "group": "bounds_comps"
-                    },
-                    "dynamic": false,
-                    "ignoreTrans": true,
-                    "shape": {
-                        "type": "BOX",
-                        "scale": {
-                            "x": 300.0,
-                            "y": 1.0,
-                            "z": 300.0
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "id": {
-                "name": "leaderBoard",
-                "type": "leaderBoard",
-                "group": "leaderBoard"
-            },
-            "Components": {
-                "LeaderBoardComponent": {
-                    "id": {
-                        "type": "LeaderBoardComponent",
-                        "group": "test_comps"
-                    }
-                }
-            }
+  "Prefabs": [
+    {
+      "id": {
+        "name": "ambient_light",
+        "type": "ambient_light",
+        "group": "ui"
+      },
+      "Components": {
+        "globallight": {
+          "id": {
+            "type": "GlobalAmbientLightComponent",
+            "group": "test_comps"
+          },
+          "r": 0.4,
+          "g": 0.3,
+          "b": 0.3
         }
-    ]
+      }
+    },
+    {
+      "id": {
+        "name": "skybox",
+        "type": "skybox",
+        "group": "ui"
+      },
+      "Components": {
+        "skybox": {
+          "id": {
+            "type": "SkyBoxComponent",
+            "group": "test_comps"
+          },
+          "skybox": "SkyBox2"
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "PlaneLava",
+        "type": "PlaneLava",
+        "group": "decor"
+      },
+      "Components": {
+        "basic_ren": {
+          "id": {
+            "type": "RenderComponent",
+            "group": "decor_comps"
+          },
+          "shape": {
+            "entity_name": "lava_plane",
+            "type": "PLANE",
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            },
+            "w": 200,
+            "h": 200,
+            "up": {
+              "x": 1,
+              "y": 0,
+              "z": 0
+            }
+          },
+          "material": "DebugOcean",
+          "ignoreTrans": true
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "DeathPlaneLava",
+        "type": "DeathPlaneLava",
+        "group": "bounds"
+      },
+      "Components": {
+        "basic_ren": {
+          "id": {
+            "type": "RenderComponent",
+            "group": "bounds_comps"
+          },
+          "shape": {
+            "entity_name": "lava_plane",
+            "type": "PLANE",
+            "normal": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            },
+            "w": 1000,
+            "h": 1000,
+            "up": {
+              "x": 1,
+              "y": 0,
+              "z": 0
+            }
+          },
+          "material": "DebugOcean",
+          "ignoreTrans": true
+        },
+        "basic_phy": {
+          "id": {
+            "type": "PhysicsComponent",
+            "group": "bounds_comps"
+          },
+          "dynamic": false,
+          "ignoreTrans": true,
+          "shape": {
+            "type": "BOX",
+            "scale": {
+              "x": 300.0,
+              "y": 1.0,
+              "z": 300.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "leaderBoard",
+        "type": "leaderBoard",
+        "group": "leaderBoard"
+      },
+      "Components": {
+        "LeaderBoardComponent": {
+          "id": {
+            "type": "LeaderBoardComponent",
+            "group": "test_comps"
+          }
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "pref_upgrade",
+        "type": "pref_upgrade",
+        "group": "upgradeObjects"
+      },
+      "Components": {
+        "up_physics": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": true,
+          "mass": 0.1,
+          "shape": {
+            "type": "BOX",
+            "scale": {
+              "x": 4,
+              "y": 4,
+              "z": 4
+            }
+          }
+        },
+        "up_render": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 4,
+            "y": 4,
+            "z": 4
+          },
+          "material": "DebugMaterial2",
+          "shape": {
+            "entity_name": "pref_upgrade",
+            "type": "MESH",
+            "mesh": "cube.mesh"
+          }
+        },
+        "upgrade_comp": {
+          "id": {
+            "type": "UpgradeComponent"
+          }
+        }
+      }
+    }
+  ]
 }

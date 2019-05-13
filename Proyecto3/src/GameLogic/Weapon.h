@@ -24,7 +24,7 @@ public:
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
 	virtual void swapDelay();
-
+	double shootSpeed_;
 protected:
 	bool down_ = false, ready_ = true;
 	nap_Pool* pool_ = nullptr;
@@ -60,8 +60,9 @@ public:
 	virtual ~ShotSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
+	int nBullets = 5;
 protected:
-	int nBullets = 5, maxSpreadX = 8, maxSpreadY = 8;
+	int maxSpreadX = 8, maxSpreadY = 8;
 	float iniDispersionFactor = 1/40;
 };
 

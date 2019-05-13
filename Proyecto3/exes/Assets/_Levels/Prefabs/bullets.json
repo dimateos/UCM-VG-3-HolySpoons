@@ -4,7 +4,7 @@
       "id": {
         "name": "base_bullet",
         "type": "base_bullet",
-        "group": "bBullets0"
+        "group": "bBullets"
       },
       "Components": {
         "bullet_phys": {
@@ -23,9 +23,51 @@
             "type": "RenderComponent"
           },
           "scale": {
-            "x": 0.5,
-            "y": 0.5,
-            "z": 0.5
+            "x": 0.3,
+            "y": 0.3,
+            "z": 0.3
+          },
+          "material": "Bullet",
+          "shape": {
+            "entity_name": "base_bullet",
+            "type": "MESH",
+            "mesh": "uv_sphere.mesh"
+          }
+        },
+        "bullet_hit": {
+          "id": {
+            "type": "BulletHit"
+          },
+          "time": 8
+        }
+      }
+    },
+    {
+      "id": {
+        "name": "disperse_bullet",
+        "type": "disperse_bullet",
+        "group": "dBullets"
+      },
+      "Components": {
+        "bullet_phys": {
+          "id": {
+            "type": "PhysicsComponent"
+          },
+          "noGravity": true,
+          "mass": 0.01,
+          "shape": {
+            "type": "SPHERE",
+            "r": 0.18
+          }
+        },
+        "bullet_rend": {
+          "id": {
+            "type": "RenderComponent"
+          },
+          "scale": {
+            "x": 0.18,
+            "y": 0.18,
+            "z": 0.18
           },
           "material": "Bullet",
           "shape": {
@@ -46,7 +88,7 @@
       "id": {
         "name": "power_bullet",
         "type": "power_bullet",
-        "group": "pBullets0"
+        "group": "pBullets"
       },
       "Components": {
         "bullet_phys": {

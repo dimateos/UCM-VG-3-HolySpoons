@@ -3,6 +3,7 @@
 #define GAME_MANAGER_H_
 
 #include "Component.h"
+#include "UpgradeManager.h"
 #include <Timer.h>
 
 class OverlayComponent;
@@ -61,10 +62,12 @@ private:
 	void activateDestrSpawners();
 
 	std::vector<GameObject*>destructibleSpawners;
+	UpgradeManager upgradeManager;
+	bool endRound = false;
 
 public:
 	inline GameManager(nap_json const & cfg, GameObject* owner) : 
-		Component(cfg, owner), score_(0), enemies_(0), round_(0) {};
+		Component(cfg, owner), score_(0), enemies_(0), round_(0),upgradeManager() {};
 	inline virtual ~GameManager();
 	virtual void setUp();
 	virtual void lateSetUp();

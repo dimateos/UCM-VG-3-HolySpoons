@@ -109,6 +109,7 @@ void GameManager::setUp() {
 	MiniRoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("MINI_ROUND_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
+	upgradeManager.setUp(player_);
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
 	prevHP = playerHP_->getHP();
 	HPleft = HPStripe->getLeft(); HPtop = HPStripe->getTop(); HPwidth = HPStripe->getWidth();
@@ -142,7 +143,7 @@ void GameManager::lateSetUp()
 }
 
 void GameManager::update(GameObject * o, double time) {
-	//MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
+	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
 
 	if (prevHP > playerHP_->getHP()) { prevHP -= HPDifDecr;	updateUI();	}
 	else prevHP = playerHP_->getHP();
@@ -188,7 +189,9 @@ void GameManager::receive(Message * msg)
 		hitTimer.start();
 		if (aux->enemy_) { // if the object was an enemy
 			enemies_--;
-			if (enemies_ <= 0)nextRound(); // if you kill all the enemies -> next round
+			if (enemies_ <= 0) // if you kill all the enemies -> next round
+				//nextRound();
+				endRound = true;
 		}
 	}
 	else if (msg->id_ == ENEMY_DAMAGE) {
@@ -213,6 +216,11 @@ void GameManager::receive(Message * msg)
 	}
 	else if (msg->id_ == ADD_SPAWNER) {
 		destructibleSpawners.push_back(static_cast<Msg_ADD_SPAWNER*>(msg)->spawner_);
+	}
+	else if (msg->id_ == UPGRADE_TAKEN) { 
+		nextRound();
+		upgradeManager.activeUpgrade(static_cast<Msg_UPGRADE_TAKEN*>(msg)->upgrade_);
+		upgradeManager.destroyUpgrades();
 	}
 }
 
@@ -242,3 +250,8 @@ GameManager::~GameManager() {
 
 #include "GOFactory.h"
 REGISTER_TYPE(GameManager);
+	if (endRound) {
+		endRound = false;
+		upgradeManager.generateUpgrades(round_);
+	}
+	MiniRoundText->setCaption(std::to_string(enemies_));			//DEBUG
