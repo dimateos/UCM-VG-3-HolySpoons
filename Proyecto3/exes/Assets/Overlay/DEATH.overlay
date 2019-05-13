@@ -1,6 +1,6 @@
 overlay DEATH
 {
-	zorder 100
+	zorder 200
 	overlay_element DEATH_PANEL Panel
     {
         overlay_element DEATH_Text TextArea
@@ -15,5 +15,14 @@ overlay DEATH
             top 0.45
             caption "YOU ARE DEAD"
         }
+
+		overlay_element ZBackgroundDeath Panel
+    	{
+            left 0.0
+		    top 0.0
+		    width 1.0
+		    height 1.0
+            material woodBackground
+    	}
     }
 }

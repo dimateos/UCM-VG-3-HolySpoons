@@ -1,11 +1,20 @@
 overlay SELECT_LEVEL
 {
-	zorder 100
+	zorder 200
 	overlay_element SELECT_LEVEL_PanelContainer Panel
 	{
 		left 0.0
 		top 0.0
 		width 1.0
 		height 1.0
+
+		overlay_element ZBackgroundSelect Panel
+    	{
+            left 0.0
+		    top 0.0
+		    width 1.0
+		    height 1.0
+            material woodBackground
+    	}
 	}
 }

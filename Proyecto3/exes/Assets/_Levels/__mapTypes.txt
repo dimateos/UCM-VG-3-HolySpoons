@@ -6,3 +6,4 @@ o Tile
 H IceBigTile
 h WoodIceTile
 g HolyTile
+G HolyBigTile

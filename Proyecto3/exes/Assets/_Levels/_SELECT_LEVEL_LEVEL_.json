@@ -35,10 +35,10 @@
       },
       "Components": {
         "button": {
-          "X": 0.1,
-          "Y": 0.4,
-          "W": 0.2,
-          "H": 0.2,
+          "X": 0.025,
+          "Y": 0.35,
+          "W": 0.3,
+          "H": 0.3,
           "msgType": 0,
           "panelName": "SELECT_LEVEL_PanelContainer",
           "materialName": "LavaLevelSS",
@@ -53,10 +53,10 @@
       },
       "Components": {
         "button": {
-          "X": 0.4,
-          "Y": 0.4,
-          "W": 0.2,
-          "H": 0.2,
+          "X": 0.35,
+          "Y": 0.35,
+          "W": 0.3,
+          "H": 0.3,
           "msgType": 0,
           "panelName": "SELECT_LEVEL_PanelContainer",
           "materialName": "IceLevelSS",
@@ -71,13 +71,13 @@
       },
       "Components": {
         "button": {
-          "X": 0.7,
-          "Y": 0.4,
-          "W": 0.2,
-          "H": 0.2,
+          "X": 0.675,
+          "Y": 0.35,
+          "W": 0.3,
+          "H": 0.3,
           "msgType": 0,
           "panelName": "SELECT_LEVEL_PanelContainer",
-          "materialName": "ButtonMaterial",
+          "materialName": "HolyLevelSS",
           "name": "go_to_THIRD_",
           "listener": "push_state_third"
         }
