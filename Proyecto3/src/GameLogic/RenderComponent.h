@@ -13,6 +13,7 @@ public:
 	inline virtual ~RenderComponent() { setDown(); };
 	virtual void setUp();
 
+	void setMaterial(std::string matName);
 	inline Ogre::SceneNode* getSceneNode() { return node; }
 
 	virtual void update(GameObject* ent, double time);
@@ -28,8 +29,8 @@ protected:
 	//Assist on setting up the shape
 	OgrePair getOgrePair(nap_json shape);
 
-	Ogre::SceneNode *node;
-	Ogre::Entity *entity;
+	Ogre::SceneNode *node = nullptr;
+	Ogre::Entity *entity = nullptr;
 
 	nap_vector3 relativePos_;
 

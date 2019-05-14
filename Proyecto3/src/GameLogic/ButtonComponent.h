@@ -27,6 +27,7 @@ private:
 	void centerOverlay();
 
 	bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void receive(Message * msg);
 };
 
 #endif /* ButtonComponent_H_ */

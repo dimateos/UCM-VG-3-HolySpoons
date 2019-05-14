@@ -18,8 +18,8 @@ void DamageTickComponent::setUp() {
 void DamageTickComponent::receive(Message * msg)
 {
 	if (msg->id_ == (MessageId)enterId) {
-		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_HP_DAMAGE(dmg), target_);
 		active_ = true;
+		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_HP_DAMAGE(dmg), target_);
 		timer.start();
 	}
 	else if (msg->id_ == (MessageId)exitId) {

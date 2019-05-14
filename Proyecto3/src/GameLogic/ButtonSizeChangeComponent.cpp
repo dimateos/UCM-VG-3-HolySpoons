@@ -72,6 +72,12 @@ bool ButtonSizeChangeComponent::handleEvents(GameObject * o, const SDL_Event & e
 	return handled;
 }
 
+void ButtonSizeChangeComponent::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		centerOverlay();
+	}
+}
+
 bool ButtonSizeChangeComponent::inside(int x, int y) {
 	return x >= bigX && x <= bigX + bigW && y >= bigY && y <= bigY + bigH;
 }
