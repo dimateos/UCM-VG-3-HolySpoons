@@ -5,11 +5,13 @@
 #include "Messages.h"
 
 #include <GlobalConfig.h>
-
-using json = nlohmann::json;
+#include <JsonCore.h>
+#include <FileSystemUtils.h>
 
 void LeaderBoardComponent::saveToJSON()
 {
+	FileSystemUtils::createFolderOnCWD(GlobalCFG::paths["leaderBoard_folder"]);
+
 	std::ofstream i(jsonName); //archivo donde se va a guardar
 	nap_json j;
 
@@ -77,8 +79,7 @@ void LeaderBoardComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	jsonName = GlobalCFG::paths["leaderBoard_route"];
-
+	jsonName = GlobalCFG::paths["leaderBoard_folder"] + GlobalCFG::paths["leaderBoard_filename"];
 	readFromJSON();
 }
 

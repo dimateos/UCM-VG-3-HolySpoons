@@ -55,6 +55,9 @@
     <ClInclude Include="..\..\src\Utils\GlobalConfig.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Utils\FileSystemUtils.h">
+      <Filter>Loading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Utils\LogSystem.cpp">

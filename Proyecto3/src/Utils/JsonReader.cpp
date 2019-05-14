@@ -1,5 +1,7 @@
 #include "JsonReader.h"
+
 #include "LogSystem.h"
+#include "FileSystemUtils.h"
 
 #include <fstream>
 
@@ -33,29 +35,19 @@ JsonReader::~JsonReader() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "dirent.h"
 //preload all the prefabs in folder "routePrefabs"
 void JsonReader::preloadPrefabs() {
 	LogSystem::Log("Precargando prefabs...", LogSystem::JSON);
 	size_t n = 0;
 
-	//read all directory files using dirent.h as filesystem.h is c++ 17
-	DIR *dir;
-	struct dirent *ent;
-	if ((dir = opendir(routePrefabs.c_str())) == NULL) {
-		LogSystem::Log(routePrefabs + " no fue encontrado... abortando parseo prefabs", LogSystem::JSON);
-		return;
-	}
+	//get all names using FileSystemUtils
+	auto entries = FileSystemUtils::retrieveDirEntries(routePrefabs);
 
-	//ignore . and ..
-	readdir(dir); readdir(dir);
-
-	//parse one by one
-	while ((ent = readdir(dir)) != NULL) {
+	for (auto & ent : entries) {
 		//open the file
-		string s = ent->d_name; ifstream file(routePrefabs + s);
+		ifstream file(ent);
 		if (!file.is_open()) {
-			LogSystem::Log("El archivo " + s + " no se pudo abrir... ignorando", LogSystem::JSON);
+			LogSystem::Log("El archivo " + ent + " no se pudo abrir... ignorando", LogSystem::JSON);
 			continue;
 		}
 
@@ -81,7 +73,6 @@ void JsonReader::preloadPrefabs() {
 		file.close();
 	}
 
-	closedir(dir);
 	LogSystem::Log("Precargados " + to_string(n) + " archivos de prefabs con exito", LogSystem::JSON);
 }
 

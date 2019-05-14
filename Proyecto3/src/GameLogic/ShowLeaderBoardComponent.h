@@ -24,7 +24,11 @@ private:
 	/*
 	 *creates two textElements --> name / score
 	 */
-	void createText(std::string name, std::string score, int index = 0);
+	void createRowText(std::string name, std::string score, int index = 0);
+	/*
+	 *creates one formated textElement
+	 */
+	Ogre::TextAreaOverlayElement* createTextFormated(std::string nodeName, std::string s, float x, float y, float h);
 	/*
 	 *sets x, y, charHeight of element
 	 */
