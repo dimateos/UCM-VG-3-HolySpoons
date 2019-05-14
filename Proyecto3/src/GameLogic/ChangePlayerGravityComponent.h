@@ -1,10 +1,10 @@
 #ifndef CHANGEPLAYERGRAVITYCOMPONENT_H_
 #define CHANGEPLAYERGRAVITYCOMPONENT_H_
 
+class PhysicsControllerComponent; //fowarded
+
 #include "Component.h"
-
-class PhysicsControllerComponent;
-
+//Component to change the player gravity with messages
 class ChangePlayerGravityComponent: public Component
 {
 private:

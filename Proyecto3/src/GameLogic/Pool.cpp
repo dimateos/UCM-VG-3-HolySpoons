@@ -52,6 +52,6 @@ void nap_Pool::init()
 {
 	//Creates a default value of items to populate the pool from the start
 	for (int i = 0; i < defaultValue; i++) {
-		spawn()->setActive(false);
+		spawn()->setActive(false, true);
 	}
 }

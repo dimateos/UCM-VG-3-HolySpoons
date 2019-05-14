@@ -58,16 +58,19 @@ PxRigidDynamic * PhysicsComponent::getDynamicBody() {
 	return rigidBodyD_;
 }
 
+void PhysicsComponent::setShapeTrigger(bool b) {
+	if (shape_ == nullptr) return;
+
+	shape_->setFlag(b ? PxShapeFlag::eSIMULATION_SHAPE : PxShapeFlag::eTRIGGER_SHAPE, false);
+	shape_->setFlag(b ? PxShapeFlag::eTRIGGER_SHAPE : PxShapeFlag::eSIMULATION_SHAPE, true);
+}
+
 void PhysicsComponent::setDown() {
 	//release the bodies (which releases the shape etc)
 	if(getActor() != nullptr) getActor()->release();
 }
 
 void PhysicsComponent::configActive() {
-	//shape_->setFlag(active_ ? PxShapeFlag::eTRIGGER_SHAPE : PxShapeFlag::eSIMULATION_SHAPE, !active_);
-	//shape_->setFlag(active_ ? PxShapeFlag::eSIMULATION_SHAPE : PxShapeFlag::eTRIGGER_SHAPE, active_);
-	//shape_->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, active_);
-
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
 	getActor()->setGlobalPose(PxTransform((!active_ ? baseTransPos : owner_->getPosition()).px(), owner_->getOrientation().px()));
 }

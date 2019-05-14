@@ -90,7 +90,7 @@
                 "group": "player_comps"
             },
             "relativeY": 3.0,
-            "relativeZ": 2.5,
+            "relativeZ": 0.0,
             "bDamage": 12, "pDamage": 30, "dDamage": 10,
             "bSpeed": 110, "pSpeed": 90, "dSpeed":  110,
             "bFireRate": 0.2, "pFireRate": 0.6, "dFireRate": 0.8,

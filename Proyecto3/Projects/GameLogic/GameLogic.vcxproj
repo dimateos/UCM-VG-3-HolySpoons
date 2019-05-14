@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\src\GameLogic\BoxTriggerComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\BulletHitTrigger.cpp" />
     <ClCompile Include="..\..\src\GameLogic\BulletShooter.cpp" />
     <ClCompile Include="..\..\src\GameLogic\ButtonComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\ButtonSizeChangeComponent.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="..\..\src\GameLogic\BoxTriggerComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletHit.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h" />
+    <ClInclude Include="..\..\src\GameLogic\BulletHitTrigger.h" />
     <ClInclude Include="..\..\src\GameLogic\BulletShooter.h" />
     <ClInclude Include="..\..\src\GameLogic\ButtonComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\ButtonSizeChangeComponent.h" />

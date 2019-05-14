@@ -19,6 +19,8 @@
 
     "floats": [
       {"cam_sensBase": 0.20},
-      {"cam_fovY_max": 90.00 }
+      {"cam_fovY_max": 90.00 },
+      {"bul_def_time": 8.00 },
+      {"bul_def_time_inv": 0.01 }
   ]
 }

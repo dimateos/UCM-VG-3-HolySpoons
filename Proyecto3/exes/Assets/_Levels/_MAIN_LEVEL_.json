@@ -98,16 +98,6 @@
     },
     {
       "id": {
-        "type": "DeathPlane"
-      },
-      "pos": {
-        "x": 0.0,
-        "y": -25.0,
-        "z": 0.0
-      }
-    },
-    {
-      "id": {
         "type": "PlaneLava"
       },
       "pos": {
@@ -137,7 +127,7 @@
           "timer": 2,
           "dmg": 30,
           "enterId":12,
-          "exitId": 13,  
+          "exitId": 13,
           "target": "player"
         }
       }
