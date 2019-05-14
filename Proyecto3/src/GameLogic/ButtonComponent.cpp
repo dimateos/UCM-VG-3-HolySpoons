@@ -78,6 +78,12 @@ bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 	return handled;
 }
 
+void ButtonComponent::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		centerOverlay();
+	}
+}
+
 bool ButtonComponent::inside(int x, int y) {
 	return x >= bigX && x <= bigX + bigW && y >= bigY && y <= bigY + bigH;
 }

@@ -42,7 +42,7 @@
                         "type": "ButtonSizeChangeComponent",
                         "group": "ui_comps"
                     },
-                    "Multiplier": 2
+                    "Multiplier": 1.3
                 }
             }
         },

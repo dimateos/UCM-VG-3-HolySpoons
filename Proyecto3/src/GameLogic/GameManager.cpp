@@ -109,7 +109,6 @@ void GameManager::setUp() {
 	MiniRoundText = static_cast<TextAreaOverlayElement*>(rsi->getOverlayElement("MINI_ROUND_Text"));
 
 	player_ = GameStateMachine::getSingleton()->currentState()->getPlayer();
-	upgradeManager.setUp(player_);
 	playerHP_ = static_cast<HPComponent*>(player_->getComponent("hp_component"));
 	prevHP = playerHP_->getHP();
 	HPleft = HPStripe->getLeft(); HPtop = HPStripe->getTop(); HPwidth = HPStripe->getWidth();
@@ -138,6 +137,7 @@ void GameManager::setUp() {
 
 void GameManager::lateSetUp()
 {
+	upgradeManager.setUp(player_);
 	for(int i = 0; i < destructibleSpawners.size(); i++) MessageSystem::getSingleton()->sendMessageGameObject(&Message(DEACTIVATE_OBJECT), destructibleSpawners[i]);
 	nextRound(); // round 1
 }

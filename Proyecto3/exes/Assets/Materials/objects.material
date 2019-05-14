@@ -343,3 +343,169 @@ material portal{
     }
 }
 
+material aGSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture aGSpoon.png
+			}
+		}
+	}
+}
+
+material dGSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture dGSpoon.png
+			}
+		}
+	}
+}
+
+material fGSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture fGSpoon.png
+			}
+		}
+	}
+}
+
+material aMSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture aMSpoon.png
+			}
+		}
+	}
+}
+
+material fMSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture fMSpoon.png
+			}
+		}
+	}
+}
+
+material dMSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture dMSpoon.png
+			}
+		}
+	}
+}
+
+material MSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture MSpoon.png
+			}
+		}
+	}
+}
+
+material dWSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture dWSpoon.png
+			}
+		}
+	}
+}
+
+material fWSpoon {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture fWSpoon.png
+			}
+		}
+	}
+}
+
+material Health {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture Health.png
+			}
+		}
+	}
+}
+
+material Speed {
+    technique
+	{
+		pass
+		{
+		diffuse 0.0 0.0 0.0
+		scene_blend alpha_blend
+			texture_unit
+			{
+				texture Speed.png
+			}
+		}
+	}
+}
+
+

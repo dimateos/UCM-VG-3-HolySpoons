@@ -72,6 +72,12 @@ bool ButtonSizeChangeComponent::handleEvents(GameObject * o, const SDL_Event & e
 	return handled;
 }
 
+void ButtonSizeChangeComponent::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		centerOverlay();
+	}
+}
+
 bool ButtonSizeChangeComponent::inside(int x, int y) {
 	return x >= bigX && x <= bigX + bigW && y >= bigY && y <= bigY + bigH;
 }
@@ -79,10 +85,14 @@ bool ButtonSizeChangeComponent::inside(int x, int y) {
 void ButtonSizeChangeComponent::onClick() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	if (outside) {
+		//aux vars
 		float newW = bigW * multiplier;
 		float newH = bigH * multiplier;
+		float temp_x = (newW - bigW) / 2.0f;
+		float temp_y = (newH - bigH) / 2.0f;
+
 		rsi->setOverlayElementDimensions_abs(elemt, newW, newH);
-		rsi->setOverlayElementPosition_abs(elemt, bigX - newW/4, bigY - newH/4);
+		rsi->setOverlayElementPosition_abs(elemt, bigX - temp_x, bigY - temp_y);
 	}
 	else {
 		rsi->setOverlayElementDimensions_abs(elemt, bigW, bigH);

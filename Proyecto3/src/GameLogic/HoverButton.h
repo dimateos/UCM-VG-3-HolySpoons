@@ -29,6 +29,7 @@ private:
 	void centerOverlay();
 
 	bool handleEvents(GameObject* o, const SDL_Event& evt);
+	virtual void receive(Message * msg);
 };
 
 #endif /* HOVERBUTTON_H_ */

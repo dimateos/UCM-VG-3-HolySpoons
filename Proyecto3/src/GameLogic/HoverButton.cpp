@@ -82,6 +82,12 @@ bool HoverButton::handleEvents(GameObject * o, const SDL_Event & evt) {
 	return handled;
 }
 
+void HoverButton::receive(Message * msg) {
+	if (msg->id_ == STATE_CHANGED) {
+		centerOverlay();
+	}
+}
+
 bool HoverButton::inside(int x, int y) {
 	return x >= bigX && x <= bigX + bigW && y >= bigY && y <= bigY + bigH;
 }
@@ -91,7 +97,7 @@ void HoverButton::onClick() {
 	Message msg = Message((MessageId)0);
 	if(outside) msg = (MessageId)enterMsg;
 	else  msg = (MessageId)exitMsg;
-	
+
 	if (listener == "") { // if listener is not specified (only one possible listener in the entire gm)
 		MessageSystem::getSingleton()->sendMessageGameObject(&msg,
 			GameStateMachine::getSingleton()->currentState()->getGM());
@@ -103,7 +109,7 @@ void HoverButton::onClick() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	if(outside)
 		rsi->setOverlayElementMaterial(elemt, buttonMat);
-	else 
+	else
 		rsi->setOverlayElementMaterial(elemt, imgMat);
 
 }

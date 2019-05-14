@@ -7,3 +7,5 @@ H IceBigTile
 h WoodIceTile
 g HolyTile
 G HolyBigTile
+M Spawn
+W SpawnR

@@ -125,6 +125,10 @@ void KeyBoardMovement::receive(Message * msg) {
 		Zaxis.clear();
 		Xaxis.clear();
 	}
+	else if (msg->id_ == RESET_JUMP) {
+		jumping_ = false;
+		sprinting_ = false;
+	}
 	else if (msg->id_ == ADD_SPEED) {
 		walkVel_ += 1.5;
 		runVel_ += 2;

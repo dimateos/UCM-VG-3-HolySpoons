@@ -63,6 +63,11 @@ void RenderComponent::configActive() {
 	node->setPosition((owner_->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
 }
 
+void RenderComponent::setMaterial(std::string matName) {
+	if (entity == nullptr) LogSystem::Log("Entity nullptr, setMaterial ignored", LogSystem::REND);
+	else entity->setMaterialName(matName);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 OgrePair RenderComponent::getOgrePair(nap_json shape) {
