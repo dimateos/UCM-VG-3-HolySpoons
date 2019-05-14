@@ -41,7 +41,9 @@ void FPSCamera::lateSetUp() {
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
 	//add spoon ren as child instead of vice versa because the fps cam is permanent
-	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"))->getSceneNode());
+	auto playerRend = static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"));
+	playerRend->getSceneNode()->setPosition(playerRend->getRelativePos().ogre() * ogre_scale);
+	RenderSystemInterface::getSingleton()->addChild(camNode_, playerRend->getSceneNode());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

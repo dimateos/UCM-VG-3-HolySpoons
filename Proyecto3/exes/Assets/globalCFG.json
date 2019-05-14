@@ -1,7 +1,7 @@
 {
     "paths": [
       {"log_route": "..\\exes\\P3.log"},
-      {"leaderBoard_route": "..\\exes\\user\\scores\\leaderBorad.json"}
+      {"leaderBoard_route": "..\\exes\\user\\scores\\leaderBoard.json"}
     ],
 
     "strings": [

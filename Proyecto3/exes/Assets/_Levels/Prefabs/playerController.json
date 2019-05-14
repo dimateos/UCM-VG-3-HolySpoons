@@ -50,9 +50,9 @@
                     "type": "RenderComponent",
                     "group": "player_comps"
                 },
-                "scale": { "x": 50.0, "y": 65.0, "z": 50.0 },
+                "scale": { "x": 40.0, "y": 55.0, "z": 40.0 },
                 "localRot": { "w": 0.95, "x": -0.26, "y": 0.0, "z": 0 },
-                "relativePos": { "x": 5, "y": -8, "z": 0.7 },
+                "relativePos": { "x": 3.0, "y": -2, "z": -2.5 },
                 "shape": {
                     "entity_name": "player_spoon",
                     "type": "MESH",

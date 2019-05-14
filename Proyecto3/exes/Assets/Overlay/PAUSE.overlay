@@ -19,14 +19,5 @@ overlay PAUSE
             top 0.45
             caption "PAUSED"
 		}
-
-		overlay_element ZBackgroundPause Panel
-    	{
-            left 0.0
-		    top 0.0
-		    width 1.0
-		    height 1.0
-            material woodBackground
-    	}
 	}
 }

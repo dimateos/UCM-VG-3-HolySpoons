@@ -13,6 +13,8 @@ public:
 	inline virtual ~RenderComponent() { setDown(); };
 	virtual void setUp();
 
+	inline nap_vector3 getRelativePos() const { return relativePos_; }
+
 	inline Ogre::SceneNode* getSceneNode() { return node; }
 
 	virtual void update(GameObject* ent, double time);

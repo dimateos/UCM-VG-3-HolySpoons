@@ -49,7 +49,6 @@ void RenderComponent::setUp() {
 			idleAnimation->setLoop(true);
 		}
 	}
-
 	configActive();
 }
 
