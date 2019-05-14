@@ -29,8 +29,10 @@ void KeyBoardMovement::setUp() {
 	holdSprint_ = GlobalCFG::flags["hold_sprint"];
 
 	// velocity sets
-	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
-	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
+	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 20);
+	runVel_ = FINDnRETURN(cfg_, "runVel", float, 40);
+	walkIncr = FINDnRETURN(cfg_, "walkIncr", float, 2);
+	runIncr = FINDnRETURN(cfg_, "runIncr", float, 2);
 	velocity = vO;
 
 	//jump
@@ -130,8 +132,8 @@ void KeyBoardMovement::receive(Message * msg) {
 		sprinting_ = false;
 	}
 	else if (msg->id_ == ADD_SPEED) {
-		walkVel_ += 1.5;
-		runVel_ += 2;
+		walkVel_ += walkIncr;
+		runVel_ += runIncr;
 	}
 }
 

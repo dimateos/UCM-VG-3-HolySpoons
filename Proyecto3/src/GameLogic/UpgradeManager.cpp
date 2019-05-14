@@ -78,14 +78,8 @@ void UpgradeManager::activeUpgrade(int upgrade)
 		weaponUpgrades.push_back(10);
 		break;
 	case 4:
-		BulletHittable::updateBulletDamage("bBullets", 3);
-		break;
 	case 5:
-		BulletHittable::updateBulletDamage("pBullets", 6);
-		break;
 	case 6:
-		BulletHittable::updateBulletDamage("dBullets", 2);
-		break;
 	case 7:
 	case 8:
 	case 9:

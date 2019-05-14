@@ -8,6 +8,16 @@
 
 #include <SDL_events.h>	//events
 
+std::map<string, int> BulletShooter::bulletDamages{};
+std::vector<int> BulletShooter::bulletUpgrades{};
+
+void BulletShooter::updateBulletDamage(string name, int damage)
+{
+	auto it = bulletDamages.find(name);
+	if (it != bulletDamages.end())
+		it->second += damage;
+}
+
 BulletShooter::~BulletShooter() {
 	for (Weapon* w : weapons)
 		delete w;
@@ -18,10 +28,19 @@ void BulletShooter::setUp() {
 	relY_ = cfg_["relativeY"];
 	relZ_ = cfg_["relativeZ"];
 
+	bulletDamages = std::map<string, int>{ { "bBullets", FINDnRETURN(cfg_, "bDamage", int, 12) } ,
+		{ "pBullets", FINDnRETURN(cfg_, "pDamage", int, 30) },
+		{ "dBullets", FINDnRETURN(cfg_, "dDamage", int, 10) } };
+
+	bulletUpgrades = std::vector<int>{ FINDnRETURN(cfg_, "bUpgrade", int, 3),
+		FINDnRETURN(cfg_, "pUpgrade", int, 6),
+		FINDnRETURN(cfg_, "dUpgrade", int, 2) };
+	
+
 	//later cfged in json
-	addWeapon("base_bullet", "baseSpoon", 110, 0.2);
-	addWeapon("power_bullet", "powerSpoon", 90, 0.6);
-	addWeapon("disperse_bullet", "shotSpoon", 110, 0.8);
+	addWeapon("base_bullet", "baseSpoon", FINDnRETURN(cfg_, "bSpeed", float, 110), FINDnRETURN(cfg_, "bFireRate", double, 0.2));
+	addWeapon("power_bullet", "powerSpoon", FINDnRETURN(cfg_, "pSpeed", float, 90), FINDnRETURN(cfg_, "pFireRate", double, 0.6));
+	addWeapon("disperse_bullet", "shotSpoon", FINDnRETURN(cfg_, "dSpeed", float, 110), FINDnRETURN(cfg_, "dFireRate", double, 0.8));
 	currentWeapon = 0;
 
 	//read the keys from global cfg
@@ -77,6 +96,15 @@ void BulletShooter::receive(Message * msg) {
 		case 2:
 		case 3:
 			activeWeapon(upgrade - 1, true);
+			break;
+		case 4:
+			updateBulletDamage("bBullets", bulletUpgrades[0]);
+			break;
+		case 5:
+			updateBulletDamage("pBullets", bulletUpgrades[1]);
+			break;
+		case 6:
+			updateBulletDamage("dBullets", bulletUpgrades[2]);
 			break;
 		case 7:
 		case 8:

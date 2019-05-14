@@ -69,6 +69,8 @@
             },
             "walkVel":20,
             "runVel": 28,
+            "walkIncr": 1.5,
+            "runIncr":  2,
             "jumpImpulse": 20,
             "jumpResetersGroups": ["map"]
         },
@@ -88,7 +90,11 @@
                 "group": "player_comps"
             },
             "relativeY": 3.0,
-            "relativeZ": 2.5
+            "relativeZ": 2.5,
+            "bDamage": 12, "pDamage": 30, "dDamage": 10,
+            "bSpeed": 110, "pSpeed": 90, "dSpeed":  110,
+            "bFireRate": 0.2, "pFireRate": 0.6, "dFireRate": 0.8,
+            "bUpgrade":  3, "pUpgrade": 6, "dUpgrade": 2
         },
 
         "att_light": {
@@ -108,7 +114,8 @@
                 "type": "HPComponent",
                 "group": "player_comps"
             },
-            "hp": 50
+            "hp": 50,
+            "incrHp":  10
         },
         "player_hit": {
             "id": {

@@ -5,8 +5,10 @@
 //fowarding
 class nap_Pool;
 class Weapon;
-
+#include <map>
+#include <vector>
 #include "Component.h"
+
 //component to set live and etc to stuff impacted by bullets
 class BulletShooter : public Component
 {
@@ -19,6 +21,10 @@ public:
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
 	virtual void update(GameObject* o, double time);
 	virtual void receive(Message* msg);
+
+	static std::map<string, int> bulletDamages;
+	static std::vector<int> bulletUpgrades;
+	static void updateBulletDamage(string name, int damage);
 
 protected:
 	virtual void changeWeapon(int n);

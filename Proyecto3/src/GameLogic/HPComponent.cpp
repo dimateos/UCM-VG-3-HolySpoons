@@ -9,6 +9,7 @@ void HPComponent::setUp()
 	setInited();
 
 	InitHP = HP = cfg_["hp"];
+	incrementHP = FINDnRETURN(cfg_, "incrHp", float, 10);
 }
 
 void HPComponent::receive(Message * msg)
@@ -20,7 +21,7 @@ void HPComponent::receive(Message * msg)
 	}
 	else if (msg->id_ == RESET_HP) resetHP();
 	else if (msg->id_ == ADD_HP) {
-		InitHP += 10;
+		InitHP += incrementHP;
 		resetHP();
 		MessageSystem::getSingleton()->sendMessageGameObject(&Message(CHECK_HP), GameStateMachine::getSingleton()->currentState()->getGM());
 	}

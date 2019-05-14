@@ -2,17 +2,12 @@
 #ifndef BULLETHITABLE_H_
 #define BULLETHITABLE_H_
 
-#include <map>
-
 #include "CollisionListener.h"
 #include "Component.h"
 //component to set live and etc to stuff impacted by bullets
 class BulletHittable : public Component, public CollisionListener
 {
 public:
-	static std::map<string, int> bulletDamages_;
-	static void updateBulletDamage(string name, int damage);
-
 	inline BulletHittable(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {};
 	inline virtual ~BulletHittable() {};
 	virtual void setUp();

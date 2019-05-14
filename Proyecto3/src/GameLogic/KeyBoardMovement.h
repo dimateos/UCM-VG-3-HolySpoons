@@ -21,8 +21,8 @@ private:
 	bool holdSprint_, sprinting_ = false;
 
 	// velocities
-	float walkVel_;          // while walking
-	float runVel_;           // while running
+	float walkVel_, walkIncr;          // while walking
+	float runVel_, runIncr;           // while running
 
 	std::list<std::string> jumpResetersGroups_;
 	float jumpImpulse_;
