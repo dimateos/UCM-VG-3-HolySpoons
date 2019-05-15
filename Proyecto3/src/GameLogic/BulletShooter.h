@@ -32,7 +32,7 @@ public:
 protected:
 	virtual void changeWeapon(int n);
 	virtual void activeWeapon(int n, bool active);
-	virtual void addWeapon(string prefab, string weaponType, float vel, double shootSpeed);
+	virtual void addWeapon(string prefab, string weaponType, float vel, double shootSpeed, Component* soundComponent);
 
 	nap_transform* owner_trans_;
 	float relY_, relZ_;
