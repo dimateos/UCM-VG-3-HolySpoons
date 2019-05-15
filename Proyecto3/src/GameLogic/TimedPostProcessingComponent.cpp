@@ -25,7 +25,7 @@ void TimedPostProcessingComponent::update(GameObject* ent, double time)
 
 void TimedPostProcessingComponent::receive(Message * msg)
 {
-if (msg->id_ == MessageId::STATE_CHANGED) {
+if (msg->id_ == MessageId::STATE_IN) {
 		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //changing ogre scene resets the compositor
 		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}

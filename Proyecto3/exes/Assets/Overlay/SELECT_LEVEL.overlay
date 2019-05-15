@@ -7,14 +7,5 @@ overlay SELECT_LEVEL
 		top 0.0
 		width 1.0
 		height 1.0
-
-		overlay_element ZBackgroundSelect Panel
-    	{
-            left 0.0
-		    top 0.0
-		    width 1.0
-		    height 1.0
-            material woodBackground
-    	}
 	}
 }

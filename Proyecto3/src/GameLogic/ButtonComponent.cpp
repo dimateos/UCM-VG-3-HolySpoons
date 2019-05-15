@@ -79,7 +79,7 @@ bool ButtonComponent::handleEvents(GameObject * o, const SDL_Event & evt) {
 }
 
 void ButtonComponent::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		centerOverlay();
 	}
 }

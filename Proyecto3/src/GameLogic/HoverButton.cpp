@@ -83,7 +83,7 @@ bool HoverButton::handleEvents(GameObject * o, const SDL_Event & evt) {
 }
 
 void HoverButton::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		centerOverlay();
 	}
 }

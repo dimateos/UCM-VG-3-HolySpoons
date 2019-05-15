@@ -12,21 +12,12 @@ overlay PAUSE
 		{
             metrics_mode relative
             font_name Metal-Mania
-            char_height 0.05
+            char_height 0.3
             colour_top 1 1 1
             colour_bottom 1 1 1
-            left 0.45
-            top 0.45
+            left 0.3
+            top 0.2
             caption "PAUSED"
 		}
-
-		overlay_element ZBackgroundPause Panel
-    	{
-            left 0.0
-		    top 0.0
-		    width 1.0
-		    height 1.0
-            material woodBackground
-    	}
 	}
 }

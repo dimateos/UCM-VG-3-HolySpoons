@@ -38,7 +38,7 @@ void SoundEmitterComponent::configActive() {
 }
 
 void SoundEmitterComponent::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		configActive();
 	}
 	else if (msg->id_ == PLAY_SOUND) {

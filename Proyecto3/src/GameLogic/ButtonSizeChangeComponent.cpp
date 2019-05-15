@@ -73,7 +73,7 @@ bool ButtonSizeChangeComponent::handleEvents(GameObject * o, const SDL_Event & e
 }
 
 void ButtonSizeChangeComponent::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		centerOverlay();
 	}
 }

@@ -67,7 +67,7 @@ void BulletShooter::update(GameObject * o, double time) {
 
 void BulletShooter::receive(Message * msg) {
 
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		weapons[currentWeapon]->mouseUpdate(false);
 	}
 	else if (msg->id_ == UPGRADE_TAKEN) {
