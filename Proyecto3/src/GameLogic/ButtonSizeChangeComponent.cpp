@@ -15,6 +15,7 @@ void ButtonSizeChangeComponent::setUp()
 	setInited();
 
 	multiplier = this->cfg_["Multiplier"];
+	soundEmitter = FINDnRETURN_s(cfg_, "soundEmitter", "sound");
 }
 
 void ButtonSizeChangeComponent::lateSetUp() {
@@ -98,7 +99,7 @@ void ButtonSizeChangeComponent::onClick() {
 		rsi->setOverlayElementDimensions_abs(elemt, bigW, bigH);
 		rsi->setOverlayElementPosition_abs(elemt, bigX, bigY);
 	}
-
+	MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, soundEmitter);
 }
 
 #include "GOFactory.h"
