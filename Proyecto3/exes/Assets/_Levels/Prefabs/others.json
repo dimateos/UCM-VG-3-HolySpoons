@@ -95,7 +95,7 @@
               "z": 0
             }
           },
-          "material": "",
+          "material": "DefaultMaterial",
           "ignoreTrans": true,
           "invisible": true
         },

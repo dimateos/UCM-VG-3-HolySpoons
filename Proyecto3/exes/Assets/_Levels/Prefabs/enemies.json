@@ -139,7 +139,7 @@
             "y": 260.0,
             "z": 200.0
           },
-          "material": "Material",
+          "material": "ufoMaterial",
           "shape": {
             "entity_name": "ufo",
             "type": "MESH",
@@ -231,7 +231,7 @@
             "y": 4.3,
             "z": 3.5
           },
-          "material": "Material",
+          "material": "bugMaterial",
           "shape": {
             "entity_name": "bug",
             "type": "MESH",
