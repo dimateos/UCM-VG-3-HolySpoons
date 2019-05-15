@@ -23,7 +23,8 @@ void RenderComponent::setUp() {
 	if (FIND(cfg_, "scale")) node->setScale(nap_vector3(cfg_["scale"]).ogre());
 	if (FIND(cfg_, "relativePos")) relativePos_ = nap_vector3(cfg_["relativePos"]);
 	else relativePos_ = vO;
-	if (FIND(cfg_, "localRot")) node->setOrientation(nap_quat(cfg_["localRot"]).ogre());
+	if (FIND(cfg_, "localRot")) relativeRot_ = nap_quat(cfg_["localRot"]);
+	else relativeRot_ = qO;
 	if (FIND(cfg_, "material")) entity->setMaterialName(cfg_["material"]);
 
 	//visibility
@@ -61,6 +62,7 @@ void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
 	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(active_ && cfg_["boundingBox"]);
 	node->setPosition((owner_->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
+	node->setOrientation(owner_->getOrientation().ogre() * relativeRot_.ogre());
 }
 
 void RenderComponent::setMaterial(std::string matName) {
@@ -105,7 +107,7 @@ void RenderComponent::late_update(GameObject * o, double time) {
 
 	//now check the orientation if interested
 	if (updateOri_ && !o->getUpToDate(upToDate::ori, upToDate::REND)) {
-		node->setOrientation(o->getOrientation().ogre());
+		node->setOrientation(o->getOrientation().ogre() * relativeRot_.ogre());
 		o->setUpToDate(upToDate::ori, upToDate::REND);
 	}
 }

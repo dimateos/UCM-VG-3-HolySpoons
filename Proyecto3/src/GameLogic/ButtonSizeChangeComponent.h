@@ -23,6 +23,7 @@ private:
 	std::string buttonMat = "", imgMat = "";
 	std::string listener;
 	Ogre::OverlayElement* elemt;
+	std::string soundEmitter;
 
 	bool outside = true;
 
