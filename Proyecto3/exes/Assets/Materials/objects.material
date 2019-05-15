@@ -389,7 +389,8 @@ material aGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -404,7 +405,8 @@ material dGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -419,7 +421,8 @@ material fGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -434,7 +437,8 @@ material aMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -449,7 +453,8 @@ material fMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -464,7 +469,8 @@ material dMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -474,16 +480,17 @@ material dMSpoon {
 	}
 }
 
-material MSpoon {
+material GSpoon {
     technique
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
-				texture MSpoon.png
+				texture GSpoon.png
 			}
 		}
 	}
@@ -494,7 +501,8 @@ material dWSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -509,7 +517,8 @@ material fWSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -524,7 +533,8 @@ material Health {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -539,7 +549,8 @@ material Speed {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{

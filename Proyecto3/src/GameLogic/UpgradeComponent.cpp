@@ -8,6 +8,7 @@ void UpgradeComponent::onCollision(ID * other) {
 		owner_->setActive(false);
 		MessageSystem::getSingleton()->sendMessageGameObject(
 			&Msg_UPGRADE_TAKEN(upgrade_), GameStateMachine::getSingleton()->currentState()->getGM());
+		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), "player", "UpgradeSound");
 
 	}
 }

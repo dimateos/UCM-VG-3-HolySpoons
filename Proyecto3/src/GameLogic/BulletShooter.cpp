@@ -37,10 +37,14 @@ void BulletShooter::setUp() {
 		FINDnRETURN(cfg_, "pUpgrade", int, 6),
 		FINDnRETURN(cfg_, "dUpgrade", int, 2) };
 
-	//later cfged in json
-	addWeapon("base_bullet", "baseSpoon", FINDnRETURN(cfg_, "bSpeed", float, 110), FINDnRETURN(cfg_, "bFireRate", double, 0.2));
-	addWeapon("power_bullet", "powerSpoon", FINDnRETURN(cfg_, "pSpeed", float, 90), FINDnRETURN(cfg_, "pFireRate", double, 0.6));
-	addWeapon("disperse_bullet", "shotSpoon", FINDnRETURN(cfg_, "dSpeed", float, 110), FINDnRETURN(cfg_, "dFireRate", double, 0.8));
+	
+
+	addWeapon("base_bullet", "baseSpoon", FINDnRETURN(cfg_, "bSpeed", float, 110), FINDnRETURN(cfg_, "bFireRate", double, 0.2),
+		owner_->getComponent("baseWeaponSound"));
+	addWeapon("power_bullet", "powerSpoon", FINDnRETURN(cfg_, "pSpeed", float, 90), FINDnRETURN(cfg_, "pFireRate", double, 0.6), 
+		owner_->getComponent("powerWeaponSound"));
+	addWeapon("disperse_bullet", "shotSpoon", FINDnRETURN(cfg_, "dSpeed", float, 110), FINDnRETURN(cfg_, "dFireRate", double, 0.8), 
+		owner_->getComponent("spreadWeaponSound"));
 	currentWeapon = 0;
 
 	//read the keys from global cfg
@@ -103,7 +107,7 @@ void BulletShooter::receive(Message * msg) {
 	else if (msg->id_ == SPRINT_OFF) {
 		sprinting = false;
 	}
-	else if (msg->id_ == STATE_CHANGED) {
+	else if (msg->id_ == STATE_IN) {
 		weapons[currentWeapon]->mouseUpdate(false);
 	}
 
@@ -153,13 +157,13 @@ void BulletShooter::activeWeapon(int n, bool active = true) {
 	}
 }
 
-void BulletShooter::addWeapon(string prefab, string weaponType, float vel, double shootSpeed) {
+void BulletShooter::addWeapon(string prefab, string weaponType, float vel, double shootSpeed, Component* soundComponent) {
 	if (weaponType == "baseSpoon")
-		weapons.push_back(new BaseSpoon(prefab, "Spoon", vel, shootSpeed));
+		weapons.push_back(new BaseSpoon(prefab, vel, shootSpeed, soundComponent, "Spoon"));
 	else if (weaponType == "powerSpoon")
-		weapons.push_back(new PowerSpoon(prefab, "MetalSpoon", vel, shootSpeed));
+		weapons.push_back(new PowerSpoon(prefab, vel, shootSpeed, soundComponent, "MetalSpoon"));
 	else if (weaponType == "shotSpoon")
-		weapons.push_back(new ShotSpoon(prefab, "GoldenSpoon", vel, shootSpeed));
+		weapons.push_back(new ShotSpoon(prefab, vel, shootSpeed, soundComponent, "GoldenSpoon"));
 }
 
 #include "GOFactory.h"

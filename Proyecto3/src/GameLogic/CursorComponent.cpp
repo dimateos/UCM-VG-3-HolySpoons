@@ -19,7 +19,7 @@ void CursorComponent::update(GameObject * o, double time)
 }
 
 void CursorComponent::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		//show and no capture mouse
 		//SDL_ShowCursor(SDL_ENABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_FALSE);

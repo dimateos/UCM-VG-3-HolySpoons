@@ -26,7 +26,7 @@ void HitPostProcessingComponent::receive(Message * msg)
 	else if (msg->id_ == MessageId::END_INV) {
 		if (currentlyActive) setEnableComp(false);
 	}
-	else if (msg->id_ == MessageId::STATE_CHANGED) {
+	else if (msg->id_ == MessageId::STATE_IN) {
 		RenderSystemInterface::getSingleton()->addCompositor(compositorName);  //changing ogre scene resets the compositor
 		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}

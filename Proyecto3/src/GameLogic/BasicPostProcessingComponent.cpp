@@ -39,7 +39,7 @@ void BasicPostProcessingComponent::setCompositorName(std::string name)
 
 void BasicPostProcessingComponent::receive(Message * msg)
 {
-	if (msg->id_ == MessageId::STATE_CHANGED) {
+	if (msg->id_ == MessageId::STATE_IN) {
 		RenderSystemInterface::getSingleton()->addCompositor(compositorName); //changing ogre scene resets the compositor
 		RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, currentlyActive);
 	}

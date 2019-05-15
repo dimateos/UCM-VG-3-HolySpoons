@@ -7,5 +7,17 @@ overlay LEADER_BOARD
 		top 0.0
 		width 1.0
 		height 1.0
+
+		overlay_element LEADER_BOARD_Text TextArea
+		{
+            metrics_mode relative
+            font_name Metal-Mania
+            char_height 0.15
+            colour_top 1 1 1
+            colour_bottom 0.9 0.8 0.2
+            left 0.29
+            top 0.1
+            caption "LEADER  BOARD"
+		}
 	}
 }

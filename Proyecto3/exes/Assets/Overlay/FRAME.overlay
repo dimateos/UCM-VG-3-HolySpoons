@@ -1,0 +1,20 @@
+
+overlay FRAME
+{
+    zorder 1
+    overlay_element FRAME_PanelContainer Panel
+	{
+		left 0.0
+		top 0.0
+		width 1.0
+		height 1.0
+        overlay_element FRAME_ZBackgroundPause Panel
+        {
+                    left 0.0
+                    top 0.0
+                    width 1.0
+                    height 1.0
+                    material woodBackground
+        }
+    }
+}

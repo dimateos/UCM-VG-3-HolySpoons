@@ -117,7 +117,7 @@ void FPSCamera::receive(Message * msg) {
 	else if (msg->id_ == SPRINT_OFF) {
 		sprinting = false;
 	}
-	else if (msg->id_ == STATE_CHANGED) {
+	else if (msg->id_ == STATE_IN) {
 		//hide and capture mouse
 		//SDL_ShowCursor(SDL_DISABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_TRUE);
