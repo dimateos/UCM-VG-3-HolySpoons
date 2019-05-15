@@ -156,9 +156,9 @@
                     "type": "RenderComponent",
 					"group": "map_comps"
                 },
-                "relativePos":  { "x": 0.0, "y": -1.5, "z": 0.0 },
-                "scale": { "x": 2200.0, "y": 350.0, "z": 2400.0 },
-                "material": "stone",
+                "relativePos":  { "x": 0.0, "y": -1, "z": 0.0 },
+                "scale": { "x": 230.0, "y": 150.0, "z": 230.0 },
+                "material": "RockTile",
                 "shape": {
                     "entity_name": "bigTile",
                     "type": "MESH",

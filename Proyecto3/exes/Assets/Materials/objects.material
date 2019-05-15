@@ -58,14 +58,17 @@ material RockTile
 technique
 	{
 		pass
-		{
+		{			
 			ambient 0.0 0.0 0.0
+			specular 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+
 			cull_hardware none
 
 			texture_unit
 			{
 				colour_op add
-				texture rock.jpg
+				texture lavaRock.jpg
 				tex_address_mode wrap
 			}
 		}
