@@ -5,6 +5,7 @@
 #include "Pool.h"
 #include "Weapon.h"
 #include "Messages.h"
+#include "RenderComponent.h"
 
 #include <SDL_events.h>	//events
 
@@ -46,6 +47,14 @@ void BulletShooter::setUp() {
 	first_ = GlobalCFG::keys["FIRST"];
 	second_ = GlobalCFG::keys["SECOND"];
 	third_ = GlobalCFG::keys["THIRD"];
+
+	renderCompName = FINDnRETURN_s(cfg_, "renderCompName", "spoon_ren");
+}
+
+void BulletShooter::lateSetUp()
+{
+	// render component of the weapon of the player
+	renderComp = static_cast<RenderComponent*>(owner_->getComponent(renderCompName));
 }
 
 bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
@@ -133,6 +142,7 @@ void BulletShooter::changeWeapon(int n) {
 	if (n >= 0 && n < weapons.size() && weapons[n]->isActive()) {
 		currentWeapon = n;
 		weapons[n]->swapDelay();
+		renderComp->setMaterial(weapons[n]->getMaterial());
 	}
 }
 
@@ -145,11 +155,11 @@ void BulletShooter::activeWeapon(int n, bool active = true) {
 
 void BulletShooter::addWeapon(string prefab, string weaponType, float vel, double shootSpeed) {
 	if (weaponType == "baseSpoon")
-		weapons.push_back(new BaseSpoon(prefab, vel, shootSpeed));
+		weapons.push_back(new BaseSpoon(prefab, "Spoon", vel, shootSpeed));
 	else if (weaponType == "powerSpoon")
-		weapons.push_back(new PowerSpoon(prefab, vel, shootSpeed));
+		weapons.push_back(new PowerSpoon(prefab, "MetalSpoon", vel, shootSpeed));
 	else if (weaponType == "shotSpoon")
-		weapons.push_back(new ShotSpoon(prefab, vel, shootSpeed));
+		weapons.push_back(new ShotSpoon(prefab, "GoldenSpoon", vel, shootSpeed));
 }
 
 #include "GOFactory.h"

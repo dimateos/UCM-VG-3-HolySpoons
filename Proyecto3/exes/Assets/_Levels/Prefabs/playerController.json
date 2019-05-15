@@ -58,6 +58,7 @@
                     "type": "MESH",
                     "mesh": "spoon.mesh"
                 },
+                "material": "Spoon",
                 "idleAnimation": "Shoot",
                 "ignoreTrans": true
             },

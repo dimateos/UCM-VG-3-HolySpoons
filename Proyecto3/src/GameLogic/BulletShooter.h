@@ -5,6 +5,8 @@
 //fowarding
 class nap_Pool;
 class Weapon;
+class RenderComponent;
+
 #include <map>
 #include <vector>
 #include "Component.h"
@@ -16,6 +18,7 @@ public:
 	inline BulletShooter(nap_json const & cfg, GameObject* owner) : Component(cfg, owner) {};
 	virtual ~BulletShooter();
 	virtual void setUp();
+	virtual void lateSetUp();
 
 	//atm just left click to shoot
 	virtual bool handleEvents(GameObject* o, const SDL_Event& evt);
@@ -35,6 +38,8 @@ protected:
 	float relY_, relZ_;
 
 	SDL_Keycode first_, second_, third_;
+	string renderCompName;
+	RenderComponent* renderComp;
 
 	bool sprinting = false;
 	int currentWeapon = 0;
