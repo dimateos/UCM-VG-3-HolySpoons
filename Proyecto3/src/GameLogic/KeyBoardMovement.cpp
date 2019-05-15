@@ -2,10 +2,10 @@
 #include <LogSystem.h>
 #include <GlobalConfig.h>
 
+#include "MessageSystem.h"
 #include "PhysicsControllerComponent.h"
 #include <SDL_events.h>
 #include <Transforms.h>
-#include "Messages.h"
 
 // updates the go velocity depending on an orientation
 void KeyBoardMovement::updateVelocity(nap_vector3 orientation) {
@@ -66,8 +66,8 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		}
 
 		else if (pressedKey == run_) {
-			if (holdSprint_) sprinting_ = true;
-			else sprinting_ = !sprinting_;
+			if (holdSprint_) setSprinting();
+			else setSprinting(!sprinting_);
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = true;
@@ -94,7 +94,7 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		}
 
 		else if (pressedKey == run_) {
-			if (holdSprint_) sprinting_ = false;
+			if (holdSprint_) setSprinting(false);
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = false;
@@ -165,6 +165,11 @@ void KeyBoardMovement::jump() {
 	controller_comp->addI(f);
 	controller_comp->setV(vO);
 	jump_available_ = false;
+}
+
+void KeyBoardMovement::setSprinting(bool b) {
+	sprinting_ = b;
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(sprinting_ ? SPRINT_ON : SPRINT_OFF), owner_);
 }
 
 

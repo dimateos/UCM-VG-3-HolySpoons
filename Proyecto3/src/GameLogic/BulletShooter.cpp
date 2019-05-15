@@ -35,7 +35,6 @@ void BulletShooter::setUp() {
 	bulletUpgrades = std::vector<int>{ FINDnRETURN(cfg_, "bUpgrade", int, 3),
 		FINDnRETURN(cfg_, "pUpgrade", int, 6),
 		FINDnRETURN(cfg_, "dUpgrade", int, 2) };
-	
 
 	//later cfged in json
 	addWeapon("base_bullet", "baseSpoon", FINDnRETURN(cfg_, "bSpeed", float, 110), FINDnRETURN(cfg_, "bFireRate", double, 0.2));
@@ -54,12 +53,14 @@ bool BulletShooter::handleEvents(GameObject * ent, const SDL_Event & evt) {
 
 	switch (evt.type) {
 	case SDL_MOUSEBUTTONDOWN:
+		if (sprinting) return handled;
 		if (evt.button.button == SDL_BUTTON_LEFT) {
 			weapons[currentWeapon]->mouseUpdate(true);
 			handled = true;
 		}
 		break;
 	case SDL_MOUSEBUTTONUP:
+		if (sprinting) return handled;
 		if (evt.button.button == SDL_BUTTON_LEFT) {
 			weapons[currentWeapon]->mouseUpdate(false);
 			handled = true;
@@ -86,9 +87,17 @@ void BulletShooter::update(GameObject * o, double time) {
 
 void BulletShooter::receive(Message * msg) {
 
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == SPRINT_ON) {
+		weapons[currentWeapon]->mouseUpdate(false);
+		sprinting = true;
+	}
+	else if (msg->id_ == SPRINT_OFF) {
+		sprinting = false;
+	}
+	else if (msg->id_ == STATE_CHANGED) {
 		weapons[currentWeapon]->mouseUpdate(false);
 	}
+
 	else if (msg->id_ == UPGRADE_TAKEN) {
 		int upgrade = static_cast<Msg_UPGRADE_TAKEN*>(msg)->upgrade_;
 		switch (upgrade)

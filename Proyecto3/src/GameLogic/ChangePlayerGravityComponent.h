@@ -11,6 +11,7 @@ private:
 	PhysicsControllerComponent* controller = nullptr;
 	int active_message, inactive_message;
 	nap_vector3 initial_gravity, custom_gravity;
+	bool stopBefore;
 
 public:
 	virtual ~ChangePlayerGravityComponent() {};

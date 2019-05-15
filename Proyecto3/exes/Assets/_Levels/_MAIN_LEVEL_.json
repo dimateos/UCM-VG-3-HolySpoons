@@ -124,8 +124,8 @@
             "type": "DamageTickComponent",
             "group": "trigger_comps"
           },
-          "timer": 2,
-          "dmg": 30,
+          "timer": 0.5,
+          "dmg": 7.5,
           "enterId":12,
           "exitId": 13,
           "target": "player"

@@ -33,6 +33,7 @@ private:
 	// updates the go velocity depending on an orientation
 	void updateVelocity(nap_vector3 orientation);
 	void jump();
+	void setSprinting(bool b = true);
 
 public:
 	inline KeyBoardMovement(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), CollisionListener(owner) {};

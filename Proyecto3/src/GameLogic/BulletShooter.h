@@ -36,6 +36,7 @@ protected:
 
 	SDL_Keycode first_, second_, third_;
 
+	bool sprinting = false;
 	int currentWeapon = 0;
 	vector<Weapon*> weapons;
 };
