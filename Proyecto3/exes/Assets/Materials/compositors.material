@@ -217,7 +217,7 @@ material WaterMat{
             }
 
             texture_unit text{
-                texture bubbles.jpg 2d
+                texture bubbles.png 2d
             }
         }
     }
@@ -259,6 +259,10 @@ material CloudMat{
             texture_unit RTT0{
                 //sin imagen de archivo -> render target previo
                 filtering none //resolucion del viewport
+            }
+			
+			texture_unit text{
+                texture hielo.jpg 2d
             }
         }
     }

@@ -26,7 +26,7 @@ protected:
 	Ogre::SceneNode* camNode_;
 	Ogre::Camera * cam_;
 	float rotX_, rotY_, total_rotY_; //updaters
-	bool zoomed_ = false;
+	bool zoomed_ = false, sprinting = false;
 
 	//cfg (json)
 	nap_vector3 relativePos_;

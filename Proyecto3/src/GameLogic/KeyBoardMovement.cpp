@@ -2,10 +2,10 @@
 #include <LogSystem.h>
 #include <GlobalConfig.h>
 
+#include "MessageSystem.h"
 #include "PhysicsControllerComponent.h"
 #include <SDL_events.h>
 #include <Transforms.h>
-#include "Messages.h"
 
 // updates the go velocity depending on an orientation
 void KeyBoardMovement::updateVelocity(nap_vector3 orientation) {
@@ -29,8 +29,10 @@ void KeyBoardMovement::setUp() {
 	holdSprint_ = GlobalCFG::flags["hold_sprint"];
 
 	// velocity sets
-	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 2);
-	runVel_ = FINDnRETURN(cfg_, "runVel", float, 4);
+	walkVel_ = FINDnRETURN(cfg_, "walkVel", float, 20);
+	runVel_ = FINDnRETURN(cfg_, "runVel", float, 40);
+	walkIncr = FINDnRETURN(cfg_, "walkIncr", float, 2);
+	runIncr = FINDnRETURN(cfg_, "runIncr", float, 2);
 	velocity = vO;
 
 	//jump
@@ -64,8 +66,8 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		}
 
 		else if (pressedKey == run_) {
-			if (holdSprint_) sprinting_ = true;
-			else sprinting_ = !sprinting_;
+			if (holdSprint_) setSprinting();
+			else setSprinting(!sprinting_);
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = true;
@@ -92,7 +94,7 @@ bool KeyBoardMovement::handleEvents(GameObject * o, const SDL_Event & evt) {
 		}
 
 		else if (pressedKey == run_) {
-			if (holdSprint_) sprinting_ = false;
+			if (holdSprint_) setSprinting(false);
 		}
 		else if (pressedKey == jumpKey_) {
 			jumping_ = false;
@@ -130,8 +132,8 @@ void KeyBoardMovement::receive(Message * msg) {
 		sprinting_ = false;
 	}
 	else if (msg->id_ == ADD_SPEED) {
-		walkVel_ += 1.5;
-		runVel_ += 2;
+		walkVel_ += walkIncr;
+		runVel_ += runIncr;
 	}
 }
 
@@ -163,6 +165,11 @@ void KeyBoardMovement::jump() {
 	controller_comp->addI(f);
 	controller_comp->setV(vO);
 	jump_available_ = false;
+}
+
+void KeyBoardMovement::setSprinting(bool b) {
+	sprinting_ = b;
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(sprinting_ ? SPRINT_ON : SPRINT_OFF), owner_);
 }
 
 

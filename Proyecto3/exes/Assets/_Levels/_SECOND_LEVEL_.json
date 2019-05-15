@@ -18,7 +18,7 @@
         "Inactive_Message": 13
       },
       "ChangePlayerGravityComponent":{
-        "Custom_Gravity": {"x": 0.0, "y": -10.0, "z": 0.0 }
+        "Custom_Gravity": {"x": 0.0, "y": -2.5, "z": 0.0 }
       }
     }
   },
@@ -154,16 +154,6 @@
         "skybox": {
           "skybox": "SkyBox3"
         }
-      }
-    },
-    {
-      "id": {
-        "type": "DeathPlane"
-      },
-      "pos": {
-        "x": 0.0,
-        "y": -50.0,
-        "z": 0.0
       }
     },
     {

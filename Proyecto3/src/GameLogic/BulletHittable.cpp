@@ -1,18 +1,11 @@
 #include "BulletHittable.h"
+#include "BulletShooter.h"
 #include "LogSystem.h"
 
 #include "GameStateMachine.h"
 #include "MessageSystem.h"
 
 //at some point move to json
-std::map<string, int> BulletHittable::bulletDamages_ = { {"bBullets", 12},{"dBullets", 10}, {"pBullets", 30} };
-
-void BulletHittable::updateBulletDamage(string name, int damage)
-{
-	auto it = bulletDamages_.find(name);
-	if (it != bulletDamages_.end())
-		it->second += damage;
-}
 
 void BulletHittable::setUp() {
 	maxHitPoints_ = hitPoints_ = FINDnRETURN(cfg_, "hp", int, 0);
@@ -29,9 +22,9 @@ void BulletHittable::onCollision(ID * other) {
 	if (!owner_->isActive() || !isActive())return;
 
 	//find the damage value of the impacted bullet
-	if (bulletDamages_.find(other->group_) != bulletDamages_.end())
+	if (BulletShooter::bulletDamages.find(other->group_) != BulletShooter::bulletDamages.end())
 		if (hitPoints_ > 0) {
-			hitPoints_ -= bulletDamages_.at(other->group_);
+			hitPoints_ -= BulletShooter::bulletDamages.at(other->group_);
 			MessageSystem::getSingleton()->sendMessageGameObject(
 				&Message(ENEMY_DAMAGE), GameStateMachine::getSingleton()->currentState()->getGM());
 		}

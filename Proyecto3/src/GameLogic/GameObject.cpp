@@ -44,7 +44,7 @@ void GameObject::setDown() {
 
 //inactive components will be set to active even if they were not active tho
 void GameObject::configActive() {
-	for (Component* comp : components_) if (comp != nullptr) comp->setActive(active_);
+	for (Component* comp : components_) if (comp != nullptr) comp->setActive(active_, true);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

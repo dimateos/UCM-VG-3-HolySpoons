@@ -6,7 +6,7 @@
 class HPComponent : public Component
 {
 private:
-	int InitHP;
+	int InitHP, incrementHP;
 	int HP;
 
 public:

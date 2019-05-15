@@ -13,6 +13,7 @@ public:
 	virtual void setUp();
 
 	PxRigidDynamic * getDynamicBody();
+	void setShapeTrigger(bool b = true);
 
 	virtual void late_update(GameObject* o, double time);
 
@@ -29,7 +30,7 @@ protected:
 
 	//Assist on setting up the shape
 	PxGeometry * getGeo(nap_json shape);
-	PxShape * shape_;
+	PxShape * shape_ = nullptr;
 
 	//RigidBody config
 	PxRigidDynamic* rigidBodyD_ = nullptr;

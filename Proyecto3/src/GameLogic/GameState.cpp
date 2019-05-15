@@ -48,8 +48,7 @@ bool GameState::handleEvents(const SDL_Event evt) {
 void GameState::update(double time) {
 
 	//LogSystem::Log("state doConfigActive", LogSystem::GAME);
-	for (Activable* & a : Activable::changedActive_) a->configActive();
-	Activable::changedActive_.clear();
+	Activable::do_ConfigActive();
 
 	//LogSystem::Log("state update", LogSystem::GAME);
 	for (GameObject* & o : gameObjects_) {

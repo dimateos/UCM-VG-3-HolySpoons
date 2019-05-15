@@ -44,7 +44,7 @@ private:
 
 	// levels files must be in "routeLevel" and prefabs in "routePrefabs"
 	string routeLevel = ".\\Assets\\_Levels\\";
-	string routePrefabs = ".\\Assets\\_Levels\\Prefabs\\";
+	string routePrefabs = ".\\Assets\\_Levels\\Prefabs";
 	string routeMapsTypes = ".\\Assets\\_Levels\\__mapTypes.txt";
 
 	// prefab preloading

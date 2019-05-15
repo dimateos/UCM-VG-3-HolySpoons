@@ -41,7 +41,9 @@ void FPSCamera::lateSetUp() {
 	camNode_->lookAt(nap_vector3(cfg_["baseLookAt"]).ogre() * ogre_scale, Ogre::Node::TS_WORLD);
 
 	//add spoon ren as child instead of vice versa because the fps cam is permanent
-	RenderSystemInterface::getSingleton()->addChild(camNode_, static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"))->getSceneNode());
+	auto playerRend = static_cast<RenderComponent*>(owner_->getComponent("spoon_ren"));
+	playerRend->getSceneNode()->setPosition(playerRend->getRelativePos().ogre() * ogre_scale);
+	RenderSystemInterface::getSingleton()->addChild(camNode_, playerRend->getSceneNode());
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,7 +59,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	ent->setOrientation(nq);
 
 	//avoid flips
-	float frame_rotY = rotYspeed_ * -rotY_ * (zoomed_ ? zoomSensScale_ : 1);
+	float frame_rotY = rotYspeed_ * -rotY_ * (zoomed_ || sprinting ? zoomSensScale_ : 1);
 	total_rotY_ += frame_rotY;
 	if (total_rotY_ > maxRotY_) {
 		frame_rotY -= total_rotY_ - maxRotY_;
@@ -71,7 +73,7 @@ void FPSCamera::update(GameObject * ent, double time) {
 	//LogSystem::Log("y: ", total_rotY_);
 
 	//direction
-	float frame_rotX = rotXspeed_ * -rotX_ * (zoomed_ ? zoomSensScale_ : 1);
+	float frame_rotX = rotXspeed_ * -rotX_ * (zoomed_ || sprinting ? zoomSensScale_ : 1);
 	camNode_->yaw(Ogre::Degree(frame_rotX), Ogre::Node::TS_PARENT);
 	camNode_->pitch(Ogre::Degree(frame_rotY), Ogre::Node::TS_LOCAL);
 
@@ -109,7 +111,13 @@ bool FPSCamera::handleEvents(GameObject * ent, const SDL_Event & evt) {
 }
 
 void FPSCamera::receive(Message * msg) {
-	if (msg->id_ == STATE_IN) {
+	if (msg->id_ == SPRINT_ON) {
+		sprinting = true;
+	}
+	else if (msg->id_ == SPRINT_OFF) {
+		sprinting = false;
+	}
+	else if (msg->id_ == STATE_IN) {
 		//hide and capture mouse
 		//SDL_ShowCursor(SDL_DISABLE); //no need
 		SDL_SetRelativeMouseMode(SDL_TRUE);

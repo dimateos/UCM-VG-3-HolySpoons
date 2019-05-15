@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Utils\CollisionListener.h" />
     <ClInclude Include="..\..\src\Utils\dirent.h" />
+    <ClInclude Include="..\..\src\Utils\FileSystemUtils.h" />
     <ClInclude Include="..\..\src\Utils\GlobalConfig.h" />
     <ClInclude Include="..\..\src\Utils\Identifiable.h" />
     <ClInclude Include="..\..\src\Utils\json.hpp" />

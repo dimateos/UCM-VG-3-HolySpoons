@@ -1,16 +1,17 @@
 #ifndef CHANGEPLAYERGRAVITYCOMPONENT_H_
 #define CHANGEPLAYERGRAVITYCOMPONENT_H_
 
+class PhysicsControllerComponent; //fowarded
+
 #include "Component.h"
-
-class PhysicsControllerComponent;
-
+//Component to change the player gravity with messages
 class ChangePlayerGravityComponent: public Component
 {
 private:
 	PhysicsControllerComponent* controller = nullptr;
 	int active_message, inactive_message;
 	nap_vector3 initial_gravity, custom_gravity;
+	bool stopBefore;
 
 public:
 	virtual ~ChangePlayerGravityComponent() {};

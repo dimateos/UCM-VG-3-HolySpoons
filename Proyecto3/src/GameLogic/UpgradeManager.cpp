@@ -65,27 +65,27 @@ void UpgradeManager::activeUpgrade(int upgrade)
 	case 2:
 		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_UPGRADE_TAKEN(upgrade), player_);
 		removeUpgrade(upgrade);
+		removeUpgrade(4);
+		removeUpgrade(7);
 		weaponUpgrades.push_back(4);
+		weaponUpgrades.push_back(7);
 		weaponUpgrades.push_back(5);
 		weaponUpgrades.push_back(8);
 		break;
 	case 3:
 		MessageSystem::getSingleton()->sendMessageGameObject(&Msg_UPGRADE_TAKEN(upgrade), player_);
 		removeUpgrade(upgrade);
+		removeUpgrade(4);
+		removeUpgrade(7);
+		weaponUpgrades.push_back(4);
 		weaponUpgrades.push_back(6);
 		weaponUpgrades.push_back(7);
 		weaponUpgrades.push_back(9);
 		weaponUpgrades.push_back(10);
 		break;
 	case 4:
-		BulletHittable::updateBulletDamage("bBullets", 3);
-		break;
 	case 5:
-		BulletHittable::updateBulletDamage("pBullets", 6);
-		break;
 	case 6:
-		BulletHittable::updateBulletDamage("dBullets", 2);
-		break;
 	case 7:
 	case 8:
 	case 9:
