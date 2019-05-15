@@ -61,6 +61,7 @@ void RenderComponent::configActive() {
 	node->setVisible(active_ && !invisible_);
 	if (FIND(cfg_, "boundingBox")) node->showBoundingBox(active_ && cfg_["boundingBox"]);
 	node->setPosition((owner_->getPosition().ogre() + relativePos_.ogre()) * ogre_scale);
+	node->setOrientation(owner_->getOrientation().ogre());
 }
 
 void RenderComponent::setMaterial(std::string matName) {

@@ -86,7 +86,7 @@ void Spawner::receive(Message * msg) {
 	if (msg->id_ == RESET_PULL) {
 		pol->resetPool();
 		t.start();
-	}	
+	}
 }
 
 #include "GOFactory.h"
