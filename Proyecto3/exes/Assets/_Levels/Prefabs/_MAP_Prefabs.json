@@ -101,6 +101,74 @@
     },
     {
         "id": {
+            "name": "pref_LavaTile",
+            "type": "LavaTile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "PhysicsComponent",
+					"group": "map_comps"
+                },
+                "ignoreTrans": true,
+                "dynamic": false,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 5.0, "y": 1.0, "z": 5.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "RenderComponent",
+					"group": "map_comps"
+                },
+                "relativePos":  { "x": 0.0, "y": -1, "z": 0.0 },
+                "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
+                "material": "MetalTile",
+                "shape": {
+                    "entity_name": "tile",
+                    "type": "MESH",
+                    "mesh": "cube.mesh"
+                }
+            }
+        }
+    },
+    {
+        "id": {
+            "name": "pref_LavaBigTile",
+            "type": "LavaBigTile",
+            "group": "map"
+        },
+        "Components": {
+            "tile_phys": {
+                "id": {
+					"type": "PhysicsComponent",
+					"group": "map_comps"
+                },
+                "dynamic": false,
+                "ignoreTrans": true,
+                "shape": {
+                    "type": "BOX", "scale": { "x": 35.0, "y": 1.0, "z": 35.0 }
+                }
+            },
+            "tile_rend": {
+                "id": {
+                    "type": "RenderComponent",
+					"group": "map_comps"
+                },
+                "relativePos":  { "x": 0.0, "y": -1.5, "z": 0.0 },
+                "scale": { "x": 2200.0, "y": 350.0, "z": 2400.0 },
+                "material": "stone",
+                "shape": {
+                    "entity_name": "bigTile",
+                    "type": "MESH",
+                    "mesh": "rock.mesh"
+                }
+            }
+        }
+    },
+    {
+        "id": {
             "name": "pref_IceTile",
             "type": "WoodIceTile",
             "group": "map"
@@ -155,12 +223,13 @@
                     "type": "RenderComponent",
 					"group": "map_comps"
 				},
-                "scale": { "x": 35.0, "y": 1.0, "z": 35.0 },
+                "relativePos":  { "x": 0.0, "y": -1, "z": 0 },
+                "scale": { "x": 190.0, "y": 300.0, "z": 190.0 },
                 "material": "IceTile",
                 "shape": {
                     "entity_name": "bigTile",
                     "type": "MESH",
-                    "mesh": "cube.mesh"
+                    "mesh": "Ice.mesh"
                 }
             }
         }
@@ -187,7 +256,8 @@
                 "id": {
                     "type": "RenderComponent",
 					"group": "map_comps"
-				},
+                },
+                "relativePos":  { "x": 0.0, "y": -1, "z": 0.0 },
                 "scale": { "x": 5.0, "y": 1.0, "z": 5.0 },
                 "material": "HolyTile",
                 "shape": {
@@ -221,8 +291,8 @@
                     "type": "RenderComponent",
 					"group": "map_comps"
                 },
-                "relativePos":  { "x": 0.0, "y": -2, "z": 0.0 },
-                "scale": { "x": 20.0, "y": 5, "z": 35.0 },
+                "relativePos":  { "x": 0.0, "y": -2.5, "z": 12.0 },
+                "scale": { "x": 9.0, "y": 1.7, "z": 16.0 },
                 "material": "BigHolyTile",
                 "shape": {
                     "entity_name": "bigTile",

@@ -35,6 +35,43 @@ technique
 	}
 }
 
+material MetalTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+
+			texture_unit
+			{
+				colour_op add
+				texture metal.png
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material RockTile
+{
+technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			cull_hardware none
+
+			texture_unit
+			{
+				colour_op add
+				texture rock.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
 material IceTile
 {
 technique
@@ -42,13 +79,13 @@ technique
 		pass
 		{
 			ambient 0.2 0.2 0.2
+			cull_hardware none
 
 			texture_unit
 			{
 				colour_op add
 				texture hielo.jpg
-				tex_address_mode wrap
-				scale 0.4 0.25
+				tex_address_mode clamp
 			}
 		}
 	}
@@ -313,6 +350,7 @@ material stone {
 	{
 		pass
 		{
+			cull_hardware none
 			texture_unit
 			{
 				texture stone.jpg

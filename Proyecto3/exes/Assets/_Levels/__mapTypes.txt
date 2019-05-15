@@ -3,6 +3,8 @@ n non
 O BigTile
 o Tile
 0 non
+L LavaBigTile
+l LavaTile
 H IceBigTile
 h WoodIceTile
 g HolyTile
