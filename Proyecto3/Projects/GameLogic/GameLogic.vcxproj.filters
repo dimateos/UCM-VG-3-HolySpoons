@@ -203,6 +203,9 @@
     <ClCompile Include="..\..\src\GameLogic\BulletHitTrigger.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\PlatformChangeStatic.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BulletHitTrigger.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\PlatformChangeStatic.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
