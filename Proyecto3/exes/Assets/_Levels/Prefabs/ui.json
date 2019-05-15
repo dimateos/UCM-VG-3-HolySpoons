@@ -42,7 +42,19 @@
                         "type": "ButtonSizeChangeComponent",
                         "group": "ui_comps"
                     },
-                    "Multiplier": 1.3
+                    "Multiplier": 1.3,
+                    "soundEmitter": "sound"
+                },
+                "sound": {
+                  "id": {
+                    "type": "SoundEmitterComponent",
+                    "group": "sound_comp"
+                  },
+                  "routeName": "hoverButton.ogg",
+                  "loop": false,
+                  "startPaused":true,
+                  "3D": true,
+                  "volume": 1.0
                 }
             }
         },

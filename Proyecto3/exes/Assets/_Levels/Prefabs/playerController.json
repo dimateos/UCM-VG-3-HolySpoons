@@ -211,7 +211,7 @@
       "routeName": "bShoot.wav",
       "loop": false,
       "3D": true,
-      "volume": 0.4
+      "volume": 0.05
     },
     "powerWeaponSound": {
       "id": {
@@ -221,7 +221,7 @@
       "routeName": "pShoot.wav",
       "loop": false,
       "3D": true,
-      "volume": 0.5
+      "volume": 0.05
     },
     "spreadWeaponSound": {
       "id": {
@@ -231,7 +231,7 @@
       "routeName": "sShoot.wav",
       "loop": false,
       "3D": true,
-      "volume": 0.8
+      "volume": 0.1
     },
     "UpgradeSound": {
       "id": {
@@ -241,7 +241,7 @@
       "routeName": "Upgrade.wav",
       "loop": false,
       "3D": true,
-      "volume": 1
+      "volume": 0.2
     }
   }
 }
