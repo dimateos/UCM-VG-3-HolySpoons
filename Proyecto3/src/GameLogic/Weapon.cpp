@@ -8,6 +8,8 @@
 
 #include <Transforms.h>
 
+#define pi 3.141592
+#define toRadian (pi / 180)
 #define defInitialBullets 10
 Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2) {
 	active_ = false;
@@ -64,7 +66,32 @@ BaseSpoon::BaseSpoon(string prefab, float vel, double shootSpeed) : Weapon(prefa
 BaseSpoon::~BaseSpoon() {}
 
 void BaseSpoon::shoot(nap_transform* owner_trans, float relY, float relZ) {
-	Weapon::shoot(owner_trans, relY, relZ);
+	//Weapon::shoot(owner_trans, relY, relZ);
+	//get the owner axes
+	nap_vector3 dirZ = owner_trans->q_.toNapVec3(vZ*-1);
+	nap_vector3 dirX = owner_trans->q_.toNapVec3(vX*-1);
+	nap_vector3 dirY = owner_trans->q_.toNapVec3(vY*-1);
+
+	//add to state
+	GameObject* bul;
+	nap_vector3 tmpDir;
+	PxQuat qx, qy;
+
+	float rndX, rndY;
+	rndX = rand() % (2 * spread) - spread;
+	rndY = rand() % (2 * spread) - spread;
+	//add to state
+	bul = pool_->getItem();
+
+	//rotate dir using its axis instead of global
+	qx = PxQuat(rndX * toRadian, dirX.px());
+	qy = PxQuat(rndY * toRadian, dirY.px());
+	tmpDir = napVEC3((qx*qy).rotate(dirZ.px()));
+
+	//vel
+	static_cast<PhysicsComponent*>(bul->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((tmpDir * vel_).px());
+	//pos (moves relative)
+	bul->setPosition(owner_trans->p_ + vY * relY + dirZ * relZ);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -83,13 +110,11 @@ void PowerSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 ShotSpoon::ShotSpoon(string prefab, float vel, double shootSpeed) :Weapon(prefab, vel, shootSpeed) {
-	//active_ = true;
+	active_ = true;
 }
 
 ShotSpoon::~ShotSpoon() {}
 
-#define pi 3.141592
-#define toRadian (pi / 180)
 void ShotSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 	down_ = false;
 
@@ -99,7 +124,7 @@ void ShotSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 	nap_vector3 dirY = owner_trans->q_.toNapVec3(vY*-1);
 
 	//add to state
-	GameObject* bul = pool_->getItem();
+	GameObject* bul;
 	nap_vector3 tmpDir;
 	PxQuat qx, qy;
 

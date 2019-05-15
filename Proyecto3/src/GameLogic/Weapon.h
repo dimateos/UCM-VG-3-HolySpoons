@@ -40,6 +40,8 @@ public:
 	virtual ~BaseSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
+protected:
+	int spread = 2;
 };
 
 //powerfull semi-automatic shot
