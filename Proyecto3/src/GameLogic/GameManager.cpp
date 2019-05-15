@@ -217,6 +217,9 @@ void GameManager::receive(Message * msg)
 		else if (playerHP_ != nullptr && playerHP_->getHP() <= playerHP_->getInitHP() / 4) { //4lel
 			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(ACTIVATE_POST_PROCESSING_HEALTH), GameStateMachine::getSingleton()->currentState()->getPlayer(), "lowHealthPostProcessing");
 		}
+		else if((playerHP_ != nullptr && playerHP_->getHP() > playerHP_->getInitHP() / 4)){
+			MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(DEACTIVATE_POST_PROCESSING_HEALTH), GameStateMachine::getSingleton()->currentState()->getPlayer(), "lowHealthPostProcessing");
+		}
 		updateUI();
 	}
 	else if (msg->id_ == ADD_ENEMY) { // when a spawner spawns another enemy, you will have to kill him

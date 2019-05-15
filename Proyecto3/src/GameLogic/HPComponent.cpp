@@ -19,7 +19,9 @@ void HPComponent::receive(Message * msg)
 		//tell GM to check
 		MessageSystem::getSingleton()->sendMessageGameObject(&Message(CHECK_HP), GameStateMachine::getSingleton()->currentState()->getGM());
 	}
-	else if (msg->id_ == RESET_HP) resetHP();
+	else if (msg->id_ == RESET_HP) {
+		resetHP();
+	}
 	else if (msg->id_ == ADD_HP) {
 		InitHP += incrementHP;
 		resetHP();
