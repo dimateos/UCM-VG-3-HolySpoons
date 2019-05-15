@@ -35,6 +35,7 @@ protected:
 	Ogre::Entity *entity = nullptr;
 
 	nap_vector3 relativePos_;
+	nap_quat relativeRot_;
 
 	Ogre::AnimationState* idleAnimation;
 };
