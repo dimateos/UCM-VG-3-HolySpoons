@@ -57,7 +57,6 @@ void StomperBehavior::rocketBehavior(float time)
 		dir = { dest->p_.x_ - ownerPos.x_, 0, dest->p_.z_ - ownerPos.z_ };
 	dir = dir.normalize();
 	GameObject* o = pRocket->getItem();
-	o->setActive();
 	o->setPosition(owner_->getPosition() + dir * 4 + vY * (3 * i));
 	i++;
 
@@ -78,12 +77,10 @@ void StomperBehavior::shieldBehavior(float time)
 	nap_vector3 dir = { dest->p_.x_ - ownerPos.x_, dest->p_.y_ - ownerPos.y_, dest->p_.z_ - ownerPos.z_ }; //simple vector calc dest - src
 	dir = dir.normalize();
 	GameObject* o = pSpawn->getItem();
-	o->setActive();
 	o->setPosition(owner_->getPosition() + (dir * (10 - i)));
-	MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), o);
-
 	MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
 		GameStateMachine::getSingleton()->currentState()->getGM());
+
 	i++;
 
 	if (i < maxBullets)
@@ -103,11 +100,10 @@ void StomperBehavior::shoot()
 	for (size_t it = 0; it < positions.size(); it++) {
 		dir = directions[it];
 		o = pBullet->getItem();
-		o->setActive();
 		o->setPosition(ownerPos + dir * 8);
 		static_cast<PhysicsComponent*>(o->getComponent("bullet_phys"))->getDynamicBody()->setLinearVelocity((dir * shotSpeed).px());
 	}
-	
+
 }
 
 void StomperBehavior::configActive()

@@ -48,6 +48,12 @@
         "y": 0.0,
         "z": 0.0
       },
+      "ori": {
+        "w": 0.707,
+        "x": 0.707,
+        "y": 0.0,
+        "z": 0.0
+      },
       "Components": {
         "spawner": {
           "id": {
@@ -105,7 +111,7 @@
             "type": "MESH",
             "mesh": "portal.mesh"
           },
-          "updateOri": false
+          "ignoreTrans": true
         },
         "basic_ren": {
           "id": {
