@@ -21,6 +21,23 @@ material Material
 		pass
 		{
 			ambient 0.8 0.8 0.8
+
+		}
+	}
+}
+
+material MonkeyMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+			
+			texture_unit
+			{
+				texture try.png
+			}
 		}
 	}
 }

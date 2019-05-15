@@ -34,7 +34,7 @@
             "y": 260.0,
             "z": 200.0
           },
-          "material": "Material",
+          "material": "MonkeyMaterial",
           "shape": {
             "entity_name": "monkey",
             "type": "MESH",
