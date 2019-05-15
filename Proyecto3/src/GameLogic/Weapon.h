@@ -10,12 +10,12 @@ using namespace std;
 class nap_transform;
 class nap_Pool;
 
-#include "Activable.h"
+#include "Component.h"
 //base weapon class
 class Weapon : public Activable
 {
 public:
-	Weapon(string prefab, float vel, double shootSpeed);
+	Weapon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material);
 	virtual ~Weapon();
 
 	virtual void mouseUpdate(bool down);
@@ -25,18 +25,21 @@ public:
 		float relY, float relZ);
 	virtual void swapDelay();
 	double shootSpeed_;
+	inline string getMaterial() const { return material_; }
 protected:
 	bool down_ = false, ready_ = true;
 	nap_Pool* pool_ = nullptr;
+	Component* soundComponent_;
 	float vel_ = 0;
 	napTimer t;
+	string material_;
 };
 
 //automatic shooting
 class BaseSpoon : public Weapon
 {
 public:
-	BaseSpoon(string prefab, float vel, double shootSpeed);
+	BaseSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material);
 	virtual ~BaseSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
@@ -48,7 +51,7 @@ protected:
 class PowerSpoon : public Weapon
 {
 public:
-	PowerSpoon(string prefab, float vel, double shootSpeed);
+	PowerSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material);
 	virtual ~PowerSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);
@@ -58,7 +61,7 @@ public:
 class ShotSpoon : public Weapon
 {
 public:
-	ShotSpoon(string prefab, float vel, double shootSpeed);
+	ShotSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material);
 	virtual ~ShotSpoon();
 	virtual void shoot(nap_transform* owner_trans,
 		float relY, float relZ);

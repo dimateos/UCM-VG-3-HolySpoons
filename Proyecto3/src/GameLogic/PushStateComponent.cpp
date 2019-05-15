@@ -5,7 +5,7 @@
 #include <RenderSystemManager.h>
 #include "OverlayComponent.h"
 #include "GameStateMachine.h"
-#include "Messages.h"
+#include "MessageSystem.h"
 
 void PushStateComponent::setUp() {
 	if (isInited()) return;
@@ -27,7 +27,8 @@ void PushStateComponent::setUp() {
 void PushStateComponent::pushState()
 {
 	//cambio de rendering target
-	static_cast<OverlayComponent*>(owner_->getComponent("canvas"))->hideOverlay();
+	//static_cast<OverlayComponent*>(owner_->getComponent("canvas"))->hideOverlay();
+	MessageSystem::getSingleton()->sendMessage(&Message(STATE_OUT));
 
 	//cambio de estado
 	state = GameStateMachine::getSingleton()->loadLevel(json); //CANT BE READ IT IN CONSTRUCTOR, POPSTATE DELETES IT

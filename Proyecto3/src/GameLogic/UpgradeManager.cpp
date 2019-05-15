@@ -13,7 +13,7 @@ UpgradeManager::UpgradeManager()
 {
 	upgrades = new nap_Pool("pref_upgrade");
 	weaponUpgrades = vector<int>{ 2, 3 };
-	upgradeMaterials = vector<string>{ "Health", "Speed", "aGSpoon", "aMSpoon", "dWSpoon", "dGSpoon", "dMSpoon", "fWSpoon", "fGSpoon", "fMSPoon", "MSpoon" };
+	upgradeMaterials = vector<string>{ "Health", "Speed", "aMSpoon", "aGSpoon", "dWSpoon", "dMSpoon", "dGSpoon", "fWSpoon", "fMSPoon", "fGSpoon", "GSpoon" };
 }
 
 void UpgradeManager::setUp(GameObject * player)

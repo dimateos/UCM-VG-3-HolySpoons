@@ -88,9 +88,11 @@ void GameManager::setUp() {
 	string state = this->cfg_["death_state"];
 	death_state = state;
 
-	// name of the component that will play the hit marker sound effect
-	string sound = this->cfg_["hitMarker_sound"];
-	hitMarker_sound = sound;
+	// name of the components that will play the hit/death marker sound effects
+	string sound = this->cfg_["hitMarker_soundEmitter"];
+	hitMarker_soundEmitter = sound;
+	sound = this->cfg_["deathMarker_soundEmitter"];
+	deathMarker_soundEmitter = sound;
 
 	auto rsi = RenderSystemInterface::getSingleton();
 
@@ -191,6 +193,8 @@ void GameManager::receive(Message * msg)
 		overlayComp->showPanelByName("DEATH_MARKER_PANEL"); // enemy death -> death marker (red)
 		hitTimer.setDuration(deathTime);
 		hitTimer.start();
+		MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, deathMarker_soundEmitter);
+
 		if (aux->enemy_) { // if the object was an enemy
 			enemies_--;
 			if (enemies_ <= 0) // if you kill all the enemies -> next round
@@ -202,7 +206,7 @@ void GameManager::receive(Message * msg)
 		overlayComp->showPanelByName("HIT_MARKER_PANEL");   // enemy damage -> hit marker (white)
 		hitTimer.setDuration(hitTime);
 		hitTimer.start();
-		MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, hitMarker_sound);
+		MessageSystem::getSingleton()->sendMessageGameObjectComponentName(&Message(PLAY_SOUND), owner_, hitMarker_soundEmitter);
 	}
 	else if (msg->id_ == CHECK_HP) {
 		// gm has two pushComponents (pause and death), so we need to specify which one will push its state

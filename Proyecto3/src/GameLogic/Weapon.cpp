@@ -5,16 +5,19 @@
 #include "GameObject.h"
 #include "PhysicsComponent.h"
 #include "PxRigidDynamic.h"
+#include "Messages.h"
 
 #include <Transforms.h>
 
 #define pi 3.141592
 #define toRadian (pi / 180)
 #define defInitialBullets 10
-Weapon::Weapon(string prefab, float vel = 30, double shootSpeed = 0.2) {
+Weapon::Weapon(string prefab, float vel, double shootSpeed , Component* soundComponent, string material) {
+	soundComponent_ = soundComponent;
 	active_ = false;
 	vel_ = vel;
 	shootSpeed_ = shootSpeed;
+	material_ = material;
 	t.start(shootSpeed);
 	pool_ = new nap_Pool(prefab);
 	pool_->setDefault(defInitialBullets);
@@ -35,6 +38,7 @@ void Weapon::shootUpdate(nap_transform * owner_trans, float relY, float relZ, do
 	if (ready_ && down_) {
 		ready_ = false;
 		t.start(shootSpeed_);
+		soundComponent_->receive(&Message(PLAY_SOUND));
 		shoot(owner_trans, relY, relZ);
 	}
 }
@@ -59,7 +63,7 @@ void Weapon::swapDelay() {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BaseSpoon::BaseSpoon(string prefab, float vel, double shootSpeed) : Weapon(prefab, vel, shootSpeed) {
+BaseSpoon::BaseSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material) : Weapon(prefab, vel, shootSpeed, soundComponent, material) {
 	active_ = true;
 }
 
@@ -96,8 +100,8 @@ void BaseSpoon::shoot(nap_transform* owner_trans, float relY, float relZ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-PowerSpoon::PowerSpoon(string prefab, float vel, double shootSpeed) : Weapon(prefab, vel, shootSpeed) {
-	//active_ = true;
+PowerSpoon::PowerSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material) : Weapon(prefab, vel, shootSpeed, soundComponent, material) {
+	active_ = true;
 }
 
 PowerSpoon::~PowerSpoon() {}
@@ -109,7 +113,7 @@ void PowerSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-ShotSpoon::ShotSpoon(string prefab, float vel, double shootSpeed) :Weapon(prefab, vel, shootSpeed) {
+ShotSpoon::ShotSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material) :Weapon(prefab, vel, shootSpeed, soundComponent, material) {
 	active_ = true;
 }
 

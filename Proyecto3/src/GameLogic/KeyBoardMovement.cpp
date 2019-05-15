@@ -120,7 +120,7 @@ void KeyBoardMovement::onCollision(ID * other) {
 }
 
 void KeyBoardMovement::receive(Message * msg) {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		//clear the buffers
 		jumping_ = false;
 		sprinting_ = false;

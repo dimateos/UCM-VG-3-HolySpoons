@@ -93,15 +93,15 @@
           },
           "range": 5000
         },
-        "pruebaMusic3d": {
+        "soundEffect": {
           "id": {
             "type": "SoundEmitterComponent",
             "group": "test_comps"
           },
-          "routeName": "bell.wav",
+          "routeName": "enemySound1.ogg",
           "loop": true,
           "3D": true,
-          "volume": 0.5
+          "volume": 1.0
         }
       }
     },

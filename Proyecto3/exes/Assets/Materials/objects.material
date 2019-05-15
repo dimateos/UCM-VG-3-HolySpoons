@@ -153,12 +153,53 @@ technique
 		pass
 		{
 			ambient 0.0 0.0 0.0
-			emissive 0.7 0.7 0.7
+			specular 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
 
 			texture_unit
 			{
 				colour_op add
 				texture spoon.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material MetalSpoon
+{
+technique
+	{
+		pass
+		{
+			ambient 0.15 0.15 0.15
+			specular 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+
+			texture_unit
+			{
+				colour_op add
+				texture metal.jpg
+				tex_address_mode wrap
+			}
+		}
+	}
+}
+
+material GoldenSpoon
+{
+technique
+	{
+		pass
+		{
+			ambient 0.05 0.05 0.05
+			specular 0.0 0.0 0.0
+			diffuse 0.05 0.05 0.05
+
+			texture_unit
+			{
+				colour_op add
+				texture goldenSpoon.jpg
 				tex_address_mode wrap
 			}
 		}
@@ -386,7 +427,8 @@ material aGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -401,7 +443,8 @@ material dGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -416,7 +459,8 @@ material fGSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -431,7 +475,8 @@ material aMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -446,7 +491,8 @@ material fMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -461,7 +507,8 @@ material dMSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -471,16 +518,17 @@ material dMSpoon {
 	}
 }
 
-material MSpoon {
+material GSpoon {
     technique
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
-				texture MSpoon.png
+				texture GSpoon.png
 			}
 		}
 	}
@@ -491,7 +539,8 @@ material dWSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -506,7 +555,8 @@ material fWSpoon {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -521,7 +571,8 @@ material Health {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{
@@ -536,7 +587,8 @@ material Speed {
 	{
 		pass
 		{
-		diffuse 0.0 0.0 0.0
+		ambient 2.2 2.2 2.2
+		diffuse 0.2 0.4 0.4
 		scene_blend alpha_blend
 			texture_unit
 			{

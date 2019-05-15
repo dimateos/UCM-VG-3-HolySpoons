@@ -58,8 +58,11 @@ void OverlayComponent::setPanelAlpha(float alpha)
 
 void OverlayComponent::receive(Message * msg)
 {
-	if (msg->id_ == STATE_CHANGED) {
+	if (msg->id_ == STATE_IN) {
 		showOverlay();
+	}
+	else if (msg->id_ == STATE_OUT) {
+		hideOverlay();
 	}
 }
 

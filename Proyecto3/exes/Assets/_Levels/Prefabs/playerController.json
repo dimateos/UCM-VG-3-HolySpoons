@@ -4,29 +4,33 @@
         "type": "pref_playerController"
     },
     "pos": { "x": 0.0, "y": 5.0, "z": -5.0 },
-    "Components": {
-        "controller_phy": {
-            "id": {
-                "type": "PhysicsControllerComponent",
-                "group": "player_comps"
-            },
+  "Components": {
+    "controller_phy": {
+      "id": {
+        "type": "PhysicsControllerComponent",
+        "group": "player_comps"
+      },
 
-            "radius": 1.6,
-            "height": 3.0,
-            "material": "PLAYER",
-            "dens": 10.0,
-            "i_mass": 1.0,
-            "damping_": 0.00,
+      "radius": 1.6,
+      "height": 3.0,
+      "material": "PLAYER",
+      "dens": 10.0,
+      "i_mass": 1.0,
+      "damping_": 0.00,
 
-            "contactOffset": 0.01,
-            "stepOffset": 0.01,
-            "minDist": 0.001,
+      "contactOffset": 0.01,
+      "stepOffset": 0.01,
+      "minDist": 0.001,
 
-            "g": { "x": 0.0, "y": -50.0, "z": 0.0 },
-            "slopeLimit": 0.5,
-            "invisibleWallHeight": 0.0,
-            "maxJumpHeight": 0.0
-        },
+      "g": {
+        "x": 0.0,
+        "y": -50.0,
+        "z": 0.0
+      },
+      "slopeLimit": 0.5,
+      "invisibleWallHeight": 0.0,
+      "maxJumpHeight": 0.0
+    },
 
         "hitbox_ren": {
             "id": {
@@ -58,108 +62,186 @@
                     "type": "MESH",
                     "mesh": "spoon.mesh"
                 },
+                "material": "Spoon",
                 "idleAnimation": "Shoot",
                 "ignoreTrans": true
             },
 
-        "keyboard_mov": {
-            "id": {
-                "type": "KeyBoardMovement",
-                "group": "player_comps"
-            },
-            "walkVel":20,
-            "runVel": 28,
-            "walkIncr": 1.5,
-            "runIncr":  2,
-            "jumpImpulse": 20,
-            "jumpResetersGroups": ["map"]
-        },
-        "camera_fps": {
-            "id": {
-                "type": "FPSCamera"
-            },
-            "maxRotY": 80,
-            "zoomFovScale": 0.7,
-            "zoomSensScale": 0.4,
-            "baseLookAt": { "x": 0.0, "y": 0.0, "z": 1.0 },
-            "relativePos": { "x": 0.0, "y": 3.0, "z": 0.0 }
-        },
-        "bullet_shooter": {
-            "id": {
-                "type": "BulletShooter",
-                "group": "player_comps"
-            },
-            "relativeY": 3.0,
-            "relativeZ": 3.0,
-            "bDamage": 12, "pDamage": 30, "dDamage": 10,
-            "bSpeed": 110, "pSpeed": 90, "dSpeed":  110,
-            "bFireRate": 0.2, "pFireRate": 0.6, "dFireRate": 0.8,
-            "bUpgrade":  3, "pUpgrade": 6, "dUpgrade": 2
-        },
+    "keyboard_mov": {
+      "id": {
+        "type": "KeyBoardMovement",
+        "group": "player_comps"
+      },
+      "walkVel": 20,
+      "runVel": 28,
+      "walkIncr": 1.5,
+      "runIncr": 2,
+      "jumpImpulse": 20,
+      "jumpResetersGroups": [ "map" ]
+    },
+    "camera_fps": {
+      "id": {
+        "type": "FPSCamera"
+      },
+      "maxRotY": 80,
+      "zoomFovScale": 0.7,
+      "zoomSensScale": 0.4,
+      "baseLookAt": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "relativePos": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 0.0
+      }
+    },
+    "bullet_shooter": {
+      "id": {
+        "type": "BulletShooter",
+        "group": "player_comps"
+      },
+      "relativeY": 3.0,
+      "relativeZ": 3.0,
+      "bDamage": 12,
+      "pDamage": 30,
+      "dDamage": 10,
+      "bSpeed": 110,
+      "pSpeed": 90,
+      "dSpeed": 110,
+      "bFireRate": 0.2,
+      "pFireRate": 0.6,
+      "dFireRate": 0.8,
+      "bUpgrade": 3,
+      "pUpgrade": 6,
+      "dUpgrade": 2
+    },
 
-        "att_light": {
-            "id": {
-                "type": "AttachedLightComponent",
-                "group": "player_comps"
-            },
-            "name": "playerLight",
-            "fatherName": "hitbox_ren",
-            "type": 0,
-            "diffColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
-            "specColor": { "r": 1.0, "g": 1.0, "b": 1.0 },
-            "range": 8500
+    "att_light": {
+      "id": {
+        "type": "AttachedLightComponent",
+        "group": "player_comps"
+      },
+      "name": "playerLight",
+      "fatherName": "hitbox_ren",
+      "type": 0,
+      "diffColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "specColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "range": 8500
+    },
+    "hp_component": {
+      "id": {
+        "type": "HPComponent",
+        "group": "player_comps"
+      },
+      "hp": 50,
+      "incrHp": 10
+    },
+    "player_hit": {
+      "id": {
+        "type": "PlayerHit",
+        "group": "player_comps"
+      },
+      "inv_t": 3,
+      "damageDealers": [
+        {
+          "group": "bounds",
+          "dmg": 50
         },
-        "hp_component": {
-            "id": {
-                "type": "HPComponent",
-                "group": "player_comps"
-            },
-            "hp": 50,
-            "incrHp":  10
-        },
-        "player_hit": {
-            "id": {
-                "type": "PlayerHit",
-                "group": "player_comps"
-            },
-            "inv_t": 3,
-            "damageDealers": [ {"group": "bounds", "dmg": 50}, {"group": "enemies", "dmg": 10} ]
-        },
-        "lowHealthPostProcessing":{
-            "id": {
-                "type": "BasicPostProcessingComponent",
-                "group": "player_comps"
-            },
-            "CompositorName": "Luminance",
-            "EnabledOnStart": false,
-            "Active_Message": 3,
-            "Inactive_Message":  4
-        },
-        "hitPostProcessing": {
-            "id": {
-                "type": "HitPostProcessingComponent",
-                "group": "player_comps"
-            },
-            "CompositorName": "BloodMix"
-        },
-        "lavaPostProcessing": {
-            "id": {
-                "type": "BasicPostProcessingComponent",
-                "group": "player_comps"
-            },
-            "CompositorName": "Lava",
-            "EnabledOnStart": false,
-            "Active_Message": 12,
-            "Inactive_Message": 13
-        },
-        "ChangePlayerGravityComponent":{
-            "id": {
-                "type": "ChangePlayerGravityComponent",
-                "group": "player_comps"
-            },
-            "Active_Message": 12,
-            "Inactive_Message": 13,
-            "Custom_Gravity": {"x": 0.0, "y": -2.0, "z": 0.0 }
+        {
+          "group": "enemies",
+          "dmg": 10
         }
+      ]
+    },
+    "lowHealthPostProcessing": {
+      "id": {
+        "type": "BasicPostProcessingComponent",
+        "group": "player_comps"
+      },
+      "CompositorName": "Luminance",
+      "EnabledOnStart": false,
+      "Active_Message": 3,
+      "Inactive_Message": 4
+    },
+    "hitPostProcessing": {
+      "id": {
+        "type": "HitPostProcessingComponent",
+        "group": "player_comps"
+      },
+      "CompositorName": "BloodMix"
+    },
+    "lavaPostProcessing": {
+      "id": {
+        "type": "BasicPostProcessingComponent",
+        "group": "player_comps"
+      },
+      "CompositorName": "Lava",
+      "EnabledOnStart": false,
+      "Active_Message": 12,
+      "Inactive_Message": 13
+    },
+    "ChangePlayerGravityComponent": {
+      "id": {
+        "type": "ChangePlayerGravityComponent",
+        "group": "player_comps"
+      },
+      "Active_Message": 12,
+      "Inactive_Message": 13,
+      "Custom_Gravity": {
+        "x": 0.0,
+        "y": -2.0,
+        "z": 0.0
+      }
+    },
+    "baseWeaponSound": {
+      "id": {
+        "type": "SoundEmitterComponent",
+        "group": "sound_comp"
+      },
+      "routeName": "bShoot.wav",
+      "loop": false,
+      "3D": true,
+      "volume": 0.4
+    },
+    "powerWeaponSound": {
+      "id": {
+        "type": "SoundEmitterComponent",
+        "group": "sound_comp"
+      },
+      "routeName": "pShoot.wav",
+      "loop": false,
+      "3D": true,
+      "volume": 0.5
+    },
+    "spreadWeaponSound": {
+      "id": {
+        "type": "SoundEmitterComponent",
+        "group": "sound_comp"
+      },
+      "routeName": "sShoot.wav",
+      "loop": false,
+      "3D": true,
+      "volume": 0.8
+    },
+    "UpgradeSound": {
+      "id": {
+        "type": "SoundEmitterComponent",
+        "group": "sound_comp"
+      },
+      "routeName": "Upgrade.wav",
+      "loop": false,
+      "3D": true,
+      "volume": 1
     }
+  }
 }

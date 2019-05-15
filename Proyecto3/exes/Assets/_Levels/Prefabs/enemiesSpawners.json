@@ -59,7 +59,8 @@
           "default": 5,
           "timer": 25.0,
           "radius": 10.0,
-          "smart": true
+          "smart": true,
+          "soundEmitter": "portalSound"
         },
         "basic_phy": {
           "id": {
@@ -163,6 +164,17 @@
             "b": 1.0
           },
           "range": 5000
+        },
+        "portalSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "portalSound.ogg",
+          "3D": true,
+          "volume": 1.0,
+          "startPaused": true,
+          "loop": true
         }
       }
     },

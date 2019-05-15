@@ -103,7 +103,7 @@ void GameStateMachine::preStateChanged() {
 }
 void GameStateMachine::postStateChanged() {
 	//send message
-	MessageSystem::getSingleton()->sendMessage(&Message(STATE_CHANGED));
+	MessageSystem::getSingleton()->sendMessage(&Message(STATE_IN));
 
 	//reset time counter
 	TimeSystem::StartCounter();
