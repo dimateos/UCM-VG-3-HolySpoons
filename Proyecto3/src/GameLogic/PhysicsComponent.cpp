@@ -17,41 +17,23 @@ void PhysicsComponent::setUp() {
 	if (isInited()) return;
 	setInited();
 
-	PhysicsSystemManager* physicsManager = PhysicsSystemManager::getSingleton();
-
 	//get the correct built shape
 	PxGeometry *geo = getGeo(cfg_["shape"]);
 	std::string mat = FINDnRETURN_s(cfg_, "material", BaseMat);
-	shape_ = physicsManager->createShape(geo, mat);
-
-	//different body for dynamic or static
-	if (FINDnRETURN(cfg_, "dynamic", bool, true)) {
-		rigidBodyD_ = physicsManager->createDynamicBody(shape_);
-
-		//mass and dampings
-		PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
-		rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
-		rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
-		rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
-	}
-	else { //static
-		rigidBodyS_ = physicsManager->createStaticBody(shape_);
-	}
-
-	//more custom stuff
-	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, FINDnRETURN(cfg_, "noGravity", bool, false));
+	shape_ = PhysicsSystemManager::getSingleton()->createShape(geo, mat);
 
 	//only after ogre node update... but need the ogre object soo...
 	//auto boxSs = static_cast<Entity*>(nodeS->getAttachedObject("static"))->getWorldBoundingBox();
 	//auto boxS = nodeS->_getWorldAABB();
 	//PxGeometry geoS = PxBoxGeometry(boxS.getSize().x, boxS.getSize().y, boxS.getSize().z);
 
-	//update trans
+	//update trans and gravity
 	ignoreTrans_ = FINDnRETURN(cfg_, "ignoreTrans", bool, false);
 	updateOri_ = FINDnRETURN(cfg_, "updateOri", bool, true);
+	noGravity_ = FINDnRETURN(cfg_, "noGravity", bool, false);
 
-	updateUserData();
-	configActive();
+	//different body for dynamic or static
+	configDynamicBody(FINDnRETURN(cfg_, "dynamic", bool, true));
 }
 
 PxRigidDynamic * PhysicsComponent::getDynamicBody() {
@@ -65,15 +47,24 @@ void PhysicsComponent::setShapeTrigger(bool b) {
 	shape_->setFlag(b ? PxShapeFlag::eTRIGGER_SHAPE : PxShapeFlag::eSIMULATION_SHAPE, true);
 }
 
+void PhysicsComponent::setIgnoreTrans(bool b) {
+	ignoreTrans_ = b;
+}
+
 void PhysicsComponent::setDown() {
 	//release the bodies (which releases the shape etc)
 	if(getActor() != nullptr) getActor()->release();
+	if (ud_ != nullptr) delete ud_;
+	if (shape_ != nullptr && shape_->isReleasable()) shape_->release();
 }
 
 void PhysicsComponent::configActive() {
 	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, !active_);
+	getActor()->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, noGravity_);
 	getActor()->setGlobalPose(PxTransform((!active_ ? baseTransPos : owner_->getPosition()).px(), owner_->getOrientation().px()));
 }
+
+///////////////////////////////////////////////////////////////////////////////
 
 void PhysicsComponent::updateUserData() {
 	if (ud_ != nullptr) delete ud_;
@@ -81,8 +72,6 @@ void PhysicsComponent::updateUserData() {
 
 	getActor()->userData = ud_;
 }
-
-///////////////////////////////////////////////////////////////////////////////
 
 void PhysicsComponent::late_update(GameObject * o, double time) {
 	if (ignoreTrans_) return;
@@ -106,12 +95,25 @@ void PhysicsComponent::late_update(GameObject * o, double time) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//const map<std::string, PxGeometryType::Enum> PhysicsComponent::geoTypes {
-//	{ "BOX", PxGeometryType::eBOX },
-//	{ "PLANE", PxGeometryType::ePLANE },
-//	{ "SPHERE", PxGeometryType::eSPHERE },
-//	{ "CAPSULE", PxGeometryType::eCAPSULE },
-//};
+void PhysicsComponent::configDynamicBody(bool b) {
+	if (getActor() != nullptr) getActor()->release();
+
+	if (b) configDynamicActor();
+	else rigidBodyS_ = PhysicsSystemManager::getSingleton()->createStaticBody(shape_);
+
+	updateUserData();
+	configActive();
+}
+
+void PhysicsComponent::configDynamicActor() {
+	rigidBodyD_ = PhysicsSystemManager::getSingleton()->createDynamicBody(shape_);
+
+	//mass and dampings
+	PxRigidBodyExt::updateMassAndInertia(*rigidBodyD_, FINDnRETURN(cfg_, "mass", float, BaseDens));
+	rigidBodyD_->setLinearDamping(FINDnRETURN(cfg_, "linDamp", float, BaseLinDamp));
+	rigidBodyD_->setAngularDamping(FINDnRETURN(cfg_, "angDamp", float, BaseAngDamp));
+	rigidBodyD_->setMaxAngularVelocity(FINDnRETURN(cfg_, "maxAngV", float, BaseMaxAngV));
+}
 
 PxGeometry* PhysicsComponent::getGeo(nap_json shape) {
 	PxGeometry* geo = nullptr;

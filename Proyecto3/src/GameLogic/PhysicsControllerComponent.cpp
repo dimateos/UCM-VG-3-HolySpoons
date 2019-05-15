@@ -80,6 +80,7 @@ void PhysicsControllerComponent::invalidateChache() {
 void PhysicsControllerComponent::setDown() {
 	//release the controller (which releases the actor, shape etc)
 	controller_->release();
+	if (ud_ != nullptr) delete ud_;
 }
 
 void PhysicsControllerComponent::configActive() {

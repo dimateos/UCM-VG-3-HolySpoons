@@ -46,7 +46,6 @@ void BulletHitTrigger::update(GameObject * o, double time) {
 		else {
 			owner_->setActive(false);
 			//LogSystem::Log("timer bul into inactive");
-			LogSystem::Log("timer bul into inactive");
 		}
 	}
 }
@@ -54,7 +53,7 @@ void BulletHitTrigger::update(GameObject * o, double time) {
 void BulletHitTrigger::onCollision(ID * other) {
 	if (other->type_ != owner_->id().type_) {
 		owner_->setActive(false);
-		LogSystem::Log("collision bul into inactive w/" + other->name_);
+		//LogSystem::Log("collision bul into inactive w/" + other->name_);
 	}
 }
 

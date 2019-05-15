@@ -51,6 +51,7 @@
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\IndestructubleSpawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\PlatformChangeStatic.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\IndestructubleSpawner.h" />
     <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\PlatformChangeStatic.h" />
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h" />
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h" />
