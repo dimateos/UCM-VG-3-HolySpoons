@@ -84,6 +84,8 @@ material ufoMaterial
             shading gouraud 
             transparent_sorting on
 
+			cull_hardware none
+
 			texture_unit
 			{
 				texture ufoTexture.png
@@ -92,7 +94,7 @@ material ufoMaterial
 	}
 }
 
-material bugMaterial
+material golemMaterial
 {
 	technique
 	{
@@ -119,7 +121,7 @@ material bugMaterial
 
 			texture_unit
 			{
-				texture bugTexture.png
+				texture golemTex.png
 			}
 		}
 	}

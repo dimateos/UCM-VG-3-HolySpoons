@@ -227,15 +227,15 @@
             "group": "enemy_comps"
           },
           "scale": {
-            "x": 3.5,
-            "y": 4.3,
-            "z": 3.5
+            "x": 500,
+            "y": 500,
+            "z": 500
           },
-          "material": "bugMaterial",
+          "material": "golemMaterial",
           "shape": {
-            "entity_name": "bug",
+            "entity_name": "golem",
             "type": "MESH",
-            "mesh": "bug.mesh"
+            "mesh": "golem.mesh"
           }
         },
         "sniper": {
@@ -277,13 +277,6 @@
             "b": 1.0
           },
           "range": 5000
-        },
-        "auto_rotation": {
-          "id": {
-            "type": "AutoRotationComponent",
-            "group": "enemy_comps"
-          },
-          "Target": "player"
         }
       }
     },
