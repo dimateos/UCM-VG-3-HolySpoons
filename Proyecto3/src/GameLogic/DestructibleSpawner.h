@@ -14,6 +14,7 @@ private:
 
 	void Activate();
 	void Deactivate();
+	std::string soundEmitter;
 
 public:
 	DestructibleSpawner(nap_json const & cfg, GameObject* owner) :Spawner(cfg, owner) {}

@@ -54,7 +54,8 @@ private:
 	float probability_; // initial prob of a destr spawner to be activated
 
 	std::string death_state;
-	std::string hitMarker_sound;
+	std::string hitMarker_soundEmitter;
+	std::string deathMarker_soundEmitter;
 
 	void updateUI();
 	void nextRound();

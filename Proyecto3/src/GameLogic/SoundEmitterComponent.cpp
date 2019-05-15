@@ -33,7 +33,10 @@ void SoundEmitterComponent::setUp() {
 }
 
 void SoundEmitterComponent::configActive() {
-	if (active_ && !startPaused) playSound();
+	if (active_) {
+		if (!startPaused)
+			playSound();
+	}
 	else stopSound();
 }
 
@@ -55,7 +58,7 @@ void SoundEmitterComponent::playSound() {
 	else
 		sound = SoundManager::getSingleton()->play2DSound(routeName, playLooped, false, customName, true);
 
-	sound->setVolume(volume);
+	setVolume(volume);
 }
 
 void SoundEmitterComponent::stopSound() {

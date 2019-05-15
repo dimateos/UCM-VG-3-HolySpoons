@@ -38,7 +38,8 @@
             "group": "manage_components"
           },
           "death_state": "push_death",
-          "hitMarker_sound": "hitSound",
+          "hitMarker_soundEmitter": "hitMarkerSound",
+          "deathMarker_soundEmitter": "deathMarkerSound",
           "json": "_PAUSE_LEVEL_",
           "hitTime": 0.1,
           "deathTime": 0.3,
@@ -54,15 +55,27 @@
           "3D": false,
           "volume": 0.025
         },
-        "hitSound": {
+        "hitMarkerSound": {
           "id": {
             "type": "SoundEmitterComponent",
             "group": "test_comps"
           },
           "routeName": "hitmarker.ogg",
-          "customName": "hitSound",
+          "customName": "hitMarkerSound",
           "3D": false,
           "volume": 0.2,
+          "startPaused": true,
+          "loop": false
+        },
+        "deathMarkerSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "enemyDeathSound.ogg",
+          "customName": "deathMarkerSound",
+          "3D": false,
+          "volume": 0.1,
           "startPaused": true,
           "loop": false
         },
