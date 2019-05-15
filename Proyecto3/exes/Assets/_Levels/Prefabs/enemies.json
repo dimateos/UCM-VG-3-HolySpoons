@@ -321,7 +321,7 @@
             "y": 250.0,
             "z": 225.0
           },
-          "material": "Material",
+          "material": "StomperMaterial",
           "shape": {
             "entity_name": "foot",
             "type": "MESH",
