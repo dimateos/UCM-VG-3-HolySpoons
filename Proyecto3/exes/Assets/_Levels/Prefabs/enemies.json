@@ -151,7 +151,7 @@
             "type": "SpinComponent",
             "group": "enemy_comps"
           },
-          "Yaw": 5,
+          "Yaw": 4,
           "RenderComponent": "basic_ren"
         },
         "bombardier": {
@@ -202,6 +202,16 @@
           "Amplitude": 0.015,
           "speed": 2,
           "moveY": true
+        },
+        "bombardierSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "sound_comp"
+          },
+          "routeName": "BombardierShoot.ogg",
+          "loop": false,
+          "3D": false,
+          "volume": 0.3
         }
       }
     },
@@ -253,16 +263,26 @@
             "mesh": "golem.mesh"
           }
         },
+        "sniperSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "sound_comp"
+          },
+          "routeName": "SniperShoot.ogg",
+          "loop": false,
+          "3D": false,
+          "volume": 0.5
+        },
         "sniper": {
           "id": {
             "type": "SniperBehavior",
             "group": "enemy_comps"
           },
-          "speed": 8,
+          "speed": 7,
           "Target": "player",
           "lowY": -11,
           "highY": 4,
-          "shotSpeed": 60,
+          "shotSpeed": 70,
           "actionDelay": 1.4,
           "LavaScene": [
             {
@@ -493,6 +513,16 @@
           },
           "hp": 320,
           "points": 500
+        },
+        "stomperSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "sound_comp"
+          },
+          "routeName": "StomperShoot.ogg",
+          "loop": false,
+          "3D": false,
+          "volume": 0.3
         }
       }
     }

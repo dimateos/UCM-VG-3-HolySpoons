@@ -63,7 +63,7 @@
           "routeName": "hitmarker.ogg",
           "customName": "hitMarkerSound",
           "3D": false,
-          "volume": 0.2,
+          "volume": 0.1,
           "startPaused": true,
           "loop": false
         },
@@ -120,7 +120,7 @@
           "routeName": "pauseScoreMusic.ogg",
           "customName": "pauseLevelMusic",
           "3D": false,
-          "volume": 0.1
+          "volume": 0.15
         },
         "pop_state_main": {
           "id": {
@@ -172,7 +172,7 @@
           "routeName": "introMusic.ogg",
           "customName": "menuMusic",
           "3D": false,
-          "volume": 0.1
+          "volume": 0.2
         },
         "push_state_leader_board": {
           "id": {
@@ -222,7 +222,7 @@
           "customName": "deathMusic",
           "loop": false,
           "3D": false,
-          "volume": 0.1
+          "volume": 0.2
         },
         "deathSound": {
           "id": {
@@ -283,7 +283,7 @@
           "routeName": "pauseScoreMusic.ogg",
           "customName": "LBMusic",
           "3D": false,
-          "volume": 0.1
+          "volume": 0.2
         }
       }
     },
@@ -318,7 +318,7 @@
           "routeName": "pauseScoreMusic.ogg",
           "customName": "selectLevelMusic",
           "3D": false,
-          "volume": 0.1
+          "volume": 0.2
         },
         "pop_state": {
           "id": {

@@ -101,7 +101,7 @@ void BaseSpoon::shoot(nap_transform* owner_trans, float relY, float relZ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 PowerSpoon::PowerSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material) : Weapon(prefab, vel, shootSpeed, soundComponent, material) {
-	active_ = true;
+	//active_ = true;
 }
 
 PowerSpoon::~PowerSpoon() {}
@@ -114,7 +114,7 @@ void PowerSpoon::shoot(nap_transform * owner_trans, float relY, float relZ) {
 ////////////////////////////////////////////////////////////////////////////////
 
 ShotSpoon::ShotSpoon(string prefab, float vel, double shootSpeed, Component* soundComponent, string material) :Weapon(prefab, vel, shootSpeed, soundComponent, material) {
-	active_ = true;
+	//active_ = true;
 }
 
 ShotSpoon::~ShotSpoon() {}

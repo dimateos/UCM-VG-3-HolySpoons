@@ -15,6 +15,7 @@ void StomperBehavior::moveBehavior(float time)
 	if (t.update(time) || t.isActive()) return;
 
 	owner_->setPosition(positions[rand() % positions.size()] + nap_vector3(0, lowY, 0));
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 	i++;
 
 	if (i < maxJumps)
@@ -41,6 +42,7 @@ void StomperBehavior::jumpBehavior(float time)
 			t.start(actionDelay);
 			status = move;
 			up = true;
+			MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 			}
 		}
 	else if (baseY >= highY)
@@ -58,6 +60,7 @@ void StomperBehavior::rocketBehavior(float time)
 	dir = dir.normalize();
 	GameObject* o = pRocket->getItem();
 	o->setPosition(owner_->getPosition() + dir * 4 + vY * (3 * i));
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 	i++;
 
 	if (i < maxBullets)
@@ -80,7 +83,7 @@ void StomperBehavior::shieldBehavior(float time)
 	o->setPosition(owner_->getPosition() + (dir * (10 - i)));
 	MessageSystem::getSingleton()->sendMessageGameObject(&Msg_ADD_ENEMY(1),
 		GameStateMachine::getSingleton()->currentState()->getGM());
-
+	MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 	i++;
 
 	if (i < maxBullets)

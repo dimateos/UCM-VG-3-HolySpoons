@@ -3,6 +3,7 @@
 #include "LogSystem.h"
 #include <math.h>
 #include "GOFactory.h"
+#include "MessageSystem.h"
 
 #include <Transforms.h>
 
@@ -22,6 +23,7 @@ void BombardierBehavior::advanceBehavior(float time)
 	owner_->setPosition(ownerPos);
 	if (abs(dest->p_.x_ - ownerPos.x_) + abs(lowY - ownerPos.y_) + abs(dest->p_.z_ - ownerPos.z_) < 4) {
 		status = attack;
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 		orig.x_ = ownerPos.x_ + rand() % 200 - 100;
 		orig.z_ = ownerPos.z_ + rand() % 200 - 100;
 	}
