@@ -1,6 +1,7 @@
 {
-  "stateID_": "MainScene",
+  "stateID_": "WaterScene",
   "mapFile": "_SECOND_LEVEL_map.txt",
+  "physRequired": true,
   "Player": {
     "id": {
       "name": "player",

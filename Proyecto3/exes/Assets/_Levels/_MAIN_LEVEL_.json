@@ -1,6 +1,7 @@
 {
-  "stateID_": "MainScene",
+  "stateID_": "LavaScene",
   "mapFile": "_MAIN_LEVEL_map.txt",
+  "physRequired": true,
   "Player": {
     "id": {
       "name": "player",

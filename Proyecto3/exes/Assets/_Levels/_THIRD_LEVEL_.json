@@ -1,6 +1,7 @@
 {
-  "stateID_": "MainScene",
+  "stateID_": "SkyScene",
   "mapFile": "_THIRD_LEVEL_map.txt",
+  "physRequired": true,
   "Player": {
     "id": {
       "name": "player",
