@@ -5,6 +5,7 @@
 #include "GOFactory.h"
 #include "PhysicsComponent.h"
 #include "PxRigidDynamic.h"
+#include "MessageSystem.h"
 
 #include <Transforms.h>
 
@@ -32,6 +33,7 @@ void SniperBehavior::advanceBehavior(float time)
 void SniperBehavior::attackBehavior(float time)
 {
 	if (t.update(time)) {
+		MessageSystem::getSingleton()->sendMessageGameObject(&Message(PLAY_SOUND), owner_);
 		shoot();
 		t.start();
 		status = back;

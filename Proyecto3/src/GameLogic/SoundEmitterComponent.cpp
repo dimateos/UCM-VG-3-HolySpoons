@@ -34,7 +34,7 @@ void SoundEmitterComponent::setUp() {
 
 void SoundEmitterComponent::configActive() {
 	if (active_) {
-		if (!startPaused)
+		if (!startPaused && playLooped)
 			playSound();
 	}
 	else stopSound();
