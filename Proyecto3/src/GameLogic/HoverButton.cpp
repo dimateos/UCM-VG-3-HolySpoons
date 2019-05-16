@@ -39,7 +39,7 @@ void HoverButton::setUp() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	elemt = rsi->createOverlayElement("Panel", name + id().sn_string());
 	rsi->addToPanel(this->cfg_["panelName"], elemt);
-	rsi->setOverlayElementMaterial(elemt, buttonMat);
+	rsi->setOverlayElementMaterial(elemt, imgMat);
 	centerOverlay();
 }
 

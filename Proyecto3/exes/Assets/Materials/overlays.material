@@ -40,7 +40,7 @@ material ButtonMaterial
 
 			texture_unit
 			{
-				texture 1d_debug.png
+				texture Controller.png
 			}
 		}
 	}
