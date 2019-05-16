@@ -21,16 +21,6 @@
           "panelName": "DEATH_PANEL",
           "materialName": "menuButtonMaterial",
           "name": "death_button"
-        },
-        "deathSound": {
-          "id": {
-            "type": "SoundEmitterComponent",
-            "group": "test_comps"
-          },
-          "routeName": "deathSound.ogg",
-          "3D": false,
-          "loop":false,
-          "volume": 0.7
         }
       }
     },

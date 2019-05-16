@@ -30,7 +30,7 @@ SpinComponent::~SpinComponent()
 {
 }
 
-void SpinComponent::update(GameObject * ent, double time)
+void SpinComponent::late_update(GameObject * ent, double time)
 {
 	rotate(ent, time);
 }

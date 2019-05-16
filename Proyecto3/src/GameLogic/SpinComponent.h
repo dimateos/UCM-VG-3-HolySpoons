@@ -3,7 +3,6 @@
 #define SPINCOMPONENT_H_
 
 #include "Component.h"
-#include <RenderSystemInterface.h>
 
 namespace Ogre {
 	class SceneNode;
@@ -23,9 +22,9 @@ public:
 	virtual void setUp();
 	virtual void lateSetUp();
 
-	virtual void update(GameObject* ent, double time);
+	virtual void late_update(GameObject* ent, double time);
 
 };
 
-#endif /* AUTOROTATIONCOMPONENT_H_ */
+#endif /* SPINCOMPONENT_H_ */
 
