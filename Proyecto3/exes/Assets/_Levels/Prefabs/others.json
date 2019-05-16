@@ -170,6 +170,14 @@
             "mesh": "cube.mesh"
           }
         },
+        "SpinComponent": {
+          "id": {
+            "type": "SpinComponent",
+            "group": "enemy_comps"
+          },
+          "Yaw": 10,
+          "RenderComponent": "up_render"
+        },
         "upgrade_comp": {
           "id": {
             "type": "UpgradeComponent"

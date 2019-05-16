@@ -41,6 +41,8 @@ void SpinComponent::rotate(GameObject * ent, double time)
 	node->pitch(Ogre::Radian(pitch_ * time)); //x axis
 	node->yaw(Ogre::Radian(yaw_ * time)); //y axis
 	node->roll(Ogre::Radian(roll_ * time)); //z axis
+	
+	ent->setOrientation({ node->getOrientation().w,  node->getOrientation().x,  node->getOrientation().y,  node->getOrientation().z });
 }
 
 
