@@ -13,11 +13,29 @@
 
 ## General
 
-Como ya hemos ido explicando en las presentaciones:
-* Tenemos un Game con una gameStateMachine y sus GameStates
+> Como ya hemos ido explicando en las presentaciones, resumidamente:
 
+Tenemos un Game que inicia los sistemas necesarios (physicsManager_, renderManager_, soundManager_, messageSystem_...) y ejecuta el el bucle principal.
+* stepPhysics (actualiza phsx)
+* updateNodes (activa flags en los objetos de render que necesitan actualizar su posicion)
+* handleEvents (input)
+* update (dentro tiene late_update)
+* renderFrame (ogre renderiza un solo frame)
+* updateSound (actualiza posiciones de sonido 3D)
 
-## Cosas bastante mejorables / mal
+> la actualizacion de las posciones de los nodos de render ocurre en late_update del componente de render
+
+Tenemos una GameStateMachine para manejar los GameStates
+* Con su lista de GO y cada uno de ellos con su lista de Comps
+
+Los GO tiene posicion y orientacion propia. Tanto GO como Comp son
+* `Activable` (setActive, toggle, etc)
+* `identifiables` (tienen id, grupo, etc)
+* `Initiable` (no se inician al contruir sino al añadir a la escena activa, etc)
+
+> se puede poner posicion / ori a cualquier GO y este sobreescribe a phsx y a ogre
+
+## Cosas bastante mejorables / mal / no dio tiempo
 Teniamos pensado solucionar unas cuantas pero al final preferimos meter un poco mas de contenido y assets al juego.
 
 ### Proyectos
@@ -34,6 +52,8 @@ Teniamos pensado solucionar unas cuantas pero al final preferimos meter un poco 
 
 * Dependemos de la libreria de json como estructura que transmite las configuraciones de los GO y componentes, y en mas sitios.
 	* Esto era tanto esfuerzo cambiarlo que no ibamos a tocarlo
+* Despues del hito 2 hicimos la clase `globalConfig` que lee de el archivo `user/config.json` y `globalCFG.json` y guarda valores generales de la aplicacion en mapas.
+	* Deberiamos haber recogido todos los valores constantes y #define que aun hay todavia por el codigo y reunirlos ahi.
 
 #### GameObjects
 * Los componentes arrastran un parametro extra en sus `handleEvents`, `update`, `late_update`
