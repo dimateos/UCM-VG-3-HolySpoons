@@ -53,7 +53,7 @@
           "routeName": "ophelia.mp3",
           "customName": "LevelMusic",
           "3D": false,
-          "volume": 0.1
+          "volume": 0.07
         },
         "hitMarkerSound": {
           "id": {
