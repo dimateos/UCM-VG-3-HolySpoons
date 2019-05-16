@@ -36,16 +36,10 @@ void RenderComponent::setUp() {
 
 	//idle animation (if it has one)
 	if (FIND(cfg_, "idleAnimation")) {
-		string kk = cfg_["idleAnimation"];
-		/*Ogre::String kk2;
-		Ogre::AnimationStateSet *set = entity->getAllAnimationStates();
-		Ogre::AnimationStateIterator iter = set->getAnimationStateIterator();
-		while (iter.hasMoreElements())
-		{
-			kk2 = iter.getNext()->getAnimationName();
-		}*/
-		if (entity->hasAnimationState(kk)) {
-			idleAnimation = entity->getAnimationState(kk);
+		string name = cfg_["idleAnimation"];
+
+		if (entity->hasAnimationState(name)) {
+			idleAnimation = entity->getAnimationState(name);
 			idleAnimation->setEnabled(true);
 			idleAnimation->setLoop(true);
 		}
