@@ -25,7 +25,7 @@ GameObject * GOFactory::GetGOPrefab(std::string const & name) {
 	GameObject * go = nullptr;
 
 	bool successs = false;
-	auto go_struct = JsonReader::getSingleton()->getPrefab(name, successs);
+	auto go_struct = SceneReader::getSingleton()->getPrefab(name, successs);
 
 	if (!successs) LogSystem::Log("El prefab " + name + " no fue encontrado... abortando parseo del GO", LogSystem::FACTORY);
 	else go = ParseGO(go_struct);

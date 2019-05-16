@@ -1,5 +1,7 @@
+#include "checkML.h" //for memory leaks
 #include "Game.h"
 #include <GlobalConfig.h>
+#include <GoFactory.h>
 #include <LogSystem.h>
 
 //fowarded
@@ -35,7 +37,7 @@ void Game::initGame() {
 	messageSystem_ = MessageSystem::getSingleton();
 
 	//Initialize level
-	JsonReader::getSingleton(); //load prefabs
+	SceneReader::getSingleton(); //load prefabs
 	LogSystem::cls();
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
 
@@ -56,12 +58,13 @@ void Game::closeGame() {
 	gsm_->shutdownSingleton();
 
 	//Close singleton instances
-	JsonReader::shutdownSingleton();
+	SceneReader::shutdownSingleton();
 	MessageSystem::shutdownSingleton();
 	SoundManager::shutdownSingleton();
 	RenderSystemInterface::shutdownSingleton();
 	RenderSystemManager::shutdownSingleton();
 	PhysicsSystemManager::shutdownSingleton();
+	GOFactory::cleanFactories();
 
 	LogSystem::Log("closed", LogSystem::GAME);
 }
@@ -152,7 +155,6 @@ void Game::handleEvents() {
 					break;
 			}
 		}
-
 #endif
 
 		if (!handled) handled = renderManager_->handleEvents(evt);

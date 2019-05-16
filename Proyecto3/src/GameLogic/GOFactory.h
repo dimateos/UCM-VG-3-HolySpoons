@@ -2,7 +2,7 @@
 #define GO_FACTORY_H_
 
 #include <list>
-#include "JsonReader.h"
+#include "SceneReader.h"
 
 class Component;
 class GameObject;
@@ -27,6 +27,11 @@ class GOFactory
 {
 public:
 	GOFactory() {}
+	inline static void cleanFactories() {
+		factories->clear();
+		delete factories;
+	}
+
 	// parses a GOType into a GO
 	static GameObject* ParseGO(GOStruct & cfg);
 

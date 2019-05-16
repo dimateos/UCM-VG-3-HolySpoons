@@ -173,7 +173,7 @@
       "damageDealers": [
         {
           "group": "bounds",
-          "dmg": 50
+          "dmg": 999
         },
         {
           "group": "enemies",

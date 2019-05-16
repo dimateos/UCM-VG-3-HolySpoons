@@ -48,7 +48,7 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	//get the scene parsed json
 	GOStruct* player = nullptr;
 	GOStruct* manager = nullptr;
-	auto scene = JsonReader::getSingleton()->ReadLevel(level, player, manager);
+	auto scene = SceneReader::getSingleton()->ReadLevel(level, player, manager);
 
 	//name and phys
 	state->setStateID(scene.SceneName);

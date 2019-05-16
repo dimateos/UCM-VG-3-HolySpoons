@@ -1,4 +1,5 @@
 //Nap_Time_Studios
+#include "checkML.h" //for memory leaks
 #ifndef GAME_H_
 #define GAME_H_
 
