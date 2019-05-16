@@ -17,10 +17,14 @@ void PopStateComponent::setUp() {
 	//name of the target state
 	std::string s = this->cfg_["state"];
 	state = s;
+
+	//or pop simple, which doesnt need name
+	popSimple = FINDnRETURN(cfg_, "popSimple", bool, false);
 }
 
 void PopStateComponent::popState() {
-	GameStateMachine::getSingleton()->popToState(state);
+	if (popSimple) GameStateMachine::getSingleton()->popState();
+	else GameStateMachine::getSingleton()->popToState(state);
 }
 
 bool PopStateComponent::handleEvents(GameObject * o, const SDL_Event & evt) {

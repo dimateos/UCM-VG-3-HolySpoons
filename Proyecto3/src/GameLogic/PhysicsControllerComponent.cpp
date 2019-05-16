@@ -152,6 +152,10 @@ bool PhysicsControllerComponent::handleEvents(GameObject * o, const SDL_Event & 
 			invalidateChache();
 			handled = true;
 		}
+		else if (pressedKey == SDLK_l) {
+			LogSystem::Log("Player pos: ", owner_->getPosition().json(), LogSystem::CONTROLLER);
+			handled = true;
+		}
 	}
 #endif
 
