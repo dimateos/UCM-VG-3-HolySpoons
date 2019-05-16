@@ -7,6 +7,7 @@ class PopStateComponent : public Component
 private:
 	SDL_Keycode key;
 	std::string state;
+	bool popSimple;
 	void popState();
 
 public:

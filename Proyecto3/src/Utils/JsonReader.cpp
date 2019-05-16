@@ -174,6 +174,10 @@ SceneStruct JsonReader::ReadLevel(string level, GOStruct * & player, GOStruct * 
 	string s = FINDnRETURN_s(j, "stateID_", undefLevelName);
 	scene.SceneName = s;
 
+	//read phys required
+	bool b = FINDnRETURN(j, "physRequired", bool, false);
+	scene.PhysRequired = b;
+
 	//read the map/tiles and dump all the GOs IF FOUND
 	if (FIND(j, "mapFile")) {
 		string mapFile = j["mapFile"];

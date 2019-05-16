@@ -20,6 +20,10 @@ public:
 	virtual bool handleEvents(SDL_Event evt);
 	virtual void update(double time);
 
+	//some
+	inline void setPhysRequired(bool b = true) { physRequired_ = b; }
+	inline bool getPhysRequired() { return physRequired_; }
+
 	//simple state id
 	inline void setStateID(string id) { stateID_ = id; };
 	inline string getStateID() { return stateID_; };
@@ -49,4 +53,5 @@ protected:
 
 	std::list<GameObject*> gameObjects_;
 	string stateID_ = "undefinedID";
+	bool physRequired_ = false;
 };

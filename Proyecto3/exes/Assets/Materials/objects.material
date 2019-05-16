@@ -182,7 +182,7 @@ technique
 			texture_unit
 			{
 				colour_op add
-				texture metal.jpg
+				texture metalLow.png
 				tex_address_mode wrap
 			}
 		}

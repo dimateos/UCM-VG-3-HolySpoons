@@ -19,6 +19,7 @@ struct GOStruct {
 // SceneType = scene's name and GOType
 struct SceneStruct {
 	string SceneName;
+	bool PhysRequired;
 	std::list<GOStruct> gameObjects;
 };
 

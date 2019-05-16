@@ -32,15 +32,101 @@ material MonkeyMaterial
 	{
 		pass
 		{
-			ambient 0.8 0.8 0.8
-			
+			lighting on
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            
+            alpha_to_coverage off 
+            colour_write on 
+            cull_hardware clockwise 
+            depth_check on 
+            depth_func less_equal 
+            depth_write on 
+            illumination_stage  
+            light_clip_planes off 
+            light_scissor off 
+            normalise_normals off 
+            polygon_mode solid 
+            scene_blend one zero 
+            scene_blend_op add 
+            shading gouraud 
+            transparent_sorting on
 			texture_unit
+			
 			{
-				texture try.png
+				texture monkeyTex.png
 			}
 		}
 	}
 }
+
+material ufoMaterial
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            
+            alpha_to_coverage off 
+            colour_write on 
+            cull_hardware clockwise 
+            depth_check on 
+            depth_func less_equal 
+            depth_write on 
+            illumination_stage  
+            light_clip_planes off 
+            light_scissor off 
+            normalise_normals off 
+            polygon_mode solid 
+            scene_blend one zero 
+            scene_blend_op add 
+            shading gouraud 
+            transparent_sorting on
+
+			cull_hardware none
+
+			texture_unit
+			{
+				texture ufoTexture.png
+			}
+		}
+	}
+}
+
+material golemMaterial
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            
+            alpha_to_coverage off 
+            colour_write on 
+            cull_hardware clockwise 
+            depth_check on 
+            depth_func less_equal 
+            depth_write on 
+            illumination_stage  
+            light_clip_planes off 
+            light_scissor off 
+            normalise_normals off 
+            polygon_mode solid 
+            scene_blend one zero 
+            scene_blend_op add 
+            shading gouraud 
+            transparent_sorting on
+
+			texture_unit
+			{
+				texture golemTex.png
+			}
+		}
+	}
+}
+
 
 material StomperMaterial
 {
@@ -71,6 +157,53 @@ material StomperMaterial
 			{
 				texture foot.png
 			}
+		}
+	}
+}
+
+material portal.001
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+		}
+	}
+}
+material portal.002
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+		}
+	}
+}
+
+material portal.003
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
+		}
+	}
+}
+
+material portal.004
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+
 		}
 	}
 }

@@ -51,6 +51,7 @@
     <ClCompile Include="..\..\src\GameLogic\HPComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\IndestructubleSpawner.cpp" />
     <ClCompile Include="..\..\src\GameLogic\LeaderBoardComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\PlatformChangeStatic.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PopStateComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\PushStateComponent.cpp" />
@@ -68,6 +69,7 @@
     <ClCompile Include="..\..\src\GameLogic\SniperBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\SoundEmitterComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\Spawner.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SpinComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\StomperBehavior.cpp" />
     <ClCompile Include="..\..\src\GameLogic\TestComponent.cpp" />
     <ClCompile Include="..\..\src\GameLogic\HitPostProcessingComponent.cpp" />
@@ -109,6 +111,7 @@
     <ClInclude Include="..\..\src\GameLogic\HPComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\IndestructubleSpawner.h" />
     <ClInclude Include="..\..\src\GameLogic\LeaderBoardComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\PlatformChangeStatic.h" />
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h" />
     <ClInclude Include="..\..\src\GameLogic\PopStateComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\PushStateComponent.h" />
@@ -130,6 +133,7 @@
     <ClInclude Include="..\..\src\GameLogic\SniperBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\SoundEmitterComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\Spawner.h" />
+    <ClInclude Include="..\..\src\GameLogic\SpinComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\StomperBehavior.h" />
     <ClInclude Include="..\..\src\GameLogic\TestComponent.h" />
     <ClInclude Include="..\..\src\GameLogic\HitPostProcessingComponent.h" />
