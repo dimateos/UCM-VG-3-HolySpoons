@@ -8,6 +8,7 @@ class HPComponent : public Component
 private:
 	int InitHP, incrementHP;
 	int HP;
+	string soundEmitter;
 
 public:
 	HPComponent(nap_json const & cfg, GameObject* owner) : Component(cfg, owner), InitHP(0), HP(0) {}

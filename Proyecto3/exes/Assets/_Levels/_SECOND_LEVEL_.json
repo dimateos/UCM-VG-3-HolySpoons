@@ -26,6 +26,11 @@
   "Manager": {
     "id": {
       "type": "pref_gm_go"
+    },
+    "Components":{
+        "LevelMusic": {
+          "routeName": "iceMusic.ogg"
+        }
     }
   },
   "GameObjects": [

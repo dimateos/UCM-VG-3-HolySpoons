@@ -53,7 +53,7 @@
                   "routeName": "hoverButton.ogg",
                   "loop": false,
                   "startPaused":true,
-                  "2D": true,
+                  "3D": false,
                   "volume": 1.0
                 }
             }

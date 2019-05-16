@@ -61,9 +61,6 @@
     <ClCompile Include="..\..\src\GameLogic\MessageSystem.cpp">
       <Filter>_Messages</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\GOFactory.cpp">
       <Filter>_Components</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
     <ClCompile Include="..\..\src\GameLogic\BulletHittable.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\AttachedLightComponent.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -117,12 +111,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\PlayerHit.cpp">
       <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp">
-      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GameLogic\BasicPostProcessingComponent.cpp">
       <Filter>Render</Filter>
@@ -206,7 +194,21 @@
     <ClCompile Include="..\..\src\GameLogic\PlatformChangeStatic.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GameLogic\SpinComponent.cpp" />
+    <ClCompile Include="..\..\src\GameLogic\SpinComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\AutoRotationComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\CircularMovementComponent.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\SinusoidalMovement.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\FollowTargetComponent.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -248,9 +250,6 @@
     <ClInclude Include="..\..\src\GameLogic\MessageSystem.h">
       <Filter>_Messages</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\GOFactory.h">
       <Filter>_Components</Filter>
     </ClInclude>
@@ -278,9 +277,6 @@
     <ClInclude Include="..\..\src\GameLogic\BulletHittable.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\AttachedLightComponent.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -304,12 +300,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\PlayerHit.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\GameLogic\BasicPostProcessingComponent.h">
       <Filter>Render</Filter>
@@ -390,6 +380,20 @@
     <ClInclude Include="..\..\src\GameLogic\PlatformChangeStatic.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\GameLogic\SpinComponent.h" />
+    <ClInclude Include="..\..\src\GameLogic\SpinComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\AutoRotationComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\CircularMovementComponent.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\SinusoidalMovement.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\FollowTargetComponent.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

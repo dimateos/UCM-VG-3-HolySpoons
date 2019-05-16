@@ -146,6 +146,14 @@
             "mesh": "ufo.mesh"
           }
         },
+        "SpinComponent": {
+          "id": {
+            "type": "SpinComponent",
+            "group": "enemy_comps"
+          },
+          "Yaw": 10,
+          "RenderComponent": "basic_ren"
+        },
         "bombardier": {
           "id": {
             "type": "BombardierBehavior",
@@ -225,6 +233,14 @@
           "id": {
             "type": "RenderComponent",
             "group": "enemy_comps"
+          },
+          "SpinComponent": {
+            "id": {
+              "type": "SpinComponent",
+              "group": "enemy_comps"
+            },
+            "Yaw": 10,
+            "RenderComponent": "basic_ren"
           },
           "scale": {
             "x": 500,

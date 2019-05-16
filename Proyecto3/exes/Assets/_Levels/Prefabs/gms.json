@@ -45,15 +45,15 @@
           "deathTime": 0.3,
           "roundTime": 2.5
         },
-        "mainMusic": {
+        "LevelMusic": {
           "id": {
             "type": "SoundEmitterComponent",
             "group": "test_comps"
           },
           "routeName": "ophelia.mp3",
-          "customName": "mainMusic",
+          "customName": "LevelMusic",
           "3D": false,
-          "volume": 0.025
+          "volume": 0.1
         },
         "hitMarkerSound": {
           "id": {
@@ -112,6 +112,16 @@
           "overlay_name": "FRAME",
           "panel_container": "FRAME_PanelContainer"
         },
+        "pauseLevelMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "pauseScoreMusic.ogg",
+          "customName": "pauseLevelMusic",
+          "3D": false,
+          "volume": 0.1
+        },
         "pop_state_main": {
           "id": {
             "type": "PopStateComponent",
@@ -154,6 +164,16 @@
           "key": "",
           "json": "_SELECT_LEVEL_LEVEL_"
         },
+        "menuMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "introMusic.ogg",
+          "customName": "menuMusic",
+          "3D": false,
+          "volume": 0.1
+        },
         "push_state_leader_board": {
           "id": {
             "type": "PushStateComponent",
@@ -192,6 +212,27 @@
           },
           "overlay_name": "FRAME",
           "panel_container": "FRAME_PanelContainer"
+        },
+        "deathMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "deathMusic.ogg",
+          "customName": "deathMusic",
+          "loop": false,
+          "3D": false,
+          "volume": 0.1
+        },
+        "deathSound": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "deathSound.ogg",
+          "3D": false,
+          "loop":false,
+          "volume": 0.7
         },
         "pop_state": {
           "id": {
@@ -233,6 +274,16 @@
           },
           "key": "",
           "state": "Menu"
+        },
+        "LBMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "pauseScoreMusic.ogg",
+          "customName": "LBMusic",
+          "3D": false,
+          "volume": 0.1
         }
       }
     },
@@ -258,6 +309,16 @@
           },
           "overlay_name": "FRAME",
           "panel_container": "FRAME_PanelContainer"
+        },
+        "selectLevelMusic": {
+          "id": {
+            "type": "SoundEmitterComponent",
+            "group": "test_comps"
+          },
+          "routeName": "pauseScoreMusic.ogg",
+          "customName": "selectLevelMusic",
+          "3D": false,
+          "volume": 0.1
         },
         "pop_state": {
           "id": {
