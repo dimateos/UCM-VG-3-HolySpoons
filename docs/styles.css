@@ -1,0 +1,61 @@
+html {
+    font-size: 10px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: Courier, 'Courier New', monospace;
+    font-size: 1.6rem;
+    background-color: rgb(0, 0, 0);
+    background-image: url("./images/Hell.gif");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    color: rgb(255, 255, 255);
+  }
+  
+  a {
+    color: rgb(167, 34, 1);
+  }
+
+  main {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  h1{
+    padding: 0.2cm;
+    font-size:  20px;
+    color:  rgb(235, 140, 16);
+    
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 span{
+    background-color:  rgba(0, 0, 0, 0.5);
+  }
+
+  
+  p2{
+    padding-top: 0.5cm;
+    padding-bottom: 0.5cm;
+    padding-left: 0.2cm;
+    padding-right: 0.2cm;
+    background-color:  rgba(0, 0, 0, 0.5);
+    display: block;
+    text-align: center;
+    word-wrap: break-word;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  #game {
+    border: 1px solid #333;
+  }
+  
+  footer {
+    text-align: center;
+  }
