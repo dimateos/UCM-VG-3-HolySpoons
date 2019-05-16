@@ -206,6 +206,7 @@
     <ClCompile Include="..\..\src\GameLogic\PlatformChangeStatic.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\GameLogic\SpinComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\GameLogic\PhysicsComponent.h">
@@ -389,5 +390,6 @@
     <ClInclude Include="..\..\src\GameLogic\PlatformChangeStatic.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\GameLogic\SpinComponent.h" />
   </ItemGroup>
 </Project>
