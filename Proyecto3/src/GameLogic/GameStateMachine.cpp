@@ -50,8 +50,9 @@ GameState * GameStateMachine::loadLevel(std::string level) {
 	GOStruct* manager = nullptr;
 	auto scene = JsonReader::getSingleton()->ReadLevel(level, player, manager);
 
-	//name
+	//name and phys
 	state->setStateID(scene.SceneName);
+	state->setPhysRequired(scene.PhysRequired);
 
 	//load ogre scene
 	RenderSystemManager::getSingleton()->setupScene(scene.SceneName);
@@ -96,7 +97,7 @@ void GameStateMachine::preStateChanged() {
 	RenderSystemInterface::getSingleton()->setRenderingScene(id);
 
 	//pause/unpause physics
-	PhysicsSystemManager::getSingleton()->pausePhysics(id != mainGameStateName);
+	PhysicsSystemManager::getSingleton()->pausePhysics(!current->getPhysRequired());
 
 	//update message targets
 	MessageSystem::getSingleton()->updateTargets(current->getGameObjects());

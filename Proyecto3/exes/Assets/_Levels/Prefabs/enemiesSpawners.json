@@ -221,11 +221,6 @@
         "type": "sniper_spawner",
         "group": "indestructible_spawner"
       },
-      "pos": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
       "Components": {
         "spawner": {
           "id": {

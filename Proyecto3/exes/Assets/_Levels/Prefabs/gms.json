@@ -118,7 +118,8 @@
             "group": "test_comps"
           },
           "key": "p",
-          "state": "MainScene"
+          "state": "",
+          "popSimple": true
         },
         "pop_state_menu": {
           "id": {

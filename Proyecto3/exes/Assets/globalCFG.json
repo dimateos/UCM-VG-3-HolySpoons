@@ -6,7 +6,7 @@
     ],
 
     "strings": [
-
+      {"init_scene_name": "_MENU_LEVEL_"}
     ],
 
     "flags": [

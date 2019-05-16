@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "Pool.h"
 #include <Timer.h>
+#include <map>
 
 
 
@@ -25,12 +26,15 @@ protected:
 	nap_Pool* p;
 
 	nap_transform* dest;
-	vector<nap_vector3> positions;
+	
 
 	//cfg (json)
 	float speed = 0.1, shotSpeed = 0.1, lowY = -8, highY = 5;
 	state status = advance;
 	bool wait = false;
+
+	static string currentLevel;
+	static vector<nap_vector3> positions;
 
 public:
 

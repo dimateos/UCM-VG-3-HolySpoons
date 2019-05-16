@@ -4,8 +4,9 @@
 #include "GameStateMachine.h"
 
 void UpgradeComponent::onCollision(ID * other) {
+	if (!owner_->isActive()) return;
 	if (other->name_ == "player") {
-		owner_->setActive(false);
+		owner_->setActive(false, true);
 		MessageSystem::getSingleton()->sendMessageGameObject(
 			&Msg_UPGRADE_TAKEN(upgrade_), GameStateMachine::getSingleton()->currentState()->getGM());
 		MessageSystem::getSingleton()->sendMessageComponentName(&Message(PLAY_SOUND), "player", "UpgradeSound");

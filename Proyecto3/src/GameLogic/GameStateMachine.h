@@ -8,11 +8,6 @@ using namespace std;
 
 typedef union SDL_Event;
 
-//at some global cfg
-#define mainGameStateName "MainScene"
-#define mainGameStateJSON "_MAIN_LEVEL_"
-#define introStateJSON "_MENU_LEVEL_"
-
 class GameStateMachine
 {
 private:

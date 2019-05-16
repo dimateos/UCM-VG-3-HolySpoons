@@ -1,7 +1,8 @@
 #include "Game.h"
+#include <GlobalConfig.h>
+#include <LogSystem.h>
 
 //fowarded
-#include <LogSystem.h>
 #include <JsonReader.h>
 #include <GameStateMachine.h>
 #include <MessageSystem.h>
@@ -39,7 +40,7 @@ void Game::initGame() {
 	LogSystem::Log("singletons done -> initializing level...", LogSystem::GAME);
 
 	gsm_ = GameStateMachine::getSingleton();
-	auto menu = gsm_->loadLevel(introStateJSON); //gsm uses the parser + factory
+	auto menu = gsm_->loadLevel(GlobalCFG::strings["init_scene_name"]); //gsm uses the parser + factory
 	gsm_->pushState(menu); //you can push it already and add more things later
 
 	//all done

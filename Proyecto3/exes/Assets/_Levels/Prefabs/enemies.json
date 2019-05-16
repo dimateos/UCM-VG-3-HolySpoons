@@ -139,7 +139,7 @@
             "y": 260.0,
             "z": 200.0
           },
-          "material": "Material",
+          "material": "ufoMaterial",
           "shape": {
             "entity_name": "ufo",
             "type": "MESH",
@@ -151,7 +151,7 @@
             "type": "BombardierBehavior",
             "group": "enemy_comps"
           },
-          "speed": 18,
+          "speed": 21,
           "Target": "player",
           "lowY": 10,
           "highY": 30,
@@ -227,15 +227,15 @@
             "group": "enemy_comps"
           },
           "scale": {
-            "x": 3.5,
-            "y": 4.3,
-            "z": 3.5
+            "x": 500,
+            "y": 500,
+            "z": 500
           },
-          "material": "Material",
+          "material": "golemMaterial",
           "shape": {
-            "entity_name": "bug",
+            "entity_name": "golem",
             "type": "MESH",
-            "mesh": "bug.mesh"
+            "mesh": "golem.mesh"
           }
         },
         "sniper": {
@@ -247,8 +247,40 @@
           "Target": "player",
           "lowY": -11,
           "highY": 4,
-          "shotSpeed": 50,
-          "actionDelay": 1.4
+          "shotSpeed": 60,
+          "actionDelay": 1.4,
+          "LavaScene": [
+            { "x": 85.0, "y": 0.0, "z": 40.0 },
+            { "x": 85.0, "y": 0.0, "z": -40.0 },
+            { "x": -85.0, "y": 0.0, "z": 40.0 },
+            { "x": -85.0, "y": 0.0, "z": -40.0 },
+            { "x": 40.0, "y": 0.0, "z": 85.0 },
+            { "x": -40.0, "y": 0.0, "z": 85.0 },
+            { "x": -40.0, "y": 0.0, "z": -85.0 },
+            { "x": 40.0, "y": 0.0, "z": -85.0 }          
+          ],
+          "WaterScene": [
+            { "x": 30.0, "y": 0.0, "z": 15.0 },
+            { "x": -30.0, "y": 0.0, "z": 15.0 },
+            { "x": 30.0, "y": 0.0, "z": -30.0 },
+            { "x": 30.0, "y": 0.0, "z": 60.0 },
+            { "x": -30.0, "y": 0.0, "z": -30.0 },
+            { "x": -30.0, "y": 0.0, "z": 60.0 },
+            { "x": 110.0, "y": 0.0, "z": 60.0 },
+            { "x": -110.0, "y": 0.0, "z": -60.0},          
+            { "x": 110.0, "y": 0.0, "z": -60.0 },
+            { "x": -110.0, "y": 0.0, "z": 60.0 } 
+          ],
+          "SkyScene": [
+            { "x": 100.0, "y": 0.0, "z": 40.0 },
+            { "x": 100.0, "y": 0.0, "z": -40.0 },
+            { "x": -100.0, "y": 0.0, "z": 40.0 },
+            { "x": -100.0, "y": 0.0, "z": -40.0 },
+            { "x": 40.0, "y": 0.0, "z": 100.0 },
+            { "x": -40.0, "y": 0.0, "z": 100.0 },
+            { "x": -40.0, "y": 0.0, "z": -100.0 },
+            { "x": 40.0, "y": 0.0, "z": -100.0 } 
+          ]
         },
         "bullet_hittable": {
           "id": {
@@ -277,13 +309,6 @@
             "b": 1.0
           },
           "range": 5000
-        },
-        "auto_rotation": {
-          "id": {
-            "type": "AutoRotationComponent",
-            "group": "enemy_comps"
-          },
-          "Target": "player"
         }
       }
     },
@@ -321,7 +346,7 @@
             "y": 250.0,
             "z": 225.0
           },
-          "material": "Material",
+          "material": "StomperMaterial",
           "shape": {
             "entity_name": "foot",
             "type": "MESH",

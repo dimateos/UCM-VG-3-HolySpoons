@@ -8,6 +8,9 @@
 
 #include <Transforms.h>
 
+string SniperBehavior::currentLevel ("noLevel");
+vector<nap_vector3> SniperBehavior::positions{};
+
 #define defInitialBullets 10
 void SniperBehavior::advanceBehavior(float time)
 {
@@ -50,11 +53,11 @@ void SniperBehavior::backBehavior(float time)
 		status = advance;
 		ownerPos = positions[rand() % positions.size()];
 		ownerPos.y_ += lowY;
-		float tmp = rand() % 100 - 50;
+		/*float tmp = rand() % 20 - 10;
 		if (ownerPos.x_ == 0)
 			ownerPos.x_ = tmp;
 		else
-			ownerPos.z_ = tmp;
+			ownerPos.z_ = tmp;*/
 
 	}
 	owner_->setPosition(ownerPos);
@@ -92,10 +95,17 @@ void SniperBehavior::setUp()
 	p = new nap_Pool("e_bullet");
 	p->setDefault(defInitialBullets);
 	p->init();
-	positions.push_back(nap_vector3(85, 0, 0));
-	positions.push_back(nap_vector3(0, 0, 85));
-	positions.push_back(nap_vector3(-85, 0, 0));
-	positions.push_back(nap_vector3(0, 0, -85));
+
+	string stateID = GameStateMachine::getSingleton()->currentState()->getStateID();
+	if (currentLevel != stateID) {
+		currentLevel = stateID;
+		vector<nap_vector3> tmp;
+		for (auto & pos : cfg_[currentLevel]) {
+			tmp.push_back(nap_vector3(pos));
+			positions = tmp;
+		}
+	}
+	
 
 	string target = this->cfg_["Target"];
 	GameObject* o = GameStateMachine::getSingleton()->currentState()->getGameObject(target);

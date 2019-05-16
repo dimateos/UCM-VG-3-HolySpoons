@@ -12,8 +12,11 @@ public:
 	inline virtual ~PhysicsComponent() { setDown(); };
 	virtual void setUp();
 
+	void configDynamicBody(bool b = true);
 	PxRigidDynamic * getDynamicBody();
+
 	void setShapeTrigger(bool b = true);
+	void setIgnoreTrans(bool b = true);
 
 	virtual void late_update(GameObject* o, double time);
 
@@ -22,13 +25,14 @@ protected:
 	virtual void configActive();
 
 	//used to optimize synchronization on late_update when not required
-	bool ignoreTrans_, updateOri_;
+	bool ignoreTrans_, updateOri_, noGravity_;
 
 	//sync GO transforms with px
 	nap_userData * ud_ = nullptr;
 	void updateUserData();
 
-	//Assist on setting up the shape
+	//Assist on setting up the actor
+	void configDynamicActor();
 	PxGeometry * getGeo(nap_json shape);
 	PxShape * shape_ = nullptr;
 

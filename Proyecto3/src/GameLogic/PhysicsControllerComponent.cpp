@@ -80,6 +80,7 @@ void PhysicsControllerComponent::invalidateChache() {
 void PhysicsControllerComponent::setDown() {
 	//release the controller (which releases the actor, shape etc)
 	controller_->release();
+	if (ud_ != nullptr) delete ud_;
 }
 
 void PhysicsControllerComponent::configActive() {
@@ -149,6 +150,10 @@ bool PhysicsControllerComponent::handleEvents(GameObject * o, const SDL_Event & 
 		if (pressedKey == SDLK_c) {
 			LogSystem::Log("Manually invalidated chache", LogSystem::CONTROLLER);
 			invalidateChache();
+			handled = true;
+		}
+		else if (pressedKey == SDLK_l) {
+			LogSystem::Log("Player pos: ", owner_->getPosition().json(), LogSystem::CONTROLLER);
 			handled = true;
 		}
 	}
