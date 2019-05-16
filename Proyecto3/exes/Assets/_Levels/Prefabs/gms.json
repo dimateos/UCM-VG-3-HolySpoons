@@ -21,7 +21,7 @@
             "type": "PushStateComponent",
             "group": "test_comps"
           },
-          "key": "p",
+          "key": "esc",
           "json": "_PAUSE_LEVEL_"
         },
         "push_death": {
