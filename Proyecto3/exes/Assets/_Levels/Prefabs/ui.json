@@ -42,7 +42,7 @@
                         "type": "ButtonSizeChangeComponent",
                         "group": "ui_comps"
                     },
-                    "Multiplier": 1.3,
+                    "Multiplier": 1.2,
                     "soundEmitter": "sound"
                 },
                 "sound": {
@@ -119,11 +119,11 @@
                         "group": "ui_comps"
                     },
                     "X": 0.0,
-                    "Y": 0.8,
-                    "W": 0.3,
-                    "H": 0.3,
-                    "panelName": "MENU_PanelContainer",
-                    "materialName": "startButtonMaterial",
+                    "Y": 0.83,
+                    "W": 0.15,
+                    "H": 0.17,
+                    "panelName": "MENU_FRAME_PanelContainer",
+                    "materialName": "FullControlsMaterial",
                     "imgMat": "ButtonMaterial",
                     "name": "hover_button"
                 }

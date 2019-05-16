@@ -1,0 +1,12 @@
+
+overlay MENU_FRAME
+{
+    zorder 300
+    overlay_element MENU_FRAME_PanelContainer Panel
+	{
+		left 0.0
+		top 0.0
+		width 1.0
+		height 1.0
+    }
+}

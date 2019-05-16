@@ -156,6 +156,14 @@
           "overlay_name": "MENU",
           "panel_container": "MENU_PanelContainer"
         },
+        "canvas2": {
+          "id": {
+            "type": "OverlayComponent",
+            "group": "ui_overlay"
+          },
+          "overlay_name": "MENU_FRAME",
+          "panel_container": "MENU_FRAME_PanelContainer"
+        },
         "push_state_main": {
           "id": {
             "type": "PushStateComponent",

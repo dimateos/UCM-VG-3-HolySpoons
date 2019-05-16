@@ -1,6 +1,6 @@
 overlay MENU
 {
-	zorder 400
+	zorder 200
 	overlay_element MENU_PanelContainer Panel
 	{
 		left 0.0

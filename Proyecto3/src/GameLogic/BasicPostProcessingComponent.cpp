@@ -18,6 +18,7 @@ void BasicPostProcessingComponent::setUp() {
 	if (FIND(this->cfg_, "Active_Message")) active_message_ = this->cfg_["Active_Message"];
 	if (FIND(this->cfg_, "Inactive_Message")) inactive_message_ = this->cfg_["Inactive_Message"];
 
+	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, true);
 	RenderSystemInterface::getSingleton()->setCompositorEnabled(compositorName, enabledOnStart);
 }
 

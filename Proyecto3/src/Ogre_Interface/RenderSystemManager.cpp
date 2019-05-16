@@ -69,7 +69,7 @@ void RenderSystemManager::setupResources()
 }
 
 //Window size, full screen... --> read it from json
-#define winConfig "1280 x 720 @ 32-bit colour"
+#define winConfig "1920 x 1080 @ 32-bit colour"
 bool RenderSystemManager::setConfiguration()
 {
 	RenderSystemList l = mRoot->getAvailableRenderers();

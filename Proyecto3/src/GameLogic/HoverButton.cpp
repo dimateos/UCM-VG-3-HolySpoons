@@ -107,10 +107,16 @@ void HoverButton::onClick() {
 		GameStateMachine::getSingleton()->currentState()->getGM(), listener);
 	*/
 	auto rsi = RenderSystemInterface::getSingleton();
-	if(outside)
+	if (outside) {
 		rsi->setOverlayElementMaterial(elemt, buttonMat);
-	else
+		rsi->setOverlayElementDimensions_abs(elemt, bigW * 5, bigH * 5);
+		rsi->setOverlayElementPosition_rel(elemt, 0, 0);
+	}
+	else {
 		rsi->setOverlayElementMaterial(elemt, imgMat);
+		rsi->setOverlayElementDimensions_abs(elemt, bigW, bigH);
+		rsi->setOverlayElementPosition_abs(elemt, bigX, bigY);
+	}
 
 }
 
