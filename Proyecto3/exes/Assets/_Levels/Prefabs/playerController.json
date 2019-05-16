@@ -144,7 +144,8 @@
         "group": "player_comps"
       },
       "hp": 50,
-      "incrHp": 10
+      "incrHp": 10,
+      "soundEmitter":"hurtSound"
     },
     "player_hit": {
       "id": {
@@ -242,6 +243,17 @@
       "loop": false,
       "3D": true,
       "volume": 0.2
+    },
+    "hurtSound": {
+      "id": {
+        "type": "SoundEmitterComponent",
+        "group": "test_comps"
+      },
+      "routeName": "hurtSound.ogg",
+      "3D": true,
+      "startPaused":true,
+      "loop":false,
+      "volume": 1.0
     }
   }
 }
