@@ -175,8 +175,17 @@
             "type": "SpinComponent",
             "group": "enemy_comps"
           },
-          "Yaw": 10,
+          "Yaw": 2,
           "RenderComponent": "up_render"
+        },
+        "SinusoidalMovementComponent": {
+          "id": {
+            "type": "SinusoidalMovementComponent",
+            "group": "enemy_comps"
+          },
+          "Amplitude": 0.02,
+          "speed": 2,
+          "moveY": true
         },
         "upgrade_comp": {
           "id": {

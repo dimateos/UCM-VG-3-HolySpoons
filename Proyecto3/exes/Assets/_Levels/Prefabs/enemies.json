@@ -151,7 +151,7 @@
             "type": "SpinComponent",
             "group": "enemy_comps"
           },
-          "Yaw": 10,
+          "Yaw": 5,
           "RenderComponent": "basic_ren"
         },
         "bombardier": {
@@ -199,9 +199,9 @@
             "type": "SinusoidalMovementComponent",
             "group": "enemy_comps"
           },
-          "Amplitude": 0.02,
+          "Amplitude": 0.015,
           "speed": 2,
-          "moveX": true
+          "moveY": true
         }
       }
     },
@@ -234,13 +234,12 @@
             "type": "RenderComponent",
             "group": "enemy_comps"
           },
-          "SpinComponent": {
+          "auto_rotation": {
             "id": {
-              "type": "SpinComponent",
+              "type": "AutoRotationComponent",
               "group": "enemy_comps"
             },
-            "Yaw": 10,
-            "RenderComponent": "basic_ren"
+            "Target": "player"
           },
           "scale": {
             "x": 500,
