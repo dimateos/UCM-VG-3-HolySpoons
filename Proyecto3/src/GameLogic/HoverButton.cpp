@@ -109,7 +109,7 @@ void HoverButton::onClick() {
 	auto rsi = RenderSystemInterface::getSingleton();
 	if (outside) {
 		rsi->setOverlayElementMaterial(elemt, buttonMat);
-		rsi->setOverlayElementDimensions_abs(elemt, bigW * 5, bigH * 5);
+		rsi->setOverlayElementDimensions_abs(elemt, bigW * 7, bigH * 6);
 		rsi->setOverlayElementPosition_rel(elemt, 0, 0);
 	}
 	else {
