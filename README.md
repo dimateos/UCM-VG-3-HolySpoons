@@ -1,11 +1,11 @@
-# **Holy Spoons** | [*web*](https://dimateos.github.io/Holy_Spoons/) | [*video*](https://www.youtube.com/watch?v=IQfUdBuVHcc) | [*download*](https://mega.nz/#!41AlQS7I!-GBgQ_hPpN0wz3wzfsZMJC6KHxTzsjtobD_sylzSjn8)
+# **Holy Spoons** | [*web*](https://dimateos.github.io/Holy_Spoons/) | [*video*](https://www.youtube.com/watch?v=IQfUdBuVHcc) | [*download*](https://github.com/dimateos/Holy_Spoons/releases)
 
 [![title](readme/title.png)](https://dimateos.github.io/Holy_Spoons/)
 
 ## Please go ahead and check out:
 * Our awesome [*web*](https://dimateos.github.io/Holy_Spoons/)!
-* Our epic [*video*](https://www.youtube.com/watch?v=IQfUdBuVHcc) (Gameplay Reveal):
-* Download the last [*build*](https://mega.nz/#!41AlQS7I!-GBgQ_hPpN0wz3wzfsZMJC6KHxTzsjtobD_sylzSjn8)
+* Our epic [*video*](https://www.youtube.com/watch?v=IQfUdBuVHcc) (Gameplay Reveal)
+* Download the last build at [*releases*](https://github.com/dimateos/Holy_Spoons/releases) or [*mega*](https://mega.nz/#!41AlQS7I!-GBgQ_hPpN0wz3wzfsZMJC6KHxTzsjtobD_sylzSjn8)
 
 # NapTime Studios
 > *Done for the P3 (Project 3) subject during our third year at [UCM Madrid](https://informatica.ucm.es/) (university)*
